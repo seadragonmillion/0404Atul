@@ -22,7 +22,7 @@ public class ChromeLoginTest {
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  DesiredCapabilities capability = DesiredCapabilities.chrome();
-		  driver = new RemoteWebDriver(new URL("http://192.168.194.147:4445"), capability);
+		  driver = new RemoteWebDriver(new URL("http://PII-HANY-PC.piionline.local:4445"), capability);
 		  capability.setBrowserName("chrome");
 		  //Browser is maximized
 		  driver.manage().window().maximize();
