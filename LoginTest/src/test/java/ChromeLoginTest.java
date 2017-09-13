@@ -23,7 +23,7 @@ public class ChromeLoginTest {
 		  
 		  DesiredCapabilities capability = DesiredCapabilities.chrome();
 		  driver = new RemoteWebDriver(new URL("http://192.168.194.147:4445"), capability);
-		  capability.setBrowserName("firefox");
+		  capability.setBrowserName("chrome");
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
