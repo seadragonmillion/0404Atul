@@ -19,7 +19,8 @@ public class FirefoxLoginTest {
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  DesiredCapabilities capability = DesiredCapabilities.firefox();
-		  driver = new RemoteWebDriver(new URL("http://kaledev.error-free.com:4444/wd/hub"), capability);
+		  driver = new RemoteWebDriver(new URL("http://192.168.194.147:4447"), capability);
+		  capability.setBrowserName("firefox");
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
