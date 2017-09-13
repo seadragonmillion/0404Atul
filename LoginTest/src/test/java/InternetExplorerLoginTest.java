@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class InternetExplorerLoginTest {
 
@@ -18,9 +18,11 @@ public class InternetExplorerLoginTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
+		  /*DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
 		  driver = new RemoteWebDriver(new URL("http://PII-HANY-PC.piionline.local:4445"), capability);
-		  capability.setBrowserName("internetExplorer");
+		  capability.setBrowserName("internetExplorer");*/
+		  System.setProperty("webdriver.ie.driver", "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
+		  driver = new InternetExplorerDriver();
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
