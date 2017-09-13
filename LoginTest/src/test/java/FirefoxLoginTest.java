@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class FirefoxLoginTest {
 
@@ -18,9 +18,11 @@ public class FirefoxLoginTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  DesiredCapabilities capability = DesiredCapabilities.firefox();
+		 /* DesiredCapabilities capability = DesiredCapabilities.firefox();
 		  driver = new RemoteWebDriver(new URL("http://PII-HANY-PC.piionline.local:4445"), capability);
-		  capability.setBrowserName("firefox");
+		  capability.setBrowserName("firefox");*/
+		  System.setProperty("webdriver.gecko.driver", "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
+		  driver = new FirefoxDriver();
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
