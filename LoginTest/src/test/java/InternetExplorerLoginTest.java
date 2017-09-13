@@ -19,7 +19,7 @@ public class InternetExplorerLoginTest {
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
-		  driver = new RemoteWebDriver(new URL("http://192.168.194.147:4449"), capability);
+		  driver = new RemoteWebDriver(new URL("http://PII-HANY-PC.piionline.local:4445"), capability);
 		  capability.setBrowserName("internetExplorer");
 		  //Browser is maximized
 		  driver.manage().window().maximize();
