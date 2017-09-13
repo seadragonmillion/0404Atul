@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ChromeLoginTest {
 
@@ -21,9 +21,11 @@ public class ChromeLoginTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  DesiredCapabilities capability = DesiredCapabilities.chrome();
+		  /*DesiredCapabilities capability = DesiredCapabilities.chrome();
 		  driver = new RemoteWebDriver(new URL("http://PII-HANY-PC.piionline.local:4445"), capability);
-		  capability.setBrowserName("chrome");
+		  capability.setBrowserName("chrome");*/
+		  System.setProperty("webdriver.chrome.driver", "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
+		  driver = new ChromeDriver();
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
