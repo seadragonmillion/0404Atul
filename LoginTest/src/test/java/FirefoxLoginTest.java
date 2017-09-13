@@ -19,7 +19,7 @@ public class FirefoxLoginTest {
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  DesiredCapabilities capability = DesiredCapabilities.firefox();
-		  driver = new RemoteWebDriver(new URL("http://192.168.194.147:4447"), capability);
+		  driver = new RemoteWebDriver(new URL("http://PII-HANY-PC.piionline.local:4445"), capability);
 		  capability.setBrowserName("firefox");
 		  //Browser is maximized
 		  driver.manage().window().maximize();
