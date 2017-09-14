@@ -1,16 +1,14 @@
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+
 
 public class InternetExplorerLoginTest {
 
@@ -18,8 +16,7 @@ public class InternetExplorerLoginTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-
-		  System.setProperty("webdriver.ie.driver", "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
+		  System.setProperty("webdriver.ie.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
 		  driver = new InternetExplorerDriver();
 		  //Browser is maximized
 		  driver.manage().window().maximize();
