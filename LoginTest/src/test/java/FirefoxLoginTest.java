@@ -1,25 +1,22 @@
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 public class FirefoxLoginTest {
 
-	private WebDriver driver;
+	private FirefoxDriver driver;
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-
-		  System.setProperty("webdriver.gecko.driver", "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
+		  
+		  System.setProperty("webdriver.gecko.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
 		  driver = new FirefoxDriver();
 		  //Browser is maximized
 		  driver.manage().window().maximize();
