@@ -1,17 +1,14 @@
-import java.net.URL;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 
 public class ChromeLoginTest {
 
@@ -21,8 +18,7 @@ public class ChromeLoginTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-
-		  System.setProperty("webdriver.chrome.driver", "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
+		  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 		  driver = new ChromeDriver();
 		  //Browser is maximized
 		  driver.manage().window().maximize();
