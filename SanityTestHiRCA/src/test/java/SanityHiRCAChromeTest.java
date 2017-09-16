@@ -88,6 +88,8 @@ public class SanityHiRCAChromeTest {
 			  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test - No timeline");
 			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test - No background information");
 			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test - Ritica Ramakrishnan");
+			  WebDriverWait wait2 = new WebDriverWait(driver,10);
+			  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
 			  driver.findElement(By.id("efi-irca-button-save")).click();
 			  WebDriverWait wait1 = new WebDriverWait(driver,10);
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
