@@ -31,7 +31,7 @@ public class SanityHiRCAInternetExplorerTest {
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  System.out.println("Performing sanity test on HiRCA in Internet Explorer");
-		 System.setProperty("webdriver.ie.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
+		 System.setProperty("webdriver.ie.driver","C:\\Ritica\\selenium\\IEDriverServer.exe");
 		 DesiredCapabilities cap = new DesiredCapabilities(); 
 		// InternetExplorerOptions options = new InternetExplorerOptions();
 		  //options.introduceFlakinessByIgnoringSecurityDomains();
@@ -70,7 +70,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		 
-		  assertEquals (driver.getTitle(), "KALE™");
+		  assertEquals (driver.getTitle(), "KALEï¿½");
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(5000);
