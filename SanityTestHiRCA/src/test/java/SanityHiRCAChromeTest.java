@@ -25,7 +25,7 @@ public class SanityHiRCAChromeTest {
 		  public void beforeTest() throws MalformedURLException{
 			  
 			  System.out.println("Performing sanity test on HiRCA in Chrome");
-			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
+			  System.setProperty("webdriver.chrome.driver","C:\\Ritica\\selenium\\chromedriver.exe");
 			  driver = new ChromeDriver();
 			  //Browser is maximized
 			  driver.manage().window().maximize();
@@ -57,7 +57,7 @@ public class SanityHiRCAChromeTest {
 			  Login();
 			  System.out.println("Title after login: "+driver.getTitle());
 			 
-			  assertEquals (driver.getTitle(), "KALE™");
+			  assertEquals (driver.getTitle(), "KALEï¿½");
 			  Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 		                .withTimeout(40, TimeUnit.SECONDS)
 
