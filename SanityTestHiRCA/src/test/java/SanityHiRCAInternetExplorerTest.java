@@ -26,7 +26,7 @@ public class SanityHiRCAInternetExplorerTest {
 
 	private WebDriver driver;
 	
-	  
+	 /* 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -135,6 +135,6 @@ public class SanityHiRCAInternetExplorerTest {
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		  driver.quit();*/
-	  }
+	  }*/
 
 }
