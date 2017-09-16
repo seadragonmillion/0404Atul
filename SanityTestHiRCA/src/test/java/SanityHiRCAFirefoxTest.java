@@ -22,7 +22,7 @@ public class SanityHiRCAFirefoxTest {
 		@Before
 		  public void beforeTest() throws MalformedURLException{
 			  System.out.println("Performing sanity test on HiRCA in Firefox");
-			  System.setProperty("webdriver.gecko.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
+			  System.setProperty("webdriver.gecko.driver","C:\\Ritica\\selenium\\geckodriver.exe");
 			  driver = new FirefoxDriver();
 			  //Browser is maximized
 			  driver.manage().window().maximize();
@@ -53,7 +53,7 @@ public class SanityHiRCAFirefoxTest {
 			  
 			  Login();
 			  System.out.println("Title after login: "+driver.getTitle());
-			  assertEquals (driver.getTitle(), "KALE™");
+			  assertEquals (driver.getTitle(), "KALEï¿½");
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
