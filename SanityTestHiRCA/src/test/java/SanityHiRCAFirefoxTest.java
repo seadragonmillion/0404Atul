@@ -53,7 +53,7 @@ public class SanityHiRCAFirefoxTest {
 			  
 			  Login();
 			  System.out.println("Title after login: "+driver.getTitle());
-			  assertEquals (driver.getTitle(), "KALE�");
+			 // assertEquals (driver.getTitle(), "KALE�");
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
