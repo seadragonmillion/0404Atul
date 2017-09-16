@@ -26,7 +26,7 @@ public class SanityHiRCAInternetExplorerTest {
 
 	private WebDriver driver;
 	
-	 /* 
+	 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -47,7 +47,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
 	  
-	
+	  @Test
 	  public void Login() {
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
@@ -63,7 +63,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
 	  }
-	  
+	 /* 
 	  @Test
 	  public void SanityTest() throws Exception{
 		  
