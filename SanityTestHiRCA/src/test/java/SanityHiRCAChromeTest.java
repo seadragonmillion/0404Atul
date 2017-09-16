@@ -82,6 +82,7 @@ public class SanityHiRCAChromeTest {
 			  }
 			  
 			  driver.findElement(By.id("pii-a-menu-hirca")).click();
+			  Thread.sleep(5000);
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test 24");
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
 			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys("Sanity Test");
