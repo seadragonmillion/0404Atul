@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -89,6 +90,8 @@ public class SanityHiRCAChromeTest {
 			  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test - No timeline");
 			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test - No background information");
 			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test - Ritica Ramakrishnan");
+			  JavascriptExecutor jse = (JavascriptExecutor)driver;
+			  jse.executeScript("scroll(250, 0)");
 			  WebDriverWait wait2 = new WebDriverWait(driver,10);
 			  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
 			  driver.findElement(By.id("efi-irca-button-save")).click();
@@ -111,7 +114,7 @@ public class SanityHiRCAChromeTest {
 			  }
 			  else
 				  System.out.println ("Record not found.");
-			 // assertEquals(name, recordName);
+			  assertEquals(name, recordName);
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();			 
 		  }
