@@ -22,7 +22,7 @@ public class SanityHiRCAFirefoxTest {
 		@Before
 		  public void beforeTest() throws MalformedURLException{
 			  System.out.println("Performing sanity test on HiRCA in Firefox");
-			  System.setProperty("webdriver.gecko.driver","C:\\Ritica\\selenium\\geckodriver.exe");
+			  System.setProperty("webdriver.gecko.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
 			  driver = new FirefoxDriver();
 			  //Browser is maximized
 			  driver.manage().window().maximize();
