@@ -26,7 +26,7 @@ public class SanityHiRCAChromeTest {
 		  public void beforeTest() throws MalformedURLException{
 			  
 			  System.out.println("Performing sanity test on HiRCA in Chrome");
-			  System.setProperty("webdriver.chrome.driver","C:\\Ritica\\selenium\\chromedriver.exe");
+			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  driver = new ChromeDriver();
 			  //Browser is maximized
 			  driver.manage().window().maximize();
