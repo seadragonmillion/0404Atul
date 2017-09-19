@@ -100,7 +100,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Clicks on logout
 		  jse.executeScript("return document.getElementById('pii-user-loginname').click();");
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  		 
 	  }
 	  
