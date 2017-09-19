@@ -1,0 +1,47 @@
+{
+  "uid" : "55f765b14e258c9f",
+  "name" : "f",
+  "title" : "F",
+  "time" : {
+    "start" : 1505859110019,
+    "stop" : 1505859230081,
+    "duration" : 120062
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "224c4da48c337b6a",
+    "name" : "InternetExplorerLoginTest",
+    "title" : "Internet explorer login test"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "thread",
+    "value" : "9688@PII-HANY-PC.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "JUnit"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "host",
+    "value" : "PII-HANY-PC"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "suite-name",
+    "value" : "InternetExplorerLoginTest"
+  } ],
+  "parameters" : [ ]
+}

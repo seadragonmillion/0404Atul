@@ -1,0 +1,98 @@
+{
+  "time" : {
+    "start" : 1505859060766,
+    "stop" : 1505859230081,
+    "duration" : 169315
+  },
+  "testSuites" : [ {
+    "uid" : "224c4da48c337b6a",
+    "name" : "InternetExplorerLoginTest",
+    "title" : "Internet explorer login test",
+    "time" : {
+      "start" : 1505859110019,
+      "stop" : 1505859230081,
+      "duration" : 120062
+    },
+    "statistic" : {
+      "total" : 1,
+      "passed" : 1,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 0
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "55f765b14e258c9f",
+      "name" : "f",
+      "title" : "F",
+      "time" : {
+        "start" : 1505859110019,
+        "stop" : 1505859230081,
+        "duration" : 120062
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  }, {
+    "uid" : "8cf9d4a9da5c75d4",
+    "name" : "FirefoxLoginTest",
+    "title" : "Firefox login test",
+    "time" : {
+      "start" : 1505859085572,
+      "stop" : 1505859110009,
+      "duration" : 24437
+    },
+    "statistic" : {
+      "total" : 1,
+      "passed" : 1,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 0
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "686d064bdb4f8b4e",
+      "name" : "f",
+      "title" : "F",
+      "time" : {
+        "start" : 1505859085572,
+        "stop" : 1505859110009,
+        "duration" : 24437
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  }, {
+    "uid" : "222a21defff43192",
+    "name" : "ChromeLoginTest",
+    "title" : "Chrome login test",
+    "time" : {
+      "start" : 1505859060766,
+      "stop" : 1505859085372,
+      "duration" : 24606
+    },
+    "statistic" : {
+      "total" : 1,
+      "passed" : 1,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 0
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "68545933323e93a1",
+      "name" : "f",
+      "title" : "F",
+      "time" : {
+        "start" : 1505859060766,
+        "stop" : 1505859085372,
+        "duration" : 24606
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  } ]
+}
