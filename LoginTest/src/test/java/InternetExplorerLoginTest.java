@@ -4,20 +4,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 public class InternetExplorerLoginTest {
 
-	private WebDriver driver;
+	private InternetExplorerDriver driver;
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  System.setProperty("webdriver.ie.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
-		  driver = new InternetExplorerDriver();
+		  DesiredCapabilities cap = new DesiredCapabilities(); 
+		  cap.setCapability("ignoreZoomSettings", true);
+		  cap.setCapability("requireWindowFocus", true);
+		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
