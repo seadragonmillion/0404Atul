@@ -41,9 +41,9 @@ public class SanityHiRCAFirefoxTest {
 			  WebDriverWait wait = new WebDriverWait(driver,10);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
 			  //Username text field is located and the username is entered
-			  driver.findElement(By.id("pii-un")).sendKeys("ritica");
+			  driver.findElement(By.id("pii-un")).sendKeys("jenkins");
 			  //Password field is located and the password is entered
-			  driver.findElement(By.id("pii-pw")).sendKeys("Kale24982417@");
+			  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 			  //Sign in button is located and clicked
 			  driver.findElement(By.id("pii-signin-button")).click();
 		  }
