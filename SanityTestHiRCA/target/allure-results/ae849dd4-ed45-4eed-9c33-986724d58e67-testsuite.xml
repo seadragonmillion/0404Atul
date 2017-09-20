@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite start="1505866746638" stop="1505866793935" version="1.5.4" xmlns:ns2="urn:model.allure.qatools.yandex.ru">
+    <name>SanityHiRCAInternetExplorerTest</name>
+    <test-cases>
+        <test-case start="1505866746639" stop="1505866793795" status="passed">
+            <name>SanityTest</name>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="host" value="PII-HANY-PC"/>
+                <label name="thread" value="8372@PII-HANY-PC.main(1)"/>
+            </labels>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="framework" value="JUnit"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>
