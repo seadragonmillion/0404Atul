@@ -1,0 +1,59 @@
+{
+  "features" : [ {
+    "title" : "Without feature",
+    "statistic" : {
+      "total" : 3,
+      "passed" : 3,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 0
+    },
+    "stories" : [ {
+      "uid" : "61d43f6958c10509",
+      "title" : "Without story",
+      "statistic" : {
+        "total" : 3,
+        "passed" : 3,
+        "pending" : 0,
+        "canceled" : 0,
+        "failed" : 0,
+        "broken" : 0
+      },
+      "testCases" : [ {
+        "uid" : "4c83994d96d6cee5",
+        "name" : "SanityTest",
+        "title" : "Sanity test",
+        "time" : {
+          "start" : 1505866694115,
+          "stop" : 1505866717739,
+          "duration" : 23624
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "335ebc0e84774922",
+        "name" : "SanityTest",
+        "title" : "Sanity test",
+        "time" : {
+          "start" : 1505866717774,
+          "stop" : 1505866746631,
+          "duration" : 28857
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "3147dbaf4472dc2c",
+        "name" : "SanityTest",
+        "title" : "Sanity test",
+        "time" : {
+          "start" : 1505866746639,
+          "stop" : 1505866793795,
+          "duration" : 47156
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,47 @@
+{
+  "uid" : "4c83994d96d6cee5",
+  "name" : "SanityTest",
+  "title" : "Sanity test",
+  "time" : {
+    "start" : 1505866694115,
+    "stop" : 1505866717739,
+    "duration" : 23624
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "dbe1b0bd6476e306",
+    "name" : "SanityHiRCAChromeTest",
+    "title" : "Sanity hi RCA chrome test"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "JUnit"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "host",
+    "value" : "PII-HANY-PC"
+  }, {
+    "name" : "thread",
+    "value" : "8372@PII-HANY-PC.main(1)"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "suite-name",
+    "value" : "SanityHiRCAChromeTest"
+  } ],
+  "parameters" : [ ]
+}
