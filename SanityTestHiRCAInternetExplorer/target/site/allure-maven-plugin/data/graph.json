@@ -1,0 +1,14 @@
+{
+  "testCases" : [ {
+    "uid" : "c915ed5716dabd49",
+    "name" : "SanityTest",
+    "title" : "Sanity test",
+    "time" : {
+      "start" : 1505855989947,
+      "stop" : 1505856040746,
+      "duration" : 50799
+    },
+    "severity" : "NORMAL",
+    "status" : "PASSED"
+  } ]
+}

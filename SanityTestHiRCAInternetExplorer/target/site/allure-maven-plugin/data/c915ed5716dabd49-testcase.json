@@ -1,0 +1,47 @@
+{
+  "uid" : "c915ed5716dabd49",
+  "name" : "SanityTest",
+  "title" : "Sanity test",
+  "time" : {
+    "start" : 1505855989947,
+    "stop" : 1505856040746,
+    "duration" : 50799
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "ffd25c8b3733615f",
+    "name" : "SanityHiRCAInternetExplorerTest",
+    "title" : "Sanity hi RCA internet explorer test"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "JUnit"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "host",
+    "value" : "PII-HANY-PC"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  }, {
+    "name" : "thread",
+    "value" : "9224@PII-HANY-PC.main(1)"
+  }, {
+    "name" : "suite-name",
+    "value" : "SanityHiRCAInternetExplorerTest"
+  } ],
+  "parameters" : [ ]
+}
