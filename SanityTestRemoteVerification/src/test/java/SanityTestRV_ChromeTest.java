@@ -21,7 +21,7 @@ public class SanityTestRV_ChromeTest {
 
 	private WebDriver driver;
 	private String username ="jenkins";
-	private String password = "Kale24982417@";
+	private String password = "Kalejenkins@123";
 	private String event_title="Sanity Test Chrome";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";
