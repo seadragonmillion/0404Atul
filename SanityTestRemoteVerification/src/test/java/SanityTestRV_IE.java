@@ -24,7 +24,7 @@ public class SanityTestRV_IE {
 
 	private InternetExplorerDriver driver;
 	private String username ="jenkins";
-	private String password = "Kale24982417@";
+	private String password = "Kalejenkins@123";
 	private String event_title="Sanity Test IE";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
