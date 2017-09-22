@@ -25,7 +25,7 @@ public class SanityTestRV_Firefox {
 	
 	private FirefoxDriver driver;
 	private String username ="jenkins";
-	private String password = "Kale24982417@";
+	private String password = "Kalejenkins@123";
 	private String event_title="Sanity Test Firefox";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";
