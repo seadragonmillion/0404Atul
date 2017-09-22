@@ -171,7 +171,7 @@ public class SanityTestRV_Firefox {
 		 //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("jenkins");
 		  Thread.sleep(3000);
-		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(Keys.ENTER);
+		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		  option.click();
