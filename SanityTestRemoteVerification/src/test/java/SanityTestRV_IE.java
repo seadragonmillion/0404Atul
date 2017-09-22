@@ -169,11 +169,11 @@ public class SanityTestRV_IE {
 		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
 		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
 		  //Selects the remote verifier
-		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("jenkins");
-		  Thread.sleep(3000);
-		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
+		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
+		 // Thread.sleep(3000);
+		 // driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
-		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
+		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-last-child"));
 		  option.click();
 		  String filepath = "C:/Users/Public/Pictures/Sample Pictures";
 		  String filename = "Chrysanthemum";
