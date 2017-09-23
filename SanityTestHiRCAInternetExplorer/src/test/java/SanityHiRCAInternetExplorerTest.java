@@ -39,16 +39,18 @@ public class SanityHiRCAInternetExplorerTest {
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("return document.getElementById('pii-login-button').click();");
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin")));
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys("jenkins");
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 		  //Sign in button is located and clicked
-		  driver.findElement(By.id("pii-signin-button")).click();
+		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+		  
 	  }
 	  
 	  @Test
