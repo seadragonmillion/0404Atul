@@ -1,17 +1,13 @@
 import static org.junit.Assert.*;
-
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.Keys;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -43,6 +39,7 @@ public class SanityTestRV_IE {
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		  
 	  }
 	  
 	
@@ -55,7 +52,7 @@ public class SanityTestRV_IE {
 		  jse.executeScript("return document.getElementById('pii-login-button').click();");
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin")));
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
@@ -64,88 +61,6 @@ public class SanityTestRV_IE {
 		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
 		  
 	  }
-	  
-	  public void UploadPic(String filepath, String filename) throws Exception{
-		  
-		  StringSelection stringSelection = new StringSelection(filepath);
-		  //Copies path in clipboard
-		  Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-		  //Create object of Robot class
-		  Robot robot = new Robot();
-		  Thread.sleep(2000);	
-		  //Press TAB 4 times
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);	
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  // Press Enter
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);		
-		  Thread.sleep(2000);
-		  // Press CTRL+V
-		  robot.keyPress(KeyEvent.VK_CONTROL);
-		  robot.keyPress(KeyEvent.VK_V);
-		  // Release CTRL+V
-		  robot.keyRelease(KeyEvent.VK_CONTROL);
-		  robot.keyRelease(KeyEvent.VK_V);
-		  Thread.sleep(2000);
-		  //Press Enter 
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);
-		  Thread.sleep(2000);
-		  //Press TAB 5 times
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		   //Press Enter 
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);
-		  Thread.sleep(4000);
-		  //Get filename on clipboard
-		  StringSelection stringSelection2 = new StringSelection(filename);
-		  Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection2, null);
-		  // Press CTRL+V
-		  robot.keyPress(KeyEvent.VK_CONTROL);
-		  robot.keyPress(KeyEvent.VK_V);
-		  Thread.sleep(2000);
-		  // Release CTRL+V
-		  robot.keyRelease(KeyEvent.VK_CONTROL);
-		  robot.keyRelease(KeyEvent.VK_V);
-		  Thread.sleep(4000);
-		  //Press TAB 2 times
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(4000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(4000);
-		  //Press Enter 
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);
-		  Thread.sleep(4000);
-		  	  
-	  }
-	  	
 	  
 	  
 	  @Test
@@ -170,29 +85,45 @@ public class SanityTestRV_IE {
 		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
-		 // Thread.sleep(3000);
-		 // driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
-		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-last-child"));
+		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
-		  String filepath = "C:/Users/Public/Pictures/Sample Pictures";
-		  String filename = "Chrysanthemum";
-		  String filename2 = "Desert";
 		  //Clicks twice on browse button of 2nd picture
 		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
 		  Actions act = new Actions(driver);
 		  act.doubleClick(element).build().perform();
 		  Thread.sleep(2000);
-		  //Uploads picture 2
-		  UploadPic(filepath,filename2);
+		  try{
+			  try {
+					//Uploads picture 2
+					  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");
+					  		  
+				  }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpecetd alert for picture 2");
+					  driver.switchTo().alert().accept();
+				  }
+			  
+		  }catch (NoAlertPresentException f){			  
+			  System.out.println ("No unexpected alert for picture 2");
+		  }
 		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0, 250)");
 		  //Clicks twice on browse button of 1st picture
 		  WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
 		  act.doubleClick(element2).build().perform();
 		  Thread.sleep(2000);
-		  //Uploads picture 1
-		  UploadPic(filepath,filename);
+		  try{
+			  try {
+					  //Uploads picture 1
+					  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");				  
+			      }catch (UnhandledAlertException g){
+			    	  System.out.println("Unexpecetd alert for picture 1");
+					  driver.switchTo().alert().accept();
+			      }
+		     }catch (NoAlertPresentException g){			  
+			  System.out.println ("No unexpected alerts for picture 1");
+		     }
+			 
 		  Thread.sleep(4000);
 		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
