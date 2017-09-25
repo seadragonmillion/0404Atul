@@ -1,12 +1,6 @@
 import static org.junit.Assert.*;
-
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.Keys;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,23 +22,25 @@ public class SanityTestRV_Firefox {
 	private String username ="jenkins";
 	private String password = "Kalejenkins@123";
 	private String event_title="Sanity Test Firefox";
-	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
+	private String gecko_path = "C:\\Users\\rramakrishnan\\Downloads\\geckodriver-v0.19.0-win64\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";
 	
-	@SuppressWarnings("deprecation")
+
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on Remote Verification in Firefox");
-		  System.setProperty("webdriver.gecko.driver",gecko_path);
-		  ProfilesIni ffProfiles = new ProfilesIni();
-		  FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		  driver = new FirefoxDriver(profile);
-		  //Browser is maximized
-		  driver.manage().window().maximize();
-		  //Browser navigates to the KALE url
-		  driver.navigate().to(url);
-		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 System.out.println("Performing sanity test on Remote Verification in Firefox");
+		 System.setProperty("webdriver.gecko.driver",gecko_path);
+		 ProfilesIni ffProfiles = new ProfilesIni();
+		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
+		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(capabilities);
+		 //Browser is maximized
+		 driver.manage().window().maximize();
+		 //Browser navigates to the KALE url
+		 driver.navigate().to(url);
+		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
 	  
 	
@@ -63,87 +60,7 @@ public class SanityTestRV_Firefox {
 		  driver.findElement(By.id("pii-signin-button")).click();
 	  }
 	  
-	  public void UploadPic(String filepath, String filename) throws Exception{
-		  
-		  StringSelection stringSelection = new StringSelection(filepath);
-		  //Copies path in clipboard
-		  Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-		  //Create object of Robot class
-		  Robot robot = new Robot();
-		  //Press TAB 4 times
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  // Press Enter
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);		
-		  Thread.sleep(1000);
-		  // Press CTRL+V
-		  robot.keyPress(KeyEvent.VK_CONTROL);
-		  robot.keyPress(KeyEvent.VK_V);
-		  // Release CTRL+V
-		  robot.keyRelease(KeyEvent.VK_CONTROL);
-		  robot.keyRelease(KeyEvent.VK_V);
-		  Thread.sleep(1000);
-		  //Press Enter 
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);
-		  Thread.sleep(1000);
-		  //Press TAB 5 times
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(1000);
-		   //Press Enter 
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);
-		  Thread.sleep(2000);
-		  //Get filename on clipboard
-		  StringSelection stringSelection2 = new StringSelection(filename);
-		  Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection2, null);
-		  // Press CTRL+V
-		  robot.keyPress(KeyEvent.VK_CONTROL);
-		  robot.keyPress(KeyEvent.VK_V);
-		  Thread.sleep(1000);
-		  // Release CTRL+V
-		  robot.keyRelease(KeyEvent.VK_CONTROL);
-		  robot.keyRelease(KeyEvent.VK_V);
-		  Thread.sleep(2000);
-		  //Press TAB 2 times
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  robot.keyPress(KeyEvent.VK_TAB);
-		  robot.keyRelease(KeyEvent.VK_TAB);
-		  Thread.sleep(2000);
-		  //Press Enter 
-		  robot.keyPress(KeyEvent.VK_ENTER);
-		  robot.keyRelease(KeyEvent.VK_ENTER);
-		  Thread.sleep(2000);
-		  	  
-	  }
-	  
-	  
+	   
 	  @Test
 	  public void SanityTest() throws Exception{
 		  
@@ -159,7 +76,7 @@ public class SanityTestRV_Firefox {
 		  try
 		  {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
-			  //driver.findElement(By.id("pii-main-menu-button-a")).click();
+			  
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
@@ -168,36 +85,29 @@ public class SanityTestRV_Firefox {
 		  //Fills the mandatory fields
 		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
 		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
-		 //Selects the remote verifier
+		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
-		  //Thread.sleep(3000);
-		  //driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-last-child"));
 		  option.click();
-		  String filepath = "C:/Users/Public/Pictures/Sample Pictures";
-		  String filename = "Chrysanthemum";
-		  String filename2 = "Desert";
 		  //Clicks on browse button of 2nd picture
 		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
-		  Thread.sleep(2000);
 		  //Uploads picture 2
-		  UploadPic(filepath,filename2);
+		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		  Thread.sleep(8000);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  jse.executeScript("scroll(0, 250)");
 		  //Clicks on browse button of 1st picture
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
 		  //Uploads picture 1
-		  UploadPic(filepath,filename);
+		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		  Thread.sleep(4000);
-		  jse.executeScript("scroll(0, 250)");
+		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
 		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
 		  //Clicks on save and send report
 		  WebDriverWait wait1 = new WebDriverWait(driver,10);
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
-		  //driver.findElement(By.id("pii-rv-dialog-title")).click();
 		  driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
