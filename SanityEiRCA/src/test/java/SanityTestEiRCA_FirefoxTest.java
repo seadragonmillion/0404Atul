@@ -38,10 +38,12 @@ public class SanityTestEiRCA_FirefoxTest {
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin")));
+		  Thread.sleep(1000);
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys("jenkins");
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
+		  Thread.sleep(1000);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
 	  }
