@@ -40,7 +40,7 @@ public class SanityTestRV_ChromeTest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
@@ -52,6 +52,7 @@ public class SanityTestRV_ChromeTest {
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
+		  Thread.sleep(1000);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
 	  }
