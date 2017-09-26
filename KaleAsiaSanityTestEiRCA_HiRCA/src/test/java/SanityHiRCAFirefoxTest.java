@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -91,11 +91,12 @@ public class SanityHiRCAFirefoxTest {
 				  System.out.println ("Record not found.");
 			  assertEquals(name, recordName);
 			  driver.findElement(By.id("pii-user-loginname")).click();
-			  driver.findElement(By.id("pii-signout-button")).click();		 
+			  driver.findElement(By.id("pii-signout-button")).click();	
+			  afterTest();
 		  }
 		  
 		  		  
-		 @After
+		 
 		  public void afterTest() throws Exception{
 			  driver.switchTo().defaultContent();
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
