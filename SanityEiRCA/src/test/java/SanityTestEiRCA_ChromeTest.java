@@ -34,7 +34,7 @@ public class SanityTestEiRCA_ChromeTest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
@@ -144,7 +144,7 @@ public class SanityTestEiRCA_ChromeTest {
 	  }
 	  
 		 
-		  public void afterTest() {
+		  public void afterTest() throws Exception{
 			 //Waits for the login button
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
