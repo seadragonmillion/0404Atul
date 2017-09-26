@@ -41,7 +41,7 @@ public class SanityHiRCAInternetExplorerTest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
@@ -49,10 +49,12 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
+		  Thread.sleep(2000);
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
+		  Thread.sleep(2000);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
 	  }
