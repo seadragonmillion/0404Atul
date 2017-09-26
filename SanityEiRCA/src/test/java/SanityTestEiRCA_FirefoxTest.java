@@ -46,6 +46,15 @@ public class SanityTestEiRCA_FirefoxTest {
 		  Thread.sleep(1000);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
+		  if ((driver.findElement(By.id("pii-signin-message"))).isDisplayed())
+		  {
+			  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
+			  //Sign in button is located and clicked
+			  driver.findElement(By.id("pii-signin-button")).click();
+			  
+		  }
+		  else
+			  System.out.println("Logged in");
 	  }
 	  
 	  public void deleteNewRecord(String recordName) throws Exception{
@@ -81,6 +90,11 @@ public class SanityTestEiRCA_FirefoxTest {
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  if ((driver.findElement(By.className("sticky-close"))).isDisplayed())
+		  {
+			  WebDriverWait wait2 = new WebDriverWait(driver,20);
+			  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+		  }
 		  Thread.sleep(5000);
 		  //Clicks on Analysis 
 		  try
