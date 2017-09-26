@@ -48,6 +48,20 @@ public class SanityHiRCAFirefoxTest {
 			  driver.findElement(By.id("pii-signin-button")).click();
 		  }
 		  
+		  public void deleteNewRecord() {
+			  
+			  //CLicks on first newly created record
+			  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).click();
+			  //Clicks on delete button
+			  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
+			  WebDriverWait wait = new WebDriverWait(driver,10);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+			  //Clicks on delete report
+			  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
+			  System.out.println("Record deleted");
+			  			  
+		  }
+		  
 		  @Test
 		  public void SanityTest() throws Exception{
 			  
@@ -93,6 +107,8 @@ public class SanityHiRCAFirefoxTest {
 			  else
 				  System.out.println ("Record not found.");
 			  assertEquals(name, recordName);
+			  //Deletes the newly created record
+			  deleteNewRecord();
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();			 
 		  }
