@@ -89,7 +89,7 @@ public class FirefoxTest {
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
-		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-last-child"));
+		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
 		  //Clicks on browse button of 2nd picture
 		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
