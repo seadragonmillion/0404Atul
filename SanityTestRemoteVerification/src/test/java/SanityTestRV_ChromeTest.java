@@ -90,7 +90,7 @@ public class SanityTestRV_ChromeTest {
 		 // Thread.sleep(3000);
 		  //driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
-		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-last-child"));
+		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  jse.executeScript("scroll(250, 0)");
