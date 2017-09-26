@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -121,10 +121,11 @@ public class SanityTestEiRCA_IETest {
 		  jse.executeScript("return document.getElementById('pii-user-loginname').click();");
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(3000);
+		  afterTest();
 		  		  
 	  }
 	  
-	  @After
+	  
 	  public void afterTest() {
 		   driver.quit();
 	  }
