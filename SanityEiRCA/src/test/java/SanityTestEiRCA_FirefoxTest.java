@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -44,6 +44,30 @@ public class SanityTestEiRCA_FirefoxTest {
 		  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
+	  }
+	  
+	  public void deleteNewRecord(String recordName) throws Exception{
+		  
+		  //CLicks on first newly created record
+		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a")).click();
+		  //Clicks on delete button
+		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		  //Clicks on delete report
+		  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-user-home-panel-btn-mirca")).click();
+		  //Verify record deleted
+		  //Click on 1st record
+		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a")).getText();
+		  System.out.println(name);
+		  if (name!=recordName)
+			  System.out.println("Record deleted");
+		  else
+			  System.out.println("Record could not be deleted");
+		  			  
 	  }
 	  
 	  @Test
@@ -104,13 +128,15 @@ public class SanityTestEiRCA_FirefoxTest {
 			  System.out.println ("Record not found.");
 		  //Checks if the name displayed on record is same as expected
 		  assertEquals(name, recordName);
+		  //Deletes the newly created record
+		  deleteNewRecord(recordName);
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
-		  
+		  afterTest();
 	  }
 	  
-		 @After
+		 
 		  public void afterTest() {
 			 
 			 driver.switchTo().defaultContent();
