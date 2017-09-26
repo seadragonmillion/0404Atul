@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -116,10 +115,11 @@ public class SanityTestEiRCA_FirefoxTest {
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
+		  afterTest();
 		  
 	  }
 	  
-		 @After
+		 
 		  public void afterTest() {
 			 
 			 driver.switchTo().defaultContent();
