@@ -62,10 +62,10 @@ public class SanityHiRCAChromeTest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			  //Clicks on delete report
 			  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 			  driver.findElement(By.id("pii-user-home-panel-btn-irca")).click();
 			  //Verify record deleted
 			  //Click on 1st record
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 			  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).getText();
 			  System.out.println(name);
 			  if (name!=recordName)
