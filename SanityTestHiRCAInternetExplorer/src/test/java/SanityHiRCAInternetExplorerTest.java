@@ -1,7 +1,6 @@
 import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -53,6 +52,31 @@ public class SanityHiRCAInternetExplorerTest {
 		  
 	  }
 	  
+	  public void deleteNewRecord(String recordName) throws Exception{
+		  
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  //CLicks on first newly created record
+		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).click();
+		  //Clicks on delete button
+		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		  //Clicks on delete report
+		  jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  Thread.sleep(2000);
+		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-irca').click();");
+		  //Verify record deleted
+		  //Click on 1st record
+		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).getText();
+		  System.out.println(name);
+		  if (name!=recordName)
+			  System.out.println("Record deleted");
+		  else
+			  System.out.println("Record could not be deleted");
+		  			  
+	  }
+	  
 	  @Test
 	  public void SanityTest() throws Exception{
 		  
@@ -99,15 +123,18 @@ public class SanityHiRCAInternetExplorerTest {
 		  else
 			  System.out.println ("Record not found.");
 		  assertEquals(name, recordName);
+		  //Deletes the newly created record
+		  deleteNewRecord(recordName);
 		  //Clicks on logout
 		  jse.executeScript("return document.getElementById('pii-user-loginname').click();");
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(4000);
+		  afterTest();
 		  		 
 	  }
 	  
 	  		  
-	  @After
+	  
 	  public void afterTest() {
 		   driver.close();
 	  }
