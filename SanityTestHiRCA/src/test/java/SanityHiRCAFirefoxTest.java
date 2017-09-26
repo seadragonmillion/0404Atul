@@ -47,7 +47,7 @@ public class SanityHiRCAFirefoxTest {
 			  driver.findElement(By.id("pii-signin-button")).click();
 		  }
 		  
-		  public void deleteNewRecord() {
+		  public void deleteNewRecord(String recordName) {
 			  
 			  //CLicks on first newly created record
 			  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).click();
@@ -57,7 +57,16 @@ public class SanityHiRCAFirefoxTest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			  //Clicks on delete report
 			  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
-			  System.out.println("Record deleted");
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  driver.findElement(By.id("pii-user-home-panel-btn-irca")).click();
+			  //Verify record deleted
+			  //Click on 1st record
+			  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).getText();
+			  System.out.println(name);
+			  if (name!=recordName)
+				  System.out.println("Record deleted");
+			  else
+				  System.out.println("Record could not be deleted");
 			  			  
 		  }
 		  
@@ -107,7 +116,7 @@ public class SanityHiRCAFirefoxTest {
 				  System.out.println ("Record not found.");
 			  assertEquals(name, recordName);
 			  //Deletes the newly created record
-			  deleteNewRecord();
+			  deleteNewRecord(recordName);
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();
 			  afterTest();
