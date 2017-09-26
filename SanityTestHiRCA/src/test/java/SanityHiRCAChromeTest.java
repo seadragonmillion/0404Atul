@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -132,11 +132,12 @@ public class SanityHiRCAChromeTest {
 			  //Deletes the newly created record
 			  deleteNewRecord();
 			  driver.findElement(By.id("pii-user-loginname")).click();
-			  driver.findElement(By.id("pii-signout-button")).click();			 
+			  driver.findElement(By.id("pii-signout-button")).click();	
+			  afterTest();
 		  }
 		  
 		  		  
-		 @After
+		 
 		  public void afterTest() {
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
