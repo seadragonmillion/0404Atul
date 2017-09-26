@@ -30,14 +30,14 @@ public class SanityTestEiRCA_FirefoxTest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
 		  driver.findElement(By.id("pii-login-button")).click();
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin")));
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys("jenkins");
 		  //Password field is located and the password is entered
@@ -137,7 +137,7 @@ public class SanityTestEiRCA_FirefoxTest {
 	  }
 	  
 		 
-		  public void afterTest() {
+		  public void afterTest() throws Exception{
 			 
 			 driver.switchTo().defaultContent();
 			 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
