@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -45,7 +45,8 @@ public class SanityHiRCAInternetExplorerTest {
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("return document.getElementById('pii-login-button').click();");
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
@@ -54,7 +55,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
-		  driver.findElement(By.id("pii-signin-button")).click();
+		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
 	  }
 	  
 	  @Test
@@ -110,11 +111,12 @@ public class SanityHiRCAInternetExplorerTest {
 		  jse.executeScript("return document.getElementById('pii-user-loginname').click();");
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(2000);
+		  afterTest();
 		  		 
 	  }
 	  
 	  		  
-	  @After
+	  
 	  public void afterTest() {
 		   driver.close();
 	  }
