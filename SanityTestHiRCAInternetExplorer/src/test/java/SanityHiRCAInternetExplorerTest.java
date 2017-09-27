@@ -10,11 +10,13 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.NoSuchElementException;
 
 
 public class SanityHiRCAInternetExplorerTest {
 
 	private InternetExplorerDriver driver;
+	private int login =0;
 	
 	  
 	@Before
@@ -34,7 +36,7 @@ public class SanityHiRCAInternetExplorerTest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
@@ -49,6 +51,21 @@ public class SanityHiRCAInternetExplorerTest {
 		  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 		  //Sign in button is located and clicked
 		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+		  WebElement element = driver.findElement(By.id("pii-signin-message"));
+		  String text = element.getText();
+		  if (element.isDisplayed())
+		  {
+			  if(text.isEmpty())
+				  System.out.println("Logged in");
+			  else
+			  {
+				  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
+				  //Sign in button is located and clicked
+				  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+				  login =1;
+			  }
+			  			  
+		  }
 		  
 	  }
 	  
@@ -89,6 +106,15 @@ public class SanityHiRCAInternetExplorerTest {
 		  wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		  System.out.println("Waiting for page to load");
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  try{
+			  if (login==1)
+			  {
+				  WebDriverWait wait2 = new WebDriverWait(driver,20);
+				  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			  }
+		  }catch (NoSuchElementException e){
+			  throw e;
+		  }
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  //Clicks on HiRCA
