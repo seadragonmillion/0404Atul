@@ -114,10 +114,12 @@ public class SanityTestRV_ChromeTest {
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
 		 // Thread.sleep(3000);
 		  //driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("scroll(0, 250)");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  
 		  jse.executeScript("scroll(250, 0)");
 		  //Clicks on Save and Send
 		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
