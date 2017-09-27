@@ -123,7 +123,7 @@ public class SanityTestEiRCA_ChromeTest {
 		  }
 		  //Clicks on EiRCA
 		  driver.findElement(By.id("pii-a-menu-eirca")).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(4000);
 		  //Fills all mandatory fields
 		  driver.findElement(By.id("pii-ircam-tab-1-title")).sendKeys(EventTitleChrome);
 		  driver.findElement(By.id("pii-ircam-tab-1-location")).sendKeys("San Diego");
