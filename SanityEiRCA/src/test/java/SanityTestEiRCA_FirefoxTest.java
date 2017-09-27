@@ -10,11 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.NoSuchElementException;
 
 public class SanityTestEiRCA_FirefoxTest {
 
 	private FirefoxDriver driver;
+	private int login =0;
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -46,15 +47,21 @@ public class SanityTestEiRCA_FirefoxTest {
 		  Thread.sleep(1000);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
-		  if ((driver.findElement(By.id("pii-signin-message"))).isDisplayed())
-		  {
-			  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
-			  //Sign in button is located and clicked
-			  driver.findElement(By.id("pii-signin-button")).click();
-			  
-		  }
-		  else
-			  System.out.println("Logged in");
+		  WebElement element = driver.findElement(By.id("pii-signin-message"));
+                String text = element.getText();
+                if (element.isDisplayed())
+                {
+                       if(text.isEmpty())
+                             System.out.println("Logged in");
+                       else
+                       {
+                             driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
+                             //Sign in button is located and clicked
+                             driver.findElement(By.id("pii-signin-button")).click();
+                             login =1;
+                       }
+                                            
+                }
 	  }
 	  
 	  public void deleteNewRecord(String recordName) throws Exception{
@@ -90,11 +97,15 @@ public class SanityTestEiRCA_FirefoxTest {
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  if ((driver.findElement(By.className("sticky-close"))).isDisplayed())
-		  {
-			  WebDriverWait wait2 = new WebDriverWait(driver,20);
-			  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-		  }
+		  try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
 		  Thread.sleep(5000);
 		  //Clicks on Analysis 
 		  try
