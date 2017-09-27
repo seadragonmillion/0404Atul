@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-
+import org.openqa.selenium.NoSuchElementException;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SanityHiRCAChromeTest {
 
 	 private WebDriver driver;
+	 private int login =0;
 		
 	  
 		@Before
@@ -36,7 +37,7 @@ public class SanityHiRCAChromeTest {
 		  }
 		  
 		
-		  public void Login() {
+		  public void Login() throws Exception{
 			  
 			  System.out.println("Title before login: "+driver.getTitle());
 			  //Login button is located and clicked
@@ -50,7 +51,22 @@ public class SanityHiRCAChromeTest {
 			  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 			  //Sign in button is located and clicked
 			  driver.findElement(By.id("pii-signin-button")).click();
-		  }
+			  WebElement element = driver.findElement(By.id("pii-signin-message"));
+		      String text = element.getText();
+			  if (element.isDisplayed())
+			  {
+			      if(text.isEmpty())
+				       System.out.println("Logged in");
+			      else
+				  {
+				  driver.findElement(By.id("pii-pw")).sendKeys("Kale24982417@");
+				  //Sign in button is located and clicked
+				  driver.findElement(By.id("pii-signin-button")).click();
+				  login =1;
+				  }
+				  }
+			  
+		      }
 		  
 		    public void deleteNewRecord(String recordName) throws Exception{
 			  
@@ -98,6 +114,15 @@ public class SanityHiRCAChromeTest {
 				  System.out.println("\n");
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  try{
+			  if (login==1)
+			  {
+				  WebDriverWait wait2 = new WebDriverWait(driver,20);
+				  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			  }
+		      }catch (NoSuchElementException e){
+			      throw e;
+		      }
 			  Thread.sleep(5000);
 			  try
 			  {
