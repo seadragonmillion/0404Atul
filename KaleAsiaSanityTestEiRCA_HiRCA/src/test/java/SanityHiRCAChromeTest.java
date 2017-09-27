@@ -167,7 +167,7 @@ public class SanityHiRCAChromeTest {
 		  if ((ev1.equals(EventTitleChrome)==false))
 		  {
 			  driver.findElement(By.id("pii-irca-event-title")).clear();
-			  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test");
+			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(EventTitleChrome);
 		  }
 		  if((ev2.equals("San Diego"))==false)
 		  {
