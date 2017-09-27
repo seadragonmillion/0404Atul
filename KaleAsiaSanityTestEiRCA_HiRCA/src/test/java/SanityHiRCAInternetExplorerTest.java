@@ -13,7 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.NoSuchElementException;
 
 public class SanityHiRCAInternetExplorerTest {
 
@@ -23,6 +23,7 @@ public class SanityHiRCAInternetExplorerTest {
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private String EventTitleIE = "Sanity Test IE";
+	private int login =0;
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -43,9 +44,10 @@ public class SanityHiRCAInternetExplorerTest {
 	
 	  public void Login() throws Exception{
 		  
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
+		  jse.executeScript("return document.getElementById('pii-login-button').click();");
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
@@ -56,7 +58,22 @@ public class SanityHiRCAInternetExplorerTest {
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  Thread.sleep(2000);
 		  //Sign in button is located and clicked
-		  driver.findElement(By.id("pii-signin-button")).click();
+		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+		  WebElement element = driver.findElement(By.id("pii-signin-message"));
+                String text = element.getText();
+                if (element.isDisplayed())
+                {
+                       if(text.isEmpty())
+                             System.out.println("Logged in");
+                       else
+                       {
+                             driver.findElement(By.id("pii-pw")).sendKeys(password);
+                             //Sign in button is located and clicked
+                             jse.executeScript("return document.getElementById('pii-signin-button').click();");
+                             login =1;
+                       }
+                                            
+                }
 	  }
 	  
 	  @Test
@@ -69,6 +86,16 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Switches to the iframe
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+		   try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
+               
 		  System.out.println("Waiting for page to load");
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Analysis
