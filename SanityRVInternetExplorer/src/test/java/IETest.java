@@ -15,7 +15,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.NoSuchElementException;
 
 public class IETest {
 
@@ -25,6 +25,7 @@ public class IETest {
 	private String event_title="Sanity Test IE";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
+	private int login =0;
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -60,6 +61,21 @@ public class IETest {
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
 		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+		  WebElement element = driver.findElement(By.id("pii-signin-message"));
+                String text = element.getText();
+                if (element.isDisplayed())
+                {
+                       if(text.isEmpty())
+                             System.out.println("Logged in");
+                       else
+                       {
+                             driver.findElement(By.id("pii-pw")).sendKeys(password);
+                             //Sign in button is located and clicked
+                             jse.executeScript("return document.getElementById('pii-signin-button').click();");
+                             login =1;
+                       }
+                                            
+                }
 		  
 	  }
 	  
@@ -70,6 +86,15 @@ public class IETest {
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
 		  Thread.sleep(5000);
 		  //Switches to the iframe
 		  WebDriverWait wait = new WebDriverWait(driver,10);
