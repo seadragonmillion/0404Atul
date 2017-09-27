@@ -87,7 +87,7 @@ public class SanityTestEiRCA_IETest {
 		  //Clicks on delete report
 		  jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-mirca').click();");
 		  //Verify record deleted
 		  //Click on 1st record
