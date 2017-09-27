@@ -183,7 +183,7 @@ public class SanityHiRCAChromeTest {
 		  String ev4 = driver.findElement(By.id("pii-irca-event-events")).getAttribute("value");
 		  String ev5 = driver.findElement(By.id("pii-irca-event-bginfos")).getAttribute("value");
 		  String ev6= driver.findElement(By.id("pii-irca-event-investigators")).getAttribute("value");
-		  if ((ev1.equals("Sanity Test IE")==false))
+		  if ((ev1.equals("Sanity Test")==false))
 		  {
 			  driver.findElement(By.id("pii-irca-event-title")).clear();
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test");
