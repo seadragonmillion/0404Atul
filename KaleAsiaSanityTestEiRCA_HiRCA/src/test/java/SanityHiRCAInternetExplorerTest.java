@@ -120,7 +120,7 @@ public class SanityHiRCAInternetExplorerTest {
                 }catch (NoSuchElementException e){
                        throw e;
                 }
-               
+          Thread.sleep(3000);     
 		  System.out.println("Waiting for page to load");
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Analysis
