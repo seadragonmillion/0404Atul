@@ -16,7 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SanityHiRCAFirefoxTest {
 
 	private FirefoxDriver driver;
-	private int login =0;	
+	private int login =0;
+	private String username = "jenkins";
+	 private String password = "Kalejenkins@123";
 	  
 		@Before
 		  public void beforeTest() throws MalformedURLException{
@@ -40,25 +42,61 @@ public class SanityHiRCAFirefoxTest {
 			  WebDriverWait wait = new WebDriverWait(driver,10);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
 			  //Username text field is located and the username is entered
-			  driver.findElement(By.id("pii-un")).sendKeys("jenkins");
+			  driver.findElement(By.id("pii-un")).sendKeys(username);
 			  //Password field is located and the password is entered
-			  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
+			  driver.findElement(By.id("pii-pw")).sendKeys(password);
 			  //Sign in button is located and clicked
 			  driver.findElement(By.id("pii-signin-button")).click();
-			  WebElement element = driver.findElement(By.id("pii-signin-message"));
-		  String text = element.getText();
-		  if (element.isDisplayed())
+			 String user = driver.findElement(By.id("pii-un")).getAttribute("value");
+		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+		  int c=1;
+		  if (user.equals(username)==true)
 		  {
-			  if(text.isEmpty())
-				  System.out.println("Logged in");
-			  else
+			  if(pw.equals(password)==true)
 			  {
-				  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 				  //Sign in button is located and clicked
-				  driver.findElement(By.id("pii-signin-button")).click();
-				  login =1;
+				  driver.findElement(By.id("pii-signin-button")).click();  
+				  WebElement element = driver.findElement(By.id("pii-signin-message"));
+				  String text = element.getText();
+				  if (element.isDisplayed())
+				  {
+					  if(text.isEmpty())
+						  System.out.println("Logged in");
+					  else
+					  {
+						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  //Sign in button is located and clicked
+						  driver.findElement(By.id("pii-signin-button")).click();
+						  login =1;
+					  }
+					  			  
+				  }
 			  }
-			  			  
+			
+		  }
+		  else
+		  {
+			  while(c>0)
+			  {
+				  Thread.sleep(1000);
+				  driver.findElement(By.id("pii-un")).clear();
+				  driver.findElement(By.id("pii-pw")).clear();
+				  //Username text field is located and the username is entered
+				  driver.findElement(By.id("pii-un")).sendKeys(username);
+				  //Password field is located and the password is entered
+				  driver.findElement(By.id("pii-pw")).sendKeys(password);
+				  c=c+1;
+				  if (user.equals(username)==true)
+				  {
+					  if(pw.equals(password)==true)
+					  {
+						  //Sign in button is located and clicked
+						  driver.findElement(By.id("pii-signin-button")).click();
+						  break;
+					  }
+					
+				  }
+			  }
 		  }
 		  }
 		  
@@ -113,12 +151,48 @@ public class SanityHiRCAFirefoxTest {
 			  }
 			  
 			  driver.findElement(By.id("pii-a-menu-hirca")).click();
-			  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test 25");
+			   driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
+		  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  String ev1 = driver.findElement(By.id("pii-irca-event-title")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-irca-event-location")).getAttribute("value");
+		  String ev3 = driver.findElement(By.id("pii-irca-event-pbstatement")).getAttribute("value");
+		  String ev4 = driver.findElement(By.id("pii-irca-event-events")).getAttribute("value");
+		  String ev5 = driver.findElement(By.id("pii-irca-event-bginfos")).getAttribute("value");
+		  String ev6= driver.findElement(By.id("pii-irca-event-investigators")).getAttribute("value");
+		  if ((ev1.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-irca-event-title")).clear();
+			  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test");
+		  }
+		  if((ev2.equals("San Diego"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-location")).clear();
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
+		  }
+		  if((ev3.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
 			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys("Sanity Test");
-			  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test - No timeline");
-			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test - No background information");
-			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test - Ritica Ramakrishnan");
+		  }
+		  if((ev4.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-events")).clear();
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
+		  }
+		  if((ev5.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
+		  }
+		  if((ev6.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  }
 			  driver.findElement(By.id("efi-irca-button-save")).click();
 			  WebDriverWait wait1 = new WebDriverWait(driver,10);
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
