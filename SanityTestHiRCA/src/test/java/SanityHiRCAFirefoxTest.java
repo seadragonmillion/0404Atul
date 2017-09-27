@@ -46,7 +46,7 @@ public class SanityHiRCAFirefoxTest {
 			  //Password field is located and the password is entered
 			  driver.findElement(By.id("pii-pw")).sendKeys(password);
 			  //Sign in button is located and clicked
-			  driver.findElement(By.id("pii-signin-button")).click();
+			 
 			 String user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 		  int c=1;
