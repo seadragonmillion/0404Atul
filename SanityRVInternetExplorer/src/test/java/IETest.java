@@ -100,6 +100,7 @@ public class IETest {
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		  System.out.println("Waiting for page to load");
+		  Thread.sleep(3000);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Clicks on Analysis
