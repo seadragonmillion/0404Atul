@@ -122,6 +122,7 @@ public class SanityTestEiRCA_IETest {
                 }catch (NoSuchElementException e){
                        throw e;
                 }
+				Thread.sleep(3000);   
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  Thread.sleep(2000);
