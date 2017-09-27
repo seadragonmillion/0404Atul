@@ -17,6 +17,8 @@ public class SanityHiRCAInternetExplorerTest {
 
 	private InternetExplorerDriver driver;
 	private int login =0;
+	 private String username = "jenkins";
+	 private String password = "Kalejenkins@123";
 	
 	  
 	@Before
@@ -26,7 +28,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  System.setProperty("webdriver.ie.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
-		  //cap.setCapability("requireWindowFocus", true);
+		  cap.setCapability("requireWindowFocus", true);
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
@@ -46,25 +48,60 @@ public class SanityHiRCAInternetExplorerTest {
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin")));
 		  //Username text field is located and the username is entered
-		  driver.findElement(By.id("pii-un")).sendKeys("jenkins");
+		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
-		  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
+		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
-		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
-		  WebElement element = driver.findElement(By.id("pii-signin-message"));
-		  String text = element.getText();
-		  if (element.isDisplayed())
+		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
+		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+		  int c=1;
+		  if (user.equals(username)==true)
 		  {
-			  if(text.isEmpty())
-				  System.out.println("Logged in");
-			  else
+			  if(pw.equals(password)==true)
 			  {
-				  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 				  //Sign in button is located and clicked
-				  jse.executeScript("return document.getElementById('pii-signin-button').click();");
-				  login =1;
+				  jse.executeScript("return document.getElementById('pii-signin-button').click();");  
+				  WebElement element = driver.findElement(By.id("pii-signin-message"));
+				  String text = element.getText();
+				  if (element.isDisplayed())
+				  {
+					  if(text.isEmpty())
+						  System.out.println("Logged in");
+					  else
+					  {
+						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  //Sign in button is located and clicked
+						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+						  login =1;
+					  }
+					  			  
+				  }
 			  }
-			  			  
+			
+		  }
+		  else
+		  {
+			  while(c>0)
+			  {
+				  Thread.sleep(1000);
+				  driver.findElement(By.id("pii-un")).clear();
+				  driver.findElement(By.id("pii-pw")).clear();
+				  //Username text field is located and the username is entered
+				  driver.findElement(By.id("pii-un")).sendKeys(username);
+				  //Password field is located and the password is entered
+				  driver.findElement(By.id("pii-pw")).sendKeys(password);
+				  c=c+1;
+				  if (user.equals(username)==true)
+				  {
+					  if(pw.equals(password)==true)
+					  {
+						  //Sign in button is located and clicked
+						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+						  break;
+					  }
+					
+				  }
+			  }
 		  }
 		  
 	  }
