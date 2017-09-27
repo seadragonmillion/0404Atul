@@ -94,6 +94,7 @@ public class SanityHiRCAInternetExplorerTest {
                 }catch (NoSuchElementException e){
                        throw e;
                 }
+			Thread.sleep(3000);   
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
