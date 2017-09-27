@@ -157,12 +157,48 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Clicks on HiRCA
 		  jse.executeScript("return document.getElementById('pii-a-menu-hirca').click();");
 		  //Fills in all mandatory fields
-		  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test IE");
+		  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
 		  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  String ev1 = driver.findElement(By.id("pii-irca-event-title")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-irca-event-location")).getAttribute("value");
+		  String ev3 = driver.findElement(By.id("pii-irca-event-pbstatement")).getAttribute("value");
+		  String ev4 = driver.findElement(By.id("pii-irca-event-events")).getAttribute("value");
+		  String ev5 = driver.findElement(By.id("pii-irca-event-bginfos")).getAttribute("value");
+		  String ev6= driver.findElement(By.id("pii-irca-event-investigators")).getAttribute("value");
+		  if ((ev1.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-irca-event-title")).clear();
+			  driver.findElement(By.id("pii-irca-event-title")).sendKeys("Sanity Test");
+		  }
+		  if((ev2.equals("San Diego"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-location")).clear();
+			  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
+		  }
+		  if((ev3.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys("Sanity Test");
+		  }
+		  if((ev4.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-events")).clear();
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
+		  }
+		  if((ev5.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
+		  }
+		  if((ev6.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  }
 		  //Clicks on save button
 		  jse.executeScript("return document.getElementById('efi-irca-button-save').click();");
 		  //Clicks on save confirmed
