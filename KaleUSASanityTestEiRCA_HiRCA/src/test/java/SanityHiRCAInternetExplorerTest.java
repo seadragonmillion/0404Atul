@@ -56,22 +56,57 @@ public class SanityHiRCAInternetExplorerTest {
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
-		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
-		  WebElement element = driver.findElement(By.id("pii-signin-message"));
-                String text = element.getText();
-                if (element.isDisplayed())
-                {
-                       if(text.isEmpty())
-                             System.out.println("Logged in");
-                       else
-                       {
-                             driver.findElement(By.id("pii-pw")).sendKeys(password);
-                             //Sign in button is located and clicked
-                             jse.executeScript("return document.getElementById('pii-signin-button').click();");
-                             login =1;
-                       }
-                                            
-                }
+		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
+		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+		  int c=1;
+		  if (user.equals(username)==true)
+		  {
+			  if(pw.equals(password)==true)
+			  {
+				  //Sign in button is located and clicked
+				  jse.executeScript("return document.getElementById('pii-signin-button').click();");  
+				  WebElement element = driver.findElement(By.id("pii-signin-message"));
+				  String text = element.getText();
+				  if (element.isDisplayed())
+				  {
+					  if(text.isEmpty())
+						  System.out.println("Logged in");
+					  else
+					  {
+						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  //Sign in button is located and clicked
+						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+						  login =1;
+					  }
+					  			  
+				  }
+			  }
+			
+		  }
+		  else
+		  {
+			  while(c>0)
+			  {
+				  Thread.sleep(1000);
+				  driver.findElement(By.id("pii-un")).clear();
+				  driver.findElement(By.id("pii-pw")).clear();
+				  //Username text field is located and the username is entered
+				  driver.findElement(By.id("pii-un")).sendKeys(username);
+				  //Password field is located and the password is entered
+				  driver.findElement(By.id("pii-pw")).sendKeys(password);
+				  c=c+1;
+				  if (user.equals(username)==true)
+				  {
+					  if(pw.equals(password)==true)
+					  {
+						  //Sign in button is located and clicked
+						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+						  break;
+					  }
+					
+				  }
+			  }
+		  }
 	  }
 	  
 	  public void deleteNewRecord(String recordName) throws Exception{
@@ -134,6 +169,42 @@ public class SanityHiRCAInternetExplorerTest {
 		  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  String ev1 = driver.findElement(By.id("pii-irca-event-title")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-irca-event-location")).getAttribute("value");
+		  String ev3 = driver.findElement(By.id("pii-irca-event-pbstatement")).getAttribute("value");
+		  String ev4 = driver.findElement(By.id("pii-irca-event-events")).getAttribute("value");
+		  String ev5 = driver.findElement(By.id("pii-irca-event-bginfos")).getAttribute("value");
+		  String ev6= driver.findElement(By.id("pii-irca-event-investigators")).getAttribute("value");
+		  if ((ev1.equals(EventTitleIE)==false))
+		  {
+			  driver.findElement(By.id("pii-irca-event-title")).clear();
+			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(EventTitleIE);
+		  }
+		  if((ev2.equals("San Diego"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-location")).clear();
+			  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
+		  }
+		  if((ev3.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys("Sanity Test");
+		  }
+		  if((ev4.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-events")).clear();
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
+		  }
+		  if((ev5.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
+		  }
+		  if((ev6.equals("Sanity Test"))==false)
+		  {
+			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  }
 		  //Clicks on save button
 		  jse.executeScript("return document.getElementById('efi-irca-button-save').click();");
 		  //Clicks on save confirmed
