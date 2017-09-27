@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -16,7 +16,7 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.NoSuchElementException;
 
 public class FirefoxTest {
 	private FirefoxDriver driver;
@@ -25,6 +25,7 @@ public class FirefoxTest {
 	private String event_title="Sanity Test Firefox";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\Downloads\\geckodriver-v0.19.0-win64\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";
+	private int login =0;
 	
 
 	@Before
@@ -59,6 +60,21 @@ public class FirefoxTest {
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
+		  WebElement element = driver.findElement(By.id("pii-signin-message"));
+                String text = element.getText();
+                if (element.isDisplayed())
+                {
+                       if(text.isEmpty())
+                             System.out.println("Logged in");
+                       else
+                       {
+                             driver.findElement(By.id("pii-pw")).sendKeys(password);
+                             //Sign in button is located and clicked
+                             driver.findElement(By.id("pii-signin-button")).click();
+                             login =1;
+                       }
+                                            
+                }
 	  }
 	  
 	   
@@ -71,6 +87,15 @@ public class FirefoxTest {
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
 		  Thread.sleep(5000);
 		  //Clicks on Analysis 
 		  WebDriverWait wait = new WebDriverWait(driver,30);
@@ -135,10 +160,11 @@ public class FirefoxTest {
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
+		  afterTest();
 
 	  }
 	  
-	@After
+	
 	  public void afterTest() {
 		 
 		 driver.switchTo().defaultContent();
