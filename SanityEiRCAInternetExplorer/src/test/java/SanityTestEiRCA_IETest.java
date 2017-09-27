@@ -25,7 +25,7 @@ public class SanityTestEiRCA_IETest {
 		  System.setProperty("webdriver.ie.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
-		  cap.setCapability("requireWindowFocus", true);
+		  //cap.setCapability("requireWindowFocus", true);
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
