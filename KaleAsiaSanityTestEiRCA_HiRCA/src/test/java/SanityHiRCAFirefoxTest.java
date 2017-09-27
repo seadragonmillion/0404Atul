@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.NoSuchElementException;
 
 public class SanityHiRCAFirefoxTest {
 
@@ -18,7 +18,8 @@ public class SanityHiRCAFirefoxTest {
 	private String password = "Kale46191802@";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
-	private String EventTitleFirefox = "Sanity Test Firefox";		
+	private String EventTitleFirefox = "Sanity Test Firefox";	
+	private int login =0;
 	  
 		@Before
 		  public void beforeTest() throws MalformedURLException{
@@ -47,6 +48,21 @@ public class SanityHiRCAFirefoxTest {
 			  driver.findElement(By.id("pii-pw")).sendKeys(password);
 			  //Sign in button is located and clicked
 			  driver.findElement(By.id("pii-signin-button")).click();
+			  WebElement element = driver.findElement(By.id("pii-signin-message"));
+                String text = element.getText();
+                if (element.isDisplayed())
+                {
+                       if(text.isEmpty())
+                             System.out.println("Logged in");
+                       else
+                       {
+                             driver.findElement(By.id("pii-pw")).sendKeys(password);
+                             //Sign in button is located and clicked
+                             driver.findElement(By.id("pii-signin-button")).click();
+                             login =1;
+                       }
+                                            
+                }
 			 
 		  }
 		  
@@ -59,6 +75,15 @@ public class SanityHiRCAFirefoxTest {
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  //Switches to the iframe
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
 			  driver.findElement(By.id("pii-main-menu-button-a")).click();
 			 
 			  
