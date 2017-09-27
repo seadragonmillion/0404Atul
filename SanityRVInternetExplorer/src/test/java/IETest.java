@@ -34,7 +34,7 @@ public class IETest {
 		  System.setProperty("webdriver.ie.driver",ie_path);
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
-		  cap.setCapability("requireWindowFocus", true);
+		 // cap.setCapability("requireWindowFocus", true);
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
