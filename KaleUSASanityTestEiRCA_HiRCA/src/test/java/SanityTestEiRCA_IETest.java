@@ -12,7 +12,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.NoSuchElementException;
 
 public class SanityTestEiRCA_IETest {
 
@@ -22,6 +22,7 @@ public class SanityTestEiRCA_IETest {
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
 	private String EventTitleIE = "Sanity Test IE";
+	 private int login =0;
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -55,7 +56,21 @@ public class SanityTestEiRCA_IETest {
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
 		  jse.executeScript("return document.getElementById('pii-signin-button').click();");
-		  
+		  WebElement element = driver.findElement(By.id("pii-signin-message"));
+                String text = element.getText();
+                if (element.isDisplayed())
+                {
+                       if(text.isEmpty())
+                             System.out.println("Logged in");
+                       else
+                       {
+                             driver.findElement(By.id("pii-pw")).sendKeys(password);
+                             //Sign in button is located and clicked
+                             jse.executeScript("return document.getElementById('pii-signin-button').click();");
+                             login =1;
+                       }
+                                            
+                }
 	  }
 	  
 	  @Test
@@ -70,6 +85,15 @@ public class SanityTestEiRCA_IETest {
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		  System.out.println("Waiting for page to load");
+		  try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
