@@ -59,7 +59,7 @@ public class SanityHiRCAChromeTest {
 				       System.out.println("Logged in");
 			      else
 				  {
-				  driver.findElement(By.id("pii-pw")).sendKeys("Kale24982417@");
+				  driver.findElement(By.id("pii-pw")).sendKeys("Kalejenkins@123");
 				  //Sign in button is located and clicked
 				  driver.findElement(By.id("pii-signin-button")).click();
 				  login =1;
