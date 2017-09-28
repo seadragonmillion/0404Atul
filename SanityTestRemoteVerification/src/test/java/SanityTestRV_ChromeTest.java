@@ -85,7 +85,7 @@ public class SanityTestRV_ChromeTest {
 					  }
 					  			  
 				  }
-			  }
+			  }}
 			
 		  }
 		  if ((user.equals(username)==false)||(pw.equals(password)==false))
