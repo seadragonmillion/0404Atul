@@ -164,7 +164,7 @@ public class IETest {
               }catch (NoSuchElementException e){
               throw e;
               }
-		  Thread.sleep(5000);
+		  Thread.sleep(8000);
 		  System.out.println("Waiting for page to load");
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
