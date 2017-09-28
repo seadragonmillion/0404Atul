@@ -41,7 +41,7 @@ public class SanityTestEiRCA_IETest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
