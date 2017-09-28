@@ -76,29 +76,32 @@ public class SanityHiRCAChromeTest {
 			  }
 			
 		  }
-		  else
-		  {
-			  while(c>0)
-			  {
-				  Thread.sleep(1000);
-				  driver.findElement(By.id("pii-un")).clear();
-				  driver.findElement(By.id("pii-pw")).clear();
-				  //Username text field is located and the username is entered
-				  driver.findElement(By.id("pii-un")).sendKeys(username);
-				  //Password field is located and the password is entered
-				  driver.findElement(By.id("pii-pw")).sendKeys(password);
-				  c=c+1;
-				  if (user.equals(username)==true)
+		  if ((user.equals(username)==false)||(pw.equals(password)==false))
+		    {
+				  while(c>0)
 				  {
-					  if(pw.equals(password)==true)
+					  Thread.sleep(1000);
+					  driver.findElement(By.id("pii-un")).clear();
+					  driver.findElement(By.id("pii-pw")).clear();
+					  //Username text field is located and the username is entered
+					  driver.findElement(By.id("pii-un")).sendKeys(username);
+					  //Password field is located and the password is entered
+					  driver.findElement(By.id("pii-pw")).sendKeys(password);
+					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
+					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+					  if (user.equals(username)==true)
 					  {
-						  //Sign in button is located and clicked
-						  driver.findElement(By.id("pii-signin-button")).click();
-						  break;
+						  if(pw.equals(password)==true)
+						  {
+							  //Sign in button is located and clicked
+							  driver.findElement(By.id("pii-signin-button")).click();
+							  break;
+						  }
+						
 					  }
-					
 				  }
-			  }
+			  
+			  
 		  }
 		  }
 		  
@@ -130,8 +133,9 @@ public class SanityHiRCAChromeTest {
 		  public void SanityTest() throws Exception{
 			  
 			  Login();
-			  System.out.println("Title after login: "+driver.getTitle());
 			  Thread.sleep(7000);
+			  System.out.println("Title after login: "+driver.getTitle());
+			  
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
