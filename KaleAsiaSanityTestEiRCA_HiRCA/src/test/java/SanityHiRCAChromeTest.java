@@ -151,6 +151,9 @@ public class SanityHiRCAChromeTest {
 			  }catch (UnhandledAlertException f){			  
 				  driver.switchTo().alert().dismiss();
 			  }
+			  Thread.sleep(2000);
+			  driver.findElement(By.id("pii-a-menu-hirca")).click();
+			  
 			  //Fills mandatory details
 			 driver.findElement(By.id("pii-irca-event-title")).sendKeys(EventTitleChrome);
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys("San Diego");
