@@ -115,6 +115,33 @@ public class FirefoxTest {
 		  }
 	  }
 	  
+	  
+	  public void deleteNewRecord(String recordName) throws Exception{
+		  
+		  //CLicks on first newly created record
+		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).click();
+		  Thread.sleep(2000);
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  //Clicks on delete button
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		  
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		  //Clicks on delete report
+		  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
+		  //Verify record deleted
+		  //Click on 1st record
+		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).getText();
+		  System.out.println(name);
+		  if (name!=recordName)
+			  System.out.println("Record deleted");
+		  else
+			  System.out.println("Record could not be deleted");
+		  			  
+	  }
+	  
 	   
 	  @Test
 	  public void SanityTest() throws Exception{
@@ -196,6 +223,8 @@ public class FirefoxTest {
 			  System.out.println ("Record not found.");
 		  //Checks if the name displayed on record is same as expected
 		  assertEquals(name, recordName);
+		  //Deletes the newly created record
+		  deleteNewRecord(recordName);
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
