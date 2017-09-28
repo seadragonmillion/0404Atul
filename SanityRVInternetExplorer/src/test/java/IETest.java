@@ -45,7 +45,7 @@ public class IETest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
