@@ -32,7 +32,7 @@ public class SanityTestEiRCA_IETest {
 		  System.setProperty("webdriver.ie.driver",ie_path);
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
-		  //cap.setCapability("requireWindowFocus", true);
+		  cap.setCapability("requireWindowFocus", true);
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
@@ -42,7 +42,7 @@ public class SanityTestEiRCA_IETest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
