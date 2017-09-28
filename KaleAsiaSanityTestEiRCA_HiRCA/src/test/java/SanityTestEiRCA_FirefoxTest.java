@@ -50,22 +50,60 @@ public class SanityTestEiRCA_FirefoxTest {
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
 		  //Sign in button is located and clicked
-		  driver.findElement(By.id("pii-signin-button")).click();
-		  WebElement element = driver.findElement(By.id("pii-signin-message"));
-                String text = element.getText();
-                if (element.isDisplayed())
-                {
-                       if(text.isEmpty())
-                             System.out.println("Logged in");
-                       else
-                       {
-                             driver.findElement(By.id("pii-pw")).sendKeys(password);
-                             //Sign in button is located and clicked
-                             driver.findElement(By.id("pii-signin-button")).click();
-                             login =1;
-                       }
-                                            
-                }
+		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
+		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+		  int c=1;
+		  if (user.equals(username)==true)
+		  {
+			  if(pw.equals(password)==true)
+			  {
+				  //Sign in button is located and clicked
+				  driver.findElement(By.id("pii-signin-button")).click();  
+				  WebElement element = driver.findElement(By.id("pii-signin-message"));
+				  String text = element.getText();
+				  if (element.isDisplayed())
+				  {
+					  if(text.isEmpty())
+						  System.out.println("Logged in");
+					  else
+					  {
+						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  //Sign in button is located and clicked
+						  driver.findElement(By.id("pii-signin-button")).click();
+						  login =1;
+					  }
+					  			  
+				  }
+			  }
+			
+		  }
+		  if ((user.equals(username)==false)||(pw.equals(password)==false))
+		    {
+				  while(c>0)
+				  {
+					  Thread.sleep(1000);
+					  driver.findElement(By.id("pii-un")).clear();
+					  driver.findElement(By.id("pii-pw")).clear();
+					  //Username text field is located and the username is entered
+					  driver.findElement(By.id("pii-un")).sendKeys(username);
+					  //Password field is located and the password is entered
+					  driver.findElement(By.id("pii-pw")).sendKeys(password);
+					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
+					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+					  if (user.equals(username)==true)
+					  {
+						  if(pw.equals(password)==true)
+						  {
+							  //Sign in button is located and clicked
+							  driver.findElement(By.id("pii-signin-button")).click();
+							  break;
+						  }
+						
+					  }
+				  }
+			  
+			  
+		  }
 	  }
 	  
 	  public void deleteNewRecord(String recordName) throws Exception{
