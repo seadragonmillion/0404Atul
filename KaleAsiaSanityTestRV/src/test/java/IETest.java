@@ -123,7 +123,7 @@ public class IETest {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;  
 		//CLicks on first newly created record
 		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
@@ -131,7 +131,7 @@ public class IETest {
 		  //Clicks on delete report
 		  jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-rv').click();");
 		  //Verify record deleted
 		  //Click on 1st record
@@ -244,7 +244,7 @@ public class IETest {
 		  System.out.println("Expected name of record: " + name);
 		  //Clicks on Remote Verification
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-rv').click();");
-		  Thread.sleep(3000);
+		  Thread.sleep(6000);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"));
 		  String recordName = record.getText();
@@ -256,12 +256,13 @@ public class IETest {
 			  System.out.println ("Record not found.");
 		  //Checks if the name displayed on record is same as expected
 		  assertEquals(name, recordName);
+		  Thread.sleep(3000);
 		 //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  //Logs out
 		  jse.executeScript("return document.getElementById('pii-user-loginname').click();");
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
-		  Thread.sleep(2000);	  
+		  Thread.sleep(4000);	  
 		  afterTest();
 	  }
 
