@@ -87,29 +87,32 @@ public class IETest {
 			  }
 			
 		  }
-		  else
-		  {
-			  while(c>0)
-			  {
-				  Thread.sleep(1000);
-				  driver.findElement(By.id("pii-un")).clear();
-				  driver.findElement(By.id("pii-pw")).clear();
-				  //Username text field is located and the username is entered
-				  driver.findElement(By.id("pii-un")).sendKeys(username);
-				  //Password field is located and the password is entered
-				  driver.findElement(By.id("pii-pw")).sendKeys(password);
-				  c=c+1;
-				  if (user.equals(username)==true)
+		  if ((user.equals(username)==false)||(pw.equals(password)==false))
+		    {
+				  while(c>0)
 				  {
-					  if(pw.equals(password)==true)
+					  Thread.sleep(1000);
+					  driver.findElement(By.id("pii-un")).clear();
+					  driver.findElement(By.id("pii-pw")).clear();
+					  //Username text field is located and the username is entered
+					  driver.findElement(By.id("pii-un")).sendKeys(username);
+					  //Password field is located and the password is entered
+					  driver.findElement(By.id("pii-pw")).sendKeys(password);
+					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
+					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+					  if (user.equals(username)==true)
 					  {
-						  //Sign in button is located and clicked
-						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
-						  break;
+						  if(pw.equals(password)==true)
+						  {
+							  //Sign in button is located and clicked
+							  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+							  break;
+						  }
+						
 					  }
-					
 				  }
-			  }
+			  
+			  
 		  }
 		  
 	  }
@@ -119,6 +122,7 @@ public class IETest {
 	  public void SanityTest() throws Exception{
 		  
 		  Login();
+		  Thread.sleep(5000);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  try{
@@ -130,7 +134,7 @@ public class IETest {
                 }catch (NoSuchElementException e){
                        throw e;
                 }
-		  Thread.sleep(5000);
+		  Thread.sleep(2000);
 		  //Switches to the iframe
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
