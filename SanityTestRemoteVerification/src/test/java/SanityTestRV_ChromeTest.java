@@ -64,18 +64,24 @@ public class SanityTestRV_ChromeTest {
 			  {
 				  //Sign in button is located and clicked
 				  driver.findElement(By.id("pii-signin-button")).click();  
+				  while(c>0)
+				  {
 				  WebElement element = driver.findElement(By.id("pii-signin-message"));
 				  String text = element.getText();
 				  if (element.isDisplayed())
 				  {
 					  if(text.isEmpty())
+					  {
 						  System.out.println("Logged in");
+						  break;
+						  }
 					  else
 					  {
 						  driver.findElement(By.id("pii-pw")).sendKeys(password);
 						  //Sign in button is located and clicked
 						  driver.findElement(By.id("pii-signin-button")).click();
 						  login =1;
+						  break;
 					  }
 					  			  
 				  }
