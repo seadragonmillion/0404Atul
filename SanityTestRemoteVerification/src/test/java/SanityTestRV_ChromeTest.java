@@ -56,6 +56,7 @@ public class SanityTestRV_ChromeTest {
 		  Thread.sleep(1000);
 		  //Sign in button is located and clicked
 		  driver.findElement(By.id("pii-signin-button")).click();
+		  Thread.sleep(2000);
 		  WebElement element = driver.findElement(By.id("pii-signin-message"));
                 String text = element.getText();
                 if (element.isDisplayed())
