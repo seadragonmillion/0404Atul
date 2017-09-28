@@ -37,7 +37,7 @@ public class SanityHiRCAChromeTest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
