@@ -18,7 +18,7 @@ public class SanityTestEiRCA_IETest {
 	private InternetExplorerDriver driver;
 	private int login =0;
 	private String username ="jenkins";
-	private String password = "Kalejenkins@123"
+	private String password = "Kalejenkins@123";
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -37,7 +37,7 @@ public class SanityTestEiRCA_IETest {
 	  }
 	  
 	
-	  public void Login() {
+	  public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
