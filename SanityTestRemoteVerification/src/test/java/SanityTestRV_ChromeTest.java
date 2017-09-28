@@ -176,12 +176,12 @@ public class SanityTestRV_ChromeTest {
 		  if ((ev1.equals(event_title)==false))
 		  {
 			  driver.findElement(By.id("pii-rv-tab-1-title")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys("Sanity Test");
+			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
 		  }
 		  if((ev2.equals("Sanity Test"))==false)
 		  {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("San Diego");
+			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
 		  }
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
