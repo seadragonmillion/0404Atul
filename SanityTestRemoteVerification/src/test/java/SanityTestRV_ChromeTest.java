@@ -104,23 +104,22 @@ public class SanityTestRV_ChromeTest {
 		  //Fills the mandatory fields
 		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
 		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
-		  //Uploads picture 1
-		  String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
-		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
-		  //Uploads picture 2
-		  String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
-		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
-		 // Thread.sleep(3000);
-		  //driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys(Keys.ENTER);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  jse.executeScript("scroll(0, 250)");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
-		  
-		  jse.executeScript("scroll(250, 0)");
+		  //Uploads picture 2
+		  String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
+		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("scroll(0, 250)");
+		  Thread.sleep(3000);
+		 //Uploads picture 1
+		  String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
+		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		  Thread.sleep(3000);
+		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
 		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
 		  //Clicks on save and send report
