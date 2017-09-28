@@ -132,6 +132,7 @@ public class SanityTestEiRCA_FirefoxTest {
 	  public void SanityTest() throws Exception{
 		  
 		  Login();
+		  Thread.sleep(3000);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
