@@ -143,7 +143,7 @@ public class SanityHiRCAFirefoxTest {
 			 // assertEquals (driver.getTitle(), "KALE�");
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			 // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			   System.out.println("Title after login: "+driver.getTitle());
 			  try{
 			  if (login==1)
@@ -154,7 +154,7 @@ public class SanityHiRCAFirefoxTest {
 		  }catch (NoSuchElementException e){
 			  throw e;
 		  }
-			  Thread.sleep(5000);
+			  //Thread.sleep(5000);
 			  try
 			  {
 				  driver.findElement(By.id("pii-main-menu-button-a")).click();
