@@ -82,7 +82,9 @@ public class SanityChromeTest {
 						  break;
 					  }
 					  			  
-				  }}
+				  }
+				  else break;
+				  }
 			  }
 			
 		  }
