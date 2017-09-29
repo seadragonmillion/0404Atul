@@ -88,6 +88,7 @@ public class SanityTestEiRCA_IETest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
