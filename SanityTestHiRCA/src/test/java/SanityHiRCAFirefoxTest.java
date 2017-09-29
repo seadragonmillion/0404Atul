@@ -138,13 +138,14 @@ public class SanityHiRCAFirefoxTest {
 		  public void SanityTest() throws Exception{
 			  
 			  Login();
+			  System.out.println("Title after login: "+driver.getTitle());
 			  Thread.sleep(5000);
 			 
 			 // assertEquals (driver.getTitle(), "KALE�");
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			 // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			   System.out.println("Title after login: "+driver.getTitle());
+			   
 			  try{
 			  if (login==1)
 			  {
