@@ -89,6 +89,7 @@ public class SanityHiRCAInternetExplorerTest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
