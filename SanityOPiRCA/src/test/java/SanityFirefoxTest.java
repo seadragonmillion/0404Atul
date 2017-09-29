@@ -89,6 +89,7 @@ public class SanityFirefoxTest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
