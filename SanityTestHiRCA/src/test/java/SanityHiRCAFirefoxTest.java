@@ -78,6 +78,7 @@ public class SanityHiRCAFirefoxTest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
