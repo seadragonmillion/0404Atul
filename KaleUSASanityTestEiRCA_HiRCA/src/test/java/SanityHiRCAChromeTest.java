@@ -80,7 +80,9 @@ public class SanityHiRCAChromeTest {
 						  break;
 					  }
 					  			  
-				  }}
+				  }
+				  else break;
+				  }
 				  
 			  }
 			
