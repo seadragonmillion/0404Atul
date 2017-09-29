@@ -83,7 +83,9 @@ public class SanityTestEiRCA_ChromeTest {
 						  break;
 					  }
 					  			  
-				  }}
+				  }
+				  else break;
+				  }
 			  }
 			
 		  }
