@@ -91,6 +91,7 @@ public class SanityFirefoxTest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}}
 		  if ((user.equals(username)==false)||(pw.equals(password)==false))
 		    {
