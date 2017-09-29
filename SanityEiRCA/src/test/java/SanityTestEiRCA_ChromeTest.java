@@ -80,6 +80,7 @@ public class SanityTestEiRCA_ChromeTest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
