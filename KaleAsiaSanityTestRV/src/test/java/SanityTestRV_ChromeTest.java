@@ -84,6 +84,7 @@ public class SanityTestRV_ChromeTest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
