@@ -146,7 +146,7 @@ public class SanityHiRCAChromeTest {
 			  
 			  Login();
 			  Thread.sleep(5000);
-			  System.out.println("Title after login: "+driver.getTitle());
+			  
 			 
 			 // assertEquals (driver.getTitle(), "KALE�");
 			  Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -164,6 +164,7 @@ public class SanityHiRCAChromeTest {
 				  System.out.println("\n");
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  System.out.println("Title after login: "+driver.getTitle());
 			  try{
 			  if (login==1)
 			  {
