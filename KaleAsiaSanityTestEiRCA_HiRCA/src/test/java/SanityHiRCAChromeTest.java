@@ -140,8 +140,9 @@ public class SanityHiRCAChromeTest {
 		  public void SanityTest() throws Exception{
 			  
 			  Login();
-			  Thread.sleep(7000);
 			  System.out.println("Title after login: "+driver.getTitle());
+			  Thread.sleep(7000);
+			  
 			  
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  
