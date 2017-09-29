@@ -181,6 +181,54 @@ public class SanityTestEiRCA_ChromeTest {
 		  driver.findElement(By.id("pii-ircam-tab-1-management-sponsor")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-ircam-tab-1-problem-statement")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-ircam-tab-1-failed-component")).sendKeys("Sanity Test");
+		  String ev1 = driver.findElement(By.id("pii-ircam-tab-1-title")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-ircam-tab-1-location")).getAttribute("value");
+		  String ev3 = driver.findElement(By.id("pii-ircam-tab-1-who")).getAttribute("value");
+		  String ev4 = driver.findElement(By.id("pii-ircam-tab-1-investigators")).getAttribute("value");
+		  String ev5 = driver.findElement(By.id("pii-ircam-tab-1-reviewer")).getAttribute("value");
+		  String ev6 = driver.findElement(By.id("pii-ircam-tab-1-management-sponsor")).getAttribute("value");
+		  String ev7= driver.findElement(By.id("pii-ircam-tab-1-problem-statement")).getAttribute("value");
+		  String ev8= driver.findElement(By.id("pii-ircam-tab-1-failed-component")).getAttribute("value");
+		  if ((ev1.equals(EventTitleChrome)==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-title")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-title")).sendKeys(EventTitleChrome);
+		  }
+		  if ((ev2.equals("San Diego")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-location")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-location")).sendKeys("San Diego");
+		  }
+		  if ((ev3.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-who")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-who")).sendKeys("Sanity Test");
+		  }
+		  if ((ev4.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-investigators")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-investigators")).sendKeys("Sanity Test");
+		  }
+		  if ((ev5.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-reviewer")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-reviewer")).sendKeys("Sanity Test");
+		  }
+		  if ((ev6.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-management-sponsor")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-management-sponsor")).sendKeys("Sanity Test");
+		  }
+		  if ((ev7.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-problem-statement")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-problem-statement")).sendKeys("Sanity Test");
+		  }
+		  if ((ev8.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-ircam-tab-1-failed-component")).clear();
+			  driver.findElement(By.id("pii-ircam-tab-1-failed-component")).sendKeys("Sanity Test");
+		  }
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  jse.executeScript("scroll(250, 0)");
 		  //Clicks on Save button
