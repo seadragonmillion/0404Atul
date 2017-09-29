@@ -81,7 +81,9 @@ public class SanityTestEiRCA_FirefoxTest {
 						  break;
 					  }
 					  			  
-				  }}
+				  }
+				  else break;
+				  }
 			  }
 			
 		  }
