@@ -89,6 +89,7 @@ public class SanityIETest {
 					  }
 					  			  
 				  }
+				  else break;
 			  }}
 			
 		  }
