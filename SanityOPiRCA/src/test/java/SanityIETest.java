@@ -77,11 +77,11 @@ public class SanityIETest {
 					  if(text.isEmpty())
 					  {
 						  System.out.println("Logged in");
+						  break;
+						  }
 					  else
 					  {
 						  driver.findElement(By.id("pii-pw")).sendKeys(password);
-						  break;
-						  }
 						  //Sign in button is located and clicked
 						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
 						  login =1;
