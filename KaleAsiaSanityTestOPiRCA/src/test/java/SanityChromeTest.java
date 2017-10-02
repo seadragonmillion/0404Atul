@@ -251,11 +251,11 @@ public class SanityChromeTest {
 		  assertEquals(name, recordName);
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
-		  if (driver.findElement(By.className("sticky-close")).isDisplayed())
+		 /* if (driver.findElement(By.className("sticky-close")).isDisplayed())
 			  driver.findElement(By.className("sticky-close")).click();
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();*/
 		  afterTest();
 		  
 	}
