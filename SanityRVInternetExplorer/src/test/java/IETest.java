@@ -206,7 +206,7 @@ public class IETest {
 		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
 		  Actions act = new Actions(driver);
 		  act.doubleClick(element).build().perform();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  try{
 			  try {
 					//Uploads picture 2
@@ -220,7 +220,7 @@ public class IETest {
 		  }catch (NoAlertPresentException f){			  
 			  System.out.println ("No unexpected alert for picture 2");
 		  }
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  jse.executeScript("scroll(0, 250)");
 		  Thread.sleep(1000);
 		  //Clicks twice on browse button of 1st picture
