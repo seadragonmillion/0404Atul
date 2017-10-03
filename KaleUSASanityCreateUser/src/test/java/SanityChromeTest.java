@@ -210,7 +210,7 @@ public class SanityChromeTest {
 		  System.out.println("Company created");
 		  
 		  
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Clicks on create group
 		  driver.findElement(By.id("pii-admin-group-create")).click();
 		  Thread.sleep(2000);
