@@ -19,7 +19,7 @@ public class SanityChromeTest {
 	private WebDriver driver;
 	private String username ="ritica";
 	private String password = "Kale24982417@";
-	private String company_id="sanitytest";
+	private String company_id="aasanitytest";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
