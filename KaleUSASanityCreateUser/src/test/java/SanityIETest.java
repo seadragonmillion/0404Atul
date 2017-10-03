@@ -213,13 +213,15 @@ public class SanityIETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Enters company id in ID field 
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
+		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(1000);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		  System.out.println("Company created");
 		  
 		  
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Clicks on create group
 		  jse.executeScript("return document.getElementById('pii-admin-group-create').click();");
 		  Thread.sleep(2000);
