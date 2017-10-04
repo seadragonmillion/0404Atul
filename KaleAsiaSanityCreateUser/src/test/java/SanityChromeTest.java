@@ -296,6 +296,7 @@ public class SanityChromeTest {
 		  //Searches for newly created user
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(1000);
 		  //Selects the newly created user
 		  WebElement select = driver.findElement(By.id("pii-admin-user-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
@@ -316,6 +317,7 @@ public class SanityChromeTest {
 		  //Searches for newly created group
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(1000);
 		  //Selects the newly created group
 		  select = driver.findElement(By.id("pii-admin-group-list"));
 		  option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
