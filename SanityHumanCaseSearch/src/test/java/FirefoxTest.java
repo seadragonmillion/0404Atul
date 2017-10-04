@@ -173,7 +173,7 @@ public class FirefoxTest {
 		  for (int i=2;i<=n;i++)
 		  {
 			  String id = "pii-slideimg-Q1459-"+(i-1);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+i);
 			  Thread.sleep(500);
@@ -207,7 +207,7 @@ public class FirefoxTest {
 		  for (int i=2;i<=n;i++)
 		  {
 			  String id = "pii-slideimg-Q1459-"+(i-1);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+i);
 			  Thread.sleep(500);
