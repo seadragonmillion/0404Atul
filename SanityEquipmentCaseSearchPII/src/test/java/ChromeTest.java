@@ -183,11 +183,11 @@ public class ChromeTest {
 		  //Enters case id
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys("1459");
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
-		  //Clicks on F649
+		  //Clicks on F1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F1459")));
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  element =  driver.findElement(By.id("pii-slideshow-button-equip-F1459"));
 		  slide = element.getText();
 		  element.sendKeys(Keys.TAB);
