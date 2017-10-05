@@ -149,7 +149,7 @@ public class SanityTestRV_ChromeTest {
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  Thread.sleep(5000);
@@ -240,6 +240,10 @@ public class SanityTestRV_ChromeTest {
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 	  }
 	  
 	  
