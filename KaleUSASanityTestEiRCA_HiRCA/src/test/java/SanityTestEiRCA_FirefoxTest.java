@@ -142,7 +142,7 @@ public class SanityTestEiRCA_FirefoxTest {
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
@@ -263,6 +263,10 @@ public class SanityTestEiRCA_FirefoxTest {
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 	  }
 	  
 		 
