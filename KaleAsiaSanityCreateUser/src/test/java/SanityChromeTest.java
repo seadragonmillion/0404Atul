@@ -227,13 +227,17 @@ public class SanityChromeTest {
 			  driver.findElement(By.id("pii-admin-group-cases")).clear();
 			  driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
 		  }
+		  Thread.sleep(2000);
 		  WebElement element = driver.findElement(By.id("pii-admin-group-cid"));
 		  Select dropdown = new Select (element);
 		  dropdown.selectByVisibleText(company_id);
 		  driver.findElement(By.id("pii-admin-group-modules-button")).click();
+		  Thread.sleep(2000);
 		  WebElement ele = driver.findElement(By.id("pii-admin-group-modules-listbox-popup"));
 		  ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
+		  Thread.sleep(1000);
 		  ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
+		  Thread.sleep(2000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-listbox']/div/a")).click();
 		  //Clicks on save
 		  driver.findElement(By.id("pii-admin-group-button-save")).click();
@@ -296,7 +300,7 @@ public class SanityChromeTest {
 		  //Searches for newly created user
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Selects the newly created user
 		  WebElement select = driver.findElement(By.id("pii-admin-user-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
@@ -317,7 +321,7 @@ public class SanityChromeTest {
 		  //Searches for newly created group
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Selects the newly created group
 		  select = driver.findElement(By.id("pii-admin-group-list"));
 		  option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
