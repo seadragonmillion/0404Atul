@@ -152,6 +152,7 @@ public class SanityIETest {
 	
 	@Test
 	public void test() throws Exception{
+		  try{
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  Thread.sleep(7000);
@@ -260,6 +261,10 @@ public class SanityIETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 	}
 	
 	
