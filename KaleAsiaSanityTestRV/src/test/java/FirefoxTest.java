@@ -153,7 +153,7 @@ public class FirefoxTest {
 	   
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  Thread.sleep(7000);
 		  System.out.println("Title after login: "+driver.getTitle());
@@ -249,6 +249,10 @@ public class FirefoxTest {
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 
 	  }
 	  
