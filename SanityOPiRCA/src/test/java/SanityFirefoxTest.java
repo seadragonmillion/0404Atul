@@ -153,7 +153,7 @@ public class SanityFirefoxTest {
 	
 	@Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
@@ -258,6 +258,10 @@ public class SanityFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 		  
 	}
 	
