@@ -147,7 +147,7 @@ public class SanityTestEiRCA_IETest {
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  Thread.sleep(4000);
@@ -268,6 +268,10 @@ public class SanityTestEiRCA_IETest {
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(3000);
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 		  		  
 	  }
 	  
