@@ -144,6 +144,7 @@ public class SanityHiRCAChromeTest {
 		  
 		  @Test
 		  public void SanityTest() throws Exception{
+		  try{
 			  
 			  Login();
 			  Thread.sleep(5000);
@@ -258,6 +259,10 @@ public class SanityHiRCAChromeTest {
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();	
 			  afterTest();
+			  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 		  }
 		  
 		  		  
