@@ -144,7 +144,7 @@ public class SanityTestEiRCA_ChromeTest {
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  Thread.sleep(2000);
@@ -266,6 +266,10 @@ public class SanityTestEiRCA_ChromeTest {
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 	  }
 	  
 		 
