@@ -302,7 +302,7 @@ public class SanityFirefoxTest {
 		  //Searches for newly created user
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Selects the newly created user
 		  WebElement select = driver.findElement(By.id("pii-admin-user-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
@@ -361,6 +361,7 @@ public class SanityFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
+		  
 		  		  
 	}
 	
