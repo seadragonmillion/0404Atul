@@ -155,7 +155,7 @@ public class IETest {
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  Thread.sleep(7000);
 		  System.out.println("Title after login: "+driver.getTitle());
@@ -272,6 +272,10 @@ public class IETest {
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(4000);	  
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 	  }
 
 	  
