@@ -144,7 +144,7 @@ public class SanityHiRCAInternetExplorerTest {
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
-		  
+		  try{
 		  Login();
 		  Thread.sleep(5000);
 		  System.out.println("Title after login: "+driver.getTitle());
@@ -242,6 +242,10 @@ public class SanityHiRCAInternetExplorerTest {
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(4000);
 		  afterTest();
+		  }catch (Exception e)
+			  {
+				  driver.quit();
+			  }
 		  		 
 	  }
 	  
