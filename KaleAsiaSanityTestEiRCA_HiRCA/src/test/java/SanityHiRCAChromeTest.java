@@ -159,7 +159,8 @@ public class SanityHiRCAChromeTest {
 			  //Clicks on Analysis
 			  try
 			  {
-				  driver.findElement(By.id("pii-main-menu-button-a")).click();
+				 WebDriverWait wait3 = new WebDriverWait(driver,20);
+                 wait3.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 			  }catch (UnhandledAlertException f){			  
 				  driver.switchTo().alert().dismiss();
 			  }
