@@ -157,8 +157,8 @@ public class SanityIETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
 		  //Selects the newly created group
-		  select = driver.findElement(By.id("pii-admin-group-list"));
-		  option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
+		  WebElement select = driver.findElement(By.id("pii-admin-group-list"));
+		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		  option.click();
 		  //Clicks on delete
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-delete"))).click();
