@@ -391,6 +391,7 @@ public class SanityFirefoxTest {
 		  Thread.sleep(4000);
 		  deleteCompany();
 		  
+		  Thread.sleep(2000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
