@@ -28,7 +28,7 @@ public class FirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing sanity test on Equipment Performance Search PII in Firefox");
+		 System.out.println("Performing sanity test on Electrical failure mode search in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
 		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
