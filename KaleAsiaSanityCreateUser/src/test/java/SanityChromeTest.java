@@ -126,6 +126,7 @@ public class SanityChromeTest {
 		  //Searches for newly created user
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(2000);
 		  //Selects the newly created user
 		  WebElement select = driver.findElement(By.id("pii-admin-user-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
@@ -134,6 +135,7 @@ public class SanityChromeTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-delete"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		  //Clicks on delete user
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-admin-user-dialog-confirmed")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  System.out.println("User deleted");
@@ -335,6 +337,7 @@ public class SanityChromeTest {
 		  Thread.sleep(2000);
 		  //Clicks on create user
 		  driver.findElement(By.id("pii-admin-user-create")).click();
+		  Thread.sleep(2000);
 		  //Enters mandatory details
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).sendKeys(company_id);
 		  driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
@@ -358,7 +361,9 @@ public class SanityChromeTest {
 			  driver.findElement(By.id("pii-admin-user-email")).clear();
 			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("rramakrishnan@errorfree.com");
 		  }
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		  Thread.sleep(2000);
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		  ele1.findElement(By.linkText(company_id)).click();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a")).click();
@@ -369,6 +374,7 @@ public class SanityChromeTest {
 		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		  dd4.selectByVisibleText(company_id);
 		  //Clicks on save button
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-admin-user-button-save")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		  //Clicks on Save button
