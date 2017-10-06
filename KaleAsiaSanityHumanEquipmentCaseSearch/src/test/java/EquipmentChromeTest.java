@@ -197,17 +197,17 @@ public class EquipmentChromeTest {
 		  n = Character.getNumericValue(c);
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
-		  Thread.sleep(500);
+		  Thread.sleep(1000);
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int i=2;i<=n;i++)
 		  {
 			  String id = "pii-slideimg-F1453-"+(i-1);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+(i));
 			  else System.out.println("Didn't find slide "+i);
-			  Thread.sleep(500);
+			  Thread.sleep(1000);
 			  driver.findElement(By.linkText("Next")).click();
 		  }
 		  //Clicks on close button
