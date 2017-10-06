@@ -20,7 +20,7 @@ public class SanityIETest {
 	private InternetExplorerDriver driver;
 	private String username ="ritica";
 	private String password = "Kale24982417@";
-	private String company_id="aasanitytest";
+	private String company_id="aatestqaa";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
