@@ -28,7 +28,7 @@ public class IETest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on Equipment Performance Search PII in Internet Explorer");
+		  System.out.println("Performing sanity test on Electrical failure mode search in Internet Explorer");
 		  System.setProperty("webdriver.ie.driver",ie_path);
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
