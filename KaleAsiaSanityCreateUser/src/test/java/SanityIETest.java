@@ -130,7 +130,7 @@ public class SanityIETest {
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Edit user
 		  jse.executeScript("return document.getElementById('pii-admin-user-edit').click();");
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Searches for newly created user
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
@@ -154,7 +154,7 @@ public class SanityIETest {
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Edit group
 		  jse.executeScript("return document.getElementById('pii-admin-group-edit').click();");
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Searches for newly created group
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
@@ -178,14 +178,14 @@ public class SanityIETest {
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on Companies
 		  jse.executeScript("return document.getElementById('pii-admin-customers-button').click();");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Enters company id in ID field 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Clicks on delete
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
@@ -394,15 +394,15 @@ public class SanityIETest {
 		  System.out.println("User created");
 		  
 		  
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  deleteUser();
 		  
 		  
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  deleteGroup();
 		  
 		  
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  deleteCompany();
 		  
 		  //Logs out
