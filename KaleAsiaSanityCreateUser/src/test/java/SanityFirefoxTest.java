@@ -396,6 +396,63 @@ public class SanityFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
+		  }catch (Exception e){
+			   
+			      WebDriverWait wait = new WebDriverWait(driver,20);
+			      Thread.sleep(3000);
+			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
+			      Thread.sleep(3000);
+				  //Clicks on delete
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
+				  String value1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).getText();
+				  System.out.println(value1);
+				  if(value1.contains("Warning: cannot delete a company with groups"))
+				  {
+					  driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();
+					  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td")).click();
+					  //Searches for newly created group
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
+					  Thread.sleep(1000);
+					  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
+					 /* //Selects the newly created group
+					  WebElement select = driver.findElement(By.id("pii-admin-group-list"));
+					  
+					 if (select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child")).isDisplayed())
+						  select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child")).click();*/
+					  //Clicks on delete
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-delete"))).click();
+					  String value2 =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-note"))).getText();
+					  if(value2.equals("NOTE: delete all users of a group before deleting a group."))
+					  {
+						  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
+						  Thread.sleep(2000);
+						  deleteUser();
+						  deleteGroup();
+						  deleteCompany();
+						  
+					  }
+					  else
+					  {
+						//Clicks on delete group
+						  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
+						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+						  System.out.println("Group deleted");
+						  deleteCompany();
+					  }
+					  
+				  }
+				  if(value1.contains("Are you sure that you want to delete company with"))
+				  {
+					  Thread.sleep(1000);
+					  //Clicks on delete company
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+					  System.out.println("Company deleted");  
+				  }
+				  
+			  
+			  driver.quit();
+		 }
 		  
 		  		  
 	}
