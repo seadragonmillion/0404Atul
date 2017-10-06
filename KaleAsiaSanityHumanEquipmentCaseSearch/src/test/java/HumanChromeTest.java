@@ -163,16 +163,16 @@ public class HumanChromeTest {
 		  int n = Character.getNumericValue(c);
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
-		  Thread.sleep(500);
+		  Thread.sleep(1000);
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int i=2;i<=n;i++)
 		  {
 			  String id = "pii-slideimg-Q746-"+(i-1);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+i);
-			  Thread.sleep(500);
+			  Thread.sleep(1000);
 			  driver.findElement(By.linkText("Next")).click();
 		  }
 		  //Clicks on close button
@@ -198,17 +198,17 @@ public class HumanChromeTest {
 		  n = ((Character.getNumericValue(c))*10)+(Character.getNumericValue(c1));
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
-		  Thread.sleep(500);
+		  Thread.sleep(1000);
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int j=2;j<=n;j++)
 		  {
 			  String id = "pii-slideimg-Q2051-"+(j-1);
 			  System.out.println(id + " " +j);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+j);
-			  Thread.sleep(500);
+			  Thread.sleep(1000);
 			  driver.findElement(By.linkText("Next")).click();
 			  
 		  }
