@@ -178,7 +178,7 @@ public class ChromeTest {
 		  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
-		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys("test data");
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on Q1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459"))).click();
