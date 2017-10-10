@@ -209,7 +209,7 @@ public class HumanIETest {
 		  //Checking if title is correct
 		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
 		  String expected_title = "Q746: How is an Error-Free work day achieved for power plant workers?";
-		  //assertEquals (actual_title, expected_title);
+		  
 		  if((actual_title.contains(expected_title))==true)
 		  {
 		      System.out.println("Title match");
@@ -239,7 +239,7 @@ public class HumanIETest {
 			  String title_id= "centered-btns1_s"+(i-1);
 			  String title_xpath = ".//*[@id='"+title_id+"']/div";
 			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
-			  //assertEquals (actual_title, expected_title);
+			  
 			  if((actual_title.contains(expected_title))==true)
 		  {
 		      System.out.println("Title match");
@@ -302,7 +302,7 @@ public class HumanIETest {
 		  //Checking if title is correct
 		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/div")).getText();
 		  String expected_title1 = "Q2051: What are the differences between Error-Free technology and current error reduction technology?";
-		  //assertEquals (actual_title1, expected_title1);
+		  
 		  if((actual_title1.contains(expected_title1))==true)
 		  {
 		      System.out.println("Title match");
@@ -329,7 +329,7 @@ public class HumanIETest {
 			  String title_id= "centered-btns2_s"+(j-1);
 			  String title_xpath = ".//*[@id='"+title_id+"']/div";
 			  actual_title1 = driver.findElement(By.xpath(title_xpath)).getText();
-			  //assertEquals (actual_title1, expected_title1);
+			 
 			  if((actual_title1.contains(expected_title1))==true)
 		  {
 		      System.out.println("Title match");
