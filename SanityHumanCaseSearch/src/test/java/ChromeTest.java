@@ -164,6 +164,7 @@ public class ChromeTest {
 		  WebElement match=driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li"));
 		  String text = match.getText();
 		  System.out.println(text);
+		  Thread.sleep(1000);
 		  if(text.equals("Exact Match Keywords"))
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();				  
@@ -178,6 +179,7 @@ public class ChromeTest {
 		  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on Q1459
