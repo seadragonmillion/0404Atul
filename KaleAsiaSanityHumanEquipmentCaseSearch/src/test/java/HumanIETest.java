@@ -362,7 +362,9 @@ public class HumanIETest {
 		  afterTest();
 		  }catch (Exception e)
 			  {
-				  driver.quit();
+				 driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
+				 driver.quit();
 			  }
 		  		  
 	}
