@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.junit.Assert.assertEquals;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class ChromeTest {
@@ -22,6 +24,7 @@ public class ChromeTest {
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
+	private String keyword = "test data";
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -34,6 +37,7 @@ public class ChromeTest {
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		  
 	  }
 	  
 
@@ -144,8 +148,40 @@ public class ChromeTest {
 		  }
 		  //Clicks on Equipment performance search (pii)
 		  driver.findElement(By.linkText("Equipment Performance Search (PII)")).click();
-		  //Enters the term
-		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys("test data");
+		  //Checks if clear feature works on term field
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
+		  Thread.sleep(1000);
+		  Actions act1 = new Actions(driver);
+		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
+		  act1.click(act).build().perform();
+		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
+		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  driver.findElement(By.id("pii-efse-clear")).click();
+		  Thread.sleep(2000);
+		  //Checks for search method with dropdown
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
+		  Thread.sleep(2000);
+		  WebElement match=driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li"));
+		  String text = match.getText();
+		  System.out.println(text);
+		  if(text.equals("Exact Match Keywords"))
+		  {
+			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();				  
+		  }
+		  else if(text.equals("Similar Match Keywords"))
+		  {
+			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
+		  }
+		  else if(text.equals("Other Match Keywords"))
+		  {
+			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
+		  }
+		  //Enters the term and check the search by enter
+		  driver.findElement(By.id("pii-efse-clear")).click();
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on F649
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
@@ -164,6 +200,22 @@ public class ChromeTest {
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(500);
+		  //Checking if title is correct
+		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
+		  String expected_title = "F1459: Sanity Test";
+		  assertEquals (actual_title, expected_title);
+		  //Checking if footer image appears
+		  if(driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/img")).isDisplayed())
+			  System.out.println("Logo is displayed");
+		  //Checking if copyright is correct
+		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/span")).getText();
+		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  assertEquals (actual_copyright, expected_copyright);
+		  //Checking if slide number appears and is correct
+		  String actual_slide = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/span[2]")).getText();
+		  String expected_slide = "1/"+n;
+		  assertEquals (actual_slide, expected_slide);
+		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int i=2;i<=n;i++)
@@ -174,12 +226,41 @@ public class ChromeTest {
 				  System.out.println("Found Slide "+(i));
 			  else System.out.println("Didn't find slide "+i);
 			  Thread.sleep(500);
+			   //Checking if title is correct
+			  String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title, expected_title);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1459']/a")).click();
 		  //Clicks on clear
 		  driver.findElement(By.id("pii-efse-clear")).click();
+		  //Checks if clear feature works on case id field
+		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys("1459");
+		  Thread.sleep(1000);
+		  act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[3]/div/div/a"));
+		  act1.click(act).build().perform();
+		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys("1459");
+		  driver.findElement(By.id("pii-efse-searchbyid-btn")).click();
+		  driver.findElement(By.id("pii-efse-clear")).click();
+		  Thread.sleep(2000);
 		  //Enters case id
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys("1459");
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
@@ -200,6 +281,23 @@ public class ChromeTest {
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(500);
+		  //Checking if slide number appears and is correct
+		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span[2]")).getText();
+		  String expected_slide1 = "1/"+n;
+		  assertEquals (actual_slide1, expected_slide1);
+		  Thread.sleep(1000);
+		  //Checking if title is correct
+		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/div")).getText();
+		  String expected_title1 = "F1459: Sanity Test";
+		  assertEquals (actual_title1, expected_title1);
+		  //Checking if footer image appears
+		  if(driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/img")).isDisplayed())
+			  System.out.println("Logo is displayed");
+		  //Checking if copyright is correct
+		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span")).getText();
+		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  assertEquals (actual_copyright1, expected_copyright1);
+		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int i=2;i<=n;i++)
@@ -210,6 +308,25 @@ public class ChromeTest {
 				  System.out.println("Found Slide "+(i));
 			  else System.out.println("Didn't find slide "+i);
 			  Thread.sleep(500);
+			  //Checking if title is correct
+			  String title_id= "centered-btns2_s"+(i-1);
+			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  actual_title1 = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title1, expected_title1);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
+			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright1, expected_copyright1);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide1 = i+"/"+n;
+			  assertEquals (actual_slide1, expected_slide1);
+			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
 		  //Clicks on close button
