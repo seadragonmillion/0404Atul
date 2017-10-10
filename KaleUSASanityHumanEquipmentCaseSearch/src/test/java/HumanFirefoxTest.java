@@ -14,6 +14,8 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
+import static org.junit.Assert.assertEquals;
 
 
 public class HumanFirefoxTest {
@@ -40,6 +42,8 @@ public class HumanFirefoxTest {
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
 	  }
 
 	public void Login() throws Exception{
@@ -149,7 +153,39 @@ public class HumanFirefoxTest {
 		  }
 		  //Clicks on Human Performance Search
 		  driver.findElement(By.linkText("Human Performance Search")).click();
-		  //Enters the term
+		   //Checks if clear feature works on term field
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
+		  Thread.sleep(1000);
+		  Actions act1 = new Actions(driver);
+		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
+		  act1.click(act).build().perform();
+		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
+		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  Thread.sleep(2000);
+		  //Checks for search method with dropdown
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
+		  Thread.sleep(2000);
+		  WebElement match=driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li"));
+		  String text = match.getText();
+		  System.out.println(text);
+		  if(text.equals("Exact Match Keywords"))
+		  {
+			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();				  
+		  }
+		  else if(text.equals("Similar Match Keywords"))
+		  {
+			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();
+		  }
+		  else if(text.equals("Other Match Keywords"))
+		  {
+			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();
+		  }
+		  //Enters the term and check the search by enter
+		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys("error");
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on Q746
@@ -168,6 +204,27 @@ public class HumanFirefoxTest {
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(500);
+		  //Checking if title is correct
+		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
+		  String expected_title = "Q746: How is an Error-Free work day achieved for power plant workers?";
+		  if((actual_title.contains(expected_title))==true)
+		  {
+		      System.out.println("Title match");
+		  }
+		  //Checking if footer image appears
+		  if(driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/img")).isDisplayed())
+			  System.out.println("Logo is displayed");
+		  //Checking if slide number appears and is correct
+		  Thread.sleep(2000);
+		  String actual_slide = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/span[2]")).getAttribute("textContent");
+		  String expected_slide = "1/"+n;
+		  assertEquals (expected_slide,actual_slide);
+		  //Checking if copyright is correct
+		  Thread.sleep(2000);
+		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/span")).getAttribute("textContent");
+		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  assertEquals (expected_copyright,actual_copyright);
+		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int i=2;i<=n;i++)
@@ -177,12 +234,44 @@ public class HumanFirefoxTest {
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+i);
 			  Thread.sleep(500);
+			  //Checking if title is correct
+			  String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  if((actual_title.contains(expected_title))==true)
+		  {
+		      System.out.println("Title match");
+		  }
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q746']/a")).click();
 		  //Clicks on clear
 		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  //Checks if clear feature works on case id field
+		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("2051");
+		  Thread.sleep(1000);
+		  act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[3]/div/div/a"));
+		  act1.click(act).build().perform();
+		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("2051");
+		  driver.findElement(By.id("pii-efsh-searchbyid-btn")).click();
+		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  Thread.sleep(2000);
 		  //Enters case id
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("2051");
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(Keys.ENTER);
@@ -203,6 +292,26 @@ public class HumanFirefoxTest {
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(500);
+		  //Checking if slide number appears and is correct
+		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span[2]")).getAttribute("textContent");
+		  String expected_slide1 = "1/"+n;
+		  assertEquals (actual_slide1, expected_slide1);
+		  Thread.sleep(1000);
+		  //Checking if title is correct
+		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/div")).getText();
+		  String expected_title1 = "Q2051: What are the differences between Error-Free technology and current error reduction technology?";
+		  if((actual_title1.contains(expected_title1))==true)
+		  {
+		      System.out.println("Title match");
+		  }
+		  //Checking if footer image appears
+		  if(driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/img")).isDisplayed())
+			  System.out.println("Logo is displayed");
+		  //Checking if copyright is correct
+		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span")).getAttribute("textContent");
+		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  assertEquals (actual_copyright1, expected_copyright1);
+		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();
 		  //Checks if there are slides present
 		  for (int j=2;j<=n;j++)
@@ -213,6 +322,28 @@ public class HumanFirefoxTest {
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+j);
 			  Thread.sleep(500);
+			  //Checking if title is correct
+			  String title_id= "centered-btns2_s"+(j-1);
+			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  actual_title1 = driver.findElement(By.xpath(title_xpath)).getText();
+			  if((actual_title1.contains(expected_title1))==true)
+		  {
+		      System.out.println("Title match");
+		  }
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
+			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
+			  assertEquals (actual_copyright1, expected_copyright1);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
+			  expected_slide1 = j+"/"+n;
+			  assertEquals (actual_slide1, expected_slide1);
+			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 			  
 		  }
@@ -234,6 +365,8 @@ public class HumanFirefoxTest {
 	
 	public void afterTest(){
 		
+		driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
 		//Browser closes
 		driver.quit();
 	}
