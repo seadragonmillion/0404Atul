@@ -128,7 +128,7 @@ public class EquipmentIETest {
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  Thread.sleep(5000);
+		  Thread.sleep(7000);
 		  //Switches to the iframe
 		  WebDriverWait wait1 = new WebDriverWait(driver,10);
 		  wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
@@ -148,11 +148,13 @@ public class EquipmentIETest {
 		  try
 		  {
 			  jse.executeScript("return document.getElementById('pii-main-menu-button-e').click();");
+			  Thread.sleep(2000);
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
 		 //Clicks on Equipment performance search (pii)
 		  driver.findElement(By.linkText("Equipment Performance Search (PII)")).click();
+		  Thread.sleep(3000);
 		  //Enters the term
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys("failure");
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
