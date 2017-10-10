@@ -26,6 +26,7 @@ public class HumanFirefoxTest {
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
+	private String keyword = "error";
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
