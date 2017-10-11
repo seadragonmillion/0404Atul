@@ -206,7 +206,7 @@ public class FirefoxTest {
 		  Thread.sleep(500);
 		  //Checking if title is correct
 		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
-		  String expected_title = "F1678: Sanity";
+		  String expected_title = "F1678: Sanity Test: DO NOT DELETE: QAA";
 		  assertEquals (expected_title,actual_title);
 		  //Checking if footer image appears
 		  if(driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/img")).isDisplayed())
@@ -293,7 +293,7 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  //Checking if title is correct
 		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/div")).getText();
-		  String expected_title1 = "F1678: Sanity";
+		  String expected_title1 = "F1678: Sanity Test: DO NOT DELETE: QAA";
 		  assertEquals (actual_title1, expected_title1);
 		  //Checking if footer image appears
 		  if(driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/img")).isDisplayed())
