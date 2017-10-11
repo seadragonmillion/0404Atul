@@ -189,7 +189,7 @@ public class IETest {
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
-		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys("test data");
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on Q1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459"))).click();
@@ -209,7 +209,7 @@ public class IETest {
 		  Thread.sleep(500);
 		  //Checking if title is correct
 		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
-		  String expected_title = "Q1459: Sanity Test";
+		  String expected_title = "Q1459: Sanity Test: DO NOT DELETE: QAA";
 		  assertEquals (actual_title, expected_title);
 		  //Checking if footer image appears
 		  if(driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/img")).isDisplayed())
@@ -293,7 +293,7 @@ public class IETest {
 		  Thread.sleep(1000);
 		  //Checking if title is correct
 		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/div")).getText();
-		  String expected_title1 = "Q1459: Sanity Test";
+		  String expected_title1 = "Q1459: Sanity Test: DO NOT DELETE: QAA";
 		  assertEquals (actual_title1, expected_title1);
 		  //Checking if footer image appears
 		  if(driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/img")).isDisplayed())
