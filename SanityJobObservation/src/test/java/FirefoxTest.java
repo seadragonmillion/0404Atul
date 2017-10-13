@@ -205,7 +205,7 @@ public class FirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button"))).click();
 		  //Uploads a picture on next page in step 2
 		  driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
-		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
+		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		  p.waitFor();
 		  Thread.sleep(3000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
