@@ -226,10 +226,18 @@ public class IETest {
 		  act.doubleClick(element).build().perform();
 		  Thread.sleep(3000);
 		  //Uploads picture
-		  
+		  try{
+			  try {
 		  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 		  p.waitFor();
-		  
+		   }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpecetd alert for picture 2");
+					  driver.switchTo().alert().accept();
+				  }
+			  
+		  }catch (NoAlertPresentException f){			  
+			  System.out.println ("No unexpected alert for picture 2");
+		  }
 	     
 		  Thread.sleep(3000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
