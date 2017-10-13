@@ -224,7 +224,7 @@ public class IETest {
 		  WebElement element =  driver.findElement(By.id("pii-joa-tab-2-photo-input"));
 		  Actions act = new Actions(driver);
 		  act.doubleClick(element).build().perform();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Uploads picture
 		  
 		  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
