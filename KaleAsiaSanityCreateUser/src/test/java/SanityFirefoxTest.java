@@ -398,7 +398,7 @@ public class SanityFirefoxTest {
 		  Thread.sleep(2000);
 		  afterTest();
 		  }catch (Exception e){
-			   
+			   System.out.println(e);
 			      WebDriverWait wait = new WebDriverWait(driver,20);
 			      Thread.sleep(3000);
 			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();

@@ -354,6 +354,7 @@ public class HumanChromeTest {
 		  afterTest();
 		  }catch (Exception e)
 			  {
+			  	System.out.println(e);
 				  driver.quit();
 			  }
 		  		  

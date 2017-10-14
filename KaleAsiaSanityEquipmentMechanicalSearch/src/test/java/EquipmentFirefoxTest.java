@@ -345,6 +345,7 @@ public class EquipmentFirefoxTest {
 		  afterTest();
 		 }catch(Exception e)
 		 {
+		 	System.out.println(e);
 			 driver.manage().window().maximize();
 			 System.out.println(e);
 			 driver.quit();

@@ -357,6 +357,7 @@ public class HumanFirefoxTest {
 		  afterTest();
 		  }catch (Exception e)
 			  {
+			  	System.out.println(e);
 				  driver.quit();
 			  }
 		  		  

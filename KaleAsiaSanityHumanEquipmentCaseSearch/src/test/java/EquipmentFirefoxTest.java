@@ -344,6 +344,7 @@ public class EquipmentFirefoxTest {
 		  afterTest();
 		  		  }catch (Exception e)
 			  {
+			  	System.out.println(e);
 				  driver.quit();
 			  }
 	}

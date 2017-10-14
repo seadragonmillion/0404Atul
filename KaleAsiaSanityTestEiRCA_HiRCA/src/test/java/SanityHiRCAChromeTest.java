@@ -241,6 +241,7 @@ public class SanityHiRCAChromeTest {
 			  afterTest();
 			  }catch (Exception e)
 			  {
+			  	System.out.println(e);
 				  driver.quit();
 			  }
 		  }

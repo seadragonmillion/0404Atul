@@ -337,6 +337,7 @@ public class EquipmentChromeTest {
 		  afterTest();
 		  }catch (Exception e)
 			  {
+			  	System.out.println(e);
 				  driver.quit();
 			  }
 		  		  

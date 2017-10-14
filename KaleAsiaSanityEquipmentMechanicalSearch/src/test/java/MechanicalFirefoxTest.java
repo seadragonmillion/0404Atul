@@ -348,6 +348,7 @@ public class MechanicalFirefoxTest {
 		  afterTest();
 		  }catch(Exception e)
 		  {
+		  	System.out.println(e);
 			  driver.manage().window().maximize();
 			  driver.quit();
 		  }

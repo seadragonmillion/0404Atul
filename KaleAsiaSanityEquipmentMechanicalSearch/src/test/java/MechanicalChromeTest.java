@@ -340,6 +340,7 @@ public class MechanicalChromeTest {
 		  afterTest();
 		  }catch(Exception e)
 		  {
+		  	System.out.println(e);
 			  driver.quit();
 		  }
 		  		  

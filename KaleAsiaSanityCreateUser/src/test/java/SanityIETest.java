@@ -411,7 +411,7 @@ public class SanityIETest {
 		  Thread.sleep(2000);
 		  afterTest();
 		  }catch (Exception e){
-			   
+			   System.out.println(e);
 			      WebDriverWait wait = new WebDriverWait(driver,20);
 				  JavascriptExecutor jse = (JavascriptExecutor)driver;
 			      Thread.sleep(3000);
