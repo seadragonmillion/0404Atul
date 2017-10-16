@@ -168,6 +168,10 @@ public class FirefoxTest {
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		   Thread.sleep(1000);
+		  //Clicks on F1678
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1678"))).click();
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
