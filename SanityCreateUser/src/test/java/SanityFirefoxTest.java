@@ -327,7 +327,7 @@ public class SanityFirefoxTest {
 		  ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
 		  Thread.sleep(2000);
 		  ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-listbox']/div/a")).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		  Thread.sleep(2000);
 		  //Clicks on save
 		  driver.findElement(By.id("pii-admin-group-button-save")).click();
