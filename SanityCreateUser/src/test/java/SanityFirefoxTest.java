@@ -154,7 +154,9 @@ public class SanityFirefoxTest {
 		  //Searches for newly created group
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
+		  Thread.sleep(2000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(1000);
 		  //Selects the newly created group
 		  WebElement select = driver.findElement(By.id("pii-admin-group-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
