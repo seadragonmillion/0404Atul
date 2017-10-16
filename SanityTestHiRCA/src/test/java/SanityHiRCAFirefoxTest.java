@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.support.ui.Select;
 
 public class SanityHiRCAFirefoxTest {
 
@@ -214,6 +215,10 @@ public class SanityHiRCAFirefoxTest {
 			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
 			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
 		  }
+
+		  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+			  Select s = new Select (dropdown);
+			  s.selectByVisibleText("Construction");
 			  driver.findElement(By.id("efi-irca-button-save")).click();
 			  WebDriverWait wait1 = new WebDriverWait(driver,10);
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();

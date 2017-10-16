@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.support.ui.Select;
 
 public class SanityHiRCAChromeTest {
 
@@ -237,6 +238,9 @@ public class SanityHiRCAChromeTest {
 			  
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
 			  jse.executeScript("scroll(250, 0)");
+			  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+			  Select s = new Select (dropdown);
+			  s.selectByVisibleText("Construction");
 			  WebDriverWait wait2 = new WebDriverWait(driver,10);
 			  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
 			  driver.findElement(By.id("efi-irca-button-save")).click();
