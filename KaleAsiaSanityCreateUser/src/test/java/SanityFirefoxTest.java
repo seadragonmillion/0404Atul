@@ -154,7 +154,9 @@ public class SanityFirefoxTest {
 		  //Searches for newly created group
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
+		  Thread.sleep(2000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(1000);
 		  //Selects the newly created group
 		  WebElement select = driver.findElement(By.id("pii-admin-group-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
@@ -322,11 +324,14 @@ public class SanityFirefoxTest {
 		  Select dropdown = new Select (element);
 		  dropdown.selectByVisibleText(company_id);
 		  driver.findElement(By.id("pii-admin-group-modules-button")).click();
-		  WebElement ele = driver.findElement(By.id("pii-admin-group-modules-listbox-popup"));
+		  Thread.sleep(2000);
+		  WebElement ele = driver.findElement(By.id("pii-admin-group-modules-menu"));
 		  ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
+		  Thread.sleep(2000);
 		  ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-listbox']/div/a")).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		  //Clicks on save
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-admin-group-button-save")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
 		  //Clicks on Save
