@@ -219,6 +219,7 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(1500);
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Checking if title is correct
 		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
 		  String expected_title = "F1678: Sanity Test: DO NOT DELETE: QAA";
