@@ -30,6 +30,7 @@ public class FirefoxTest {
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
 	private String keyword = "Sanity test";
+	private String keyspcl = "test.1/1";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -164,6 +165,10 @@ public class FirefoxTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with new keyword with . and /
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
+		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();

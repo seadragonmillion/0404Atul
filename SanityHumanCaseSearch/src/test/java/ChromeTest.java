@@ -26,6 +26,7 @@ public class ChromeTest {
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
 	private String keyword = "test data";
+	private String keyspcl = "test.1/1";
 
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -158,6 +159,10 @@ public class ChromeTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with new keyword with . and /
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyspcl);
+		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
