@@ -225,7 +225,7 @@ public class IETest {
 		  int n = Character.getNumericValue(c);
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
-		  Thread.sleep(500);
+		  Thread.sleep(1500);
 		  //Checking if title is correct
 		  String actual_title = driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).getText();
 		  String expected_title = "F1678: Sanity Test: DO NOT DELETE: QAA";
@@ -305,7 +305,7 @@ public class IETest {
 		  n = Character.getNumericValue(c);
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
-		  Thread.sleep(500);
+		  Thread.sleep(1500);
 		  //Checking if slide number appears and is correct
 		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span[2]")).getText();
 		  String expected_slide1 = "1/"+n;
