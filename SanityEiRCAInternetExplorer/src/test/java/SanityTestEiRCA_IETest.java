@@ -12,6 +12,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.NoSuchElementException;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class SanityTestEiRCA_IETest {
 
@@ -19,6 +22,10 @@ public class SanityTestEiRCA_IETest {
 	private int login =0;
 	private String username ="jenkins";
 	private String password = "Kalejenkins@123";
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -260,7 +267,7 @@ public class SanityTestEiRCA_IETest {
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(3000);
 		  afterTest();
-		  }catch (Exception e)
+		  }catch (TimeoutException e)
 			  {
 				  driver.quit();
 			  }

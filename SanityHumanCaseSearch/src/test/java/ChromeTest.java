@@ -13,7 +13,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class ChromeTest {
 
@@ -24,6 +26,10 @@ public class ChromeTest {
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
 	private String keyword = "test data";
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -333,7 +339,7 @@ public class ChromeTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
-		  }catch (Exception e)
+		  }catch (TimeoutException e)
 			  {
 				  driver.quit();
 			  }

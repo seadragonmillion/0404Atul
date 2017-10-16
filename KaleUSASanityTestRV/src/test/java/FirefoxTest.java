@@ -16,7 +16,9 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class FirefoxTest {
 	private FirefoxDriver driver;
@@ -27,6 +29,9 @@ public class FirefoxTest {
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -249,7 +254,7 @@ public class FirefoxTest {
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
 		  afterTest();
-		  }catch (Exception e)
+		  }catch (TimeoutException e)
 			  {
 				  driver.quit();
 			  }

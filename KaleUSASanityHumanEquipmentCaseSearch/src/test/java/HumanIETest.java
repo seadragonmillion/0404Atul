@@ -16,7 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 import org.openqa.selenium.interactions.Actions;
-
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class HumanIETest {
 
@@ -28,6 +30,9 @@ public class HumanIETest {
 	private int login =0;
 	private String keyword = "error";
 	
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -363,7 +368,7 @@ public class HumanIETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
-		  }catch (Exception e)
+		  }catch (TimeoutException e)
 			  {
 				  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
 		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);

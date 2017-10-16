@@ -14,6 +14,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.NoSuchElementException;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class SanityHiRCAInternetExplorerTest {
 
@@ -24,6 +27,10 @@ public class SanityHiRCAInternetExplorerTest {
 	private String url = "https://kaleasia.error-free.com/";
 	private String EventTitleIE = "Sanity Test IE";
 	private int login =0;
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -250,7 +257,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
 		  Thread.sleep(2000);
 		  afterTest();
-		  }catch (Exception e)
+		  }catch (TimeoutException e)
 			  {
 				  driver.quit();
 			  }

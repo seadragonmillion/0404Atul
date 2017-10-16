@@ -16,7 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 import org.openqa.selenium.interactions.Actions;
-
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class EquipmentFirefoxTest {
 
@@ -28,6 +30,10 @@ public class EquipmentFirefoxTest {
 	private int login =0;
 	private String keyword = "failure";
 	
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -342,7 +348,7 @@ public class EquipmentFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
-		  		  }catch (Exception e)
+		  		  }catch (TimeoutException e)
 			  {
 			  	System.out.println(e);
 				  driver.quit();

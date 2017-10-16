@@ -15,7 +15,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
-
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class JobObsIETest {
 
@@ -27,7 +29,9 @@ public class JobObsIETest {
 	private int login =0;
 	
 	
-	
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(240000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -298,7 +302,7 @@ public class JobObsIETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
-		  }catch(Exception e)
+		  }catch(TimeoutException e)
 		  {
 			  System.out.println(e);
 			  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);

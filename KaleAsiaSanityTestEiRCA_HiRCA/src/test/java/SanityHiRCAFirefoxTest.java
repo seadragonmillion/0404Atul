@@ -10,6 +10,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.NoSuchElementException;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
+import java.util.concurrent.TimeoutException;
 
 public class SanityHiRCAFirefoxTest {
 
@@ -20,6 +23,10 @@ public class SanityHiRCAFirefoxTest {
 	private String url = "https://kaleasia.error-free.com/";
 	private String EventTitleFirefox = "Sanity Test Firefox";	
 	private int login =0;
+
+	@SuppressWarnings("deprecation")
+		@Rule
+		  public Timeout globalTimeout= new Timeout(240000);
 	  
 		@Before
 		  public void beforeTest() throws MalformedURLException{
@@ -227,7 +234,7 @@ public class SanityHiRCAFirefoxTest {
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();	
 			  afterTest();
-			  }catch (Exception e)
+			  }catch (TimeoutException e)
 			  {
 				  driver.quit();
 			  }
