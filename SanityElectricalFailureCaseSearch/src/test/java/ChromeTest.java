@@ -297,19 +297,19 @@ public class ChromeTest {
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(500);
 		  //Checking if slide number appears and is correct
-		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span[2]")).getText();
+		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/span[2]")).getText();
 		  String expected_slide1 = "1/"+n;
 		  assertEquals (actual_slide1, expected_slide1);
 		  Thread.sleep(1000);
 		  //Checking if title is correct
-		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/div")).getText();
+		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/div")).getText();
 		  String expected_title1 = "F1678: Sanity Test: DO NOT DELETE: QAA";
 		  assertEquals (actual_title1, expected_title1);
 		  //Checking if footer image appears
-		  if(driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/img")).isDisplayed())
+		  if(driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/img")).isDisplayed())
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
-		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='centered-btns2_s0']/span/span")).getText();
+		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/span")).getText();
 		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
 		  assertEquals (actual_copyright1, expected_copyright1);
 		  //Click on next
