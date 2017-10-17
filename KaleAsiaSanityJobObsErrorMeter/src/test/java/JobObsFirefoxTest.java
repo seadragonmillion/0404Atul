@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class JobObsFirefoxTest {
 
@@ -266,12 +268,17 @@ public class JobObsFirefoxTest {
 		  deleteNewRecord(recordName);
 		  while(true)
 		  {
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).isDisplayed())
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (NoSuchElementException | StaleElementReferenceException f)
+			  {
 				  break;
 			  }
-			  else break;
+			  
+			 
 		  }
 		  
 		  

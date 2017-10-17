@@ -18,6 +18,8 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class JobObsIETest {
 
@@ -297,6 +299,20 @@ public class JobObsIETest {
 		  //Deletes the record
 		  deleteNewRecord(recordName);
 		  Thread.sleep(4000);	  
+		  while(true)
+		  {
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (NoSuchElementException | StaleElementReferenceException f)
+			  {
+				  break;
+			  }
+			  
+			 
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
