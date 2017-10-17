@@ -155,6 +155,7 @@ public class IETest {
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Error free bank
+		  Thread.sleep(3000);
 		  try
 		  {
 			  jse.executeScript("return document.getElementById('pii-main-menu-button-e').click();");
