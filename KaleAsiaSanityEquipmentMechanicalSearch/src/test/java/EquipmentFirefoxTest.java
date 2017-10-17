@@ -147,12 +147,12 @@ public class EquipmentFirefoxTest {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(4000);
+		  Thread.sleep(6000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Error free bank
 		  try
 		  {
-			  driver.findElement(By.id("pii-main-menu-button-e")).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }

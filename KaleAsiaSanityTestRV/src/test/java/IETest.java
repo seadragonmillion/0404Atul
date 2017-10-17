@@ -182,9 +182,11 @@ public class IETest {
 		  System.out.println("Waiting for page to load");
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a")));
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  //Clicks on Remote Verification
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-rv")))
 		  jse.executeScript("return document.getElementById('pii-a-menu-rv').click();");
 		  //Fills the mandatory fields
 		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
