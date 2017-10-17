@@ -249,20 +249,20 @@ public class FirefoxTest {
 			  else System.out.println("Didn't find slide "+i);
 			  Thread.sleep(500);
 			  //Checking if title is correct
-			  String title_id= "centered-btns1_s"+(i-1);
-			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  //String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='pii-slideshow-equip-F1678']/ul/li["+i+"]/div";
 			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
 			  assertEquals (actual_title, expected_title);
 			  //Checking if copyright is correct
-			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
-			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
+			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F1678']/ul/li["+i+"]/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
 			  assertEquals (actual_copyright, expected_copyright);
 			  //Checking if footer image appears
-			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  String image_xpath = ".//*[@id='pii-slideshow-equip-F1678']/ul/li["+i+"]/span/img";
 			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
 				  System.out.println("Logo is displayed");
 			  //Checking if slide number appears and is correct
-			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  String slide_xpath = ".//*[@id='pii-slideshow-equip-F1678']/ul/li["+i+"]/span/span[2]";
 			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			  expected_slide = i+"/"+n;
 			  assertEquals (actual_slide, expected_slide);
