@@ -148,7 +148,7 @@ public class EquipmentFirefoxTest {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(7000);
+		  Thread.sleep(10000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Error free bank
 		  try
