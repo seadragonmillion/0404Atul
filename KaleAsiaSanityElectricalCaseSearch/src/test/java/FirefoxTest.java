@@ -152,7 +152,7 @@ public class FirefoxTest {
 		  //Clicks on Error free bank
 		  try
 		  {
-			  wait.until(ExpectedConditions.visibilityOfElementLocated("pii-main-menu-button-e"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
