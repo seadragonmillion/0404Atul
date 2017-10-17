@@ -221,7 +221,7 @@ public class ChromeTest {
 		  String expected_title = "F1678: Sanity Test: DO NOT DELETE: QAA";
 		  assertEquals (actual_title, expected_title);
 		  //Checking if footer image appears
-		  if(driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/span/img")).isDisplayed())
+		  if(driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/img")).isDisplayed())
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
 		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/span")).getText();
