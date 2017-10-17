@@ -178,12 +178,13 @@ public class IETest {
               }catch (NoSuchElementException e){
               throw e;
               }
-		  Thread.sleep(5000);
+		  Thread.sleep(7000);
 		  System.out.println("Waiting for page to load");
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
+		  Thread.sleep(2000);
 		  //Clicks on Remote Verification
 		  jse.executeScript("return document.getElementById('pii-a-menu-rv').click();");
 		  //Fills the mandatory fields

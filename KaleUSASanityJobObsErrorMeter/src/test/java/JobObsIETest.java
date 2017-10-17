@@ -293,10 +293,10 @@ public class JobObsIETest {
 		  }
 		  else
 			  System.out.println ("Record not found.");
-		  
+		  Thread.sleep(2000);
 		  //Deletes the record
 		  deleteNewRecord(recordName);
-		  Thread.sleep(2000);	  
+		  Thread.sleep(4000);	  
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

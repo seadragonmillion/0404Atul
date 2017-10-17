@@ -175,7 +175,7 @@ public class FirefoxTest {
               }catch (NoSuchElementException e){
               throw e;
               }
-		  Thread.sleep(5000);
+		  Thread.sleep(8000);
 		  //Clicks on Analysis 
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  try

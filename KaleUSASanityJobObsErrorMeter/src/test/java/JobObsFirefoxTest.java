@@ -269,7 +269,7 @@ public class JobObsFirefoxTest {
 			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).isDisplayed())
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-				  break;
+				  
 			  }
 			  else break;
 		  }
