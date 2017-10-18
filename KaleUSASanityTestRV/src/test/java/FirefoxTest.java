@@ -175,7 +175,7 @@ public class FirefoxTest {
               }catch (NoSuchElementException e){
               throw e;
               }
-		  Thread.sleep(8000);
+		  Thread.sleep(10000);
 		  //Clicks on Analysis 
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  try
@@ -185,6 +185,7 @@ public class FirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
+		  Thread.sleep(2000);
 		  //Clicks on Remote Verification
 		  driver.findElement(By.id("pii-a-menu-rv")).click();
 		  //Fills the mandatory fields
