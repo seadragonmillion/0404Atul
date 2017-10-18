@@ -306,9 +306,14 @@ public class JobObsIETest {
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 				  
-			  }}catch (NoSuchElementException | StaleElementReferenceException f)
+			  }}catch (NoSuchElementException e)
 			  {
 				  break;
+			  }
+			  catch( StaleElementReferenceException f)
+			  {
+				  
+				 break;
 			  }
 			  
 			 
