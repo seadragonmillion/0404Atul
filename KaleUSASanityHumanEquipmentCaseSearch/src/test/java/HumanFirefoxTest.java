@@ -371,8 +371,7 @@ public class HumanFirefoxTest {
 	
 	public void afterTest(){
 		
-		driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
+		
 		//Browser closes
 		driver.quit();
 	}
