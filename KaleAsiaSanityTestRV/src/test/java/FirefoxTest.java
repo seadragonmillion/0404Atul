@@ -185,7 +185,7 @@ public class FirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  Thraed.sleep(3000);
+		  Thread.sleep(3000);
 		  //Clicks on Remote Verification
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-rv"))).click();
 		  //Fills the mandatory fields
