@@ -203,6 +203,8 @@ public class FirefoxTest {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
 			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
 		  }
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("scroll(0, 250)");
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
@@ -214,8 +216,7 @@ public class FirefoxTest {
 		 //Uploads picture 2
 		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		  Thread.sleep(8000);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  jse.executeScript("scroll(0, 250)");
+		  
 		  //Clicks on browse button of 1st picture
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
 		  Thread.sleep(2000);
