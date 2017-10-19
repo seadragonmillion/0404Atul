@@ -251,6 +251,7 @@ public class ChromeTest {
 		  while(true)
 		  {
 			  try{
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
