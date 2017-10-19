@@ -276,7 +276,11 @@ public class IETest {
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 				  
-			  }}catch (NoSuchElementException | StaleElementReferenceException f)
+			  }}catch (NoSuchElementException g)
+			  {
+				  break;
+			  }
+			  catch (StaleElementReferenceException f)
 			  {
 				  break;
 			  }
