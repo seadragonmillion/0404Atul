@@ -163,6 +163,10 @@ public class ChromeTest {
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  //Clicks on Q1459
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459"))).click();
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
