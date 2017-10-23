@@ -33,7 +33,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(600000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -148,7 +148,7 @@ public class FirefoxTest {
                throw e;
         }
 		  Thread.sleep(4000);
-		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  WebDriverWait wait = new WebDriverWait(driver,60);
 		  //Clicks on Error free bank
 		  try
 		  {
@@ -201,6 +201,8 @@ public class FirefoxTest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  //Clicks on F1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
 		  //Clicks on Show Slides

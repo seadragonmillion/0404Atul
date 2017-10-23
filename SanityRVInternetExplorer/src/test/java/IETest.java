@@ -32,7 +32,7 @@ public class IETest {
 	  
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(600000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -167,15 +167,7 @@ public class IETest {
 		  Thread.sleep(5000);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  try{
-                       if (login==1)
-                       {
-                             WebDriverWait wait2 = new WebDriverWait(driver,20);
-                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-                       }
-                }catch (NoSuchElementException e){
-                       throw e;
-                }
+		 
 		  Thread.sleep(2000);
 		  //Switches to the iframe
 		  WebDriverWait wait = new WebDriverWait(driver,10);
@@ -186,6 +178,15 @@ public class IETest {
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Clicks on Analysis
 		  jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
+		   try{
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
 		  //Clicks on Remote Verification
 		  jse.executeScript("return document.getElementById('pii-a-menu-rv').click();");
 		  //Fills the mandatory fields
