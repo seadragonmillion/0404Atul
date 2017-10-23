@@ -137,9 +137,12 @@ public class IETest {
 	@Test
 	  public void SanityTest() throws Exception{
 		 try{ 
+		 	WebDriverWait wait = new WebDriverWait(driver,60);
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  Thread.sleep(5000);
 		  //Switches to the iframe
 		  WebDriverWait wait1 = new WebDriverWait(driver,10);
@@ -155,7 +158,7 @@ public class IETest {
             }
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  WebDriverWait wait = new WebDriverWait(driver,60);
+		  
 		  //Clicks on Error free bank
 		  try
 		  {
@@ -174,6 +177,8 @@ public class IETest {
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Clicks on F1210
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210"))).click();
@@ -182,6 +187,8 @@ public class IETest {
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
@@ -203,6 +210,8 @@ public class IETest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
 		  }
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);

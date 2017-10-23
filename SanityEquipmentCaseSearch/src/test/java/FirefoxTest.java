@@ -134,10 +134,13 @@ public class FirefoxTest {
 	@Test
 	  public void SanityTest() throws Exception{
 		  try{
+		  	WebDriverWait wait = new WebDriverWait(driver,60);
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
@@ -150,7 +153,7 @@ public class FirefoxTest {
                throw e;
         }
 		  Thread.sleep(6000);
-		  WebDriverWait wait = new WebDriverWait(driver,60);
+		  
 		  //Clicks on Error free bank
 		  try
 		  {

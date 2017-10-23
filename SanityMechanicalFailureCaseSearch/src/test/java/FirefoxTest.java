@@ -133,10 +133,13 @@ public class FirefoxTest {
 	@Test
 	  public void SanityTest() throws Exception{
 		  try{
+		  	WebDriverWait wait = new WebDriverWait(driver,60);
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
@@ -149,7 +152,7 @@ public class FirefoxTest {
                throw e;
         }
 		  Thread.sleep(4000);
-		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  
 		  //Clicks on Error free bank
 		  try
 		  {
@@ -197,11 +200,15 @@ public class FirefoxTest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
 		  }
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  //Clicks on F1210
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210"))).click();
 		  //Clicks on Show Slides
