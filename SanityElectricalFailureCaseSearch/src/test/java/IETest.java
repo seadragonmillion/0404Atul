@@ -159,7 +159,7 @@ public class IETest {
             }
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  WebDriverWait wait = new WebDriverWait(driver,60);
+		  
 		  //Clicks on Error free bank
 		  try
 		  {
