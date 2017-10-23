@@ -199,8 +199,13 @@ public class ChromeTest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on F1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
 		  //Clicks on Show Slides
