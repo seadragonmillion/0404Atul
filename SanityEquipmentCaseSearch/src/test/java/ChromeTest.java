@@ -169,6 +169,13 @@ public class ChromeTest {
 		  //Clicks on F1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
 		  Thread.sleep(2000);
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
