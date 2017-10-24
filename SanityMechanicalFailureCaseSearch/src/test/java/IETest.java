@@ -141,8 +141,13 @@ public class IETest {
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  Thread.sleep(5000);
 		  //Switches to the iframe
 		  WebDriverWait wait1 = new WebDriverWait(driver,10);
@@ -177,9 +182,13 @@ public class IETest {
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  driver.findElement(By.id("pii-efse-clear")).click();
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on F1210
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210"))).click();
 		  Thread.sleep(2000);
@@ -187,8 +196,13 @@ public class IETest {
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
@@ -210,16 +224,26 @@ public class IETest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
 		  }
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  //Clicks on F1459
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		  //Clicks on F1210
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210"))).click();
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F1210")));
