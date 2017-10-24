@@ -34,7 +34,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(600000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -138,8 +138,13 @@ public class FirefoxTest {
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+	      try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
@@ -171,7 +176,7 @@ public class FirefoxTest {
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
-		  driver.findElement(By.id("pii-efse-clear")).click();
+		 
 		  //Clicks on F1210
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210"))).click();
 		  Thread.sleep(2000);
@@ -200,15 +205,25 @@ public class FirefoxTest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
 		  }
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
+		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on F1210
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210"))).click();
 		  //Clicks on Show Slides
