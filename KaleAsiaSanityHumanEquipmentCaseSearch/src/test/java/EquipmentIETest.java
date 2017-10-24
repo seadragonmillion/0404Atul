@@ -179,7 +179,12 @@ public class EquipmentIETest {
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
-		  
+		  String ev1 = driver.findElement(By.id("pii-efse-searchbykw-input")).getAttribute("value");
+		  if ((ev1.equals(keyword)==false))
+		  {
+			  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
+			  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
+		  }
 		  Thread.sleep(2000);
 		  WebElement match=driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li"));
 		  String text = match.getText();
