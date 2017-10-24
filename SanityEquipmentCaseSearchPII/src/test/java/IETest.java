@@ -188,7 +188,7 @@ public class IETest {
 			  {
 				  
 			  }
-		  driver.findElement(By.id("pii-efse-clear")).click();
+		 
 		  //Clicks on F1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
 		  Thread.sleep(2000);
