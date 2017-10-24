@@ -177,7 +177,9 @@ public class EquipmentIETest {
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
+		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
+		  
 		  Thread.sleep(2000);
 		  WebElement match=driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li"));
 		  String text = match.getText();
