@@ -146,7 +146,7 @@ public class HumanFirefoxTest {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(11000);
+		  Thread.sleep(15000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Error free bank
 		  try
