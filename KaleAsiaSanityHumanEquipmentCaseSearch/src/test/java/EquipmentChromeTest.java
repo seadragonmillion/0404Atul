@@ -190,6 +190,7 @@ public class EquipmentChromeTest {
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on F718
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F718"))).click();
+		  Thread.sleep(3000);
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F718")));
 		  Thread.sleep(2000);
