@@ -275,7 +275,10 @@ public class JobObsChromeTest {
 				  
 				 break;
 			  }
-			  
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
 			 
 		  }
 		  
