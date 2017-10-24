@@ -338,6 +338,7 @@ public class SanityIETest {
 		  Thread.sleep(1000);
 		  ss = ele.findElement(By.linkText("Instant Common Cause Analysis"));
 		  ((JavascriptExecutor) driver).executeScript("arguments[0].click();",ss);
+		  Thread.sleep(2000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		  //Clicks on save
 		  jse.executeScript("return document.getElementById('pii-admin-group-button-save').click();");
