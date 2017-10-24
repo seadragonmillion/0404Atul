@@ -181,7 +181,7 @@ public class IETest {
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
-		  driver.findElement(By.id("pii-efse-clear")).click();
+		  
 		  //Clicks on F1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459"))).click();
 		  Thread.sleep(2000);
