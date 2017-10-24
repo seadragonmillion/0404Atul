@@ -173,8 +173,17 @@ public class HumanIETest {
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
-		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
+		  String ev1 = driver.findElement(By.id("pii-efsh-searchbykw-input")).getAttribute("value");
+		  if ((ev1.equals(keyword)==false))
+		  {
+			  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
+			  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
+
+		  }
+		  Thread.sleep(2000);
+		  
 		  WebElement match=driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li"));
 		  String text = match.getText();
 		  System.out.println(text);
