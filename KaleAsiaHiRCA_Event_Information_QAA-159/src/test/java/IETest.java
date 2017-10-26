@@ -818,7 +818,7 @@ public class IETest {
 				  }catch (NoAlertPresentException f){
 					  System.out.println ("No unexpected alert for picture 2");
 					  }
-			  
+			  Thread.sleep(4000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
@@ -861,6 +861,7 @@ public class IETest {
 					  	  }catch (NoAlertPresentException f){
 					  		  System.out.println ("No unexpected alert for picture 2");
 					  		  }
+				  Thread.sleep(4000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  Thread.sleep(2000);
 				  if(driver.findElement(By.id(img)).isDisplayed())

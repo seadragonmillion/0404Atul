@@ -311,6 +311,7 @@ public class FirefoxTest {
 					  
 				  }
 			  n=n+1200;
+			  Thread.sleep(2000);
 			  String scroll ="scroll(0,"+n+")";
 			  jse.executeScript(scroll);
 			  String img = "pii-hirca-h-event-report-file-img-"+j;
