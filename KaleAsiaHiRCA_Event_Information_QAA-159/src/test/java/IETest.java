@@ -212,7 +212,7 @@ public class IETest {
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
-			Thread.sleep(4000);
+			Thread.sleep(6000);
 			//Switch to window    	
 	    	driver.switchTo().window(window);
 	    	    	
@@ -259,6 +259,7 @@ public class IETest {
 	    	//Clicks on confirm change
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(2000);
 			if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
 				System.out.println("Unmarked critical");
 	    }
