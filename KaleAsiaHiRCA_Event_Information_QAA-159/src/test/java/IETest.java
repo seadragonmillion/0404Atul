@@ -208,11 +208,11 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
-	    	Thread.sleep(8000);
+	    	Thread.sleep(7000);
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
-			Thread.sleep(8000);
+			Thread.sleep(4000);
 			//Switch to window    	
 	    	driver.switchTo().window(window);
 	    	    	
