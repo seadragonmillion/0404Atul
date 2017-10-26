@@ -199,14 +199,14 @@ public class FirefoxTest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(4000);
+	    	Thread.sleep(8000);
 	    	driver.switchTo().window(window);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
 	    	
 	    	driver.close();
-	    	Thread.sleep(4000);
+	    	Thread.sleep(8000);
 	    	driver.switchTo().window(window);
 	    	driver.switchTo().defaultContent();
 	    	
@@ -305,7 +305,7 @@ public class FirefoxTest {
 			  try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(1000);
+				  Thread.sleep(4000);
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
