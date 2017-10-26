@@ -48,8 +48,8 @@ public class IETest {
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
+		 /* driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 		  
 	  }
 	
@@ -407,8 +407,8 @@ public class IETest {
 		  afterTest();
 		  }catch (TimeoutException e)
 			  {
-				  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
+				/*  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 				  driver.quit();
 			  }
 		  		  
@@ -416,8 +416,8 @@ public class IETest {
 	
 	public void afterTest(){
 		
-		driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
+		/*driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 		//Browser closes
 		driver.quit();
 	}

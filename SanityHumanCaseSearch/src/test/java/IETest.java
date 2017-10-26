@@ -393,8 +393,8 @@ public class IETest {
 		  afterTest();
 		  }catch (TimeoutException e)
 			  {
-				  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);
+				/*  driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 				  driver.quit();
 			  }
 		  		  
