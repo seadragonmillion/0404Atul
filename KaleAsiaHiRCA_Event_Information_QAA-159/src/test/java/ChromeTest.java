@@ -289,7 +289,7 @@ public class ChromeTest {
 				  try{
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(1000);
+					  Thread.sleep(3000);
 					 }catch (org.openqa.selenium.TimeoutException e)
 					  {
 						  
