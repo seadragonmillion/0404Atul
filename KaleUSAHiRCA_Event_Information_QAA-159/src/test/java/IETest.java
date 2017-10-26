@@ -212,7 +212,7 @@ public class IETest {
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
-			Thread.sleep(4000);
+			Thread.sleep(8000);
 			//Switch to window    	
 	    	driver.switchTo().window(window);
 	    	    	
@@ -311,7 +311,7 @@ public class IETest {
 			  try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(1000);
+				  Thread.sleep(3000);
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
@@ -808,7 +808,7 @@ public class IETest {
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
 			  act.doubleClick(element).build().perform();
-			  Thread.sleep(4000);
+			  Thread.sleep(6000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 					  p.waitFor();
@@ -818,7 +818,7 @@ public class IETest {
 				  }catch (NoAlertPresentException f){
 					  System.out.println ("No unexpected alert for picture 2");
 					  }
-			  
+			  Thread.sleep(6000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
@@ -850,7 +850,7 @@ public class IETest {
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
 				  act1.doubleClick(element1).build().perform();
-				  Thread.sleep(4000);
+				  Thread.sleep(6000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 						  q.waitFor();
@@ -861,8 +861,9 @@ public class IETest {
 					  	  }catch (NoAlertPresentException f){
 					  		  System.out.println ("No unexpected alert for picture 2");
 					  		  }
+				  Thread.sleep(6000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
-				  Thread.sleep(2000);
+				  
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
 					//rotate file
