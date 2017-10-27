@@ -200,11 +200,10 @@ public class FirefoxTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 	    	Thread.sleep(4000);
-	    	driver.switchTo().window(window);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
-	    	
+	    	Thread.sleep(4000);
 	    	driver.close();
 	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);
