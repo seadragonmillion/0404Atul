@@ -807,7 +807,14 @@ public class IETest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
+			  try {
 			  act.doubleClick(element).build().perform();
+			  }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpecetd alert for picture");
+					  driver.switchTo().alert().accept();
+				  }catch (NoAlertPresentException f){
+					  System.out.println ("No unexpected alert for picture");
+					  }
 			  Thread.sleep(5000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
@@ -849,7 +856,15 @@ public class IETest {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
+				  try{
 				  act1.doubleClick(element1).build().perform();
+				  }catch (UnhandledAlertException f){	
+							  System.out.println("Unexpecetd alert for picture 2");
+							  driver.switchTo().alert().accept();
+							  
+					  	  }catch (NoAlertPresentException f){
+					  		  System.out.println ("No unexpected alert for picture 2");
+					  		  }
 				  Thread.sleep(4000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
