@@ -808,7 +808,7 @@ public class IETest {
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
 			  act.doubleClick(element).build().perform();
-			  Thread.sleep(2000);
+			  Thread.sleep(5000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 					  p.waitFor();
@@ -850,7 +850,7 @@ public class IETest {
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
 				  act1.doubleClick(element1).build().perform();
-				  Thread.sleep(2000);
+				  Thread.sleep(4000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 						  q.waitFor();
@@ -861,6 +861,7 @@ public class IETest {
 					  	  }catch (NoAlertPresentException f){
 					  		  System.out.println ("No unexpected alert for picture 2");
 					  		  }
+				 Thread.sleep(3000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  Thread.sleep(2000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
