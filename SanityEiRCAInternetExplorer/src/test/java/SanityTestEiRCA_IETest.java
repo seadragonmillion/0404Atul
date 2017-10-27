@@ -15,6 +15,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 
 public class SanityTestEiRCA_IETest {
 

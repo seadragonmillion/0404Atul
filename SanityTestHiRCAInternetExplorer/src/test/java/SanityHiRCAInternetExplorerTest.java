@@ -15,6 +15,8 @@ import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 
 public class SanityHiRCAInternetExplorerTest {
 
