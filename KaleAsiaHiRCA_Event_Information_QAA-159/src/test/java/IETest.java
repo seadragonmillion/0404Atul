@@ -224,8 +224,11 @@ public class IETest {
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 			//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	    	//Clicks on share button
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+			//Clicks on share button
+	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	WebElement element = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]")));
+	    	Actions act = new Actions(driver);
+			act.click(element).build().perform();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacreator");
 	    	//Selects from dropdown
