@@ -392,6 +392,7 @@ public class SanityFirefoxTest {
 		
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 	
 

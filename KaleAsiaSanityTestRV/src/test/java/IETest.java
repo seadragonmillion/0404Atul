@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.assertj.core.api.SoftAssertions;
 
 public class IETest {
 
@@ -29,6 +30,7 @@ public class IETest {
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
+	SoftAssertions softly = new SoftAssertions();
 
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -136,7 +138,7 @@ public class IETest {
 		  
 		JavascriptExecutor jse = (JavascriptExecutor)driver;  
 		//CLicks on first newly created record
-		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).click();
+		  //driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).click();
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  //Clicks on delete button
@@ -157,6 +159,95 @@ public class IETest {
 			  System.out.println("Record could not be deleted");
 		  			  
 	  }
+
+
+	   public void downloadRecord() throws Exception {
+	    	
+	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+	    	//Clicks on first newly created record
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+			try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			
+			String window = driver.getWindowHandle();
+			//Clicks on open pdf report
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	    	try {
+				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
+				  q.waitFor();
+				  }catch (UnhandledAlertException f){	
+					  System.out.println("Unexpected alert for picture 2");
+					  driver.switchTo().alert().accept();
+					  
+			  	  }catch (NoAlertPresentException f){
+			  		  System.out.println ("No unexpected alert for picture 2");
+			  		  }
+	    	Thread.sleep(8000);
+	    	//Close pdf
+	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
+			q.waitFor();
+			Thread.sleep(4000);
+			//Switch to window    	
+	    	driver.switchTo().window(window);
+	    	driver.switchTo().defaultContent();
+	    		    	
+	    }
+	    
+	    public void shareReport() throws Exception{
+	    	
+	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+			//Switches to the iframe
+			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+	    	//Clicks on share button
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+			//Enters username
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacreator");
+	    	//Selects from dropdown
+			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
+			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+			//Clicks on add user
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			//Verifies user added
+			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li[2]/a"))).getText();
+			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			//Clicks on save
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+	    }
+	    
+	    public void markCritical() throws Exception{
+	    	
+	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+	    	//Clicks on mark critical
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	//Clicks on confirm change
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			//Checks if marked critical
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong"))).getText();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong")).isDisplayed())
+				System.out.println("Marked critical");
+			//Clicks on mark critical again
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	//Clicks on confirm change
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(2000);
+			if(driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong")).isDisplayed()==false)
+			{
+				System.out.println("Unmarked critical");
+			}
+				
+	    }
 	  
 	  
 	  @Test
@@ -275,6 +366,12 @@ public class IETest {
 		  //Checks if the name displayed on record is same as expected
 		  assertEquals(name, recordName);
 		  Thread.sleep(3000);
+		  //Downloads record
+		  downloadRecord();
+		  //Shares report
+		  shareReport();
+		  //Mark critical
+		  markCritical();
 		 //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  //Logs out
@@ -291,6 +388,7 @@ public class IETest {
 	  
 	  public void afterTest() {
 		   driver.quit();
+		   softly.assertAll();
 	  }
 
 }
