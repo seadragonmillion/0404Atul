@@ -177,7 +177,7 @@ public class FirefoxTest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(6000);
+	    	Thread.sleep(10000);
 	    	//driver.switchTo().window(window);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
