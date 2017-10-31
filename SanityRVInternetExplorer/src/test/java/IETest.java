@@ -386,6 +386,7 @@ public class IETest {
 	  
 	  public void afterTest() {
 		   driver.quit();
+		   softly.assertAll();
 	  }
 
 }
