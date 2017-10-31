@@ -66,9 +66,10 @@ public class SanityHiRCAChromeTest {
 			  {
 				  //Sign in button is located and clicked
 				  driver.findElement(By.id("pii-signin-button")).click(); 
+
 				   while(c>0)
 				  {
-				  	Thread.sleep(2000);
+				  	Thread.sleep(4000);
 				  WebElement element = driver.findElement(By.id("pii-signin-message"));
 				  String text = element.getText();
 				  if (element.isDisplayed())
