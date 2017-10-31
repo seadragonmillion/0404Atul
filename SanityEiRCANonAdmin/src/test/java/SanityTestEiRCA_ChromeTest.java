@@ -33,7 +33,7 @@ public class SanityTestEiRCA_ChromeTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on EiRCA in Chrome");
+		  System.out.println("Performing sanity test non admin on EiRCA in Chrome");
 		  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 		  driver = new ChromeDriver();
 		  //Browser is maximized
@@ -343,7 +343,7 @@ public class SanityTestEiRCA_ChromeTest {
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Gets the value from the text field report creation date
 		  String creationDate = driver.findElement(By.id("pii-ircam-tab-1-repdatetime")).getAttribute("value");
-		  String name = creationDate + "_jenkins_Sanity Test Chrome" ;
+		  String name = creationDate + "_"+username+"_Sanity Test Chrome" ;
 		  System.out.println(name);
 		  //Clicks on Saved activities button
 		  driver.findElement(By.id("pii-ircam-savedactivities")).click();

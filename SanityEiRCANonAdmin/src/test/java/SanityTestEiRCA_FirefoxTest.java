@@ -30,7 +30,7 @@ public class SanityTestEiRCA_FirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on EiRCA in Firefox");
+		  System.out.println("Performing sanity test non admin on EiRCA in Firefox");
 		  System.setProperty("webdriver.gecko.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
 		  driver = new FirefoxDriver();
 		  //Browser is maximized
@@ -348,7 +348,7 @@ public class SanityTestEiRCA_FirefoxTest {
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Gets the value from the text field report creation date
 		  String creationDate = driver.findElement(By.id("pii-ircam-tab-1-repdatetime")).getAttribute("value");
-		  String name = creationDate + "_jenkins_Sanity Test Firefox" ;
+		  String name = creationDate + "_"+username+"_Sanity Test Firefox" ;
 		  System.out.println(name);
 		  //Clicks on Saved activities button
 		  driver.findElement(By.id("pii-ircam-savedactivities")).click();
