@@ -19,6 +19,7 @@ import java.util.concurrent.TimeoutException;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class SanityTestEiRCA_IETest {
 
@@ -33,7 +34,7 @@ public class SanityTestEiRCA_IETest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(800000);
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -388,12 +389,35 @@ public class SanityTestEiRCA_IETest {
 		  openReport();
 		  //Downloads record
 		  downloadRecord();
+		  Thread.sleep(1000);
 		  //Shares report
 		  shareReport();
 		  //Mark critical
 		  markCritical();
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
+		  while(true)
+		  {
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
+			 
+		  }
 		  //Logs out
 		  jse.executeScript("return document.getElementById('pii-user-loginname').click();");
 		  jse.executeScript("return document.getElementById('pii-signout-button').click();");
