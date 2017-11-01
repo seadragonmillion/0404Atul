@@ -279,7 +279,7 @@ public class IETest {
 		  assertEquals (actual_slide, expected_slide);
 		  //Moves out of the slideshow and checks for security
 		  Thread.sleep(1000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='centered-btns1_s0']/div"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/div"))).click();
 		  Thread.sleep(3000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q1459"))).click();
 		  //Click on next
@@ -322,86 +322,6 @@ public class IETest {
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/a")).click();
 		  //Clicks on clear
 		  driver.findElement(By.id("pii-efsh-clear")).click();
-		 /* //Checks if clear feature works on case id field
-		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("1459");
-		  Thread.sleep(1000);
-		  act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[3]/div/div/a"));
-		  act1.click(act).build().perform();
-		  //Checks for search method with magnifying glass
-		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("1459");
-		  driver.findElement(By.id("pii-efsh-searchbyid-btn")).click();
-		  driver.findElement(By.id("pii-efsh-clear")).click();
-		  Thread.sleep(2000);
-		  //Enters case id
-		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("1459");
-		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(Keys.ENTER);
-		  //Clicks on Q1459
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459"))).click();
-		  //Clicks on Show Slides
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q1459")));
-		  Thread.sleep(4000);
-		  element =  driver.findElement(By.id("pii-slideshow-button-Q1459"));
-		  slide = element.getText();
-		  element.sendKeys(Keys.TAB);
-		  element.sendKeys(Keys.ENTER);
-		  driver.findElement(By.id("pii-slideshow-Q1459-popup"));
-		  System.out.println(slide);
-		  c = slide.charAt(12);
-		  n = Character.getNumericValue(c);
-		  Thread.sleep(1000);
-		  System.out.println("Found Slide 1");
-		  Thread.sleep(500);
-		  //Checking if slide number appears and is correct
-		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/span/span[2]")).getText();
-		  String expected_slide1 = "1/"+n;
-		  assertEquals (actual_slide1, expected_slide1);
-		  Thread.sleep(1000);
-		  //Checking if title is correct
-		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/div")).getText();
-		  String expected_title1 = "Q1459: Sanity Test: DO NOT DELETE: QAA";
-		  assertEquals (actual_title1, expected_title1);
-		  //Checking if footer image appears
-		  if(driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/span/img")).isDisplayed())
-			  System.out.println("Logo is displayed");
-		  //Checking if copyright is correct
-		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/span/span")).getText();
-		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
-		  assertEquals (actual_copyright1, expected_copyright1);
-		  //Click on next
-		  driver.findElement(By.linkText("Next")).click();
-		  //Checks if there are slides present
-		  for (int i=2;i<=n;i++)
-		  {
-			  String id = "pii-slideimg-Q1459-"+(i-1);
-			  Thread.sleep(1000);
-			  if (driver.findElement(By.id(id)).isDisplayed())
-				  System.out.println("Found Slide "+i);
-			  Thread.sleep(500);
-			  //Checking if title is correct
-			  String title_id= "centered-btns2_s"+(i-1);
-			  String title_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/div";
-			  actual_title1 = driver.findElement(By.xpath(title_xpath)).getText();
-			  assertEquals (actual_title1, expected_title1);
-			  //Checking if copyright is correct
-			  String copyright_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span";
-			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getText();
-			  assertEquals (actual_copyright1, expected_copyright1);
-			  //Checking if footer image appears
-			  String image_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/img";
-			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
-				  System.out.println("Logo is displayed");
-			  //Checking if slide number appears and is correct
-			  String slide_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span[2]";
-			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getText();
-			  expected_slide1 = i+"/"+n;
-			  assertEquals (actual_slide1, expected_slide1);
-			  //Click on next
-			  driver.findElement(By.linkText("Next")).click();
-		  }
-		  //Clicks on close button
-		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/a")).click();
-		  //Clicks on clear
-		  jse.executeScript("return document.getElementById('pii-efsh-clear').click();");*/
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

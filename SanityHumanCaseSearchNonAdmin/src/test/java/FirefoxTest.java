@@ -271,7 +271,7 @@ public class FirefoxTest {
 		  String expected_slide = "1/"+n;
 		  assertEquals (expected_slide,actual_slide);
 		  //Checking if copyright is correct
-		  driver.findElement(By.id("pii-slideshow-Q1459")).click();
+		  //driver.findElement(By.id("pii-slideshow-Q1459")).click();
 		  Thread.sleep(2000);
 		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/span/span")).getAttribute("textContent");
 		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
