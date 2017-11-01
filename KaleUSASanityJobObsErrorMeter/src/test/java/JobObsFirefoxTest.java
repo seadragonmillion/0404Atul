@@ -268,6 +268,7 @@ public class JobObsFirefoxTest {
 		  deleteNewRecord(recordName);
 		 while(true)
 		  {
+			  Thread.sleep(1000);
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
@@ -282,6 +283,10 @@ public class JobObsFirefoxTest {
 				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
 			  
 			 
 		  }
