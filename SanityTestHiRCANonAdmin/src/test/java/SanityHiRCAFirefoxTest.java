@@ -164,7 +164,7 @@ public class SanityHiRCAFirefoxTest {
 		  }catch (NoSuchElementException e){
 			  throw e;
 		  }
-			  //Thread.sleep(5000);
+			  Thread.sleep(3000);
 			  try
 			  {
 				  driver.findElement(By.id("pii-main-menu-button-a")).click();
