@@ -230,12 +230,12 @@ public class HumanChromeTest {
 			  System.out.println("Logo is displayed");
 		  //Checking if slide number appears and is correct
 		  Thread.sleep(2000);
-		  String actual_slide = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/span/span[2]")).getAttribute("textContent");
+		  String actual_slide = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q746']/ul/li/span/span[2]")).getAttribute("textContent");
 		  String expected_slide = "1/"+n;
 		  assertEquals (expected_slide,actual_slide);
 		  //Checking if copyright is correct
 		  Thread.sleep(2000);
-		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/span/span")).getAttribute("textContent");
+		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q746']/ul/li/span/span")).getAttribute("textContent");
 		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
 		  assertEquals (expected_copyright,actual_copyright);
 		  //Moves out of the slideshow and checks for security
