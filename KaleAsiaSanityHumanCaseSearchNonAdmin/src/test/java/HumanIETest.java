@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
