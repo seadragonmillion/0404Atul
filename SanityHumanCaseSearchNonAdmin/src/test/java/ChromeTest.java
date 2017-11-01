@@ -234,7 +234,7 @@ public class ChromeTest {
 		  assertEquals (actual_slide, expected_slide);
 		  //Moves out of the slideshow and checks for security
 		  Thread.sleep(1000);
-		  driver.findElement(By.xpath(".//*[@id='centered-btns1_s0']/div")).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/ul/li/div")).click();
 		  Thread.sleep(3000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q1459"))).click();
 		  //Click on next
