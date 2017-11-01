@@ -19,7 +19,7 @@ public class SanityTestEiRCA_FirefoxTest {
 
 	private FirefoxDriver driver;
 	private int login =0;
-	private String username ="qaa";
+	private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 	SoftAssertions softly = new SoftAssertions();
 

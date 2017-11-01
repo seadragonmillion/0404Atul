@@ -22,7 +22,7 @@ public class SanityHiRCAInternetExplorerTest {
 
 	private InternetExplorerDriver driver;
 	private int login =0;
-	 private String username = "qaa";
+	 private String username = "qaacfi";
 	 private String password = "Kale94935830@";
 	
 	@SuppressWarnings("deprecation")

@@ -15,10 +15,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class SanityHiRCAChromeTest {
 	    private WebDriver driver;
-	    private String username ="qaa";
+	    private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 		private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 		private String url = "https://kaleasia.error-free.com/";
@@ -219,6 +221,12 @@ public class SanityHiRCAChromeTest {
 			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
 			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
 		  }
+
+		    JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("scroll(250, 0)");
+		  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+		  Select s = new Select (dropdown);
+		  s.selectByVisibleText("Construction");
 			  //Clicks on save button
 			  driver.findElement(By.id("efi-irca-button-save")).click();
 			  WebDriverWait wait1 = new WebDriverWait(driver,10);

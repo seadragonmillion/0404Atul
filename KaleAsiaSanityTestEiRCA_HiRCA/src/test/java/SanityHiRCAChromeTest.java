@@ -15,6 +15,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class SanityHiRCAChromeTest {
 	    private WebDriver driver;
@@ -184,6 +186,11 @@ public class SanityHiRCAChromeTest {
 		  driver.findElement(By.id("pii-irca-event-events")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys("Sanity Test");
 		  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("scroll(250, 0)");
+		  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+		  Select s = new Select (dropdown);
+		  s.selectByVisibleText("Construction");
 		  String ev1 = driver.findElement(By.id("pii-irca-event-title")).getAttribute("value");
 		  String ev2 = driver.findElement(By.id("pii-irca-event-location")).getAttribute("value");
 		  String ev3 = driver.findElement(By.id("pii-irca-event-pbstatement")).getAttribute("value");

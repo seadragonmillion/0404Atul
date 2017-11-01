@@ -17,7 +17,7 @@ import java.util.concurrent.TimeoutException;
 
 public class SanityHiRCAFirefoxTest {
 	private FirefoxDriver driver;
-	private String username ="qaa";
+	private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";

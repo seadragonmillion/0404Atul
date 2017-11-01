@@ -26,7 +26,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="qaa";
+	private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer_Win32_3.6.0\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";

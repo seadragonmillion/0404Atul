@@ -23,7 +23,7 @@ import org.openqa.selenium.UnhandledAlertException;
 public class SanityTestEiRCA_IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="qaa";
+	private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";

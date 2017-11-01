@@ -21,14 +21,14 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class FirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="qaa";
+	private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
@@ -257,7 +257,7 @@ public class FirefoxTest {
 				System.out.println("Unmarked critical");
 	    }
 	    
-	  public void openCheckRecord(String text184, String text, String paragraph, String get_date, String get_time, String creationDate) throws Exception{
+	  public void openCheckRecord(String text184, String text, String paragraph, String get_date, String get_time, String creationDate, String get_dept) throws Exception{
 		  
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -275,9 +275,9 @@ public class FirefoxTest {
 		  //Checks for Location of event data
 		  String eve_loc =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]")).getText();
 		  softly.assertThat(eve_loc).as("test data").isEqualTo(text);
-		  /*//Checks for Department data
+		  //Checks for Department data
 		  String eve_dept =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
-		  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);*/
+		  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
 		  //Checks for Investigators data
 		  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
 		  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph);
@@ -368,9 +368,9 @@ public class FirefoxTest {
 		  String loc=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/label")).getText();
 		  System.out.println(loc);
 		  softly.assertThat(loc).as("test data").isEqualTo("Location of event:");
-		  /*String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
+		  String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
 		  System.out.println(dept);
-		  softly.assertThat(dept).as("test data").isEqualTo("Department:");*/
+		  softly.assertThat(dept).as("test data").isEqualTo("Department:");
 		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/label")).getText();
 		  System.out.println(date);
 		  softly.assertThat(date).as("test data").isEqualTo("Date of event:");
@@ -461,7 +461,7 @@ public class FirefoxTest {
 				  if (error_location_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on location of event textbox");
 			  }
-			 /* if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
+			 if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
 			  {
 				  String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
 				  softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
@@ -469,7 +469,7 @@ public class FirefoxTest {
 				  WebElement error_dept_dotted = textbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child.error"));
 				  if (error_dept_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on Department textbox");
-			  }*/
+			  }
 			  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed())
 			  {
 				  String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
@@ -604,7 +604,7 @@ public class FirefoxTest {
 		  
 		  jse.executeScript("scroll(0, 0)");
 		  
-		 /* //Department
+		  //Department
 		  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
 		  Select s = new Select (dropdown);
 		  s.selectByVisibleText("Construction");
@@ -616,7 +616,7 @@ public class FirefoxTest {
 			  WebElement noerror_dept_dotted = ttextbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child"));
 			  if (noerror_dept_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on Department textbox");
-		  }*/
+		  }
 		  
 		  //Location of event
 		  String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat tincidunt dui.";
@@ -949,7 +949,7 @@ public class FirefoxTest {
 		  //Checks if expected name and actual name is correct
 		  softly.assertThat(recordName).as("test data").isEqualTo(name);
 		  //Opens new record and checks if entered data is same after being saved in report
-		  openCheckRecord(text184,text,paragraph,get_date,get_time,creationDate);
+		  openCheckRecord(text184,text,paragraph,get_date,get_time,creationDate,get_dept);
 		  //Opens record
 		  openReport();
 		  //Downloads record

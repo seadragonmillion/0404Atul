@@ -22,7 +22,7 @@ import org.assertj.core.api.SoftAssertions;
 public class SanityTestEiRCA_ChromeTest {
 
 	private WebDriver driver;
-	private String username ="qaa";
+	private String username ="qaacfi";
 	 private String password = "Kale94935830@";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";
