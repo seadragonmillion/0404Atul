@@ -272,9 +272,12 @@ public class JobObsChromeTest {
 			  }
 			  catch( StaleElementReferenceException f)
 			  {
-				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
 			 
 		  }
 		  
