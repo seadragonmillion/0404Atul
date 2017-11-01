@@ -206,6 +206,7 @@ public class IETest {
 			  {
 				  
 			  }
+			  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
@@ -235,6 +236,7 @@ public class IETest {
 				  
 			  }
 		  //Enters the term and check the search by enter
+			  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
