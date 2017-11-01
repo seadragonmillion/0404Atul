@@ -260,6 +260,7 @@ public class JobObsChromeTest {
 		  deleteNewRecord(recordName);
 		  while(true)
 		  {
+			  Thread.sleep(1000);
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
