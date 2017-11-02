@@ -27,7 +27,7 @@ public class HumanIETest {
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
-	private String keyword = "error";
+	private String keyword = "power plant worker";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
