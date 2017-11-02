@@ -300,7 +300,8 @@ public class FirefoxTest {
 		 //Uploads picture 2
 		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		  Thread.sleep(8000);
-		  
+		  jse.executeScript("scroll(0, 100)");
+		  Thread.sleep(2000);
 		  //Clicks on browse button of 1st picture
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
 		  Thread.sleep(2000);
