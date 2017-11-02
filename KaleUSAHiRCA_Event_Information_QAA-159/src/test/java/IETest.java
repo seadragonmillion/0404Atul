@@ -789,8 +789,10 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
 		  
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		  Thread.sleep(2000);
 		  //Check if it allows for uploading more than one file
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
+		  Thread.sleep(1000);
 		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
 		  softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
