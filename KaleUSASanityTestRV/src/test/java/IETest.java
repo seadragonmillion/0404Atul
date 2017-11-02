@@ -316,7 +316,8 @@ public class IETest {
 			  System.out.println ("No unexpected alert for picture 2");
 		  }
 		  Thread.sleep(4000);
-		  jse.executeScript("scroll(0, 250)");
+		  jse.executeScript("scroll(0, 1000)");
+		  Thread.sleep(2000);
 		  //Clicks twice on browse button of 1st picture
 		  WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
 		  act.doubleClick(element2).build().perform();
