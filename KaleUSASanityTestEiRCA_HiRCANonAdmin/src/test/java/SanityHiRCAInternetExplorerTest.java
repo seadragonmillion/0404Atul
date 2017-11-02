@@ -17,6 +17,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.openqa.selenium.support.ui.Select;
 
 public class SanityHiRCAInternetExplorerTest {
 
@@ -225,6 +226,10 @@ public class SanityHiRCAInternetExplorerTest {
 			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
 			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys("Sanity Test");
 		  }
+		  jse.executeScript("scroll(250, 0)");
+		  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+		  Select s = new Select (dropdown);
+		  s.selectByVisibleText("Construction");
 		  //Clicks on save button
 		  jse.executeScript("return document.getElementById('efi-irca-button-save').click();");
 		  //Clicks on save confirmed
