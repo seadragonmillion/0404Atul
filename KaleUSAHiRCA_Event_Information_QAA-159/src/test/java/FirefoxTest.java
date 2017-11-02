@@ -787,9 +787,10 @@ public class FirefoxTest {
 			  //Uploads file
 			  String file = "pii-irca-event-file-"+j;
 			  driver.findElement(By.id(file)).click();
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			  p.waitFor();
+			  Thread.sleep(3000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
