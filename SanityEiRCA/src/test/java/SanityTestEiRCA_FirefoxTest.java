@@ -377,6 +377,7 @@ public class SanityTestEiRCA_FirefoxTest {
 		  markCritical();
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
+		  Thread.sleep(3000);
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
