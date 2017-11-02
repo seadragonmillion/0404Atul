@@ -287,7 +287,8 @@ public class FirefoxTest {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
 		  }
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  jse.executeScript("scroll(0, 250)");
+		  jse.executeScript("scroll(0, 1000)");
+		  Thread.sleep(2000);
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
