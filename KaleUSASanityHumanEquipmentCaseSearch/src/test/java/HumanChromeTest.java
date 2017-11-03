@@ -26,7 +26,7 @@ public class HumanChromeTest {
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
-	private String keyword = "error";
+	private String keyword = "power plant worker";
 	
 	@SuppressWarnings("deprecation")
 	@Rule

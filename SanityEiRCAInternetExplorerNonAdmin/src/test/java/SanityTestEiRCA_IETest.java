@@ -202,24 +202,38 @@ public class SanityTestEiRCA_IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
+			System.out.println("Opened pdf");
 	    	Thread.sleep(4000);
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
-			Thread.sleep(4000);
-			//Switch to window    	
-	    	driver.switchTo().window(window);
+			Thread.sleep(8000);
+			System.out.println("Closed pdf");
+			//Switch to window  
+			for(String winHandle : driver.getWindowHandles()){
+	    	    driver.switchTo().window(winHandle);
+	    	}
+			Thread.sleep(2000);
 	    	driver.switchTo().defaultContent();
+			System.out.println("Switched to window");
 	    		    	
 	    }
 	    
 	    public void shareReport() throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+			Thread.sleep(2000);
 			//Switches to the iframe
-			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+			//wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			System.out.println("Switched to frame:");
+			System.out.println("Title : "+driver.getTitle());
+			Thread.sleep(1000);
 	    	//Clicks on share button
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	WebElement element = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]")));
+			Actions act = new Actions(driver);
+			act.click(element).build().perform();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
 	    	//Selects from dropdown
@@ -376,8 +390,10 @@ public class SanityTestEiRCA_IETest {
 		  assertEquals(name, recordName);
 		  //Opens record
 		  openReport();
+		  Thread.sleep(2000);
 		  //Downloads record
 		  downloadRecord();
+		  Thread.sleep(2000);
 		  //Shares report
 		  shareReport();
 		  //Mark critical

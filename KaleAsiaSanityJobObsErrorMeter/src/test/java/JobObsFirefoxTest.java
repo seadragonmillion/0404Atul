@@ -169,7 +169,7 @@ public class JobObsFirefoxTest {
       }catch (NoSuchElementException e){
              throw e;
       }
-		  Thread.sleep(4000);
+		  Thread.sleep(9000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -178,7 +178,7 @@ public class JobObsFirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  
+		  Thread.sleep(2000);
 		  //Clicks on Job Observation Analysis
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
 		  //Clicks on new

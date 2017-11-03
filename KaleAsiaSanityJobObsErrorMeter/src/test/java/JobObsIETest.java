@@ -33,7 +33,7 @@ public class JobObsIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(600000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -247,7 +247,7 @@ public class JobObsIETest {
 			  System.out.println ("No unexpected alert for picture 2");
 		  }
 	     
-		  Thread.sleep(3000);
+		  Thread.sleep(6000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
 		  //Clicks on next
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();

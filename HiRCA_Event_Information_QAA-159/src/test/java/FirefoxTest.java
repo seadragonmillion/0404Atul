@@ -334,15 +334,6 @@ public class FirefoxTest {
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  try{
-             if (login==1)
-             {
-                   WebDriverWait wait2 = new WebDriverWait(driver,20);
-                   wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-             }
-      }catch (NoSuchElementException e){
-             throw e;
-      }
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on Analysis 
@@ -352,6 +343,17 @@ public class FirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
+		  try{
+             if (login==1)
+             {
+                   WebDriverWait wait2 = new WebDriverWait(driver,20);
+                   Thread.sleep(2000);
+                   wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+             }
+             }catch (NoSuchElementException e){
+             	   throw e;
+        	 }
+		  
 		  //Clicks on HiRCA
 		  driver.findElement(By.id("pii-a-menu-hirca")).click();
 		  Thread.sleep(2000);
