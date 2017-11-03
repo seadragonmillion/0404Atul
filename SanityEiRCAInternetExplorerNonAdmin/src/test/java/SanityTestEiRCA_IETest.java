@@ -204,7 +204,7 @@ public class SanityTestEiRCA_IETest {
 			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
 			System.out.println("Opened pdf");
-	    	Thread.sleep(4000);
+	    	Thread.sleep(8000);
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
