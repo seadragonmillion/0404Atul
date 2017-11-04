@@ -232,7 +232,7 @@ public class JobObsIETest {
 		  WebElement element =  driver.findElement(By.id("pii-joa-tab-2-photo-input"));
 		  Actions act = new Actions(driver);
 		  act.doubleClick(element).build().perform();
-		  Thread.sleep(2000);
+		  Thread.sleep(5000);
 		  //Uploads picture
 		  try{
 			  try {
@@ -247,7 +247,7 @@ public class JobObsIETest {
 			  System.out.println ("No unexpected alert for picture 2");
 		  }
 	     
-		  Thread.sleep(6000);
+		  Thread.sleep(9000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
 		  //Clicks on next
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
