@@ -206,7 +206,7 @@ public class FirefoxTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			Thread.sleep(1000);
 			//Verifies user added
-			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
+			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li[2]/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
