@@ -300,7 +300,7 @@ public class IETest {
 		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
 		  Actions act = new Actions(driver);
 		  act.doubleClick(element).build().perform();
-		  Thread.sleep(4000);
+		  Thread.sleep(6000);
 		  try{
 			  try {
 					//Uploads picture 2
@@ -315,7 +315,7 @@ public class IETest {
 		  }catch (NoAlertPresentException f){			  
 			  System.out.println ("No unexpected alert for picture 2");
 		  }
-		  Thread.sleep(4000);
+		  Thread.sleep(8000);
 		  //jse.executeScript("scroll(0, 1000)");
 		  Thread.sleep(2000);
 		  //Clicks twice on browse button of 1st picture
@@ -335,7 +335,7 @@ public class IETest {
 			  System.out.println ("No unexpected alerts for picture 1");
 		     }
 			 
-		  Thread.sleep(4000);
+		  Thread.sleep(7000);
 		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
 		  jse.executeScript("return document.querySelector(\"[class='pii-rv-save-send pii-new-button pii-color-purple ui-block-c ui-btn ui-btn-inline']\").click();");
