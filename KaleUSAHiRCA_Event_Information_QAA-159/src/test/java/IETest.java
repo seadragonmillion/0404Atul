@@ -991,16 +991,22 @@ public class IETest {
 			  System.out.println ("Record not found.");
 		  //Checks if expected name and actual name is correct
 		  softly.assertThat(recordName).as("test data").isEqualTo(name);
+		   Thread.sleep(2000);
 		  //Opens new record and checks if entered data is same after being saved in report
 		  openCheckRecord(text184,text,paragraph,get_date,get_time,creationDate,get_dept);
+		   Thread.sleep(2000);
 		  //Opens record
 		  openReport();
+		  Thread.sleep(2000);
 		  //Downloads record
 		  downloadRecord();
+		  Thread.sleep(2000);
 		  //Shares report
 		  shareReport();
+		   Thread.sleep(2000);
 		  //Mark critical
 		  markCritical();
+		   Thread.sleep(2000);
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  while(true)
