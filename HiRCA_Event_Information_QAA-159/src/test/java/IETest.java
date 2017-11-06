@@ -198,7 +198,7 @@ public class IETest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-			Thread.sleep(2000);
+			Thread.sleep(4000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
 				  q.waitFor();
@@ -209,11 +209,11 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
-	    	Thread.sleep(5000);
+	    	Thread.sleep(8000);
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 			//Switch to window    	
 	    	driver.switchTo().window(window);
 	    	    	
@@ -1014,7 +1014,7 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Downloads record
 		  downloadRecord();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Shares report
 		  shareReport();
 		  Thread.sleep(2000);
