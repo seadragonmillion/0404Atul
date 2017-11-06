@@ -744,7 +744,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div"))).click();
 		  
 		  //Check the time picker
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Close the popup
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a"))).click();
@@ -788,10 +788,11 @@ public class IETest {
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.DELETE);
 		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
-		  
+		  Thread.sleep(3000);
+		   
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  //Check if it allows for uploading more than one file
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
