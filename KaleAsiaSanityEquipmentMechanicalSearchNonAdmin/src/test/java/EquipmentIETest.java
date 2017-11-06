@@ -138,7 +138,7 @@ public class EquipmentIETest {
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  Thread.sleep(5000);
+		  Thread.sleep(9000);
 		  //Switches to the iframe
 		  WebDriverWait wait1 = new WebDriverWait(driver,10);
 		  wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));

@@ -165,11 +165,11 @@ public class JobObsIETest {
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	      Thread.sleep(2000);
+	      Thread.sleep(3000);
 	      //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  
-		  Thread.sleep(4000);
+		  Thread.sleep(6000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
