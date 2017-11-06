@@ -227,7 +227,7 @@ public class MechanicalFirefoxTest {
 			  System.out.println("Logo is displayed");
 		  Thread.sleep(4000);
 		  //Checking if copyright is correct
-		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F192']/ul/li/span/span")).getText();
+		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F192']/li/span/span")).getText();
 		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
 		  assertEquals (actual_copyright, expected_copyright);
 		  //Checking if slide number appears and is correct
@@ -257,7 +257,7 @@ public class MechanicalFirefoxTest {
 			  assertEquals (actual_title, expected_title);
 			  Thread.sleep(4000);
 			  //Checking if copyright is correct
-			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F192']/ul/li["+i+"]/span/span";
+			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F192']/li["+i+"]/span/span";
 			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
 			  assertEquals (actual_copyright, expected_copyright);
 			  //Checking if footer image appears
