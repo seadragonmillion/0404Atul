@@ -905,8 +905,10 @@ public class FirefoxTest {
 		  //Clicks on Save report
 		  while(true)
 		  {
+			  Thread.sleep(1000);
 			  try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				  Thread.sleep(1000);
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 			  }catch (NoSuchElementException e)
 			  {
