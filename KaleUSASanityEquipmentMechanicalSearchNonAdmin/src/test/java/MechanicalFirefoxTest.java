@@ -227,11 +227,11 @@ public class MechanicalFirefoxTest {
 			  System.out.println("Logo is displayed");
 		  Thread.sleep(2000);
 		  //Checking if copyright is correct
-		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F192']/ul/li/span/span")).getText();
+		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F192']/ul/li/span/span")).getAttribute("textContent");
 		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
 		  assertEquals (actual_copyright, expected_copyright);
 		  //Checking if slide number appears and is correct
-		  String actual_slide = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F192']/ul/li/span/span[2]")).getText();
+		  String actual_slide = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F192']/ul/li/span/span[2]")).getAttribute("textContent");
 		  String expected_slide = "1/"+n;
 		  assertEquals (actual_slide, expected_slide);
 		   //Moves out of the slideshow and checks for security
@@ -258,7 +258,7 @@ public class MechanicalFirefoxTest {
 			  Thread.sleep(2000);
 			  //Checking if copyright is correct
 			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F192']/ul/li["+i+"]/span/span";
-			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
 			  assertEquals (actual_copyright, expected_copyright);
 			  //Checking if footer image appears
 			  String image_xpath = ".//*[@id='pii-slideshow-equip-F192']/ul/li["+i+"]/span/img";
@@ -266,7 +266,7 @@ public class MechanicalFirefoxTest {
 				  System.out.println("Logo is displayed");
 			  //Checking if slide number appears and is correct
 			  String slide_xpath = ".//*[@id='pii-slideshow-equip-F192']/ul/li["+i+"]/span/span[2]";
-			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			  expected_slide = i+"/"+n;
 			  assertEquals (actual_slide, expected_slide);
 			  //Moves out of the slideshow and checks for security
