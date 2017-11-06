@@ -20,6 +20,7 @@ import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.NoAlertPresentException;
 
 public class FirefoxTest {
 
