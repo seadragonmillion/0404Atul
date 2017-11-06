@@ -225,9 +225,9 @@ public class EquipmentFirefoxTest {
 			  System.out.println("Logo is displayed");
 		  Thread.sleep(4000);
 		  //Checking if copyright is correct
-		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F718']/ul/li/span/span")).getText();
-		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
-		  assertEquals (actual_copyright, expected_copyright);
+		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F718']/li/span/span")).getText();
+		  String expected_copyright01 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  assertEquals (actual_copyright, expected_copyright01);
 		  //Checking if slide number appears and is correct
 		  String actual_slide = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F718']/ul/li/span/span[2]")).getText();
 		  String expected_slide = "1/"+n;
@@ -255,9 +255,9 @@ public class EquipmentFirefoxTest {
 			  assertEquals (actual_title, expected_title);
 			  Thread.sleep(4000);
 			  //Checking if copyright is correct
-			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F718']/ul/li["+i+"]/span/span";
+			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F718']/li["+i+"]/span/span";
 			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
-			  assertEquals (actual_copyright, expected_copyright);
+			  assertEquals (actual_copyright, expected_copyright01);
 			  //Checking if footer image appears
 			  String image_xpath = ".//*[@id='pii-slideshow-equip-F718']/ul/li["+i+"]/span/img";
 			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
