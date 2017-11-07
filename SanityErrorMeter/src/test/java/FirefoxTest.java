@@ -21,6 +21,7 @@ import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class FirefoxTest {
 
@@ -329,14 +330,27 @@ public class FirefoxTest {
 		  deleteNewRecord(recordName);
 		  Thread.sleep(2000);
 		  while(true)
-		  {
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).isDisplayed())
 			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-				  break;
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
 			  }
-			  else break;
-		  }
 		  
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
