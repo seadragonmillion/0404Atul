@@ -323,6 +323,7 @@ public class ChromeTest {
 		   Thread.sleep(2000);
 		  while(true)
 			  {
+				  Thread.sleep(1000);
 				  try{
 				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 				  {

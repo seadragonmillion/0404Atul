@@ -17,6 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class ErrorMeterChromeTest {
 
@@ -27,10 +30,11 @@ public class ErrorMeterChromeTest {
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	private String title = "Sanity Test";
+	SoftAssertions softly = new SoftAssertions();
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(600000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -127,7 +131,7 @@ public class ErrorMeterChromeTest {
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  //CLicks on first newly created record
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+		 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -149,6 +153,80 @@ public class ErrorMeterChromeTest {
 		  
 		  			  
 	  }
+
+
+	  public void downloadRecord() throws Exception {
+	    	
+	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+	    	//Clicks on first newly created record
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+			String window = driver.getWindowHandle();
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+			try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			
+			//Clicks on open pdf report
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	    	Thread.sleep(2000);
+	    	driver.switchTo().window(window);
+	    	Thread.sleep(1000);
+	    		    	
+	    }
+	    
+	    public void shareReport() throws Exception{
+	    	
+	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+			//Switches to the iframe
+			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+	    	//Clicks on share button
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+			//Enters username
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacreator");
+	    	//Selects from dropdown
+			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
+			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+			//Clicks on add user
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			//Verifies user added
+			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
+			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			//Clicks on save
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+	    }
+	    
+	    public void markCritical() throws Exception{
+	    	
+	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+	    	//Clicks on mark critical
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	//Clicks on confirm change
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			//Checks if marked critical
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong"))).getText();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong")).isDisplayed())
+				System.out.println("Marked critical");
+			//Clicks on mark critical again
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	//Clicks on confirm change
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(2000);
+			if(driver.findElement(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong")).isDisplayed()==false)
+			{
+				System.out.println("Unmarked critical");
+			}
+				
+	    }
 	
 	@Test
 	  public void SanityTest() throws Exception{
@@ -168,7 +246,7 @@ public class ErrorMeterChromeTest {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(4000);
+		  Thread.sleep(7000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -232,17 +310,42 @@ public class ErrorMeterChromeTest {
 		  	
 		  //Checks if the record name is correct
 		  assertEquals(name,recordName);
+		  Thread.sleep(2000);
+		  //Downloads record
+		  downloadRecord();
+		  Thread.sleep(2000);
+		  //Shares report
+		  shareReport();
+		  Thread.sleep(2000);
+		  //Mark critical
+		  markCritical();
+		  Thread.sleep(2000);
 		  //Deletes the record
 		   deleteNewRecord(recordName);
+		   Thread.sleep(2000);
 		  while(true)
-		  {
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).isDisplayed())
 			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-				  break;
+				  Thread.sleep(1000);
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
 			  }
-			  else break;
-		  }
 		  
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();

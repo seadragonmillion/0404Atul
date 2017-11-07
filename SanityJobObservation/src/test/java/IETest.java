@@ -359,6 +359,7 @@ public class IETest {
 		  deleteNewRecord(recordName);
 		 while(true)
 		  {
+			  Thread.sleep(1000);
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
@@ -374,7 +375,10 @@ public class IETest {
 				  
 				 break;
 			  }
-			  
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
 			 
 		  }
 		  
