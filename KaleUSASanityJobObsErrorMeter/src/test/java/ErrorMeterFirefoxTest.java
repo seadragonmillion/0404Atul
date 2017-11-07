@@ -322,7 +322,7 @@ public class ErrorMeterFirefoxTest {
 		  
 		  //Checks if the record name is correct
 		  assertEquals(name,recordName);
-		  /Thread.sleep(2000);
+		  Thread.sleep(2000);
 		  //Downloads record
 		  downloadRecord();
 		  Thread.sleep(2000);
