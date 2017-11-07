@@ -379,6 +379,7 @@ public class ErrorMeterFirefoxTest {
 		driver.manage().window().maximize();
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 
 }

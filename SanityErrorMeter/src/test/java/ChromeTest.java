@@ -366,5 +366,6 @@ public class ChromeTest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 }

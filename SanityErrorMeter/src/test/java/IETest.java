@@ -379,5 +379,6 @@ public class IETest {
 		driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 }

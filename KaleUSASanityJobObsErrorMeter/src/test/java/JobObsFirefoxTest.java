@@ -373,6 +373,7 @@ public class JobObsFirefoxTest {
 		driver.manage().window().maximize();
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 
 }

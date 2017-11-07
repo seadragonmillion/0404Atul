@@ -377,5 +377,6 @@ public class ErrorMeterIETest {
 		driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 }
