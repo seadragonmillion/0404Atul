@@ -179,9 +179,9 @@ public class ChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Checks if marked critical
-			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='joa-rpt']/div/div/table/tbody/tr/th/strong"))).getText();
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong"))).getText();
 			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/table/tbody/tr/th/strong")).isDisplayed())
+			if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong")).isDisplayed())
 				System.out.println("Marked critical");
 			//Clicks on mark critical again
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
@@ -189,7 +189,7 @@ public class ChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			Thread.sleep(2000);
-			if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/table/tbody/tr/th/strong")).isDisplayed()==false)
+			if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong")).isDisplayed()==false)
 			{
 				System.out.println("Unmarked critical");
 			}
