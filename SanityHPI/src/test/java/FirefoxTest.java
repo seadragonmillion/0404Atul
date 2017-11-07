@@ -160,7 +160,7 @@ public class FirefoxTest {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 			//CLicks on first newly created record
-		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
+		    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 			//Switches to the iframe
 			//wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	    	//Clicks on share button
