@@ -189,10 +189,11 @@ public class HumanChromeTest {
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
-		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys("error");
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
+		  Thread.sleep(2000);
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q746")));
 		  Thread.sleep(4000);

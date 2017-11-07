@@ -367,14 +367,19 @@ public class SanityTestEiRCA_FirefoxTest {
 			  System.out.println ("Record not found.");
 		  //Checks if the name displayed on record is same as expected
 		  assertEquals(name, recordName);
+		  Thread.sleep(2000);
 		  //Opens record
 		  openReport();
+		  Thread.sleep(2000);
 		  //Downloads record
 		  downloadRecord();
+		  Thread.sleep(2000);
 		  //Shares report
 		  shareReport();
+		  Thread.sleep(2000);
 		  //Mark critical
 		  markCritical();
+		  Thread.sleep(2000);
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  //Logs out
