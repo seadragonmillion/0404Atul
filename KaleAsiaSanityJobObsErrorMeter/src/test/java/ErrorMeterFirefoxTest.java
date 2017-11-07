@@ -259,7 +259,7 @@ public class ErrorMeterFirefoxTest {
     }catch (NoSuchElementException e){
            throw e;
     }
-		  Thread.sleep(4000);
+		  Thread.sleep(8000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
