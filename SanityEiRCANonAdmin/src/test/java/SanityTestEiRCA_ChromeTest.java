@@ -125,6 +125,7 @@ public class SanityTestEiRCA_ChromeTest {
 		  
 		  //CLicks on first newly created record
 		  //driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a")).click();
+		  Thread.sleep(2000);
 		  //Clicks on delete button
 		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
 		  WebDriverWait wait = new WebDriverWait(driver,10);
