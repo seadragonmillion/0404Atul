@@ -413,6 +413,8 @@ public class SanityIETest {
 		  }catch (Exception e){
 			   
 			      WebDriverWait wait = new WebDriverWait(driver,20);
+				  //Clicks on Companies
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
 				  JavascriptExecutor jse = (JavascriptExecutor)driver;
 			      Thread.sleep(3000);
 			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
@@ -465,7 +467,9 @@ public class SanityIETest {
 					  System.out.println("Company deleted");  
 				  }
 				  
-			  
+			  //Logs out
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 			  driver.quit();
 		 }
 		  
