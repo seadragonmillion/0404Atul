@@ -64,6 +64,7 @@ public class EquipmentChromeTest {
 		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 		  int c=1;
+		  Thread.sleep(2000);
 		  if (user.equals(username)==true)
 		  {
 			  if(pw.equals(password)==true)
@@ -72,7 +73,7 @@ public class EquipmentChromeTest {
 				  driver.findElement(By.id("pii-signin-button")).click();  
 				  while(c>0)
 				  {
-				  Thread.sleep(2000);
+				  Thread.sleep(3000);
 				  WebElement element = driver.findElement(By.id("pii-signin-message"));
 				  String text = element.getText();
 				  if (element.isDisplayed())
@@ -100,7 +101,7 @@ public class EquipmentChromeTest {
 		    {
 				  while(c>0)
 				  {
-					  Thread.sleep(1000);
+					  Thread.sleep(2000);
 					  driver.findElement(By.id("pii-un")).clear();
 					  driver.findElement(By.id("pii-pw")).clear();
 					  //Username text field is located and the username is entered
