@@ -389,8 +389,10 @@ public class SanityChromeTest {
 		  }catch (Exception e){
 			   
 			      WebDriverWait wait = new WebDriverWait(driver,20);
-			      Thread.sleep(3000);
-			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
+				  Thread.sleep(3000);
+			      //Clicks on Companies
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
+				  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
 			      Thread.sleep(3000);
 				  //Clicks on delete
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
