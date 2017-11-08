@@ -406,6 +406,8 @@ public class SanityFirefoxTest {
 			   
 			      System.out.println(e);
 			      WebDriverWait wait = new WebDriverWait(driver,20);
+				  //Clicks on Companies
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
 			      Thread.sleep(3000);
 			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
 			      Thread.sleep(3000);
@@ -457,7 +459,10 @@ public class SanityFirefoxTest {
 					  System.out.println("Company deleted");  
 				  }
 				  
-			  
+			  //Logs out
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		      System.out.println("Logged out");
 			  driver.quit();
 		 }
 		  		  
