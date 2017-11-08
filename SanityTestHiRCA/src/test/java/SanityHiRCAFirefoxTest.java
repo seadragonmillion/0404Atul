@@ -15,6 +15,7 @@ import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class SanityHiRCAFirefoxTest {
 
@@ -242,6 +243,29 @@ public class SanityHiRCAFirefoxTest {
 			  assertEquals(name, recordName);
 			  //Deletes the newly created record
 			  deleteNewRecord(recordName);
+			  while(true)
+			  {
+				  Thread.sleep(1000);
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
+			  }
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();
 			  afterTest();
