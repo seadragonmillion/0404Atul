@@ -442,7 +442,9 @@ public class SanityChromeTest {
 					  System.out.println("Company deleted");  
 				  }
 				  
-			  
+			  //Logs out
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 			  driver.quit();
 		 }
 		  		  
