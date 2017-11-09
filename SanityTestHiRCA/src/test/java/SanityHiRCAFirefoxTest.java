@@ -249,6 +249,7 @@ public class SanityHiRCAFirefoxTest {
 				  try{
 				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 				  {
+					  WebDriverWait wait = new WebDriverWait(driver,10);
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 					  
 				  }}catch (NoSuchElementException e)
