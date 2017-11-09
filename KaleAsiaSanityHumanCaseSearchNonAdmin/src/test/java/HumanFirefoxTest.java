@@ -171,6 +171,8 @@ public class HumanFirefoxTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
