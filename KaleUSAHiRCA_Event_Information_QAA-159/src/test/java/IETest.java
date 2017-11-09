@@ -787,7 +787,7 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
-		  Thread.sleep(3000);
+		  Thread.sleep(6000);
 		  
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  Thread.sleep(2000);
