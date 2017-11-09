@@ -770,7 +770,7 @@ public class FirefoxTest {
 		  Thread.sleep(2000);
 		  //Click on set time
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
-		  
+		  Thread.sleep(2000);
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  //Check if it allows for uploading more than one file
 		  driver.findElement(By.id("pii-irca-addnewfile-button")).click();
@@ -814,7 +814,7 @@ public class FirefoxTest {
 				  driver.findElement(By.id(id)).click();
 				  //Fill title and description
 				  String title_id="pii-irca-event-file-title-"+j;
-				  driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
+				   wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
 				  String desc = "pii-irca-event-file-description-"+j;
 				  driver.findElement(By.id(desc)).sendKeys("Description0"+j);
 				  //re-upload file

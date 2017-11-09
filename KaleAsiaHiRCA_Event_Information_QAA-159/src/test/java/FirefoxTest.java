@@ -770,7 +770,7 @@ public class FirefoxTest {
 		  Thread.sleep(2000);
 		  //Click on set time
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
-		  
+		  Thread.sleep(2000);
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  //Check if it allows for uploading more than one file
 		  driver.findElement(By.id("pii-irca-addnewfile-button")).click();

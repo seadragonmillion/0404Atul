@@ -181,6 +181,7 @@ public class HumanFirefoxTest {
 			  {
 				  
 			  }
+		  Thread.sleep(2000);
 		  //Clicks on Q116
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q116"))).click();
 		  Thread.sleep(2000);

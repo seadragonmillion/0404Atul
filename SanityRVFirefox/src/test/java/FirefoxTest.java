@@ -290,6 +290,7 @@ public class FirefoxTest {
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
+		  Thread.sleep(2000);
 		  //Clicks on browse button of 2nd picture
 		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
 		  Thread.sleep(2000);
