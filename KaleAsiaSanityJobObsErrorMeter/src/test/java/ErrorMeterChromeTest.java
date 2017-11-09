@@ -174,9 +174,9 @@ public class ErrorMeterChromeTest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(2000);
+	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);
-	    	Thread.sleep(1000);
+	    	Thread.sleep(3000);
 	    		    	
 	    }
 	    

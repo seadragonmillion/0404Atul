@@ -141,7 +141,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-irca').click();");
 		  //Verify record deleted
 		  //Click on 1st record
-		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).getText();
+		  String name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 		  System.out.println(name);
 		  if (name!=recordName)
 			  System.out.println("Record deleted");
@@ -246,6 +246,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  else
 			  System.out.println ("Record not found.");
 		  assertEquals(name, recordName);
+		  Thread.sleep(2000);
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  //Clicks on logout
