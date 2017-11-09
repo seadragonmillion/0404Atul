@@ -883,6 +883,14 @@ public class ChromeTest {
 			  }
 			  //Clicks on Save
 			  driver.findElement(By.id("efi-irca-button-save")).click();
+			  try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 			  //Clicks on Save report
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
