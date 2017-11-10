@@ -151,7 +151,7 @@ public class HumanIETest {
             }
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  //Clicks on Error free bank
 		  try
 		  {
