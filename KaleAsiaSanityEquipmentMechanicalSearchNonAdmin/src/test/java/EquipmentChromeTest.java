@@ -201,7 +201,7 @@ public class EquipmentChromeTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F718"))).click();
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F718")));
-		  Thread.sleep(2000);
+		  Thread.sleep(5000);
 		  WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F718"));
 		  String slide = element.getText();
 		  element.sendKeys(Keys.TAB);
