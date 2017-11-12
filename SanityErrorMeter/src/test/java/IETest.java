@@ -35,7 +35,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
