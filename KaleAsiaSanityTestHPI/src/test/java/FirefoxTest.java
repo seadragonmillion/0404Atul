@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class FirefoxTest {
 
@@ -204,6 +205,313 @@ public class FirefoxTest {
 			}
 				
 	    }
+		
+		public void hops() throws Exception{
+			
+			WebDriverWait wait1 = new WebDriverWait(driver,60);
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			//Clicks on check boxes on of H for HOPS
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q2-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m1-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m1-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m1-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q5-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))).click();
+			
+			
+			jse.executeScript("scroll(0, 1500)");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q10-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m3-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q10-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m3-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m3-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q11-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q12-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q13-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q11-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q12-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q13-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l"))).click();
+			
+			
+			//Click on O of HOPS
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-2"))).click();
+			//Click on checkboxes of O in HOPS
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q2-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m1-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m1-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m1-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q5-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))).click();
+			
+			
+			jse.executeScript("scroll(0, 1500)");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q7-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m3-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+		    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m3-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m3-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q9-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+		    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l"))).click();
+			
+			
+			//Click on P of HOPS
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-3"))).click();
+			//Click on checkboxes of P in HOPS
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q5-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l"))).click();
+
+
+			jse.executeScript("scroll(0, 500)");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q10-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q10-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))).click();
+			
+			
+			jse.executeScript("scroll(0, 1500)");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q11-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q12-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q13-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q16-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q17-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m3-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q11-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q12-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q13-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q16-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q17-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m3-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m3-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q14-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q15-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q14-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q15-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l"))).click();
+			
+			
+			//Click on S of HOPS
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-4"))).click();
+			//Click on checkboxes of S in HOPS
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q1-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m1-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q1-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m1-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m1-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q6-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))).click();
+			
+			
+			jse.executeScript("scroll(0, 1500)");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q10-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m3-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q10-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m3-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m3-l"))).click();
+			
+			
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q11-l"))).click();
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l")));
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  System.out.println("Corrective action not visible");
+				  }
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q11-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))).click();
+			Thread.sleep(500);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))).click();
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			
+		}
+
 	
 	@Test
 	  public void SanityTest() throws Exception{
@@ -249,6 +557,7 @@ public class FirefoxTest {
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-btn-next"))).click();
 		  Thread.sleep(2000);
+		  hops();
 		  //Click on finalize
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-btn-done"))).click();
 		  Thread.sleep(2000);
