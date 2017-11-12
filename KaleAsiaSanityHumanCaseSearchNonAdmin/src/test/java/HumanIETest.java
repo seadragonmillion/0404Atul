@@ -216,7 +216,7 @@ public class HumanIETest {
 		  Thread.sleep(2000);
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(6000);
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q746")));
 		  Thread.sleep(4000);
