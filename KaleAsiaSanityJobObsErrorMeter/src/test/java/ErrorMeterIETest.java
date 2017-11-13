@@ -26,7 +26,7 @@ public class ErrorMeterIETest {
 	private InternetExplorerDriver driver;
 	private String username ="ritica";
 	private String password = "Kale46191802@";
-	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
+	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer_Win32_3.6.0\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
 	private String title = "Sanity Test";
