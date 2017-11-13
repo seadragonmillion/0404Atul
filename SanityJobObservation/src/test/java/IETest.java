@@ -364,7 +364,10 @@ public class IETest {
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
 			  	if (driver.findElement(By.className("sticky-close")).isDisplayed())
+				{
+				  Thread.sleep(1000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				}
 				  
 			  }}catch (NoSuchElementException e)
 			  {
