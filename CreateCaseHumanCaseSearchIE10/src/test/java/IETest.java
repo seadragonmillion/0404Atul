@@ -526,8 +526,8 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div"))).click();
 		  int i;
 		  int n=1000;
-		  
-		  /*for (i=0; i<5;i++)
+		  Thread.sleep(3000);
+		  for (i=0; i<5;i++)
 		  {
 			  String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
 			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
@@ -540,7 +540,7 @@ public class IETest {
 			  Thread.sleep(1000);
 			  jse.executeScript(scroll);
 			  Thread.sleep(1000);
-		  }*/
+		  }
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
 		  //Clicks on save
