@@ -398,7 +398,7 @@ public class IETest {
 			
 		  //Clicks on new case button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(4000);
 		  //Clicks on new case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
