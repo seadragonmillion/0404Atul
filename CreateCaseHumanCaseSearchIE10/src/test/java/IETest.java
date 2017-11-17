@@ -523,7 +523,8 @@ public class IETest {
 		  p.waitFor();
 		  Thread.sleep(3000);
 		  //Checks if 5 images have been uploaded
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div"))).click();
+		  if (count==1)
+		  		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div"))).click();
 		  int i;
 		  int n=1000;
 		  Thread.sleep(3000);
