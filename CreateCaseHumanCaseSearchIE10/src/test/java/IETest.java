@@ -471,7 +471,7 @@ public class IETest {
 		  }
 		  //Enters task
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys("QAA");
-		  Thread.sleep(1500);
+		  Thread.sleep(3000);
 		   if(count==1)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
 		  else
@@ -484,7 +484,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		  //Enters purpose
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys("QAA");
-		  Thread.sleep(1500);
+		  Thread.sleep(3000);
 		  if(count==1)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
 		  else
@@ -497,7 +497,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		  //Enters condition
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword_same);
-		  Thread.sleep(1500);
+		  Thread.sleep(3000);
 		  if(count==1)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
 		  else
