@@ -352,13 +352,7 @@ public class IETest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(8000);
-		 //Clicks on Analysis 
-		  try
-		  {
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
-		  }catch (UnhandledAlertException f){			  
-			  driver.switchTo().alert().dismiss();
-		  }
+		 
 		  if (login==1)
           {
                 
