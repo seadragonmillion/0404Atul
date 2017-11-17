@@ -357,7 +357,10 @@ public class ChromeTest {
 		  Random random = new Random();
 		  String caseId="";
 		  List<WebElement> list = new ArrayList<WebElement>();
-		  //Waits for black loading message to disappear
+		  
+		  for(int count=1;count<=5;count++)
+		  {
+			  //Waits for black loading message to disappear
 		  try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -365,9 +368,6 @@ public class ChromeTest {
 			  {
 				  
 			  }
-		  for(int count=1;count<=5;count++)
-		  {
-			
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 			  //Clicks on new case
