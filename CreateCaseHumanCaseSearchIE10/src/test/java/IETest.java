@@ -385,9 +385,7 @@ public class IETest {
 			  {
 				  
 			  }
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  
 		  List<WebElement> list = new ArrayList<WebElement>();
 		  //Enters mandatory data
 		  //Enters case id
@@ -395,7 +393,9 @@ public class IETest {
 		  String caseId="";
 		  for(int count=1;count<=5;count++)
 		  {
-			
+			Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clicks on new case button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 		  Thread.sleep(4000);
