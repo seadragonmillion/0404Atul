@@ -206,7 +206,7 @@ public class FirefoxTest {
 		  //Checks if case deleted
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(Keys.ENTER);
 		  try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));

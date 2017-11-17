@@ -40,7 +40,7 @@ public class ChromeTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(800000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -156,6 +156,7 @@ public class ChromeTest {
 			  }
 		  //CLick on enter case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
+		  Thread.sleep(2000);
 		  //Clicks on case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-ul"))).click();
 		 //Waits for black loading message to disappear
@@ -184,7 +185,7 @@ public class ChromeTest {
 		  //Checks if case deleted
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(Keys.ENTER);
 		  Thread.sleep(1000);
 		  if(driver.findElement(By.id("pii-admin-efsh-list-ul")).isDisplayed()==false)
