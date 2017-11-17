@@ -384,7 +384,7 @@ public class IETest {
 		  //Enters mandatory data
 		  //Enters case id
 		  Random random = new Random();
-		  String caseId;
+		  String caseId="";
 		  for(int count=1;count<=5;count++)
 		  {
 			
