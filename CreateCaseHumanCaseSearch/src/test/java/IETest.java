@@ -33,11 +33,16 @@ public class IETest {
 	private String url = "https://kaledev.error-free.com/";
 	private int numberOfImages=5;
 	private int login =0;
+	private String keyword_same="QAAfive";
+	private String key1="QAAzebra";
+	private String key2="QAAcamel";
+	private String key3="QAAgiraffe";
+	private String caseId1,caseId2,caseId3,caseId4,caseId5;
 	SoftAssertions softly = new SoftAssertions();
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -288,6 +293,51 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
 		  
 	}
+
+	public void checkkeyword (String caseId1,String caseId2,String caseId3,String caseId4,String caseId5) throws Exception
+	{
+		  WebDriverWait wait = new WebDriverWait(driver,40);
+		  //Enters the term and check the search by enter
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword_same);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		  //Checks for the five cases
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId1)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId2)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId3)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId4)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId5)));
+		  Thread.sleep(1000);
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		  //Enters the term with 3 unique keywords
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(key1);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		  //Checks for the case id 1
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId1)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(key2);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		  //Checks for the case id 1
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId1)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(key3);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		  //Checks for the case id 1
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId1)));
+		  Thread.sleep(1000);
+		  
+	}
 	
 	@Test
 	  public void SanityTest() throws Exception{
@@ -330,19 +380,23 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
+		  List<WebElement> list = new ArrayList<WebElement>();
+		  //Enters mandatory data
+		  //Enters case id
+		  Random random = new Random();
+		  String caseId;
+		  for(int count=1;count<=5;count++)
+		  {
+			
 		  //Clicks on new case button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 		  Thread.sleep(1000);
 		  //Clicks on new case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  //Enters mandatory data
-		  //Enters case id
-		  Random random = new Random();
-		  String caseId;
 		  while (true)
 		  {
-			  caseId = String.format(""+random.nextInt(10000));
+			  caseId = String.format("%d"+random.nextInt(10000));
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
 			  Thread.sleep(1000);
 			  WebElement errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
@@ -355,6 +409,16 @@ public class IETest {
 				  break;
 		  }
 		  System.out.println("Case id: "+ caseId);
+		  if(count==1)
+			  caseId1=caseId;
+		  if(count==2)
+			  caseId2=caseId;
+		  if(count==3)
+			  caseId3=caseId;
+		  if(count==4)
+			  caseId4=caseId;
+		  if(count==5)
+			  caseId5=caseId;
 		  //Enters Question
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys("QAA Human Case Upload");
 		  //Enters Answer
@@ -363,30 +427,80 @@ public class IETest {
 		  jse.executeScript("scroll(0,1700)");
 		  Thread.sleep(1000);
 		  //Enters Keyword
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys("QAA");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword_same);
 		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
-		 //Clicks on add keyword
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		  if(count==1)
+		  {
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(key1);
+			  Thread.sleep(1500);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(key2);
+			  Thread.sleep(1500);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(key3);
+			  Thread.sleep(1500);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		  }
+		  else 
+		  {
+			  WebElement element = driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-keyword-blocks']/div[2]/ul"));
+			  element.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+			//Clicks on add keyword
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		  }
 		  //Enters task
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys("QAA");
 		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
+		   if(count==1)
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
+		  else
+		  {
+			  WebElement element = driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-task-blocks']/div[2]/ul"));
+			  element.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();			  
+		  }
 		  //Clicks on add task
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		  //Enters purpose
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys("QAA");
 		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		  if(count==1)
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		  else
+		  {
+			  WebElement element = driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-purpose-blocks']/div[2]/ul"));
+			  element.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();	
+		  }
 		  //Clicks on add purpose
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		  //Enters condition
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys("QAA");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword_same);
 		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		  if(count==1)
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		  else
+		  {
+			  jse.executeScript("scroll(0,2000)");
+			  WebElement element = driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-condition-blocks']/div[2]/ul"));
+			  element.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();	
+		  }
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,2000)");
+		  Thread.sleep(1000);
 		  //Clicks on add condition
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
@@ -404,7 +518,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div"))).click();
 		  int i;
 		  int n=1000;
-		  List<WebElement> list = new ArrayList<WebElement>();
+		  
 		  for (i=0; i<5;i++)
 		  {
 			  String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
@@ -436,9 +550,22 @@ public class IETest {
 			  {
 				  
 			  }
-		  
+		  }
+		  Thread.sleep(2000);
 		  compareSlide(caseId,list);
-		  deleteCase(caseId);
+		  Thread.sleep(2000);
+		  checkkeyword(caseId1,caseId2,caseId3,caseId4,caseId5);
+		  Thread.sleep(2000);
+		  deleteCase(caseId1);
+		  Thread.sleep(2000);
+		  deleteCase(caseId2);
+		  Thread.sleep(2000);
+		  deleteCase(caseId3);
+		  Thread.sleep(2000);
+		  deleteCase(caseId4);
+		  Thread.sleep(2000);
+		  deleteCase(caseId5);
+		  Thread.sleep(2000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

@@ -38,9 +38,9 @@ public class ChromeTest {
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
 	SoftAssertions softly = new SoftAssertions();
 	
-	/*@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);*/
+	  public Timeout globalTimeout= new Timeout(600000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
