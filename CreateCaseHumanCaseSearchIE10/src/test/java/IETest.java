@@ -356,6 +356,7 @@ public class IETest {
               if (login==1)
               {
                     WebDriverWait wait2 = new WebDriverWait(driver,20);
+                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
               }
        }catch (NoSuchElementException e){
