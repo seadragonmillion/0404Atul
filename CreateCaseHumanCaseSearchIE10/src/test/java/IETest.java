@@ -397,7 +397,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		  while (true)
 		  {
-			  caseId = String.format("%d"+random.nextInt(10000));
+			  caseId = String.format(""+random.nextInt(10000));
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
 			  Thread.sleep(1000);
 			  WebElement errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
