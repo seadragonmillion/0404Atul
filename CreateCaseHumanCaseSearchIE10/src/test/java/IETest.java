@@ -13,7 +13,6 @@ import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,7 +41,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1600000);
+	  public Timeout globalTimeout= new Timeout(2000000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -352,16 +351,16 @@ public class IETest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(8000);
-		 
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-home-menu']/div/a[2]"))).click();
 		  if (login==1)
           {
                 
                 while(true)
     		  {
                	 Thread.sleep(1000);
-    			  if (driver.findElement(By.cssSelector(".sticky-queue.top-right")).isDisplayed())
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
     			  {
-    				  WebElement ele =driver.findElement(By.cssSelector(".sticky-queue.top-right"));
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
     				  ele.findElement(By.className("sticky-close")).click();
     				  break;
     			  }
@@ -375,27 +374,31 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		  //Clicks on Errorfree bank option
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-		  //Clicks on Human cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
-		  
-		  List<WebElement> list = new ArrayList<WebElement>();
+		   List<WebElement> list = new ArrayList<WebElement>();
 		  //Enters mandatory data
 		  //Enters case id
 		  Random random = new Random();
 		  String caseId="";
 		  for(int count=1;count<=5;count++)
 		  {
-			Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+			  Thread.sleep(1000);
+			  jse.executeScript("scroll(0,0)");
+			  Thread.sleep(1000);
+			  //Clicks on Human cases
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
+			  //Waits for black loading message to disappear
+			  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			  
+			  Thread.sleep(1000);
+			  jse.executeScript("scroll(0,0)");
+			  Thread.sleep(3000);
+		 
 		  //Clicks on new case button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 		  Thread.sleep(4000);
@@ -506,7 +509,7 @@ public class IETest {
 			  WebElement element = driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-condition-blocks']/div[2]/ul"));
 			  element.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();	
 		  }
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,2000)");
 		  Thread.sleep(1000);
 		  //Clicks on add condition
@@ -523,10 +526,9 @@ public class IETest {
 		  p.waitFor();
 		  Thread.sleep(3000);
 		  //Checks if 5 images have been uploaded
-		  if (count==1)
-		  		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div"))).click();
 		  int i;
-		  int n=1000;
+		  //int n=1000;
 		  Thread.sleep(3000);
 		  for (i=0; i<5;i++)
 		  {
@@ -536,12 +538,18 @@ public class IETest {
 				  System.out.println("Uploaded Image : " + (i+1));
 				  list.add(driver.findElement(By.xpath(xpath)));
 			  }
-			  n=n+100;
-			  String scroll = "scroll(0,"+n+")";
+			  //n=n+100;
+			//  String scroll = "scroll(0,"+n+")";
 			  Thread.sleep(1000);
-			  jse.executeScript(scroll);
+			 // jse.executeScript(scroll);
 			  Thread.sleep(1000);
 		  }
+		  //jse.executeScript("scroll(0,0)");
+		  Thread.sleep(3000);
+		  Actions act1 = new Actions(driver);
+		  WebElement plussign=driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"));
+		  act1.click(plussign).build().perform();
+		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
 		  //Clicks on save
