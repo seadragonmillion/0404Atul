@@ -46,7 +46,7 @@ public class IETest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing verification on event information page in HiRCA for non admin in Internet Explorer");
+		  System.out.println("Human case upload in Internet Explorer");
 		  System.setProperty("webdriver.ie.driver",ie_path);
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
@@ -350,22 +350,22 @@ public class IETest {
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  Thread.sleep(8000);
+		  Thread.sleep(10000);
 		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-home-menu']/div/a[2]"))).click();
 		  if (login==1)
           {
                 
-                while(true)
-    		  {
-               	 Thread.sleep(1000);
-    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
-    			  {
-    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
-    				  ele.findElement(By.className("sticky-close")).click();
-    				  break;
-    			  }
-    			  else break;
-    		  }
+                Thread.sleep(1000);
+    			  try{
+              
+                    WebDriverWait wait2 = new WebDriverWait(driver,20);
+                    wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                    
+              
+              }catch (NoSuchElementException e){
+                     
+              }
+    		  
           }
 		  
 		  //Clicks on admin user name on top right corner
