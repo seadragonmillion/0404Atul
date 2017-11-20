@@ -358,9 +358,10 @@ public class IETest {
                 Thread.sleep(1000);
     			  try{
               
-                    WebDriverWait wait2 = new WebDriverWait(driver,20);
-                    wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-                    
+                   // WebDriverWait wait2 = new WebDriverWait(driver,40);
+                    WebElement ele1=driver.findElement(By.className("sticky-close")).click();
+                    Actions close1=new Actions(driver);
+                    close1.click(ele1).build().perform();
               
               }catch (NoSuchElementException e){
                      
