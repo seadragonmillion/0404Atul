@@ -28,7 +28,7 @@ public class IETest {
 	private WebDriver driver;
 	private String username ="ritica";
 	private String password = "Kale24982417@";
-	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
+	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer_Win32_3.6.0\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
 	private int numberOfImages=5;
 	private int login =0;
@@ -41,8 +41,9 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(2000000);
+	  public Timeout globalTimeout= new Timeout(1500000);
 		  
+	@SuppressWarnings("deprecation")
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -51,6 +52,7 @@ public class IETest {
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
 		  cap.setCapability("requireWindowFocus", true);
+		  cap.isJavascriptEnabled();
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
@@ -351,22 +353,21 @@ public class IETest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(10000);
-		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-home-menu']/div/a[2]"))).click();
+		 // jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  if (login==1)
           {
-                
-                Thread.sleep(1000);
+               Thread.sleep(1000);
     			  try{
               
                    // WebDriverWait wait2 = new WebDriverWait(driver,40);
-                    WebElement ele1=driver.findElement(By.className("sticky-close")).click();
+                    WebElement ele1=driver.findElement(By.xpath(".//*[@class='sticky-queue top-right']/div/span"));
                     Actions close1=new Actions(driver);
                     close1.click(ele1).build().perform();
-              
+                                 
               }catch (NoSuchElementException e){
-                     
+                     System.out.println("Didnt find close sticky");
               }
-    		  
+                
           }
 		  
 		  //Clicks on admin user name on top right corner

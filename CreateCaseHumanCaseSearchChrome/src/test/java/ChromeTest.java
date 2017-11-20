@@ -45,7 +45,7 @@ public class ChromeTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on create Company/Group/User in Chrome");
+		  System.out.println("Human Case Upload in Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
 		  driver = new ChromeDriver();
 		  //Browser is maximized

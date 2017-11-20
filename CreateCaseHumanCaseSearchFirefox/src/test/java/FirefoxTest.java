@@ -48,7 +48,7 @@ public class FirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing verification on event information page in HiRCA for non admin in Firefox");
+		 System.out.println("Human Case Upload in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
 		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
