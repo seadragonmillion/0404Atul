@@ -35,6 +35,7 @@ public class ChromeTest {
 	private String key1="QAAzebra";
 	private String key2="QAAcamel";
 	private String key3="QAAgiraffe";
+	private String title ="QAA Human Case Upload";
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
 	SoftAssertions softly = new SoftAssertions();
 	
@@ -319,6 +320,24 @@ public class ChromeTest {
 		  //Checks for the case id 1
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId1)));
 		  Thread.sleep(1000);
+		  //Enters the title and check the search by enter
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(title);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		  //Checks for the five cases
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId1)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId2)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId3)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId4)));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseId5)));
+		  Thread.sleep(1000);
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
 		  
 	}
 	
@@ -400,9 +419,9 @@ public class ChromeTest {
 		  if(count==5)
 			  caseId5=caseId;
 		  //Enters Question
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys("QAA Human Case Upload");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		  //Enters Answer
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys("QAA Human Case Upload");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,1700)");
 		  Thread.sleep(1000);
