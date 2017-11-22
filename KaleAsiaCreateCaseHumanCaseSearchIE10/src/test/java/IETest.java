@@ -408,6 +408,7 @@ public class IETest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 			  //Waits for black loading message to disappear
 			  try{
+			  Thread.sleep(1000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
@@ -415,7 +416,7 @@ public class IETest {
 					  
 				  }
 			  
-			  Thread.sleep(1000);
+			  Thread.sleep(3000);
 			  jse.executeScript("scroll(0,0)");
 			  Thread.sleep(3000);
 		 
@@ -454,9 +455,9 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		  //Enters Answer
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Enters Keyword
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword_same);
 		  Thread.sleep(1500);
@@ -531,13 +532,13 @@ public class IETest {
 		  }
 		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,2000)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Clicks on add condition
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Uploads 5 slides
 		  Actions act = new Actions(driver);
 		  WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input")));
@@ -571,7 +572,7 @@ public class IETest {
 		  act1.click(plussign).build().perform();
 		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 		  //Clicks on create case
