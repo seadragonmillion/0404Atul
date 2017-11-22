@@ -460,6 +460,7 @@ public class IETest {
 			  caseId5=caseId;
 		  //Enters Question
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
+		  Thread.sleep(2000);
 		  //Enters Answer
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
 		  Thread.sleep(2000);
