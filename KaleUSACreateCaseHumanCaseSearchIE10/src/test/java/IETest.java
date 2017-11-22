@@ -42,7 +42,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1700000);
+	  public Timeout globalTimeout= new Timeout(2000000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
