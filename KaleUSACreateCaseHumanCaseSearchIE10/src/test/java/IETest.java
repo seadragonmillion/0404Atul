@@ -42,7 +42,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1600000);
+	  public Timeout globalTimeout= new Timeout(1700000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
@@ -401,6 +401,14 @@ public class IETest {
 		  String caseId="";
 		  for(int count=1;count<=5;count++)
 		  {
+			  //Waits for black loading message to disappear
+			  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");
 			  Thread.sleep(1000);
