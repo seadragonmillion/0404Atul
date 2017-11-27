@@ -186,12 +186,14 @@ public class FirefoxTest {
 			  caseId = String.format("%d", random.nextInt(10000));
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).sendKeys(caseId);
 			  Thread.sleep(1000);
-			  try{
-			  driver.findElement(By.id("pii-admin-efse-id-error"));
-			  }catch(NoSuchElementException e)
+			  WebElement errorCaseId=driver.findElement(By.id("pii-admin-efse-id-error"));
+			  if(errorCaseId.isDisplayed()==true)
 			  {
-				  break;
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
+				  continue;
 			  }
+			  if(errorCaseId.isDisplayed()==false)
+				  break;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
 			
 		  }
