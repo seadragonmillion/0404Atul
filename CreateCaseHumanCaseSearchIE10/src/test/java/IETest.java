@@ -416,7 +416,7 @@ public class IETest {
 					  
 				  }
 			  
-			  Thread.sleep(1000);
+			  Thread.sleep(3000);
 			  jse.executeScript("scroll(0,0)");
 			  Thread.sleep(3000);
 		 
