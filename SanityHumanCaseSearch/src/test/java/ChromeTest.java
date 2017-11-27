@@ -259,6 +259,38 @@ public class ChromeTest {
 			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
+		  
+		  //Clicks on previous button
+		  driver.findElement(By.linkText("Previous")).click();
+		  //Checks the previous button
+		  for (int i=n;i>=2;i--)
+		  {
+			  String id = "pii-slideimg-Q1459-"+(i-1);
+			  Thread.sleep(1000);
+			  if (driver.findElement(By.id(id)).isDisplayed())
+				  System.out.println("Found Slide "+(i));
+			  Thread.sleep(500);
+			   //Checking if title is correct
+			 // String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title, expected_title);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on Previous
+			  driver.findElement(By.linkText("Previous")).click();
+		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/a")).click();
 		  //Clicks on clear
@@ -338,6 +370,37 @@ public class ChromeTest {
 			  assertEquals (actual_slide1, expected_slide1);
 			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
+		  }
+		  //Clicks on previous button
+		  driver.findElement(By.linkText("Previous")).click();
+		  //Checks the previous button
+		  for (int i=n;i>=2;i--)
+		  {
+			  String id = "pii-slideimg-Q1459-"+(i-1);
+			  Thread.sleep(1000);
+			  if (driver.findElement(By.id(id)).isDisplayed())
+				  System.out.println("Found Slide "+(i));
+			  Thread.sleep(500);
+			   //Checking if title is correct
+			 // String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title, expected_title);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on Previous
+			  driver.findElement(By.linkText("Previous")).click();
 		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/a")).click();
