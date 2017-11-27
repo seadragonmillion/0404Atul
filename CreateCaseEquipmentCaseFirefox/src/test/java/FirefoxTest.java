@@ -376,7 +376,7 @@ public class FirefoxTest {
 		  Thread.sleep(500);
 		  String id = "pii-slideshow-equip-F"+caseId;
 		  //Checking if slide number appears and is correct
-		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/span[2]")).getText();
+		  String actual_slide1 = driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/span[2]")).getAttribute("textContent");
 		  String expected_slide1 = "1/"+n;
 		  softly.assertThat(actual_slide1).as("test data").isEqualTo(expected_slide1);
 		  Thread.sleep(1000);
@@ -388,7 +388,7 @@ public class FirefoxTest {
 		  if(driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/img")).isDisplayed())
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
-		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/span")).getText();
+		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/span")).getAttribute("textContent");
 		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
 		  softly.assertThat(actual_copyright1).as("test data").isEqualTo(expected_copyright1);
 		  //Click on next
@@ -408,7 +408,7 @@ public class FirefoxTest {
 			  softly.assertThat(actual_title1).as("test data").isEqualTo(expected_title1);
 			  //Checking if copyright is correct
 			  String copyright_xpath = ".//*[@id='"+id+"']/ul/li["+i+"]/span/span";
-			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
 			  softly.assertThat(actual_copyright1).as("test data").isEqualTo(expected_copyright1);
 			  //Checking if footer image appears
 			  String image_xpath = ".//*[@id='"+id+"']/ul/li["+i+"]/span/img";
@@ -416,7 +416,7 @@ public class FirefoxTest {
 				  System.out.println("Logo is displayed");
 			  //Checking if slide number appears and is correct
 			  String slide_xpath = ".//*[@id='"+id+"']/ul/li["+i+"]/span/span[2]";
-			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getText();
+			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			  expected_slide1 = i+"/"+n;
 			  softly.assertThat(actual_slide1).as("test data").isEqualTo(expected_slide1);
 			  //Click on next
