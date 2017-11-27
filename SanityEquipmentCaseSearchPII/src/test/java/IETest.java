@@ -317,7 +317,7 @@ public class IETest {
 		  //Click on previous
 		  driver.findElement(By.linkText("Previous")).click();
 		  //Checks for previous button
-		  for (int i=n;i<=2;i--)
+		  for (int i=n;i>=2;i--)
 		  {
 			  String id = "pii-slideimg-F1459-"+(i-1);
 			  Thread.sleep(1000);
@@ -431,7 +431,7 @@ public class IETest {
 		  //Click on previous
 		  driver.findElement(By.linkText("Previous")).click();
 		  //Checks for previous button
-		  for (int i=n;i<=2;i--)
+		  for (int i=n;i>=2;i--)
 		  {
 			  String id = "pii-slideimg-F1459-"+(i-1);
 			  Thread.sleep(1000);
