@@ -28,7 +28,7 @@ public class IETest {
 	private WebDriver driver;
 	private String username ="ritica";
 	private String password = "Kale24982417@";
-	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer_Win32_3.6.0\\IEDriverServer.exe";
+	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
 	private int numberOfImages=5;
 	private int login =0;
