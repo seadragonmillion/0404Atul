@@ -35,7 +35,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1200000);
+	  public Timeout globalTimeout= new Timeout(1250000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -794,7 +794,7 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Check if it allows for uploading more than one file
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
 		  softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
