@@ -252,6 +252,38 @@ public class MechanicalChromeTest {
 			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
+		  //Click on previous
+		  driver.findElement(By.linkText("Previous")).click();
+		  //Checks if there are slides present
+		  for (int i=n;i>=2;i--)
+		  {
+			  String id = "pii-slideimg-F1638-"+(i-1);
+			  Thread.sleep(1000);
+			  if (driver.findElement(By.id(id)).isDisplayed())
+				  System.out.println("Found Slide "+(i));
+			  else System.out.println("Didn't find slide "+i);
+			  Thread.sleep(1000);
+			//Checking if title is correct
+			  String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title, expected_title);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on previous
+			  driver.findElement(By.linkText("Previous")).click();
+		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1638']/a")).click();
 		  //Clicks on clear
@@ -333,6 +365,38 @@ public class MechanicalChromeTest {
 			  assertEquals (actual_slide1, expected_slide1);
 			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
+		  }
+		  //Click on previous
+		  driver.findElement(By.linkText("Previous")).click();
+		  //Checks if there are slides present
+		  for (int i=n;i>=2;i--)
+		  {
+			  String id = "pii-slideimg-F1302-"+(i-1);
+			  Thread.sleep(1000);
+			  if (driver.findElement(By.id(id)).isDisplayed())
+				  System.out.println("Found Slide "+(i));
+			  else System.out.println("Didn't find slide "+i);
+			  Thread.sleep(1000);
+			//Checking if title is correct
+			  String title_id= "centered-btns2_s"+(i-1);
+			  String title_xpath = ".//*[@id='"+title_id+"']/div";
+			  actual_title1 = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title1, expected_title1);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
+			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright1, expected_copyright1);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
+			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide1 = i+"/"+n;
+			  assertEquals (actual_slide1, expected_slide1);
+			  //Click on previous
+			  driver.findElement(By.linkText("Previous")).click();
 		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1302']/a")).click();
