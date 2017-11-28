@@ -44,7 +44,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1200000);
+	  public Timeout globalTimeout= new Timeout(1300000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -374,6 +374,7 @@ public class FirefoxTest {
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      Thread.sleep(6000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
