@@ -207,7 +207,13 @@ public class IE10Test {
 			  caseId = String.format("%d", y);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).sendKeys(caseId);
 			  Thread.sleep(2000);
-			  WebElement errorCaseId=driver.findElement(By.id("pii-admin-efse-id-error"));
+			  WebElement errorCaseId;
+			  try{
+			  errorCaseId=driver.findElement(By.id("pii-admin-efse-id-error"));
+			  }catch(org.openqa.selenium.NoSuchElementException e)
+			  {
+			  	break;
+			  }
 			  if(errorCaseId.isDisplayed()==true)
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
