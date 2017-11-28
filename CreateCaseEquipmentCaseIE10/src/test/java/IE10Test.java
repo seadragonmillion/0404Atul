@@ -201,8 +201,10 @@ public class IE10Test {
 			while (true)
 		  {
 			  Thread.sleep(1000);
-			  caseId = String.format("%d", random.nextInt(10000));
-			  caseId=caseId.replaceFirst("^0*", "");
+			  int y=random.nextInt(10000);
+			  if(y<1000)
+			     continue;
+			  caseId = String.format("%d", y);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).sendKeys(caseId);
 			  Thread.sleep(2000);
 			  WebElement errorCaseId=driver.findElement(By.id("pii-admin-efse-id-error"));
