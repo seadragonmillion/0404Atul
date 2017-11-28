@@ -278,7 +278,7 @@ public class MechanicalFirefoxTest {
 			  assertEquals (actual_title, expected_title);
 			  //Checking if copyright is correct
 			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
-			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
 			  assertEquals (actual_copyright, expected_copyright);
 			  //Checking if footer image appears
 			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
@@ -286,7 +286,7 @@ public class MechanicalFirefoxTest {
 				  System.out.println("Logo is displayed");
 			  //Checking if slide number appears and is correct
 			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
-			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			  expected_slide = i+"/"+n;
 			  assertEquals (actual_slide, expected_slide);
 			  //Click on previous
@@ -392,7 +392,7 @@ public class MechanicalFirefoxTest {
 			  assertEquals (actual_title1, expected_title1);
 			  //Checking if copyright is correct
 			  String copyright_xpath = ".//*[@id='"+title_id+"']/span/span";
-			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  actual_copyright1 = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
 			  assertEquals (actual_copyright1, expected_copyright1);
 			  //Checking if footer image appears
 			  String image_xpath = ".//*[@id='"+title_id+"']/span/img";
@@ -400,7 +400,7 @@ public class MechanicalFirefoxTest {
 				  System.out.println("Logo is displayed");
 			  //Checking if slide number appears and is correct
 			  String slide_xpath = ".//*[@id='"+title_id+"']/span/span[2]";
-			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getText();
+			  actual_slide1 = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			  expected_slide1 = i+"/"+n;
 			  assertEquals (actual_slide1, expected_slide1);
 			  //Click on previous
