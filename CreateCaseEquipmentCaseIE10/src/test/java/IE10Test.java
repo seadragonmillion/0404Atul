@@ -54,7 +54,7 @@ public class IE10Test {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3000000);
+	  public Timeout globalTimeout= new Timeout(7000000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
