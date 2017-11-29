@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
+
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.interactions.Actions;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+
 import java.util.concurrent.TimeoutException;
+
+import org.junit.Assert;
+
 
 public class ChromeTest {
 
@@ -123,6 +129,7 @@ public class ChromeTest {
 		  }
 			  
 		}
+	
 	
 	@Test
 	  public void SanityTest() throws Exception{
@@ -268,16 +275,74 @@ public class ChromeTest {
 			  assertEquals (actual_slide, expected_slide);
 			  //Moves out of the slideshow and checks for security
 			  Thread.sleep(1000);
-			  driver.findElement(By.xpath(title_xpath)).click();
+			  //Clicks on copyright
+			  if(i==2)
+				  driver.findElement(By.xpath(copyright_xpath)).click();
+			  //Clicks on logo
+			  if(i==3)
+				  driver.findElement(By.xpath(image_xpath)).click();
+			  //Clicks outside
+			  if(i==4)
+			  {
+				  Actions act2 = new Actions(driver);
+				  act2.moveByOffset(1600, 0).click().build().perform();
+			  }
+			  //Clicks on title
+			  else 
+				  driver.findElement(By.xpath(title_xpath)).click();
 			  Thread.sleep(3000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q1459"))).click();
 			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
+		  //Clicks on previous button
+		  driver.findElement(By.linkText("Previous")).click();
+		  //Checks the previous button
+		  for (int i=n;i>=2;i--)
+		  {
+			  String id = "pii-slideimg-Q1459-"+(i-1);
+			  Thread.sleep(1000);
+			  if (driver.findElement(By.id(id)).isDisplayed())
+				  System.out.println("Found Slide "+(i));
+			  Thread.sleep(500);
+			   //Checking if title is correct
+			 // String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  assertEquals (actual_title, expected_title);
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getText();
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='pii-slideshow-Q1459']/ul/li["+i+"]/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getText();
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on Previous
+			  driver.findElement(By.linkText("Previous")).click();
+		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q1459']/a")).click();
 		  //Clicks on clear
 		  driver.findElement(By.id("pii-efsh-clear")).click();
+		  //Searches for case id box
+		  try{
+		  	WebElement caseSearch= driver.findElement(By.id("pii-efsh-searchbyid-input"));
+		  	if (caseSearch.isDisplayed()==true)
+		  		Assert.fail("Case id search displayed");
+		  	if(caseSearch.isDisplayed()==false)
+		  		System.out.println("Case id search box not displayed");
+
+		  }catch(NoSuchElementException e)
+		  {
+			  System.out.println("Case id search box not present.");
+
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
