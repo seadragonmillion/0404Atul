@@ -34,7 +34,7 @@ public class HumanFirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(250000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -315,7 +315,7 @@ public class HumanFirefoxTest {
 		  for (int i=2;i<=n;i++)
 		  {
 			  String id = "pii-slideimg-Q746-"+(i-1);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+i);
 			  Thread.sleep(500);
