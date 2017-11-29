@@ -333,12 +333,13 @@ public class IETest {
 				  Point coordinates = driver.findElement(By.linkText("Next")).getLocation();
 				  Robot robot = new Robot();
 				  robot.mouseMove(coordinates.getX()+100,coordinates.getY());
+				  Thread.sleep(2000);
 				  act2.click().build().perform();
 			  }
 			  //Clicks on title
 			  else 
 				  driver.findElement(By.xpath(title_xpath)).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(title_xpath))).click();
+			 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(title_xpath))).click();
 			  Thread.sleep(3000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q1459"))).click();
 			  //Click on next

@@ -19,6 +19,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
+import org.junit.Assert;
 
 public class HumanFirefoxTest {
 
@@ -288,16 +289,78 @@ public class HumanFirefoxTest {
 			  assertEquals (actual_slide, expected_slide);
 			  //Moves out of the slideshow and checks for security
 			  Thread.sleep(2000);
-			  driver.findElement(By.xpath(title_xpath)).click();
+			  //Clicks on copyright
+			  if(i==2)
+				  driver.findElement(By.xpath(copyright_xpath)).click();
+			  //Clicks on logo
+			  if(i==3)
+				  driver.findElement(By.xpath(image_xpath)).click();
+			  //Clicks outside
+			  if(i==4)
+			  {
+				  Actions act2 = new Actions(driver);
+				  act2.moveByOffset(500, 0).click().build().perform();
+			  }
+			  //Clicks on title
+			  else 
+				  driver.findElement(By.xpath(title_xpath)).click();
 			  Thread.sleep(4000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q746"))).click();
 			  //Click on next
 			  driver.findElement(By.linkText("Next")).click();
 		  }
+		  //Click on previous
+		  driver.findElement(By.linkText("Previous")).click();
+		  //Checks if there are slides present
+		  for (int i=2;i<=n;i++)
+		  {
+			  String id = "pii-slideimg-Q746-"+(i-1);
+			  Thread.sleep(1000);
+			  if (driver.findElement(By.id(id)).isDisplayed())
+				  System.out.println("Found Slide "+i);
+			  Thread.sleep(500);
+			  //Checking if title is correct
+			 // String title_id= "centered-btns1_s"+(i-1);
+			  String title_xpath = ".//*[@id='pii-slideshow-Q746']/ul/li["+i+"]/div";
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  if((actual_title.contains(expected_title))==true)
+		  {
+		      System.out.println("Title match");
+		  }
+			  //Checking if copyright is correct
+			  String copyright_xpath = ".//*[@id='pii-slideshow-Q746']/ul/li["+i+"]/span/span";
+			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
+			  assertEquals (actual_copyright, expected_copyright);
+			  //Checking if footer image appears
+			  String image_xpath = ".//*[@id='pii-slideshow-Q746']/ul/li["+i+"]/span/img";
+			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+				  System.out.println("Logo is displayed");
+			  //Checking if slide number appears and is correct
+			  String slide_xpath = ".//*[@id='pii-slideshow-Q746']/ul/li["+i+"]/span/span[2]";
+			  actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
+			  expected_slide = i+"/"+n;
+			  assertEquals (actual_slide, expected_slide);
+			  //Click on previous
+			  driver.findElement(By.linkText("Previous")).click();
+		  }
 		  //Clicks on close button
 		  driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q746']/a")).click();
 		  //Clicks on clear
 		  driver.findElement(By.id("pii-efsh-clear")).click();
+		   //Searches for case id box
+		  try{
+
+		  	WebElement caseSearch= driver.findElement(By.id("pii-efsh-searchbyid-input"));
+		  	if (caseSearch.isDisplayed()==true)
+		  		Assert.fail("Case id search displayed");
+		  	if(caseSearch.isDisplayed()==false)
+		  		System.out.println("Case id search box not displayed");
+
+		  }catch(NoSuchElementException e)
+		  {
+			  System.out.println("Case id search box not present.");
+
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
