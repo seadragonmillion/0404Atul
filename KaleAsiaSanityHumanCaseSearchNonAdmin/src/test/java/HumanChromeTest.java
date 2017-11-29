@@ -300,10 +300,10 @@ public class HumanChromeTest {
 		  //Click on previous
 		  driver.findElement(By.linkText("Previous")).click();
 		  //Checks if there are slides present
-		  for (int i=2;i<=n;i++)
+		  for (int i=n;i>=2;i--)
 		  {
 			  String id = "pii-slideimg-Q746-"+(i-1);
-			  Thread.sleep(2000);
+			  Thread.sleep(1000);
 			  if (driver.findElement(By.id(id)).isDisplayed())
 				  System.out.println("Found Slide "+i);
 			  Thread.sleep(500);
