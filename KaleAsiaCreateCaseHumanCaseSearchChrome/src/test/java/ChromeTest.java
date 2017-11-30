@@ -179,10 +179,10 @@ public class ChromeTest {
 					break;
 				}
 			}
-			for(int count =0;count<i;count++)
+			for(int count =0;count<=(i-2);count++)
 			{
 				System.out.println(caseIdArray[count]);
-				deleteCase(caseIdArray[count],1);
+				deleteCase(caseIdArray[count],count+1);
 			}
 			return 1;
 		}

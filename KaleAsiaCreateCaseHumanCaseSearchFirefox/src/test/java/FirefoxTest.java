@@ -44,7 +44,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1300000);
+	  public Timeout globalTimeout= new Timeout(1600000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -141,8 +141,68 @@ public class FirefoxTest {
 		  }
 			  
 		}
+	public int deletePreviousCase() throws Exception{
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Clicks on Error free bank
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+		//Clicks on Human Performance Search
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
+		//Enters the title in term search field
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(title);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		//Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Checks if Exact matches appear
+		WebElement exact = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-question-list']/div/h4/a/div")));
+		String exactText=exact.getText();
+		
+		if(exactText.equals("Results")==true)
+		{
+			int i=1;
+			String [] caseIdArray=new String[50];
+			while(true)
+			{
+				try
+				{
+					String xpath=".//*[@id='pii-question-list']/div[1]/div[1]/div["+i+"]";
+					System.out.println(xpath);
+					WebElement row=driver.findElement(By.xpath(xpath));
+					String rowCaseId=row.getAttribute("qid");
+					rowCaseId=rowCaseId.substring(1);
+					System.out.println("Case id:" +rowCaseId);
+					caseIdArray[i-1]=rowCaseId;
+					i=i+1;
+				}catch(NoSuchElementException e)
+				{
+					break;
+				}
+			}
+			for(int count =0;count<=(i-2);++count)
+			{
+				System.out.println(caseIdArray[count]);
+				deleteCase(caseIdArray[count],count+1);
+			}
+			return 1;
+			
+		}
+		else
+		{
+			System.out.println("No existing cases");
+			return 0;
+		}
+		
+		
+	}
 	
-	public void deleteCase(String caseId) throws Exception{
+	public void deleteCase(String caseId, int y) throws Exception{
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on admin user name on top right corner
@@ -151,7 +211,8 @@ public class FirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		  Thread.sleep(1000);
 		  //Clicks on Errorfree bank option
-		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		  if(y==1)
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 		  //Clicks on Human cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 		  //Waits for black loading message to disappear
@@ -388,12 +449,14 @@ public class FirefoxTest {
           }
 		  Thread.sleep(6000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
+		  int m=deletePreviousCase();
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  //Clicks on admin option
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		  //Clicks on Errorfree bank option
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		  if(m==0)
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 		  //Clicks on Human cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 		  //Waits for black loading message to disappear
@@ -591,15 +654,15 @@ public class FirefoxTest {
 		  Thread.sleep(2000);
 		  checkkeyword(caseId1,caseId2,caseId3,caseId4,caseId5);
 		  Thread.sleep(2000);
-		  deleteCase(caseId1);
+		  deleteCase(caseId1,0);
 		  Thread.sleep(2000);
-		  deleteCase(caseId2);
+		  deleteCase(caseId2,0);
 		  Thread.sleep(2000);
-		  deleteCase(caseId3);
+		  deleteCase(caseId3,0);
 		  Thread.sleep(2000);
-		  deleteCase(caseId4);
+		  deleteCase(caseId4,0);
 		  Thread.sleep(2000);
-		  deleteCase(caseId5);
+		  deleteCase(caseId5,0);
 		  Thread.sleep(2000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
