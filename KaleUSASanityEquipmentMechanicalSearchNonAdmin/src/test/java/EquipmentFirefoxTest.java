@@ -310,7 +310,7 @@ public class EquipmentFirefoxTest {
 			  //Checking if copyright is correct
 			  String copyright_xpath = ".//*[@id='pii-slides-equip-F718']/li["+i+"]/span/span";
 			  actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			  assertEquals (actual_copyright, expected_copyright01);
+			  assertEquals (actual_copyright, expected_copyright);
 			  //Checking if footer image appears
 			  String image_xpath = ".//*[@id='pii-slideshow-equip-F718']/ul/li["+i+"]/span/img";
 			  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
