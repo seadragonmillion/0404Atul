@@ -314,7 +314,7 @@ public class FirefoxTest {
 		  driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
-		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
+		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div[1]/div[2]/div[3]")).getText();
 		  creation_date= creation_date.substring(22, creation_date.length());
 		  String name = creation_date +"_"+ username + "_" + event_title;
 		  System.out.println("Expected name of record: " + name);
