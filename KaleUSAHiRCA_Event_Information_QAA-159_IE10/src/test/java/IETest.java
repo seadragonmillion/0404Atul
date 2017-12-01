@@ -1037,7 +1037,7 @@ public class IETest {
 		  
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-		  
+		  Thread.sleep(3000);
 		  afterTest();
 		  
 		  }catch (TimeoutException e)
