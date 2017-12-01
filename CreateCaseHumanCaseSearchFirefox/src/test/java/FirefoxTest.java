@@ -638,7 +638,9 @@ public class FirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		  //Waits for black loading message to disappear
 		  try{
+			  Thread.sleep(1000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  Thread.sleep(1000);
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {

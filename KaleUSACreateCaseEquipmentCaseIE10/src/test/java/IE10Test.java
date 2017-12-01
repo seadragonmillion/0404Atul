@@ -54,7 +54,7 @@ public class IE10Test {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(7000000);
+	  public Timeout globalTimeout= new Timeout(8000000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
@@ -154,7 +154,63 @@ public class IE10Test {
 		  }
 			  
 		}
-	
+	public void deletePreviousCase(String title) throws Exception{
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Clicks on Error free bank
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+		//Clicks on Equipment Performance Search (PII)
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search (PII)"))).click();
+		//Enters the title in term search field
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(title);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
+		//Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Checks if Exact matches appear
+		WebElement exact = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-question-list-equip']/div/h4/a/div")));
+		String exactText=exact.getText();
+		
+		if(exactText.equals("Results")==true)
+		{
+			int i=1;
+			String [] caseIdArray=new String[50];
+			while(true)
+			{
+				try
+				{
+					String xpath=".//*[@id='pii-question-list-equip']/div[1]/div[1]/div["+i+"]";
+					System.out.println(xpath);
+					WebElement row=driver.findElement(By.xpath(xpath));
+					String rowCaseId=row.getAttribute("qid");
+					rowCaseId=rowCaseId.substring(1);
+					System.out.println("Case id:" +rowCaseId);
+					caseIdArray[i-1]=rowCaseId;
+					i=i+1;
+				}catch(NoSuchElementException e)
+				{
+					break;
+				}
+			}
+			deleteCase(caseIdArray,(i-1));
+		}
+		else 
+		{
+			System.out.println("No existing cases for: "+title);
+		}
+		//Clicks on Error free bank
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]")));
+		Actions act = new Actions(driver);
+		act.click(element1).build().perform();
+		Thread.sleep(1000);
+		
+	}
 	public String[] createCase(String keyword_same, String key1, String key2, String key3, String title)throws Exception{
 		
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -345,7 +401,9 @@ public class IE10Test {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		  //Waits for black loading message to disappear
 		  try{
+		  	  Thread.sleep(1000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  Thread.sleep(1000);
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
@@ -705,7 +763,7 @@ public class IE10Test {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 	}
 	
-	public void deleteCase(String[] caseId1) throws Exception{
+	public void deleteCase(String[] caseId1, int len) throws Exception{
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on admin user name on top right corner
@@ -714,8 +772,8 @@ public class IE10Test {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		  Thread.sleep(1000);
 		  //Clicks on Errorfree bank option
-		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-		  for(int i=0;i<5;i++)
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		  for(int i=0;i<len;i++)
 		  {
 		   String caseId = caseId1[i];
 		  //Clicks on Equipment cases
@@ -768,6 +826,8 @@ public class IE10Test {
 		  if(driver.findElement(By.id("pii-admin-efse-list-ul")).isDisplayed()==false)
 			  System.out.println("Case deleted: "+caseId1[i]);
 		  }
+		  //Clicks on Errorfree bank option to close the collapsible menu
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 	}
 	
 	@Test
@@ -788,8 +848,16 @@ public class IE10Test {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(5000);
+		  Thread.sleep(10000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
+		  //Clicks on Error free bank
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+		  deletePreviousCase(eq_title);
+		  Thread.sleep(1000);
+		  deletePreviousCase(ee_title);
+		  Thread.sleep(1000);
+		  deletePreviousCase(me_title);
+		  Thread.sleep(1000);
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  //Clicks on admin option
@@ -847,15 +915,15 @@ public class IE10Test {
 		  System.out.println("Cases checked in each module");
 		  Thread.sleep(2000);
 		  //Deletes Equipment cases
-		  deleteCase(eq_caseid);
+		  deleteCase(eq_caseid,5);
 		  System.out.println("Slides deleted for equipment");
 		  Thread.sleep(2000);
 		  //Deletes Electrical cases
-		  deleteCase(ee_caseid);
+		  deleteCase(ee_caseid,5);
 		  System.out.println("Slides deleted for electrical");
 		  Thread.sleep(2000);
 		  //Deletes Mechanical cases
-		  deleteCase(me_caseid);
+		  deleteCase(me_caseid,5);
 		  System.out.println("Slides deleted for mechanical");
 		  Thread.sleep(2000);
 		  //Logs out
