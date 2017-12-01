@@ -878,6 +878,8 @@ public class IE10Test {
 		  //Creates 5 slides for Mechanical Case Search
 		  String[] me_caseid=createCase(keyword_same_me,key1_me,key2_me,key3_me,me_title);
 		  System.out.println("Slides created for mechanical "+me_caseid[0] +" "+ me_caseid[1] +" "+ me_caseid[2] +" "+ me_caseid[3] +" "+ me_caseid[4]);
+		  //Clicks on Errorfree bank option to close the collapsible menu
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 		  Thread.sleep(2000);
 		  //Checks slides for one Equipment non PII case
 		  compareSlide(eq_caseid[0],eq_title,0);
