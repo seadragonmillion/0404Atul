@@ -371,7 +371,7 @@ public class ChromeTest {
 				  
 			  }
 		  //Waits for the green popup on the right top corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  }
 		  String[] array={caseId1,caseId2,caseId3,caseId4,caseId5};
 		return array;

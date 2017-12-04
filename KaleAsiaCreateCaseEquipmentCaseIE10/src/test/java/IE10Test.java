@@ -54,7 +54,7 @@ public class IE10Test {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(8000000);
+	  public Timeout globalTimeout= new Timeout(8200000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
@@ -835,10 +835,13 @@ public class IE10Test {
 		 try{ 
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(8000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  Thread.sleep(5000);
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  try{
                if (login==1)
                {
@@ -848,7 +851,7 @@ public class IE10Test {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(10000);
+		  Thread.sleep(1000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  //Clicks on Error free bank
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();

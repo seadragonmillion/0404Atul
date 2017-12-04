@@ -56,7 +56,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3500000);
+	  public Timeout globalTimeout= new Timeout(3600000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -197,6 +197,7 @@ public class FirefoxTest {
 					break;
 				}
 			}
+			Thread.sleep(2000);
 			deleteCase(caseIdArray,(i-1));
 		}
 		else 
@@ -743,6 +744,7 @@ public class FirefoxTest {
 	}
 	
 	public void deleteCase(String[] caseId1, int len) throws Exception{
+		  Thread.sleep(1000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on admin user name on top right corner

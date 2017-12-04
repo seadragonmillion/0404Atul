@@ -835,10 +835,13 @@ public class IE10Test {
 		 try{ 
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(8000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  Thread.sleep(5000);
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  try{
                if (login==1)
                {

@@ -197,6 +197,7 @@ public class FirefoxTest {
 					break;
 				}
 			}
+			Thread.sleep(1000);
 			deleteCase(caseIdArray,(i-1));
 		}
 		else 
