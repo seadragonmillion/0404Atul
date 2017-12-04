@@ -313,10 +313,10 @@ public class FirefoxTest {
 		  //Clicks on Save and Send
 		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
 		  //Clicks on save and send report
-		  WebDriverWait wait1 = new WebDriverWait(driver,10);
+		  WebDriverWait wait1 = new WebDriverWait(driver,20);
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
 		  driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  //Creates the expected name of record
 		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
 		  creation_date= creation_date.substring(22, creation_date.length());
