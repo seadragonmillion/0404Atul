@@ -56,7 +56,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3600000);
+	  public Timeout globalTimeout= new Timeout(4000000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -752,7 +752,30 @@ public class FirefoxTest {
 	}
 	
 	public void deleteCase(String[] caseId1, int len) throws Exception{
-		  Thread.sleep(1000);
+		  while(true)
+		  {
+			  Thread.sleep(1000);
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+			 
+		  }
+		  
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on admin user name on top right corner
