@@ -299,7 +299,8 @@ public class FirefoxTest {
 		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
 		  Thread.sleep(2000);
 		 //Uploads picture 2
-		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		  p.waitFor();
 		  Thread.sleep(8000);
 		  jse.executeScript("scroll(0, 100)");
 		  Thread.sleep(2000);
@@ -307,7 +308,8 @@ public class FirefoxTest {
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
 		  Thread.sleep(2000);
 		  //Uploads picture 1
-		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		  Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		  q.waitFor();
 		  Thread.sleep(4000);
 		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
