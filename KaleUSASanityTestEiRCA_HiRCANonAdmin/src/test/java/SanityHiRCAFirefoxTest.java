@@ -16,6 +16,7 @@ import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Dimension;
 
 public class SanityHiRCAFirefoxTest {
 	private FirefoxDriver driver;
@@ -34,8 +35,16 @@ public class SanityHiRCAFirefoxTest {
 			  System.out.println("Performing sanity test on HiRCA in Firefox");
 			  System.setProperty("webdriver.gecko.driver",gecko_path);
 			  driver = new FirefoxDriver();
-			  //Browser is maximized
-			  driver.manage().window().maximize();
+			  Dimension initialSize= driver.manage().window().getSize();
+		 System.out.println(initialSize);
+		 int height=initialSize.getHeight();
+		 if(height<1900)
+		 {
+			//Browser is maximized
+			driver.manage().window().maximize(); 
+		 }
+		 Dimension finalSize=driver.manage().window().getSize();
+		 System.out.println(finalSize);
 			  //Browser navigates to the KALE url
 			  driver.navigate().to(url);
 			  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

@@ -14,7 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.Dimension;
 
 public class SanityFirefoxTest {
 
@@ -36,8 +36,16 @@ public class SanityFirefoxTest {
 		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 		 driver = new FirefoxDriver(capabilities);
-		  //Browser is maximized
-		  driver.manage().window().maximize();
+		 Dimension initialSize= driver.manage().window().getSize();
+		 System.out.println(initialSize);
+		 int height=initialSize.getHeight();
+		 if(height<1900)
+		 {
+			//Browser is maximized
+			driver.manage().window().maximize(); 
+		 }
+		 Dimension finalSize=driver.manage().window().getSize();
+		 System.out.println(finalSize);
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
