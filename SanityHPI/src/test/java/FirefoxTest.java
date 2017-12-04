@@ -597,7 +597,7 @@ public class FirefoxTest {
 		  Thread.sleep(2000);
 		  //Deletes the record
 		  deleteNewRecord(recordName);
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
