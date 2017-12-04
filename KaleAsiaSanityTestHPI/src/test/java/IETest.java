@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.assertj.core.api.SoftAssertions;
+import java.util.Iterator;
+import java.util.List;
 
 public class IETest {
 
@@ -32,7 +34,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(700000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -511,8 +513,345 @@ public class IETest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))).click();
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(1000);
+			WebElement element_id=driver.findElement(By.id("pii-hpi-gauge"));
+			List<WebElement> element =element_id.findElements(By.tagName("text"));
+			Iterator<WebElement> iter = element.iterator();
+			iter.next();
+			String readiness=iter.next().getText();
+			System.out.println("Readiness is: "+readiness);
+			if (readiness.equals("0"))
+				System.out.println("Shows 0%");
+			else softly.fail("Doesnt show 0%");
 			
 		}
+
+		public void hopsBottomUp() throws Exception{
+			WebDriverWait wait1 = new WebDriverWait(driver,30);
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			//Clicks on H of HOPS
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-1"))).click();
+			//Clicks on bottom up on H for HOPS
+			//Corrective action click
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 2000)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l"))).click();
+			//Click on other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q13-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q12-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q11-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Adequate situation awareness?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m3-l"))).click();
+			//Click other checkboxes 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q10-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q6-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m3-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m3-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Adequate resources, structure, and TQA?");
+			}
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))).click();
+			//Click other checkboxes 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q3-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Participants ready for PJB?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m1-l"))).click();
+			//Click other checkboxes 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q1-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m1-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m1-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Adequate PJB level selection?");
+			}
+			
+			
+			//Click on O of HOPS
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-2"))).click();
+			//Clicks on bottom up on O for HOPS
+			//Corrective action click
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 2000)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q8-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Environment related operating experience addressed?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m3-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q6-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m3-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m3-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Person related operating experience addressed?");
+			}
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q3-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Activity related operating experience addressed?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m1-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q1-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m1-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m1-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Time related operating experience addressed?");
+			}
+			
+			
+			//Click on P of HOPS
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-3"))).click();
+			//Clicks on bottom up on P for HOPS
+			//Corrective action click
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 2000)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q15-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q14-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Adequate deviation scenario management?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m3-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q17-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q16-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q13-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q12-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q11-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m3-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m3-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Adequate single-point-vulnerability (SPV) control?");
+			}
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q10-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q7-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q6-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Plan complete (ROAST)?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q3-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q2-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q1-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Tool and equipment ready?");
+			}
+			
+			
+			//Click on S of HOPS
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-4"))).click();
+			//Clicks on bottom up on S for HOPS
+			//Corrective action click
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 2000)");
+			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q11-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Project risk");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m3-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q10-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q9-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q8-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q7-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m3-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m3-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in FUSE items mitigated?");
+			}
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0, 0)");
+			Thread.sleep(1000);
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q6-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q5-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q4-l"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q3-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in FUSE items identified?");
+			}
+			//Corrective action click
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m1-l"))).click();
+			//Click other checkboxes
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q1-l"))).click();
+			Thread.sleep(1000);
+			//Checks if corrective action checkbox got unselected
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m1-l"))).isSelected()==false)
+			{
+				System.out.println("Corrective action not checked");
+			}
+			if(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m1-l"))).isSelected()==true)
+			{
+				softly.fail("Failed: Corrective action checked in Project failure");
+			}
+			
+			
+			//Checks if the Readiness meter is 100%id("pii-hpi-gauge")/svg[1]/text[2]/tspan[1]
+			//String readiness=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-hpi-gauge']/svg[1]/text[2]/tspan[1]"))).getText();
+			WebElement element_id=driver.findElement(By.id("pii-hpi-gauge"));
+			List<WebElement> element =element_id.findElements(By.tagName("text"));
+			Iterator<WebElement> iter = element.iterator();
+			iter.next();
+			String readiness=iter.next().getText();
+			System.out.println("Readiness is: "+readiness);
+			if (readiness.equals("100"))
+				System.out.println("Shows 100%");
+			else softly.fail("Doesnt show 100%");
+			
+		}
+
 
 	
 	@Test
@@ -570,6 +909,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-btn-next"))).click();
 		  Thread.sleep(2000);
 		  hops();
+		  hopsBottomUp();
 		  //Click on finalize
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-btn-done"))).click();
 		  Thread.sleep(2000);
@@ -584,6 +924,16 @@ public class IETest {
 		  System.out.println(date);
 		  String name = date + "_" +username;
 		  System.out.println ("Expected name of record: " +name);
+		  //Checks for 100% readiness in report
+		  WebElement element_id=driver.findElement(By.id("pii-hpi-rpt-gauge"));
+		  List<WebElement> element1 =element_id.findElements(By.tagName("text"));
+		  Iterator<WebElement> iter = element1.iterator();
+		  iter.next();
+		  String readiness=iter.next().getText();
+		  System.out.println("Readiness in report is: "+readiness);
+			if (readiness.equals("100"))
+				System.out.println("Shows in report 100%");
+			else softly.fail("Doesnt show in report 100%");
 		  //Clicks on side panel
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
 		  //Gets the name of the record created
