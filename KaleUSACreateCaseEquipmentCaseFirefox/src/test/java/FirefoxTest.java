@@ -752,6 +752,9 @@ public class FirefoxTest {
 	}
 	
 	public void deleteCase(String[] caseId1, int len) throws Exception{
+		  
+		  
+		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  while(true)
 		  {
 			  Thread.sleep(1000);
@@ -775,8 +778,6 @@ public class FirefoxTest {
 				  }
 			 
 		  }
-		  
-		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
