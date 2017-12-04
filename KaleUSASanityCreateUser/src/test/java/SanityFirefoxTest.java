@@ -395,7 +395,7 @@ public class SanityFirefoxTest {
 		  
 		  Thread.sleep(4000);
 		  deleteCompany();
-		  		  
+		  Thread.sleep(2000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
@@ -403,7 +403,8 @@ public class SanityFirefoxTest {
 		  afterTest();
 		   }catch (Exception e){
 			   
-			      WebDriverWait wait = new WebDriverWait(driver,20);
+			      System.out.println(e);
+				  WebDriverWait wait = new WebDriverWait(driver,20);
 			      Thread.sleep(3000);
 			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
 			      Thread.sleep(3000);
