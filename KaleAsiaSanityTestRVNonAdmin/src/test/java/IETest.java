@@ -201,7 +201,7 @@ public class IETest {
 	    		    	
 	    }
 	    
-	    public void shareReport() throws Exception{
+	    public void shareReport(String verifier) throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 			//Switches to the iframe
@@ -221,6 +221,23 @@ public class IETest {
 			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			//Waits for black loading message to disappear
+			  try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }	
+			 //Checks the username of creator and verifier
+			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div")));
+			 String creatorUsername= creator.getText();
+			 System.out.println(creatorUsername);
+			 softly.assertThat(username).as("test data").isSubstringOf(creatorUsername);
+			 WebElement verifier1=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[2]")));
+			 String verifierUsername = verifier1.getText();
+			 System.out.println(verifierUsername);
+			 softly.assertThat(verifier).as("test data").isSubstringOf(verifierUsername);
 	    }
 	    
 	    public void markCritical() throws Exception{
@@ -299,6 +316,8 @@ public class IETest {
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
+		  Thread.sleep(1000);
+		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
 		  //Clicks twice on browse button of 2nd picture
 		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
 		  Actions act = new Actions(driver);
@@ -369,7 +388,7 @@ public class IETest {
 		  //Downloads record
 		  downloadRecord();
 		  //Shares report
-		  shareReport();
+		  shareReport(verifier);
 		  //Mark critical
 		  markCritical();
 		 //Deletes the newly created record
