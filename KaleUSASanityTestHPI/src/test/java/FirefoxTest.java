@@ -190,6 +190,23 @@ public class FirefoxTest {
 			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			//Waits for black loading message to disappear
+			  try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }	
+			 //Checks the username of creator and verifier
+			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='hpi-rpt']/div/span[2]/span")));
+			 String creatorUsername= creator.getText();
+			 System.out.println(creatorUsername);
+			 softly.assertThat(username).as("test data").isEqualTo(creatorUsername);
+			 WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='hpi-rpt']/div/span[3]/span")));
+			 String sharedToUsername = sharedTo.getText();
+			 System.out.println(sharedToUsername);
+			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
 	    }
 	    
 	    public void markCritical() throws Exception{
