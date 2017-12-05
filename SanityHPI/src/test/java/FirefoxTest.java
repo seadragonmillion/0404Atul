@@ -208,6 +208,10 @@ public class FirefoxTest {
 			 String sharedToUsername = sharedTo.getText();
 			 System.out.println(sharedToUsername);
 			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
+			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='hpi-rpt']/div/span[3]")));
+			 String sharedText = shared.getText();
+			 System.out.println(sharedText);
+			 softly.assertThat("Shared to:").as("test data").isEqualTo(sharedText);
 	    }
 	    
 	    public void markCritical() throws Exception{
