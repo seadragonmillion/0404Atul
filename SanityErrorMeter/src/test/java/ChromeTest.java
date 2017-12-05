@@ -201,6 +201,31 @@ public class ChromeTest {
 			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			//Waits for black loading message to disappear
+			  try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }	
+			 //Checks the username of creator and shared with
+			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td")));
+			 String creatorUsername= creator.getText();
+			 System.out.println(creatorUsername);
+			 softly.assertThat(username).as("test data").isSubstringOf(creatorUsername);
+			 WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
+			 String sharedToUsername = sharedTo.getText();
+			 System.out.println(sharedToUsername);
+			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
+			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
+			 String sharedText = shared.getText();
+			 System.out.println(sharedText);
+			 softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText);
+			 WebElement probability=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
+			 String probabilityText = probability.getText();
+			 System.out.println(probabilityText);
+			 softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);
 	    }
 	    
 	    public void markCritical() throws Exception{
@@ -319,7 +344,12 @@ public class ChromeTest {
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
 			}
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[4]/textarea"))).clear();
-			
+			//Checks error meter as 0%
+			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			String meterText = meter.getText();
+			System.out.println(meterText);
+			softly.assertThat("0%").as("test data").isEqualTo(meterText);
+
 			//Click on Activity of PAPE
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
@@ -408,7 +438,11 @@ public class ChromeTest {
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
 			}
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[4]/textarea"))).clear();
-			
+			//Checks error meter as 0%
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meterText = meter.getText();
+			System.out.println(meterText);
+			softly.assertThat("0%").as("test data").isEqualTo(meterText);
 			
 			//Click on People of PAPE
 			jse.executeScript("scroll(0, 0)");
@@ -498,7 +532,11 @@ public class ChromeTest {
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
 			}
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[4]/textarea"))).clear();
-			
+			//Checks error meter as 0%
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meterText = meter.getText();
+			System.out.println(meterText);
+			softly.assertThat("0%").as("test data").isEqualTo(meterText);
 			
 			//Click on Environment of PAPE
 			jse.executeScript("scroll(0, 0)");
@@ -595,6 +633,11 @@ public class ChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).clear();
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
+			//Checks error meter as 0%
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meterText = meter.getText();
+			System.out.println(meterText);
+			softly.assertThat("0%").as("test data").isEqualTo(meterText);
 
 		}
 
