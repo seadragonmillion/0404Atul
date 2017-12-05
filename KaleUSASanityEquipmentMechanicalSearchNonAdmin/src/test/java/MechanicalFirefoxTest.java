@@ -315,7 +315,7 @@ public class MechanicalFirefoxTest {
 			//Checking if title is correct
 			  //String title_id= "centered-btns1_s"+(i-1);
 			  String title_xpath = ".//*[@id='pii-slideshow-equip-F192']/ul/li["+i+"]/div";
-			  actual_title = driver.findElement(By.xpath(title_xpath)).getText();
+			  actual_title = driver.findElement(By.xpath(title_xpath)).getAttribute("textContent");
 			  assertEquals (actual_title, expected_title);
 			  //Checking if copyright is correct
 			  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F192']/ul/li["+i+"]/span/span";

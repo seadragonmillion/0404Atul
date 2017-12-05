@@ -456,7 +456,7 @@ public class ChromeTest {
 			while (true)
 		  {
 			  Thread.sleep(1000);
-			  cint y=random.nextInt(10000);
+			  int y=random.nextInt(10000);
 			  if(y<1000)
 			     continue;
 			  caseId = String.format("%d", y);
