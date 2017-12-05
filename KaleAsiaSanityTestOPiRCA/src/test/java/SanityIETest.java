@@ -242,6 +242,19 @@ public class SanityIETest {
 			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			//Waits for black loading message to disappear
+			  try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }	
+			 //Checks the username of creator
+			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div/table/tbody/tr[6]/td[2]")));
+			 String creatorUsername= creator.getText();
+			 System.out.println(creatorUsername);
+			 softly.assertThat(creatorUsername).as("test data").isEqualTo(username);
 	    }
 	    
 	    public void markCritical() throws Exception{
