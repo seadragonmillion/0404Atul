@@ -194,7 +194,7 @@ public class ChromeTest {
 			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='hpi-rpt']/div/span[3]")));
 			 String sharedText = shared.getText();
 			 System.out.println(sharedText);
-			 softly.assertThat("Shared to:").as("test data").isEqualTo(sharedText);
+			 softly.assertThat("Shared to:").as("test data").isSubstringOf(sharedText);
 	    }
 
 	    public void markCritical() throws Exception{
