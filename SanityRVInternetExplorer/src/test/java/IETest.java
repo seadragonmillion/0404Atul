@@ -326,8 +326,8 @@ public class IETest {
 		  try{
 			  try {
 					//Uploads picture 2
-					  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");
-					  		  
+					  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");
+					  p.waitFor();
 				  }catch (UnhandledAlertException f){		
 					  System.out.println("Unexpecetd alert for picture 2");
 					  driver.switchTo().alert().accept();
@@ -346,7 +346,8 @@ public class IETest {
 		  try{
 			  try {
 					  //Uploads picture 1
-					  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");				  
+					  Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");				  
+					  q.waitFor();
 			      }catch (UnhandledAlertException g){
 			    	  System.out.println("Unexpecetd alert for picture 1");
 					  driver.switchTo().alert().accept();
