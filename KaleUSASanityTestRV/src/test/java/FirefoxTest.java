@@ -27,7 +27,7 @@ public class FirefoxTest {
 	private String username ="ritica";
 	private String password = "Kale46191802@";
 	private String event_title="Sanity Test Firefox";
-	private String gecko_path = "C:\\Users\\rramakrishnan\\Downloads\\geckodriver-v0.19.0-win64\\geckodriver.exe";
+	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
