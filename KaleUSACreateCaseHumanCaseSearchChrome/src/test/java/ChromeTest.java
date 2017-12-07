@@ -612,7 +612,7 @@ public class ChromeTest {
 				  
 			  }
 		  //Waits for the green popup on the right top corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  }
 		  Thread.sleep(2000);
 		  compareSlide(caseId,list);
