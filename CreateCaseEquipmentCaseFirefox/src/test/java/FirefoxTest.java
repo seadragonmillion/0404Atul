@@ -49,9 +49,9 @@ public class FirefoxTest {
 	private String key2_me="QAAcamelme";
 	private String key3_me="QAAgiraffeme";
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
-	private String eq_title="QAA Equipment Case Upload";
-	private String ee_title="QAA Electrical Case Upload";
-	private String me_title="QAA Mechanical Case Upload";
+	private String eq_title="QAA Equipment Search Case Upload";
+	private String ee_title="QAA Electrical Failure Case Upload";
+	private String me_title="QAA Mechanical Failure Case Upload";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@SuppressWarnings("deprecation")

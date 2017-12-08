@@ -35,7 +35,7 @@ public class ChromeTest {
 	private String key1="QAAzebra";
 	private String key2="QAAcamel";
 	private String key3="QAAgiraffe";
-	private String title ="QAA Human Case Upload";
+	private String title ="QAA Human Performance Case Upload";
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
 	SoftAssertions softly = new SoftAssertions();
 	
