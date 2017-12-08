@@ -325,7 +325,7 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  //Checking if title is correct
 		  String actual_title1 = driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/div")).getAttribute("textContent");
-		  String expected_title1 = "Q"+caseId+": QAA Human Case Upload";
+		  String expected_title1 = "Q"+caseId+": "+title;
 		  softly.assertThat(actual_title1).as("test data").isEqualTo(expected_title1);
 		  //Checking if footer image appears
 		  if(driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/img")).isDisplayed())
