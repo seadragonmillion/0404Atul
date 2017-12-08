@@ -278,11 +278,7 @@ public class ChromeTest {
 			  //Checks for Background information data
 			  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
 			  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph);
-			  //Check for creator
-		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
-		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
-		      System.out.println(eve_creator);
-		  	  jse.executeScript("scroll(0, 3300)");
+			  jse.executeScript("scroll(0, 3300)");
 			  int n =3500;
 			  //Checks the 5 images if appearing
 			  for (int j=0; j<5; j++)
