@@ -181,7 +181,7 @@ public class ChromeTest {
 			  String name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 			  System.out.println(name);
 			  if (name!=recordName)
-				  System.out.println("Record deleted"+name);
+				  System.out.println("Record deleted "+name);
 			  else
 				  System.out.println("Record could not be deleted");
 			  }

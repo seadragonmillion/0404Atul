@@ -22,6 +22,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class ChromeTest {
 
@@ -42,7 +56,21 @@ public class ChromeTest {
 			  
 			  System.out.println("Performing verification on event information page in HiRCA for non admin in Chrome");
 			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
-			  driver = new ChromeDriver();
+			  ChromeOptions options = new ChromeOptions();
+	          String chromeProfilePath="C:\\Users\\rramakrishnan\\Chrome Profile\\Profile 1";
+	          options.addArguments("user-data-dir="+chromeProfilePath);
+	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+	          options.setExperimentalOption("prefs", chromeOptionsMap);
+	          DesiredCapabilities cap = DesiredCapabilities.chrome();
+	          cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+	          cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+	          cap.setCapability(ChromeOptions.CAPABILITY, options);
+	          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+	        		    "Chrome PDF Viewer"
+	        		});
+	          String downloadFilepath = "C:\\Users\\rramakrishnan\\Downloads\\reports";
+	          chromeOptionsMap.put("download.default_directory", downloadFilepath);
+	          driver = new ChromeDriver(cap);
 			  //Browser is maximized
 			  driver.manage().window().maximize();
 			  //Browser navigates to the KALE url
@@ -135,6 +163,12 @@ public class ChromeTest {
 			  
 		      
 			  WebDriverWait wait = new WebDriverWait(driver,40);
+			  //Compares name of newly created record with expected name
+			  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
+			  //Clicks on new record
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			  if(name1.equals(recordName))
+			  {
 			  //Clicks on delete button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -148,11 +182,43 @@ public class ChromeTest {
 			  String name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 			  System.out.println(name);
 			  if (name!=recordName)
-				  System.out.println("Record deleted");
+				  System.out.println("Record deleted "+name);
 			  else
 				  System.out.println("Record could not be deleted");
+			  }
+			  else softly.fail("Record not deleted "+recordName);	
 			  			  
 		  }
+		  public void saveNewReport() throws Exception{
+		    	
+		    	//Clicks on Open button
+		    	WebDriverWait wait1 = new WebDriverWait(driver,30);
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		    	//Clicks on open report
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		    	//Clicks on Info tab
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		    	//Changes the event title
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).clear();
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys("changed title");
+		    	//Clicks on Save
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				//Clicks on Save report
+			    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				Thread.sleep(1000);
+				String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
+				String newRecord=creationDate + "_"+username+"_"+ "changed title";
+		        //Clicks on Saved activities
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+				Thread.sleep(2000);
+				//call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
+				deleteNewRecord(newRecord);
+				
+		    }
+		  
 		  
 		    public void openReport() throws Exception{
 
@@ -174,8 +240,11 @@ public class ChromeTest {
 				Thread.sleep(2000);
 		    }
 		    
-		    public void downloadRecord() throws Exception {
+		   public void downloadRecord(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 		    	
+		    	//deletes files in reports folder before starting to download
+		    	File file = new File("C://Users//rramakrishnan//Downloads//reports//");
+		    	deleteFiles(file);
 		    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 		    	//Clicks on first newly created record
 		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
@@ -192,11 +261,105 @@ public class ChromeTest {
 				//Clicks on open pdf report
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		    	Thread.sleep(2000);
+		    	Thread.sleep(3000);
+		    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
+		        for(String winHandle : driver.getWindowHandles()){
+	    	    driver.switchTo().window(winHandle);
+	    	    }
+		        driver.close();
 		    	driver.switchTo().window(window);
 		    	Thread.sleep(1000);
 		    		    	
 		    }
+		  
+			public void pdfCheck(String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
+		    	
+		    	 List<String> results = new ArrayList<String>();
+		    	//Gets the file name which has been downloaded
+		    	File[] files = new File("C://Users//rramakrishnan//Downloads//reports//").listFiles();
+		    	//If this pathname does not denote a directory, then listFiles() returns null. 
+		    	for (File file : files) {
+		    	    if (file.isFile()) {
+		    	        results.add(file.getName());
+		    	    }
+		    	}
+		    	System.out.println(results.get(0));
+		    	//Loads the file to check if correct data is present
+		    	String fileName="C://Users//rramakrishnan//Downloads//reports//"+results.get(0);
+		    	File file = new File(fileName);
+		    	FileInputStream fis = new FileInputStream(file);
+		    	PDFParser parser = new PDFParser(fis);
+		        parser.parse();
+		        COSDocument cosDoc= parser.getDocument();       
+		        PDDocument pddoc= new PDDocument(cosDoc);
+		        PDFTextStripper pdfStripper= new PDFTextStripper();
+		        pdfStripper.setStartPage( 1 );
+		        pdfStripper.setEndPage( Integer.MAX_VALUE );
+		        String data = pdfStripper.getText(pddoc);
+		        List<String> ans= Arrays.asList(data.split("\r\n"));
+		        String newData=null;
+		        for (int i = 0; i < ans.size(); i++)
+		        {
+		        	
+		        	//System.out.println(ans.get(i));
+		        	int n=ans.get(i).length()-1;
+		        	if (ans.get(i).charAt(n)==' ')
+		        		newData = newData+ans.get(i);
+		        	if (ans.get(i).charAt(n)!=' ')
+		        		newData = newData+" "+ans.get(i);
+		        	
+		        }
+		        newData=newData.replace("  ", " ");
+		       // System.out.println(newData);
+		        //Verifies title
+		        text184=text184.replace("  ", " ");
+		        softly.assertThat("Event title"+text184).as("test data").isSubstringOf(newData);
+		        //Verifies location of event
+		        text=text.replace("  ", " ");
+		        softly.assertThat(text).as("test data").isSubstringOf(newData);
+		        //Verifies investigators data
+		        paragraph_investigators=paragraph_investigators.replace("\n", "");
+		        paragraph_investigators=paragraph_investigators.replace("  ", " ");
+		        softly.assertThat("Investigators"+paragraph_investigators).as("test data").isSubstringOf(newData);
+		        //Verifies background data
+		        paragraph_background=paragraph_background.replace("\n", "");
+		        paragraph_background=paragraph_background.replace("  ", " ");
+		        softly.assertThat("Background information"+paragraph_background).as("test data").isSubstringOf(newData);
+		        //Verifies Timeline data
+		        paragraph_timeline=paragraph_timeline.replace("\n", "");
+		        paragraph_timeline=paragraph_timeline.replace("  ", " ");
+		        softly.assertThat("Timeline of event"+paragraph_timeline).as("test data").isSubstringOf(newData);
+		        //Verifies Problem statement
+		        paragraph_problem=paragraph_problem.replace("\n", "");
+		        paragraph_problem=paragraph_problem.replace("  ", " ");
+		        softly.assertThat("Problem statement"+paragraph_problem).as("test data").isSubstringOf(newData);
+		        //Verifies date
+		        softly.assertThat(get_date).as("test data").isSubstringOf(newData);
+		        //Verifies time
+		        softly.assertThat(get_time).as("test data").isSubstringOf(newData);
+		        //Verifies Department
+		        softly.assertThat(get_dept).as("test data").isSubstringOf(newData);
+		        //Verfies creation date
+		        softly.assertThat(creationDate).as("test data").isSubstringOf(newData);
+		        //Verifies executive summary
+		        executive=executive.replace("  ", " ");
+		        softly.assertThat(executive).as("test data").isSubstringOf(newData);
+		        cosDoc.close();
+		        pddoc.close();	      
+		    }
+					        		   
+		    public void deleteFiles(File folder) throws IOException {
+		        File[] files = folder.listFiles();
+		         for(File file: files){
+		                if(file.isFile()){
+		                    String fileName = file.getName();
+		                    boolean del= file.delete();
+		                    System.out.println(fileName + " : got deleted ? " + del);
+		                }else if(file.isDirectory()) {
+		                    deleteFiles(file);
+		                }
+		            }
+		        }
 		    
 		    public void shareReport() throws Exception{
 		    	
@@ -242,7 +405,7 @@ public class ChromeTest {
 					System.out.println("Unmarked critical");
 		    }
 		    
-		  public void openCheckRecord(String text184, String text, String paragraph, String get_date, String get_time, String creationDate, String get_dept) throws Exception{
+		    public void openCheckRecord(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 			  
 			  WebDriverWait wait1 = new WebDriverWait(driver,30);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -265,23 +428,26 @@ public class ChromeTest {
 			  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
 			  //Checks for Investigators data
 			  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[6]/td[2]")).getText();
-			  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph);
+			  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
 			  //Checks for Report creation date data
 			  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
 			  softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
 			  //Checks for Problem statement data
 			  String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
-			  softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph);
+			  softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
 			  //Checks for Timeline of event data
 			  String eve_timeline =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]")).getText();
-			  softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph);
+			  softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
 			  //Checks for Background information data
 			  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
-			  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph);
+			  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
 			  //Check for creator
 		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
 		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
 		      System.out.println(eve_creator);
+		      //Check for Executive summary
+		      String eve_exec =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]")).getText();
+			  softly.assertThat(eve_exec).as("test data").isEqualTo(executive);
 			  jse.executeScript("scroll(0, 3300)");
 			  int n =3500;
 			  //Checks the 5 images if appearing
@@ -499,12 +665,12 @@ public class ChromeTest {
 			  }
 			  
 			  //Checks if after entering text if the error message and dotted line disappears
-			  String paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu lorem sapien. Donec molestie ligula nec diam mollis scelerisque ac et orci. Phasellus facilisis urna quis nibh faucibus, quis vestibulum nunc fringilla. Sed efficitur elit a nulla ultrices, at cursus ligula pharetra. Ut sollicitudin libero in nunc iaculis, ac mollis eros finibus. Nam iaculis pretium augue, vel tristique ligula sodales id. Maecenas sit amet tellus lobortis, pellentesque urna non, rutrum ante. Etiam enim quam, porta vel iaculis tincidunt, feugiat in nisl."
-					  +"\n"+"\n"
-					  +"Donec gravida ante congue orci dictum, ut pretium velit elementum. Aliquam mattis sapien ut felis consequat tempor. Integer eget justo libero. Etiam hendrerit massa odio, non scelerisque leo fringilla nec. Curabitur ac magna dolor. Suspendisse mi nisi, dictum non dolor sit amet, venenatis tempor ipsum. Praesent maximus mauris tortor, ut hendrerit est pulvinar vitae. Aenean vel justo dignissim, scelerisque urna ultricies, hendrerit magna. Etiam elementum accumsan turpis ut efficitur. Aliquam luctus, nulla eget faucibus fermentum, tortor eros dignissim ante, vitae fermentum tellus ligula consectetur ligula. Etiam sagittis nisl mi, sit amet scelerisque eros venenatis sit amet. Fusce facilisis nisl nunc, eu euismod dui tristique nec. Donec lorem enim, sodales eu sem in, feugiat varius nunc. Phasellus cursus laoreet sapien, ac posuere tortor."
+			  String paragraph_investigators = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu lorem sapien. Donec molestie ligula nec diam mollis scelerisque ac et orci. Phasellus facilisis urna quis nibh faucibus, quis vestibulum nunc fringilla. Sed efficitur elit a nulla ultrices, at cursus ligula pharetra. Ut sollicitudin libero in nunc iaculis, ac mollis eros finibus. Nam iaculis pretium augue, vel tristique ligula sodales id. Maecenas sit amet tellus lobortis, pellentesque urna non, rutrum ante. Etiam enim quam, porta vel iaculis tincidunt, feugiat in nisl."
+					  +"\n"
+					  +"Donec gravida ante congue orci dictum, ut pretium velit elementum. Aliquam mattis sapien ut felis consequat tempor. Integer eget justo libero. Etiam hendrerit massa odio, non scelerisque leo fringilla nec. Curabitur ac magna dolor. Suspendisse mi nisi, dictum non dolor sit amet, venenatis tempor ipsum. Praesent maximus mauris tortor, ut hendrerit est pulvinar vitae. Aenean vel justo dignissim, scelerisque urna ultricies, hendrerit magna. Etiam elementum accumsan turpis ut efficitur. Aliquam luctus, nulla eget faucibus fermentum, tortor eros dignissim ante, vitae fermentum tellus ligula consectetur ligula. Etiam sagittis nisl mi, sit amet scelerisque eros venenatis sit amet. Fusce facilisis nisl nunc, eu euismod dui tristique nec. Donec lorem enim, sodales eu sem in, feugiat varius nunc. Phasellus cursus laoreet sapien, ac posuere tortor"
 					  ;
 			  //Investigators
-			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
 			  if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed()==false)
 			  {
 				  String noerror_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
@@ -523,10 +689,15 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
 			  
+			  //Paragraph for Background info
+			  String paragraph_background= "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+					  +"\n"+"\n"
+					  +"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. The Apache FontBox library is an open source Java tool to obtain low level information from font files. FontBox is a subproject of Apache PDFBox. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains commandline tools using Apache PDFBox."
+					  ;			 
 			  //Background info
-			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
 			  if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed()==false)
 			  {
 				  String noerror_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
@@ -545,10 +716,15 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
 			  
+			  //Paragraph for Timeline of event
+			  String paragraph_timeline = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. I have a house."
+					  +"\n"+"\n"
+					  +"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains examples on how the library can be used."
+					  ;
 			  //Timeline of event
-			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
 			  if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed()==false)
 			  {
 				  String noerror_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
@@ -567,10 +743,15 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-events")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
 			  
+			  //Paragraph for Problem Statement
+			  String paragraph_problem = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it."
+					  +"\n"+"\n"
+					  +"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted."
+					  ;
 			  //Problem Statement
-			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
 			  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed()==false)
 			  {
 				  String noerror_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
@@ -588,7 +769,7 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
 			  
 			  jse.executeScript("scroll(0, 0)");
 			  
@@ -607,7 +788,7 @@ public class ChromeTest {
 			  }
 			  
 			  //Location of event
-			  String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat tincidunt dui.";
+			  String text = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
 			  if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed()==false)
 			  {
@@ -659,7 +840,7 @@ public class ChromeTest {
 			  			
 			  //Checks event title text box limit
 			  driver.findElement(By.id("pii-irca-event-title")).clear();
-			  String text184 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris volutpat tincidunt dui. Phasellus quis orci risus. Vivamus justo urna, porttitor aliquam convallis id, varius eget metus";
+			  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 			  Thread.sleep(1000);
 			  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
@@ -870,7 +1051,18 @@ public class ChromeTest {
 			//Gets value of department
 			  String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 			  System.out.println(get_dept);
-			  jse.executeScript("scroll(0,0)");
+			  jse.executeScript("scroll(0,6500)");
+			  //Clicks on next
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+			  //Clicks on back
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+			  //Fills optional data
+			  //Executive summary
+			  String executive= "According to the 1993 Israel-Palestinian peace accords, the final status of Jerusalem is meant to be discussed in the latter stages of peace talks.";
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-execsummary"))).sendKeys(executive);
+			  //Event id
+			  String event_id="Its a small world after all";
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
 			  //Clicks on Save
 			  driver.findElement(By.id("efi-irca-button-save")).click();
 			  //Clicks on Save report
@@ -916,15 +1108,23 @@ public class ChromeTest {
 			  //Checks if expected name and actual name is correct
 			  softly.assertThat(recordName).as("test data").isEqualTo(name);
 			  //Opens new record and checks if entered data is same after being saved in report
-			  openCheckRecord(text184,text,paragraph,get_date,get_time,creationDate,get_dept);
+			  openCheckRecord(executive,event_id,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
+			  Thread.sleep(2000);
 			  //Opens record
 			  openReport();
+			  Thread.sleep(2000);
 			  //Downloads record
-			  downloadRecord();
+			  downloadRecord(executive,event_id,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
+			  Thread.sleep(2000);
 			  //Shares report
 			  shareReport();
+			  Thread.sleep(2000);
 			  //Mark critical
 			  markCritical();
+			  Thread.sleep(2000);
+			  //Creates new record by changing title
+			  saveNewReport();
+			  Thread.sleep(2000);
 			  //Deletes the newly created record
 			  deleteNewRecord(recordName);
 			  
