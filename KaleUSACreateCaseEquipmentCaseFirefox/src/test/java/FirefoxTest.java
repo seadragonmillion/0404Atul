@@ -219,6 +219,9 @@ public class FirefoxTest {
 		Thread.sleep(1000);
 		//Closes any warning from server
 		try{
+			  //Switches to main content
+			  driver.switchTo().defaultContent();
+			  //CLoses server warning
 			  String s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
 			  System.out.println(s);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
@@ -227,6 +230,8 @@ public class FirefoxTest {
 			  {
 				  
 			  }
+		//Switches to the iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		
 	}
 	public String[] createCase(String keyword_same, String key1, String key2, String key3, String title)throws Exception{
