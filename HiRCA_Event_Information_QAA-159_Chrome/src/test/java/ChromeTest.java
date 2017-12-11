@@ -671,7 +671,7 @@ public class ChromeTest {
 					  +"Donec gravida ante congue orci dictum, ut pretium velit elementum. Aliquam mattis sapien ut felis consequat tempor. Integer eget justo libero. Etiam hendrerit massa odio, non scelerisque leo fringilla nec. Curabitur ac magna dolor. Suspendisse mi nisi, dictum non dolor sit amet, venenatis tempor ipsum. Praesent maximus mauris tortor, ut hendrerit est pulvinar vitae. Aenean vel justo dignissim, scelerisque urna ultricies, hendrerit magna. Etiam elementum accumsan turpis ut efficitur. Aliquam luctus, nulla eget faucibus fermentum, tortor eros dignissim ante, vitae fermentum tellus ligula consectetur ligula. Etiam sagittis nisl mi, sit amet scelerisque eros venenatis sit amet. Fusce facilisis nisl nunc, eu euismod dui tristique nec. Donec lorem enim, sodales eu sem in, feugiat varius nunc. Phasellus cursus laoreet sapien, ac posuere tortor"
 					  ;
 			  //Investigators
-			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
 			  if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed()==false)
 			  {
 				  String noerror_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
@@ -690,7 +690,7 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
 			  			  
 			  //Paragraph for Background info
 			  String paragraph_background= "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
@@ -698,7 +698,7 @@ public class ChromeTest {
 					  +"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. The Apache FontBox library is an open source Java tool to obtain low level information from font files. FontBox is a subproject of Apache PDFBox. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains commandline tools using Apache PDFBox."
 					  ;			 
 			  //Background info
-			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
 			  if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed()==false)
 			  {
 				  String noerror_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
@@ -717,7 +717,7 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
 			  
 			  //Paragraph for Timeline of event
 			  String paragraph_timeline = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. I have a house."
@@ -725,7 +725,7 @@ public class ChromeTest {
 					  +"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains examples on how the library can be used."
 					  ;
 			  //Timeline of event
-			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
 			  if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed()==false)
 			  {
 				  String noerror_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
@@ -744,7 +744,7 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-events")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
 			  
 			  //Paragraph for Problem Statement
 			  String paragraph_problem = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it."
@@ -752,7 +752,7 @@ public class ChromeTest {
 					  +"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted."
 					  ;
 			  //Problem Statement
-			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
 			  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed()==false)
 			  {
 				  String noerror_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
@@ -770,7 +770,7 @@ public class ChromeTest {
 			  //Clears all text
 			  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
 			  //Re enters text
-			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph);
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
 			  
 			  jse.executeScript("scroll(0, 0)");
 			  
@@ -1052,7 +1052,18 @@ public class ChromeTest {
 			  //Gets value of department
 			  String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 			  System.out.println(get_dept);
-			  jse.executeScript("scroll(0,0)");
+			  jse.executeScript("scroll(0,6500)");
+			  //Clicks on next
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+			  //Clicks on back
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+			  //Fills optional data
+			  //Executive summary
+			  String executive= "According to the 1993 Israel-Palestinian peace accords, the final status of Jerusalem is meant to be discussed in the latter stages of peace talks.";
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-execsummary"))).sendKeys(executive);
+			  //Event id
+			  String event_id="Its a small world after all";
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
 			  //Clicks on Save
 			  driver.findElement(By.id("efi-irca-button-save")).click();
 			  //Clicks on Save report
