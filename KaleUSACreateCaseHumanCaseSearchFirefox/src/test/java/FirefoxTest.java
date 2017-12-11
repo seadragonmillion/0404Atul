@@ -153,6 +153,16 @@ public class FirefoxTest {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+		//Closes any warning from server
+		try{
+			  String s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
+			  System.out.println(s);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			  
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		//Clicks on Human Performance Search
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
 		//Enters the title in term search field

@@ -1009,6 +1009,7 @@ public class FirefoxTest {
 	}
 	public void afterTest(){
 		driver.manage().window().maximize();
+		Thread.sleep(1000);
 		//Browser closes
 		driver.quit();
 		softly.assertAll();

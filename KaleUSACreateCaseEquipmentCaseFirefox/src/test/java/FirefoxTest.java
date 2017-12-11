@@ -217,6 +217,16 @@ public class FirefoxTest {
 		Actions act = new Actions(driver);
 		act.click(element1).build().perform();
 		Thread.sleep(1000);
+		//Closes any warning from server
+		try{
+			  String s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
+			  System.out.println(s);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			  
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		
 	}
 	public String[] createCase(String keyword_same, String key1, String key2, String key3, String title)throws Exception{

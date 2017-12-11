@@ -393,11 +393,11 @@ public class IETest {
 		  String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
 		  System.out.println(dept);
 		  softly.assertThat(dept).as("test data").isEqualTo("Department:");
-		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/label")).getText();
-		  System.out.println(date);
 		  String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
 		  System.out.println(sub_dept);
 		  softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");
+		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
+		  System.out.println(date);
 		  softly.assertThat(date).as("test data").isEqualTo("Date of event:");
 		  String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
 		  System.out.println(time);
