@@ -1053,7 +1053,7 @@ public class ChromeTest {
 			  System.out.println(get_dept);
 			  jse.executeScript("scroll(0,6500)");
 			  //Clicks on next
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
 			  //Clicks on back
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 			  //Fills optional data
