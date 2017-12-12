@@ -24,6 +24,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import java.util.Iterator;
 import java.util.List;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class FirefoxTest {
 
@@ -977,6 +978,31 @@ public class FirefoxTest {
 		  //Deletes the record
 		  deleteNewRecord(recordName);
 		  Thread.sleep(4000);
+		  //Closes any green or yellow popups
+		  while(true)
+		  {
+			  Thread.sleep(1000);
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+			  
+			 
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

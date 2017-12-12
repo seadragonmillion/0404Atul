@@ -1198,7 +1198,7 @@ public class FirefoxTest {
 			  driver.quit();
 		  }
 	}
-	public void afterTest(){
+	public void afterTest() throws Exception{
 		driver.manage().window().maximize();
 		Thread.sleep(1000);
 		//Browser closes
