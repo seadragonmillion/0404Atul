@@ -140,7 +140,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  Thread.sleep(2000);
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-irca').click();");
 		  //Verify record deleted
-		  Thread.sleep(1000);
+		  Thread.sleep(4000);
 		  //Click on 1st record
 		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).getText();
 		  System.out.println(name);
