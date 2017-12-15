@@ -996,7 +996,11 @@ public class IETest {
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(3000);
 				  if (j==3)
-				  	jse.executeScript("scroll(0,"+n+")");
+				  {
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
+				  }
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
@@ -1005,7 +1009,7 @@ public class IETest {
 				  {
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
 					  Thread.sleep(1000);
-					  n=n+80;
+					  n=n+100;
 					  String scroll = "scroll(0,"+n+")";
 					  jse.executeScript(scroll);
 				  }
