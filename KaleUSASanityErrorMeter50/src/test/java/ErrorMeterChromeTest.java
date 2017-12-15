@@ -270,7 +270,7 @@ public class ErrorMeterChromeTest {
 				
 	    }
 		
-	    public void pape() throws Exception{
+public void pape() throws Exception{
 			
 			WebDriverWait wait1 = new WebDriverWait(driver,60);
 			int i;
@@ -342,8 +342,8 @@ public class ErrorMeterChromeTest {
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-p"))).click();
 			//Clicks on checkboxes in People Tab
-						wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
-			Thread.sleep(1000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
+			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
@@ -352,7 +352,7 @@ public class ErrorMeterChromeTest {
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q3"))).click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
@@ -411,7 +411,7 @@ public class ErrorMeterChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-a"))).click();
 			//Clicks on checkboxes in Activity Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
@@ -420,7 +420,7 @@ public class ErrorMeterChromeTest {
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
@@ -477,7 +477,7 @@ public class ErrorMeterChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-t"))).click();
 			//Clicks on checkboxes in Procedure Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
@@ -486,7 +486,7 @@ public class ErrorMeterChromeTest {
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
