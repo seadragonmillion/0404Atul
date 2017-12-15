@@ -1006,7 +1006,7 @@ public class IETest {
 				  {
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
 					  Thread.sleep(1000);
-					  n=n+80;
+					  n=n+180;
 					  String scroll = "scroll(0,"+n+")";
 					  jse.executeScript(scroll);
 				  }
