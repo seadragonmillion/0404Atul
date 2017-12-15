@@ -25,7 +25,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class ChromeTest {
 
 	private WebDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "Kalejenkins@123";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";

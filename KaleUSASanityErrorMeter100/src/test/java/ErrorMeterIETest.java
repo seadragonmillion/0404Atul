@@ -26,8 +26,8 @@ import org.openqa.selenium.NoAlertPresentException;
 public class ErrorMeterIETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="ritica";
-	private String password = "Kale46191802@";
+	private String username ="jenkinsvm";
+	private String password = "Kalejenkins@123";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;

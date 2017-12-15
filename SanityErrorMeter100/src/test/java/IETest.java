@@ -27,7 +27,7 @@ import org.assertj.core.api.SoftAssertions;
 public class IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "Kalejenkins@123";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";

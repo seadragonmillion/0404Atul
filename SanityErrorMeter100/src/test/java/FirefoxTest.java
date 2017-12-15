@@ -30,7 +30,7 @@ import org.openqa.selenium.Dimension;
 public class FirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "Kalejenkins@123";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";

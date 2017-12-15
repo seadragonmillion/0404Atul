@@ -24,8 +24,8 @@ import org.openqa.selenium.JavascriptExecutor;
 public class ErrorMeterChromeTest {
 
 	private WebDriver driver;
-	private String username ="ritica";
-	private String password = "Kale46191802@";
+	private String username ="jenkinsvm";
+	private String password = "Kalejenkins@123";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;

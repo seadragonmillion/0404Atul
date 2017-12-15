@@ -30,8 +30,8 @@ import org.openqa.selenium.Dimension;
 public class ErrorMeterFirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="ritica";
-	private String password = "Kale46191802@";
+	private String username ="jenkinsvm";
+	private String password = "Kalejenkins@123";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
