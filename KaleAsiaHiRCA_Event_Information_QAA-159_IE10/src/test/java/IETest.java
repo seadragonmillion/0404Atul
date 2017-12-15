@@ -987,14 +987,14 @@ public class IETest {
 				  }catch (NoAlertPresentException f){
 					  System.out.println ("No unexpected alert for picture 2");
 					  }
-			  Thread.sleep(4000);
+			  Thread.sleep(6000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
 			  {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
-				  Thread.sleep(1000);
+				  Thread.sleep(3000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();

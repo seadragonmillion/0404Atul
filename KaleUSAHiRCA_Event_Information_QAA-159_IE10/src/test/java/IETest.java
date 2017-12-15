@@ -992,7 +992,7 @@ public class IETest {
 			  {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
-				  Thread.sleep(1000);
+				  Thread.sleep(3000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
