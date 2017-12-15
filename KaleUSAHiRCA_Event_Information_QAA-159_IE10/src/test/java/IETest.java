@@ -993,8 +993,10 @@ public class IETest {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(3000);
+				  if (j==3)
+				  	jse.executeScript("scroll(0,"+n+")");
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
-				  
+
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  if(j!=0)
