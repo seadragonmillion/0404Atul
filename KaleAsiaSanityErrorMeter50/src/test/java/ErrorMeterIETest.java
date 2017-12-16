@@ -352,11 +352,11 @@ public void pape() throws Exception{
 
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			//Checks error meter as 0%
+			//Checks error meter as 13%
 			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			String meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("0%").as("test data").isEqualTo(meterText);
+			softly.assertThat("13%").as("test data").isEqualTo(meterText);
 
 
 
@@ -370,7 +370,7 @@ public void pape() throws Exception{
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("13%").as("test data").isEqualTo(meterText);
+			softly.assertThat("19%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -438,7 +438,7 @@ public void pape() throws Exception{
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("33%").as("test data").isEqualTo(meterText);
+			softly.assertThat("31%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -447,7 +447,7 @@ public void pape() throws Exception{
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("42%").as("test data").isEqualTo(meterText);
+			softly.assertThat("38%").as("test data").isEqualTo(meterText);
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
@@ -504,7 +504,7 @@ public void pape() throws Exception{
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("46%").as("test data").isEqualTo(meterText);
+			softly.assertThat("44%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
