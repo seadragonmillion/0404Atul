@@ -415,7 +415,7 @@ public class ErrorMeterIETest {
 			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			String meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("0%").as("test data").isEqualTo(meterText);
+			softly.assertThat("25%").as("test data").isEqualTo(meterText);
 
 
 
@@ -429,13 +429,13 @@ public class ErrorMeterIETest {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("13%").as("test data").isEqualTo(meterText);
+			softly.assertThat("31%").as("test data").isEqualTo(meterText);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
 			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("25%").as("test data").isEqualTo(meterText);
+			softly.assertThat("38%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -444,7 +444,7 @@ public class ErrorMeterIETest {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("38%").as("test data").isEqualTo(meterText);
+			softly.assertThat("44%").as("test data").isEqualTo(meterText);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q4"))).click();
 			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
@@ -546,13 +546,13 @@ public class ErrorMeterIETest {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("58%").as("test data").isEqualTo(meterText);
+			softly.assertThat("56%").as("test data").isEqualTo(meterText);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
 			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("67%").as("test data").isEqualTo(meterText);
+			softly.assertThat("63%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -561,13 +561,13 @@ public class ErrorMeterIETest {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("75%").as("test data").isEqualTo(meterText);
+			softly.assertThat("69%").as("test data").isEqualTo(meterText);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
 			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("83%").as("test data").isEqualTo(meterText);
+			softly.assertThat("75%").as("test data").isEqualTo(meterText);
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
@@ -663,13 +663,13 @@ public class ErrorMeterIETest {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("88%").as("test data").isEqualTo(meterText);
+			softly.assertThat("81%").as("test data").isEqualTo(meterText);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q2"))).click();
 			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("92%").as("test data").isEqualTo(meterText);
+			softly.assertThat("88%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -678,7 +678,7 @@ public class ErrorMeterIETest {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("96%").as("test data").isEqualTo(meterText);
+			softly.assertThat("94%").as("test data").isEqualTo(meterText);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q4"))).click();
 			Thread.sleep(3000);
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
