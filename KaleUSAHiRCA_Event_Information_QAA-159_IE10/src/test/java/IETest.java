@@ -44,7 +44,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1250000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -258,7 +258,7 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
-	    	Thread.sleep(8000);
+	    	Thread.sleep(7000);
 	    	//pdf verification
 	    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 	    	Thread.sleep(4000);
@@ -366,8 +366,11 @@ public class IETest {
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 			//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	    	//Clicks on share button
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+			//Clicks on share button
+	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	WebElement element = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]")));
+	    	Actions act = new Actions(driver);
+			act.click(element).build().perform();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
 	    	//Selects from dropdown
@@ -401,6 +404,7 @@ public class IETest {
 	    	//Clicks on confirm change
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(2000);
 			if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
 				System.out.println("Unmarked critical");
 	    }
@@ -460,7 +464,7 @@ public class IETest {
 			  try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(3000);
+				  Thread.sleep(1000);
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
@@ -627,7 +631,7 @@ public class IETest {
 				  if (error_location_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on location of event textbox");
 			  }
-			  if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
+			 if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
 			  {
 				  String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
 				  softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
@@ -904,7 +908,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div"))).click();
 		  
 		  //Check the time picker
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Close the popup
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a"))).click();
@@ -948,16 +952,14 @@ public class IETest {
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.DELETE);
 		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
-		  Thread.sleep(6000);
-		  
+		  Thread.sleep(3000);
+		   
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		  Thread.sleep(2000);
 		  //Check if it allows for uploading more than one file
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
-		  Thread.sleep(3000);
 		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
 		  softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -975,7 +977,7 @@ public class IETest {
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
 			  act.doubleClick(element).build().perform();
-			  Thread.sleep(6000);
+			  Thread.sleep(8000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 					  p.waitFor();
@@ -985,7 +987,7 @@ public class IETest {
 				  }catch (NoAlertPresentException f){
 					  System.out.println ("No unexpected alert for picture 2");
 					  }
-			  Thread.sleep(8000);
+			  Thread.sleep(6000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
@@ -997,9 +999,10 @@ public class IETest {
 				  {
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
 				  }
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
-
+				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  if(j!=0)
@@ -1022,7 +1025,7 @@ public class IETest {
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
 				  act1.doubleClick(element1).build().perform();
-				  Thread.sleep(6000);
+				  Thread.sleep(8000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 						  q.waitFor();
@@ -1033,9 +1036,9 @@ public class IETest {
 					  	  }catch (NoAlertPresentException f){
 					  		  System.out.println ("No unexpected alert for picture 2");
 					  		  }
-				  Thread.sleep(6000);
+				  Thread.sleep(4000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
-				  
+				  Thread.sleep(2000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
 					//rotate file
@@ -1172,7 +1175,7 @@ public class IETest {
 			  System.out.println ("Record not found.");
 		  //Checks if expected name and actual name is correct
 		  softly.assertThat(recordName).as("test data").isEqualTo(name);
-		   Thread.sleep(2000);
+		  Thread.sleep(2000);
 		  //Opens new record and checks if entered data is same after being saved in report
 		  openCheckRecord(executive,event_id,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 		  Thread.sleep(2000);
@@ -1195,8 +1198,8 @@ public class IETest {
 		  deleteNewRecord(recordName);
 		  while(true)
 		  {
-			 Thread.sleep(1000);
-			 try{
+			  Thread.sleep(1000);
+			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
@@ -1219,7 +1222,7 @@ public class IETest {
 		  
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-		  Thread.sleep(3000);
+		  
 		  afterTest();
 		  
 		  }catch (TimeoutException e)
