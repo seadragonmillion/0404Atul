@@ -203,8 +203,10 @@ public class IETest {
 	public void deleteCase(String caseId, int y) throws Exception{
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  Thread.sleep(1000);
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		  Thread.sleep(1000);
 		  //Clicks on admin option
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		  Thread.sleep(1000);
