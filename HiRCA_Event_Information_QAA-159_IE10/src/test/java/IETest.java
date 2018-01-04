@@ -259,7 +259,7 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-	    	Thread.sleep(8000);
+	    	Thread.sleep(10000);
 	    	//pdf verification
 	    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 	    	Thread.sleep(4000);
