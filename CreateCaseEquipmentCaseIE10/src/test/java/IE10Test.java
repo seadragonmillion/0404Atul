@@ -374,7 +374,7 @@ public class IE10Test {
 		  //Uploads 5 slides
 		  Actions act = new Actions(driver);
 		  WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input")));
-		  act.doubleClick(ele).build().perform();
+		  act.click(ele).build().perform();
 		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		  p.waitFor();
 		  Thread.sleep(3000);
