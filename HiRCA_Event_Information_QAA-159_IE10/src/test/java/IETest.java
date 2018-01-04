@@ -1551,6 +1551,9 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
+		  //Clicks on side panel
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
+		  
 		  while(true)
 		  {
 			  try{
