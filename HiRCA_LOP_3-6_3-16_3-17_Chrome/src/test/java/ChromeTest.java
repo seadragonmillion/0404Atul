@@ -75,7 +75,7 @@ public class ChromeTest {
 			  System.out.println("LOP selection 3.17, 3.16, 3.6 in HiRCA for non admin in Chrome");
 			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  ChromeOptions options = new ChromeOptions();
-	          String chromeProfilePath="C:\\Users\\IEUser\\rramakrishnan\\Chrome Profile\\Profile 1";
+	          String chromeProfilePath="C:\\Users\\IEUser\\Chrome Profile\\Profile 1";
 	          options.addArguments("user-data-dir="+chromeProfilePath);
 	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
 	          options.setExperimentalOption("prefs", chromeOptionsMap);
