@@ -1330,7 +1330,7 @@ public class FirefoxTest {
 			  //Check the data entered for 3.16 LOP2
 			  Actions act = new Actions (driver);
 			  j=1;
-			  int s=50;
+			  int s=40;
 			  while(j<(n2*3))
 			  {
 				  j=j+1;
@@ -1361,7 +1361,7 @@ public class FirefoxTest {
 			  coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.6 LOP3
 			  j=1;
-			  s=50;
+			  s=40;
 			  while(j<(n3*3))
 			  {
 				  j=j+1;
