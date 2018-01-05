@@ -1502,7 +1502,7 @@ public class ChromeTest {
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
 			  
 			  //Event title
-			   String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
+			   String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I ha";
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 			  
 			  //Gets value of date
