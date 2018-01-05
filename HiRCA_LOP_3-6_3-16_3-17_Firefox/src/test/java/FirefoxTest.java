@@ -1365,7 +1365,7 @@ public class FirefoxTest {
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a")));
 				  Point coordinates = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
 				  jse.executeScript("scroll(0,"+coordinates.getY()+")");
-				  jse..executeScript("arguments[0].scrollIntoView();", l);
+				  jse.executeScript("arguments[0].scrollIntoView();", l);
 				  act.moveToElement(l).build().perform();
 				  if(n3>2&&j>9)
 				  {
