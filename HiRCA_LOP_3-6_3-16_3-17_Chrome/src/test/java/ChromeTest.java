@@ -294,7 +294,7 @@ public class ChromeTest {
 		        System.out.println(newData);
 		        //Verifies title
 		        text184=text184.replace("  ", " ");
-		        softly.assertThat("Event title"+text184).as("test data").isSubstringOf(newData);
+		        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
 		        //Verifies location of event
 		        text=text.replace("  ", " ");
 		        softly.assertThat(text).as("test data").isSubstringOf(newData);
