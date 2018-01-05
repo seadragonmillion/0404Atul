@@ -1345,7 +1345,7 @@ public class FirefoxTest {
 				  s=coordinates1.getY()+ s;
 				  jse.executeScript("scroll(0,"+s+")");
 				  act.moveToElement(l).build().perform();
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
+				  //wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
 				  Thread.sleep(3000);
 				  //Click on Evidence Entry
@@ -1377,11 +1377,11 @@ public class FirefoxTest {
 				  s=coordinates1.getY()+ s;
 				  jse.executeScript("scroll(0,"s+")");
 				  act.moveToElement(l).build().perform();
-				  if(n3>2&&j>9)
+				  /*if(n3>2&&j>9)
 				  {
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
-				  }
+				  }*/
 				  /*else
 				  {
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
