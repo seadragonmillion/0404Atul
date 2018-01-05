@@ -312,7 +312,7 @@ public class FirefoxTest {
 		        System.out.println(newData);
 		        //Verifies title
 		        text184=text184.replace("  ", " ");
-		        softly.assertThat("Event title"+text184).as("test data").isSubstringOf(newData);
+		        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
 		        //Verifies location of event
 		        text=text.replace("  ", " ");
 		        softly.assertThat(text).as("test data").isSubstringOf(newData);
@@ -1326,9 +1326,11 @@ public class FirefoxTest {
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
 			  }
+			  Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.16 LOP2
 			  Actions act = new Actions (driver);
 			  j=1;
+			  int s=50;
 			  while(j<(n2*3))
 			  {
 				  j=j+1;
@@ -1337,8 +1339,11 @@ public class FirefoxTest {
 				  System.out.println(lop19);
 				  softly.assertThat(lop19).as("test data").isEqualTo("true");
 				  j=j+1;
+				  
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a")));
-				  jse.executeScript("arguments[0].scrollIntoView();", l);
+				  //jse.executeScript("arguments[0].scrollIntoView();", l);
+				  s=coordinates1.getY()+ s;
+				  jse.executeScript("scroll(0,"+s+")");
 				  act.moveToElement(l).build().perform();
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
@@ -1353,8 +1358,10 @@ public class FirefoxTest {
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
 			  }
+			  coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.6 LOP3
 			  j=1;
+			  s=50;
 			  while(j<(n3*3))
 			  {
 				  j=j+1;
@@ -1364,9 +1371,11 @@ public class FirefoxTest {
 				  softly.assertThat(lop21).as("test data").isEqualTo("true");
 				  j=j+1;
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a")));
-				  Point coordinates = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
-				  jse.executeScript("scroll(0,"+coordinates.getY()+")");
-				  jse.executeScript("arguments[0].scrollIntoView();", l);
+				  //Point coordinates = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
+				  //jse.executeScript("scroll(0,"+coordinates.getY()+")");
+				  //jse.executeScript("arguments[0].scrollIntoView();", l);
+				  s=coordinates1.getY()+ s;
+				  jse.executeScript("scroll(0,"s+")");
 				  act.moveToElement(l).build().perform();
 				  if(n3>2&&j>9)
 				  {
