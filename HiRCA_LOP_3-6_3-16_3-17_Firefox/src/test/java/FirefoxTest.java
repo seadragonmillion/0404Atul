@@ -80,7 +80,7 @@ public class FirefoxTest {
 				 ProfilesIni ffProfiles = new ProfilesIni();
 				 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 				 profile.setPreference("browser.download.folderList", 2);
-				 profile.setPreference("browser.download.dir", "C:\\Users\\rramakrishnan\\Downloads\\reports");
+				 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
 				 profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
 				 profile.setPreference("pdfjs.disabled", true);
 				 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
