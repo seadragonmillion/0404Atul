@@ -1340,7 +1340,7 @@ public class ChromeTest {
 			  }
 			  coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.6 LOP3
-			  j=1,s=50;
+			  j=1;s=50;
 			  while(j<(n3*3))
 			  {
 				  j=j+1;
