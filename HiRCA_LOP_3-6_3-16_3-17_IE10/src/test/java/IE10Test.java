@@ -47,7 +47,7 @@ public class IE10Test {
 	 private String url = "https://kaledev.error-free.com/";
 	 private String reason1="I think I will buy the red car, or I will lease the blue one.";
 	 private String reason2="There was no ice cream in the freezer, nor did they have money to go to the store.";
-	 private String reason3="He didn’t want to go to the dentist, yet he went anyway.";
+	 private String reason3="He didnï¿½t want to go to the dentist, yet he went anyway.";
 	 private String reason4="The mysterious diary records the voice.";
 	 private String reason5="I am counting my calories, yet I really want dessert.";
 	 private String reason6="This is the last random sentence I will be writing and I am going to stop mid-sent";
@@ -1500,7 +1500,7 @@ public class IE10Test {
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
 			  
 			  //Event title
-			   String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
+			   String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I ha";
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 			  
 			  //Gets value of date
