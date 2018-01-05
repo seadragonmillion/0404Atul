@@ -1344,9 +1344,10 @@ public class FirefoxTest {
 				  //jse.executeScript("arguments[0].scrollIntoView();", l);
 				  s=coordinates1.getY()+ s;
 				  jse.executeScript("scroll(0,"+s+")");
-				  act.moveToElement(l).build().perform();
+				  //act.moveToElement(l).build().perform();
 				  //wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 				  Thread.sleep(3000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
@@ -1376,7 +1377,7 @@ public class FirefoxTest {
 				  //jse.executeScript("arguments[0].scrollIntoView();", l);
 				  s=coordinates1.getY()+ s;
 				  jse.executeScript("scroll(0,"+s+")");
-				  act.moveToElement(l).build().perform();
+				  //act.moveToElement(l).build().perform();
 				  /*if(n3>2&&j>9)
 				  {
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
