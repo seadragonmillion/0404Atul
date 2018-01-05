@@ -212,7 +212,7 @@ public class IE10Test {
 		    public void downloadRecord(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 		    	
 		    	//deletes files in reports folder before starting to download
-		    	File file = new File("C://Users//rramakrishnan//Downloads//reports//");
+		    	File file = new File("C://Users//IEUser//Downloads//reports//");
 		    	deleteFiles(file);
 		    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 		    	//Clicks on first newly created record
@@ -255,7 +255,7 @@ public class IE10Test {
 		    	
 		    	 List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded
-		    	File[] files = new File("C://Users//rramakrishnan//Downloads//reports//").listFiles();
+		    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		    	//If this pathname does not denote a directory, then listFiles() returns null. 
 		    	for (File file : files) {
 		    	    if (file.isFile()) {
@@ -264,7 +264,7 @@ public class IE10Test {
 		    	}
 		    	System.out.println(results.get(0));
 		    	//Loads the file to check if correct data is present
-		    	String fileName="C://Users//rramakrishnan//Downloads//reports//"+results.get(0);
+		    	String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
 		    	File file = new File(fileName);
 		    	FileInputStream fis = new FileInputStream(file);
 		    	PDFParser parser = new PDFParser(fis);
