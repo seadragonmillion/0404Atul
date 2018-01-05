@@ -48,7 +48,7 @@ public class ChromeTest {
 	 private String password = "Kalejenkins@123";
 	 private String reason1="I think I will buy the red car, or I will lease the blue one.";
 	 private String reason2="There was no ice cream in the freezer, nor did they have money to go to the store.";
-	 private String reason3="He didn’t want to go to the dentist, yet he went anyway.";
+	 private String reason3="He didnï¿½t want to go to the dentist, yet he went anyway.";
 	 private String reason4="The mysterious diary records the voice.";
 	 private String reason5="I am counting my calories, yet I really want dessert.";
 	 private String reason6="This is the last random sentence I will be writing and I am going to stop mid-sent";
@@ -75,7 +75,7 @@ public class ChromeTest {
 			  System.out.println("LOP selection 3.17, 3.16, 3.6 in HiRCA for non admin in Chrome");
 			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  ChromeOptions options = new ChromeOptions();
-	          String chromeProfilePath="C:\\Users\\rramakrishnan\\Chrome Profile\\Profile 1";
+	          String chromeProfilePath="C:\\Users\\IEUser\\rramakrishnan\\Chrome Profile\\Profile 1";
 	          options.addArguments("user-data-dir="+chromeProfilePath);
 	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
 	          options.setExperimentalOption("prefs", chromeOptionsMap);
