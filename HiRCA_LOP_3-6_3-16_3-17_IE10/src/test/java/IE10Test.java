@@ -1453,6 +1453,7 @@ public class IE10Test {
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  Thread.sleep(8000);
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			  Thread.sleep(4000);
 			  try{
 	               if (login==1)
 	               {
@@ -1462,7 +1463,7 @@ public class IE10Test {
 	        }catch (NoSuchElementException e){
 	               throw e;
 	        }
-			  Thread.sleep(4000);
+			  
 			  WebDriverWait wait = new WebDriverWait(driver,30);
 			  //Clicks on Analysis 
 			  try
