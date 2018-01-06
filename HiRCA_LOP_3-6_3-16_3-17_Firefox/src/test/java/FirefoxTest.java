@@ -1343,12 +1343,14 @@ public class FirefoxTest {
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a")));
 				  s=x+ s;
 				  jse.executeScript("scroll(0,"+s+")");
-				  try{
+				  Thread.sleep(2000);
+				  /*try{
 				  	  act.moveToElement(l).build().perform();
 				  	}catch (org.openqa.selenium.interactions.MoveTargetOutOfBoundsException u)
 				  	{
 				  		
-				  	}
+				  	}*/
+				  jse.executeScript("arguments[0].scrollIntoView();", l);
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 				  /*if(j!=9)
@@ -1384,7 +1386,9 @@ public class FirefoxTest {
 				  //jse.executeScript("scroll(0,"+coordinates.getY()+")");
 				  s=x+ s;
 				  jse.executeScript("scroll(0,"+s+")");
-				  act.moveToElement(l).build().perform();
+				  Thread.sleep(2000);
+				  //act.moveToElement(l).build().perform();
+				  jse.executeScript("arguments[0].scrollIntoView();", l);
 				  if(((n3*3)-j)<6)
 				  {
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_DOWN);
