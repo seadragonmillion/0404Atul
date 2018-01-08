@@ -1306,7 +1306,7 @@ public class IE10Test {
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
 			  }
-			   Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
+			  Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.16 LOP2
 			  int x = coordinates1.getY()+20;
 			  Actions act = new Actions (driver);
@@ -1338,6 +1338,7 @@ public class IE10Test {
 				  String lop20=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop20);
 				  softly.assertThat(lop20).as("test data").isEqualTo(reason8);
+				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
@@ -1370,13 +1371,14 @@ public class IE10Test {
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 				  }
-				  Thread.sleep(2000);
+				  Thread.sleep(3000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  //Verify the text
 				  String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop22);
 				  softly.assertThat(lop22).as("test data").isEqualTo(reason12);
+				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
