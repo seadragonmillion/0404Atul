@@ -1296,7 +1296,7 @@ public class IETest {
 		  Thread.sleep(3000);
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
-		  Thread.sleep(3000);
+		  Thread.sleep(5000);
 		   
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  //Check if it allows for uploading more than one file
