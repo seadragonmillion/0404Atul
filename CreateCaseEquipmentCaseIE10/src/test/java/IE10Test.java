@@ -840,6 +840,7 @@ public class IE10Test {
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  Thread.sleep(8000);
 		  try{
                if (login==1)
                {
@@ -849,7 +850,7 @@ public class IE10Test {
         }catch (NoSuchElementException e){
                throw e;
         }
-		  Thread.sleep(8000);
+		  
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  //Clicks on Error free bank
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
