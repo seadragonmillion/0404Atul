@@ -1003,6 +1003,7 @@ public class FirefoxTest {
 			  
 			 
 		  }
+		  Thread.sleep(1000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
