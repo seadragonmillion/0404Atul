@@ -312,7 +312,7 @@ public class ChromeTest {
 		       // System.out.println(newData);
 		        //Verifies title
 		        text184=text184.replace("  ", " ");
-		        softly.assertThat("Event title"+text184).as("test data").isSubstringOf(newData);
+		        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
 		        //Verifies location of event
 		        text=text.replace("  ", " ");
 		        softly.assertThat(text).as("test data").isSubstringOf(newData);
@@ -1179,14 +1179,14 @@ public class ChromeTest {
 			  			
 			  //Checks event title text box limit
 			  driver.findElement(By.id("pii-irca-event-title")).clear();
-			  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
+			  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 			  Thread.sleep(1000);
 			  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 			  limit_text=limit_text.substring(5,8);
 			  int limit = Integer.parseInt(limit_text);
 			  System.out.println(limit_text+ " "+limit);
-			  for(int i=185; i<=limit+1;i++)
+			  for(int i=text184.length()+1; i<=limit+1;i++)
 				  driver.findElement(By.id("pii-irca-event-title")).sendKeys(".");
 			  
 			  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())

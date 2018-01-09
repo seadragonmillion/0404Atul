@@ -39,8 +39,8 @@ public class IETest {
 	private String password = "Kalejenkins@123";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
-	private int login =0;
 	private String reason1="I think I will buy the red car, or I will lease the blue one.";
+	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
 	
 	@SuppressWarnings("deprecation")
@@ -249,7 +249,7 @@ public class IETest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(3000);
+			Thread.sleep(3000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
 				  q.waitFor();
@@ -296,7 +296,7 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-			    	Thread.sleep(8000);
+			    	Thread.sleep(6000);
 		    	}
 	    	//pdf verification
 	    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
@@ -352,7 +352,7 @@ public class IETest {
 	       // System.out.println(newData);
 	        //Verifies title
 	        text184=text184.replace("  ", " ");
-	        softly.assertThat("Event title"+text184).as("test data").isSubstringOf(newData);
+	        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
 	        //Verifies location of event
 	        text=text.replace("  ", " ");
 	        softly.assertThat(text).as("test data").isSubstringOf(newData);
@@ -762,7 +762,6 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
 	  }
-	
 	 public void rootCause() throws Exception {
 			  
 			  WebDriverWait wait1 = new WebDriverWait(driver,30);
@@ -1235,13 +1234,13 @@ public class IETest {
 		  			
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
-		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
+		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  limit_text=limit_text.substring(5,8);
 		  int limit = Integer.parseInt(limit_text);
 		  System.out.println(limit_text+ " "+limit);
-		  for(int i=185; i<=limit+1;i++)
+		  for(int i=text184.length()+1; i<=limit+1;i++)
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(".");
 		  
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
@@ -1374,10 +1373,10 @@ public class IETest {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(3000);
-				  if (j==3)
+				  if (j==1||j==3)
 				  {
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
 				  }
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 

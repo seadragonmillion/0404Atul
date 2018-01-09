@@ -39,8 +39,8 @@ public class IETest {
 	private String password = "Kalejenkins@123";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
-	private int login =0;
 	private String reason1="I think I will buy the red car, or I will lease the blue one.";
+	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
 	
 	@SuppressWarnings("deprecation")
@@ -234,9 +234,10 @@ public class IETest {
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			
+			Thread.sleep(2000);
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			Thread.sleep(3000);
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -248,18 +249,18 @@ public class IETest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
 				  q.waitFor();
 				  }catch (UnhandledAlertException f){	
-					  System.out.println("Unexpected alert");
+					  System.out.println("Unexpected alert for picture 2");
 					  driver.switchTo().alert().accept();
 					  
 			  	  }catch (NoAlertPresentException f){
-			  		  System.out.println ("No unexpected alert");
+			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
-	    	Thread.sleep(10000);
+	    	Thread.sleep(7000);
 	    	List<String> results = new ArrayList<String>();
 		    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		    	//If this pathname does not denote a directory, then listFiles() returns null. 
@@ -295,21 +296,21 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-			    	Thread.sleep(8000);
+			    	Thread.sleep(6000);
 		    	}
 	    	//pdf verification
 	    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 	    	Thread.sleep(4000);
-	    	//Close pdf
-	    	/*Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
+	    	/*//Close pdf
+	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
-			Thread.sleep(5000);*/
+			Thread.sleep(6000);*/
 			//Switch to window    	
 	    	driver.switchTo().window(window);
 	    	    	
 				    		    	
 	    }
-	    
+
 	    public void pdfCheck(String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 	    	
 	    	 List<String> results = new ArrayList<String>();
@@ -351,7 +352,7 @@ public class IETest {
 	       // System.out.println(newData);
 	        //Verifies title
 	        text184=text184.replace("  ", " ");
-	        softly.assertThat("Event title"+text184).as("test data").isSubstringOf(newData);
+	        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
 	        //Verifies location of event
 	        text=text.replace("  ", " ");
 	        softly.assertThat(text).as("test data").isSubstringOf(newData);
@@ -455,8 +456,11 @@ public class IETest {
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 			//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	    	//Clicks on share button
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+			//Clicks on share button
+	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	WebElement element = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]")));
+	    	Actions act = new Actions(driver);
+			act.click(element).build().perform();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
 	    	//Selects from dropdown
@@ -490,54 +494,55 @@ public class IETest {
 	    	//Clicks on confirm change
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(2000);
 			if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
 				System.out.println("Unmarked critical");
 	    }
 	    
 	  public void openCheckRecord(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 			  
-			  WebDriverWait wait1 = new WebDriverWait(driver,30);
-			  JavascriptExecutor jse = (JavascriptExecutor)driver;
-			  //Clicks on first newly created record
-			  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).click();
-			  //Checks for Event title data
-			  String eve_title =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]")).getText();
-			  softly.assertThat(eve_title).as("test data").isEqualTo(text184);
-			  //Checks for Date of event data
-			  String eve_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[2]")).getText();
-			  softly.assertThat(eve_date).as("test data").isEqualTo(get_date);
-			  //Checks for Time of event data
-			  String eve_time =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[4]")).getText();
-			  softly.assertThat(eve_time).as("test data").isEqualTo(get_time);
-			  //Checks for Location of event data
-			  String eve_loc =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]")).getText();
-			  softly.assertThat(eve_loc).as("test data").isEqualTo(text);
-			  //Checks for Department data
-			  String eve_dept =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
-			  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
-			  //Checks for Investigators data
-			  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
-			  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
-			  //Checks for Report creation date data
-			  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[9]/td[2]")).getText();
-			  softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
-			  //Checks for Problem statement data
-			  String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
-			  softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
-			  //Checks for Timeline of event data
-			  String eve_timeline =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]")).getText();
-			  softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
-			  //Checks for Background information data
-			  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
-			  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
-			  //Check for creator
-		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
-		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
-		      System.out.println(eve_creator);
-		      //Check for Executive summary
-		      String eve_exec =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]")).getText();
-			  softly.assertThat(eve_exec).as("test data").isEqualTo(executive);
-			  //Verify the n/a in LOPs
+		  WebDriverWait wait1 = new WebDriverWait(driver,30);
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  //Clicks on first newly created record
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		  //Checks for Event title data
+		  String eve_title =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]")).getText();
+		  softly.assertThat(eve_title).as("test data").isEqualTo(text184);
+		  //Checks for Date of event data
+		  String eve_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[2]")).getText();
+		  softly.assertThat(eve_date).as("test data").isEqualTo(get_date);
+		  //Checks for Time of event data
+		  String eve_time =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[4]")).getText();
+		  softly.assertThat(eve_time).as("test data").isEqualTo(get_time);
+		  //Checks for Location of event data
+		  String eve_loc =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]")).getText();
+		  softly.assertThat(eve_loc).as("test data").isEqualTo(text);
+		  //Checks for Department data
+		  String eve_dept =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
+		  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
+		  //Checks for Investigators data
+		  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[6]/td[2]")).getText();
+		  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
+		  //Checks for Report creation date data
+		  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
+		  softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
+		  //Checks for Problem statement data
+		  String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
+		  softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
+		  //Checks for Timeline of event data
+		  String eve_timeline =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]")).getText();
+		  softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
+		  //Checks for Background information data
+		  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
+		  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
+		  //Check for creator
+		  String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
+		  softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
+		  System.out.println(eve_creator);
+		  //Check for Executive summary
+		  String eve_exec =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]")).getText();
+		  softly.assertThat(eve_exec).as("test data").isEqualTo(executive);
+		  //Verify the n/a in LOPs
 			  String lop1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr/td[1]"))).getText();
 			  softly.assertThat(lop1).as("test data").isEqualTo("n/a");
 			  String lop2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr/td[2]"))).getText();
@@ -726,43 +731,42 @@ public class IETest {
 			  softly.assertThat(rc77).as("test data").isEqualTo("Recommended corrective actions cost effective?");
 			  String rc78 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[11]/td[3]"))).getText();
 			  softly.assertThat(rc78).as("test data").isEqualTo("");
-			  jse.executeScript("scroll(0, 3300)");
-			  int n =3500;
-			  //Checks the 5 images if appearing
-			  for (int j=0; j<5; j++)
-			  {				  
-				  //Click on Supporting file details
-				  Thread.sleep(500);
-				  String id = "pii-hirca-h-event-report-filecollapsible-"+j;
-				  driver.findElement(By.id(id)).click();
-				  try{
-					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(1000);
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
-				  n=n+1200;
-				  String scroll ="scroll(0,"+n+")";
-				  jse.executeScript(scroll);
-				  String img = "pii-hirca-h-event-report-file-img-"+j;
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
-				  if(driver.findElement(By.id(img)).isDisplayed())
+		  jse.executeScript("scroll(0, 3300)");
+		  int n =3500;
+		  //Checks the 5 images if appearing
+		  for (int j=0; j<5; j++)
+		  {				  
+			  //Click on Supporting file details
+			  Thread.sleep(500);
+			  String id = "pii-hirca-h-event-report-filecollapsible-"+j;
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
+			  try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				  Thread.sleep(1000);
+				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
-					  System.out.println("Image "+ (j+1) + " is displayed");	
 					  
 				  }
+			  n=n+1200;
+			  String scroll ="scroll(0,"+n+")";
+			  jse.executeScript(scroll);
+			  String img = "pii-hirca-h-event-report-file-img-"+j;
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+			  if(driver.findElement(By.id(img)).isDisplayed())
+			  {
+				  System.out.println("Image "+ (j+1) + " is displayed");	
+				  
 			  }
-			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0, 0)");
 		  }
-
-		  public void rootCause() throws Exception {
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+	  }
+	 public void rootCause() throws Exception {
 			  
 			  WebDriverWait wait1 = new WebDriverWait(driver,30);
 			  //Clicks on next
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
 			  //Click on Act of Nature
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
 			  //Verify the texts on the options
@@ -858,7 +862,6 @@ public class IETest {
 			  
 			  
 		  }
-	
 	@Test
 	  public void SanityTest() throws Exception{
 		  try{ 
@@ -916,34 +919,31 @@ public class IETest {
 		  String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
 		  System.out.println(dept);
 		  softly.assertThat(dept).as("test data").isEqualTo("Department:");
-		  String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
-		  System.out.println(sub_dept);
-		  softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");
-		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
+		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/label")).getText();
 		  System.out.println(date);
 		  softly.assertThat(date).as("test data").isEqualTo("Date of event:");
-		  String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
+		  String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
 		  System.out.println(time);
 		  softly.assertThat(time).as("test data").isEqualTo("Time of event:");
-		  String prob=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label")).getText();
+		  String prob=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
 		  System.out.println(prob);
 		  softly.assertThat(prob).as("test data").isEqualTo("Problem statement:");
-		  String exec=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label")).getText();
+		  String exec=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label")).getText();
 		  System.out.println(exec);
 		  softly.assertThat(exec).as("test data").isEqualTo("Executive summary:");
-		  String timeline=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label")).getText();
+		  String timeline=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label")).getText();
 		  System.out.println(timeline);
 		  softly.assertThat(timeline).as("test data").isEqualTo("Timeline of event:");
-		  String back=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]/label")).getText();
+		  String back=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label")).getText();
 		  System.out.println(back);
 		  softly.assertThat(back).as("test data").isEqualTo("Background information:");
 		  String supp1 = driver.findElement(By.id("pii-irca-event-file-fieldcontain-label-0")).getText();
 		  System.out.println(supp1);
 		  softly.assertThat(supp1).as("test data").isEqualTo("Supporting file (1):");
-		  String inve=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label")).getText();
+		  String inve=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[13]/label")).getText();
 		  System.out.println(inve);
 		  softly.assertThat(inve).as("test data").isEqualTo("Investigators:");
-		  String repo=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/label")).getText();
+		  String repo=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label")).getText();
 		  System.out.println(repo);
 		  softly.assertThat(repo).as("test data").isEqualTo("Report creation date:");
 		  //Checks if header appears
@@ -1009,7 +1009,7 @@ public class IETest {
 				  if (error_location_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on location of event textbox");
 			  }
-			  if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
+			 if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
 			  {
 				  String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
 				  softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
@@ -1022,7 +1022,7 @@ public class IETest {
 			  {
 				  String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
 				  softly.assertThat(error_prob).as("test data").isEqualTo("Problem statement is required");
-				  WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+				  WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]"));
 				  WebElement error_prob_dotted = textbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
 				  if (error_prob_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on problem statement textbox");
@@ -1031,7 +1031,7 @@ public class IETest {
 			  {
 				  String error_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
 				  softly.assertThat(error_timeline).as("test data").isEqualTo("Timeline of event is required");
-				  WebElement textbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
+				  WebElement textbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]"));
 				  WebElement error_timeline_dotted = textbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
 				  if (error_timeline_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on timeline of event textbox");
@@ -1040,7 +1040,7 @@ public class IETest {
 			  {
 				  String error_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
 				  softly.assertThat(error_back).as("test data").isEqualTo("Background information is required");
-				  WebElement textbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]"));
+				  WebElement textbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
 				  WebElement error_back_dotted = textbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
 				  if (error_back_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on background information textbox");
@@ -1051,7 +1051,7 @@ public class IETest {
 			  {
 				  String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
 				  softly.assertThat(error_invest).as("test data").isEqualTo("Investigators is required");
-				  WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+				  WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[13]"));
 				  WebElement error_invest_dotted = textbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
 				  if (error_invest_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on investigators textbox");
@@ -1069,7 +1069,7 @@ public class IETest {
 		  {
 			  String noerror_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
 			  softly.assertThat(noerror_invest).as("test data").isEqualTo("");
-			  WebElement ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+			  WebElement ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[13]"));
 			  WebElement noerror_invest_dotted = ttextbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
 			  Thread.sleep(500);
 			  if (noerror_invest_dotted.isDisplayed())
@@ -1096,7 +1096,7 @@ public class IETest {
 		  {
 			  String noerror_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
 			  softly.assertThat(noerror_back).as("test data").isEqualTo("");
-			  WebElement ttextbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]"));
+			  WebElement ttextbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
 			  WebElement noerror_back_dotted = ttextbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
 			  Thread.sleep(500);
 			  if (noerror_back_dotted.isDisplayed())
@@ -1123,7 +1123,7 @@ public class IETest {
 		  {
 			  String noerror_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
 			  softly.assertThat(noerror_timeline).as("test data").isEqualTo("");
-			  WebElement ttextbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
+			  WebElement ttextbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]"));
 			  WebElement noerror_timeline_dotted = ttextbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
 			  Thread.sleep(500);
 			  if (noerror_timeline_dotted.isDisplayed())
@@ -1150,7 +1150,7 @@ public class IETest {
 		  {
 			  String noerror_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
 			  softly.assertThat(noerror_prob).as("test data").isEqualTo("");
-			  WebElement ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+			  WebElement ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]"));
 			  WebElement noerror_prob_dotted = ttextbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
 			  if (noerror_prob_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on problem statement textbox");
@@ -1234,13 +1234,13 @@ public class IETest {
 		  			
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
-		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
+		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  limit_text=limit_text.substring(5,8);
 		  int limit = Integer.parseInt(limit_text);
 		  System.out.println(limit_text+ " "+limit);
-		  for(int i=185; i<=limit+1;i++)
+		  for(int i=text184.length()+1; i<=limit+1;i++)
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(".");
 		  
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
@@ -1268,12 +1268,12 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 		  
 		  //Check the date picker
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/div/a"))).click();
 		  //Close the popup
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a"))).click();
 		  Thread.sleep(2000);
 		  //Click on date picker
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/div/a"))).click();
 		  //Check if the title is correct
 		  String date_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		  System.out.println(date_title);
@@ -1286,13 +1286,13 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div"))).click();
 		  
 		  //Check the time picker
-		  Thread.sleep(1000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a"))).click();
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Close the popup
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a"))).click();
 		  Thread.sleep(2000);
 		  //Click on time picker
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Check if the title is correct
 		  String time_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		  System.out.println(time_title);
@@ -1330,17 +1330,18 @@ public class IETest {
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.DELETE);
 		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
-		  
+		  Thread.sleep(5000);
+		   
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  //Check if it allows for uploading more than one file
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
 		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
 		  softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		  int n=500;
+		  int n=450;
 		  for (int j=0; j<5; j++)
 		  {
 			  
@@ -1353,15 +1354,8 @@ public class IETest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
-			  try {
 			  act.doubleClick(element).build().perform();
-			  }catch (UnhandledAlertException f){		
-					  System.out.println("Unexpecetd alert for picture");
-					  driver.switchTo().alert().accept();
-				  }catch (NoAlertPresentException f){
-					  System.out.println ("No unexpected alert for picture");
-					  }
-			  Thread.sleep(5000);
+			  Thread.sleep(8000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 					  p.waitFor();
@@ -1371,14 +1365,20 @@ public class IETest {
 				  }catch (NoAlertPresentException f){
 					  System.out.println ("No unexpected alert for picture 2");
 					  }
-			  Thread.sleep(3000);
+			  Thread.sleep(6000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
 			  {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
-				  Thread.sleep(1000);
+				  Thread.sleep(3000);
+				  if (j==1||j==3)
+				  {
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
+				  }
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
@@ -1387,7 +1387,7 @@ public class IETest {
 				  {
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
 					  Thread.sleep(1000);
-					  n=n+80;
+					  n=n+180;
 					  String scroll = "scroll(0,"+n+")";
 					  jse.executeScript(scroll);
 				  }
@@ -1402,16 +1402,8 @@ public class IETest {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
-				  try{
 				  act1.doubleClick(element1).build().perform();
-				  }catch (UnhandledAlertException f){	
-							  System.out.println("Unexpecetd alert for picture 2");
-							  driver.switchTo().alert().accept();
-							  
-					  	  }catch (NoAlertPresentException f){
-					  		  System.out.println ("No unexpected alert for picture 2");
-					  		  }
-				  Thread.sleep(4000);
+				  Thread.sleep(8000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 						  q.waitFor();
@@ -1422,7 +1414,7 @@ public class IETest {
 					  	  }catch (NoAlertPresentException f){
 					  		  System.out.println ("No unexpected alert for picture 2");
 					  		  }
-				 Thread.sleep(3000);
+				  Thread.sleep(4000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  Thread.sleep(2000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1441,7 +1433,7 @@ public class IETest {
 				  Thread.sleep(3000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
-					  jse.executeScript("scroll(0, 2000)");
+					  jse.executeScript("scroll(0, 1600)");
 					  //Click on attach another file
 					  Thread.sleep(2000);
 					 WebElement add= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button")));
@@ -1488,7 +1480,7 @@ public class IETest {
 		  System.out.println(get_dept);
 		  jse.executeScript("scroll(0,6500)");
 		  //Clicks on next
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
 		  //Clicks on back
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		  //Fills optional data
@@ -1545,7 +1537,6 @@ public class IETest {
 		  //All changed supporting files saved successfully
 		  //Clicks on Info tab
 		      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
-			  
 		  //Create an expected name
 		  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		  String name = creationDate + "_"+username+"_"+ text184 ;
@@ -1588,11 +1579,9 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
-		  //Clicks on side panel
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-		  
 		  while(true)
 		  {
+			  Thread.sleep(1000);
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
