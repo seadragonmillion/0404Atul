@@ -996,7 +996,7 @@ public class FirefoxTest {
 			  //Clicks on 2 LOPS
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div/label"))).click();
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div/label"))).click();
-			  jse.executeScript("scroll(0, 1200)");
+			  jse.executeScript("scroll(0, 1500)");
 			  Thread.sleep(2000);
 			  //Clicks on Other LOP
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[13]/fieldset/div/div/label"))).click();
