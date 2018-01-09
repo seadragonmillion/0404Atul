@@ -41,8 +41,8 @@ public class ChromeTest {
 
 	 private WebDriver driver;
 	 private int login =0;
-	 private String username = "qaacfi";
-	 private String password = "Kale94935830@";
+	 private String username = "jenkinsvmnonadmin";
+	 private String password = "Kalejenkins@123";
 	 private String reason1="I think I will buy the red car, or I will lease the blue one.";
 	 SoftAssertions softly = new SoftAssertions();
 	 @Rule
@@ -58,7 +58,7 @@ public class ChromeTest {
 			  System.out.println("Performing verification on event information page in HiRCA for non admin in Chrome");
 			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  ChromeOptions options = new ChromeOptions();
-	          String chromeProfilePath="C:\\Users\\rramakrishnan\\Chrome Profile\\Profile 1";
+	          String chromeProfilePath="C:\\Users\\IEUser\\Chrome Profile\\Profile 1";
 	          options.addArguments("user-data-dir="+chromeProfilePath);
 	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
 	          options.setExperimentalOption("prefs", chromeOptionsMap);
@@ -69,7 +69,7 @@ public class ChromeTest {
 	          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
 	        		    "Chrome PDF Viewer"
 	        		});
-	          String downloadFilepath = "C:\\Users\\rramakrishnan\\Downloads\\reports";
+	          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
 	          chromeOptionsMap.put("download.default_directory", downloadFilepath);
 	          driver = new ChromeDriver(cap);
 			  //Browser is maximized
@@ -244,7 +244,7 @@ public class ChromeTest {
 		   public void downloadRecord(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 		    	
 		    	//deletes files in reports folder before starting to download
-		    	File file = new File("C://Users//rramakrishnan//Downloads//reports//");
+		    	File file = new File("C://Users//IEUser//Downloads//reports//");
 		    	deleteFiles(file);
 		    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 		    	//Clicks on first newly created record
@@ -277,7 +277,7 @@ public class ChromeTest {
 		    	
 		    	 List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded
-		    	File[] files = new File("C://Users//rramakrishnan//Downloads//reports//").listFiles();
+		    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		    	//If this pathname does not denote a directory, then listFiles() returns null. 
 		    	for (File file : files) {
 		    	    if (file.isFile()) {
@@ -286,7 +286,7 @@ public class ChromeTest {
 		    	}
 		    	System.out.println(results.get(0));
 		    	//Loads the file to check if correct data is present
-		    	String fileName="C://Users//rramakrishnan//Downloads//reports//"+results.get(0);
+		    	String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
 		    	File file = new File(fileName);
 		    	FileInputStream fis = new FileInputStream(file);
 		    	PDFParser parser = new PDFParser(fis);
