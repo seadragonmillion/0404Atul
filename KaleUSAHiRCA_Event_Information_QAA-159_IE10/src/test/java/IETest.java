@@ -1246,7 +1246,7 @@ public class IETest {
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
 		  {
 			  String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
-			  softly.assertThat(error_title).as("test data").isEqualTo("Event title: is too long,  bytes too long.");
+			  softly.assertThat(error_title).as("test data").isEqualTo("Event title: is too long, 1 bytes too long.");
 			  WebElement textbox1=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div"));
 			  WebElement error_title_dotted = textbox1.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
 			  if (error_title_dotted.isDisplayed())
