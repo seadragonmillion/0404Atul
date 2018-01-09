@@ -1234,13 +1234,13 @@ public class IETest {
 		  			
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
-		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.I have shortlif";
+		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  limit_text=limit_text.substring(5,8);
 		  int limit = Integer.parseInt(limit_text);
 		  System.out.println(limit_text+ " "+limit);
-		  for(int i=185; i<=limit+1;i++)
+		  for(int i=text184.length(); i<=limit+1;i++)
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(".");
 		  
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
@@ -1373,7 +1373,7 @@ public class IETest {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(3000);
-				  if (j==3)
+				  if (j==1||j==3)
 				  {
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-3"))).sendKeys(Keys.ARROW_DOWN);
