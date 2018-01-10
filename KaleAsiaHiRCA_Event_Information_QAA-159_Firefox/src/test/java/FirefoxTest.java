@@ -64,7 +64,7 @@ public class FirefoxTest {
 		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 		 profile.setPreference("browser.download.folderList", 2);
 		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
-		 profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+		 //profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
 		 profile.setPreference("pdfjs.disabled", true);
 		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
@@ -1326,6 +1326,12 @@ public class FirefoxTest {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(1000);
+				  if (j==1||j==3)
+				  {
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
+				  }
 				  driver.findElement(By.id(del)).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();

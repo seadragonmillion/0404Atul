@@ -504,40 +504,40 @@ public class IETest {
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on first newly created record
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		  //Checks for Event title data
-		  String eve_title =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]")).getText();
-		  softly.assertThat(eve_title).as("test data").isEqualTo(text184);
-		  //Checks for Date of event data
-		  String eve_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[2]")).getText();
-		  softly.assertThat(eve_date).as("test data").isEqualTo(get_date);
-		  //Checks for Time of event data
-		  String eve_time =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[4]")).getText();
-		  softly.assertThat(eve_time).as("test data").isEqualTo(get_time);
-		  //Checks for Location of event data
-		  String eve_loc =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]")).getText();
-		  softly.assertThat(eve_loc).as("test data").isEqualTo(text);
-		  //Checks for Department data
-		  String eve_dept =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
-		  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
-		  //Checks for Investigators data
-		  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[6]/td[2]")).getText();
-		  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
-		  //Checks for Report creation date data
-		  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
-		  softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
-		  //Checks for Problem statement data
-		  String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
-		  softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
-		  //Checks for Timeline of event data
-		  String eve_timeline =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]")).getText();
-		  softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
-		  //Checks for Background information data
-		  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
-		  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
-		  //Check for creator
-		  String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
-		  softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
+			  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a")).click();
+			  //Checks for Event title data
+			  String eve_title =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]")).getText();
+			  softly.assertThat(eve_title).as("test data").isEqualTo(text184);
+			  //Checks for Date of event data
+			  String eve_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[2]")).getText();
+			  softly.assertThat(eve_date).as("test data").isEqualTo(get_date);
+			  //Checks for Time of event data
+			  String eve_time =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[4]")).getText();
+			  softly.assertThat(eve_time).as("test data").isEqualTo(get_time);
+			  //Checks for Location of event data
+			  String eve_loc =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]")).getText();
+			  softly.assertThat(eve_loc).as("test data").isEqualTo(text);
+			  //Checks for Department data
+			  String eve_dept =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
+			  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
+			  //Checks for Investigators data
+			  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
+			  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
+			  //Checks for Report creation date data
+			  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[9]/td[2]")).getText();
+			  softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
+			  //Checks for Problem statement data
+			  String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
+			  softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
+			  //Checks for Timeline of event data
+			  String eve_timeline =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]")).getText();
+			  softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
+			  //Checks for Background information data
+			  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
+			  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
+			  //Check for creator
+		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
+		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
 		  System.out.println(eve_creator);
 		  //Check for Executive summary
 		  String eve_exec =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]")).getText();
@@ -907,45 +907,48 @@ public class IETest {
 		  Thread.sleep(2000);
 		  
 		  //Checks if the textboxes have the correct titles
-		  String ev_title = driver.findElement(By.id("pii-irca-event-title-label")).getText();
-		  System.out.println(ev_title);
-		  softly.assertThat(ev_title).as("test data").isEqualTo("Event title:");
-		  String ev_id = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[2]/label")).getText();
-		  System.out.println(ev_id);
-		  softly.assertThat(ev_id).as("test data").isEqualTo("Event ID:");
-		  String loc=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/label")).getText();
-		  System.out.println(loc);
-		  softly.assertThat(loc).as("test data").isEqualTo("Location of event:");
-		  String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
-		  System.out.println(dept);
-		  softly.assertThat(dept).as("test data").isEqualTo("Department:");
-		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/label")).getText();
-		  System.out.println(date);
-		  softly.assertThat(date).as("test data").isEqualTo("Date of event:");
-		  String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
-		  System.out.println(time);
-		  softly.assertThat(time).as("test data").isEqualTo("Time of event:");
-		  String prob=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
-		  System.out.println(prob);
-		  softly.assertThat(prob).as("test data").isEqualTo("Problem statement:");
-		  String exec=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label")).getText();
-		  System.out.println(exec);
-		  softly.assertThat(exec).as("test data").isEqualTo("Executive summary:");
-		  String timeline=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label")).getText();
-		  System.out.println(timeline);
-		  softly.assertThat(timeline).as("test data").isEqualTo("Timeline of event:");
-		  String back=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label")).getText();
-		  System.out.println(back);
-		  softly.assertThat(back).as("test data").isEqualTo("Background information:");
-		  String supp1 = driver.findElement(By.id("pii-irca-event-file-fieldcontain-label-0")).getText();
-		  System.out.println(supp1);
-		  softly.assertThat(supp1).as("test data").isEqualTo("Supporting file (1):");
-		  String inve=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[13]/label")).getText();
-		  System.out.println(inve);
-		  softly.assertThat(inve).as("test data").isEqualTo("Investigators:");
-		  String repo=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label")).getText();
-		  System.out.println(repo);
-		  softly.assertThat(repo).as("test data").isEqualTo("Report creation date:");
+		   String ev_title = driver.findElement(By.id("pii-irca-event-title-label")).getText();
+			  System.out.println(ev_title);
+			  softly.assertThat(ev_title).as("test data").isEqualTo("Event title:");
+			  String ev_id = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[2]/label")).getText();
+			  System.out.println(ev_id);
+			  softly.assertThat(ev_id).as("test data").isEqualTo("Event ID:");
+			  String loc=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/label")).getText();
+			  System.out.println(loc);
+			  softly.assertThat(loc).as("test data").isEqualTo("Location of event:");
+			  String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
+			  System.out.println(dept);
+			  softly.assertThat(dept).as("test data").isEqualTo("Department:");
+			  String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
+			  System.out.println(sub_dept);
+			  softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");
+			  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
+			  System.out.println(date);
+			  softly.assertThat(date).as("test data").isEqualTo("Date of event:");
+			  String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
+			  System.out.println(time);
+			  softly.assertThat(time).as("test data").isEqualTo("Time of event:");
+			  String prob=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label")).getText();
+			  System.out.println(prob);
+			  softly.assertThat(prob).as("test data").isEqualTo("Problem statement:");
+			  String exec=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label")).getText();
+			  System.out.println(exec);
+			  softly.assertThat(exec).as("test data").isEqualTo("Executive summary:");
+			  String timeline=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label")).getText();
+			  System.out.println(timeline);
+			  softly.assertThat(timeline).as("test data").isEqualTo("Timeline of event:");
+			  String back=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]/label")).getText();
+			  System.out.println(back);
+			  softly.assertThat(back).as("test data").isEqualTo("Background information:");
+			  String supp1 = driver.findElement(By.id("pii-irca-event-file-fieldcontain-label-0")).getText();
+			  System.out.println(supp1);
+			  softly.assertThat(supp1).as("test data").isEqualTo("Supporting file (1):");
+			  String inve=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label")).getText();
+			  System.out.println(inve);
+			  softly.assertThat(inve).as("test data").isEqualTo("Investigators:");
+			  String repo=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/label")).getText();
+			  System.out.println(repo);
+			  softly.assertThat(repo).as("test data").isEqualTo("Report creation date:");
 		  //Checks if header appears
 		  WebElement header = driver.findElement(By.tagName("header"));
 		  if(header.isDisplayed())
@@ -1268,12 +1271,12 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 		  
 		  //Check the date picker
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Close the popup
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a"))).click();
 		  Thread.sleep(2000);
 		  //Click on date picker
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Check if the title is correct
 		  String date_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		  System.out.println(date_title);
@@ -1287,12 +1290,12 @@ public class IETest {
 		  
 		  //Check the time picker
 		  Thread.sleep(2000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a"))).click();
 		  //Close the popup
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a"))).click();
 		  Thread.sleep(2000);
 		  //Click on time picker
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a"))).click();
 		  //Check if the title is correct
 		  String time_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		  System.out.println(time_title);
@@ -1480,7 +1483,7 @@ public class IETest {
 		  System.out.println(get_dept);
 		  jse.executeScript("scroll(0,6500)");
 		  //Clicks on next
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		  //Clicks on back
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		  //Fills optional data
