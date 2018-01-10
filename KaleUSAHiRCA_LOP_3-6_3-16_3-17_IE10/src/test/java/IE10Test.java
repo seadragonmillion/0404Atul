@@ -945,7 +945,7 @@ public class IE10Test {
 			  jse.executeScript("scroll(0, 0)");
 		  }
 		  
-		  public void fillLOP() throws Exception {
+		   public void fillLOP() throws Exception {
 			  
 			  WebDriverWait wait1 = new WebDriverWait(driver,30);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -962,6 +962,7 @@ public class IE10Test {
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 			  //Clicks on 2.1.1 means q2.1 answer-yes
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset/div/div/label"))).click();
+			  Thread.sleep(2000);
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[2]/h4/a"))).click();
 			  //Verify Description text
@@ -970,6 +971,7 @@ public class IE10Test {
 			  softly.assertThat(lop1).as("test data").isEqualTo("Layer of Protection (LOP): A practice that detects and/or prevents errors to stop an event from occurring. It can be a procedure, an action or a physical barrier (equipment).");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[2]/h4/a"))).click();
+			  Thread.sleep(2000);
 			  //Enter reason
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason2);
 			  //Clicks on 2 LOPS
@@ -991,6 +993,7 @@ public class IE10Test {
 			  String lop2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
 			  System.out.println(lop2);
 			  softly.assertThat(lop2).as("test data").isEqualTo("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
+			  Thread.sleep(2000);
 			  //Enter data in reason
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason4);
 			  //Clicks on Description
@@ -1072,6 +1075,7 @@ public class IE10Test {
 			  softly.assertThat(lop4).as("test data").isEqualTo("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			  Thread.sleep(2000);
 			  //Enters reason entry data
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason6);
 			  //Select No for 2nd LOP
@@ -1086,6 +1090,7 @@ public class IE10Test {
 			  softly.assertThat(lop5).as("test data").isEqualTo("This question is to determine whether the LOP failure was intentional or unintentional.");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			  Thread.sleep(2000);
 			  //Enters reason entry data
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason7);
 			  //Select In-attention to detail for 2nd LOP
@@ -1160,6 +1165,7 @@ public class IE10Test {
 			  softly.assertThat(lop7).as("test data").isEqualTo("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			  Thread.sleep(2000);
 			  //Enters reason entry data
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason9);
 			  //Select No for 3rd LOP
@@ -1174,6 +1180,7 @@ public class IE10Test {
 			  softly.assertThat(lop8).as("test data").isEqualTo("This question is to determine whether the LOP failure was intentional or unintentional.");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			  Thread.sleep(2000);
 			  //Enters reason entry data
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason10);
 			  //Select Inadequate or incorrect rules for 3rd LOP
@@ -1190,6 +1197,7 @@ public class IE10Test {
 			  softly.assertThat(lop9).as("test data").contains(", as an LOP, does not require the reviewer to crosscheck the validity of assumptions, it is incomplete. LOP is incorrect in that it contains incorrect instructions. For example, an incorrect specification of PPE (personal protective equipment) is an incorrect LOP.");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			  Thread.sleep(2000);
 			  //Enters reason entry data
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason11);
 			  //Select Incompleteness for 3rd LOP
@@ -1306,7 +1314,7 @@ public class IE10Test {
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
 			  }
-			  Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
+			   Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.16 LOP2
 			  int x = coordinates1.getY()+20;
 			  Actions act = new Actions (driver);
