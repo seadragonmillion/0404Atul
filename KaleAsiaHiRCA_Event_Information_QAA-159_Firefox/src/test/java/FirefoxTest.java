@@ -65,7 +65,7 @@ public class FirefoxTest {
 		 profile.setPreference("browser.download.folderList", 2);
 		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
 		 //profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
-		 profile.setPreference("pdfjs.disabled", true);
+		 //profile.setPreference("pdfjs.disabled", true);
 		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 		 driver = new FirefoxDriver(capabilities);
@@ -1313,6 +1313,12 @@ public class FirefoxTest {
 			  Thread.sleep(500);
 			  String id = "pii-irca-event-filecollapsible-"+j;
 			  driver.findElement(By.id(id)).click();
+			  if (j==1||j==3)
+				  {
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
+				  }
 			  //Uploads file
 			  String file = "pii-irca-event-file-"+j;
 			  driver.findElement(By.id(file)).click();
@@ -1326,12 +1332,7 @@ public class FirefoxTest {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(1000);
-				  if (j==1||j==3)
-				  {
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
-				  }
+				  
 				  driver.findElement(By.id(del)).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
