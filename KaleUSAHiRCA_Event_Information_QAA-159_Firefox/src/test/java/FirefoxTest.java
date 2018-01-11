@@ -46,9 +46,8 @@ public class FirefoxTest {
 	private String password = "Kalejenkins@123";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
-	private String reason1="I think I will buy the red car, or I will lease the blue one.";
 	private int login =0;
-	
+	private String reason1="I think I will buy the red car, or I will lease the blue one.";
 	SoftAssertions softly = new SoftAssertions();
 	 @Rule
 	    public ErrorCollector collector = new ErrorCollector();
@@ -74,7 +73,7 @@ public class FirefoxTest {
 		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
-		 if(height<900)
+		 if(height<1900)
 		 {
 			//Browser is maximized
 			driver.manage().window().maximize(); 
@@ -717,12 +716,13 @@ public class FirefoxTest {
 			  try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(4000);
+				  Thread.sleep(1000);
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
 				  }
 			  n=n+1200;
+			  Thread.sleep(2000);
 			  String scroll ="scroll(0,"+n+")";
 			  jse.executeScript(scroll);
 			  String img = "pii-hirca-h-event-report-file-img-"+j;
@@ -736,8 +736,8 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
 	  }
-
-	   public void rootCause() throws Exception {
+	
+	 public void rootCause() throws Exception {
 			  
 			  WebDriverWait wait1 = new WebDriverWait(driver,30);
 			  //Clicks on next
@@ -837,7 +837,6 @@ public class FirefoxTest {
 			  
 			  
 		  }
-	
 	@Test
 	public void SanityTest() throws Exception{
 		  try{
@@ -857,7 +856,7 @@ public class FirefoxTest {
       }catch (NoSuchElementException e){
              throw e;
       }
-		  Thread.sleep(4000);
+		  Thread.sleep(8000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on Analysis 
 		  try
@@ -883,6 +882,9 @@ public class FirefoxTest {
 		  String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
 		  System.out.println(dept);
 		  softly.assertThat(dept).as("test data").isEqualTo("Department:");
+		  /*String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
+		  System.out.println(sub_dept);
+		  softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");*/
 		  String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/label")).getText();
 		  System.out.println(date);
 		  softly.assertThat(date).as("test data").isEqualTo("Date of event:");
@@ -973,7 +975,7 @@ public class FirefoxTest {
 				  if (error_location_dotted.isDisplayed())
 					  System.out.println("Error dotted line displayed on location of event textbox");
 			  }
-			  if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
+			 if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
 			  {
 				  String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
 				  softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
@@ -1324,10 +1326,9 @@ public class FirefoxTest {
 			  Actions act= new Actions(driver);
 			  act.moveToElement(l).build().perform();
 			  l.click();
-			  Thread.sleep(2000);
+			  Thread.sleep(1000);
 			  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			  p.waitFor();
-			  Thread.sleep(3000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1558,9 +1559,8 @@ public class FirefoxTest {
 			  driver.quit();
 		  }
 	}
-	public void afterTest() throws Exception{
+	public void afterTest(){
 		driver.manage().window().maximize();
-		Thread.sleep(1000);
 		//Browser closes
 		driver.quit();
 		softly.assertAll();
