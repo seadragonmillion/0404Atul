@@ -990,199 +990,199 @@ public class IETest {
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
 		  String error_save = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
 		  if(error_save.equals("Please fix all errors mentioned in red."))
-		  {
-			  //Clicks on ok
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-			  //Checks for the error message on each mandatory check box
-			  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
 			  {
-				  String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
-				  softly.assertThat(error_title).as("test data").isEqualTo("Event title is required");
-				  WebElement textbox1=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div"));
-				  WebElement error_title_dotted = textbox1.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
-				  if (error_title_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on event title textbox");
-			  }
-			  if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed())
-			  {
-				  String error_location = driver.findElement(By.id("pii-irca-event-location-error")).getText();
-				  softly.assertThat(error_location).as("test data").isEqualTo("Location of event is required");
-				  WebElement textbox2=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]"));
-				  WebElement error_location_dotted = textbox2.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
-				  if (error_location_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on location of event textbox");
-			  }
-			 if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
-			  {
-				  String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
-				  softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
-				  WebElement textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
-				  WebElement error_dept_dotted = textbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child.error"));
-				  if (error_dept_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on Department textbox");
-			  }
-			  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed())
-			  {
-				  String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
-				  softly.assertThat(error_prob).as("test data").isEqualTo("Problem statement is required");
-				  WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]"));
-				  WebElement error_prob_dotted = textbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				  if (error_prob_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on problem statement textbox");
-			  }
-			  if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed())
-			  {
-				  String error_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
-				  softly.assertThat(error_timeline).as("test data").isEqualTo("Timeline of event is required");
-				  WebElement textbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]"));
-				  WebElement error_timeline_dotted = textbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				  if (error_timeline_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on timeline of event textbox");
-			  }
-			  if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed())
-			  {
-				  String error_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
-				  softly.assertThat(error_back).as("test data").isEqualTo("Background information is required");
-				  WebElement textbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
-				  WebElement error_back_dotted = textbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				  if (error_back_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on background information textbox");
+				  //Clicks on ok
+				  driver.findElement(By.id("pii-irca-dialog-confirmed")).click();
+				  //Checks for the error message on each mandatory check box
+				  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
+				  {
+					  String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
+					  softly.assertThat(error_title).as("test data").isEqualTo("Event title is required");
+					  WebElement textbox1=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div"));
+					  WebElement error_title_dotted = textbox1.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
+					  if (error_title_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on event title textbox");
+				  }
+				  if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed())
+				  {
+					  String error_location = driver.findElement(By.id("pii-irca-event-location-error")).getText();
+					  softly.assertThat(error_location).as("test data").isEqualTo("Location of event is required");
+					  WebElement textbox2=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]"));
+					  WebElement error_location_dotted = textbox2.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
+					  if (error_location_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on location of event textbox");
+				  }
+				  if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
+				  {
+					  String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
+					  softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
+					  WebElement textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
+					  WebElement error_dept_dotted = textbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child.error"));
+					  if (error_dept_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on Department textbox");
+				  }
+				  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed())
+				  {
+					  String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
+					  softly.assertThat(error_prob).as("test data").isEqualTo("Problem statement is required");
+					  WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+					  WebElement error_prob_dotted = textbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+					  if (error_prob_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on problem statement textbox");
+				  }
+				  if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed())
+				  {
+					  String error_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
+					  softly.assertThat(error_timeline).as("test data").isEqualTo("Timeline of event is required");
+					  WebElement textbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
+					  WebElement error_timeline_dotted = textbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+					  if (error_timeline_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on timeline of event textbox");
+				  }
+				  if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed())
+				  {
+					  String error_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
+					  softly.assertThat(error_back).as("test data").isEqualTo("Background information is required");
+					  WebElement textbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]"));
+					  WebElement error_back_dotted = textbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+					  if (error_back_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on background information textbox");
+				  }
+				  
+				  jse.executeScript("scroll(0, 250)");
+				  if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed())
+				  {
+					  String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
+					  softly.assertThat(error_invest).as("test data").isEqualTo("Investigators is required");
+					  WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+					  WebElement error_invest_dotted = textbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+					  if (error_invest_dotted.isDisplayed())
+						  System.out.println("Error dotted line displayed on investigators textbox");
+				  }
 			  }
 			  
-			  jse.executeScript("scroll(0, 250)");
-			  if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed())
+			  //Checks if after entering text if the error message and dotted line disappears
+			  String paragraph_investigators = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu lorem sapien. Donec molestie ligula nec diam mollis scelerisque ac et orci. Phasellus facilisis urna quis nibh faucibus, quis vestibulum nunc fringilla. Sed efficitur elit a nulla ultrices, at cursus ligula pharetra. Ut sollicitudin libero in nunc iaculis, ac mollis eros finibus. Nam iaculis pretium augue, vel tristique ligula sodales id. Maecenas sit amet tellus lobortis, pellentesque urna non, rutrum ante. Etiam enim quam, porta vel iaculis tincidunt, feugiat in nisl.@#$%&*()"
+					  +"\n"
+					  +"Donec gravida ante congue orci dictum, ut pretium velit elementum. Aliquam mattis sapien ut felis consequat tempor. Integer eget justo libero. Etiam hendrerit massa odio, non scelerisque leo fringilla nec. Curabitur ac magna dolor. Suspendisse mi nisi, dictum non dolor sit amet, venenatis tempor ipsum. Praesent maximus mauris tortor, ut hendrerit est pulvinar vitae. Aenean vel justo dignissim, scelerisque urna ultricies, hendrerit magna. Etiam elementum accumsan turpis ut efficitur. Aliquam luctus, nulla eget faucibus fermentum, tortor eros dignissim ante, vitae fermentum tellus ligula consectetur ligula. Etiam sagittis nisl mi, sit amet scelerisque eros venenatis sit amet. Fusce facilisis nisl nunc, eu euismod dui tristique nec. Donec lorem enim, sodales eu sem in, feugiat varius nunc. Phasellus cursus laoreet sapien, ac posuere tortor!?:;"
+					  ;
+			  //Investigators
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
+			  if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed()==false)
 			  {
-				  String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
-				  softly.assertThat(error_invest).as("test data").isEqualTo("Investigators is required");
-				  WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[13]"));
-				  WebElement error_invest_dotted = textbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				  if (error_invest_dotted.isDisplayed())
-					  System.out.println("Error dotted line displayed on investigators textbox");
+				  String noerror_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
+				  softly.assertThat(noerror_invest).as("test data").isEqualTo("");
+				  WebElement ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+				  WebElement noerror_invest_dotted = ttextbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
+				  Thread.sleep(500);
+				  if (noerror_invest_dotted.isDisplayed())
+					  System.out.println("Error dotted line disappeared on investigators textbox");
 			  }
-		  }
-		  
-		  //Checks if after entering text if the error message and dotted line disappears
-		  String paragraph_investigators = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu lorem sapien. Donec molestie ligula nec diam mollis scelerisque ac et orci. Phasellus facilisis urna quis nibh faucibus, quis vestibulum nunc fringilla. Sed efficitur elit a nulla ultrices, at cursus ligula pharetra. Ut sollicitudin libero in nunc iaculis, ac mollis eros finibus. Nam iaculis pretium augue, vel tristique ligula sodales id. Maecenas sit amet tellus lobortis, pellentesque urna non, rutrum ante. Etiam enim quam, porta vel iaculis tincidunt, feugiat in nisl. $@#%&*()"
-				  +"\n"
-				  +"Donec gravida ante congue orci dictum, ut pretium velit elementum. Aliquam mattis sapien ut felis consequat tempor. Integer eget justo libero. Etiam hendrerit massa odio, non scelerisque leo fringilla nec. Curabitur ac magna dolor. Suspendisse mi nisi, dictum non dolor sit amet, venenatis tempor ipsum. Praesent maximus mauris tortor, ut hendrerit est pulvinar vitae. Aenean vel justo dignissim, scelerisque urna ultricies, hendrerit magna. Etiam elementum accumsan turpis ut efficitur. Aliquam luctus, nulla eget faucibus fermentum, tortor eros dignissim ante, vitae fermentum tellus ligula consectetur ligula. Etiam sagittis nisl mi, sit amet scelerisque eros venenatis sit amet. Fusce facilisis nisl nunc, eu euismod dui tristique nec. Donec lorem enim, sodales eu sem in, feugiat varius nunc. Phasellus cursus laoreet sapien, ac posuere tortor!?:;"
-				  ;
-		  //Investigators
-		  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
-		  if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed()==false)
-		  {
-			  String noerror_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
-			  softly.assertThat(noerror_invest).as("test data").isEqualTo("");
-			  WebElement ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[13]"));
-			  WebElement noerror_invest_dotted = ttextbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
-			  Thread.sleep(500);
-			  if (noerror_invest_dotted.isDisplayed())
-				  System.out.println("Error dotted line disappeared on investigators textbox");
-		  }
-		  //Clears some text
-		  for(int i =0; i<30; i++)
-		  {
-			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(Keys.BACK_SPACE); 
-		  }
-		  //Clears all text
-		  driver.findElement(By.id("pii-irca-event-investigators")).clear();
-		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
-		  
-		  //Paragraph for Background info
-		  String paragraph_background= "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-				  +"\n"+"\n"
-				  +"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. The Apache FontBox library is an open source Java tool to obtain low level information from font files. FontBox is a subproject of Apache PDFBox. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artifact contains commandline tools using Apache PDFBox."
-				  ;			 
-		  //Background info
-		  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
-		  if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed()==false)
-		  {
-			  String noerror_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
-			  softly.assertThat(noerror_back).as("test data").isEqualTo("");
-			  WebElement ttextbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
-			  WebElement noerror_back_dotted = ttextbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
-			  Thread.sleep(500);
-			  if (noerror_back_dotted.isDisplayed())
-				  System.out.println("Error dotted line disappeared on background information textbox");
-		  }
-		  //Clears some text
-		  for(int i =0; i<30; i++)
-		  {
-			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(Keys.BACK_SPACE); 
-		  }
-		  //Clears all text
-		  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
-		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
-		  
-		  //Paragraph for Timeline of event
-		  String paragraph_timeline = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. I have a house."
-				  +"\n"+"\n"
-				  +"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomized words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artifact contains examples on how the library can be used."
-				  ;
-		  //Timeline of event
-		  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
-		  if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed()==false)
-		  {
-			  String noerror_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
-			  softly.assertThat(noerror_timeline).as("test data").isEqualTo("");
-			  WebElement ttextbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]"));
-			  WebElement noerror_timeline_dotted = ttextbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
-			  Thread.sleep(500);
-			  if (noerror_timeline_dotted.isDisplayed())
-				  System.out.println("Error dotted line disappeared on timeline of event textbox");
-		  }
-		  //Clears some text
-		  for(int i =0; i<30; i++)
-		  {
-			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(Keys.BACK_SPACE); 
-		  }
-		  //Clears all text
-		  driver.findElement(By.id("pii-irca-event-events")).clear();
-		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
-		  
-		  //Paragraph for Problem Statement
-		  String paragraph_problem = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it."
-				  +"\n"+"\n"
-				  +"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammeled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted."
-				  ;
-		  //Problem Statement
-		  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
-		  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed()==false)
-		  {
-			  String noerror_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
-			  softly.assertThat(noerror_prob).as("test data").isEqualTo("");
-			  WebElement ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]"));
-			  WebElement noerror_prob_dotted = ttextbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
-			  if (noerror_prob_dotted.isDisplayed())
-				  System.out.println("Error dotted line disappeared on problem statement textbox");
-		  }
-		  //Clears some text
-		  for(int i =0; i<30; i++)
-		  {
-			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(Keys.BACK_SPACE); 
-		  }
-		  //Clears all text
-		  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
-		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
-		  
-		  jse.executeScript("scroll(0, 0)");
-		  
-		  //Department
-		  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
-		  Select s = new Select (dropdown);
-		  s.selectByVisibleText("Construction");
-		  if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed()==false)
-		  {
-			  String noerror_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
-			  softly.assertThat(noerror_dept).as("test data").isEqualTo("");
-			  WebElement ttextbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
-			  WebElement noerror_dept_dotted = ttextbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child"));
-			  if (noerror_dept_dotted.isDisplayed())
-				  System.out.println("Error dotted line disappeared on Department textbox");
-		  }
+			  //Clears some text
+			  for(int i =0; i<30; i++)
+			  {
+				  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(Keys.BACK_SPACE); 
+			  }
+			  //Clears all text
+			  driver.findElement(By.id("pii-irca-event-investigators")).clear();
+			  //Re enters text
+			  driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);
+			  			  
+			  //Paragraph for Background info
+			  String paragraph_background= "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+					  +"\n"+"\n"
+					  +"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. The Apache FontBox library is an open source Java tool to obtain low level information from font files. FontBox is a subproject of Apache PDFBox. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains commandline tools using Apache PDFBox."
+					  ;			 
+			  //Background info
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
+			  if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed()==false)
+			  {
+				  String noerror_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
+				  softly.assertThat(noerror_back).as("test data").isEqualTo("");
+				  WebElement ttextbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]"));
+				  WebElement noerror_back_dotted = ttextbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
+				  Thread.sleep(500);
+				  if (noerror_back_dotted.isDisplayed())
+					  System.out.println("Error dotted line disappeared on background information textbox");
+			  }
+			  //Clears some text
+			  for(int i =0; i<30; i++)
+			  {
+				  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(Keys.BACK_SPACE); 
+			  }
+			  //Clears all text
+			  driver.findElement(By.id("pii-irca-event-bginfos")).clear();
+			  //Re enters text
+			  driver.findElement(By.id("pii-irca-event-bginfos")).sendKeys(paragraph_background);
+			  
+			  //Paragraph for Timeline of event
+			  String paragraph_timeline = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose. I have a house."
+					  +"\n"+"\n"
+					  +"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The Apache PDFBox library is an open source Java tool for working with PDF documents. This artefact contains examples on how the library can be used."
+					  ;
+			  //Timeline of event
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
+			  if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed()==false)
+			  {
+				  String noerror_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
+				  softly.assertThat(noerror_timeline).as("test data").isEqualTo("");
+				  WebElement ttextbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
+				  WebElement noerror_timeline_dotted = ttextbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
+				  Thread.sleep(500);
+				  if (noerror_timeline_dotted.isDisplayed())
+					  System.out.println("Error dotted line disappeared on timeline of event textbox");
+			  }
+			  //Clears some text
+			  for(int i =0; i<30; i++)
+			  {
+				  driver.findElement(By.id("pii-irca-event-events")).sendKeys(Keys.BACK_SPACE); 
+			  }
+			  //Clears all text
+			  driver.findElement(By.id("pii-irca-event-events")).clear();
+			  //Re enters text
+			  driver.findElement(By.id("pii-irca-event-events")).sendKeys(paragraph_timeline);
+			  
+			  //Paragraph for Problem Statement
+			  String paragraph_problem = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it."
+					  +"\n"+"\n"
+					  +"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted."
+					  ;
+			  //Problem Statement
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
+			  if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed()==false)
+			  {
+				  String noerror_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
+				  softly.assertThat(noerror_prob).as("test data").isEqualTo("");
+				  WebElement ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+				  WebElement noerror_prob_dotted = ttextbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
+				  if (noerror_prob_dotted.isDisplayed())
+					  System.out.println("Error dotted line disappeared on problem statement textbox");
+			  }
+			  //Clears some text
+			  for(int i =0; i<30; i++)
+			  {
+				  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(Keys.BACK_SPACE); 
+			  }
+			  //Clears all text
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
+			  //Re enters text
+			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
+			  
+			  jse.executeScript("scroll(0, 0)");
+			  
+			  //Department
+			  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+			  Select s = new Select (dropdown);
+			  s.selectByVisibleText("Construction");
+			  if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed()==false)
+			  {
+				  String noerror_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
+				  softly.assertThat(noerror_dept).as("test data").isEqualTo("");
+				  WebElement ttextbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
+				  WebElement noerror_dept_dotted = ttextbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child"));
+				  if (noerror_dept_dotted.isDisplayed())
+					  System.out.println("Error dotted line disappeared on Department textbox");
+			  }
 		  
 		  //Location of event
 		  String text = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
