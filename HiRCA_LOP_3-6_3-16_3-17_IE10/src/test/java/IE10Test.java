@@ -1290,6 +1290,7 @@ public class IE10Test {
 			  System.out.println(lop17);
 			  softly.assertThat(lop17).as("test data").isEqualTo("n/a");
 			  //Check the data entered for 3.17 LOP1
+			  Actions act = new Actions (driver);
 			  j=1;
 			  while(j<(n1*3))
 			  {
@@ -1305,7 +1306,8 @@ public class IE10Test {
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 				  Thread.sleep(3000);				  
 				  //Click on Evidence Entry
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
+				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a")));
+				  act.click(l).build().perform();
 				  //Verify the text
 				  String lop19=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop19);
@@ -1317,7 +1319,7 @@ public class IE10Test {
 			   Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.16 LOP2
 			  int x = coordinates1.getY()+20;
-			  Actions act = new Actions (driver);
+			  
 			  j=1;
 			  int s=20;
 			  while(j<(n2*3))
@@ -1341,7 +1343,8 @@ public class IE10Test {
 				  	}*/
 				  Thread.sleep(3000);
 				  //Click on Evidence Entry
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
+				  l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a")));
+				  act.click(l).build().perform();
 				  //Verify the text
 				  String lop20=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop20);
@@ -1381,7 +1384,8 @@ public class IE10Test {
 				  }
 				  Thread.sleep(3000);
 				  //Click on Evidence Entry
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).click();
+				  l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a")));
+				  act.click(l).build().perform();
 				  //Verify the text
 				  String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop22);
