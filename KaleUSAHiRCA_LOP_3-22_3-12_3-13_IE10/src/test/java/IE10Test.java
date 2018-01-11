@@ -1492,7 +1492,7 @@ public class IE10Test {
 				  //Verify the text
 				  String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop22);
-				  softly.assertThat(lop22).as("test data").isEqualTo(reason5);
+				  softly.assertThat(lop22).as("test data").isEqualTo(reason6);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
@@ -1529,7 +1529,7 @@ public class IE10Test {
 				  //Verify the text
 				  String lop24=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop24);
-				  softly.assertThat(lop24).as("test data").isEqualTo(reason8);
+				  softly.assertThat(lop24).as("test data").isEqualTo(reason10);
 				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
@@ -1570,7 +1570,7 @@ public class IE10Test {
 				  //Verify the text
 				  String lop26=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
 				  System.out.println(lop26);
-				  softly.assertThat(lop26).as("test data").isEqualTo(reason12);
+				  softly.assertThat(lop26).as("test data").isEqualTo(reason15);
 				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).click();
