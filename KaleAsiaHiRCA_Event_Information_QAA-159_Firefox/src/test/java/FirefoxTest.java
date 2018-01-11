@@ -1371,7 +1371,9 @@ public class FirefoxTest {
 							  Thread.sleep(2000);
 							  if(j==4)
 								  jse.executeScript("scroll(0, 1000)");
-							  driver.findElement(By.id(rotate)).click();
+							  l=driver.findElement(By.id(rotate));
+							  act.moveToElement(l).build().perform();
+							  l.click();
 						  }
 				  }
 				  
