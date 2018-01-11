@@ -766,7 +766,7 @@ public class IETest {
 			  
 			  WebDriverWait wait1 = new WebDriverWait(driver,30);
 			  //Clicks on next
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 			  //Click on Act of Nature
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
 			  //Verify the texts on the options
