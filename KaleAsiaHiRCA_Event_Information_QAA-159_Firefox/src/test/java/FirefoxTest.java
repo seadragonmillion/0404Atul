@@ -37,6 +37,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import org.openqa.selenium.interactions.Actions;
 
 public class FirefoxTest {
 
@@ -1321,7 +1322,10 @@ public class FirefoxTest {
 				  }
 			  //Uploads file
 			  String file = "pii-irca-event-file-"+j;
-			  driver.findElement(By.id(file)).click();
+			  WebElement l=driver.findElement(By.id(file));
+			  Actions act= new Actions(driver);
+			  act.moveToElement(l).build().perform();
+			  l.click();
 			  Thread.sleep(1000);
 			  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			  p.waitFor();
