@@ -1305,7 +1305,7 @@ public class ChromeTest {
 				  WebElement l=driver.findElement(By.id(file));
 			      Actions act= new Actions(driver);
 			      act.moveToElement(l).build().perform();
-			      l.click();
+			      l.sendKeys(filepath);
 				  String img = "pii-irca-event-file-img-"+j;
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  if(driver.findElement(By.id(img)).isDisplayed())
