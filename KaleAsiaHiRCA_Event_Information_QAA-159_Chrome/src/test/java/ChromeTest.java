@@ -36,6 +36,7 @@ import org.apache.pdfbox.util.PDFTextStripper;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.interactions.Actions;
 
 public class ChromeTest {
 
@@ -1301,7 +1302,10 @@ public class ChromeTest {
 				  driver.findElement(By.id(id)).click();
 				  //Uploads file
 				  String file = "pii-irca-event-file-"+j;
-				  driver.findElement(By.id(file)).sendKeys(filepath);
+				  WebElement l=driver.findElement(By.id(file));
+			      Actions act= new Actions(driver);
+			      act.moveToElement(l).build().perform();
+			      l.click();
 				  String img = "pii-irca-event-file-img-"+j;
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1347,7 +1351,8 @@ public class ChromeTest {
 								  Thread.sleep(2000);
 								  if(j==4)
 									  jse.executeScript("scroll(0, 1000)");
-								  driver.findElement(By.id(rotate)).click();
+								  l=driver.findElement(By.id(rotate));
+							      act.moveToElement(l).build().perform();
 							  }
 					  }
 					  
