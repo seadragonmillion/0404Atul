@@ -1324,7 +1324,8 @@ public class FirefoxTest {
 			  String file = "pii-irca-event-file-"+j;
 			  WebElement l=driver.findElement(By.id(file));
 			  Actions act= new Actions(driver);
-			  act.moveToElement(l).build().perform();
+			  //act.moveToElement(l).build().perform();
+			  jse.executeScript("arguments[0].scrollIntoView();", l);
 			  l.click();
 			  Thread.sleep(1000);
 			  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
@@ -1372,7 +1373,8 @@ public class FirefoxTest {
 							  if(j==4)
 								  jse.executeScript("scroll(0, 1000)");
 							  l=driver.findElement(By.id(rotate));
-							  act.moveToElement(l).build().perform();
+							  //act.moveToElement(l).build().perform();
+							  jse.executeScript("arguments[0].scrollIntoView();", l);
 							  l.click();
 						  }
 				  }
