@@ -1567,7 +1567,9 @@ public class FirefoxTest {
 			  //Event id
 			  String event_id="Its a small world after all";
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
-			  jse.executeScript("scroll(0,6500)");
+			  Thread.sleep(1000);
+			  jse.executeScript("scroll(0,7000)");
+			  Thread.sleep(1000);
 			  //Clicks on next
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
 			  fillLOP();
