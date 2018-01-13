@@ -36,6 +36,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.interactions.Actions;
+import org.junit.After;
 
 public class ChromeTest {
 
@@ -1529,10 +1530,10 @@ public class ChromeTest {
 		  }
 		  
 		  		  
-		 
+		 @After
 		  public void afterTest() {
-			  WebDriverWait wait = new WebDriverWait(driver,20);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
+			  /*WebDriverWait wait = new WebDriverWait(driver,20);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));*/
 			  driver.quit();
 			  softly.assertAll();
 			  
