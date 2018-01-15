@@ -82,8 +82,8 @@ public class ChromeTest {
 			  System.out.println("LOP selection 3.22, 3.12, 3.13 in HiRCA for non admin in Chrome");
 			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  ChromeOptions options = new ChromeOptions();
-			  String chromeProfilePath="C:\\Users\\IEUser\\Chrome Profile\\Profile 1";
-	          options.addArguments("user-data-dir="+chromeProfilePath);
+			  //String chromeProfilePath="C:\\Users\\IEUser\\Chrome Profile\\Profile 1";
+	          //options.addArguments("user-data-dir="+chromeProfilePath);
 	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
 	          options.setExperimentalOption("prefs", chromeOptionsMap);
 	          DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -1631,6 +1631,7 @@ public class ChromeTest {
 		      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  //Switches to the iframe
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  Thread.sleep(5000);
 			  try{
 	               if (login==1)
 	               {
@@ -1816,7 +1817,7 @@ public class ChromeTest {
 		  
 		  		  
 		 
-		  @After
+		  
 		  public void afterTest() {
 			 /* WebDriverWait wait = new WebDriverWait(driver,20);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));*/
