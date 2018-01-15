@@ -59,19 +59,18 @@ public class ChromeTest {
 			  System.out.println("Performing verification on event information page in HiRCA for non admin in Chrome");
 			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  ChromeOptions options = new ChromeOptions();
-	         // String chromeProfilePath="C:\\Users\\IEUser\\Chrome Profile\\Profile 1";
-	          //options.addArguments("user-data-dir="+chromeProfilePath);
 	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+	          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+	        		    "Chrome PDF Viewer"
+	        		});
+	          chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
 	          options.setExperimentalOption("prefs", chromeOptionsMap);
+	          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+	          chromeOptionsMap.put("download.default_directory", downloadFilepath);
 	          DesiredCapabilities cap = DesiredCapabilities.chrome();
 	          cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
 	          cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 	          cap.setCapability(ChromeOptions.CAPABILITY, options);
-	          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
-	        		    "Chrome PDF Viewer"
-	        		});
-	          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
-	          chromeOptionsMap.put("download.default_directory", downloadFilepath);
 	          driver = new ChromeDriver(cap);
 			  //Browser is maximized
 			  driver.manage().window().maximize();
