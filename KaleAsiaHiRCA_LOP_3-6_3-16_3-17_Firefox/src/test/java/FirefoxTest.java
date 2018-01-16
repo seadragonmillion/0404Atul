@@ -252,6 +252,7 @@ public class FirefoxTest {
 		    	for(String winHandle : driver.getWindowHandles()){
 		    	    driver.switchTo().window(winHandle);
 		    	}
+		    	Thread.sleep(2000);
 		    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 		    	Robot robot = new Robot();
 		    	// press Ctrl+S the Robot's way
