@@ -1095,7 +1095,7 @@ public class FirefoxTest {
 			  //Clicks on LOP
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-			  //Clicks on 2.1.1 means q2.1 answer-yes
+			  //Clicks on 2.1.2 means q2.1 answer-no
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset/div/div/label"))).click();
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[2]/h4/a"))).click();
