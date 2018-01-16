@@ -409,6 +409,7 @@ public class ChromeTest {
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      Thread.sleep(4000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
@@ -420,7 +421,7 @@ public class ChromeTest {
           }catch (NoSuchElementException e){
                  throw e;
           }
-		  Thread.sleep(5000);
+		  Thread.sleep(2000);
 		  int m=deletePreviousCase();
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  //Clicks on admin user name on top right corner
