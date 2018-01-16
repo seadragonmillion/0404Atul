@@ -73,7 +73,7 @@ public class FirefoxTest {
 		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
-		 if(height<1000)
+		 if(height<950)
 		 {
 			//Browser is maximized
 			driver.manage().window().maximize(); 
@@ -271,6 +271,7 @@ public class FirefoxTest {
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
+	    	Thread.sleep(2000);
 	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 	    	Robot robot = new Robot();
 	    	// press Ctrl+S the Robot's way

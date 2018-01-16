@@ -70,7 +70,7 @@ public class ErrorMeterFirefoxTest {
 		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
-		 if(height<1000)
+		 if(height<950)
 		 {
 			//Browser is maximized
 			driver.manage().window().maximize(); 
