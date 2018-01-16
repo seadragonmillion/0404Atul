@@ -89,7 +89,7 @@ public class FirefoxTest {
 				 Dimension initialSize= driver.manage().window().getSize();
 				 System.out.println(initialSize);
 				 int height=initialSize.getHeight();
-				 if(height<900)
+				 if(height<1000)
 				 {
 					//Browser is maximized
 					driver.manage().window().maximize(); 
@@ -1667,7 +1667,7 @@ public class FirefoxTest {
 		  		  
 		 
 		  public void afterTest() {
-			  
+			  driver.manage().window().maximize(); 
 			  driver.quit();
 			  softly.assertAll();
 			  
