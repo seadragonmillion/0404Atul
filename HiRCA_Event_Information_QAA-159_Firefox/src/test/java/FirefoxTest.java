@@ -704,6 +704,7 @@ public class FirefoxTest {
 			  String rc78 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[11]/td[3]"))).getText();
 			  softly.assertThat(rc78).as("test data").isEqualTo("");
 			  jse.executeScript("scroll(0, 3300)");
+			  Thread.sleep(2000);
 			  int n =3500;
 			  //Checks the 5 images if appearing
 			  for (int j=0; j<5; j++)
@@ -1300,6 +1301,7 @@ public class FirefoxTest {
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
 		  Thread.sleep(2000);
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		  Thread.sleep(2000);
 		  //Check if it allows for uploading more than one file
 		  driver.findElement(By.id("pii-irca-addnewfile-button")).click();
 		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
@@ -1335,10 +1337,8 @@ public class FirefoxTest {
 			  {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
-				  Thread.sleep(1000);
-				  
-				  driver.findElement(By.id(del)).click(); 
-				  
+				  Thread.sleep(1000);				  
+				  driver.findElement(By.id(del)).click(); 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  if(j!=0)
@@ -1349,6 +1349,7 @@ public class FirefoxTest {
 					  String scroll = "scroll(0,"+n+")";
 					  jse.executeScript(scroll);
 				  }
+				  Thread.sleep(2000);
 				  //Click on Supporting file details
 				  driver.findElement(By.id(id)).click();
 				  //Fill title and description
@@ -1376,7 +1377,7 @@ public class FirefoxTest {
 								  jse.executeScript("scroll(0, 1000)");
 							  l=driver.findElement(By.id(rotate));
 							  //act.moveToElement(l).build().perform();
-							  jse.executeScript("arguments[0].scrollIntoView();", l);
+							  //jse.executeScript("arguments[0].scrollIntoView();", l);
 							  l.click();
 						  }
 				  }

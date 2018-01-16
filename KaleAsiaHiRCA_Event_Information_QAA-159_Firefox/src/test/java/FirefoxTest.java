@@ -254,6 +254,7 @@ public class FirefoxTest {
 			
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			Thread.sleep(2000);
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -261,6 +262,7 @@ public class FirefoxTest {
 				  {
 					  
 				  }
+			Thread.sleep(3000);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1324,7 +1326,6 @@ public class FirefoxTest {
 			  String file = "pii-irca-event-file-"+j;
 			  WebElement l=driver.findElement(By.id(file));
 			  Actions act= new Actions(driver);
-			  //act.moveToElement(l).build().perform();
 			  jse.executeScript("arguments[0].scrollIntoView();", l);
 			  l.click();
 			  Thread.sleep(1000);
@@ -1336,10 +1337,10 @@ public class FirefoxTest {
 			  {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
-				  Thread.sleep(1000);
-				  
-				  driver.findElement(By.id(del)).click(); 
-				  
+				  Thread.sleep(1000);				  
+				  l=driver.findElement(By.id(del)); 	
+				  //jse.executeScript("arguments[0].scrollIntoView();", l);
+				  l.click();			  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  if(j!=0)
@@ -1350,8 +1351,10 @@ public class FirefoxTest {
 					  String scroll = "scroll(0,"+n+")";
 					  jse.executeScript(scroll);
 				  }
+				  Thread.sleep(2000);
 				  //Click on Supporting file details
 				  driver.findElement(By.id(id)).click();
+				  Thread.sleep(1000);
 				  //Fill title and description
 				  String title_id="pii-irca-event-file-title-"+j;
 				  driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
@@ -1375,7 +1378,7 @@ public class FirefoxTest {
 								  jse.executeScript("scroll(0, 1000)");
 							  l=driver.findElement(By.id(rotate));
 							  //act.moveToElement(l).build().perform();
-							  jse.executeScript("arguments[0].scrollIntoView();", l);
+							  //jse.executeScript("arguments[0].scrollIntoView();", l);
 							  l.click();
 						  }
 				  }
