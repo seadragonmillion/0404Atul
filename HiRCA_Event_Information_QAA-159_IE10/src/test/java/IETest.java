@@ -283,7 +283,7 @@ public class IETest {
 							  
 						  }
 					//Clicks on open pdf report
-					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			    	Thread.sleep(4000);
 	    	try {
@@ -1339,8 +1339,10 @@ public class IETest {
 		  Thread.sleep(5000);
 		   
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		  Thread.sleep(2000);
 		  //Check if it allows for uploading more than one file
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
+		  Thread.sleep(1000);
 		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
 		  softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();

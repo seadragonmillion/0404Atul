@@ -1358,10 +1358,11 @@ public class FirefoxTest {
 				  String desc = "pii-irca-event-file-description-"+j;
 				  driver.findElement(By.id(desc)).sendKeys("Description0"+j);
 				  //re-upload file
-				  driver.findElement(By.id(file)).click();
+				  l=driver.findElement(By.id(file));
+				  jse.executeScript("arguments[0].scrollIntoView();", l);
+				  l.click();
 				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 				  q.waitFor();
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  Thread.sleep(2000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
