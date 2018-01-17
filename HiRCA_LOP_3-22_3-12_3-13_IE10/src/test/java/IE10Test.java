@@ -82,7 +82,7 @@ public class IE10Test {
 
 	 @SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(800000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 	  
 	 @Before
 	  public void beforeTest() throws MalformedURLException{
