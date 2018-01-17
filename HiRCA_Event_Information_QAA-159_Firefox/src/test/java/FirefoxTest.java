@@ -1451,7 +1451,7 @@ public class FirefoxTest {
 		  //Clicks on Save report
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		  //wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		  Thread.sleep(500);
 		  try{
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
