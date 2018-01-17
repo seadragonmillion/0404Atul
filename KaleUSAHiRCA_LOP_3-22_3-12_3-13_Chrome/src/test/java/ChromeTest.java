@@ -553,10 +553,10 @@ public class ChromeTest {
 			  String eve_dept =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]")).getText();
 			  softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
 			  //Checks for Investigators data
-			  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[6]/td[2]")).getText();
+			  String eve_inv =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
 			  softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
 			  //Checks for Report creation date data
-			  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
+			  String creation_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[9]/td[2]")).getText();
 			  softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
 			  //Checks for Problem statement data
 			  String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
@@ -568,7 +568,7 @@ public class ChromeTest {
 			  String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
 			  softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
 			  //Check for creator
-		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]")).getText();
+		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
 		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
 		      System.out.println(eve_creator);
 		      //Check for Executive summary
@@ -1717,7 +1717,7 @@ public class ChromeTest {
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
 			  jse.executeScript("scroll(0,6500)");
 			  //Clicks on next
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 			  fillLOP();
 			  //Clicks on Save
 			  driver.findElement(By.id("efi-irca-button-save")).click();
