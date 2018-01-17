@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -70,6 +71,15 @@ public class FirefoxTest {
 	 private String[] lopOptions2=new String[10];
 	 private String[] lopOptions3=new String[10];
 	 SoftAssertions softly = new SoftAssertions();
+	 private List<String> hml = new ArrayList<String>();
+	 private List<String> level3 = new ArrayList<String>();
+	 private HashMap<String,String> hm= new HashMap<String,String>();
+	 private List<String> cr = new ArrayList<String>();
+	 private HashMap<String,String> hm_cr= new HashMap<String,String>();
+	 private String text1="Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia. The forgotten python hopes. The bush league bushes the fellow. Can a citizen edit a stimulating composite? The fame trails without another load. A wisest rhythm misguides a modern thick. Above its communist nests the accountant. Your counterpart talks over the rubber ham. A tree pants beside a net gas.";
+	 private String text2="A sky deletes a curtain over the bearded parameter. A handicap escapes near the constant! The vicar dances a threshold opposite a rough limb. The architecture outcries the pat jack after the reflex. An article cruises in the wartime. How will the detailed barrel die without the bench? The heat attends behind the imperative! The steel sleeps over the shame! The smelly exponential hopes a huge anatomy. Against the jack participates a motor. The corporate tour chars an illustrated theology. The confining knowledge ices the desirable bubble. Why can't an invitation volume tailor the irate bandwagon? The brother closet pipes the indent. The fined group trails around a homosexual.";
+	 private String text3="The assumed plotter rushs toward the anatomy. Beneath the physiology despairs the table. A waiting musician leaks above the pole. The chicken patient gins the frustrated container. The ready craft farms the impractical reactionary. Can my flood host the operator? Each charge bumps against the march. The analogy enters?The static mutters? The rabbit conveys the bastard after a correct resemblance. The blade prefers the compelled straw. The specified postscript tries beside the fancy mount. Underneath the reform reigns an organic supernatural.";
+	 
 	 @Rule
 	    public ErrorCollector collector = new ErrorCollector();
 
@@ -441,7 +451,7 @@ public class FirefoxTest {
 		        softly.assertThat("adequate in leading this investigation? skipped n/a").as("test data").isSubstringOf(newData);
 		        //Verify SUEP
 		        softly.assertThat("Contributing factor(s)S: Substandard Practice?U: Under Management Control?E: Early in Event Sequence?P: Prevention Of Recurrence? n/a n/a n/a n/a n/a").as("test data").isSubstringOf(newData);
-		        //Verify the LOPS selected
+		        //Verify the Level3 selected and importance
 		        for (int i=0;i<lopOptions1.length;i++)
 		        {
 		        	if(lopOptions1[i]==null || lopOptions1[i].isEmpty() || "null".equals(lopOptions1[i]) )
@@ -449,7 +459,13 @@ public class FirefoxTest {
 		        	lopOptions1[i]=lopOptions1[i].replace("[", "");
 		        	lopOptions1[i]=lopOptions1[i].replace("]", "");		        	
 		        	System.out.println(lopOptions1[i]);
-		        	softly.assertThat(lopOptions1[i]).as("test data").isSubstringOf(newData);
+		        	if(hm.get(lopOptions1[i]).equals("None"))
+		        		softly.assertThat(lopOptions1[i]).as("test data").isSubstringOf(newData);
+		        	else
+		        	{
+		        		softly.assertThat(lopOptions1[i]).as("test data").isSubstringOf(newData);
+		        		softly.assertThat(hm.get(lopOptions1[i])).as("test data").isSubstringOf(newData);
+		        	}
 		        }
 		        for (int i=0;i<lopOptions2.length;i++)
 		        {
@@ -458,7 +474,13 @@ public class FirefoxTest {
 		        	lopOptions2[i]=lopOptions2[i].replace("[", "");
 		        	lopOptions2[i]=lopOptions2[i].replace("]", "");
 		        	System.out.println(lopOptions2[i]);
-		        	softly.assertThat(lopOptions2[i]).as("test data").isSubstringOf(newData);
+		        	if(hm.get(lopOptions2[i]).equals("None"))
+		        		softly.assertThat(lopOptions2[i]).as("test data").isSubstringOf(newData);
+		        	else
+		        	{
+		        		softly.assertThat(lopOptions2[i]).as("test data").isSubstringOf(newData);
+		        		softly.assertThat(hm.get(lopOptions2[i])).as("test data").isSubstringOf(newData);
+		        	}
 		        }
 		        for (int i=0;i<lopOptions3.length;i++)
 		        {
@@ -467,7 +489,19 @@ public class FirefoxTest {
 		        	lopOptions3[i]=lopOptions3[i].replace("[", "");
 		        	lopOptions3[i]=lopOptions3[i].replace("]", "");
 		        	System.out.println(lopOptions3[i]);
-		        	softly.assertThat(lopOptions3[i]).as("test data").isSubstringOf(newData);
+		        	if(hm.get(lopOptions3[i]).equals("None"))
+		        		softly.assertThat(lopOptions3[i]).as("test data").isSubstringOf(newData);
+		        	else
+		        	{
+		        		softly.assertThat(lopOptions3[i]).as("test data").isSubstringOf(newData);
+		        		softly.assertThat(hm.get(lopOptions3[i])).as("test data").isSubstringOf(newData);
+		        	}
+		        }
+		        //Checks for Corrective actions
+		        for (String item: cr)
+		        {
+		        	softly.assertThat(item).as("test data").isSubstringOf(newData);
+		        	System.out.println(item);
 		        }
 		        softly.assertThat("Reason2.1 Did equipment failure cause LOP to fail? ").as("test data").isSubstringOf(newData);
 		        softly.assertThat(" Yes").as("test data").isSubstringOf(newData);
@@ -627,18 +661,63 @@ public class FirefoxTest {
 			  System.out.println(lopOptions1joint);
 			  System.out.println(lopOptions2joint);
 			  System.out.println(lopOptions3joint);
+			  //Converts 2 lists of level3 and importance into a map
+			  for(int i=0;i<hml.size();i++)
+			  {
+				  hm.put(level3.get(i), hml.get(i));
+				  System.out.println(hm.containsKey(level3.get(i)) + " "+ hm.containsValue(hml.get(i))+ " "+i);
+				  System.out.println(hm.get(level3.get(i))+ " "+level3.get(i));
+			  }
+			  //Converts 2 lists of level3 and corrective action into a map
+			  for(int i=0;i<level3.size();i++)
+			  {
+				  hm_cr.put(level3.get(i), cr.get(i));
+				  System.out.println(hm_cr.containsKey(level3.get(i)) + " "+ hm_cr.containsValue(cr.get(i))+ " "+i);
+				  System.out.println(hm_cr.get(level3.get(i))+ " "+level3.get(i));
+			  }
+			  String lop4="";
+			  String s;
 			  while(true)
 			  {
 				  try{
-					  String lop4=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[2]/tbody/tr["+m+"]/td[1]")).getText();
+					  lop4=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[2]/tbody/tr["+m+"]/td[1]")).getText();
 					  System.out.println(lop4);
 					  lopOptions1joint=lopOptions1joint.replace("[", "");
 					  lopOptions1joint=lopOptions1joint.replace("]", "");
 					  softly.assertThat(lopOptions1joint).as("test data").contains(lop4);
+					  lop4=lop4.replace("  ", " ");
+					  System.out.println(hm.containsKey(lop4));
+					  s= hm.get(lop4);
 				  }catch(org.openqa.selenium.NoSuchElementException u)
 				  {
 					  break;
 				  }
+				  String hmlLop=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[2]/tbody/tr["+m+"]/td[2]")).getText();
+				  System.out.println(hmlLop);				  
+				  System.out.println(s);
+				  if(hmlLop.equals("High"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("Medium"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("Low"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("")||hmlLop==""||hmlLop.equals(null))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo("None");
+				  }
+				  //Verify Corrective actions
+				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[2]/tbody/tr["+m+"]/td[3]")).getText();
+				  System.out.println(cr2);
+				  softly.assertThat(cr2).as("test data").isEqualTo(hm_cr.get(lop4));
 				  m=m+1;
 			  }
 			  int m1=m;
@@ -647,15 +726,44 @@ public class FirefoxTest {
 			  while(true)
 			  {
 				  try{
-					  String lop5=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[3]/tbody/tr["+m+"]/td[1]")).getText();
-					  System.out.println(lop5);
+					  lop4=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[3]/tbody/tr["+m+"]/td[1]")).getText();
+					  System.out.println(lop4);
 					  lopOptions2joint=lopOptions2joint.replace("[", "");
 					  lopOptions2joint=lopOptions2joint.replace("]", "");
-					  softly.assertThat(lopOptions2joint).as("test data").contains(lop5);
+					  softly.assertThat(lopOptions2joint).as("test data").contains(lop4);
+					  lop4=lop4.replace("  ", " ");
+					  System.out.println(hm.containsKey(lop4));
+					  s= hm.get(lop4);
 				  }catch(org.openqa.selenium.NoSuchElementException u)
 				  {
 					  break;
 				  }
+				  String hmlLop=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[3]/tbody/tr["+m+"]/td[2]")).getText();
+				  System.out.println(hmlLop);
+				  
+				  if(hmlLop.equals("High"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("Medium"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("Low"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("")||hmlLop==""||hmlLop.equals(null))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo("None");
+				  }
+				  //Verify Corrective actions
+				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[3]/tbody/tr["+m+"]/td[3]")).getText();
+				  System.out.println(cr2);
+				  softly.assertThat(cr2).as("test data").isEqualTo(hm_cr.get(lop4));
 				  m=m+1;
 			  }
 			  int m2=m;
@@ -664,15 +772,43 @@ public class FirefoxTest {
 			  while(true)
 			  {
 				  try{
-					  String lop6=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[4]/tbody/tr["+m+"]/td[1]")).getText();
-					  System.out.println(lop6);
+					  lop4=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[4]/tbody/tr["+m+"]/td[1]")).getText();
+					  System.out.println(lop4);
 					  lopOptions3joint=lopOptions3joint.replace("[", "");
 					  lopOptions3joint=lopOptions3joint.replace("]", "");
-					  softly.assertThat(lopOptions3joint).as("test data").contains(lop6);
+					  softly.assertThat(lopOptions3joint).as("test data").contains(lop4);
+					  lop4=lop4.replace("  ", " ");
+					  System.out.println(hm.containsKey(lop4));
+					  s= hm.get(lop4);
 				  }catch(org.openqa.selenium.NoSuchElementException u)
 				  {
 					  break;
 				  }
+				  String hmlLop=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[4]/tbody/tr["+m+"]/td[2]")).getText();
+				  System.out.println(hmlLop);
+				  if(hmlLop.equals("High"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("Medium"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("Low"))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
+					  System.out.println(hmlLop);
+				  }
+				  if(hmlLop.equals("")||hmlLop==""||hmlLop.equals(null))
+				  {
+					  softly.assertThat(s).as("test data").isEqualTo("None");
+				  }
+				  //Verify Corrective actions
+				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[4]/tbody/tr["+m+"]/td[3]")).getText();
+				  System.out.println(cr2);
+				  softly.assertThat(cr2).as("test data").isEqualTo(hm_cr.get(lop4));
 				  m=m+1;
 			  }
 			  int m3=m;
@@ -1488,6 +1624,49 @@ public class FirefoxTest {
 				  String lop21=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
 				  System.out.println(lop21);
 				  softly.assertThat(lop21).as("test data").isEqualTo("true");
+				  //Stores Level 3 selected in a list
+				  String lopLevel3=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[1]"))).getText();
+				  int in=lopLevel3.indexOf(":");
+				  if(lopLevel3.charAt(in-1)>='0'&&lopLevel3.charAt(in-1)<='9')
+				  {
+					  char[] lop = lopLevel3.toCharArray();
+					  lop[in]=' ';
+					  lopLevel3=String.valueOf(lop);
+				  }
+				  System.out.println(lopLevel3);
+				  lopLevel3=lopLevel3.replace("  ", " ");
+				  level3.add(lopLevel3);
+				  //Select a number between 0 to 3 for H,M,L
+				  y=random.nextInt(4);
+				  if(y==1)
+				  {
+					  //Click on H
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23);
+					  softly.assertThat(lop23).as("test data").isEqualTo("H");
+					  hml.add("High");
+				  }
+				  if(y==2)
+				  {
+					  //Click on M
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23);
+					  softly.assertThat(lop23).as("test data").isEqualTo("M");
+					  hml.add("Medium");
+				  }
+				  if(y==3)
+				  {
+					  //Click on L
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23);
+					  softly.assertThat(lop23).as("test data").isEqualTo("L");
+					  hml.add("Low");
+				  }
+				  if(y==0)
+					  hml.add("None");
 				  j=j+1;
 				  Point coordinates = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
 				  jse.executeScript("scroll(0,"+coordinates.getY()+")");
@@ -1502,7 +1681,13 @@ public class FirefoxTest {
 				  softly.assertThat(lop22).as("test data").isEqualTo(reason6);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
-				  j=j+1;				  
+				  j=j+1;	
+				  //Clear corrective action data and refill it
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/textarea"))).clear();
+				  Thread.sleep(1000);
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/textarea"))).sendKeys(text1);
+				  //Gets Corrective action data
+				  cr.add(text1);
 			  }
 			   Point coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
 			  //Check the data entered for 3.12 LOP2
@@ -1517,6 +1702,49 @@ public class FirefoxTest {
 				  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
 				  System.out.println(lop23);
 				  softly.assertThat(lop23).as("test data").isEqualTo("true");
+				//Stores Level 3 selected in a list
+				  String lopLevel3=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[1]"))).getText();
+				  int in=lopLevel3.indexOf(":");
+				  if(lopLevel3.charAt(in-1)>='0'&&lopLevel3.charAt(in-1)<='9')
+				  {
+					  char[] lop = lopLevel3.toCharArray();
+					  lop[in]=' ';
+					  lopLevel3=String.valueOf(lop);
+				  }
+				  lopLevel3=lopLevel3.replace("  ", " ");
+				  level3.add(lopLevel3);
+				  
+				  //Select a number between 0 to 3 for H,M,L
+				  y=random.nextInt(4);
+				  if(y==1)
+				  {
+					  //Click on H
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23h=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23h);
+					  softly.assertThat(lop23h).as("test data").isEqualTo("H");
+					  hml.add("High");
+				  }
+				  if(y==2)
+				  {
+					  //Click on M
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23h=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23h);
+					  softly.assertThat(lop23h).as("test data").isEqualTo("M");
+					  hml.add("Medium");
+				  }
+				  if(y==3)
+				  {
+					  //Click on L
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23h=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23h);
+					  softly.assertThat(lop23h).as("test data").isEqualTo("L");
+					  hml.add("Low");
+				  }
+				  if(y==0)
+					  hml.add("None");
 				  j=j+1;
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a")));
 				  s=x+ s;
@@ -1545,7 +1773,13 @@ public class FirefoxTest {
 				  softly.assertThat(lop24).as("test data").isEqualTo(reason10);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
-				  j=j+1;				  
+				  j=j+1;			
+				  //Clear corrective action data and refill it
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/textarea"))).clear();
+				  Thread.sleep(1000);
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/textarea"))).sendKeys(text2);
+				  //Gets Corrective action data
+				  cr.add(text2);
 			  }
 			  //Check the data entered for 3.13 LOP3
 			  coordinates1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+(j-1)+"]/td/div/h4/a"))).getLocation();
@@ -1558,6 +1792,48 @@ public class FirefoxTest {
 				  String lop25=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
 				  System.out.println(lop25);
 				  softly.assertThat(lop25).as("test data").isEqualTo("true");
+				  //Stores Level 3 selected in a list
+				  String lopLevel3=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[1]"))).getText();
+				  int in=lopLevel3.indexOf(":");
+				  if(lopLevel3.charAt(in-1)>='0'&&lopLevel3.charAt(in-1)<='9')
+				  {
+					  char[] lop = lopLevel3.toCharArray();
+					  lop[in]=' ';
+					  lopLevel3=String.valueOf(lop);
+				  }
+				  lopLevel3=lopLevel3.replace("  ", " ");
+				  level3.add(lopLevel3);
+				  //Select a number between 0 to 3 for H,M,L
+				  y=random.nextInt(4);
+				  if(y==1)
+				  {
+					  //Click on H
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23);
+					  softly.assertThat(lop23).as("test data").isEqualTo("H");
+					  hml.add("High");	
+				  }
+				  if(y==2)
+				  {
+					  //Click on M
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23);
+					  softly.assertThat(lop23).as("test data").isEqualTo("M");
+					  hml.add("Medium");	
+				  }
+				  if(y==3)
+				  {
+					  //Click on L
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					  String lop23=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+					  System.out.println(lop23);
+					  softly.assertThat(lop23).as("test data").isEqualTo("L");
+					  hml.add("Low");	
+				  }
+				  if(y==0)
+					  hml.add("None");		
 				  j=j+1;
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a")));
 				  //Point coordinates = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).getLocation();
@@ -1587,15 +1863,24 @@ public class FirefoxTest {
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;				  
+				  //Clear corrective action data and refill it
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/textarea"))).clear();
+				  Thread.sleep(1000);
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/textarea"))).sendKeys(text3);
+				  //Gets Corrective action data
+				  cr.add(text3);
 			  }
+			  System.out.println("HML list "+hml);
+			  System.out.println("Level3 list "+level3);
+			  System.out.println("Corrective action "+cr);
 			  Thread.sleep(2000);
 			  jse.executeScript("scroll(0,0)");
 			  Thread.sleep(2000);
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).sendKeys(Keys.ARROW_UP);
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).sendKeys(Keys.ARROW_UP);
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).sendKeys(Keys.ARROW_UP);
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).sendKeys(Keys.ARROW_UP);
 			  Thread.sleep(2000);
-			  //Click on skip
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+			  //Click on next
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			  //Clicks on check boxes from top to bottom and unchecks them from bottom to top in Step 5
 			  //Checks the check boxes
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[3]/div/input"))).click();
