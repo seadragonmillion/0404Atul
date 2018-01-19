@@ -376,10 +376,15 @@ public class IE10Test {
 		  act.doubleClick(ele).build().perform();
 		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		  p.waitFor();
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  //Checks if 5 images have been uploaded
 		  //if(count==1 && title.equals(eq_title))
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
+		  try{
+		  	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div[1]")));
+		  	}catch(org.openqa.selenium.TimeoutException u){
+		  		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
+		  	}
 		  Thread.sleep(2000);
 		  int i;
 		  for (i=0; i<5;i++)

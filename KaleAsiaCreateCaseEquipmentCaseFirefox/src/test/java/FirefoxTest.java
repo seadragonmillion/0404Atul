@@ -861,7 +861,7 @@ public class FirefoxTest {
 		  deletePreviousCase(ee_title);
 		  Thread.sleep(1000);
 		  deletePreviousCase(me_title);
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  //Clicks on admin option

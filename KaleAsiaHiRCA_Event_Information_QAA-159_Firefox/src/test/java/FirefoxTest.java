@@ -1397,7 +1397,7 @@ public class FirefoxTest {
 				  
 			  }
 		  }
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Checks if all images have been uploaded
 		  //n=2000;
 		  for (int j=4; j>=0; j--)
