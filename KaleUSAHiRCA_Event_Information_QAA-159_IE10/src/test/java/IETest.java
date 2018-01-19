@@ -1436,7 +1436,7 @@ public class IETest {
 				  Thread.sleep(3000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
-					  jse.executeScript("scroll(0, 1600)");
+					  jse.executeScript("scroll(0, 1700)");
 					  //Click on attach another file
 					  Thread.sleep(2000);
 					 WebElement add= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button")));
@@ -1549,7 +1549,13 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Clicks on side panel
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-		  Thread.sleep(2000);
+		  try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  //Gets newly created record name
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"));
 		  String recordName = record.getText();

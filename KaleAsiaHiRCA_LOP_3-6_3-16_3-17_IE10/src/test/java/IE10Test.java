@@ -1490,10 +1490,18 @@ public class IE10Test {
 				  //Click on Evidence Entry
 				  WebElement l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a")));
 				  act.click(l).build().perform();
-				  //Verify the text
-				  String lop19=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/div/div"))).getText();
-				  System.out.println(lop19);
-				  softly.assertThat(lop19).as("test data").isEqualTo(reason5);
+				  try{
+					  //Verify the text
+				      String lop19=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/div/div"))).getText();
+				      System.out.println(lop19);
+				      softly.assertThat(lop19).as("test data").isEqualTo(reason5);
+				  }catch(org.openqa.selenium.TimeoutException u){
+					  act.click(l).build().perform();
+					  //Verify the text
+				      String lop19=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/div/div"))).getText();
+				      System.out.println(lop19);
+				      softly.assertThat(lop19).as("test data").isEqualTo(reason5);
+				  }	
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/h4/a"))).click();
 				  j=j+1;
@@ -1573,10 +1581,18 @@ public class IE10Test {
 				  //Click on Evidence Entry
 				  l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a")));
 				  act.click(l).build().perform();
-				  //Verify the text
-				  String lop20=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
-				  System.out.println(lop20);
-				  softly.assertThat(lop20).as("test data").isEqualTo(reason8);
+				  try{
+					  //Verify the text
+				      String lop20=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
+				      System.out.println(lop20);
+				      softly.assertThat(lop20).as("test data").isEqualTo(reason8);
+				  }catch(org.openqa.selenium.TimeoutException u){
+					  act.click(l).build().perform();
+					  //Verify the text
+				      String lop20=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
+				      System.out.println(lop20);
+				      softly.assertThat(lop20).as("test data").isEqualTo(reason8);
+				  }
 				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/h4/a"))).click();
@@ -1596,7 +1612,7 @@ public class IE10Test {
 				  String lop21=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
 				  System.out.println(lop21);
 				  softly.assertThat(lop21).as("test data").isEqualTo("true");
-				//Stores Level 3 selected in a list
+				  //Stores Level 3 selected in a list
 				  String lopLevel3=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td[1]"))).getText();
 				  int in=lopLevel3.indexOf(":");
 				  if(lopLevel3.charAt(in-1)>='0'&&lopLevel3.charAt(in-1)<='9')
@@ -1659,10 +1675,18 @@ public class IE10Test {
 				  //Click on Evidence Entry
 				  l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a")));
 				  act.click(l).build().perform();
-				  //Verify the text
-				  String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
-				  System.out.println(lop22);
-				  softly.assertThat(lop22).as("test data").isEqualTo(reason12);
+				  try{
+					  //Verify the text
+				      String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
+				      System.out.println(lop22);
+				      softly.assertThat(lop22).as("test data").isEqualTo(reason12);
+				  }catch(org.openqa.selenium.TimeoutException u){
+					  act.click(l).build().perform();
+					  //Verify the text
+				      String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
+				      System.out.println(lop22);
+				      softly.assertThat(lop22).as("test data").isEqualTo(reason12);
+				  }
 				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).click();
