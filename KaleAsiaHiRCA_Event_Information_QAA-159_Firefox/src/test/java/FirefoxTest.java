@@ -1387,7 +1387,7 @@ public class FirefoxTest {
 				  Thread.sleep(3000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
-					  jse.executeScript("scroll(0, 1600)");
+					  jse.executeScript("scroll(0, 1700)");
 					  //Click on attach another file
 					  Thread.sleep(2000);
 					 WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
