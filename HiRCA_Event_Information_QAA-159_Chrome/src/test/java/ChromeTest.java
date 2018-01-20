@@ -1353,6 +1353,7 @@ public class ChromeTest {
 									  jse.executeScript("scroll(0, 1000)");
 								  l=driver.findElement(By.id(rotate));
 							      act.moveToElement(l).build().perform();
+							      l.click();
 							  }
 					  }
 					  
