@@ -2208,6 +2208,10 @@ public class IE10Test {
 				  {
 					  break;
 				  }
+				  catch(org.openqa.selenium.ElementNotInteractableException p)
+				  {
+				      break;
+				  }
 				 
 			  }
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
