@@ -173,7 +173,7 @@ public class FirefoxTest {
 		  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 					  }catch (org.openqa.selenium.TimeoutException e)
 					  {
 						  
