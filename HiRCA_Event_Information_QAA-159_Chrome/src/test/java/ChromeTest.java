@@ -36,7 +36,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.interactions.Actions;
-import org.junit.After;
 
 public class ChromeTest {
 
@@ -168,6 +167,13 @@ public class ChromeTest {
 			  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 			  //Clicks on new record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 			  if(name1.equals(recordName))
 			  {
 			  //Clicks on delete button
@@ -1283,7 +1289,24 @@ public class ChromeTest {
 			  Thread.sleep(2000);
 			  //Click on set time
 			  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
-			  
+			  //Debug
+			  //Clicks on save without images
+			  jse.executeScript("scroll(0,0)");
+			  //Clicks on Save
+			  driver.findElement(By.id("efi-irca-button-save")).click();
+			  //Clicks on Save report
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+			  Thread.sleep(500);
+			  try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 			  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			  //Check if it allows for uploading more than one file
 			  driver.findElement(By.id("pii-irca-addnewfile-button")).click();
@@ -1313,14 +1336,7 @@ public class ChromeTest {
 					  //delete file
 					  String del = "pii-irca-event-file-remove-"+j;
 					  Thread.sleep(1000);
-					 /* if (j==1||j==3)
-				  {
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
-				  }*/
-					  driver.findElement(By.id(del)).click(); 
-					  
+					  driver.findElement(By.id(del)).click(); 					  
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 					  if(j!=0)
@@ -1355,11 +1371,32 @@ public class ChromeTest {
 							      act.moveToElement(l).build().perform();
 							      l.sendKeys(Keys.ARROW_DOWN);
 							      l.sendKeys(Keys.ARROW_DOWN);
+							      Thread.sleep(500);
 							      l.click();
 							  }
 					  }
-					  
-					  Thread.sleep(3000);
+					  //Debug
+					  //Clicks on save without images
+					  jse.executeScript("scroll(0,0)");
+					  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+					  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+					  //Clicks on Save
+					  driver.findElement(By.id("efi-irca-button-save")).click();
+					  //Clicks on Save report
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+					  Thread.sleep(500);
+					  try{
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+					  }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }			  		  
+					  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+					  Thread.sleep(1000);
 					  if(driver.findElement(By.id(img)).isDisplayed())
 					  {
 						  jse.executeScript("scroll(0, 2000)");

@@ -45,7 +45,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1200000);
+	  public Timeout globalTimeout= new Timeout(1500000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -154,6 +154,13 @@ public class IETest {
 		  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 		  //Clicks on new record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  if(name1.equals(recordName))
 		  {
 			  //Clicks on delete button
@@ -1337,17 +1344,34 @@ public class IETest {
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
 		  Thread.sleep(5000);
-		   
-		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		  Thread.sleep(2000);
-		  //Check if it allows for uploading more than one file
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
-		  Thread.sleep(1000);
-		  String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
-		  softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		  int n=450;
-		  for (int j=0; j<5; j++)
+		  //Debug
+		  //Clicks on save without images
+		  jse.executeScript("scroll(0,0)");
+		  //Clicks on Save
+		  driver.findElement(By.id("efi-irca-button-save")).click();
+		  //Clicks on Save report
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		  Thread.sleep(500);
+		  try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		 Thread.sleep(2000);
+		 //Check if it allows for uploading more than one file
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
+		 Thread.sleep(1000);
+		 String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
+		 softly.assertThat(error_attach).as("test data").isEqualTo("Please use existing empty supporting file form above");
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		 int n=450;
+		 for (int j=0; j<5; j++)
 		  {
 			  
 			  //Click on Supporting file details
@@ -1434,8 +1458,28 @@ public class IETest {
 							  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))).click();
 						  }
 				  }
-				  
-				  Thread.sleep(3000);
+				  //Debug
+				  //Clicks on save without images
+				  jse.executeScript("scroll(0,0)");
+				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  //Clicks on Save
+				  driver.findElement(By.id("efi-irca-button-save")).click();
+				  //Clicks on Save report
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(500);
+				  try{
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+				  }catch (org.openqa.selenium.TimeoutException e)
+				  {
+						  
+				  }			  		  
+				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
 					  jse.executeScript("scroll(0, 1600)");
@@ -1496,8 +1540,8 @@ public class IETest {
 		  String event_id="Its a small world after all";
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
 		  //Clicks on Next and proceeds with Root Cause
-			  jse.executeScript("scroll(0,6500)");
-			  rootCause();
+		  jse.executeScript("scroll(0,6500)");
+		  rootCause();
 		  //Clicks on Save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		  //Clicks on Save report

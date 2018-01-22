@@ -170,6 +170,14 @@ public class FirefoxTest {
 		  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 		  //Clicks on new record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		  try{
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+					  }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
 		  if(name1.equals(recordName))
 		  {
 			  //Clicks on delete button
@@ -1301,6 +1309,24 @@ public class FirefoxTest {
 		  //Click on set time
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
 		  Thread.sleep(2000);
+		  //Debug
+		  //Clicks on save without images
+		  jse.executeScript("scroll(0,0)");
+		  //Clicks on Save
+		  driver.findElement(By.id("efi-irca-button-save")).click();
+		  //Clicks on Save report
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		  Thread.sleep(500);
+		  try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }			  		  
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		  Thread.sleep(2000);
 		  //Check if it allows for uploading more than one file
@@ -1316,12 +1342,6 @@ public class FirefoxTest {
 			  Thread.sleep(500);
 			  String id = "pii-irca-event-filecollapsible-"+j;
 			  driver.findElement(By.id(id)).click();
-			  /*if (j==2)
-				  {
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
-				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
-				  }*/
 			  //Uploads file
 			  String file = "pii-irca-event-file-"+j;
 			  WebElement l=driver.findElement(By.id(file));
@@ -1382,8 +1402,28 @@ public class FirefoxTest {
 							  l.click();
 						  }
 				  }
-				  
-				  Thread.sleep(3000);
+				  //Debug
+				  //Clicks on save without images
+				  jse.executeScript("scroll(0,0)");
+				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  //Clicks on Save
+				  driver.findElement(By.id("efi-irca-button-save")).click();
+				  //Clicks on Save report
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(500);
+				  try{
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+				  }catch (org.openqa.selenium.TimeoutException e)
+				  {
+						  
+				  }			  		  
+				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
 					  jse.executeScript("scroll(0, 2000)");
@@ -1444,8 +1484,8 @@ public class FirefoxTest {
 		  String event_id="Its a small world after all";
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
 		  //Clicks on Next and proceeds with Root Cause
-			  jse.executeScript("scroll(0,6500)");
-			  rootCause();
+		  jse.executeScript("scroll(0,6500)");
+		  rootCause();
 		  //Clicks on Save
 		  driver.findElement(By.id("efi-irca-button-save")).click();
 		  //Clicks on Save report
@@ -1491,8 +1531,7 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  //All changed supporting files saved successfully
 		  //Clicks on Info tab
-		      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
-			  
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();		 
 		  //Create an expected name
 		  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		  String name = creationDate + "_"+username+"_"+ text184 ;
