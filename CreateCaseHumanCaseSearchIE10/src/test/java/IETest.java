@@ -432,7 +432,7 @@ public class IETest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-		  Thread.sleep(10000);
+		  Thread.sleep(12000);
 		 // jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  if (login==1)
           {
@@ -440,7 +440,7 @@ public class IETest {
     			  try{
               
                    // WebDriverWait wait2 = new WebDriverWait(driver,40);
-                    WebElement ele1=driver.findElement(By.xpath(".//*[@class='sticky-queue top-right']/div/span"));
+                    WebElement ele1=driver.findElement(By.className("sticky-close"));
                     Actions close1=new Actions(driver);
                     close1.click(ele1).build().perform();
                                  
