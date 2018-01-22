@@ -1347,6 +1347,9 @@ public class IETest {
 		  //Debug
 		  //Clicks on save without images
 		  jse.executeScript("scroll(0,0)");
+		  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		  Thread.sleep(1000);
 		  //Clicks on Save
 		  driver.findElement(By.id("efi-irca-button-save")).click();
 		  //Clicks on Save report
@@ -1463,6 +1466,7 @@ public class IETest {
 				  jse.executeScript("scroll(0,0)");
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  Thread.sleep(1000);
 				  //Clicks on Save
 				  driver.findElement(By.id("efi-irca-button-save")).click();
 				  //Clicks on Save report
