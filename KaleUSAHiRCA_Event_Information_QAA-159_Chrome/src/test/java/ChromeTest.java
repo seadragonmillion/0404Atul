@@ -1388,11 +1388,15 @@ public class ChromeTest {
 				  {
 					  jse.executeScript("scroll(0, 1000)");
 				  }
+				  if(j==0)
+				  {
+				  	 jse.executeScript("scroll(0, 900)");
+				  }
 				  if(j!=4)
 				  {
 					  driver.findElement(By.id(id)).click();
 				  }
-				  
+
 				  String img = "pii-irca-event-file-img-"+j;
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  if(driver.findElement(By.id(img)).isDisplayed())

@@ -1422,6 +1422,10 @@ public class ChromeTest {
 				  {
 					  jse.executeScript("scroll(0, 1000)");
 				  }
+				  if(j==0)
+				  {
+				  	 jse.executeScript("scroll(0, 900)");
+				  }
 				  if(j!=4)
 				  {
 					  driver.findElement(By.id(id)).click();
