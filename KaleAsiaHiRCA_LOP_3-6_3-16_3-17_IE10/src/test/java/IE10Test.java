@@ -1681,6 +1681,7 @@ public class IE10Test {
 				      System.out.println(lop22);
 				      softly.assertThat(lop22).as("test data").isEqualTo(reason12);
 				  }catch(org.openqa.selenium.TimeoutException u){
+				  	  Thread.sleep(2000);
 					  act.click(l).build().perform();
 					  //Verify the text
 				      String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
