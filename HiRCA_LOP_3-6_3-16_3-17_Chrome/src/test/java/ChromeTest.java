@@ -1982,6 +1982,16 @@ public class ChromeTest {
 		      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  //Switches to the iframe
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  
+			  Thread.sleep(7000);
+			  WebDriverWait wait = new WebDriverWait(driver,30);
+			  //Clicks on Analysis 
+			  try
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+			  }catch (UnhandledAlertException f){			  
+				  driver.switchTo().alert().dismiss();
+			  }
 			  try{
 	               if (login==1)
 	               {
@@ -1991,15 +2001,6 @@ public class ChromeTest {
 	        }catch (NoSuchElementException e){
 	               throw e;
 	        }
-			  Thread.sleep(4000);
-			  WebDriverWait wait = new WebDriverWait(driver,30);
-			  //Clicks on Analysis 
-			  try
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
-			  }catch (UnhandledAlertException f){			  
-				  driver.switchTo().alert().dismiss();
-			  }
 			  //Clicks on HiRCA
 			  driver.findElement(By.id("pii-a-menu-hirca")).click();
 			  Thread.sleep(2000);
