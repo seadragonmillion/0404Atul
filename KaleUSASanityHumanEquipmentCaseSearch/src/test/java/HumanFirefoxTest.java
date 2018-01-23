@@ -30,6 +30,7 @@ public class HumanFirefoxTest {
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	private String keyword = "power plant worker";
+	private String keypercent = "50%";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -179,6 +180,13 @@ public class HumanFirefoxTest {
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
+		  //Checks with keyword with %
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q618")));
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with dropdown
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);

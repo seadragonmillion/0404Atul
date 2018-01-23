@@ -33,10 +33,11 @@ public class ChromeTest {
 	private int login =0;
 	private String keyword = "test data";
 	private String keyspcl = "test.1/1";
+	private String keypercent = "Testpercentage%";
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(350000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -172,6 +173,12 @@ public class ChromeTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with keyword with %
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459")));
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();

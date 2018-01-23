@@ -31,6 +31,7 @@ public class FirefoxTest {
 	private int login =0;
 	private String keyword = "test data";
 	private String keyspcl = "test.1/1";
+	private String keypercent ="Testpercentage%";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -181,6 +182,20 @@ public class FirefoxTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with new keyword with %
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		  //Clicks on F1459
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1459")));
+		  Thread.sleep(2000);		  
+		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();

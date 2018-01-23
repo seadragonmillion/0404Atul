@@ -26,11 +26,12 @@ public class EquipmentIETest {
 
 	private InternetExplorerDriver driver;
 	private String username ="qaacfi";
-	 private String password = "Kale94935830@";
+	private String password = "Kale94935830@";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	private String keyword = "failure";
+	private String keypercent ="20%";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -172,14 +173,28 @@ public class EquipmentIETest {
 			  System.out.println("Non admin user cannot see Equipment Search PII");
 		  }
 		  else fail();
-		 //Clicks on Equipment performance search 
+		  //Clicks on Equipment performance search 
 		  driver.findElement(By.linkText("Equipment Performance Search")).click();
-		//Checks if clear feature works on term field
+		  //Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with new keyword with %
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		  //Waits for F1341
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1341")));
+		  Thread.sleep(2000);		  
+		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();

@@ -28,6 +28,7 @@ public class HumanIETest {
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
 	private String keyword = "power plant worker";
+	private String keypercent = "50%";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -166,6 +167,13 @@ public class HumanIETest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with keyword with %
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q618")));
+		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
