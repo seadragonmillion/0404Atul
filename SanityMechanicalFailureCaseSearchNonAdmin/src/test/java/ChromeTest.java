@@ -24,16 +24,17 @@ public class ChromeTest {
 
 	private WebDriver driver;
 	private String username ="qaacfi";
-	 private String password = "Kale94935830@";
+	private String password = "Kale94935830@";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
 	private String keyword = "Sanity test";
 	private String keyspcl = "test.1/1";
+	private String keypercent = "Testpercentme%";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(350000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -168,6 +169,20 @@ public class ChromeTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with new keyword with %
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		  //Waits for F1210
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1210")));
+		  Thread.sleep(2000);		  
+		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();

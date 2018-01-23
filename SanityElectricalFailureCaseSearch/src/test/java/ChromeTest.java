@@ -28,10 +28,11 @@ public class ChromeTest {
 	private int login =0;
 	private String keyword = "sanity";
 	private String keyspcl = "test.1/1";
+	private String keypercent = "Testpercentel%";
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(350000);
 
 		  
 	@Before
@@ -161,6 +162,20 @@ public class ChromeTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  //Checks with new keyword with %
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
+		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		  //Waits for F1678
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F1678")));
+		  Thread.sleep(2000);		  
+		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks with new keyword with . and /
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();

@@ -39,11 +39,11 @@ public class IE10Test {
 	private String key2_eq="QAAcameleq";
 	private String key3_eq="QAAgiraffeeq";
 	private String keyword_same_ee="QAAfiveee";
-	private String key1_ee="QAAzebraee";
+	private String key1_ee="QAAzebraee./%";
 	private String key2_ee="QAAcamelee";
 	private String key3_ee="QAAgiraffeee";
 	private String keyword_same_me="QAAfiveme";
-	private String key1_me="QAAzebrame";
+	private String key1_me="QAAzebrame./%";
 	private String key2_me="QAAcamelme";
 	private String key3_me="QAAgiraffeme";
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
