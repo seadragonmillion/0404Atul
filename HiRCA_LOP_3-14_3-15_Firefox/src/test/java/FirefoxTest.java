@@ -277,7 +277,7 @@ public void downloadRecord(String executive,String event_id,String text184, Stri
 		    	robot.keyRelease(KeyEvent.VK_S);
 		    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 		    	p.waitFor();
-		    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
+		    	pdfCheck(executive,event_id,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 		    	Thread.sleep(4000);
 		    	driver.close();
 		    	Thread.sleep(4000);
@@ -287,7 +287,7 @@ public void downloadRecord(String executive,String event_id,String text184, Stri
 		       	    		    	
 		    }
 		  
-			public void pdfCheck(String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
+			public void pdfCheck(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 		    	
 		    	 List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded
@@ -326,6 +326,9 @@ public void downloadRecord(String executive,String event_id,String text184, Stri
 		        }
 		        newData=newData.replace("  ", " ");
 		        System.out.println(newData);
+		        //Verifies event id
+		        event_id=event_id.replace("  ", " ");
+		        softly.assertThat(event_id).as("test data").isSubstringOf(newData);
 		        //Verifies title
 		        text184=text184.replace("  ", " ");
 		        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
@@ -625,6 +628,10 @@ public void downloadRecord(String executive,String event_id,String text184, Stri
 		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
 		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
 		      System.out.println(eve_creator);
+		      //Check for Event id
+		      String eve_id= driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[2]/td[2]")).getText();
+		      softly.assertThat(event_id).as("test data").isSubstringOf(eve_id);
+		      System.out.println(eve_id);
 		      //Check for Executive summary
 		      String eve_exec =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]")).getText();
 			  softly.assertThat(eve_exec).as("test data").isEqualTo(executive);
