@@ -1349,15 +1349,16 @@ public class ChromeTest {
 					  {
 						//rotate file
 						  String rotate= "pii-irca-event-file-rotate-"+j;
+						  l=driver.findElement(By.id(rotate));
+						  act.moveToElement(l).build().perform();
+					      l.sendKeys(Keys.ARROW_DOWN);
+						  l.sendKeys(Keys.ARROW_DOWN);
 						  for(int r=0;r<=j;r++)
 							  {
 								  Thread.sleep(2000);
 								  if(j==4)
 									  jse.executeScript("scroll(0, 1000)");
-								  l=driver.findElement(By.id(rotate));
-							      act.moveToElement(l).build().perform();
-							      l.sendKeys(Keys.ARROW_DOWN);
-							      l.sendKeys(Keys.ARROW_DOWN);
+								  
 							      l.click();
 							  }
 					  }
@@ -1390,7 +1391,7 @@ public class ChromeTest {
 				  }
 				  if(j==0)
 				  {
-				  	 jse.executeScript("scroll(0, 900)");
+				  	 jse.executeScript("scroll(0, 700)");
 				  }
 				  if(j!=4)
 				  {
