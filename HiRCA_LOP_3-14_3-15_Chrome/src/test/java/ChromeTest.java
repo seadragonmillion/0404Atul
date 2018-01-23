@@ -90,7 +90,7 @@ public class ChromeTest {
 		  public void beforeTest() throws MalformedURLException{
 			  
 			  System.out.println("LOP selection 3.14 and 3.15 in HiRCA for non admin in Chrome");
-			  System.setProperty("webdriver.chrome.driver","C:\\Users\\IEUser\\DriversForSelenium\\chromedriver.exe");
+			  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 			  ChromeOptions options = new ChromeOptions();
 	          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
 	          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {

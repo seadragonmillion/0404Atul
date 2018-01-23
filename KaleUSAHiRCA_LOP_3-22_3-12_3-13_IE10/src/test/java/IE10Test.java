@@ -1674,6 +1674,7 @@ public class IE10Test {
 					  System.out.println(lop22);
 					  softly.assertThat(lop22).as("test data").isEqualTo(reason6);
 				  }catch(org.openqa.selenium.TimeoutException u){
+				  	  Thread.sleep(2000);
 					  act.click(l).build().perform();
 					  //Verify the text
 					  String lop22=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+j+"]/td/div/div/div"))).getText();
@@ -1768,6 +1769,7 @@ public class IE10Test {
 					  System.out.println(lop24);
 					  softly.assertThat(lop24).as("test data").isEqualTo(reason10);
 				  }catch(org.openqa.selenium.TimeoutException u){
+				  	  Thread.sleep(2000);
 					  act.click(l).build().perform();
 					  //Verify the text
 					  String lop24=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[3]/tbody/tr["+j+"]/td/div/div/div"))).getText();
@@ -1855,6 +1857,7 @@ public class IE10Test {
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a"))).sendKeys(Keys.ARROW_UP);
 				  }
+				  act.moveToElement(l).build().perform();
 				  Thread.sleep(4000);
 				  //Click on Evidence Entry
 				  l=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/h4/a")));
@@ -1865,6 +1868,7 @@ public class IE10Test {
 					  System.out.println(lop26);
 					  softly.assertThat(lop26).as("test data").isEqualTo(reason15);
 				  }catch(org.openqa.selenium.TimeoutException u){
+				  	  Thread.sleep(2000);
 					  act.click(l).build().perform();
 					  //Verify the text
 					  String lop26=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
