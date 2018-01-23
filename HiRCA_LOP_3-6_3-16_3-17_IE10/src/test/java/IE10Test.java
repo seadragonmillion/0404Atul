@@ -2040,7 +2040,7 @@ public class IE10Test {
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  Thread.sleep(8000);
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			  Thread.sleep(4000);
+			  Thread.sleep(6000);
 			  
 			  
 			  WebDriverWait wait = new WebDriverWait(driver,30);

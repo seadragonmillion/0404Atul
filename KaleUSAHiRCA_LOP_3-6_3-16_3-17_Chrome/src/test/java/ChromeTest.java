@@ -1982,6 +1982,7 @@ public class ChromeTest {
 		      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  //Switches to the iframe
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  Thread.sleep(6000);
 			  try{
 	               if (login==1)
 	               {
@@ -1991,7 +1992,7 @@ public class ChromeTest {
 	        }catch (NoSuchElementException e){
 	               throw e;
 	        }
-			  Thread.sleep(4000);
+			  
 			  WebDriverWait wait = new WebDriverWait(driver,30);
 			  //Clicks on Analysis 
 			  try

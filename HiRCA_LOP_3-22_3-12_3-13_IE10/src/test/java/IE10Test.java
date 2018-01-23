@@ -1963,7 +1963,7 @@ public class IE10Test {
 			  //Switches to the iframe
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  
-			  Thread.sleep(8000);
+			  Thread.sleep(10000);
 			  WebDriverWait wait = new WebDriverWait(driver,30);
 			  //Clicks on Analysis 
 			  try

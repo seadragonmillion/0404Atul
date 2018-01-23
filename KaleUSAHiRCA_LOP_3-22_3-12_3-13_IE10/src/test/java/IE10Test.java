@@ -1968,7 +1968,7 @@ public class IE10Test {
 	        }catch (NoSuchElementException e){
 	               throw e;
 	        }
-			  Thread.sleep(4000);
+			  Thread.sleep(10000);
 			  WebDriverWait wait = new WebDriverWait(driver,30);
 			  //Clicks on Analysis 
 			  try
