@@ -205,7 +205,7 @@ public class FirefoxTest {
 				  
 			  }
 		  //Clicks on Q1459
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459")));
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass

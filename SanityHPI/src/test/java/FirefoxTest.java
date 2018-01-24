@@ -1006,7 +1006,17 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		  while(true){
+		  	  Thread.sleep(1000);
+			  try{
+			  	  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+				  break;
+			}catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  driver.findElement(By.id("pii-user-loginname")).click();
+				  }
+		  }
+		  
 		  Thread.sleep(2000);
 		  afterTest();
 		   }catch(TimeoutException e)
