@@ -137,6 +137,7 @@ public class IETest {
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  Thread.sleep(2000);
 		  //CLicks on first newly created record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 		  //Clicks on delete button
