@@ -39,7 +39,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(700000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -210,7 +210,7 @@ public class FirefoxTest {
 	    	//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 			//Enters username
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacreator");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
 	    	//Selects from dropdown
 			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
 			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
@@ -220,7 +220,7 @@ public class FirefoxTest {
 			Thread.sleep(1000);
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
@@ -239,7 +239,7 @@ public class FirefoxTest {
 			 WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
 			 String sharedToUsername = sharedTo.getText();
 			 System.out.println(sharedToUsername);
-			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
+			 softly.assertThat("qaacfiverifier").as("test data").isEqualTo(sharedToUsername);
 			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
 			 String sharedText = shared.getText();
 			 System.out.println(sharedText);
@@ -671,7 +671,6 @@ public class FirefoxTest {
 			meterText = meter.getText();
 			System.out.println(meterText);
 			softly.assertThat("0%").as("test data").isEqualTo(meterText);
-
 		}
 		
 	@Test
@@ -683,15 +682,22 @@ public class FirefoxTest {
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  try{
-           if (login==1)
-           {
-                 WebDriverWait wait2 = new WebDriverWait(driver,20);
-                 wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-           }
-    }catch (NoSuchElementException e){
-           throw e;
-    }
+		  Thread.sleep(5000);
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
@@ -710,7 +716,7 @@ public class FirefoxTest {
 		  //Select Job type
 		  element = driver.findElement(By.id("pii-epm-select-condition"));
 		  Select s1 = new Select (element);
-		  s1.selectByVisibleText("Analysis");
+		  s1.selectByVisibleText("Construction");
 		  //Fills Job title
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
 		  String ev1= driver.findElement(By.id("pii-epm-job-title")).getAttribute("value");

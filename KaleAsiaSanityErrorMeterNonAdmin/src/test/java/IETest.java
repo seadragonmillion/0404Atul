@@ -35,7 +35,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1000000);
+	  public Timeout globalTimeout= new Timeout(1200000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -212,7 +212,7 @@ public class IETest {
 	    	//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 			//Enters username
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacreator");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
 	    	//Selects from dropdown
 			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
 			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
@@ -221,7 +221,7 @@ public class IETest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
@@ -240,7 +240,7 @@ public class IETest {
 			 WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
 			 String sharedToUsername = sharedTo.getText();
 			 System.out.println(sharedToUsername);
-			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
+			 softly.assertThat("qaacfiverifier").as("test data").isEqualTo(sharedToUsername);
 			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
 			 String sharedText = shared.getText();
 			 System.out.println(sharedText);
@@ -720,7 +720,7 @@ public class IETest {
 		  //Select Job type
 		  element = driver.findElement(By.id("pii-epm-select-condition"));
 		  Select s1 = new Select (element);
-		  s1.selectByVisibleText("Analysis");
+		  s1.selectByVisibleText("Construction");
 		  Thread.sleep(2000);
 		  //Fills Job title
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
