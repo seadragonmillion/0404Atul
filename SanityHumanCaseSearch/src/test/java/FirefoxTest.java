@@ -194,7 +194,9 @@ public class FirefoxTest {
 			  }
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459")));
 		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks with new keyword with . and /
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyspcl);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  try{
@@ -209,6 +211,7 @@ public class FirefoxTest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  try{

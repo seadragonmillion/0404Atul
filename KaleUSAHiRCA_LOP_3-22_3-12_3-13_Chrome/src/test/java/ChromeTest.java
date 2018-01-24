@@ -1929,6 +1929,7 @@ public class ChromeTest {
 			  }catch (UnhandledAlertException f){			  
 				  driver.switchTo().alert().dismiss();
 			  }
+			  Thread.sleep(2000);
 			  //Clicks on HiRCA
 			  driver.findElement(By.id("pii-a-menu-hirca")).click();
 			  Thread.sleep(2000);

@@ -870,7 +870,7 @@ public class FirefoxTest {
 		  }
 		  //Clicks on HiRCA
 		  driver.findElement(By.id("pii-a-menu-hirca")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  
 		  //Checks if the textboxes have the correct titles
 		  String ev_title = driver.findElement(By.id("pii-irca-event-title-label")).getText();
