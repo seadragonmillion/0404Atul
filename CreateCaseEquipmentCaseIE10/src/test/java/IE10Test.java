@@ -449,6 +449,14 @@ public class IE10Test {
 		  //Enters case id
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on collapsible
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();
 		  //Clicks on Show Slides
