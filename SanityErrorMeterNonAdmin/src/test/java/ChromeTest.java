@@ -198,7 +198,7 @@ public class ChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
@@ -217,7 +217,7 @@ public class ChromeTest {
 			 WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
 			 String sharedToUsername = sharedTo.getText();
 			 System.out.println(sharedToUsername);
-			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
+			 softly.assertThat("qaacfiverifier").as("test data").isEqualTo(sharedToUsername);
 			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
 			 String sharedText = shared.getText();
 			 System.out.println(sharedText);
