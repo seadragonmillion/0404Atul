@@ -826,7 +826,7 @@ public class ChromeTest {
     			  else break;
     		  }
           }	
-		  Thread.sleep(1000);
+		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  //Clicks on Error free bank
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();

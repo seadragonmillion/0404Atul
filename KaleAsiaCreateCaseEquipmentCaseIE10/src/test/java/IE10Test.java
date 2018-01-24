@@ -383,6 +383,8 @@ public class IE10Test {
 		  try{
 		  	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div[1]")));
 		  	}catch(org.openqa.selenium.TimeoutException u){
+		  		System.out.println("Didnt find images clicking on collapsible again");
+		  		Thread.sleep(2000);
 		  		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
 		  	}
 		  Thread.sleep(2000);
