@@ -436,19 +436,19 @@ public class IETest {
 		 // jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  if (login==1)
           {
-               Thread.sleep(1000);
-    			  try{
-              
-                   // WebDriverWait wait2 = new WebDriverWait(driver,40);
-                    WebElement ele1=driver.findElement(By.className("sticky-close"));
-                    Actions close1=new Actions(driver);
-                    close1.click(ele1).build().perform();
-                                 
-              }catch (NoSuchElementException e){
-                     System.out.println("Didnt find close sticky");
-              }
                 
-          }
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  int m=deletePreviousCase();
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();

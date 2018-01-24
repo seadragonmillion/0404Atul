@@ -431,21 +431,22 @@ public class IETest {
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		 // jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
+		  //Thread.sleep(5000);
 		  if (login==1)
           {
-               Thread.sleep(1000);
-    			  try{
-              
-                   // WebDriverWait wait2 = new WebDriverWait(driver,40);
-                    WebElement ele1=driver.findElement(By.xpath(".//*[@class='sticky-queue top-right']/div/span"));
-                    Actions close1=new Actions(driver);
-                    close1.click(ele1).build().perform();
-                                 
-              }catch (NoSuchElementException e){
-                     System.out.println("Didnt find close sticky");
-              }
                 
-          }
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  int m=deletePreviousCase();
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();

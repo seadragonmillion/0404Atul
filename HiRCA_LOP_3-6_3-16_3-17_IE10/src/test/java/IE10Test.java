@@ -2040,9 +2040,7 @@ public class IE10Test {
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  Thread.sleep(8000);
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			  Thread.sleep(6000);
-			  
-			  
+			  Thread.sleep(6000);		  
 			  WebDriverWait wait = new WebDriverWait(driver,30);
 			  //Clicks on Analysis 
 			  try
@@ -2051,15 +2049,21 @@ public class IE10Test {
 			  }catch (UnhandledAlertException f){			  
 				  driver.switchTo().alert().dismiss();
 			  }
-			  try{
-	               if (login==1)
-	               {
-	                     WebDriverWait wait2 = new WebDriverWait(driver,20);
-	                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-	               }
-	        }catch (NoSuchElementException e){
-	               throw e;
-	        }
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 			  //Clicks on HiRCA
 			  driver.findElement(By.id("pii-a-menu-hirca")).click();
 			  Thread.sleep(2000);

@@ -876,6 +876,22 @@ public class IETest {
 		  
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
+		  Thread.sleep(5000);
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  //Clicks on Analysis 
 		  try
 		  {
@@ -883,25 +899,6 @@ public class IETest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  if (login==1)
-        {
-              
-              while(true)
-  		  {
-             	 Thread.sleep(1000);
-  			  if (driver.findElement(By.cssSelector(".sticky-queue.top-right")).isDisplayed())
-  			  {
-  				  WebElement ele =driver.findElement(By.cssSelector(".sticky-queue.top-right"));
-  				  ele.findElement(By.className("sticky-close")).click();
-  				  break;
-  			  }
-  			  else break;
-  		  }
-        }
-		  
-		  Thread.sleep(4000);
-		  
-		
 		  //Clicks on HiRCA
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		  Thread.sleep(2000);

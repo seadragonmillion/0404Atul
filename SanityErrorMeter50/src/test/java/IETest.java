@@ -699,8 +699,22 @@ public void pape() throws Exception{
 	      Thread.sleep(2000);
 	      //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  
-		  Thread.sleep(4000);
+		  Thread.sleep(5000);
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -709,21 +723,7 @@ public void pape() throws Exception{
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  if (login==1)
-        {
-              
-              while(true)
-  		  {
-             	 Thread.sleep(1000);
-  			  if (driver.findElement(By.cssSelector(".sticky-queue.top-right")).isDisplayed())
-  			  {
-  				  WebElement ele =driver.findElement(By.cssSelector(".sticky-queue.top-right"));
-  				  ele.findElement(By.className("sticky-close")).click();
-  				  break;
-  			  }
-  			  else break;
-  		  }
-        }
+		  
 		//Clicks on SPV Error meter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
 		  Thread.sleep(2000);

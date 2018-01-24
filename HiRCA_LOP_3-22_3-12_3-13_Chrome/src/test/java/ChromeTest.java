@@ -1917,15 +1917,21 @@ public class ChromeTest {
 			  //Switches to the iframe
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  Thread.sleep(5000);
-			  try{
-	               if (login==1)
-	               {
-	                     WebDriverWait wait2 = new WebDriverWait(driver,20);
-	                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-	               }
-	        }catch (NoSuchElementException e){
-	               throw e;
-	        }
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 			  Thread.sleep(4000);
 			  WebDriverWait wait = new WebDriverWait(driver,30);
 			  //Clicks on Analysis 

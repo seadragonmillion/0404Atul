@@ -409,18 +409,25 @@ public class ChromeTest {
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	      Thread.sleep(4000);
+	      //Thread.sleep(4000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  try{
-                 if (login==1)
-                 {
-                       WebDriverWait wait2 = new WebDriverWait(driver,20);
-                       wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-                 }
-          }catch (NoSuchElementException e){
-                 throw e;
-          }
+		  Thread.sleep(5000);
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  Thread.sleep(2000);
 		  int m=deletePreviousCase();
 		  WebDriverWait wait = new WebDriverWait(driver,40);
