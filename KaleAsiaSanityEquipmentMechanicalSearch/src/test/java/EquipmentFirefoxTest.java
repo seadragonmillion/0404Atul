@@ -35,7 +35,7 @@ public class EquipmentFirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(350000);
+	  public Timeout globalTimeout= new Timeout(400000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -175,6 +175,7 @@ public class EquipmentFirefoxTest {
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
 		  //Checks with new keyword with %
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
 		  try{
@@ -189,6 +190,7 @@ public class EquipmentFirefoxTest {
 		  Thread.sleep(2000);		  
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
 		  driver.findElement(By.id("pii-efse-clear")).click();

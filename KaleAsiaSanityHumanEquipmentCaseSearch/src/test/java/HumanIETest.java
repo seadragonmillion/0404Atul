@@ -168,6 +168,7 @@ public class HumanIETest {
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
 		  //Checks with keyword with %
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  Thread.sleep(2000);
@@ -175,6 +176,7 @@ public class HumanIETest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  driver.findElement(By.id("pii-efsh-clear")).click();
