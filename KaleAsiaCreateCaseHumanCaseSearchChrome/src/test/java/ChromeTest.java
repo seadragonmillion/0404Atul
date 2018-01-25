@@ -139,6 +139,7 @@ public class ChromeTest {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+		Thread.sleep(2000);
 		//Clicks on Human Performance Search
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
 		//Enters the title in term search field
