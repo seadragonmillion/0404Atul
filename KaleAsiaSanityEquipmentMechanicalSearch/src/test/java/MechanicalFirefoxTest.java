@@ -34,7 +34,7 @@ public class MechanicalFirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(400000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
