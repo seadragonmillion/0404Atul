@@ -660,7 +660,7 @@ public class ChromeTest {
 			  softly.assertThat(lop2).as("test data").isEqualTo("JIT reminder (signage, not-to do postings)");
 			  String lop3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[1]/tbody/tr/td[3]"))).getText();
 			  softly.assertThat(lop3).as("test data").isEqualTo("Other: "+reason3);
-			  //Verify LOP1 3.17
+			  //Verify LOP1 3.14
 			  int m=1;
 			  String lopOptions1joint="";
 			  String lopOptions2joint="";
@@ -690,6 +690,8 @@ public class ChromeTest {
 			  }
 			  String lop4="";
 			  String s;
+			  //Also checks if High Medium Low order is correct in Level 3 answers
+			  int b=4;
 			  while(true)
 			  {
 				  try{
@@ -712,20 +714,48 @@ public class ChromeTest {
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
 					  System.out.println(hmlLop);
+					  if(b>3||b==3)
+					  {
+						  b=3;
+						  System.out.println("Order is correct:High");
+					  }
+					  if(b<3)
+						  softly.fail("Currently in High Block: Order is wrong");
 				  }
 				  if(hmlLop.equals("Medium"))
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
 					  System.out.println(hmlLop);
+					  if(b>2||b==2)
+					  {
+						  b=2;
+						  System.out.println("Order is correct:Medium");
+					  }
+					  if(b<2)
+						  softly.fail("Currently in Medium Block: Order is wrong");
 				  }
 				  if(hmlLop.equals("Low"))
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
 					  System.out.println(hmlLop);
+					  if(b>1||b==1)
+					  {
+						  b=1;
+						  System.out.println("Order is correct:Low");
+					  }
+					  if(b<1)
+						  softly.fail("Currently in Low Block: Order is wrong");
 				  }
 				  if(hmlLop.equals("")||hmlLop==""||hmlLop.equals(null))
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo("None");
+					  if(b>0||b==0)
+					  {
+						  b=0;
+						  System.out.println("Order is correct:None");
+					  }
+					  if(b<0)
+						  softly.fail("Currently in None Block: Order is wrong");
 				  }
 				  //Verify Corrective actions
 				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[2]/tbody/tr["+m+"]/td[3]")).getText();
@@ -734,8 +764,9 @@ public class ChromeTest {
 				  m=m+1;
 			  }
 			  int m1=m;
-			  //Verify LOP2 3.16
+			  //Verify LOP2 3.15
 			  m=1;
+			  b=4;
 			  while(true)
 			  {
 				  try{
@@ -758,20 +789,48 @@ public class ChromeTest {
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
 					  System.out.println(hmlLop);
+					  if(b>3||b==3)
+					  {
+						  b=3;
+						  System.out.println("Order is correct:High");
+					  }
+					  if(b<3)
+						  softly.fail("Currently in High Block: Order is wrong");
 				  }
 				  if(hmlLop.equals("Medium"))
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
 					  System.out.println(hmlLop);
+					  if(b>2||b==2)
+					  {
+						  b=2;
+						  System.out.println("Order is correct:Medium");
+					  }
+					  if(b<2)
+						  softly.fail("Currently in Medium Block: Order is wrong");
 				  }
 				  if(hmlLop.equals("Low"))
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo(hmlLop);
 					  System.out.println(hmlLop);
+					  if(b>1||b==1)
+					  {
+						  b=1;
+						  System.out.println("Order is correct:Low");
+					  }
+					  if(b<1)
+						  softly.fail("Currently in Low Block: Order is wrong");
 				  }
 				  if(hmlLop.equals("")||hmlLop==""||hmlLop.equals(null))
 				  {
 					  softly.assertThat(s).as("test data").isEqualTo("None");
+					  if(b>0||b==0)
+					  {
+						  b=0;
+						  System.out.println("Order is correct:None");
+					  }
+					  if(b<0)
+						  softly.fail("Currently in None Block: Order is wrong");
 				  }
 				  //Verify Corrective actions
 				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[3]/tbody/tr["+m+"]/td[3]")).getText();
