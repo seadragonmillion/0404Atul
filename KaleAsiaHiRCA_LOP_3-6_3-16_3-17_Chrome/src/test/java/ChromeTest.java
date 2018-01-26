@@ -308,11 +308,11 @@ public class ChromeTest {
 		        //System.out.println("NewData2 \n" +newData2);
 		        String newData3= newData2.replace("LOP1: Briefings (PJB, MJB, PSM, TO, etc.)Level of Importance Corrective Action(s)", "");
 		        String newData4= newData3.replace("LOP3: Other: "+reason3+"Level of Importance Corrective Action(s)", "");
-		        String pattern="KALE™ Report Created on [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}, [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A|P]M Page [0-9]{1,2} of [0-9]{1,2}";
+		        String pattern="Report Created on [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}, [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A|P]M Page [0-9]{1,2} of [0-9]{1,2}";
 				Pattern ptn = Pattern.compile(pattern);
 				Matcher mtch = ptn.matcher(newData4);
 				String newData5=mtch.replaceAll("");
-				String pattern1="KALE™ Report Created on [A-Z,a-z]{3} [A-Z,a-z]{3} [0-9]{1,2} [0-9]{4} ";
+				String pattern1="Report Created on [A-Z,a-z]{3} [A-Z,a-z]{3} [0-9]{1,2} [0-9]{4} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}";
 				ptn = Pattern.compile(pattern1);
 				mtch = ptn.matcher(newData5);
 				String newData6=mtch.replaceAll("");
@@ -321,7 +321,9 @@ public class ChromeTest {
 				mtch = ptn.matcher(newData6);
 				String newData7=mtch.replaceAll("");
 				String newData8=newData7.replace("GMT+0000 (UTC) ", "");
-		        String newData=newData8.replace("  ", " ");
+				String newData9=newData8.replace("KALE™","");
+				String newData10=newData9.replace("KALE?","");
+		        String newData=newData10.replace("  ", " ");
 		        System.out.println(newData);
 		        //Verifies title
 		        text184=text184.replace("  ", " ");
@@ -2071,11 +2073,11 @@ public class ChromeTest {
 		        //System.out.println("NewData2 \n" +newData2);
 		        String newData3= newData2.replace("LOP1: Briefings (PJB, MJB, PSM, TO, etc.)Level of Importance Corrective Action(s)", "");
 		        String newData4= newData3.replace("LOP3: Other: "+reason3+"Level of Importance Corrective Action(s)", "");
-		        String pattern="KALE™ Report Created on [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}, [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A|P]M Page [0-9]{1,2} of [0-9]{1,2}";
+		        String pattern="Report Created on [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}, [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A|P]M Page [0-9]{1,2} of [0-9]{1,2}";
 				Pattern ptn = Pattern.compile(pattern);
 				Matcher mtch = ptn.matcher(newData4);
 				String newData5=mtch.replaceAll("");
-				String pattern1="KALE™ Report Created on [A-Z,a-z]{3} [A-Z,a-z]{3} [0-9]{1,2} [0-9]{4} ";
+				String pattern1="Report Created on [A-Z,a-z]{3} [A-Z,a-z]{3} [0-9]{1,2} [0-9]{4} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}";
 				ptn = Pattern.compile(pattern1);
 				mtch = ptn.matcher(newData5);
 				String newData6=mtch.replaceAll("");
@@ -2084,7 +2086,9 @@ public class ChromeTest {
 				mtch = ptn.matcher(newData6);
 				String newData7=mtch.replaceAll("");
 				String newData8=newData7.replace("GMT+0000 (UTC) ", "");
-		        String newData=newData8.replace("  ", " ");
+				String newData9=newData8.replace("KALE™","");
+				String newData10=newData9.replace("KALE?","");
+		        String newData=newData10.replace("  ", " ");
 		        System.out.println(newData);
 		    	//Checks for Corrective actions
 		        for (String item: crChange)
