@@ -40,6 +40,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.junit.After;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChromeTest {
 
@@ -293,19 +295,38 @@ public class ChromeTest {
 		        pdfStripper.setEndPage( Integer.MAX_VALUE );
 		        String data = pdfStripper.getText(pddoc);
 		        List<String> ans= Arrays.asList(data.split("\r\n"));
-		        String newData=null;
+		        String newData1="";
 		        for (int i = 0; i < ans.size(); i++)
 		        {
 		        	
 		        	//System.out.println(ans.get(i));
 		        	int n=ans.get(i).length()-1;
 		        	if (ans.get(i).charAt(n)==' ')
-		        		newData = newData+ans.get(i);
+		        		newData1 = newData1+ans.get(i);
 		        	if (ans.get(i).charAt(n)!=' ')
-		        		newData = newData+" "+ans.get(i);
+		        		newData1 = newData1+" "+ans.get(i);
 		        	
 		        }
-		        newData=newData.replace("  ", " ");
+		        newData1=newData1.replace("  ", " ");
+		        //System.out.println("Unformatted pdf data \n"+newData1);
+		        String newData2= newData1.replace("LOP2: JIT reminder (signage, not-to do postings)Level of Importance Corrective Action(s)", "");
+		        //System.out.println("NewData2 \n" +newData2);
+		        String newData3= newData2.replace("LOP1: Briefings (PJB, MJB, PSM, TO, etc.)Level of Importance Corrective Action(s)", "");
+		        String newData4= newData3.replace("LOP3: Other: "+reason3+"Level of Importance Corrective Action(s)", "");
+		        String pattern="KALE™ Report Created on [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}, [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A|P]M Page [0-9]{1,2} of [0-9]{1,2}";
+				Pattern ptn = Pattern.compile(pattern);
+				Matcher mtch = ptn.matcher(newData4);
+				String newData5=mtch.replaceAll("");
+				String pattern1="KALE™ Report Created on [A-Z,a-z]{3} [A-Z,a-z]{3} [0-9]{1,2} [0-9]{4} ";
+				ptn = Pattern.compile(pattern1);
+				mtch = ptn.matcher(newData5);
+				String newData6=mtch.replaceAll("");
+				String pattern3="Page [0-9]{1,2} of [0-9]{1,2}";
+				ptn = Pattern.compile(pattern3);
+				mtch = ptn.matcher(newData6);
+				String newData7=mtch.replaceAll("");
+				String newData8=newData7.replace("GMT+0000 (UTC) ", "");
+		        String newData=newData8.replace("  ", " ");
 		        System.out.println(newData);
 		        //Verifies event id
 		        event_id=event_id.replace("  ", " ");
