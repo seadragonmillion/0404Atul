@@ -675,7 +675,7 @@ public class ChromeTest {
     			  }
     			  else break;
     		  }
-          }	
+          }
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 

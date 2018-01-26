@@ -314,8 +314,20 @@ public void pape() throws Exception{
 			
 			WebDriverWait wait1 = new WebDriverWait(driver,60);
 			int i;
-			JavascriptExecutor jse = (JavascriptExecutor)driver;
-			//Click on Environment of PAPE
+			JavascriptExecutor jse = (JavascriptExecutor)driver;			
+			//Closes any warning from server
+		    try{
+			  
+			  //CLoses server warning
+			  String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
+			  System.out.println(s);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		    //Click on Environment of PAPE	  
+			Thread.sleep(2000);
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-e"))).click();
