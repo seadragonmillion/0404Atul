@@ -309,8 +309,8 @@ public class FirefoxTest {
 			}
 				
 	    }
-		
-public void pape() throws Exception{
+
+	    public void pape() throws Exception{
 			
 			WebDriverWait wait1 = new WebDriverWait(driver,60);
 			int i;
@@ -321,7 +321,7 @@ public void pape() throws Exception{
 			  //CLoses server warning
 			  String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
 			  System.out.println(s);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
