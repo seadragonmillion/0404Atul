@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
@@ -8,32 +8,26 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
-
-import java.util.concurrent.TimeoutException;
-
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Dimension;
 
-public class ErrorMeterFirefoxTest {
+public class ErrorMeterChromeTest {
 
-	private FirefoxDriver driver;
+	private WebDriver driver;
 	private String username ="jenkinsvmnonadmin";
 	private String password = "Kalejenkins@123";
-	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = "https://kaleasia.error-free.com/";
+	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
+	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	private String title = "Sanity Test";
 	SoftAssertions softly = new SoftAssertions();
@@ -76,27 +70,16 @@ public class ErrorMeterFirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing sanity test on SPV Error Meter in Firefox non admin");
-		 System.setProperty("webdriver.gecko.driver",gecko_path);
-		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
-		 Dimension initialSize= driver.manage().window().getSize();
-		 System.out.println(initialSize);
-		 int height=initialSize.getHeight();
-		 if(height<950)
-		 {
-			//Browser is maximized
-			driver.manage().window().maximize(); 
-		 }
-		 Dimension finalSize=driver.manage().window().getSize();
-		 System.out.println(finalSize);
+		  System.out.println("Performing sanity test on SPV Error Meter in Chrome non admin");
+		  System.setProperty("webdriver.chrome.driver",chrome_path);
+		  driver = new ChromeDriver();
+		  //Browser is maximized
+		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
+	  
 
 	public void Login() throws Exception{
 		  
@@ -180,13 +163,13 @@ public class ErrorMeterFirefoxTest {
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  //CLicks on first newly created record
-		 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+		//  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		  //Clicks on delete report
 		  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		  //Verify record deleted
@@ -202,13 +185,15 @@ public class ErrorMeterFirefoxTest {
 		  
 		  			  
 	  }
-	
-	public void downloadRecord() throws Exception {
+
+
+	  public void downloadRecord() throws Exception {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	    	reportCheck();
+			String window = driver.getWindowHandle();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 			try{
@@ -219,20 +204,12 @@ public class ErrorMeterFirefoxTest {
 					  
 				  }
 			
-			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(6000);
-	    	//driver.switchTo().window(window);
-	    	for(String winHandle : driver.getWindowHandles()){
-	    	    driver.switchTo().window(winHandle);
-	    	}
-	    	
-	    	driver.close();
-	    	Thread.sleep(6000);
+	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);
-	    	driver.switchTo().defaultContent();
+	    	Thread.sleep(3000);
 	    		    	
 	    }
 	    
@@ -251,7 +228,6 @@ public class ErrorMeterFirefoxTest {
 			//Clicks on add user
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-			Thread.sleep(1000);
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
@@ -863,27 +839,32 @@ public class ErrorMeterFirefoxTest {
 	    	String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[4]"))).getText();
 	    	softly.assertThat(text32E).as("test data").isEqualTo(text32);
 	    }
-
-
+	
 	@Test
 	  public void SanityTest() throws Exception{
-		   try{
+		   //try{
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  try{
-           if (login==1)
-           {
-                 WebDriverWait wait2 = new WebDriverWait(driver,20);
-                 wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-           }
-    }catch (NoSuchElementException e){
-           throw e;
-    }
-		  Thread.sleep(8000);
+		  Thread.sleep(7000);
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -892,33 +873,37 @@ public class ErrorMeterFirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  Thread.sleep(2000);
-		//Clicks on SPV Error meter
+		  //Clicks on SPV Error meter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
 		  Thread.sleep(2000);
 		  //Select Purpose from dropdown
 		  WebElement element = driver.findElement(By.id("pii-epm-select-purpose"));
 		  Select s = new Select (element);
 		  s.selectByVisibleText("PJB");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Select Job type
-		  element = driver.findElement(By.id("pii-epm-select-condition"));
-		  Select s1 = new Select (element);
-		  s1.selectByVisibleText("Construction");
+		  WebElement element1 = driver.findElement(By.id("pii-epm-select-condition"));
 		  Thread.sleep(2000);
+		  Select s1 = new Select (element1);
+		  s1.selectByVisibleText("Construction");
+		  Thread.sleep(4000);
 		  //Fills Job title
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys("Sanity Test");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
 		  String ev1= driver.findElement(By.id("pii-epm-job-title")).getAttribute("value");
 		  if(ev1.equals(title)==false)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  pape();
+		  Thread.sleep(2000);
+		  JavascriptExecutor jse= (JavascriptExecutor)driver; 
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Click on finalize
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Click on finalize and save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
@@ -945,7 +930,7 @@ public class ErrorMeterFirefoxTest {
 		  }
 		  else
 			  System.out.println ("Record not found.");
-		  
+		  	
 		  //Checks if the record name is correct
 		  assertEquals(name,recordName);
 		  Thread.sleep(2000);
@@ -959,10 +944,11 @@ public class ErrorMeterFirefoxTest {
 		  markCritical();
 		  Thread.sleep(2000);
 		  //Deletes the record
-		  deleteNewRecord(recordName);
-		  Thread.sleep(2000);
+		   deleteNewRecord(recordName);
+		   Thread.sleep(2000);
 		  while(true)
 			  {
+				  Thread.sleep(1000);
 				  try{
 				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 				  {
@@ -989,12 +975,11 @@ public class ErrorMeterFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
-		   }catch(TimeoutException e)
+		  /* }catch(Exception e)
 		   {
-			   driver.manage().window().maximize();
 			   System.out.println(e);
 			   driver.quit();
-		   }
+		   }*/
 		 
 		  
 	}
@@ -1002,10 +987,10 @@ public class ErrorMeterFirefoxTest {
 	
 	public void afterTest(){
 		
-		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
 		driver.quit();
 		softly.assertAll();
 	}
-
 }

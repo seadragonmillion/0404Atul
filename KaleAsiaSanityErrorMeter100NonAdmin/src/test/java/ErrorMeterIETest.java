@@ -26,7 +26,7 @@ import org.openqa.selenium.NoAlertPresentException;
 public class ErrorMeterIETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkinsvm";
+	private String username ="jenkinsvmnonadmin";
 	private String password = "Kalejenkins@123";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
@@ -72,7 +72,7 @@ public class ErrorMeterIETest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on SPV Error Meter in Internet Explorer");
+		  System.out.println("Performing sanity test on SPV Error Meter in Internet Explorer non admin");
 		  System.setProperty("webdriver.ie.driver",ie_path);
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
@@ -245,7 +245,7 @@ public class ErrorMeterIETest {
 	    	//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 			//Enters username
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacreator");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
 	    	//Selects from dropdown
 			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
 			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
@@ -254,7 +254,7 @@ public class ErrorMeterIETest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
@@ -273,7 +273,7 @@ public class ErrorMeterIETest {
 			 WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
 			 String sharedToUsername = sharedTo.getText();
 			 System.out.println(sharedToUsername);
-			 softly.assertThat("qaacreator").as("test data").isEqualTo(sharedToUsername);
+			 softly.assertThat("qaacfiverifier").as("test data").isEqualTo(sharedToUsername);
 			 WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
 			 String sharedText = shared.getText();
 			 System.out.println(sharedText);
@@ -314,6 +314,17 @@ public class ErrorMeterIETest {
 			WebDriverWait wait1 = new WebDriverWait(driver,60);
 			int i;
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			//Check if enter data and edit data buttons are not visible for non admin user
+			WebElement create=driver.findElement(By.id("pii-epm-admin-create"));
+			if (create.isDisplayed()==true)
+				softly.fail("Enter data button displayed");
+			else
+				System.out.println("Enter data button not displayed for non admin user");
+			WebElement edit=driver.findElement(By.id("pii-epm-admin-edit"));
+			if (edit.isDisplayed()==true)
+				softly.fail("Edit data button displayed");
+			else
+				System.out.println("Edit data button not displayed for non admin user");
 			//Click on Environment of PAPE
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);

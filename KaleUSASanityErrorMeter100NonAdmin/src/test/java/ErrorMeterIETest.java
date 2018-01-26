@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
@@ -6,12 +6,11 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -22,18 +21,15 @@ import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoAlertPresentException;
 
-public class ErrorMeterFirefoxTest {
+public class ErrorMeterIETest {
 
-	private FirefoxDriver driver;
+	private InternetExplorerDriver driver;
 	private String username ="jenkinsvmnonadmin";
 	private String password = "Kalejenkins@123";
-	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = "https://kaleasia.error-free.com/";
+	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
+	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	private String title = "Sanity Test";
 	SoftAssertions softly = new SoftAssertions();
@@ -72,44 +68,41 @@ public class ErrorMeterFirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing sanity test on SPV Error Meter in Firefox non admin");
-		 System.setProperty("webdriver.gecko.driver",gecko_path);
-		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
-		 Dimension initialSize= driver.manage().window().getSize();
-		 System.out.println(initialSize);
-		 int height=initialSize.getHeight();
-		 if(height<950)
-		 {
-			//Browser is maximized
-			driver.manage().window().maximize(); 
-		 }
-		 Dimension finalSize=driver.manage().window().getSize();
-		 System.out.println(finalSize);
+		  System.out.println("Performing sanity test on SPV Error Meter in Internet Explorer non admin");
+		  System.setProperty("webdriver.ie.driver",ie_path);
+		  DesiredCapabilities cap = new DesiredCapabilities(); 
+		  cap.setCapability("ignoreZoomSettings", true);
+		  cap.setCapability("requireWindowFocus", true);
+		  driver = new InternetExplorerDriver(cap);
+		  //Browser is maximized
+		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		  /*driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
+		  
 	  }
-
+	
 	public void Login() throws Exception{
 		  
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
+		  jse.executeScript("return document.getElementById('pii-login-button').click();");
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
+		  Thread.sleep(2000);
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
 		  driver.findElement(By.id("pii-pw")).sendKeys(password);
+		  Thread.sleep(2000);
 		  //Sign in button is located and clicked
 		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
@@ -119,7 +112,7 @@ public class ErrorMeterFirefoxTest {
 			  if(pw.equals(password)==true)
 			  {
 				  //Sign in button is located and clicked
-				  driver.findElement(By.id("pii-signin-button")).click();  
+				  jse.executeScript("return document.getElementById('pii-signin-button').click();");  
 				  while(c>0)
 				  {
 				  Thread.sleep(2000);
@@ -136,7 +129,7 @@ public class ErrorMeterFirefoxTest {
 					  {
 						  driver.findElement(By.id("pii-pw")).sendKeys(password);
 						  //Sign in button is located and clicked
-						  driver.findElement(By.id("pii-signin-button")).click();
+						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
 						  login =1;
 						  break;
 					  }
@@ -164,7 +157,7 @@ public class ErrorMeterFirefoxTest {
 						  if(pw.equals(password)==true)
 						  {
 							  //Sign in button is located and clicked
-							  driver.findElement(By.id("pii-signin-button")).click();
+							  jse.executeScript("return document.getElementById('pii-signin-button').click();");
 							  break;
 						  }
 						
@@ -173,8 +166,7 @@ public class ErrorMeterFirefoxTest {
 			  
 			  
 		  }
-			  
-		}
+	  }
 	
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
@@ -187,6 +179,7 @@ public class ErrorMeterFirefoxTest {
 		  //Clicks on delete report
 		  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		  //Verify record deleted
@@ -199,11 +192,10 @@ public class ErrorMeterFirefoxTest {
 		  else
 			  System.out.println("Record could not be deleted");
 		  
-		  
 		  			  
 	  }
-	
-	public void downloadRecord() throws Exception {
+
+	   public void downloadRecord() throws Exception {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
@@ -223,14 +215,23 @@ public class ErrorMeterFirefoxTest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(6000);
-	    	//driver.switchTo().window(window);
-	    	for(String winHandle : driver.getWindowHandles()){
-	    	    driver.switchTo().window(winHandle);
-	    	}
-	    	
-	    	driver.close();
-	    	Thread.sleep(6000);
+	    	Thread.sleep(2000);
+	    	try {
+				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
+				  q.waitFor();
+				  }catch (UnhandledAlertException f){	
+					  System.out.println("Unexpected alert for picture 2");
+					  driver.switchTo().alert().accept();
+					  
+			  	  }catch (NoAlertPresentException f){
+			  		  System.out.println ("No unexpected alert for picture 2");
+			  		  }
+	    	Thread.sleep(8000);
+	    	//Close pdf
+	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
+			q.waitFor();
+			Thread.sleep(4000);
+			//Switch to window    	
 	    	driver.switchTo().window(window);
 	    	driver.switchTo().defaultContent();
 	    		    	
@@ -251,7 +252,6 @@ public class ErrorMeterFirefoxTest {
 			//Clicks on add user
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-			Thread.sleep(1000);
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
@@ -309,7 +309,6 @@ public class ErrorMeterFirefoxTest {
 			}
 				
 	    }
-		
 	    public void pape() throws Exception{
 			
 			WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -864,26 +863,18 @@ public class ErrorMeterFirefoxTest {
 	    	softly.assertThat(text32E).as("test data").isEqualTo(text32);
 	    }
 
-
-	@Test
+	  @Test
 	  public void SanityTest() throws Exception{
-		   try{
+		  try{ 
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  //Switches to the iframe
+	      Thread.sleep(2000);
+	      //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  try{
-           if (login==1)
-           {
-                 WebDriverWait wait2 = new WebDriverWait(driver,20);
-                 wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-           }
-    }catch (NoSuchElementException e){
-           throw e;
-    }
-		  Thread.sleep(8000);
+		  
+		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -892,33 +883,51 @@ public class ErrorMeterFirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  Thread.sleep(2000);
+		  if (login==1)
+        {
+              
+              while(true)
+  		  {
+             	 Thread.sleep(1000);
+  			  if (driver.findElement(By.cssSelector(".sticky-queue.top-right")).isDisplayed())
+  			  {
+  				  WebElement ele =driver.findElement(By.cssSelector(".sticky-queue.top-right"));
+  				  ele.findElement(By.className("sticky-close")).click();
+  				  break;
+  			  }
+  			  else break;
+  		  }
+        }
 		//Clicks on SPV Error meter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Select Purpose from dropdown
 		  WebElement element = driver.findElement(By.id("pii-epm-select-purpose"));
 		  Select s = new Select (element);
 		  s.selectByVisibleText("PJB");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Select Job type
 		  element = driver.findElement(By.id("pii-epm-select-condition"));
 		  Select s1 = new Select (element);
 		  s1.selectByVisibleText("Construction");
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Fills Job title
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys("Sanity Test");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
 		  String ev1= driver.findElement(By.id("pii-epm-job-title")).getAttribute("value");
 		  if(ev1.equals(title)==false)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  pape();
+		  Thread.sleep(2000);
+		  JavascriptExecutor jse= (JavascriptExecutor)driver; 
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Click on finalize
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Click on finalize and save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
@@ -945,7 +954,7 @@ public class ErrorMeterFirefoxTest {
 		  }
 		  else
 			  System.out.println ("Record not found.");
-		  
+		  	
 		  //Checks if the record name is correct
 		  assertEquals(name,recordName);
 		  Thread.sleep(2000);
@@ -961,38 +970,18 @@ public class ErrorMeterFirefoxTest {
 		  //Deletes the record
 		  deleteNewRecord(recordName);
 		  Thread.sleep(2000);
-		  while(true)
-			  {
-				  try{
-				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
-				  {
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-					  
-				  }}catch (NoSuchElementException e)
-				  {
-					  break;
-				  }
-				  catch( StaleElementReferenceException f)
-				  {
-					  
-					 break;
-				  }
-				  catch (org.openqa.selenium.TimeoutException u)
-				  {
-					  break;
-				  }
-				 
-			  }
 		  
-		  //Logs out
+		   //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
 		   }catch(TimeoutException e)
 		   {
-			   driver.manage().window().maximize();
 			   System.out.println(e);
+			  /* driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+			   driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
+			   
 			   driver.quit();
 		   }
 		 
@@ -1002,10 +991,10 @@ public class ErrorMeterFirefoxTest {
 	
 	public void afterTest(){
 		
-		driver.manage().window().maximize();
+		/*driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
+		driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 		//Browser closes
 		driver.quit();
 		softly.assertAll();
 	}
-
 }
