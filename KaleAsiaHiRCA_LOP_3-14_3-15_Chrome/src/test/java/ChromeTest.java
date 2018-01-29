@@ -69,7 +69,7 @@ public class ChromeTest {
 	 private String reason19="Malls are great places to shop; I can find everything I need under one roof.";
 	 private String reason20="She wrote him a long letter, but he didn't read it.";
 	 private String reason21="She works two jobs to make ends meet; at least, that was her reason for not having time to join us.";
-	 private String reason22="What was the person thinking when they discovered cowï¿½s milk was fine for human consumption, and why did they do it in the first place!?";
+	 private String reason22="What was the person thinking when they discovered cow's milk was fine for human consumption, and why did they do it in the first place!?";
 	 private String reason23="Sometimes a random word just isn't enough, and that is where the random sentence generator comes into play.";
 	 private String[] lopOptions1=new String[10];
 	 private String[] lopOptions2=new String[10];
@@ -327,7 +327,7 @@ public class ChromeTest {
 				mtch = ptn.matcher(newData6);
 				String newData7=mtch.replaceAll("");
 				String newData8=newData7.replace("GMT+0000 (UTC) ", "");
-				String newData9=newData8.replace("KALEâ„¢","");
+				String newData9=newData8.replace("KALE™","");
 				String newData10=newData9.replace("KALE?","");
 		        String newData=newData10.replace("  ", " ");
 		        System.out.println(newData);
