@@ -183,6 +183,7 @@ public class EquipmentFirefoxTest {
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
 		  //Checks with new keyword with %
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
 		  try{
