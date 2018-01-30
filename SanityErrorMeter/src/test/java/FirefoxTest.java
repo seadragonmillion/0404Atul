@@ -26,7 +26,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
-
 import java.util.concurrent.TimeoutException;
 
 import org.apache.pdfbox.cos.COSDocument;
@@ -161,8 +160,6 @@ public class FirefoxTest {
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  //CLicks on first newly created record
-		 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -208,7 +205,6 @@ public class FirefoxTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 	    	Thread.sleep(6000);
-	    	//driver.switchTo().window(window);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}

@@ -26,7 +26,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
-
 import java.util.concurrent.TimeoutException;
 
 import org.apache.pdfbox.cos.COSDocument;
@@ -206,7 +205,6 @@ public class FirefoxTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 	    	Thread.sleep(6000);
-	    	//driver.switchTo().window(window);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
