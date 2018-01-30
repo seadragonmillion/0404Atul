@@ -321,7 +321,15 @@ public class ChromeTest {
 				mtch = ptn.matcher(newData6);
 				String newData7=mtch.replaceAll("");
 				String newData8=newData7.replace("GMT+0000 (UTC) ", "");
-				String newData9=newData8.replace("KALE™","");
+				StringBuilder sb=new StringBuilder(newData8);
+				String s1=sb.toString();
+				while(s1.contains("KALE")==true)
+				{
+					int m=sb.indexOf("KALE");
+					sb=sb.delete(m, m+5);
+					s1=sb.toString();
+				}
+				String newData9=s1.replace("KALE","");
 				String newData10=newData9.replace("KALE?","");
 		        String newData=newData10.replace("  ", " ");
 		        System.out.println(newData);
@@ -2086,7 +2094,15 @@ public class ChromeTest {
 				mtch = ptn.matcher(newData6);
 				String newData7=mtch.replaceAll("");
 				String newData8=newData7.replace("GMT+0000 (UTC) ", "");
-				String newData9=newData8.replace("KALE™","");
+				StringBuilder sb=new StringBuilder(newData8);
+				String s1=sb.toString();
+				while(s1.contains("KALE")==true)
+				{
+					int m=sb.indexOf("KALE");
+					sb=sb.delete(m, m+5);
+					s1=sb.toString();
+				}
+				String newData9=s1.replace("KALE","");
 				String newData10=newData9.replace("KALE?","");
 		        String newData=newData10.replace("  ", " ");
 		        System.out.println(newData);
