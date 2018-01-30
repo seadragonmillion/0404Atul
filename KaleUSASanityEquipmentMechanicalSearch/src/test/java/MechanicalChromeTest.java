@@ -27,7 +27,7 @@ public class MechanicalChromeTest {
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
-	private String keyword = "failure";
+	private String keyword = "benefits and failure modes of U-cup";
 	
 	@SuppressWarnings("deprecation")
 	@Rule

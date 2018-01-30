@@ -27,7 +27,7 @@ public class MechanicalChromeTest {
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
-	private String keyword = "failure";
+	private String keyword = "benefits and failure modes of U-cup";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -186,6 +186,7 @@ public class MechanicalChromeTest {
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efse-clear")).click();
 		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear

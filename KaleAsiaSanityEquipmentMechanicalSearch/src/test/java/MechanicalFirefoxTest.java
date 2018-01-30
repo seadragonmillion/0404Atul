@@ -30,7 +30,7 @@ public class MechanicalFirefoxTest {
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
-	private String keyword = "failure";
+	private String keyword = "failure modes of grease";
 	
 	@SuppressWarnings("deprecation")
 	@Rule
