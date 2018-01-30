@@ -2098,7 +2098,7 @@ public class ChromeTest {
 				String s1=sb.toString();
 				while(s1.contains("KALE")==true)
 				{
-					int m=sb.indexOf("KALE");
+					m=sb.indexOf("KALE");
 					sb=sb.delete(m, m+5);
 					s1=sb.toString();
 				}

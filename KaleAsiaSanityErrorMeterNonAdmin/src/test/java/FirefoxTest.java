@@ -290,7 +290,7 @@ public class FirefoxTest {
 				softly.fail("Edit data button displayed");
 			else
 				System.out.println("Edit data button not displayed for non admin user");
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 			//Clicks on checkboxes in Procedure Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
 			Thread.sleep(500);
@@ -726,7 +726,7 @@ public class FirefoxTest {
 
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  pape();
 		  Thread.sleep(2000);
 		   //Click on finalize
