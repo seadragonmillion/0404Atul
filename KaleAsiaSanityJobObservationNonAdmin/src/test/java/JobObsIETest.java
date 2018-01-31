@@ -135,8 +135,6 @@ public class JobObsIETest {
 	
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
-		  //CLicks on first newly created record
-		  //driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
 		  //Clicks on delete button
 		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a")).click();
 		  WebDriverWait wait = new WebDriverWait(driver,10);
@@ -163,9 +161,7 @@ public class JobObsIETest {
 	    	//CLicks on first newly created record
 		    driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
 		   	WebDriverWait wait1 = new WebDriverWait(driver,60);
-			//Switches to the iframe
-			//wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	    	//Clicks on share button
+			//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
@@ -290,7 +286,7 @@ public class JobObsIETest {
 		  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 		  p.waitFor();
 		   }catch (UnhandledAlertException f){		
-					  System.out.println("Unexpecetd alert for picture 2");
+					  System.out.println("Unexpected alert for picture 2");
 					  driver.switchTo().alert().accept();
 				  }
 			  

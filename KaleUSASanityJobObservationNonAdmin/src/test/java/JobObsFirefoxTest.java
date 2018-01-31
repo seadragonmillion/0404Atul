@@ -28,7 +28,7 @@ public class JobObsFirefoxTest {
 	private String username ="jenkinsvmnonadmin";
 	private String password = "Kalejenkins@123";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = "https://kaleasia.error-free.com/";
+	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
 	

@@ -6,12 +6,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
@@ -20,15 +18,14 @@ import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.Dimension;
 
-public class JobObsFirefoxTest {
+public class JobObsChromeTest {
 
-	private FirefoxDriver driver;
+	private WebDriver driver;
 	private String username ="jenkinsvmnonadmin";
 	private String password = "Kalejenkins@123";
-	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = "https://kaleasia.error-free.com/";
+	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
+	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
 	
@@ -38,27 +35,16 @@ public class JobObsFirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing sanity test on Job Observation Analysis in Firefox non admin");
-		 System.setProperty("webdriver.gecko.driver",gecko_path);
-		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
-		  Dimension initialSize= driver.manage().window().getSize();
-		 System.out.println(initialSize);
-		 int height=initialSize.getHeight();
-		 if(height<1900)
-		 {
-			//Browser is maximized
-			driver.manage().window().maximize(); 
-		 }
-		 Dimension finalSize=driver.manage().window().getSize();
-		 System.out.println(finalSize);
+		  System.out.println("Performing sanity test on Job Observation Analysis in Chrome non admin");
+		  System.setProperty("webdriver.chrome.driver",chrome_path);
+		  driver = new ChromeDriver();
+		  //Browser is maximized
+		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
+	  
 
 	public void Login() throws Exception{
 		  
@@ -137,6 +123,7 @@ public class JobObsFirefoxTest {
 		  }
 			  
 		}
+	
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
 		  //Clicks on delete button
@@ -164,9 +151,7 @@ public class JobObsFirefoxTest {
 	    	//CLicks on first newly created record
 		    driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
 		   	WebDriverWait wait1 = new WebDriverWait(driver,60);
-			//Switches to the iframe
-			//wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	    	//Clicks on share button
+			//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
@@ -176,7 +161,6 @@ public class JobObsFirefoxTest {
 			//Clicks on add user
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-			Thread.sleep(1000);
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
@@ -220,15 +204,15 @@ public class JobObsFirefoxTest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
-             if (login==1)
-             {
-                   WebDriverWait wait2 = new WebDriverWait(driver,20);
-                   wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-             }
-      }catch (NoSuchElementException e){
-             throw e;
-      }
-		  Thread.sleep(12000);
+               if (login==1)
+               {
+                     WebDriverWait wait2 = new WebDriverWait(driver,20);
+                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+               }
+        }catch (NoSuchElementException e){
+               throw e;
+        }
+		  Thread.sleep(7000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -237,7 +221,7 @@ public class JobObsFirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  Thread.sleep(4000);
+		  
 		  //Clicks on Job Observation Analysis
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
 		  //Clicks on new
@@ -270,10 +254,7 @@ public class JobObsFirefoxTest {
 		  //Clicks on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button"))).click();
 		  //Uploads a picture on next page in step 2
-		  driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
-		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
-		  p.waitFor();
-		  Thread.sleep(3000);
+		  driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
 		  //Clicks on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
@@ -350,9 +331,9 @@ public class JobObsFirefoxTest {
 				 break;
 			  }
 			  catch (org.openqa.selenium.TimeoutException u)
-				  {
-					  break;
-				  }
+			  {
+				  break;
+			  }
 			 
 		  }
 		  
@@ -364,7 +345,6 @@ public class JobObsFirefoxTest {
 		  afterTest();
 		   }catch(TimeoutException e)
 		   {
-			   driver.manage().window().maximize();
 			   System.out.println(e);
 			   driver.quit();
 		   }
@@ -375,7 +355,8 @@ public class JobObsFirefoxTest {
 	
 	public void afterTest(){
 		
-		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
 		driver.quit();
 		softly.assertAll();
