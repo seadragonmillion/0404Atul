@@ -962,6 +962,7 @@ public class ErrorMeterChromeTest {
 	  public void SanityTest() throws Exception{
 		   //try{
 		  Login();
+		  Thread.sleep(2000);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

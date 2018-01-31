@@ -376,7 +376,7 @@ public class FirefoxTest {
 				softly.fail("Edit data button displayed");
 			else
 				System.out.println("Edit data button not displayed for non admin user");
-			Thread.sleep(5000);
+			Thread.sleep(7000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1")));
 			//Clicks on checkboxes in Procedure Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
@@ -810,7 +810,7 @@ public class FirefoxTest {
 		  String ev1= driver.findElement(By.id("pii-epm-job-title")).getAttribute("value");
 		  if(ev1.equals(title)==false)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
-
+		  Thread.sleep(2000);
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
 		  Thread.sleep(3000);
