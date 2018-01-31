@@ -135,6 +135,7 @@ public class ChromeTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-user-home-panel-btn-joa")).click();
+		  Thread.sleep(2000);
 		  //Verify record deleted
 		  //Click on 1st record
 		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).getText();

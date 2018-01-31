@@ -994,7 +994,7 @@ public class ErrorMeterChromeTest {
     			  else break;
     		  }
           }	
-		  //Thread.sleep(7000);
+		  Thread.sleep(2000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try

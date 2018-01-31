@@ -382,6 +382,13 @@ public class IE10Test {
 		  ele=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a")));
 		  act.click(ele).build().perform();
 		  Thread.sleep(2000);
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div[1]")));
+		  }catch(org.openqa.selenium.TimeoutException e)
+		  {
+		  	act.click(ele).build().perform();
+		  }		  
+		  Thread.sleep(2000);
 		  int i;
 		  for (i=0; i<5;i++)
 		  {

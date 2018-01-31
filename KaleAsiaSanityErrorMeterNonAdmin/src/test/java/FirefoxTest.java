@@ -377,6 +377,7 @@ public class FirefoxTest {
 			else
 				System.out.println("Edit data button not displayed for non admin user");
 			Thread.sleep(5000);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1")));
 			//Clicks on checkboxes in Procedure Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
 			Thread.sleep(500);

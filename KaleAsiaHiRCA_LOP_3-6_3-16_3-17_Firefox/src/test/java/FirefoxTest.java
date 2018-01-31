@@ -95,8 +95,6 @@ public class FirefoxTest {
 				 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 				 profile.setPreference("browser.download.folderList", 2);
 				 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
-				// profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
-				 //profile.setPreference("pdfjs.disabled", true);
 				 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 				 driver = new FirefoxDriver(capabilities);
@@ -276,6 +274,7 @@ public class FirefoxTest {
 		    	robot.keyRelease(KeyEvent.VK_S);
 		    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 		    	p.waitFor();
+		    	Thread.sleep(2000);
 		    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 		    	Thread.sleep(4000);
 		    	driver.close();

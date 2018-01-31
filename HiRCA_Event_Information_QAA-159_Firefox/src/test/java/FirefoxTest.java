@@ -1356,9 +1356,10 @@ public class FirefoxTest {
 			  /*act.moveToElement(l).build().perform();*/
 			  jse.executeScript("arguments[0].scrollIntoView();", l);
 			  l.click();
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			  p.waitFor();
+			  Thread.sleep(2000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())

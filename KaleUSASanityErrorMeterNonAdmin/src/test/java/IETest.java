@@ -202,7 +202,7 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-	    	Thread.sleep(7000);
+	    	Thread.sleep(12000);
 	    	List<String> results = new ArrayList<String>();
 		    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		    	//If this pathname does not denote a directory, then listFiles() returns null. 
@@ -238,7 +238,7 @@ public class IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-			    	Thread.sleep(6000);
+			    	Thread.sleep(12000);
 		    	}
 	    	//pdf verification
 	    	pdfCheck();

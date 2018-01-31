@@ -2089,7 +2089,7 @@ public class IE10Test {
                 while(true)
     		  {
                	 Thread.sleep(1000);
-    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
     			  {
     				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
     				  ele.findElement(By.className("sticky-close")).click();

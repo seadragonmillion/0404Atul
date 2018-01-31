@@ -61,7 +61,7 @@ public class ErrorMeterIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1000000);
+	  public Timeout globalTimeout= new Timeout(1100000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -216,7 +216,7 @@ public class ErrorMeterIETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-	    	Thread.sleep(7000);
+	    	Thread.sleep(12000);
 	    	List<String> results = new ArrayList<String>();
 		    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		    	//If this pathname does not denote a directory, then listFiles() returns null. 
@@ -252,7 +252,7 @@ public class ErrorMeterIETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert");
 			  		  }
-			    	Thread.sleep(6000);
+			    	Thread.sleep(12000);
 		    	}
 	    	//pdf verification
 	    	pdfCheck();

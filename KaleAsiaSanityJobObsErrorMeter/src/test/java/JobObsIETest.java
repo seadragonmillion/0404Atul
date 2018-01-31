@@ -49,8 +49,6 @@ public class JobObsIETest {
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		  /*driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
 		  
 	  }
 	
@@ -377,10 +375,13 @@ public class JobObsIETest {
 				 break;
 			  }
 			  catch (org.openqa.selenium.TimeoutException u)
-				  {
-					  break;
-				  }
-			 
+			  {
+				 break;
+			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException r)
+			  {
+				 break;
+			  }
 		  }
 		  
 		  //Logs out
