@@ -247,7 +247,7 @@ public class ErrorMeterIETest {
 		    	{
 		    		deleteFiles(file);
 		    		//Clicks on download button
-					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 					try{
 						  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
