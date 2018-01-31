@@ -1081,6 +1081,7 @@ public class IETest {
     		  }
           }	
 		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  Thread.sleep(2000);
 		  //Clicks on Analysis 
 		  try
 		  {
@@ -1088,7 +1089,7 @@ public class IETest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  
+		  Thread.sleep(2000);
 		//Clicks on SPV Error meter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
 		  Thread.sleep(2000);
