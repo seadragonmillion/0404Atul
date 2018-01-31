@@ -18,11 +18,19 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
-
 import java.util.concurrent.TimeoutException;
 
 import org.assertj.core.api.SoftAssertions;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
 
 public class IETest {
 
@@ -78,16 +86,12 @@ public class IETest {
 		  System.setProperty("webdriver.ie.driver",ie_path);
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
-		  cap.setCapability("requireWindowFocus", true);
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 /* driver.findElement(By.id("pii-home")).sendKeys(Keys.CONTROL);
-		  driver.findElement(By.id("pii-home")).sendKeys(Keys.F11);*/
-		  
 	  }
 	
 	public void Login() throws Exception{
@@ -173,8 +177,6 @@ public class IETest {
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  //CLicks on first newly created record
-		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -192,14 +194,16 @@ public class IETest {
 		  if (name!=recordName)
 			  System.out.println("Record deleted");
 		  else
-			  System.out.println("Record could not be deleted");
-		  
+			  System.out.println("Record could not be deleted");  
 		  			  
 	  }
 
 
 	   public void downloadRecord() throws Exception {
 	    	
+	    	//deletes files in reports folder before starting to download
+	        File file = new File("C://Users//IEUser//Downloads//reports//");
+	        deleteFiles(file);
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
@@ -215,30 +219,159 @@ public class IETest {
 				  }
 			
 			String window = driver.getWindowHandle();
-			//Clicks on open pdf report
+			//Clicks on save pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(2000);
+	    	Thread.sleep(4000);
 	    	try {
-				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
+				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
 				  q.waitFor();
 				  }catch (UnhandledAlertException f){	
-					  System.out.println("Unexpected alert for picture 2");
+					  System.out.println("Unexpected alert");
 					  driver.switchTo().alert().accept();
 					  
 			  	  }catch (NoAlertPresentException f){
-			  		  System.out.println ("No unexpected alert for picture 2");
+			  		  System.out.println ("No unexpected alert");
 			  		  }
-	    	Thread.sleep(8000);
-	    	//Close pdf
-	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
-			q.waitFor();
-			Thread.sleep(4000);
-			//Switch to window    	
+	    	Thread.sleep(7000);
+	    	List<String> results = new ArrayList<String>();
+		    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		    	//If this pathname does not denote a directory, then listFiles() returns null. 
+		    	for (File file1 : files) {
+		    	    if (file1.isFile()) {
+		    	        results.add(file.getName());
+		    	    }
+		    	}
+		    	System.out.println(results.get(0));
+		    	if(results.get(0).endsWith(".pdf")==false)
+		    	{
+		    		deleteFiles(file);
+		    		//Clicks on download button
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+					try{
+						  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+						 }catch (org.openqa.selenium.TimeoutException e)
+						  {
+							  
+						  }
+					//Clicks on open pdf report
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			    	Thread.sleep(4000);
+	    	try {
+				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+				  q.waitFor();
+				  }catch (UnhandledAlertException f){	
+					  System.out.println("Unexpected alert");
+					  driver.switchTo().alert().accept();
+					  
+			  	  }catch (NoAlertPresentException f){
+			  		  System.out.println ("No unexpected alert");
+			  		  }
+			    	Thread.sleep(6000);
+		    	}
+	    	//pdf verification
+	    	pdfCheck();
+	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);
-	    	driver.switchTo().defaultContent();
 	    		    	
 	    }
+
+	    public void pdfCheck() throws Exception{
+	    	
+	    	 List<String> results = new ArrayList<String>();
+	    	//Gets the file name which has been downloaded
+	    	File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+	    	//If this pathname does not denote a directory, then listFiles() returns null. 
+	    	for (File file : files) {
+	    	    if (file.isFile()) {
+	    	        results.add(file.getName());
+	    	    }
+	    	}
+	    	System.out.println(results.get(0));
+	    	//Loads the file to check if correct data is present
+	    	String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+	    	File file = new File(fileName);
+	    	FileInputStream fis = new FileInputStream(file);
+	    	PDFParser parser = new PDFParser(fis);
+	        parser.parse();
+	        COSDocument cosDoc= parser.getDocument();       
+	        PDDocument pddoc= new PDDocument(cosDoc);
+	        PDFTextStripper pdfStripper= new PDFTextStripper();
+	        pdfStripper.setStartPage( 1 );
+	        pdfStripper.setEndPage( Integer.MAX_VALUE );
+	        String data = pdfStripper.getText(pddoc);
+	        List<String> ans= Arrays.asList(data.split("\r\n"));
+	        String newData1="";
+	        for (int i = 0; i < ans.size(); i++)
+	        {
+	        	
+	        	//System.out.println(ans.get(i));
+	        	int n=ans.get(i).length()-1;
+	        	if (ans.get(i).charAt(n)==' ')
+	        		newData1 = newData1+ans.get(i);
+	        	if (ans.get(i).charAt(n)!=' ')
+	        		newData1 = newData1+" "+ans.get(i);
+	        	
+	        }
+	        newData1=newData1.replace("  ", " ");
+	        System.out.println(newData1);
+	        //Verifies 100.00%
+	        softly.assertThat("100.00%").as("test data").isSubstringOf(newData1);
+	        //Verifies risk level as Low
+	        softly.assertThat("risk level: high").as("test data").isSubstringOf(newData1);
+	        //Verify SPV
+	        softly.assertThat("SPV").as("test data").isSubstringOf(newData1);
+	        //Verify all data entered
+	        softly.assertThat(text1).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text2).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text3).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text4).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text5).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text6).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text7).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text8).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text9).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text10).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text11).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text12).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text13).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text14).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text15).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text16).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text17).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text18).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text19).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text20).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text21).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text22).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text23).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text24).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text25).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text26).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text27).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text28).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text29).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text30).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text31).as("test data").isSubstringOf(newData1);
+	        softly.assertThat(text32).as("test data").isSubstringOf(newData1);
+	        cosDoc.close();
+	        pddoc.close();
+	   }
+	   
+	   public void deleteFiles(File folder) throws IOException {
+	        File[] files = folder.listFiles();
+	         for(File file: files){
+	                if(file.isFile()){
+	                    String fileName = file.getName();
+	                    boolean del= file.delete();
+	                    System.out.println(fileName + " : got deleted ? " + del);
+	                }else if(file.isDirectory()) {
+	                    deleteFiles(file);
+	                }
+	            }
+	        }
 	    
 	    public void shareReport() throws Exception{
 	    	

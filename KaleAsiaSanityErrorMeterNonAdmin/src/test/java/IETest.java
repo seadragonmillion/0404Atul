@@ -805,6 +805,7 @@ public class IETest {
     		  }
           }	
 		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  Thread.sleep(2000);
 		  //Clicks on Analysis 
 		  try
 		  {
