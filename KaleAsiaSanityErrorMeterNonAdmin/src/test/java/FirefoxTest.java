@@ -384,7 +384,7 @@ public class FirefoxTest {
 				softly.fail("Edit data button displayed");
 			else
 				System.out.println("Edit data button not displayed for non admin user");
-			Thread.sleep(7000);
+			Thread.sleep(10000);
 			//Waits for the page to load
 	        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-t"))).click();

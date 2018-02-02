@@ -886,6 +886,12 @@ public class FirefoxTest {
 		  Thread.sleep(1000);
 		  deletePreviousCase(me_title);
 		  Thread.sleep(1000);
+		  try{
+		  	   WebDriverWait wait3 = new WebDriverWait(driver,20);
+               wait3.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+		  }catch (org.openqa.selenium.TimeoutException t){
+               System.out.println("No server error");
+          }
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  //Clicks on admin option
