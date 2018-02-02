@@ -20,12 +20,13 @@ import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.assertj.core.api.SoftAssertions;
+import java.util.Base64;
 
 public class IETest {
 
 	private InternetExplorerDriver driver;
 	private String username ="qaacfi";
-	 private String password = "Kale94935830@";
+	 private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String event_title="Sanity Test IE";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
@@ -54,31 +55,35 @@ public class IETest {
 	  }
 	  
 	
+	public String decode(String pw){
+		
+		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
+		String decryptedPassword = new String(decryptedPasswordBytes);
+		return (decryptedPassword);
+	}
+
 	public void Login() throws Exception{
 		  
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  System.out.println("Title before login: "+driver.getTitle());
 		  //Login button is located and clicked
-		  jse.executeScript("return document.getElementById('pii-login-button').click();");
+		  driver.findElement(By.id("pii-login-button")).click();
 		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
-		  Thread.sleep(2000);
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
-		  driver.findElement(By.id("pii-pw")).sendKeys(password);
-		  Thread.sleep(2000);
+		  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 		  //Sign in button is located and clicked
 		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 		  int c=1;
 		  if (user.equals(username)==true)
 		  {
-			  if(pw.equals(password)==true)
+			  if(pw.equals(decode(password))==true)
 			  {
 				  //Sign in button is located and clicked
-				  jse.executeScript("return document.getElementById('pii-signin-button').click();");  
+				  driver.findElement(By.id("pii-signin-button")).click();  
 				  while(c>0)
 				  {
 				  Thread.sleep(2000);
@@ -93,9 +98,9 @@ public class IETest {
 						  }
 					  else
 					  {
-						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 						  //Sign in button is located and clicked
-						  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+						  driver.findElement(By.id("pii-signin-button")).click();
 						  login =1;
 						  break;
 					  }
@@ -105,7 +110,7 @@ public class IETest {
 			  }}
 			
 		  }
-		  if ((user.equals(username)==false)||(pw.equals(password)==false))
+		  if ((user.equals(username)==false)||(pw.equals(decode(password))==false))
 		    {
 				  while(c>0)
 				  {
@@ -115,15 +120,15 @@ public class IETest {
 					  //Username text field is located and the username is entered
 					  driver.findElement(By.id("pii-un")).sendKeys(username);
 					  //Password field is located and the password is entered
-					  driver.findElement(By.id("pii-pw")).sendKeys(password);
+					  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
 					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 					  if (user.equals(username)==true)
 					  {
-						  if(pw.equals(password)==true)
+						  if(pw.equals(decode(password))==true)
 						  {
 							  //Sign in button is located and clicked
-							  jse.executeScript("return document.getElementById('pii-signin-button').click();");
+							  driver.findElement(By.id("pii-signin-button")).click();
 							  break;
 						  }
 						
@@ -132,7 +137,8 @@ public class IETest {
 			  
 			  
 		  }
-	  }
+			  
+		}
 	
 	public void deleteNewRecord(String recordName) throws Exception{
 		  

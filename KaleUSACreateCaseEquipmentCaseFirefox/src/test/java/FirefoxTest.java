@@ -26,12 +26,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Dimension;
+import java.util.Base64;
 
 public class FirefoxTest {
 
 	private WebDriver driver;
 	private String username ="jenkinsvm";
-	private String password = "Kalejenkins@123";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int numberOfImages=5;
@@ -84,6 +85,13 @@ public class FirefoxTest {
 	  }
 	  
 
+	public String decode(String pw){
+		
+		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
+		String decryptedPassword = new String(decryptedPasswordBytes);
+		return (decryptedPassword);
+	}
+
 	public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
@@ -95,14 +103,14 @@ public class FirefoxTest {
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
 		  //Password field is located and the password is entered
-		  driver.findElement(By.id("pii-pw")).sendKeys(password);
+		  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 		  //Sign in button is located and clicked
 		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 		  int c=1;
 		  if (user.equals(username)==true)
 		  {
-			  if(pw.equals(password)==true)
+			  if(pw.equals(decode(password))==true)
 			  {
 				  //Sign in button is located and clicked
 				  driver.findElement(By.id("pii-signin-button")).click();  
@@ -120,7 +128,7 @@ public class FirefoxTest {
 						  }
 					  else
 					  {
-						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 						  //Sign in button is located and clicked
 						  driver.findElement(By.id("pii-signin-button")).click();
 						  login =1;
@@ -132,7 +140,7 @@ public class FirefoxTest {
 			  }}
 			
 		  }
-		  if ((user.equals(username)==false)||(pw.equals(password)==false))
+		  if ((user.equals(username)==false)||(pw.equals(decode(password))==false))
 		    {
 				  while(c>0)
 				  {
@@ -142,12 +150,12 @@ public class FirefoxTest {
 					  //Username text field is located and the username is entered
 					  driver.findElement(By.id("pii-un")).sendKeys(username);
 					  //Password field is located and the password is entered
-					  driver.findElement(By.id("pii-pw")).sendKeys(password);
+					  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
 					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 					  if (user.equals(username)==true)
 					  {
-						  if(pw.equals(password)==true)
+						  if(pw.equals(decode(password))==true)
 						  {
 							  //Sign in button is located and clicked
 							  driver.findElement(By.id("pii-signin-button")).click();
@@ -161,6 +169,7 @@ public class FirefoxTest {
 		  }
 			  
 		}
+		
 	public void deletePreviousCase(String title) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on Error free bank

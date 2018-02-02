@@ -16,12 +16,13 @@ import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Dimension;
+import java.util.Base64;
 
 public class SanityHiRCAFirefoxTest {
 
 	private FirefoxDriver driver;
 	private String username ="qaacfi";
-	 private String password = "Kale94935830@";
+	 private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private String EventTitleFirefox = "Sanity Test Firefox";	
@@ -52,29 +53,36 @@ public class SanityHiRCAFirefoxTest {
 		  }
 		  
 		
-		  public void Login() throws Exception{
-			  
-			  System.out.println("Title before login: "+driver.getTitle());
-			  //Login button is located and clicked
-			  driver.findElement(By.id("pii-login-button")).click();
-			  //Login pop up is located and clicked
-			  WebDriverWait wait = new WebDriverWait(driver,10);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
-			  //Username text field is located and the username is entered
-			  driver.findElement(By.id("pii-un")).sendKeys(username);
-			  //Password field is located and the password is entered
-			  driver.findElement(By.id("pii-pw")).sendKeys(password);
-			  //Sign in button is located and clicked
-			  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
+	public String decode(String pw){
+		
+		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
+		String decryptedPassword = new String(decryptedPasswordBytes);
+		return (decryptedPassword);
+	}
+
+	public void Login() throws Exception{
+		  
+		  System.out.println("Title before login: "+driver.getTitle());
+		  //Login button is located and clicked
+		  driver.findElement(By.id("pii-login-button")).click();
+		  //Login pop up is located and clicked
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
+		  //Username text field is located and the username is entered
+		  driver.findElement(By.id("pii-un")).sendKeys(username);
+		  //Password field is located and the password is entered
+		  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
+		  //Sign in button is located and clicked
+		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 		  int c=1;
 		  if (user.equals(username)==true)
 		  {
-			  if(pw.equals(password)==true)
+			  if(pw.equals(decode(password))==true)
 			  {
 				  //Sign in button is located and clicked
 				  driver.findElement(By.id("pii-signin-button")).click();  
-				   while(c>0)
+				  while(c>0)
 				  {
 				  Thread.sleep(2000);
 				  WebElement element = driver.findElement(By.id("pii-signin-message"));
@@ -88,7 +96,7 @@ public class SanityHiRCAFirefoxTest {
 						  }
 					  else
 					  {
-						  driver.findElement(By.id("pii-pw")).sendKeys(password);
+						  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 						  //Sign in button is located and clicked
 						  driver.findElement(By.id("pii-signin-button")).click();
 						  login =1;
@@ -96,12 +104,11 @@ public class SanityHiRCAFirefoxTest {
 					  }
 					  			  
 				  }
-				  else  break;
-				  }
-			  }
+				  else break;
+			  }}
 			
 		  }
-		  if ((user.equals(username)==false)||(pw.equals(password)==false))
+		  if ((user.equals(username)==false)||(pw.equals(decode(password))==false))
 		    {
 				  while(c>0)
 				  {
@@ -111,12 +118,12 @@ public class SanityHiRCAFirefoxTest {
 					  //Username text field is located and the username is entered
 					  driver.findElement(By.id("pii-un")).sendKeys(username);
 					  //Password field is located and the password is entered
-					  driver.findElement(By.id("pii-pw")).sendKeys(password);
+					  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
 					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
 					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 					  if (user.equals(username)==true)
 					  {
-						  if(pw.equals(password)==true)
+						  if(pw.equals(decode(password))==true)
 						  {
 							  //Sign in button is located and clicked
 							  driver.findElement(By.id("pii-signin-button")).click();
@@ -128,8 +135,8 @@ public class SanityHiRCAFirefoxTest {
 			  
 			  
 		  }
-			 
-		  }
+			  
+		}
 		  
 		   public void deleteNewRecord(String recordName) throws Exception{
 			  
