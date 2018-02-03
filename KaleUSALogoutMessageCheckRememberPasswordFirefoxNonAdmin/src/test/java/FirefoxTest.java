@@ -204,8 +204,10 @@ public String decode(String pw){
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to main content
 		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
 		//Login button is located and clicked
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+		Thread.sleep(2000);
 		//Get username data to check if empty
 		user = driver.findElement(By.id("pii-un")).getAttribute("value");
 		softly.assertThat(user).as("test data").isEqualTo(username);
