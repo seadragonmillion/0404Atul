@@ -235,7 +235,7 @@ public String decode(String pw){
 		//Logs out
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		afterTest();
 		/*xpath: id=pii-header-message-div/a
 			id:pii-header-message-button //click here
