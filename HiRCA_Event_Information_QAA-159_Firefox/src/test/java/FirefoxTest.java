@@ -735,7 +735,7 @@ public class FirefoxTest {
 			  {				  
 				  //Click on Supporting file details
 				  Thread.sleep(500);
-				  String id = "pii-hirca-h-event-report-filecollapsible-"+j;
+				  String id = "pii-irca-h-event-report-filecollapsible-"+j;
 				  driver.findElement(By.id(id)).click();
 				  try{
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -748,7 +748,7 @@ public class FirefoxTest {
 				  n=n+1200;
 				  String scroll ="scroll(0,"+n+")";
 				  jse.executeScript(scroll);
-				  String img = "pii-hirca-h-event-report-file-img-"+j;
+				  String img = "pii-irca-h-event-report-file-img-"+j;
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
