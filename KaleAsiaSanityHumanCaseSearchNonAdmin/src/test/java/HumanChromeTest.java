@@ -18,7 +18,7 @@ import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.junit.Assert;
 import java.util.Base64;
-S2FsZTk0OTM1ODMwQA==
+
 public class HumanChromeTest {
 
 	private WebDriver driver;

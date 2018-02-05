@@ -17,7 +17,7 @@ import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
-import java.util.Base64;S2FsZTk0OTM1ODMwQA==
+import java.util.Base64;
 
 public class SanityHiRCAInternetExplorerTest {
 

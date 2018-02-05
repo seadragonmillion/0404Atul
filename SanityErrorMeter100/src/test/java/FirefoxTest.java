@@ -1018,12 +1018,13 @@ public class FirefoxTest {
 		  }
 		//Clicks on SPV Error meter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
+		  Thread.sleep(2000);
 		  //Select Purpose from dropdown
-		  WebElement element = driver.findElement(By.id("pii-epm-select-purpose"));
+		  WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-select-purpose")));
 		  Select s = new Select (element);
 		  s.selectByVisibleText("PJB");
 		  //Select Job type
-		  element = driver.findElement(By.id("pii-epm-select-condition"));
+		  element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-select-condition")));
 		  Select s1 = new Select (element);
 		  s1.selectByVisibleText("Analysis");
 		  //Fills Job title

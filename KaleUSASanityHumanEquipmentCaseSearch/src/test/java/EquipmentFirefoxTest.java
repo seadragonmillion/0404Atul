@@ -21,7 +21,7 @@ import org.junit.rules.Timeout;
 import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.Dimension;
 import java.util.Base64;
-S2FsZTQ2MTkxODAyQA==
+
 public class EquipmentFirefoxTest {
 
 	private FirefoxDriver driver;

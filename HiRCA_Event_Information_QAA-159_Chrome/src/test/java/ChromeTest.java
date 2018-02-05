@@ -1397,6 +1397,7 @@ public class ChromeTest {
 							      l.click();
 							  }
 					  }
+					  Thread.sleep(2000);
 					  //Debug
 					  //Clicks on save without images
 					  jse.executeScript("scroll(0,0)");
