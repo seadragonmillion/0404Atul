@@ -778,7 +778,7 @@ public class IE10Test {
 				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[2]/tbody/tr["+m+"]/td[3]")).getText();
 				  System.out.println(cr2);
 				  softly.assertThat(cr2).as("test data").isEqualTo(hm_cr.get(lop4));
-				  m=m+1;
+				  m=m+2;
 			  }
 			  int m1=m;
 			  //Verify LOP2 3.16
@@ -853,7 +853,7 @@ public class IE10Test {
 				  String cr2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/table[3]/tbody/tr["+m+"]/td[3]")).getText();
 				  System.out.println(cr2);
 				  softly.assertThat(cr2).as("test data").isEqualTo(hm_cr.get(lop4));
-				  m=m+1;
+				  m=m+2;
 			  }
 			  int m2=m;
 			  //Verify additional LOPs needed to block triggering events

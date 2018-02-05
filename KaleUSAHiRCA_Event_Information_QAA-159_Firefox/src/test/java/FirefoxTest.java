@@ -55,7 +55,7 @@ public class FirefoxTest {
 
 	 @SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(800000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 	 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -1391,7 +1391,28 @@ public class FirefoxTest {
 							  l.click();
 						  }
 				  }
-				  
+				  //Debug
+				  //Clicks on save without images
+				  hread.sleep(1000);
+				  jse.executeScript("scroll(0,0)");
+				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+				  //Clicks on Save
+				  driver.findElement(By.id("efi-irca-button-save")).click();
+				  //Clicks on Save report
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(500);
+				  try{
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+				  }catch (org.openqa.selenium.TimeoutException e)
+				  {
+						  
+				  }			  		  
+				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(3000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
