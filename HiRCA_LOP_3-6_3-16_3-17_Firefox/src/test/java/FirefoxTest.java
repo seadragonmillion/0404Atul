@@ -2028,7 +2028,7 @@ public class FirefoxTest {
 				  {
 					  break;
 				  }				  
-				  m=m+1;
+				  m=m+2;
 			  }
 			  m=1;
 			  while(true)
@@ -2046,7 +2046,7 @@ public class FirefoxTest {
 				  {
 					  break;
 				  }				  
-				  m=m+1;
+				  m=m+2;
 			  }
 			  m=1;
 			  while(true)
@@ -2064,7 +2064,7 @@ public class FirefoxTest {
 				  {
 					  break;
 				  }				  
-				  m=m+1;
+				  m=m+2;
 			  }
 			   //deletes files in reports folder before starting to download
 		    	File file = new File("C://Users//IEUser//Downloads//reports//");
