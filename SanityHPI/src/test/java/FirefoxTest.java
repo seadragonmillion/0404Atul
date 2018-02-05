@@ -197,7 +197,7 @@ public class FirefoxTest {
 			Thread.sleep(1000);
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			softly.assertThat(user).as("test data").isEqualTo("QAA Creator (qaacreator)");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
