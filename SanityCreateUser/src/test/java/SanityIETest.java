@@ -466,7 +466,7 @@ public class SanityIETest {
 		
 		//Browser closes
 		driver.quit();
-		sofly.assertAll();
+		softly.assertAll();
 	}
 
 }

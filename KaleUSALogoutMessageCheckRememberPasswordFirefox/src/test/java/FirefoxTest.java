@@ -232,6 +232,7 @@ public String decode(String pw){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-header-message-passwd"))).sendKeys(decode(password));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-header-message-passwd"))).sendKeys(Keys.ENTER);
 		System.out.println("Logged in");
+		Thread.sleep(5000);
 		//Logs out
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
