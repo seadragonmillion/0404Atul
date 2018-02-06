@@ -264,14 +264,14 @@ public class IE10Test {
 				  		  }
 		    	Thread.sleep(10000);
 		    	//pdf verification
-		    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
+		    	pdfCheck(event_id,executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 		    	Thread.sleep(4000);
 		    	driver.switchTo().window(window);
 		    	    	
 					    		    	
 		    }
 		  
-			public void pdfCheck(String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
+			public void pdfCheck(String event_id,String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 		    	
 		    	 List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded

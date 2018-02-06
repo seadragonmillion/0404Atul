@@ -261,7 +261,7 @@ public class ChromeTest {
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		    	Thread.sleep(3000);
-		    	pdfCheck(executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
+		    	pdfCheck(event_id,executive,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 		        for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	    }
@@ -271,7 +271,7 @@ public class ChromeTest {
 		    		    	
 		    }
 		  
-			public void pdfCheck(String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
+			public void pdfCheck(String event_id,String executive,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 		    	
 		    	 List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded
