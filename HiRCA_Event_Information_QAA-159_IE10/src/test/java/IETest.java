@@ -1499,7 +1499,7 @@ public class IETest {
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
-					  jse.executeScript("scroll(0, 1600)");
+					  jse.executeScript("scroll(0, 1800)");
 					  //Click on attach another file
 					  Thread.sleep(2000);
 					 WebElement add= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button")));
