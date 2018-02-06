@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Dimension;
 import java.util.Base64;
+import org.assertj.core.api.SoftAssertions;
 
 public class SanityFirefoxTest {
 
@@ -26,6 +27,7 @@ public class SanityFirefoxTest {
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
+	SoftAssertions softly = new SoftAssertions();
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -211,8 +213,8 @@ public class SanityFirefoxTest {
 	
 	@Test
 	  public void SanityTest() throws Exception{
-		  try{
-		Login();
+		  
+		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  Thread.sleep(7000);
 		  //Waits for the page to load
@@ -312,9 +314,46 @@ public class SanityFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		  //Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  System.out.println("Company created");
+		  //Clicks on edit company
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+		  //Changes the address
+		  driver.findElement(By.id("pii-admin-cust-address")).clear();
+		  driver.findElement(By.id("pii-admin-cust-address")).sendKeys("QAA edit company");
+		  //Clicks on Save
+		  driver.findElement(By.id("pii-admin-cust-button-save")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
+		  //Clicks on update company
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  //Enters company id in ID field 
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		  //Clicks on newly created company id
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		  //Checks if company address has been edited
+		  String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
+		  softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");
 		  
 		  
 		  Thread.sleep(2000);
@@ -417,72 +456,14 @@ public class SanityFirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
-		  afterTest();
-		  }catch (Exception e){
-			   System.out.println(e);
-			      WebDriverWait wait = new WebDriverWait(driver,20);
-			      Thread.sleep(3000);
-			      driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr")).click();
-			      Thread.sleep(3000);
-				  //Clicks on delete
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
-				  String value1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).getText();
-				  System.out.println(value1);
-				  if(value1.contains("Warning: cannot delete a company with groups"))
-				  {
-					  driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();
-					  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td")).click();
-					  //Searches for newly created group
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
-					  Thread.sleep(1000);
-					  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
-					 /* //Selects the newly created group
-					  WebElement select = driver.findElement(By.id("pii-admin-group-list"));
-					  
-					 if (select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child")).isDisplayed())
-						  select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child")).click();*/
-					  //Clicks on delete
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-delete"))).click();
-					  String value2 =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-note"))).getText();
-					  if(value2.equals("NOTE: delete all users of a group before deleting a group."))
-					  {
-						  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
-						  Thread.sleep(2000);
-						  deleteUser();
-						  deleteGroup();
-						  deleteCompany();
-						  
-					  }
-					  else
-					  {
-						//Clicks on delete group
-						  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
-						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-						  System.out.println("Group deleted");
-						  deleteCompany();
-					  }
-					  
-				  }
-				  if(value1.contains("Are you sure that you want to delete company with"))
-				  {
-					  Thread.sleep(1000);
-					  //Clicks on delete company
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-					  System.out.println("Company deleted");  
-				  }
-				  
-			  
-			  driver.quit();
-		 }
-		  
-		  		  
+		  afterTest();	  		  
 	}
 	
 	public void afterTest(){
 		
 		//Browser closes
 		driver.quit();
+		softly.assertAll();
 	}
 	
 }
