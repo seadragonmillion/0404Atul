@@ -318,6 +318,9 @@ public class ChromeTest {
 		        }
 		        newData=newData.replace("  ", " ");
 		       // System.out.println(newData);
+		        //Verifies event id
+		        event_id=event_id.replace("  ", " ");
+		        softly.assertThat(event_id).as("test data").isSubstringOf(newData);
 		        //Verifies title
 		        text184=text184.replace("  ", " ");
 		        softly.assertThat("Event title "+text184).as("test data").isSubstringOf(newData);
@@ -503,6 +506,10 @@ public class ChromeTest {
 		      String eve_creator =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]")).getText();
 		      softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
 		      System.out.println(eve_creator);
+		      //Check for Event id
+		      String eve_id= driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[2]/td[2]")).getText();
+		      softly.assertThat(event_id).as("test data").isSubstringOf(eve_id);
+		      System.out.println(eve_id);
 		      //Check for Executive summary
 		      String eve_exec =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]")).getText();
 			  softly.assertThat(eve_exec).as("test data").isEqualTo(executive);
