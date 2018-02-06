@@ -1407,7 +1407,7 @@ public class ChromeTest {
 					  Thread.sleep(3000);
 					  if(driver.findElement(By.id(img)).isDisplayed())
 					  {
-						  jse.executeScript("scroll(0, 1600)");
+						  jse.executeScript("scroll(0, 2000)");
 						  //Click on attach another file
 						  Thread.sleep(3000);
 						 WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));

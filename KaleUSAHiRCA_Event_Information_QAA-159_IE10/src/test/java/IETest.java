@@ -151,6 +151,7 @@ public class IETest {
 			  
 		}
 	
+	
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
 	      
@@ -888,6 +889,22 @@ public class IETest {
 		  
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,40);
+		  Thread.sleep(5000);
+		  if (login==1)
+          {
+                
+                while(true)
+    		  {
+               	 Thread.sleep(1000);
+    			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+    			  {
+    				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+    				  ele.findElement(By.className("sticky-close")).click();
+    				  break;
+    			  }
+    			  else break;
+    		  }
+          }	
 		  //Clicks on Analysis 
 		  try
 		  {
@@ -895,25 +912,6 @@ public class IETest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  if (login==1)
-        {
-              
-              while(true)
-  		  {
-             	 Thread.sleep(1000);
-  			  if (driver.findElement(By.cssSelector(".sticky-queue.top-right")).isDisplayed())
-  			  {
-  				  WebElement ele =driver.findElement(By.cssSelector(".sticky-queue.top-right"));
-  				  ele.findElement(By.className("sticky-close")).click();
-  				  break;
-  			  }
-  			  else break;
-  		  }
-        }
-		  
-		  Thread.sleep(4000);
-		  
-		
 		  //Clicks on HiRCA
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		  Thread.sleep(2000);
@@ -1443,7 +1441,7 @@ public class IETest {
 								  jse.executeScript("scroll(0, 1000)");
 							  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))).click();
 						  }
-				  }				  
+				  }
 				  //Debug
 				  //Clicks on save without images
 				  Thread.sleep(1000);
@@ -1535,7 +1533,7 @@ public class IETest {
 		  //Clicks on Save report
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		 // wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		  Thread.sleep(500);
 		  try{
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1583,13 +1581,7 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Clicks on side panel
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-		  try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+		  Thread.sleep(2000);
 		  //Gets newly created record name
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"));
 		  String recordName = record.getText();

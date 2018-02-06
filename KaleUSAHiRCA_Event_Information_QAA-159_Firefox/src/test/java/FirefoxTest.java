@@ -1400,7 +1400,7 @@ public class FirefoxTest {
 				  }
 				  //Debug
 				  //Clicks on save without images
-				  hread.sleep(1000);
+				  Thread.sleep(1000);
 				  jse.executeScript("scroll(0,0)");
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
@@ -1423,7 +1423,7 @@ public class FirefoxTest {
 				  Thread.sleep(3000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
-					  jse.executeScript("scroll(0, 1700)");
+					  jse.executeScript("scroll(0, 1800)");
 					  //Click on attach another file
 					  Thread.sleep(2000);
 					 WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));

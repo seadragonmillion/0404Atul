@@ -1351,7 +1351,13 @@ public class FirefoxTest {
 			  {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
-				  Thread.sleep(1000);				  
+				  Thread.sleep(1000);	
+				  if (j==1||j==3)
+				  {
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).sendKeys(Keys.ARROW_DOWN);
+				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
+				  }			  
 				  l=driver.findElement(By.id(del)); 	
 				  //jse.executeScript("arguments[0].scrollIntoView();", l);
 				  l.click();			  
@@ -1421,7 +1427,7 @@ public class FirefoxTest {
 				  Thread.sleep(3000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
 				  {
-					  jse.executeScript("scroll(0, 1700)");
+					  jse.executeScript("scroll(0, 2000)");
 					  //Click on attach another file
 					  Thread.sleep(2000);
 					 WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
