@@ -1418,12 +1418,12 @@ public class IETest {
 				  //delete file
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(3000);
-				  if (j==1||j==3)
+				 /* if (j==1||j==3)
 				  {
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-div-"+j))).sendKeys(Keys.ARROW_DOWN);
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).sendKeys(Keys.ARROW_DOWN);
-				  }
+				  }*/
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				  
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
