@@ -174,6 +174,7 @@ public class ChromeTest {
 			  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 			  //Clicks on new record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			  Thread.sleep(3000);
 			  if(name1.equals(recordName))
 			  {
 			  //Clicks on delete button

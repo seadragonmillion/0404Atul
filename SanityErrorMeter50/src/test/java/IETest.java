@@ -445,6 +445,7 @@ public void pape() throws Exception{
 			Thread.sleep(2000);
 			
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text1);
+			Thread.sleep(2000);
 			for (i=0;i<10;i++)
 			{
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);

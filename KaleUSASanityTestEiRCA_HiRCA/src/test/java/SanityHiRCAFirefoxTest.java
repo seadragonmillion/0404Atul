@@ -256,6 +256,7 @@ public class SanityHiRCAFirefoxTest {
 			  assertEquals(name, recordName);
 			  //Deletes the newly created record
 			  deleteNewRecord(recordName);
+			  Thread.sleep(3000);
 			  driver.findElement(By.id("pii-user-loginname")).click();
 			  driver.findElement(By.id("pii-signout-button")).click();
 			  afterTest();

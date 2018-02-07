@@ -32,7 +32,7 @@ public class ChromeTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(350000);
+	  public Timeout globalTimeout= new Timeout(360000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -212,6 +212,7 @@ public class ChromeTest {
 		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(4000);
 		  //Clicks on Q1459
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q1459"))).click();
 		  //Clicks on Show Slides

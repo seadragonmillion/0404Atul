@@ -483,6 +483,7 @@ public class IETest {
 			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			Thread.sleep(2000);
 	    }
 	    
 	    public void markCritical() throws Exception{

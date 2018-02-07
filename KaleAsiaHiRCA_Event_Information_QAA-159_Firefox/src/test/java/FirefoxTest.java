@@ -1404,7 +1404,7 @@ public class FirefoxTest {
 				  }				  
 				  //Debug
 				  //Clicks on save without images
-				  hread.sleep(1000);
+				  Thread.sleep(1000);
 				  jse.executeScript("scroll(0,0)");
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
