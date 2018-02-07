@@ -29,7 +29,7 @@ public class SanityTestEiRCA_IETest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(700000);
 	  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -210,7 +210,7 @@ public class SanityTestEiRCA_IETest {
 			  	  }catch (NoAlertPresentException f){
 			  		  System.out.println ("No unexpected alert for picture 2");
 			  		  }
-	    	Thread.sleep(4000);
+	    	Thread.sleep(10000);
 	    	//Close pdf
 	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 			q.waitFor();
