@@ -52,7 +52,7 @@ public class ChromeTest {
 
 	 @SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1200000);
+	  public Timeout globalTimeout= new Timeout(1300000);
 	  
 		@Before
 		  public void beforeTest() throws MalformedURLException{
@@ -176,11 +176,19 @@ public class ChromeTest {
 			  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 			  //Clicks on new record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			  Thread.sleep(4000);
+			  Thread.sleep(2000);
+			  try{
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					 }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
 			  if(name1.equals(recordName))
 			  {
 			  //Clicks on delete button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			  //Clicks on delete report
 			  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
