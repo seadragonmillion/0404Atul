@@ -2092,8 +2092,10 @@ public class FirefoxTest {
 		    	robot.keyPress(KeyEvent.VK_S);
 		    	robot.keyRelease(KeyEvent.VK_CONTROL);
 		    	robot.keyRelease(KeyEvent.VK_S);
+		    	Thread.sleep(4000);
 		    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 		    	p.waitFor();
+		    	Thread.sleep(4000);
 		    	//PDF Check
 		    	List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded
