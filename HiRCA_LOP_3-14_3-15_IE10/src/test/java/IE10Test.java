@@ -1245,6 +1245,7 @@ public class IE10Test {
 			  //Clicks on LOP
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+			  Thread.sleep(3000);
 			  //Clicks on 2.1.1 means q2.1 answer-yes
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset/div/div/label"))).click();
 			  //Clicks on Description
@@ -1255,6 +1256,7 @@ public class IE10Test {
 			  softly.assertThat(lop1).as("test data").isEqualTo("Layer of Protection (LOP): A practice that detects and/or prevents errors to stop an event from occurring. It can be a procedure, an action or a physical barrier (equipment).");
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[2]/h4/a"))).click();
+			  Thread.sleep(1000);
 			  //Enter reason
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason2);
 			  //Clicks on 2 LOPS

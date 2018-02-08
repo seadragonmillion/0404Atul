@@ -54,7 +54,7 @@ public class IE10Test {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(8200000);
+	  public Timeout globalTimeout= new Timeout(8500000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
@@ -788,9 +788,11 @@ public class IE10Test {
 		  Thread.sleep(1000);
 		  //Clicks on Errorfree bank option
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		  Thread.sleep(1000);
 		  for(int i=0;i<len;i++)
 		  {
 		   String caseId = caseId1[i];
+		   Thread.sleep(1000);
 		  //Clicks on Equipment cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 		  //Waits for black loading message to disappear

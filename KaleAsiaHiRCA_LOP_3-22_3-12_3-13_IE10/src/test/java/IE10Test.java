@@ -1554,6 +1554,7 @@ public class IE10Test {
 				  Thread.sleep(1000);
 				  //Click on a lop inquiry in 3.12
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+				  Thread.sleep(1000);
 				  //Click on Evidence Entry
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
 				  //Fill in evidence entry text

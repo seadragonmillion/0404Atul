@@ -85,7 +85,7 @@ public class IE10Test {
 
 	 @SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1500000);
+	  public Timeout globalTimeout= new Timeout(1800000);
 	  
 	 @Before
 	  public void beforeTest() throws MalformedURLException{
@@ -2015,6 +2015,7 @@ public class IE10Test {
 					  System.out.println(lop26);
 					  softly.assertThat(lop26).as("test data").isEqualTo(reason15);
 				  }catch(org.openqa.selenium.TimeoutException u){
+				  	  Thread.sleep(2000);
 					  act.click(l).build().perform();
 					  //Verify the text
 					  String lop26=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[4]/tbody/tr["+j+"]/td/div/div/div"))).getText();
