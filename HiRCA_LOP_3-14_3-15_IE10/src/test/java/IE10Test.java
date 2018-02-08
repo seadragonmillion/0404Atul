@@ -2099,8 +2099,7 @@ public class IE10Test {
 		  		  
 		 
 		  public void afterTest() {
-			  WebDriverWait wait = new WebDriverWait(driver,20);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
+			  
 			  driver.quit();
 			  softly.assertAll();
 			  
