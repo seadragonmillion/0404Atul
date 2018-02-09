@@ -54,7 +54,7 @@ public class IE10Test {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(8500000);
+	  public Timeout globalTimeout= new Timeout(8600000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
@@ -392,7 +392,7 @@ public class IE10Test {
 		  	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div[1]")));
 		  	}catch(org.openqa.selenium.TimeoutException u){
 		  		System.out.println("Didnt find images clicking on collapsible again");
-		  		Thread.sleep(2000);
+		  		Thread.sleep(4000);
 		  		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
 		  	}
 		  Thread.sleep(2000);

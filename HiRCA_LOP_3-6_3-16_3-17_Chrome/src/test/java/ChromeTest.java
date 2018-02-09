@@ -1232,6 +1232,7 @@ public class ChromeTest {
 			  //Clicks on LOP
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+			  Thread.sleep(2000);
 			  //Clicks on 2.1.1 means q2.1 answer-yes
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset/div/div/label"))).click();
 			  //Clicks on Description

@@ -41,7 +41,7 @@ public class ChromeTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1500000);
+	  public Timeout globalTimeout= new Timeout(1800000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -144,6 +144,14 @@ public class ChromeTest {
 
 		public int deletePreviousCase() throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		Thread.sleep(2000);
