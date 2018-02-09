@@ -1465,6 +1465,7 @@ public class FirefoxTest {
 			  String lop8 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
 			  System.out.println(lop8);
 			  softly.assertThat(lop8).as("test data").isEqualTo("This question is to determine whether the LOP failure was intentional or unintentional.");
+			  Thread.sleep(2000);
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 			  //Enters reason entry data
@@ -1481,6 +1482,7 @@ public class FirefoxTest {
 			  softly.assertThat(lop9).as("test data").contains("An LOP can be incomplete in that it does not cover some conditions. For example, when");
 			  softly.assertThat(lop9).as("test data").contains("review");
 			  softly.assertThat(lop9).as("test data").contains(", as an LOP, does not require the reviewer to crosscheck the validity of assumptions, it is incomplete. LOP is incorrect in that it contains incorrect instructions. For example, an incorrect specification of PPE (personal protective equipment) is an incorrect LOP.");
+			  Thread.sleep(2000);
 			  //Clicks on Description
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 			  //Enters reason entry data
