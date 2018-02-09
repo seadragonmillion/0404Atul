@@ -233,6 +233,7 @@ public class IE10Test {
 		  
 		  for(int count=1;count<=5;count++)
 		  {
+			  Thread.sleep(2000);
 			  //Clicks on Equipment cases
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 			  //Waits for black loading message to disappear
