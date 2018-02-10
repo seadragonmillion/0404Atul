@@ -560,7 +560,49 @@ public class SanityChromeTest {
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 	    //Clicks on Job Observation
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
-	    //Logs out
+	}
+
+	public void editPassword() throws Exception{
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+	    //Clicks on Account
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//Changes password
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password"))).sendKeys("Dummypass@123");
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password-again"))).sendKeys("Dummypass@123");
+	  	//Clicks on save
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//Waits for loading message to disappear
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Logs out
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		Thread.sleep(3000);
+		//Login with new password
+		//Login button is located and clicked
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+		//Enter Username
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-un"))).sendKeys(company_id);
+		//Enter password
+		driver.findElement(By.id("pii-pw")).sendKeys("Dummypass@123");
+		Thread.sleep(2000);
+		driver.findElement(By.id("pii-signin-button")).click();  		
+		Thread.sleep(3000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //Switches to the iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		Thread.sleep(5000);
+		//Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		Thread.sleep(3000);
@@ -572,25 +614,25 @@ public class SanityChromeTest {
 		Login();
 		System.out.println("Title after login: "+driver.getTitle());
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{
-                 if (login==1)
-                 {
-                       WebDriverWait wait2 = new WebDriverWait(driver,20);
-                       wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-                 }
-          }catch (NoSuchElementException t){
-                 throw t;
-          }
-		 Thread.sleep(5000);
-		 //Clicks on admin user name on top right corner
-		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		 //Clicks on admin option
-		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		 //Clicks on Accounts
-		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
+		      if (login==1)
+		      {
+		         WebDriverWait wait2 = new WebDriverWait(driver,20);
+		         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+		      }
+		  }catch (NoSuchElementException t){
+		      throw t;
+		}
+		Thread.sleep(5000);
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		//Clicks on Accounts
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
 	}
 	
 	public void emailMarkRead() throws Exception{
@@ -894,6 +936,9 @@ public class SanityChromeTest {
 		  
 		  Thread.sleep(10000);
 		  editGroupCheckAccess();
+
+		  Thread.sleep(4000);
+		  editPassword();
 		  
 		  Thread.sleep(4000);
 		  deleteUser();		  
