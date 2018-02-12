@@ -501,7 +501,8 @@ public class FirefoxTest {
 		        softly.assertThat("2.22 Was HiRCA").as("test data").isSubstringOf(newData);
 		        softly.assertThat("adequate in leading this investigation? skipped n/a").as("test data").isSubstringOf(newData);
 		        //Verify SUEP
-		        softly.assertThat("Contributing factor(s)S: Substandard Practice?U: Under Management Control?E: Early in Event Sequence?P: Prevention Of Recurrence? n/a n/a n/a n/a n/a").as("test data").isSubstringOf(newData);
+		        softly.assertThat("Contributing factor(s) S U E P n/a n/a n/a n/a n/a").as("test data").isSubstringOf(newData);
+		        softly.assertThat("(SUEP) S: Substandard Practice? U: Under Management Control? E: Early in Event Sequence? P: Prevention Of Recurrence?").as("test data").isSubstringOf(newData);
 		        //Verify the Level3 selected and importance
 		        for (int i=0;i<lopOptions1.length;i++)
 		        {
