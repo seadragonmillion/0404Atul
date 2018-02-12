@@ -586,6 +586,8 @@ public void LoginDummyUser() throws Exception{
 
 	public void editPassword() throws Exception{
 		
+		//Mark all messages in inbox as read
+		emailMarkRead();
 		WebDriverWait wait = new WebDriverWait(driver,20);
 	    //Clicks on Account
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
@@ -659,6 +661,139 @@ public void LoginDummyUser() throws Exception{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		//Clicks on Accounts
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
+		//Clicks on Edit user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
+		Thread.sleep(2000);
+		//Searches for newly created user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(Keys.ENTER);
+		//Waits for loading message to disappear
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		}catch (org.openqa.selenium.TimeoutException e)
+		{
+						  
+		}
+		//Selects the newly created user
+		WebElement select = driver.findElement(By.id("pii-admin-user-list"));
+		WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
+		option.click();
+		//Waits for loading message to disappear
+		try{
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		}catch (org.openqa.selenium.TimeoutException e)
+		{
+						  
+		}
+		//Clicks on reset password send email
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-resend-button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//Waits for loading message to disappear
+		try{
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		}catch (org.openqa.selenium.TimeoutException e)
+		{
+						  
+		}
+		//Reads new password from email
+		String SMTP_HOST = "smtp.gmail.com";
+	    String EMAIL_ADDRESS = "fakeemailtestqaa@gmail.com";
+	    String PASSWORD = "5sepkale";
+	    String INBOX_FOLDER = "INBOX";	    
+	    Properties props = new Properties();
+	    props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	    Session session = Session.getDefaultInstance(props, null);
+	    Store store = session.getStore("imaps");
+	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
+	    Folder inbox = store.getFolder(INBOX_FOLDER);
+	    inbox.open(Folder.READ_ONLY);
+	    Flags seen = new Flags(Flags.Flag.SEEN);
+        FlagTerm unseenFlagTerm = new FlagTerm(seen, false);
+        Message[] messages1 = inbox.search(unseenFlagTerm);
+        int messageCount1 = messages1.length;
+        while(true)
+        {
+        	Thread.sleep(2000);
+        	if (messageCount1>0)
+        		break;
+        	messages1 = inbox.getMessages();
+        	Thread.sleep(1000);
+        	messages1 = inbox.search(unseenFlagTerm);
+        	messageCount1 = messages1.length;
+        }
+        System.out.println("Unread messages: "+messageCount1);
+        for (int i = 0; i < messageCount1; i++) {
+        	Message message1 = messages1[i];
+        	System.out.println(i);
+            System.out.println("Mail Subject:- " + messages1[i].getSubject());
+            System.out.println("From: " + message1.getFrom());
+            System.out.println("Text: " + message1.getContent().toString());
+        }
+        String emailText=messages1[messageCount1-1].getContent().toString();
+        int n=emailText.indexOf("user account password has been reset to ");
+        int e=emailText.indexOf(".</p><p>You may change this after your next login.");
+        System.out.println(n);
+        String activate=emailText.substring(n+40, e);
+        System.out.println(activate);
+        inbox.close(true);
+        store.close();
+        //Logs out
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+      	Thread.sleep(3000);
+      	//Login with new password
+      	driver.switchTo().defaultContent();
+      	//Login button is located and clicked
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+      	//Enter Username
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-un"))).sendKeys(company_id);
+      	//Enter password
+      	driver.findElement(By.id("pii-pw")).sendKeys(activate);
+      	Thread.sleep(2000);
+      	driver.findElement(By.id("pii-signin-button")).click();  		
+      	Thread.sleep(3000);
+      	//Waits for the page to load
+      	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //Switches to the iframe
+      	driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+      	Thread.sleep(5000);
+      	//Logs out
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+      	Thread.sleep(3000);
+      	//Switches to main content
+      	driver.switchTo().defaultContent();
+      	//Waits for the page to load
+      	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+      	login=0;
+      	Login();
+      	System.out.println("Title after login: "+driver.getTitle());
+      	//Waits for the page to load
+      	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+      	//Switches to the iframe
+      	driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+      	try{
+      	      if (login==1)
+      	      {
+      	         WebDriverWait wait2 = new WebDriverWait(driver,20);
+      	         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+      	      }
+      	  }catch (NoSuchElementException t){
+      	     throw t;
+      	}
+      	Thread.sleep(5000);
+      	//Clicks on admin user name on top right corner
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+      	//Clicks on admin option
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+      	//Clicks on Accounts
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();            
 	}
 	
 	public void emailMarkRead() throws Exception{
