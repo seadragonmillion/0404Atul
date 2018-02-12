@@ -383,6 +383,7 @@ public class SanityIETest {
 		  Thread.sleep(3000);
 		  //Clicks on O&P IRCA side panel
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-opa').click();");
+		  Thread.sleep(3000);
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
 		  String recordName = record.getText();
 		  if (record.isDisplayed())
