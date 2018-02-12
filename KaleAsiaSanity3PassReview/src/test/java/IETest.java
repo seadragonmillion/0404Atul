@@ -272,6 +272,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-3pr-savedactivities"))).click();
 		  //Clicks on side panel option for job observation
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
+		  Thread.sleep(4000);
 		  //Deletes record
 		  deleteNewRecord(recordName);
 		  while(true)
