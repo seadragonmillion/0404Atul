@@ -31,7 +31,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(350000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -135,9 +135,23 @@ public class IETest {
 	
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
-		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+						  
+			  }
 		  //CLicks on first newly created record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
+		  try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+						  
+			  }
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));

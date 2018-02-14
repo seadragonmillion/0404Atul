@@ -33,7 +33,7 @@ public class EquipmentChromeTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(350000);
+	  public Timeout globalTimeout= new Timeout(450000);
 		  
 
 	@Before
@@ -223,6 +223,13 @@ public class EquipmentChromeTest {
 			  }
 		  //Clicks on F718
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F718"))).click();
+		  try{
+	           wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+	           wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+             }catch (org.openqa.selenium.TimeoutException e)
+	          {
+						  
+	          }
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F718")));
 		  Thread.sleep(2000);

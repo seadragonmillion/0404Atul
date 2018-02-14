@@ -272,6 +272,10 @@ public class ChromeTest {
 				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.TimeoutException e)
+			  {
+				 break;		  
+			  }
 			  
 			 
 		  }

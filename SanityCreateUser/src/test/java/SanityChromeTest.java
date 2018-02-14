@@ -407,12 +407,16 @@ public class SanityChromeTest {
 	    if(element.getAttribute("class").contains("ui-state-disabled")==false)
 	    	System.out.println("ICCA enabled");
 	    else softly.fail("ICCA disabled");
+	    Thread.sleep(2000);
 	    //Clicks on EiRCA
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca"))).click();
+	    Thread.sleep(2000);
 	    //Goes back to Analysis
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+	    Thread.sleep(2000);
 	    //Clicks on ICCA
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca"))).click();
+	    Thread.sleep(2000);
 	    //Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

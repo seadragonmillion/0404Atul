@@ -166,11 +166,24 @@ public class SanityIETest {
 
 	  public void openReport() throws Exception{
 
-		  WebDriverWait wait1 = new WebDriverWait(driver,30);
-		//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();		  
+		    WebDriverWait wait1 = new WebDriverWait(driver,30);
+		    try{
+	           wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+	           wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+             }catch (org.openqa.selenium.TimeoutException e)
+	           {
+						  
+	           }
+		    //Clicks on first newly created record
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();	
+	    	try{
+	           wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+	           wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+             }catch (org.openqa.selenium.TimeoutException e)
+	           {
+						  
+	           }	  
 		    //Clicks on Open button
-	    	
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	//Clicks on open report
