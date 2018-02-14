@@ -173,8 +173,9 @@ public class SanityFirefoxTest {
 	
 	public void openReport() throws Exception{
 
-		  WebDriverWait wait1 = new WebDriverWait(driver,30);
-		//Clicks on first newly created record
+		    WebDriverWait wait1 = new WebDriverWait(driver,30);
+		    Thread.sleep(2000);
+		    //Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();		  
 		    //Clicks on Open button
 	    	
