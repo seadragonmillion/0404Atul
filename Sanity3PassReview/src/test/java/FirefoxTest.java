@@ -286,6 +286,11 @@ public class FirefoxTest {
 				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.TimeoutException e)
+	          {
+				  
+				 break;
+			  }
 		  }
 
 		  //Logs out

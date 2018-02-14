@@ -301,7 +301,11 @@ public class IETest {
 				  
 				 break;
 			  }
-			  
+			  catch (org.openqa.selenium.TimeoutException e)
+	          {
+				  
+				 break;
+			  }
 			 
 		  }
 

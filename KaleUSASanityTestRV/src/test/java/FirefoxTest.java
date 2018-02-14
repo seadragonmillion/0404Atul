@@ -1,5 +1,10 @@
 import static org.junit.Assert.*;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
@@ -7,27 +12,42 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.NoSuchElementException;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+
 import java.util.concurrent.TimeoutException;
+
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Dimension;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 
 public class FirefoxTest {
 	private FirefoxDriver driver;
 	private String username ="ritica";
 	private String password = "S2FsZTQ2MTkxODAyQA==";
-	private String event_title="Sanity Test Firefox";
+	private String event_title="I think I will buy the red car, or I will lease the blue one.";
+	private String details ="There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
@@ -44,9 +64,11 @@ public class FirefoxTest {
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
 		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
+		 profile.setPreference("browser.download.folderList", 2);
+		 profile.setPreference("browser.download.dir", "C:\\Users\\rramakrishnan\\Downloads\\reports");
+		 FirefoxOptions options = new FirefoxOptions();
+		 options.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(options);
 		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
@@ -147,8 +169,9 @@ public class FirefoxTest {
 		  }
 			  
 		}
-	
-	public void deleteNewRecord(String recordName) throws Exception{
+	  
+	  
+	  public void deleteNewRecord(String recordName) throws Exception{
 		  
 		  //CLicks on first newly created record
 		 // driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).click();
@@ -174,10 +197,12 @@ public class FirefoxTest {
 		  			  
 	  }
 	  
-
-	  public void downloadRecord() throws Exception {
+	  public void downloadRecord(String verifier) throws Exception {
 	    	
-	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+		    //deletes files in reports folder before starting to download
+	    	File file = new File("C://Users//rramakrishnan//Downloads//reports//");
+	    	deleteFiles(file);		  
+		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 			//Clicks on download button
@@ -194,19 +219,116 @@ public class FirefoxTest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(10000);
-	    	//driver.switchTo().window(window);
+	    	Thread.sleep(8000);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
-	    	
+	    	Thread.sleep(2000);
+	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
+	    	Robot robot = new Robot();
+	    	// press Ctrl+S the Robot's way
+	    	robot.keyPress(KeyEvent.VK_CONTROL);
+	    	robot.keyPress(KeyEvent.VK_S);
+	    	robot.keyRelease(KeyEvent.VK_CONTROL);
+	    	robot.keyRelease(KeyEvent.VK_S);
+	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+	    	p.waitFor();
+	    	pdfCheck(verifier);
+	    	Thread.sleep(4000);
 	    	driver.close();
-	    	Thread.sleep(6000);
+	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);
 	    	driver.switchTo().defaultContent();
 	    		    	
 	    }
-	    
+	  
+	  public void pdfCheck(String verifier) throws Exception {
+		  List<String> results = new ArrayList<String>();
+	      //Gets the file name which has been downloaded
+	      File[] files = new File("C://Users//rramakrishnan//Downloads//reports//").listFiles();
+	      //If this pathname does not denote a directory, then listFiles() returns null. 
+	      for (File file : files) {
+	    	   if (file.isFile()) {
+	    	      results.add(file.getName());
+	    	   }
+	      }
+	      System.out.println(results.get(0));
+	      //Loads the file to check if correct data is present
+	      String fileName="C://Users//rramakrishnan//Downloads//reports//"+results.get(0);
+	      File oldfile = new File(fileName);
+	      //Checks number of images in pdf
+	      PDDocument pddoc= PDDocument.load(oldfile);
+	      List<RenderedImage> images = new ArrayList<>();
+	      images=getImagesFromPDF(pddoc);
+	      System.out.println("Number of images: "+images.size());
+	      softly.assertThat(images.size()).as("test data").isEqualTo(3);
+	      //Checks text in pdf
+	      String data = new PDFTextStripper().getText(pddoc);
+	      List<String> ans= Arrays.asList(data.split("\r\n"));
+	      String newData="";
+	      for (int i = 0; i < ans.size(); i++)
+	        {
+	        	
+	        	//System.out.println(ans.get(i));
+	        	int n=ans.get(i).length()-1;
+	        	if (ans.get(i).charAt(n)==' ')
+	        		newData = newData+ans.get(i);
+	        	if (ans.get(i).charAt(n)!=' ')
+	        		newData = newData+" "+ans.get(i);
+	        	
+	      }
+	      newData=newData.replace("  ", " ");
+	      System.out.println(newData);
+	      //Checks verifier
+	      softly.assertThat(verifier).as("test data").isSubstringOf(newData);
+	      //Checks username
+	      softly.assertThat(username).as("test data").isSubstringOf(newData);
+	      //Checks event title
+	      event_title=event_title.replace("  ", " ");
+	      softly.assertThat(event_title).as("test data").isSubstringOf(newData);
+	      //Checks verification details
+	      details=details.replace("  ", " ");
+	      softly.assertThat(details).as("test data").isSubstringOf(newData);
+	  }
+	 
+	 public List<RenderedImage> getImagesFromPDF(PDDocument document) throws IOException {
+	        List<RenderedImage> images = new ArrayList<>();
+	    for (PDPage page : document.getPages()) {
+	        images.addAll(getImagesFromResources(page.getResources()));
+	    }
+
+	    return images;
+	}
+
+	private List<RenderedImage> getImagesFromResources(PDResources resources) throws IOException {
+	    List<RenderedImage> images = new ArrayList<>();
+
+	    for (COSName xObjectName : resources.getXObjectNames()) {
+	        PDXObject xObject = resources.getXObject(xObjectName);
+
+	        if (xObject instanceof PDFormXObject) {
+	            images.addAll(getImagesFromResources(((PDFormXObject) xObject).getResources()));
+	        } else if (xObject instanceof PDImageXObject) {
+	            images.add(((PDImageXObject) xObject).getImage());
+	        }
+	    }
+
+	    return images;
+	}
+	   
+	  public void deleteFiles(File folder) throws IOException {
+	        File[] files = folder.listFiles();
+	         for(File file: files){
+	                if(file.isFile()){
+	                    String fileName = file.getName();
+	                    boolean del= file.delete();
+	                    System.out.println(fileName + " : got deleted ? " + del);
+	                }else if(file.isDirectory()) {
+	                    deleteFiles(file);
+	                }
+	            }
+	        }
+	  
 	    public void shareReport(String verifier) throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -272,27 +394,28 @@ public class FirefoxTest {
 			}
 				
 	    }
+	  
 	   
 	  @Test
 	  public void SanityTest() throws Exception{
 		  try{
 		  Login();
-		  Thread.sleep(7000);
+		  Thread.sleep(5000);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
-              if (login==1)
-              {
-                    WebDriverWait wait2 = new WebDriverWait(driver,20);
-                    wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-              }
-              }catch (NoSuchElementException e){
-              throw e;
-              }
-		  Thread.sleep(10000);
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
+		  Thread.sleep(2000);
 		  //Clicks on Analysis 
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  try
@@ -302,12 +425,11 @@ public class FirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  Thread.sleep(2000);
 		  //Clicks on Remote Verification
 		  driver.findElement(By.id("pii-a-menu-rv")).click();
 		  //Fills the mandatory fields
 		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
-		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details);
 		  String ev1 = driver.findElement(By.id("pii-rv-tab-1-title")).getAttribute("value");
 		  String ev2 = driver.findElement(By.id("pii-rv-tab-1-details")).getAttribute("value");
 		  if ((ev1.equals(event_title)==false))
@@ -315,14 +437,11 @@ public class FirefoxTest {
 			  driver.findElement(By.id("pii-rv-tab-1-title")).clear();
 			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
 		  }
-		  if((ev2.equals("Sanity Test"))==false)
+		  if((ev2.equals(details))==false)
 		  {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
+			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details);
 		  }
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  jse.executeScript("scroll(0, 1000)");
-		  Thread.sleep(2000);
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
@@ -330,14 +449,29 @@ public class FirefoxTest {
 		  option.click();
 		  Thread.sleep(2000);
 		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
+		  /*String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
+		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(Keys.ENTER);*/
 		  //Clicks on browse button of 2nd picture
 		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
 		  Thread.sleep(2000);
-		 //Uploads picture 2
-		  Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		  //Uploads picture 2
+		  Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		  p3.waitFor();
 		  Thread.sleep(8000);
-		  jse.executeScript("scroll(0, 100)");
+		  //*Clears image
+		  WebDriverWait wait1 = new WebDriverWait(driver,20);
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		  //Re-uploads picture 2
+		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
 		  Thread.sleep(2000);
+		  Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		  p2.waitFor();
+		  Thread.sleep(8000);
+		  //Rotates image 2 once
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		  //*
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  jse.executeScript("scroll(0, 250)");
 		  //Clicks on browse button of 1st picture
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
 		  Thread.sleep(2000);
@@ -345,16 +479,28 @@ public class FirefoxTest {
 		  Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		  p.waitFor();
 		  Thread.sleep(4000);
+		  //*Clears image
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		  //Re-uploads picture 1
+		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		  Thread.sleep(2000);
+		  Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		  p1.waitFor();
+		  Thread.sleep(4000);
+		  //Rotates image 1 twice
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		  Thread.sleep(1000);
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		  //*
 		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
 		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
 		  //Clicks on save and send report
-		  WebDriverWait wait1 = new WebDriverWait(driver,10);
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
 		  driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
-		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
+		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div[1]/div[2]/div[3]")).getText();
 		  creation_date= creation_date.substring(22, creation_date.length());
 		  String name = creation_date +"_"+ username + "_" + event_title;
 		  System.out.println("Expected name of record: " + name);
@@ -373,12 +519,12 @@ public class FirefoxTest {
 		  //Checks if the name displayed on record is same as expected
 		  assertEquals(name, recordName);
 		  //Downloads record
-		  downloadRecord();
+		  downloadRecord(verifier);
 		  //Shares report
 		  shareReport(verifier);
 		  //Mark critical
 		  markCritical();
-		 //Deletes the newly created record
+		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
@@ -396,9 +542,6 @@ public class FirefoxTest {
 		 
 		 driver.switchTo().defaultContent();
 		 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		 //Waits for the login button
-		 WebDriverWait wait = new WebDriverWait(driver,20);
-		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-home-buttons-div")));
 		 //Browser is closed
 		 driver.quit();
 		 softly.assertAll();

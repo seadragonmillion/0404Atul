@@ -1,31 +1,47 @@
-import static org.junit.Assert.*;
-
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.NoSuchElementException;
-import org.junit.Rule;
-import org.junit.rules.Timeout;
-import java.util.concurrent.TimeoutException;
-import org.assertj.core.api.SoftAssertions;
-import java.util.Base64;
 
 public class SanityTestRV_ChromeTest {
 
 	private WebDriver driver;
 	private String username ="ritica";
 	private String password = "S2FsZTQ2MTkxODAyQA==";
-	private String event_title="Sanity Test Chrome";
+	private String event_title="I think I will buy the red car, or I will lease the blue one.";
+	private String details ="There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
@@ -40,7 +56,20 @@ public class SanityTestRV_ChromeTest {
 		  
 		  System.out.println("Performing sanity test on Remote Verification in Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
-		  driver = new ChromeDriver();
+		  ChromeOptions options = new ChromeOptions();
+          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+        		    "Chrome PDF Viewer"
+        		});
+          chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
+          options.setExperimentalOption("prefs", chromeOptionsMap);
+          String downloadFilepath = "C:\\Users\\rramakrishnan\\Downloads\\reports";
+          chromeOptionsMap.put("download.default_directory", downloadFilepath);
+          //DesiredCapabilities cap = DesiredCapabilities.chrome();
+          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+          options.setCapability(ChromeOptions.CAPABILITY, options);
+          driver = new ChromeDriver(options);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
@@ -49,7 +78,7 @@ public class SanityTestRV_ChromeTest {
 	  }
 	  
 	
-	public String decode(String pw){
+	  public String decode(String pw){
 		
 		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
 		String decryptedPassword = new String(decryptedPasswordBytes);
@@ -134,10 +163,9 @@ public class SanityTestRV_ChromeTest {
 			  
 		}
 	  
+	  
 	  public void deleteNewRecord(String recordName) throws Exception{
 		  
-		  //CLicks on first newly created record
-		  //driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).click();
 		  Thread.sleep(2000);
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  //Clicks on delete button
@@ -160,9 +188,12 @@ public class SanityTestRV_ChromeTest {
 		  			  
 	  }
 
-	  public void downloadRecord() throws Exception {
+	  public void downloadRecord(String verifier) throws Exception {
 	    	
-	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+		    //deletes files in reports folder before starting to download
+	    	File file = new File("C://Users//rramakrishnan//Downloads//reports//");
+	    	deleteFiles(file);	    	
+		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 			String window = driver.getWindowHandle();
@@ -179,11 +210,29 @@ public class SanityTestRV_ChromeTest {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(2000);
+	    	Thread.sleep(3000);
+	    	pdfCheck(verifier);
+	        for(String winHandle : driver.getWindowHandles()){
+    	    driver.switchTo().window(winHandle);
+    	    }
+	        driver.close();
 	    	driver.switchTo().window(window);
 	    	Thread.sleep(1000);
 	    		    	
 	    }
+	    
+	  public void deleteFiles(File folder) throws IOException {
+	        File[] files = folder.listFiles();
+	         for(File file: files){
+	                if(file.isFile()){
+	                    String fileName = file.getName();
+	                    boolean del= file.delete();
+	                    System.out.println(fileName + " : got deleted ? " + del);
+	                }else if(file.isDirectory()) {
+	                    deleteFiles(file);
+	                }
+	            }
+	        }
 	    
 	    public void shareReport(String verifier) throws Exception{
 	    	
@@ -250,29 +299,101 @@ public class SanityTestRV_ChromeTest {
 				
 	    }
 	  
+	 public void pdfCheck(String verifier) throws Exception {
+		  List<String> results = new ArrayList<String>();
+	      //Gets the file name which has been downloaded
+	      File[] files = new File("C://Users//rramakrishnan//Downloads//reports//").listFiles();
+	      //If this pathname does not denote a directory, then listFiles() returns null. 
+	      for (File file : files) {
+	    	   if (file.isFile()) {
+	    	      results.add(file.getName());
+	    	   }
+	      }
+	      System.out.println(results.get(0));
+	      //Loads the file to check if correct data is present
+	      String fileName="C://Users//rramakrishnan//Downloads//reports//"+results.get(0);
+	      File oldfile = new File(fileName);
+	      //Checks number of images in pdf
+	      PDDocument pddoc= PDDocument.load(oldfile);
+	      List<RenderedImage> images = new ArrayList<>();
+	      images=getImagesFromPDF(pddoc);
+	      System.out.println("Number of images: "+images.size());
+	      softly.assertThat(images.size()).as("test data").isEqualTo(3);
+	      //Checks text in pdf
+	      String data = new PDFTextStripper().getText(pddoc);
+	      List<String> ans= Arrays.asList(data.split("\r\n"));
+	      String newData="";
+	      for (int i = 0; i < ans.size(); i++)
+	        {
+	        	
+	        	//System.out.println(ans.get(i));
+	        	int n=ans.get(i).length()-1;
+	        	if (ans.get(i).charAt(n)==' ')
+	        		newData = newData+ans.get(i);
+	        	if (ans.get(i).charAt(n)!=' ')
+	        		newData = newData+" "+ans.get(i);
+	        	
+	      }
+	      newData=newData.replace("  ", " ");
+	      System.out.println(newData);
+	      //Checks verifier
+	      softly.assertThat(verifier).as("test data").isSubstringOf(newData);
+	      //Checks username
+	      softly.assertThat(username).as("test data").isSubstringOf(newData);
+	      //Checks event title
+	      event_title=event_title.replace("  ", " ");
+	      softly.assertThat(event_title).as("test data").isSubstringOf(newData);
+	      //Checks verification details
+	      details=details.replace("  ", " ");
+	      softly.assertThat(details).as("test data").isSubstringOf(newData);
+	  }
+	 
+	 public List<RenderedImage> getImagesFromPDF(PDDocument document) throws IOException {
+	        List<RenderedImage> images = new ArrayList<>();
+	    for (PDPage page : document.getPages()) {
+	        images.addAll(getImagesFromResources(page.getResources()));
+	    }
+
+	    return images;
+	}
+
+	private List<RenderedImage> getImagesFromResources(PDResources resources) throws IOException {
+	    List<RenderedImage> images = new ArrayList<>();
+
+	    for (COSName xObjectName : resources.getXObjectNames()) {
+	        PDXObject xObject = resources.getXObject(xObjectName);
+
+	        if (xObject instanceof PDFormXObject) {
+	            images.addAll(getImagesFromResources(((PDFormXObject) xObject).getResources()));
+	        } else if (xObject instanceof PDImageXObject) {
+	            images.add(((PDImageXObject) xObject).getImage());
+	        }
+	    }
+
+	    return images;
+	}
 	  
 	  @Test
 	  public void SanityTest() throws Exception{
 		  try{
 		  Login();
-		  Thread.sleep(7000);
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(5000);
 		  
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
-	      
-	      driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
-              if (login==1)
-              {
-                    WebDriverWait wait2 = new WebDriverWait(driver,20);
-                    wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-              }
-              }catch (NoSuchElementException e){
-              throw e;
-              }
-		  Thread.sleep(5000);
+                       if (login==1)
+                       {
+                             WebDriverWait wait2 = new WebDriverWait(driver,20);
+                             wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+                       }
+                }catch (NoSuchElementException e){
+                       throw e;
+                }
+		  Thread.sleep(2000);
 		  //Clicks on Analysis 
 		  try
 		  {
@@ -284,7 +405,7 @@ public class SanityTestRV_ChromeTest {
 		  driver.findElement(By.id("pii-a-menu-rv")).click();
 		  //Fills the mandatory fields
 		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
-		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details);
 		  String ev1 = driver.findElement(By.id("pii-rv-tab-1-title")).getAttribute("value");
 		  String ev2 = driver.findElement(By.id("pii-rv-tab-1-details")).getAttribute("value");
 		  if ((ev1.equals(event_title)==false))
@@ -292,10 +413,10 @@ public class SanityTestRV_ChromeTest {
 			  driver.findElement(By.id("pii-rv-tab-1-title")).clear();
 			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(event_title);
 		  }
-		  if((ev2.equals("Sanity Test"))==false)
+		  if((ev2.equals(details))==false)
 		  {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys("Sanity Test");
+			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details);
 		  }
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
@@ -307,12 +428,29 @@ public class SanityTestRV_ChromeTest {
 		  //Uploads picture 2
 		  String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
 		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		  //*Clears image
+		  WebDriverWait wait1 = new WebDriverWait(driver,20);
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		  //Re-uploads picture 2
+		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		  //Rotates image 2 once
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		  //*
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  jse.executeScript("scroll(0, 250)");
 		  Thread.sleep(3000);
 		  //Uploads picture 1
 		  String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		  //*Clears image
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		  //Re-uploads picture 1
+		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		  //Rotates image 1 twice
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		  Thread.sleep(1000);
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		  //*
 		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0, 0)");
 		  //Clicks on Save and Send
@@ -340,15 +478,37 @@ public class SanityTestRV_ChromeTest {
 		  else
 			  System.out.println ("Record not found.");
 		  //Checks if the name displayed on record is same as expected
-		  assertEquals(name, recordName);
+		  softly.assertThat(recordName).as("test data").isEqualTo(name);
 		  //Downloads record
-		  downloadRecord();
+		  downloadRecord(verifier);
 		  //Shares report
 		  shareReport(verifier);
 		  //Mark critical
 		  markCritical();
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
+		  while(true)
+		  {
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException e)
+	          {
+				  
+				 break;
+			  }
+		  }
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
@@ -359,7 +519,7 @@ public class SanityTestRV_ChromeTest {
 			  }
 	  }
 	  
-	 
+	  
 	  public void afterTest() {
 		 //Waits for the login button
 		  WebDriverWait wait = new WebDriverWait(driver,20);
