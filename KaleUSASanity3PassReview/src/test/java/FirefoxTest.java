@@ -32,7 +32,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(240000);
+	  public Timeout globalTimeout= new Timeout(400000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -249,6 +249,14 @@ public class FirefoxTest {
 		  }
 		  else
 			  System.out.println ("Record not found.");
+		  Thread.sleep(2000);	
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }		
 		  //Clicks on record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
 		  //Clicks on open

@@ -171,6 +171,7 @@ public class EquipmentChromeTest {
 		  //Checks with new keyword with %
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
 		  driver.findElement(By.id("pii-efse-searchbykw-btn")).click();
+		  Thread.sleep(2000);	
 		  try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));

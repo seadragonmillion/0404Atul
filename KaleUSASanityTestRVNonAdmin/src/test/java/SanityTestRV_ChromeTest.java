@@ -49,7 +49,7 @@ public class SanityTestRV_ChromeTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(900000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -250,7 +250,7 @@ public class SanityTestRV_ChromeTest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Verifies user added
-			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
+			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li[2]/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
@@ -419,9 +419,10 @@ public class SanityTestRV_ChromeTest {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details);
 		  }
 		  //Selects the remote verifier
-		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
+		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaj");
+		  Thread.sleep(1000);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
-		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
+		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		  option.click();
 		  Thread.sleep(1000);
 		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
