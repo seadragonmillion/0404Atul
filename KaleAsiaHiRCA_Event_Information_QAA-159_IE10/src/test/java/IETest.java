@@ -1249,6 +1249,7 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
+		  Thread.sleep(3000);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  limit_text=limit_text.substring(5,8);
 		  int limit = Integer.parseInt(limit_text);
