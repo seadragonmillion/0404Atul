@@ -1262,7 +1262,9 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 		  Thread.sleep(3000);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
-		  limit_text=limit_text.substring(5,8);
+		  int index=limit_text.indexOf("/");
+		  System.out.println(index);
+		  limit_text=limit_text.substring(index+1,index+4);
 		  int limit = Integer.parseInt(limit_text);
 		  System.out.println(limit_text+ " "+limit);
 		  for(int i=text184.length()+1; i<=limit+1;i++)
