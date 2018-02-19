@@ -31,6 +31,8 @@ import javax.mail.Store;
 import javax.mail.search.FlagTerm;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 
 public class SanityFirefoxTest {
 
@@ -42,6 +44,10 @@ public class SanityFirefoxTest {
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(900000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -1002,6 +1008,7 @@ public void LoginDummyUser() throws Exception{
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		  Thread.sleep(5000);
 		  //Checks if company address has been edited
 		  String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
 		  softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");

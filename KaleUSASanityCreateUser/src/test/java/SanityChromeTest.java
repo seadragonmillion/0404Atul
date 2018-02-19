@@ -27,6 +27,8 @@ import javax.mail.Store;
 import javax.mail.search.FlagTerm;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 
 public class SanityChromeTest {
 
@@ -38,6 +40,10 @@ public class SanityChromeTest {
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(900000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{

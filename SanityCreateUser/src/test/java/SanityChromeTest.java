@@ -27,6 +27,8 @@ import javax.mail.Store;
 import javax.mail.search.FlagTerm;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 
 public class SanityChromeTest {
 
@@ -38,6 +40,10 @@ public class SanityChromeTest {
 	private String url = "https://kaledev.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
+
+	@SuppressWarnings("deprecation")
+	@Rule
+	  public Timeout globalTimeout= new Timeout(900000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -596,6 +602,7 @@ public class SanityChromeTest {
 		Thread.sleep(3000);
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    Thread.sleep(3000);
         //Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);

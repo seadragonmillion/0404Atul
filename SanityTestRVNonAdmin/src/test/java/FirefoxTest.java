@@ -526,6 +526,29 @@ public class FirefoxTest {
 		  markCritical();
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
+		  Thread.sleep(2000);			 
+			  while(true)
+			  {
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
+			  }
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	
