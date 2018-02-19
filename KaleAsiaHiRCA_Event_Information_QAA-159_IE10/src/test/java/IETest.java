@@ -1219,7 +1219,7 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-location")).clear();
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
-		  
+		  jse.executeScript("scroll(0,0)");
 		  //Event title
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
@@ -1246,7 +1246,7 @@ public class IETest {
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
 		  Thread.sleep(2000);
-		  			
+		  jse.executeScript("scroll(0,0)");			
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";

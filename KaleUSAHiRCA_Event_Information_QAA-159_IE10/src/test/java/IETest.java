@@ -1222,7 +1222,7 @@ public class IETest {
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
 		  Thread.sleep(2000);
-		  
+		  jse.executeScript("scroll(0,0)");
 		  //Event title
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
@@ -1281,6 +1281,7 @@ public class IETest {
 			  if (noerror_title_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on event title textbox");
 		  }
+		  jse.executeScript("scroll(0,0)");
 		  //Clears and reenters event title
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  Thread.sleep(1000);
