@@ -1218,8 +1218,10 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
 		  //Clears all text
 		  driver.findElement(By.id("pii-irca-event-location")).clear();
+		  Thread.sleep(2000);
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
+		  Thread.sleep(2000);
 		  
 		  //Event title
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
