@@ -539,7 +539,7 @@ public class FirefoxTest {
 				  {
 					  break;
 				  }
-				  catch( StaleElementReferenceException f)
+				  catch( org.openqa.selenium.StaleElementReferenceException f)
 				  {
 					  
 					 break;
