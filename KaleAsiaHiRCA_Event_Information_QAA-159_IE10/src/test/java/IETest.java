@@ -1193,10 +1193,12 @@ public class IETest {
 			  if (noerror_dept_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on Department textbox");
 		  }
-		  
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Location of event
 		  String text = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
-		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
 		  if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed()==false)
 		  {
 			  String noerror_location = driver.findElement(By.id("pii-irca-event-location-error")).getText();
@@ -1206,19 +1208,34 @@ public class IETest {
 			  if (noerror_location_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on location of event textbox");
 		  }
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clears some text
 		  for(int i =0; i<20; i++)
 		  {
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys(Keys.BACK_SPACE); 
 		  }
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clears by cross mark
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/div/a"))).click();
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clears all text
-		  driver.findElement(By.id("pii-irca-event-location")).clear();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).clear();
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);

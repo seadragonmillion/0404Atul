@@ -1204,7 +1204,7 @@ public class IETest {
 				  if (noerror_dept_dotted.isDisplayed())
 					  System.out.println("Error dotted line disappeared on Department textbox");
 			  }
-		  
+		  jse.executeScript("scroll(0, 0)");
 		  //Location of event
 		  String text = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
@@ -1217,6 +1217,7 @@ public class IETest {
 			  if (noerror_location_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on location of event textbox");
 		  }
+		  jse.executeScript("scroll(0, 0)");
 		  //Clears some text
 		  for(int i =0; i<20; i++)
 		  {
@@ -1224,15 +1225,18 @@ public class IETest {
 		  }
 		  //Clears by cross mark
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/div/a"))).click();
+		  jse.executeScript("scroll(0, 0)");
 		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
+		  jse.executeScript("scroll(0, 0)");
 		  //Clears all text
-		  driver.findElement(By.id("pii-irca-event-location")).clear();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).clear();
 		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0, 0)");
 		  //Re enters text
-		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
 		  Thread.sleep(2000);
-		  
+		  jse.executeScript("scroll(0, 0)");
 		  //Event title
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
