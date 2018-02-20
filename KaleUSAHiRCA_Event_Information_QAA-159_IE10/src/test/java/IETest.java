@@ -1222,7 +1222,9 @@ public class IETest {
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(text);
 		  Thread.sleep(2000);
+		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Event title
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
@@ -1234,11 +1236,17 @@ public class IETest {
 			  if (noerror_title_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on event title textbox");
 		  }
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clears some text
 		  for(int i =0; i<20; i++)
 		  {
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE); 
 		  }
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clears by cross mark
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div/div/a"))).click();
 		  //Re enters text
@@ -1247,7 +1255,9 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
-		  			
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
@@ -1261,7 +1271,9 @@ public class IETest {
 		  System.out.println(limit_text+ " "+limit);
 		  for(int i=text184.length()+1; i<=limit+1;i++)
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(".");
-		  
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
 		  {
 			  String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
@@ -1271,6 +1283,9 @@ public class IETest {
 			  if (error_title_dotted.isDisplayed())
 				  System.out.println("Error dotted line displayed on event title textbox");
 		  }
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
 		  {
@@ -1281,12 +1296,18 @@ public class IETest {
 			  if (noerror_title_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on event title textbox");
 		  }
+		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clears and reenters event title
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
-		  
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Check the date picker
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
 		  //Close the popup
