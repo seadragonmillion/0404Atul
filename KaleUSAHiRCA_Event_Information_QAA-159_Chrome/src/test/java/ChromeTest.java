@@ -222,6 +222,13 @@ public class ChromeTest {
 		        //Clicks on Saved activities
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 				Thread.sleep(2000);
+				try{
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					 }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
 				//call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
 				deleteNewRecord(newRecord);
 				

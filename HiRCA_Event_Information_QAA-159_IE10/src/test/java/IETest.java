@@ -1289,7 +1289,8 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
-		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE);
+		  for(int i=text184.length()+1; i<=limit+1;i++)
+		     driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);

@@ -1259,12 +1259,12 @@ public class IETest {
 		  Thread.sleep(2000);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);		
+		  Thread.sleep(3000);		
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
-		  Thread.sleep(3000);
+		  Thread.sleep(5000);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  int index=limit_text.indexOf("/");
 		  System.out.println(index);
@@ -1288,7 +1288,8 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
-		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE);
+		  for(int i=text184.length()+1; i<=limit+1;i++)
+		     driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
 		  {
 			  String noerror_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
