@@ -1234,8 +1234,10 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Re enters text
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
+		  Thread.sleep(2000);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -1267,16 +1269,11 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
 		  //Clears all text
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
-		  Thread.sleep(2000);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text);
-		  Thread.sleep(2000);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(3000);		
+		  Thread.sleep(3000);
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
@@ -1391,7 +1388,7 @@ public class IETest {
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.DELETE);
 		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  //Click on set time
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
 		  Thread.sleep(5000);
