@@ -1391,7 +1391,10 @@ public class IETest {
 		  driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
 		  Thread.sleep(4000);
 		  //Click on set time
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
+		  Actions actr = new Actions(driver);
+		  WebElement set=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")));
+		  actr.click(set).build().perform();
 		  Thread.sleep(5000);
 		   
 		  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
