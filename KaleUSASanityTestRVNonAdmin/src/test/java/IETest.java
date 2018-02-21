@@ -187,7 +187,7 @@ public class IETest {
 	   public void downloadRecord(String verifier) throws Exception {
 	    	
 		    //deletes files in reports folder before starting to download
-	    	File file = new File("C://Users//rramakrishnan//Downloads//reports//");
+	    	File file = new File("C://Users//IEUser//Downloads//reports//");
 	    	deleteFiles(file);		  
 		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
@@ -293,7 +293,7 @@ public class IETest {
 	    public void pdfCheck(String verifier) throws Exception {
 			  List<String> results = new ArrayList<String>();
 		      //Gets the file name which has been downloaded
-		      File[] files = new File("C://Users//rramakrishnan//Downloads//reports//").listFiles();
+		      File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		      //If this pathname does not denote a directory, then listFiles() returns null. 
 		      for (File file : files) {
 		    	   if (file.isFile()) {
@@ -302,7 +302,7 @@ public class IETest {
 		      }
 		      System.out.println(results.get(0));
 		      //Loads the file to check if correct data is present
-		      String fileName="C://Users//rramakrishnan//Downloads//reports//"+results.get(0);
+		      String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
 		      File oldfile = new File(fileName);
 		      //Checks number of images in pdf
 		      PDDocument pddoc= PDDocument.load(oldfile);
