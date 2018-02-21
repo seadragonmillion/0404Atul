@@ -454,6 +454,7 @@ public class IETest {
 		  }
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaj");
+		  jse.executeScript("scroll(0, 1500)");
 		  Thread.sleep(1000);
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));

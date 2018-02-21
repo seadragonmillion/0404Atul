@@ -419,8 +419,11 @@ public class SanityTestRV_ChromeTest {
 			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
 			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details);
 		  }
+		  
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Selects the remote verifier
 		  driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaa");
+		  jse.executeScript("scroll(0, 1500)");
 		  WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child"));
 		  option.click();
@@ -437,7 +440,6 @@ public class SanityTestRV_ChromeTest {
 		  //Rotates image 2 once
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
 		  //*
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  jse.executeScript("scroll(0, 250)");
 		  Thread.sleep(3000);
 		  //Uploads picture 1
