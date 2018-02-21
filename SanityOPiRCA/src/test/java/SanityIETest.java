@@ -34,7 +34,7 @@ public class SanityIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(800000);
+	  public Timeout globalTimeout= new Timeout(900000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -377,7 +377,7 @@ public class SanityIETest {
 		  //Clicks on save button
 		  jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
 		  //Clicks on save report
-		  WebDriverWait wait1 = new WebDriverWait(driver,30);
+		  WebDriverWait wait1 = new WebDriverWait(driver,20);
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-title")));
 		  jse.executeScript("return document.getElementById('pii-opa-dialog-confirmed').click();");
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
@@ -411,8 +411,29 @@ public class SanityIETest {
 		  markCritical();
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
-		  if (driver.findElement(By.className("sticky-close")).isDisplayed())
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+		  while(true)
+		  {
+			  Thread.sleep(1000);
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
+			 
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
