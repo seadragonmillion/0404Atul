@@ -448,6 +448,7 @@ public class SanityTestRV_ChromeTest {
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
 		  //Re-uploads picture 1
 		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		  Thread.sleep(3000);
 		  //Rotates image 1 twice
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
 		  Thread.sleep(1000);
