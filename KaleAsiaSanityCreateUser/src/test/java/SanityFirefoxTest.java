@@ -47,7 +47,7 @@ public class SanityFirefoxTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(900000);
+	  public Timeout globalTimeout= new Timeout(1000000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -1008,7 +1008,14 @@ public void LoginDummyUser() throws Exception{
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
-		  Thread.sleep(5000);
+		  //Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Checks if company address has been edited
 		  String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
 		  softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");

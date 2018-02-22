@@ -1007,7 +1007,7 @@ public class SanityChromeTest {
 		  Select dropdown = new Select (element);
 		  dropdown.selectByVisibleText(company_id);
 		  driver.findElement(By.id("pii-admin-group-modules-button")).click();
-		  WebElement ele = driver.findElement(By.id("pii-admin-group-modules-listbox-popup"));
+		  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
 		  ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
 		  ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-listbox']/div/a")).click();

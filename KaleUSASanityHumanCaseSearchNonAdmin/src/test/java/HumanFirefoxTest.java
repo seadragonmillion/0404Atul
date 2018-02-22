@@ -191,6 +191,7 @@ public class HumanFirefoxTest {
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
 		  //Checks with keyword with %
+		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		   try{

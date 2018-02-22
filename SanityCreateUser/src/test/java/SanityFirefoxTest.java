@@ -1050,6 +1050,7 @@ public void LoginDummyUser() throws Exception{
 		  Thread.sleep(2000);
 		  //Clicks on create user
 		  driver.findElement(By.id("pii-admin-user-create")).click();
+		  Thread.sleep(2000);
 		  //Enters mandatory details
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).sendKeys(company_id);
 		  driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);

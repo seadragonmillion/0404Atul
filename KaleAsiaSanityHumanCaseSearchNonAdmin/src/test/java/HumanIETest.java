@@ -37,7 +37,7 @@ public class HumanIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(610000);
+	  public Timeout globalTimeout= new Timeout(710000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -229,7 +229,14 @@ public class HumanIETest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
-		  Thread.sleep(2000);
+		  //Waits for black loading message
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
 		  Thread.sleep(6000);
@@ -247,7 +254,7 @@ public class HumanIETest {
 		  Thread.sleep(1000);
 		  System.out.println("Found Slide 1");
 		  Thread.sleep(500);
-		 //Checking if title is correct
+		  //Checking if title is correct
 		  String actual_title = driver.findElement(By.xpath(".//*[@id='pii-slideshow-Q746']/ul/li/div")).getText();
 		  String expected_title = "Q746: How is an Error-Free work day achieved for power plant workers?";
 		  if((actual_title.contains(expected_title))==true)
