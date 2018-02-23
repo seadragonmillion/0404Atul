@@ -294,6 +294,7 @@ public class ErrorMeterIETest {
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo("qaacreator");
+			Thread.sleep(2000);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
