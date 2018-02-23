@@ -33,7 +33,7 @@ public class EquipmentChromeTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(350000);
+	  public Timeout globalTimeout= new Timeout(400000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -139,6 +139,7 @@ public class EquipmentChromeTest {
 		 try{ 
 		Login();
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(4000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe

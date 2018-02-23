@@ -1345,6 +1345,7 @@ public class FirefoxTest {
 			  Thread.sleep(1000);
 			  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			  p.waitFor();
+			  Thread.sleep(1000);
 			  String img = "pii-irca-event-file-img-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			  if(driver.findElement(By.id(img)).isDisplayed())
