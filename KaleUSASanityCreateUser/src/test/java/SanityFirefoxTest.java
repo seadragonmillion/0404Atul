@@ -443,6 +443,7 @@ public void LoginDummyUser() throws Exception{
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 	    //Clicks on ICCA
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca"))).click();
+	    Thread.sleep(3000);
 	    //Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
