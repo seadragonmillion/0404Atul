@@ -190,7 +190,7 @@ public class HumanIETest {
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  driver.findElement(By.id("pii-efsh-clear")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(3000);
 		  //Checks for search method with dropdown
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
@@ -210,6 +210,15 @@ public class HumanIETest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();
 		  }
+		  Thread.sleep(1000);
+		  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				  Thread.sleep(1000);
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
