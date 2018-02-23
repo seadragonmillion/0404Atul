@@ -216,15 +216,17 @@ public class FirefoxTest {
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
-	    	Thread.sleep(2000);
+	    	Thread.sleep(4000);
 	    	Robot robot = new Robot();
 	    	// press Ctrl+S the Robot's way
 	    	robot.keyPress(KeyEvent.VK_CONTROL);
 	    	robot.keyPress(KeyEvent.VK_S);
 	    	robot.keyRelease(KeyEvent.VK_CONTROL);
 	    	robot.keyRelease(KeyEvent.VK_S);
+	    	Thread.sleep(2000);
 	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 	    	p.waitFor();
+	    	Thread.sleep(2000);
 	    	pdfCheck();
 	    	Thread.sleep(4000);
 	    	driver.close();
