@@ -479,7 +479,7 @@ public class SanityChromeTest {
 		Thread.sleep(1000);
 		ele.findElement(By.linkText("Job Observation Analysis")).click();
 		Thread.sleep(1000);
-		driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-listbox']/div/a")).click();
+		driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		//Clicks on Save
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-group-button-save")).click();
@@ -1010,7 +1010,7 @@ public class SanityChromeTest {
 		  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
 		  ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
 		  ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-listbox']/div/a")).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		  //Clicks on save
 		  driver.findElement(By.id("pii-admin-group-button-save")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
