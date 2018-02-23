@@ -220,6 +220,7 @@ public class HumanChromeTest {
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
 		  try{
+		  	Thread.sleep(1000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  }catch (org.openqa.selenium.TimeoutException e)
@@ -229,6 +230,7 @@ public class HumanChromeTest {
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
 		  try{
+		  	Thread.sleep(1000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		  }catch (org.openqa.selenium.TimeoutException e)

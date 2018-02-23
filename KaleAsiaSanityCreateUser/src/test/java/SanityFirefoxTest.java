@@ -451,7 +451,7 @@ public void LoginDummyUser() throws Exception{
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 				  
-			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  }}catch (org.openqa.selenium.NoSuchElementException e1)
 			  {
 				  break;
 			  }

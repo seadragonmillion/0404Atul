@@ -194,6 +194,14 @@ public class HumanIETest {
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  //Waits for black loading message
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
@@ -224,6 +232,14 @@ public class HumanIETest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();
 		  }
+		  //Waits for black loading message
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
