@@ -185,10 +185,26 @@ public class HumanIETest {
 			  }
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q618")));
 		  Thread.sleep(2000);
+		  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				  Thread.sleep(1000);
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				  Thread.sleep(1000);
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(3000);
 		  //Checks for search method with dropdown
