@@ -37,7 +37,7 @@ public class HumanIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(610000);
+	  public Timeout globalTimeout= new Timeout(800000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -188,13 +188,28 @@ public class HumanIETest {
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
-		  Thread.sleep(2000);
+		   try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				  Thread.sleep(1000);
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q618")));
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		   try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				  Thread.sleep(1000);
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
