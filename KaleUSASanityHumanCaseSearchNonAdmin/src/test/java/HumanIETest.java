@@ -238,6 +238,7 @@ public class HumanIETest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(1000);
 		   try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));

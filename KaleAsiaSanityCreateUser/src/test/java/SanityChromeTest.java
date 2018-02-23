@@ -417,8 +417,10 @@ public class SanityChromeTest {
 	    else softly.fail("ICCA disabled");
 	    //Clicks on EiRCA
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca"))).click();
+	    Thread.sleep(2000);
 	    //Goes back to Analysis
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+	    Thread.sleep(2000);
 	    //Clicks on ICCA
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca"))).click();
 	    //Logs out

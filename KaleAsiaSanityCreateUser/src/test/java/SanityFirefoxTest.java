@@ -47,7 +47,7 @@ public class SanityFirefoxTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1000000);
+	  public Timeout globalTimeout= new Timeout(1100000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -443,6 +443,30 @@ public void LoginDummyUser() throws Exception{
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 	    //Clicks on ICCA
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca"))).click();
+	    while(true)
+		  {
+			  Thread.sleep(1000);
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+			  
+			 
+		  }
 	    //Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
@@ -1131,6 +1155,30 @@ public void LoginDummyUser() throws Exception{
 		  deleteCompany();
 		  
 		  Thread.sleep(2000);
+		  while(true)
+		  {
+			  Thread.sleep(1000);
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+			  
+			 
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

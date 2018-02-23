@@ -33,7 +33,7 @@ public class HumanChromeTest {
 		
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(350000);  
+	  public Timeout globalTimeout= new Timeout(500000);  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -219,8 +219,22 @@ public class HumanChromeTest {
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q746")));
 		  Thread.sleep(4000);

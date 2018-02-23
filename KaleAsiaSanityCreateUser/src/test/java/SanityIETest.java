@@ -1068,6 +1068,7 @@ public class SanityIETest {
 		  Thread.sleep(2000);
 		  //Clicks on create user
 		  jse.executeScript("return document.getElementById('pii-admin-user-create').click();");
+		  Thread.sleep(3000);
 		  //Enters mandatory details
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).sendKeys(company_id);
 		  driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
