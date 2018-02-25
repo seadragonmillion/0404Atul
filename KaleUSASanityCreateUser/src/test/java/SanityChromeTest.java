@@ -29,6 +29,11 @@ import javax.mail.search.FlagTerm;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class SanityChromeTest {
 
@@ -40,10 +45,12 @@ public class SanityChromeTest {
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
+	private String[]op=new String [25];
+	private List<Integer> num = new ArrayList<Integer>();
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(900000);
+	  public Timeout globalTimeout= new Timeout(1100000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -286,6 +293,164 @@ public class SanityChromeTest {
 			}		  
       }
 	}
+
+	public void checkAccess() throws Exception{
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		Thread.sleep(3000);
+		//Click on Knowledge
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-k"))).click();
+		try{
+			if (login==1)
+			{
+				WebDriverWait wait2 = new WebDriverWait(driver,20);
+				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			}
+		}catch (NoSuchElementException r){
+			throw r;
+		}
+		List<String>f = Arrays.asList(op);
+		WebElement element;
+		//Verify the modules selected
+		if(f.contains("Event Reports"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Event Reports")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Event Reports enabled");
+			else softly.fail("Event Reports disabled");
+		}
+		if(f.contains("JIT Wisdom"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("JIT Wisdom")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("JIT Wisdom enabled");
+			else softly.fail("JIT Wisdom disabled");
+		}
+		if(f.contains("JIT Risk Joggers"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("JIT Risk Joggers")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("JIT Risk Joggers enabled");
+			else softly.fail("JIT Risk Joggers disabled");
+		}
+		if(f.contains("Knowledge Bank"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge Bank")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Knowledge Bank enabled");
+			else softly.fail("Knowledge Bank disabled");
+		}
+		if(f.contains("Knowledge Exchange"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge Exchange")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Knowledge Exchange enabled");
+			else softly.fail("Knowledge Exchange disabled");
+		}
+		if(f.contains("Project Management"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Performance Accountability & Analytics")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Performance Accountability & Analytics enabled");
+			else softly.fail("Performance Accountability & Analytics disabled");
+		}
+		//Clicks on Analysis
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+	    if(f.contains("SPV Error Meter"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("SPV Error Meter enabled");
+			else softly.fail("SPV Error Meter disabled");
+		}
+		if(f.contains("Human Performance Inspector"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hpi")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("HPI enabled");
+			else softly.fail("HPI disabled");
+		}
+		if(f.contains("Human Error Instant RCA"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("HiRCA enabled");
+			else softly.fail("HiRCA disabled");
+		}
+		if(f.contains("Equipment Failure Instant RCA"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("EiRCA enabled");
+			else softly.fail("EiRCA disabled");
+		}
+		if(f.contains("Organization & Programmatic Instant RCA"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-opirca")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("O&PiRCA enabled");
+			else softly.fail("O&PiRCA disabled");
+		}
+		if(f.contains("Instant Common Cause Analysis"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("ICCA enabled");
+			else softly.fail("ICCA disabled");
+		}
+		if(f.contains("Job Observation Analysis"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Job Obs enabled");
+			else softly.fail("Job Obs disabled");
+		}
+		if(f.contains("3-Pass Review"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("3 Pass Review enabled");
+			else softly.fail("3 Pass Review disabled");
+		}
+		if(f.contains("Remote Verification"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-rv")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Remote Verification enabled");
+			else softly.fail("Remote Verification disabled");
+		}
+		//Clicks on Learning
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
+		//Clicks on Error-Free Bank
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
+		if(f.contains("Human Performance Search"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Human Performance Search enabled");
+			else softly.fail("Human Performance Search disabled");
+		}
+		if(f.contains("Equipment Performance Search"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Equipment Performance Search enabled");
+			else softly.fail("Equipment Performance Search disabled");
+		}
+		if(f.contains("Electrical Failure Mode Search"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Electrical Failure Mode Search enabled");
+			else softly.fail("Electrical Failure Mode Search disabled");
+		}
+		if(f.contains("Mechanical Failure Mode Search"))
+		{
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search")));
+			if(element.getAttribute("class").contains("ui-state-disabled")==false)
+				System.out.println("Mechanical Failure Mode Search enabled");
+			else softly.fail("Mechanical Failure Mode Search disabled");
+		}		    
+	}
 	
 	public void editGroupCheckAccess() throws Exception{
 		String SMTP_HOST = "smtp.gmail.com";
@@ -366,61 +531,8 @@ public class SanityChromeTest {
 	    Thread.sleep(2000);
 		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		//Click on Analysis
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
-	    try{
-            if (login==1)
-            {
-                  WebDriverWait wait2 = new WebDriverWait(driver,20);
-                  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-            }
-          }catch (NoSuchElementException r){
-            throw r;
-          }
-	    //Verifies if all modules with no group access are disabled
-	    WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("SPV disabled");
-	    else softly.fail("SPV enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hpi")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("HPI disabled");
-	    else softly.fail("HPI enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("HiRCA disabled");
-	    else softly.fail("HiRCA enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-opirca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("O&PiRCA disabled");
-	    else softly.fail("O&PiRCA enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("Job Observation disabled");
-	    else softly.fail("Job Observation enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("3 Pass Review disabled");
-	    else softly.fail("3 Pass Review enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-rv")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("Remote Verification disabled");
-	    else softly.fail("Remote Verification enabled");
-	    //Checks if module with access is enabled : EiRCA and ICCA
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled")==false)
-	    	System.out.println("EiRCA enabled");
-	    else softly.fail("EiRCA disabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled")==false)
-	    	System.out.println("ICCA enabled");
-	    else softly.fail("ICCA disabled");
-	    //Clicks on EiRCA
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca"))).click();
-	    //Goes back to Analysis
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-	    //Clicks on ICCA
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca"))).click();
+		checkAccess();
+	    Thread.sleep(2000);
 	    //Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
@@ -477,15 +589,140 @@ public class SanityChromeTest {
 		Thread.sleep(2000);
 		WebElement ele = driver.findElement(By.id("pii-admin-group-modules-menu"));
 		Thread.sleep(1000);
-		//Un-check EiRCA and ICCA
-		ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
-		Thread.sleep(1000);
-		ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
-		Thread.sleep(1000);
-		//Check Job Observation and HiRCA
-		ele.findElement(By.linkText("Human Error Instant RCA")).click();
-		Thread.sleep(1000);
-		ele.findElement(By.linkText("Job Observation Analysis")).click();
+		//Selects random number to make number of selections between 1 to 21
+		Random random = new Random();
+		while (true)
+		  {
+			  n=random.nextInt(22);
+			  if (n<1)
+				  continue;
+			  break;
+		  }
+		System.out.println(num.size());
+		System.out.println("Number of modules: "+n);
+		int m;
+		num.clear();
+		System.out.println(num.size());		
+		for (int i=1;i<=n;i++)
+		{
+			//Picks a number to select a module
+			//if(num)
+			Collections.sort(num);
+			while (true)
+			  {
+				  m=random.nextInt(n+1);
+				  if (m<1)
+					  continue;
+				  if(num.contains(m)==true)
+					  continue;
+				  break;
+			  }
+			System.out.println(m);
+			num.add(m);			
+		}
+		//Sorts number list
+		Collections.sort(num);
+		System.out.println(num);
+		//Checks for the option selected and checks it
+		for (m=0;m<n;m++)
+		{
+			if(num.get(m)>=16)
+			{
+				jse.executeScript("scroll(0,1500)");
+			}
+			if(num.get(m)==1)
+			{
+				op[m]="Event Reports";
+			}
+			if(num.get(m)==2)
+			{
+				op[m]="JIT Wisdom";
+			}
+			if(num.get(m)==3)
+			{
+				op[m]="JIT Memory Joggers";
+			}
+			if(num.get(m)==4)
+			{
+				op[m]="Knowledge Bank";
+			}
+			if(num.get(m)==5)
+			{
+				op[m]="Knowledge Exchange";
+			}
+			if(num.get(m)==6)
+			{
+				op[m]="Project Management";
+			}
+			if(num.get(m)==7)
+			{
+				op[m]="SPV Error Meter";
+			}
+			if(num.get(m)==8)
+			{
+				op[m]="Human Performance Inspector";
+			}
+			if(num.get(m)==9)
+			{
+				op[m]="Human Error Instant RCA";
+			}
+			if(num.get(m)==10)
+			{
+				op[m]="Equipment Failure Instant RCA";
+			}
+			if(num.get(m)==11)
+			{
+				op[m]="Organization & Programmatic Instant RCA";
+			}
+			if(num.get(m)==12)
+			{
+				op[m]="Instant Common Cause Analysis";
+			}
+			if(num.get(m)==13)
+			{
+				op[m]="Job Observation Analysis";
+			}
+			if(num.get(m)==14)
+			{
+				op[m]="3-Pass Review";
+			}
+			if(num.get(m)==15)
+			{
+				op[m]="Remote Verification";
+			}
+			if(num.get(m)==16)
+			{
+				jse.executeScript("scroll(0,1500)");
+				op[m]="eLearning";
+			}
+			if(num.get(m)==17)
+			{
+				op[m]="Error-Free Trainings";
+			}
+			if(num.get(m)==18)
+			{
+				op[m]="Human Performance Search";
+			}
+			if(num.get(m)==19)
+			{
+				op[m]="Equipment Performance Search";
+			}
+			if(num.get(m)==20)
+			{
+				op[m]="Electrical Failure Mode Search";
+			}
+			if(num.get(m)==21)
+			{
+				op[m]="Mechanical Failure Mode Search";
+			}	
+			//Checks it
+			ele.findElement(By.linkText(op[m])).click();
+			Thread.sleep(2000);
+			String at=ele.findElement(By.linkText(op[m])).getAttribute("class");
+			System.out.println(at);	
+			if(at.contains("ui-checkbox-on")==false)
+				op[m]=op[m]+"**";				
+		}
 		Thread.sleep(1000);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		//Clicks on Save
@@ -511,61 +748,7 @@ public class SanityChromeTest {
 	    Thread.sleep(2000);
 		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		//Click on Analysis
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
-	    try{
-            if (login==1)
-            {
-                  WebDriverWait wait2 = new WebDriverWait(driver,20);
-                  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-            }
-          }catch (NoSuchElementException r){
-            throw r;
-          }
-	    //Verifies if all modules with no group access are disabled
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("SPV disabled");
-	    else softly.fail("SPV enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hpi")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("HPI disabled");
-	    else softly.fail("HPI enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("EiRCA disabled");
-	    else softly.fail("EiRCA enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-opirca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("O&PiRCA disabled");
-	    else softly.fail("O&PiRCA enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("ICCA disabled");
-	    else softly.fail("ICCA enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("3 Pass Review disabled");
-	    else softly.fail("3 Pass Review enabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-rv")));
-	    if(element.getAttribute("class").contains("ui-state-disabled"))
-	    	System.out.println("Remote Verification disabled");
-	    else softly.fail("Remote Verification enabled");
-	    //Checks if module with access is enabled : HiRCA and Job Observation
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
-	    if(element.getAttribute("class").contains("ui-state-disabled")==false)
-	    	System.out.println("HiRCA enabled");
-	    else softly.fail("HiRCA disabled");
-	    element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo")));
-	    if(element.getAttribute("class").contains("ui-state-disabled")==false)
-	    	System.out.println("Job Observation enabled");
-	    else softly.fail("Job Observation disabled");
-	    //Clicks on HiRCA
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
-	    //Goes back to Analysis
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-	    //Clicks on Job Observation
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
+		checkAccess();
 	}
 
 	public void editPassword() throws Exception{
@@ -802,6 +985,7 @@ public class SanityChromeTest {
 		  emailMarkRead();
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
+		  JavascriptExecutor jse =(JavascriptExecutor) driver;
 		  Thread.sleep(7000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1011,9 +1195,137 @@ public class SanityChromeTest {
 		  driver.findElement(By.id("pii-admin-group-modules-button")).click();
 		  Thread.sleep(2000);
 		  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
-		  ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
-		  Thread.sleep(1000);
-		  ele.findElement(By.linkText("Instant Common Cause Analysis")).click();
+		  //Selects random number to make number of selections between 1 to 21
+			Random random = new Random();
+			int n;
+			while (true)
+			  {
+				  n=random.nextInt(22);
+				  if (n<1)
+					  continue;
+				  break;
+			  }
+			System.out.println(num.size());
+			System.out.println("Number of modules: "+n);
+			int m;
+			for (int i=1;i<=n;i++)
+			{
+				//Picks a number to select a module
+				Collections.sort(num);
+				while (true)
+				  {
+					  m=random.nextInt(n+1);
+					  if (m<1)
+						  continue;
+					  if(num.contains(m)==true)
+						  continue;
+					  break;
+				  }
+				num.add(m);			
+			}
+			System.out.println(num);
+			System.out.println(num.size());
+			//Sorts number list
+			Collections.sort(num);
+			System.out.println(num);
+			//Checks for the option selected and checks it
+			for (m=0;m<n;m++)
+			{
+				if(num.get(m)>=16)
+				{
+					jse.executeScript("scroll(0,1500)");
+				}
+				if(num.get(m)==1)
+				{
+					op[m]="Event Reports";
+				}
+				if(num.get(m)==2)
+				{
+					op[m]="JIT Wisdom";
+				}
+				if(num.get(m)==3)
+				{
+					op[m]="JIT Memory Joggers";
+				}
+				if(num.get(m)==4)
+				{
+					op[m]="Knowledge Bank";
+				}
+				if(num.get(m)==5)
+				{
+					op[m]="Knowledge Exchange";
+				}
+				if(num.get(m)==6)
+				{
+					op[m]="Project Management";
+				}
+				if(num.get(m)==7)
+				{
+					op[m]="SPV Error Meter";
+				}
+				if(num.get(m)==8)
+				{
+					op[m]="Human Performance Inspector";
+				}
+				if(num.get(m)==9)
+				{
+					op[m]="Human Error Instant RCA";
+				}
+				if(num.get(m)==10)
+				{
+					op[m]="Equipment Failure Instant RCA";
+				}
+				if(num.get(m)==11)
+				{
+					op[m]="Organization & Programmatic Instant RCA";
+				}
+				if(num.get(m)==12)
+				{
+					op[m]="Instant Common Cause Analysis";
+				}
+				if(num.get(m)==13)
+				{
+					op[m]="Job Observation Analysis";
+				}
+				if(num.get(m)==14)
+				{
+					op[m]="3-Pass Review";
+				}
+				if(num.get(m)==15)
+				{
+					op[m]="Remote Verification";
+				}
+				if(num.get(m)==16)
+				{
+					jse.executeScript("scroll(0,1500)");
+					op[m]="eLearning";
+				}
+				if(num.get(m)==17)
+				{
+					op[m]="Error-Free Trainings";
+				}
+				if(num.get(m)==18)
+				{
+					op[m]="Human Performance Search";
+				}
+				if(num.get(m)==19)
+				{
+					op[m]="Equipment Performance Search";
+				}
+				if(num.get(m)==20)
+				{
+					op[m]="Electrical Failure Mode Search";
+				}
+				if(num.get(m)==21)
+				{
+					op[m]="Mechanical Failure Mode Search";
+				}	
+				//Checks it
+				ele.findElement(By.linkText(op[m])).click();
+				Thread.sleep(2000);
+				String at=ele.findElement(By.linkText(op[m])).getAttribute("class");
+				System.out.println(at);						
+			}
 		  Thread.sleep(2000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		  //Clicks on save
