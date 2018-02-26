@@ -894,7 +894,7 @@ public class FirefoxTest {
 		  deletePreviousCase(ee_title);
 		  Thread.sleep(1000);
 		  deletePreviousCase(me_title);
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  try{
 		  	   WebDriverWait wait3 = new WebDriverWait(driver,20);
                wait3.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
