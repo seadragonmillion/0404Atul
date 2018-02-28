@@ -44,8 +44,8 @@ import java.util.List;
 
 public class FirefoxTest {
 	private FirefoxDriver driver;
-	private String username ="ritica";
-	private String password = "S2FsZTQ2MTkxODAyQA==";
+	private String username ="jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String event_title="I think I will buy the red car, or I will lease the blue one.";
 	private String details ="There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";

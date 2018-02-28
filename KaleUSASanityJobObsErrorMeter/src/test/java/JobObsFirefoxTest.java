@@ -27,8 +27,8 @@ import java.util.Base64;
 public class JobObsFirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="ritica";
-	private String password = "S2FsZTQ2MTkxODAyQA==";
+	private String username ="jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;

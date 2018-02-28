@@ -33,22 +33,22 @@ public class ChromeTest {
 	private String url = "https://kale.error-free.com/";
 	private int numberOfImages=5;
 	private int login =0;
-	private String keyword_same_eq="QAAfiveeq";
-	private String key1_eq="QAAzebraeq";
-	private String key2_eq="QAAcameleq";
-	private String key3_eq="QAAgiraffeeq";
-	private String keyword_same_ee="QAAfiveee";
-	private String key1_ee="QAAzebraee";
-	private String key2_ee="QAAcamelee";
-	private String key3_ee="QAAgiraffeee";
-	private String keyword_same_me="QAAfiveme";
-	private String key1_me="QAAzebrame";
-	private String key2_me="QAAcamelme";
-	private String key3_me="QAAgiraffeme";
+	private String keyword_same_eq="QAAfiveeqUS";
+	private String key1_eq="QAAzebraeqUS";
+	private String key2_eq="QAAcameleqUS";
+	private String key3_eq="QAAgiraffeeqUS";
+	private String keyword_same_ee="QAAfiveeeUS";
+	private String key1_ee="QAAzebraeeUS";
+	private String key2_ee="QAAcameleeUS";
+	private String key3_ee="QAAgiraffeeeUS";
+	private String keyword_same_me="QAAfivemeUS";
+	private String key1_me="QAAzebrameUS";
+	private String key2_me="QAAcamelmeUS";
+	private String key3_me="QAAgiraffemeUS";
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
-	private String eq_title="QAA Equipment Search Case Upload";
-	private String ee_title="QAA Electrical Failure Case Upload";
-	private String me_title="QAA Mechanical Failure Case Upload";
+	private String eq_title="QAA US Equipment Search Case Upload";
+	private String ee_title="QAA US Electrical Failure Case Upload";
+	private String me_title="QAA US Mechanical Failure Case Upload";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@SuppressWarnings("deprecation")

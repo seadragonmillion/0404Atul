@@ -33,11 +33,11 @@ public class IETest {
 	private String url = "https://kale.error-free.com/";
 	private int numberOfImages=5;
 	private int login =0;
-	private String keyword_same="QAAfive";
-	private String key1="QAAzebra";
-	private String key2="QAAcamel";
-	private String key3="QAAgiraffe";
-	private String title ="QAA Human Performance Case Upload";
+	private String keyword_same="QAAfiveUS";
+	private String key1="QAAzebraUS";
+	private String key2="QAAcamelUS";
+	private String key3="QAAgiraffeUS";
+	private String title ="QAA US Human Performance Case Upload";
 	private String caseId1,caseId2,caseId3,caseId4,caseId5;
 	SoftAssertions softly = new SoftAssertions();
 	

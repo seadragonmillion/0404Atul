@@ -23,8 +23,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FirefoxTest {
 
 	private WebDriver driver;
-	private String username ="jenkinsvmnonadmin";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String username ="qaacfi";
+	private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	private int login =0;

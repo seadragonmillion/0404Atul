@@ -38,9 +38,9 @@ import java.util.Random;
 public class SanityChromeTest {
 
 	private WebDriver driver;
-	private String username ="ritica";
-	private String password = "S2FsZTQ2MTkxODAyQA==";
-	private String company_id="aatestqaa";
+	private String username ="jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String company_id="aatestqaaus";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;

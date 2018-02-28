@@ -39,9 +39,9 @@ import java.util.Random;
 public class SanityIETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="ritica";
-	private String password = "S2FsZTQ2MTkxODAyQA==";
-	private String company_id="aatestqaa";
+	private String username ="jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String company_id="aatestqaaus";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;

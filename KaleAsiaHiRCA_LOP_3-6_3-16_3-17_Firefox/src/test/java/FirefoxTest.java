@@ -49,8 +49,8 @@ public class FirefoxTest {
 
 	 private FirefoxDriver driver;
 	 private int login =0;
-	 private String username = "jenkinsvmnonadmin";
-	 private String password = "S2FsZWplbmtpbnNAMTIz";
+	 private String username = "qaacfi";
+	private String password = "S2FsZTk0OTM1ODMwQA==";
 	 private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	 private String url = "https://kaleasia.error-free.com/";
 	 private String reason1="I think I will buy the red car, or I will lease the blue one.";

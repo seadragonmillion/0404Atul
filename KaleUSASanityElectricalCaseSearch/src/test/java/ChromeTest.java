@@ -22,8 +22,8 @@ import java.util.Base64;
 public class ChromeTest {
 
 	private WebDriver driver;
-	private String username ="ritica";
-	private String password = "S2FsZTQ2MTkxODAyQA==";
+	private String username ="jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;

@@ -26,8 +26,8 @@ import java.util.Base64;
 public class HumanIETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="qaacfi";
-	 private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username ="jenkinsvmnonadmin";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
 	private int login =0;
