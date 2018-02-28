@@ -23,7 +23,7 @@ public class SanityTestEiRCA_ChromeTest {
 
 	private WebDriver driver;
 	private int login =0;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	SoftAssertions softly = new SoftAssertions();
 

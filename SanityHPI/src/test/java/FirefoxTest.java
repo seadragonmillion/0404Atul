@@ -30,7 +30,7 @@ import java.util.Base64;
 public class FirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";

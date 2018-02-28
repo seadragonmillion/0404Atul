@@ -42,7 +42,7 @@ import java.util.List;
 public class IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String event_title="I think I will buy";
 	private String details ="There was no ice cream./?.,><';:*-+()@#$%&01234567890";

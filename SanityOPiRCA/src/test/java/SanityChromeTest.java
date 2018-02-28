@@ -22,7 +22,7 @@ import java.util.Base64;
 public class SanityChromeTest {
 	
 	private WebDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String event_title="Sanity Test Chrome";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";

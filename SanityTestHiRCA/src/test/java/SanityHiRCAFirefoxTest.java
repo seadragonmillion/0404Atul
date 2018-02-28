@@ -23,8 +23,8 @@ public class SanityHiRCAFirefoxTest {
 
 	private FirefoxDriver driver;
 	private int login =0;
-	private String username = "jenkins";
-	 private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String username = "jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 
 	@SuppressWarnings("deprecation")
 	@Rule

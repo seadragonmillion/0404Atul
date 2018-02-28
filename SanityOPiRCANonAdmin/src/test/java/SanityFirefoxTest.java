@@ -25,8 +25,8 @@ import java.util.Base64;
 public class SanityFirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="qaacfi";
-	 private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username ="jenkinsvmnonadmin";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String event_title="Sanity Test Firefox";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";

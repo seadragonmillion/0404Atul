@@ -38,8 +38,8 @@ import java.util.Random;
 public class SanityChromeTest {
 
 	private WebDriver driver;
-	private String username ="ritica";
-	private String password = "S2FsZTI0OTgyNDE3QA==";
+	private String username ="jenkinsvm";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String company_id="aatestqaa";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";

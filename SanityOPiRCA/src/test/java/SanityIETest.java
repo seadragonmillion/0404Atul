@@ -24,7 +24,7 @@ import java.util.Base64;
 public class SanityIETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String event_title="Sanity Test IE";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";

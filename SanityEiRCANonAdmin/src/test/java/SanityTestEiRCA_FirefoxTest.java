@@ -21,8 +21,8 @@ public class SanityTestEiRCA_FirefoxTest {
 
 	private FirefoxDriver driver;
 	private int login =0;
-	private String username ="qaacfi";
-	 private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username ="jenkinsvmnonadmin";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	SoftAssertions softly = new SoftAssertions();
 
 	@SuppressWarnings("deprecation")
