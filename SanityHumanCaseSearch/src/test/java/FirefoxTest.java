@@ -183,7 +183,7 @@ public class FirefoxTest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Human Performance Search
-		  driver.findElement(By.linkText("Human Performance Search")).click();
+		  driver.findElement(By.linkText("Human Performance")).click();
 		  //Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);

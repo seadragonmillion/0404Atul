@@ -155,7 +155,7 @@ public class IETest {
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		//Clicks on Human Performance Search
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 		//Enters the title in term search field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
 		Thread.sleep(1000);
@@ -292,7 +292,7 @@ public class IETest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Human Performance Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 		  //Enters case id
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(caseId);
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(Keys.ENTER);

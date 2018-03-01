@@ -184,8 +184,8 @@ public class IETest {
 			  System.out.println("Non admin user cannot see Equipment Search PII");
 		  }
 		  else fail();
-		 //Clicks on Equipment performance search
-		  driver.findElement(By.linkText("Mechanical Failure Mode Search")).click();
+		 //Clicks on Mechanical Failure Modes
+		  driver.findElement(By.linkText("Mechanical Failure Modes")).click();
 		//Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);

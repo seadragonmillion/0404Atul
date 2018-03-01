@@ -243,7 +243,7 @@ public class SanityHiRCAFirefoxTest {
 			  driver.findElement(By.id("pii-irca-dialog-confirmed")).click();
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 			  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
-			  String name = creationDate + "_jenkins_Sanity Test" ;
+			  String name = creationDate + "_"+username+"_Sanity Test" ;
 			  System.out.println(name);
 			  driver.findElement(By.id("efi-irca-btn-savedactivities")).click();
 			  Thread.sleep(2000);

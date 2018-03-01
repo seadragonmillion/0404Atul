@@ -363,7 +363,7 @@ public class SanityTestEiRCA_IETest {
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Gets the value from the text field report creation date
 		  String creationDate = driver.findElement(By.id("pii-ircam-tab-1-repdatetime")).getAttribute("value");
-		  String name = creationDate + "_jenkins_Sanity Test IE" ;
+		  String name = creationDate + "_"+username+"_Sanity Test IE" ;
 		  System.out.println(name);
 		  //Clicks on Saved activities button
 		  jse.executeScript("return document.getElementById('pii-ircam-savedactivities').click();");

@@ -238,7 +238,7 @@ public class SanityHiRCAInternetExplorerTest {
 		  jse.executeScript("return document.getElementById('pii-irca-dialog-confirmed').click();");
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
-		  String name = creationDate + "_jenkins_Sanity Test" ;
+		  String name = creationDate + "_"+username+"_Sanity Test" ;
 		  //Clicks on saved activities button
 		  jse.executeScript("return document.getElementById('efi-irca-btn-savedactivities').click();");
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-irca').click();");
