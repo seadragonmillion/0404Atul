@@ -61,10 +61,11 @@ public String decode(String pw){
 	public void Login() throws Exception{
 		  
 		  System.out.println("Title before login: "+driver.getTitle());
+		  Thread.sleep(3000);
 		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
-		  //Login pop up is located and clicked
 		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+		  //Login pop up is located and clicked
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
 		  //Username text field is located and the username is entered
 		  driver.findElement(By.id("pii-un")).sendKeys(username);
