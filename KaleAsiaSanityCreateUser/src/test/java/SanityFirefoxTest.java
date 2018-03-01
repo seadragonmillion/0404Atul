@@ -54,7 +54,7 @@ public class SanityFirefoxTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1300000);
+	  public Timeout globalTimeout= new Timeout(1400000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -802,6 +802,7 @@ public void LoginDummyUser() throws Exception{
 		//Mark all messages in inbox as read
 		emailMarkRead();
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		Thread.sleep(3000);
 	    //Clicks on Account
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();

@@ -480,7 +480,7 @@ public class IETest {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("qaacfiverifier");
+			softly.assertThat(user).as("test data").isEqualTo("QAA (qaacfiverifier)");
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 	    }
@@ -1502,7 +1502,7 @@ public class IETest {
 				  //Clicks on Save report
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  //wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(500);
 				  try{
 					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
