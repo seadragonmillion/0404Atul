@@ -517,11 +517,11 @@ public void LoginDummyUser() throws Exception{
 	    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 	    capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 		WebDriver driver2 = new FirefoxDriver(capabilities);
-        //WebDriver driver2= new ChromeDriver();
         driver2.get(activate);
         Thread.sleep(4000);
         driver2.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver2.quit();
+        Thread.sleep(4000);
         //Logs out of admin user
         WebDriverWait wait = new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();

@@ -53,7 +53,7 @@ public class ChromeTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3000000);
+	  public Timeout globalTimeout= new Timeout(3100000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -770,6 +770,7 @@ public class ChromeTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).sendKeys(caseId);
 		  Thread.sleep(2000);
 		  //Clicks on case id
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-ul"))).click();
 		 //Waits for black loading message to disappear
 		  try{
