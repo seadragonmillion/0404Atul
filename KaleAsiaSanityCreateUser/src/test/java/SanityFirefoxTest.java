@@ -470,7 +470,7 @@ public void LoginDummyUser() throws Exception{
 	
 	public void editGroupCheckAccess() throws Exception{
 		String SMTP_HOST = "smtp.gmail.com";
-	    String EMAIL_ADDRESS = "fakeemailtestqaa@gmail.com";
+	    String EMAIL_ADDRESS = "fakeemailtestqaaasia@gmail.com";
 	    String PASSWORD = "5sepkale";
 	    String INBOX_FOLDER = "INBOX";	    
 	    Properties props = new Properties();
@@ -917,7 +917,7 @@ public void LoginDummyUser() throws Exception{
 		}
 		//Reads new password from email
 		String SMTP_HOST = "smtp.gmail.com";
-	    String EMAIL_ADDRESS = "fakeemailtestqaa@gmail.com";
+	    String EMAIL_ADDRESS = "fakeemailtestqaaasia@gmail.com";
 	    String PASSWORD = "5sepkale";
 	    String INBOX_FOLDER = "INBOX";	    
 	    Properties props = new Properties();
@@ -1013,7 +1013,7 @@ public void LoginDummyUser() throws Exception{
 	public void emailMarkRead() throws Exception{
 		
 		String SMTP_HOST = "smtp.gmail.com";
-	    String EMAIL_ADDRESS = "fakeemailtestqaa@gmail.com";
+	    String EMAIL_ADDRESS = "fakeemailtestqaaasia@gmail.com";
 	    String PASSWORD = "5sepkale";
 	    String INBOX_FOLDER = "INBOX";	    
 	    Properties props = new Properties();
@@ -1406,7 +1406,7 @@ public void LoginDummyUser() throws Exception{
 		  driver.findElement(By.id("pii-admin-user-password")).sendKeys(decode(password));
 		  driver.findElement(By.id("pii-admin-user-password-again")).sendKeys(decode(password));
 		  driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
-		  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaa@gmail.com");
+		  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaaasia@gmail.com");
 		  ev1 = driver.findElement(By.id("pii-admin-user-name")).getAttribute("value");
 		  ev2 = driver.findElement(By.id("pii-admin-user-company")).getAttribute("value");
 		  ev3 = driver.findElement(By.id("pii-admin-user-email")).getAttribute("value");
@@ -1420,10 +1420,10 @@ public void LoginDummyUser() throws Exception{
 			  driver.findElement(By.id("pii-admin-user-company")).clear();
 			  driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
 		  }
-		  if ((ev3.equals("fakeemailtestqaa@gmail.com")==false))
+		  if ((ev3.equals("fakeemailtestqaaasia@gmail.com")==false))
 		  {
 			  driver.findElement(By.id("pii-admin-user-email")).clear();
-			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaa@gmail.com");
+			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaaasia@gmail.com");
 		  }
 		  driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
