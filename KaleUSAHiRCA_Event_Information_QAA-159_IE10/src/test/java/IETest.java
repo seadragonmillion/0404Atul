@@ -36,8 +36,8 @@ import java.util.Base64;
 public class IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkinsvmnonadmin";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String username ="qaacfi";
+	 private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kale.error-free.com/";
 	private String reason1="I think I will buy the red car, or I will lease the blue one.";
@@ -1279,7 +1279,7 @@ public class IETest {
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
-		  Thread.sleep(5000);
+		  Thread.sleep(7000);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  int index=limit_text.indexOf("/");
 		  System.out.println(index);
