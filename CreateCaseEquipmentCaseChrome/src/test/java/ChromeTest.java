@@ -53,7 +53,7 @@ public class ChromeTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3100000);
+	  public Timeout globalTimeout= new Timeout(3500000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -759,6 +759,7 @@ public class ChromeTest {
 		  //Clicks on Equipment cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 		  //Waits for black loading message to disappear
+		  Thread.sleep(2000);
 		  try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -773,6 +774,7 @@ public class ChromeTest {
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-ul"))).click();
 		 //Waits for black loading message to disappear
+		  Thread.sleep(2000);
 		  try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -785,6 +787,7 @@ public class ChromeTest {
 		  //Clicks on delete case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
+		  Thread.sleep(2000);
 		  try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));

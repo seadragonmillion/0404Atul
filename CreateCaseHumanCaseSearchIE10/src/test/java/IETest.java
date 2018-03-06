@@ -435,12 +435,13 @@ public class IETest {
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(7000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-		  Thread.sleep(12000);
+		  Thread.sleep(8000);
 		 // jse.executeScript("return document.getElementById('pii-main-menu-button-a').click();");
 		  if (login==1)
           {

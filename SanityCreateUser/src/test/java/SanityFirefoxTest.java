@@ -467,6 +467,7 @@ public void LoginDummyUser() throws Exception{
 			else softly.fail("Mechanical Failure Mode Search disabled");
 		}		    
 	}
+
 	public void editGroupCheckAccess() throws Exception{
 		String SMTP_HOST = "smtp.gmail.com";
 	    String EMAIL_ADDRESS = "fakeemailtestqaa@gmail.com";
@@ -787,6 +788,30 @@ public void LoginDummyUser() throws Exception{
 		//Mark all messages in inbox as read
 		emailMarkRead();
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		while(true)
+		  {
+			  Thread.sleep(1000);
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+			  
+			 
+		  }
 	    //Clicks on Account
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();

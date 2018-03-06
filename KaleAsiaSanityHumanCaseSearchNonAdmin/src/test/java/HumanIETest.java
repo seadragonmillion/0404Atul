@@ -189,7 +189,15 @@ public class HumanIETest {
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q618")));
-		  Thread.sleep(2000);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
@@ -256,7 +264,15 @@ public class HumanIETest {
 			  }
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
-		  Thread.sleep(6000);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q746")));
 		  Thread.sleep(4000);

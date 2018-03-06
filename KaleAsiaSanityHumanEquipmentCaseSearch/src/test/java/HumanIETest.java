@@ -33,7 +33,7 @@ public class HumanIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(800000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -176,15 +176,49 @@ public class HumanIETest {
 		  //Checks with keyword with %
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keypercent);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
-		  Thread.sleep(2000);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q618")));
-		  Thread.sleep(2000);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-btn")).click();
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  //Checks for search method with dropdown
@@ -215,13 +249,40 @@ public class HumanIETest {
 		  {
 			  driver.findElement(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]")).click();
 		  }
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  //Enters the term and check the search by enter
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(keyword);
 		  driver.findElement(By.id("pii-efsh-searchbykw-input")).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  //Clicks on Q746
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q746"))).click();
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException y)
+			  {
+				  
+			  }
 		  //Clicks on Show Slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q746")));
 		  Thread.sleep(4000);
