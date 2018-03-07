@@ -428,28 +428,28 @@ public class SanityIETest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
-		if(f.contains("Human Performance"))
+		if(f.contains("Human Performance Search"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Human Performance enabled");
 			else softly.fail("Human Performance disabled");
 		}
-		if(f.contains("Equipment Performance"))
+		if(f.contains("Equipment Performance Search"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Equipment Performance enabled");
 			else softly.fail("Equipment Performance disabled");
 		}
-		if(f.contains("Electrical Failure Modes"))
+		if(f.contains("Electrical Failure Mode Search"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Electrical Failure Modes enabled");
 			else softly.fail("Electrical Failure Modes disabled");
 		}
-		if(f.contains("Mechanical Failure Modes"))
+		if(f.contains("Mechanical Failure Mode Search"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
@@ -715,19 +715,19 @@ public class SanityIETest {
 			}
 			if(num.get(m)==18)
 			{
-				op[m]="Human Performance";
+				op[m]="Human Performance Search";
 			}
 			if(num.get(m)==19)
 			{
-				op[m]="Equipment Performance";
+				op[m]="Equipment Performance Search";
 			}
 			if(num.get(m)==20)
 			{
-				op[m]="Electrical Failure Modes";
+				op[m]="Electrical Failure Mode Search";
 			}
 			if(num.get(m)==21)
 			{
-				op[m]="Mechanical Failure Modes";
+				op[m]="Mechanical Failure Mode Search";
 			}	
 			//Checks it
 			ele.findElement(By.linkText(op[m])).click();
@@ -1339,19 +1339,19 @@ public class SanityIETest {
 				}
 				if(num.get(m)==18)
 				{
-					op[m]="Human Performance";
+					op[m]="Human Performance Search";
 				}
 				if(num.get(m)==19)
 				{
-					op[m]="Equipment Performance";
+					op[m]="Equipment Performance Search";
 				}
 				if(num.get(m)==20)
 				{
-					op[m]="Electrical Failure Modes";
+					op[m]="Electrical Failure Mode Search";
 				}
 				if(num.get(m)==21)
 				{
-					op[m]="Mechanical Failure Modes";
+					op[m]="Mechanical Failure Mode Search";
 				}	
 				//Checks it
 				ele.findElement(By.linkText(op[m])).click();
