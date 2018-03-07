@@ -50,7 +50,7 @@ public class SanityChromeTest {
 
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(1100000);
+	  public Timeout globalTimeout= new Timeout(1300000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -419,33 +419,33 @@ public class SanityChromeTest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
-		if(f.contains("Human Performance Search"))
+		if(f.contains("Human Performance"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Human Performance Search enabled");
-			else softly.fail("Human Performance Search disabled");
+				System.out.println("Human Performance enabled");
+			else softly.fail("Human Performance disabled");
 		}
-		if(f.contains("Equipment Performance Search"))
+		if(f.contains("Equipment Performance"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Equipment Performance Search enabled");
-			else softly.fail("Equipment Performance Search disabled");
+				System.out.println("Equipment Performance enabled");
+			else softly.fail("Equipment Performance disabled");
 		}
-		if(f.contains("Electrical Failure Mode Search"))
+		if(f.contains("Electrical Failure Modes"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Electrical Failure Mode Search enabled");
-			else softly.fail("Electrical Failure Mode Search disabled");
+				System.out.println("Electrical Failure Modes enabled");
+			else softly.fail("Electrical Failure Modes disabled");
 		}
-		if(f.contains("Mechanical Failure Mode Search"))
+		if(f.contains("Mechanical Failure Modes"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Mechanical Failure Mode Search enabled");
-			else softly.fail("Mechanical Failure Mode Search disabled");
+				System.out.println("Mechanical Failure Modes enabled");
+			else softly.fail("Mechanical Failure Modes disabled");
 		}		    
 	}
 
@@ -690,19 +690,19 @@ public class SanityChromeTest {
 			}
 			if(num.get(m)==18)
 			{
-				op[m]="Human Performance Search";
+				op[m]="Human Performance";
 			}
 			if(num.get(m)==19)
 			{
-				op[m]="Equipment Performance Search";
+				op[m]="Equipment Performance";
 			}
 			if(num.get(m)==20)
 			{
-				op[m]="Electrical Failure Mode Search";
+				op[m]="Electrical Failure Modes";
 			}
 			if(num.get(m)==21)
 			{
-				op[m]="Mechanical Failure Mode Search";
+				op[m]="Mechanical Failure Modes";
 			}	
 			//Checks it
 			ele.findElement(By.linkText(op[m])).click();
@@ -1058,6 +1058,7 @@ public class SanityChromeTest {
 		  }
 		  //Waits for black loading message to disappear
 		  try{
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
@@ -1066,6 +1067,15 @@ public class SanityChromeTest {
 			  }
 		  //CLicks on new button
 		  driver.findElement(By.id("pii-admin-cust-button-new")).click();
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 		  //Clicks on new company
@@ -1119,6 +1129,15 @@ public class SanityChromeTest {
 		  //Clicks on create company
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Enters company id in ID field 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
@@ -1136,6 +1155,7 @@ public class SanityChromeTest {
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		  //Waits for black loading message to disappear
 		  try{
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
@@ -1154,12 +1174,30 @@ public class SanityChromeTest {
 		  //Clicks on update company
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Enters company id in ID field 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Checks if company address has been edited
 		  String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
 		  softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");
@@ -1300,19 +1338,19 @@ public class SanityChromeTest {
 				}
 				if(num.get(m)==18)
 				{
-					op[m]="Human Performance Search";
+					op[m]="Human Performance";
 				}
 				if(num.get(m)==19)
 				{
-					op[m]="Equipment Performance Search";
+					op[m]="Equipment Performance";
 				}
 				if(num.get(m)==20)
 				{
-					op[m]="Electrical Failure Mode Search";
+					op[m]="Electrical Failure Modes";
 				}
 				if(num.get(m)==21)
 				{
-					op[m]="Mechanical Failure Mode Search";
+					op[m]="Mechanical Failure Modes";
 				}	
 				//Checks it
 				ele.findElement(By.linkText(op[m])).click();

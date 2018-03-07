@@ -428,33 +428,33 @@ public class SanityIETest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
-		if(f.contains("Human Performance Search"))
+		if(f.contains("Human Performance"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Human Performance Search enabled");
-			else softly.fail("Human Performance Search disabled");
+				System.out.println("Human Performance enabled");
+			else softly.fail("Human Performance disabled");
 		}
-		if(f.contains("Equipment Performance Search"))
+		if(f.contains("Equipment Performance"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Equipment Performance Search enabled");
-			else softly.fail("Equipment Performance Search disabled");
+				System.out.println("Equipment Performance enabled");
+			else softly.fail("Equipment Performance disabled");
 		}
-		if(f.contains("Electrical Failure Mode Search"))
+		if(f.contains("Electrical Failure Modes"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Electrical Failure Mode Search enabled");
-			else softly.fail("Electrical Failure Mode Search disabled");
+				System.out.println("Electrical Failure Modes enabled");
+			else softly.fail("Electrical Failure Modes disabled");
 		}
-		if(f.contains("Mechanical Failure Mode Search"))
+		if(f.contains("Mechanical Failure Modes"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
-				System.out.println("Mechanical Failure Mode Search enabled");
-			else softly.fail("Mechanical Failure Mode Search disabled");
+				System.out.println("Mechanical Failure Modes enabled");
+			else softly.fail("Mechanical Failure Modes disabled");
 		}		    
 	}
 	public void editGroupCheckAccess() throws Exception{
@@ -715,19 +715,19 @@ public class SanityIETest {
 			}
 			if(num.get(m)==18)
 			{
-				op[m]="Human Performance Search";
+				op[m]="Human Performance";
 			}
 			if(num.get(m)==19)
 			{
-				op[m]="Equipment Performance Search";
+				op[m]="Equipment Performance";
 			}
 			if(num.get(m)==20)
 			{
-				op[m]="Electrical Failure Mode Search";
+				op[m]="Electrical Failure Modes";
 			}
 			if(num.get(m)==21)
 			{
-				op[m]="Mechanical Failure Mode Search";
+				op[m]="Mechanical Failure Modes";
 			}	
 			//Checks it
 			ele.findElement(By.linkText(op[m])).click();
@@ -1339,19 +1339,19 @@ public class SanityIETest {
 				}
 				if(num.get(m)==18)
 				{
-					op[m]="Human Performance Search";
+					op[m]="Human Performance";
 				}
 				if(num.get(m)==19)
 				{
-					op[m]="Equipment Performance Search";
+					op[m]="Equipment Performance";
 				}
 				if(num.get(m)==20)
 				{
-					op[m]="Electrical Failure Mode Search";
+					op[m]="Electrical Failure Modes";
 				}
 				if(num.get(m)==21)
 				{
-					op[m]="Mechanical Failure Mode Search";
+					op[m]="Mechanical Failure Modes";
 				}	
 				//Checks it
 				ele.findElement(By.linkText(op[m])).click();
