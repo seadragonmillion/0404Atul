@@ -21,21 +21,27 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
+
+
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.interactions.Actions;
+
 import java.util.Base64;
 
 public class ChromeTest {
@@ -67,11 +73,11 @@ public class ChromeTest {
 	          options.setExperimentalOption("prefs", chromeOptionsMap);
 	          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
 	          chromeOptionsMap.put("download.default_directory", downloadFilepath);
-	          DesiredCapabilities cap = DesiredCapabilities.chrome();
-	          cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
-	          cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-	          cap.setCapability(ChromeOptions.CAPABILITY, options);
-	          driver = new ChromeDriver(cap);
+	          //DesiredCapabilities cap = DesiredCapabilities.chrome();
+	          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+	          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+	          options.setCapability(ChromeOptions.CAPABILITY, options);
+	          driver = new ChromeDriver(options);
 			  //Browser is maximized
 			  driver.manage().window().maximize();
 			  //Browser navigates to the KALE url
@@ -275,7 +281,7 @@ public class ChromeTest {
 				//Clicks on open pdf report
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		    	Thread.sleep(3000);
+		    	Thread.sleep(8000);
 		    	pdfCheck(executive,event_id,text184,text,paragraph_investigators,paragraph_background,paragraph_timeline,paragraph_problem,get_date,get_time,get_dept,creationDate);
 		        for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
@@ -285,8 +291,33 @@ public class ChromeTest {
 		    	Thread.sleep(1000);
 		    		    	
 		    }
+		    
+		public List<RenderedImage> getImagesFromPDF(PDDocument document) throws IOException {
+		        List<RenderedImage> images = new ArrayList<>();
+		    for (PDPage page : document.getPages()) {
+		        images.addAll(getImagesFromResources(page.getResources()));
+		    }
+
+		    return images;
+		}
+
+		private List<RenderedImage> getImagesFromResources(PDResources resources) throws IOException {
+		    List<RenderedImage> images = new ArrayList<>();
+
+		    for (COSName xObjectName : resources.getXObjectNames()) {
+		        PDXObject xObject = resources.getXObject(xObjectName);
+
+		        if (xObject instanceof PDFormXObject) {
+		            images.addAll(getImagesFromResources(((PDFormXObject) xObject).getResources()));
+		        } else if (xObject instanceof PDImageXObject) {
+		            images.add(((PDImageXObject) xObject).getImage());
+		        }
+		    }
+
+		    return images;
+		}
 		  
-			public void pdfCheck(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
+		public void pdfCheck(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 		    	
 		    	 List<String> results = new ArrayList<String>();
 		    	//Gets the file name which has been downloaded
@@ -299,32 +330,31 @@ public class ChromeTest {
 		    	}
 		    	System.out.println(results.get(0));
 		    	//Loads the file to check if correct data is present
-		    	String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
-		    	File file = new File(fileName);
-		    	FileInputStream fis = new FileInputStream(file);
-		    	PDFParser parser = new PDFParser(fis);
-		        parser.parse();
-		        COSDocument cosDoc= parser.getDocument();       
-		        PDDocument pddoc= new PDDocument(cosDoc);
-		        PDFTextStripper pdfStripper= new PDFTextStripper();
-		        pdfStripper.setStartPage( 1 );
-		        pdfStripper.setEndPage( Integer.MAX_VALUE );
-		        String data = pdfStripper.getText(pddoc);
-		        List<String> ans= Arrays.asList(data.split("\r\n"));
-		        String newData=null;
-		        for (int i = 0; i < ans.size(); i++)
-		        {
-		        	
-		        	//System.out.println(ans.get(i));
-		        	int n=ans.get(i).length()-1;
-		        	if (ans.get(i).charAt(n)==' ')
-		        		newData = newData+ans.get(i);
-		        	if (ans.get(i).charAt(n)!=' ')
-		        		newData = newData+" "+ans.get(i);
-		        	
-		        }
+			      String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+			      File oldfile = new File(fileName);
+			      //Checks number of images in pdf
+			      PDDocument pddoc= PDDocument.load(oldfile);
+			      List<RenderedImage> images = new ArrayList<>();
+			      images=getImagesFromPDF(pddoc);
+			      System.out.println("Number of images: "+images.size());
+			      softly.assertThat(images.size()).as("test data").isEqualTo(10);
+			      //Checks text in pdf
+			      String data = new PDFTextStripper().getText(pddoc);
+			      List<String> ans= Arrays.asList(data.split("\r\n"));
+			      String newData="";
+			      for (int i = 0; i < ans.size(); i++)
+			        {
+			        	
+			        	//System.out.println(ans.get(i));
+			        	int n=ans.get(i).length()-1;
+			        	if (ans.get(i).charAt(n)==' ')
+			        		newData = newData+ans.get(i);
+			        	if (ans.get(i).charAt(n)!=' ')
+			        		newData = newData+" "+ans.get(i);
+			        	
+			      }
 		        newData=newData.replace("  ", " ");
-		       // System.out.println(newData);
+		        // System.out.println(newData);
 		        //Verifies event id
 		        event_id=event_id.replace("  ", " ");
 		        softly.assertThat(event_id).as("test data").isSubstringOf(newData);
@@ -413,7 +443,6 @@ public class ChromeTest {
 		        softly.assertThat("(SUEP) S: Substandard Practice? U: Under Management Control? E: Early in Event Sequence? P: Prevention Of Recurrence?").as("test data").isSubstringOf(newData);
 		        //Verify Missing LOPS
 		        softly.assertThat("Missing LOPs No missing LOPs specified").as("test data").isSubstringOf(newData);
-		        cosDoc.close();
 		        pddoc.close();	      
 		    }
 					        		   
@@ -1404,6 +1433,7 @@ public class ChromeTest {
 					  jse.executeScript("scroll(0,0)");
 					  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 					  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+					  Thread.sleep(2000);
 					  //Clicks on Save
 					  driver.findElement(By.id("efi-irca-button-save")).click();
 					  //Clicks on Save report

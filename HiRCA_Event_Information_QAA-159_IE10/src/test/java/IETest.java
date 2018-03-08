@@ -27,10 +27,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
+
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
+import java.awt.image.RenderedImage;
 import java.util.Base64;
 
 public class IETest {
@@ -324,6 +330,31 @@ public class IETest {
 				    		    	
 	    }
 
+	    public List<RenderedImage> getImagesFromPDF(PDDocument document) throws IOException {
+		        List<RenderedImage> images = new ArrayList<>();
+		    for (PDPage page : document.getPages()) {
+		        images.addAll(getImagesFromResources(page.getResources()));
+		    }
+
+		    return images;
+		}
+
+		private List<RenderedImage> getImagesFromResources(PDResources resources) throws IOException {
+		    List<RenderedImage> images = new ArrayList<>();
+
+		    for (COSName xObjectName : resources.getXObjectNames()) {
+		        PDXObject xObject = resources.getXObject(xObjectName);
+
+		        if (xObject instanceof PDFormXObject) {
+		            images.addAll(getImagesFromResources(((PDFormXObject) xObject).getResources()));
+		        } else if (xObject instanceof PDImageXObject) {
+		            images.add(((PDImageXObject) xObject).getImage());
+		        }
+		    }
+
+		    return images;
+		}
+
 	    public void pdfCheck(String executive,String event_id,String text184, String text, String paragraph_investigators,String paragraph_background,String paragraph_timeline,String paragraph_problem, String get_date, String get_time, String get_dept, String creationDate) throws Exception{
 	    	
 	    	 List<String> results = new ArrayList<String>();
@@ -337,30 +368,29 @@ public class IETest {
 	    	}
 	    	System.out.println(results.get(0));
 	    	//Loads the file to check if correct data is present
-	    	String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
-	    	File file = new File(fileName);
-	    	FileInputStream fis = new FileInputStream(file);
-	    	PDFParser parser = new PDFParser(fis);
-	        parser.parse();
-	        COSDocument cosDoc= parser.getDocument();       
-	        PDDocument pddoc= new PDDocument(cosDoc);
-	        PDFTextStripper pdfStripper= new PDFTextStripper();
-	        pdfStripper.setStartPage( 1 );
-	        pdfStripper.setEndPage( Integer.MAX_VALUE );
-	        String data = pdfStripper.getText(pddoc);
-	        List<String> ans= Arrays.asList(data.split("\r\n"));
-	        String newData=null;
-	        for (int i = 0; i < ans.size(); i++)
-	        {
-	        	
-	        	//System.out.println(ans.get(i));
-	        	int n=ans.get(i).length()-1;
-	        	if (ans.get(i).charAt(n)==' ')
-	        		newData = newData+ans.get(i);
-	        	if (ans.get(i).charAt(n)!=' ')
-	        		newData = newData+" "+ans.get(i);
-	        	
-	        }
+			String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+			File oldfile = new File(fileName);
+			//Checks number of images in pdf
+			PDDocument pddoc= PDDocument.load(oldfile);
+			List<RenderedImage> images = new ArrayList<>();
+			images=getImagesFromPDF(pddoc);
+			System.out.println("Number of images: "+images.size());
+			softly.assertThat(images.size()).as("test data").isEqualTo(10);
+			//Checks text in pdf
+			String data = new PDFTextStripper().getText(pddoc);
+			List<String> ans= Arrays.asList(data.split("\r\n"));
+			String newData="";
+			for (int i = 0; i < ans.size(); i++)
+			{
+			        	
+			   	//System.out.println(ans.get(i));
+			   	int n=ans.get(i).length()-1;
+			   	if (ans.get(i).charAt(n)==' ')
+			   		newData = newData+ans.get(i);
+			   	if (ans.get(i).charAt(n)!=' ')
+			   		newData = newData+" "+ans.get(i);
+			        	
+			}
 	        newData=newData.replace("  ", " ");
 	       // System.out.println(newData);
 	        //Verifies event id
@@ -451,7 +481,6 @@ public class IETest {
 		        softly.assertThat("(SUEP) S: Substandard Practice? U: Under Management Control? E: Early in Event Sequence? P: Prevention Of Recurrence?").as("test data").isSubstringOf(newData);
 		        //Verify Missing LOPS
 		        softly.assertThat("Missing LOPs No missing LOPs specified").as("test data").isSubstringOf(newData);
-	        cosDoc.close();
 	        pddoc.close();	      
 	    }
 				        		   
