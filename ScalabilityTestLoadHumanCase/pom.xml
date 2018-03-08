@@ -26,9 +26,9 @@
                 <configuration>
                     <testResultsTimestamp>false</testResultsTimestamp>
                     <propertiesUser>
-                        <threadgroup.count>2</threadgroup.count>
-                        <threadgroup.rampup>2</threadgroup.rampup>
-                        <threadgroup.duration>5</threadgroup.duration>
+                        <threadgroup.countallrequest>5</threadgroup.countallrequest>
+                        <threadgroup.count>5</threadgroup.count>
+                        <threadgroup.rampup>1</threadgroup.rampup>
                         <jmeter.save.saveservice.output_format>csv</jmeter.save.saveservice.output_format>
                         <jmeter.save.saveservice.bytes>true</jmeter.save.saveservice.bytes>
                         <jmeter.save.saveservice.label>true</jmeter.save.saveservice.label>
