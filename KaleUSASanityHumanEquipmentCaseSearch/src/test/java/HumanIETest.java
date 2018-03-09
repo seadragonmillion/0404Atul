@@ -371,6 +371,13 @@ public class HumanIETest {
 		  //Enters case id
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("2051");
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(Keys.ENTER);
+		   try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on Q2051
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q2051"))).click();
 		  //Clicks on Show Slides
