@@ -34,7 +34,7 @@ public class HumanIETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(700000);
+	  public Timeout globalTimeout= new Timeout(800000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -366,11 +366,19 @@ public class HumanIETest {
 		  //Checks for search method with magnifying glass
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("2051");
 		  driver.findElement(By.id("pii-efsh-searchbyid-btn")).click();
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  driver.findElement(By.id("pii-efsh-clear")).click();
 		  Thread.sleep(2000);
 		  //Enters case id
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys("2051");
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(2000);
 		   try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
