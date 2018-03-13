@@ -167,7 +167,7 @@ public class IE10Test {
 		//Clicks on Error free bank
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		//Clicks on Equipment Performance Search (PII)
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search (PII)"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-e-menu-equipPII"))).click();
 		//Enters the title in term search field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		Thread.sleep(1000);
@@ -443,22 +443,22 @@ public class IE10Test {
 		  if(title.equals(eq_title)&&y==0)
 		  {
 			//Clicks on Equipment Performance Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
 		  }
 		  if(y==1)
 		  {
 			//Clicks on Equipment Performance Search (PII)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search (PII)"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-e-menu-equipPII"))).click();
 		  }
 		  if(title.equals(ee_title))
 		  {
 			//Clicks on Electrical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes"))).click();
 		  }
 		  if(title.equals(me_title))
 		  {
 			//Clicks on Mechanical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes"))).click();
 		  }
 		  //Enters case id
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(caseId);
@@ -545,22 +545,22 @@ public class IE10Test {
 		  if(keyword_same.equals(keyword_same_eq)&&y==0)
 		  {
 			//Clicks on Equipment Performance Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
 		  }
 		  if(y==1)
 		  {
 			//Clicks on Equipment Performance Search (PII)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search (PII)"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-e-menu-equipPII"))).click();
 		  }
 		  if(keyword_same.equals(keyword_same_ee))
 		  {
 			//Clicks on Electrical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes"))).click();
 		  }
 		  if(keyword_same.equals(keyword_same_me))
 		  {
 			//Clicks on Mechanical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes"))).click();
 		  }
 		  //Enters the term and check the search by enter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
@@ -648,7 +648,7 @@ public class IE10Test {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Equipment Performance Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		  //Enters Electrical Case id to see if it exists
@@ -689,7 +689,7 @@ public class IE10Test {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Equipment Performance Search (PII)
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search (PII)"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-e-menu-equipPII"))).click();
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		  //Enters Electrical Case id to see if it exists
@@ -730,7 +730,7 @@ public class IE10Test {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Electrical Failure Mode Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes"))).click();
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		  //Enters Equipment Case id to see if it exists
@@ -757,7 +757,7 @@ public class IE10Test {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Mechanical Failure Mode Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes"))).click();
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		  //Enters Equipment Case id to see if it exists

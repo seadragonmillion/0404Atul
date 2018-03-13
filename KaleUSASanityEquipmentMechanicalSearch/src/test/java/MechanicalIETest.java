@@ -166,7 +166,7 @@ public class MechanicalIETest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		 //Clicks on Equipment performance search
-		  driver.findElement(By.linkText("Mechanical Failure Mode Search")).click();
+		  driver.findElement(By.linkText("Mechanical Failure Modes")).click();
 		//Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);

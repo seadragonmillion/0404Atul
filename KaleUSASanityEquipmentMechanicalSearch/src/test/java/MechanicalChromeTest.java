@@ -160,7 +160,7 @@ public class MechanicalChromeTest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Mechanical Failure mode search
-		  driver.findElement(By.linkText("Mechanical Failure Mode Search")).click();
+		  driver.findElement(By.linkText("Mechanical Failure Modes")).click();
 		  //Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);

@@ -161,7 +161,7 @@ public class EquipmentChromeTest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Equipment performance search (pii)
-		  driver.findElement(By.linkText("Equipment Performance Search (PII)")).click();
+		  driver.findElement(By.id("pii-e-menu-equipPII")).click();
 		  //Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);

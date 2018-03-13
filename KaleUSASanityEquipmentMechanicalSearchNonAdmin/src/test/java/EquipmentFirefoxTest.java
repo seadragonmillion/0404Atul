@@ -183,7 +183,7 @@ public class EquipmentFirefoxTest {
 		  }
 		  else fail();
 		  //Clicks on Equipment performance search 
-		  driver.findElement(By.linkText("Equipment Performance Search")).click();
+		  driver.findElement(By.linkText("Equipment Performance")).click();
 		  //Checks if clear feature works on term field
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keyword);
 		  Thread.sleep(1000);

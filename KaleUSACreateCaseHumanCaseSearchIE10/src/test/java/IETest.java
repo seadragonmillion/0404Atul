@@ -156,7 +156,7 @@ public class IETest {
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		//Clicks on Human Performance Search
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 		//Enters the title in term search field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
 		Thread.sleep(1000);

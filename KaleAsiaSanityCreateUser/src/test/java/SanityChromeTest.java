@@ -424,28 +424,28 @@ public class SanityChromeTest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
 		if(f.contains("Human Performance Search"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Human Performance Search enabled");
 			else softly.fail("Human Performance Search disabled");
 		}
 		if(f.contains("Equipment Performance Search"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Equipment Performance Search enabled");
 			else softly.fail("Equipment Performance Search disabled");
 		}
 		if(f.contains("Electrical Failure Mode Search"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Mode Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Electrical Failure Mode Search enabled");
 			else softly.fail("Electrical Failure Mode Search disabled");
 		}
 		if(f.contains("Mechanical Failure Mode Search"))
 		{
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Mode Search")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 				System.out.println("Mechanical Failure Mode Search enabled");
 			else softly.fail("Mechanical Failure Mode Search disabled");
