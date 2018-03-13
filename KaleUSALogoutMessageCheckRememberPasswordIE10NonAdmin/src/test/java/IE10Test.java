@@ -29,7 +29,7 @@ public class IE10Test {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3500000);
+	  public Timeout globalTimeout= new Timeout(3600000);
 	
 	@SuppressWarnings("deprecation")
 	@Before
@@ -142,6 +142,7 @@ public class IE10Test {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		Login();
 		System.out.println("Title after login: "+driver.getTitle());
+		Thread.sleep(5000);
 	    //Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
       //Switches to the iframe

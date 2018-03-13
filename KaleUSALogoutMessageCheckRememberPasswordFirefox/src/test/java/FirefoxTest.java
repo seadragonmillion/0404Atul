@@ -31,7 +31,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3500000);
+	  public Timeout globalTimeout= new Timeout(3600000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -232,7 +232,7 @@ public String decode(String pw){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-header-message-passwd"))).sendKeys(decode(password));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-header-message-passwd"))).sendKeys(Keys.ENTER);
 		System.out.println("Logged in");
-		Thread.sleep(5000);
+		Thread.sleep(20000);
 		//Logs out
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
