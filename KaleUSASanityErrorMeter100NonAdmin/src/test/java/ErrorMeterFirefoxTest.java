@@ -86,7 +86,7 @@ public class ErrorMeterFirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(600000);
+	  public Timeout globalTimeout= new Timeout(700000);
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -256,10 +256,11 @@ public class ErrorMeterFirefoxTest {
 	    	robot.keyPress(KeyEvent.VK_S);
 	    	robot.keyRelease(KeyEvent.VK_CONTROL);
 	    	robot.keyRelease(KeyEvent.VK_S);
+	    	Thread.sleep(4000);
 	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 	    	p.waitFor();
 	    	pdfCheck();
-	    	Thread.sleep(4000);
+	    	Thread.sleep(8000);
 	    	driver.close();
 	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);

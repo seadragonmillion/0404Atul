@@ -291,7 +291,7 @@ public class IETest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Human Performance Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance Search"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 		  //Enters case id
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(caseId);
 		  driver.findElement(By.id("pii-efsh-searchbyid-input")).sendKeys(Keys.ENTER);
