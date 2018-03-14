@@ -4,6 +4,13 @@
   <artifactId>LogoutMessageCheck</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 <dependencies>
+    <dependency>
+    <groupId>com.example</groupId>
+    <artifactId>mylib</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>C:/Users/IEUser/jar/KALE.jar</systemPath>
+  </dependency>
  <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
 <dependency>
     <groupId>org.apache.pdfbox</groupId>
