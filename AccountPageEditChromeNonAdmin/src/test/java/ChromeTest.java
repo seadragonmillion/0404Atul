@@ -132,6 +132,7 @@ public class ChromeTest {
 		
 		//Logs in without checking Remember Me
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		Thread.sleep(5000);
 		Login();
 		System.out.println("Title after login: "+driver.getTitle());
 	    //Waits for the page to load
