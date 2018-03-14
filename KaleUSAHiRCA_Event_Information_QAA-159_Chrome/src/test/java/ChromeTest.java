@@ -876,6 +876,7 @@ public class ChromeTest {
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
 			  Login();
 			  System.out.println("Title after login: "+driver.getTitle());
+			  Thread.sleep(4000);
 			  //Waits for the page to load
 		      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  //Switches to the iframe

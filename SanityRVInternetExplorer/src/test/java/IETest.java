@@ -309,7 +309,7 @@ public class IETest {
 		      List<RenderedImage> images = new ArrayList<>();
 		      images=getImagesFromPDF(pddoc);
 		      System.out.println("Number of images: "+images.size());
-		      softly.assertThat(images.size()).as("test data").isEqualTo(3);
+		      softly.assertThat(images.size()).as("test data").isEqualTo(2);
 		      //Checks text in pdf
 		      String data = new PDFTextStripper().getText(pddoc);
 		      List<String> ans= Arrays.asList(data.split("\r\n"));
