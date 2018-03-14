@@ -1,20 +1,17 @@
 import java.net.MalformedURLException;
-import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,23 +24,20 @@ public class FirefoxTest {
 	private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
-	private int login =0;
     SoftAssertions softly = new SoftAssertions();
 	
-	@SuppressWarnings("deprecation")
-	@Rule
-	  public Timeout globalTimeout= new Timeout(300000);
-		  
-	@Before
+    @Before
 	public void beforeTest() throws MalformedURLException{
 		  
 		 System.out.println("Ability to edit account page for non admin user in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
+		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		 profile.setPreference("browser.download.folderList", 2);
+		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 FirefoxOptions options = new FirefoxOptions();
+		 options.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(options);
 		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
@@ -58,97 +52,15 @@ public class FirefoxTest {
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
-	
-	public String decode(String pw){
-		
-		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
-		String decryptedPassword = new String(decryptedPasswordBytes);
-		return (decryptedPassword);
-	}
 
-	public void Login() throws Exception{
-		  
-		  System.out.println("Title before login: "+driver.getTitle());
-		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
-		  //Login pop up is located and clicked
-		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
-		  //Username text field is located and the username is entered
-		  driver.findElement(By.id("pii-un")).sendKeys(username);
-		  //Password field is located and the password is entered
-		  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
-		  //Sign in button is located and clicked
-		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
-		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
-		  int c=1;
-		  if (user.equals(username)==true)
-		  {
-			  if(pw.equals(decode(password))==true)
-			  {
-				  //Sign in button is located and clicked
-				  driver.findElement(By.id("pii-signin-button")).click();  
-				  while(c>0)
-				  {
-				  Thread.sleep(2000);
-				  WebElement element = driver.findElement(By.id("pii-signin-message"));
-				  String text = element.getText();
-				  if (element.isDisplayed())
-				  {
-					  if(text.isEmpty())
-					  {
-						  System.out.println("Logged in");
-						  break;
-						  }
-					  else
-					  {
-						  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
-						  //Sign in button is located and clicked
-						  driver.findElement(By.id("pii-signin-button")).click();
-						  login =1;
-						  break;
-					  }
-					  			  
-				  }
-				  else break;
-			  }}
-			
-		  }
-		  if ((user.equals(username)==false)||(pw.equals(decode(password))==false))
-		    {
-				  while(c>0)
-				  {
-					  Thread.sleep(1000);
-					  driver.findElement(By.id("pii-un")).clear();
-					  driver.findElement(By.id("pii-pw")).clear();
-					  //Username text field is located and the username is entered
-					  driver.findElement(By.id("pii-un")).sendKeys(username);
-					  //Password field is located and the password is entered
-					  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
-					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
-					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
-					  if (user.equals(username)==true)
-					  {
-						  if(pw.equals(decode(password))==true)
-						  {
-							  //Sign in button is located and clicked
-							  driver.findElement(By.id("pii-signin-button")).click();
-							  break;
-						  }
-						
-					  }
-				  }
-			  
-			  
-		  }
-			  
-		}
 	@Test
 	public void test() throws Exception {
 		
-		//Logs in without checking Remember Me
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		Login();
+		Login obj = new Login();
+		LanguageCheckOfReports obj1 = new LanguageCheckOfReports();
+		//Logs in
+		int login = obj.LoginUser(driver,username,password);
 		System.out.println("Title after login: "+driver.getTitle());
 	    //Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -191,6 +103,11 @@ public class FirefoxTest {
 		//Change email id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("Email changed");
+		//Changes language to Chinese
+		dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
+		Select s4 = new Select (dropdown1);
+		s4.selectByVisibleText("Chinese");
+		//
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -203,13 +120,45 @@ public class FirefoxTest {
 			  {
 				  
 			  }
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Checks language in error meter
+		WebElement l = obj1.errorMeter(driver,0);
+		obj1.downloadReportFirefox (driver, 0, l);
+		//Checks language in HPI
+		obj1.hpi(driver,0);
+		//Checks language in HiRCA
+		l = obj1.hirca(driver,0);
+		obj1.downloadReportFirefox (driver, 0, l);
+		//Checks language in EiRCA
+		l = obj1.eirca(driver,0);
+		obj1.downloadReportFirefox (driver, 0, l);
+		//Checks language in O&PiRCA
+		l = obj1.opirca(driver,0);
+		obj1.downloadReportFirefox (driver, 0, l);
+		//Checks language in Job Observation
+		obj1.jobs(driver,0);
+		//Checks language in 3 Pass Review
+		obj1.passReview(driver,0);
+		//Checks language in Remote Verification
+		l = obj1.rv(driver,0);
+		obj1.downloadReportFirefox (driver, 0, l);
 		//Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		Thread.sleep(2000);
 		driver.switchTo().defaultContent();
 		//Login again
-		Login();
+		login = obj.LoginUser(driver, username, password);
 		Thread.sleep(3000);
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -253,6 +202,10 @@ public class FirefoxTest {
 		//Change email id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("rramakrishnan@errorfree.com");
+		//Changes language to English
+		dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
+		Select s5 = new Select (dropdown1);
+		s5.selectByVisibleText("English");
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -265,11 +218,43 @@ public class FirefoxTest {
 			  {
 				  
 			  }
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Checks language in error meter
+		l=obj1.errorMeter(driver,1);
+		obj1.downloadReportFirefox (driver, 1, l);
+		//Checks language in HPI
+		obj1.hpi(driver,1);
+		//Checks language in HiRCA
+		l=obj1.hirca(driver,1);
+		obj1.downloadReportFirefox (driver, 1, l);
+		//Checks language in EiRCA
+		l=obj1.eirca(driver,1);
+		obj1.downloadReportFirefox (driver, 1, l);
+		//Checks language in O&PiRCA
+		l=obj1.opirca(driver,1);
+		obj1.downloadReportFirefox (driver, 1, l);
+		//Checks language in Job Observation
+		obj1.jobs(driver,1);
+		//Checks language in 3 Pass Review
+		obj1.passReview(driver,1);
+		//Checks language in Remote Verification
+		l=obj1.rv(driver,1);
+		obj1.downloadReportFirefox (driver, 1, l);
 		//Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		Thread.sleep(2000);
-		afterTest();		
+		afterTest();	
 	}
 	
 	public void afterTest(){

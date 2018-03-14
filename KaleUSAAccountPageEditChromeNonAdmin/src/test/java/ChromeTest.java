@@ -1,16 +1,16 @@
 import java.net.MalformedURLException;
-import java.util.Base64;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,19 +23,26 @@ public class ChromeTest {
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";
-	private int login =0;
     SoftAssertions softly = new SoftAssertions();
 	
-	@SuppressWarnings("deprecation")
-	@Rule
-	  public Timeout globalTimeout= new Timeout(300000);
-		  
-	@Before
+    @Before
 	  public void beforeTest() throws MalformedURLException{
 		  
 		  System.out.println("Ability to edit account page for non admin user in Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
-		  driver = new ChromeDriver();
+		  ChromeOptions options = new ChromeOptions();
+        HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+        chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+      		    "Chrome PDF Viewer"
+      		});
+        chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
+        options.setExperimentalOption("prefs", chromeOptionsMap);
+        String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+        chromeOptionsMap.put("download.default_directory", downloadFilepath);
+        options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+        options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        options.setCapability(ChromeOptions.CAPABILITY, options);
+        driver = new ChromeDriver(options);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
@@ -43,118 +50,36 @@ public class ChromeTest {
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
 	
-	public String decode(String pw){
-		
-		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
-		String decryptedPassword = new String(decryptedPasswordBytes);
-		return (decryptedPassword);
-	}
-
-	public void Login() throws Exception{
-		  
-		  System.out.println("Title before login: "+driver.getTitle());
-		  //Login button is located and clicked
-		  driver.findElement(By.id("pii-login-button")).click();
-		  //Login pop up is located and clicked
-		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("popupLogin"))).click();
-		  //Username text field is located and the username is entered
-		  driver.findElement(By.id("pii-un")).sendKeys(username);
-		  //Password field is located and the password is entered
-		  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
-		  //Sign in button is located and clicked
-		  String user = driver.findElement(By.id("pii-un")).getAttribute("value");
-		  String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
-		  int c=1;
-		  if (user.equals(username)==true)
-		  {
-			  if(pw.equals(decode(password))==true)
-			  {
-				  //Sign in button is located and clicked
-				  driver.findElement(By.id("pii-signin-button")).click();  
-				  while(c>0)
-				  {
-				  Thread.sleep(2000);
-				  WebElement element = driver.findElement(By.id("pii-signin-message"));
-				  String text = element.getText();
-				  if (element.isDisplayed())
-				  {
-					  if(text.isEmpty())
-					  {
-						  System.out.println("Logged in");
-						  break;
-						  }
-					  else
-					  {
-						  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
-						  //Sign in button is located and clicked
-						  driver.findElement(By.id("pii-signin-button")).click();
-						  login =1;
-						  break;
-					  }
-					  			  
-				  }
-				  else break;
-			  }}
-			
-		  }
-		  if ((user.equals(username)==false)||(pw.equals(decode(password))==false))
-		    {
-				  while(c>0)
-				  {
-					  Thread.sleep(1000);
-					  driver.findElement(By.id("pii-un")).clear();
-					  driver.findElement(By.id("pii-pw")).clear();
-					  //Username text field is located and the username is entered
-					  driver.findElement(By.id("pii-un")).sendKeys(username);
-					  //Password field is located and the password is entered
-					  driver.findElement(By.id("pii-pw")).sendKeys(decode(password));
-					  user = driver.findElement(By.id("pii-un")).getAttribute("value");
-					  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
-					  if (user.equals(username)==true)
-					  {
-						  if(pw.equals(decode(password))==true)
-						  {
-							  //Sign in button is located and clicked
-							  driver.findElement(By.id("pii-signin-button")).click();
-							  break;
-						  }
-						
-					  }
-				  }
-			  
-			  
-		  }
-			  
-		}
+	
 	@Test
 	public void test() throws Exception {
 		
-		//Logs in without checking Remember Me
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		Login();
+		Login obj = new Login();
+		LanguageCheckOfReports obj1 = new LanguageCheckOfReports();
+		//Logs in
+		int login = obj.LoginUser(driver,username,password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(4000);
 	    //Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        //Switches to the iframe
+      //Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);
 		if (login==1)
-        {
-              
-              while(true)
-  		  {
-             	 Thread.sleep(1000);
-  			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
-  			  {
-  				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
-  				  ele.findElement(By.className("sticky-close")).click();
-  				  break;
-  			  }
-  			  else break;
-  		  }
-        }	
+      {
+            
+            while(true)
+		  {
+           	 Thread.sleep(1000);
+			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+			  {
+				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
+				  ele.findElement(By.className("sticky-close")).click();
+				  break;
+			  }
+			  else break;
+		  }
+      }	
 		Thread.sleep(2000);
 		//Clicks on Account
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
@@ -176,6 +101,11 @@ public class ChromeTest {
 		//Change email id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("Email changed");
+		//Changes language to Chinese
+		dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
+		Select s4 = new Select (dropdown1);
+		s4.selectByVisibleText("Chinese");
+		//
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -188,16 +118,48 @@ public class ChromeTest {
 			  {
 				  
 			  }
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Checks language in error meter
+		WebElement l = obj1.errorMeter(driver,0);
+		obj1.downloadReportChrome (driver, 0, l);
+		//Checks language in HPI
+		obj1.hpi(driver,0);
+		//Checks language in HiRCA
+		l = obj1.hirca(driver,0);
+		obj1.downloadReportChrome (driver, 0, l);
+		//Checks language in EiRCA
+		l = obj1.eirca(driver,0);
+		obj1.downloadReportChrome (driver, 0, l);
+		//Checks language in O&PiRCA
+		l = obj1.opirca(driver,0);
+		obj1.downloadReportChrome (driver, 0, l);
+		//Checks language in Job Observation
+		obj1.jobs(driver,0);
+		//Checks language in 3 Pass Review
+		obj1.passReview(driver,0);
+		//Checks language in Remote Verification
+		l = obj1.rv(driver,0);
+		obj1.downloadReportChrome (driver, 0, l);
 		//Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		Thread.sleep(2000);
 		//Login again
-		Login();
+		login = obj.LoginUser(driver, username, password);
 		Thread.sleep(3000);
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        //Switches to the iframe
+      //Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);
 		//Clicks on Account
@@ -237,6 +199,10 @@ public class ChromeTest {
 		//Change email id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("rramakrishnan@errorfree.com");
+		//Changes language to English
+		dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
+		Select s5 = new Select (dropdown1);
+		s5.selectByVisibleText("English");
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -249,6 +215,38 @@ public class ChromeTest {
 			  {
 				  
 			  }
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Checks language in error meter
+		l=obj1.errorMeter(driver,1);
+		obj1.downloadReportChrome (driver, 1, l);
+		//Checks language in HPI
+		obj1.hpi(driver,1);
+		//Checks language in HiRCA
+		l=obj1.hirca(driver,1);
+		obj1.downloadReportChrome (driver, 1, l);
+		//Checks language in EiRCA
+		l=obj1.eirca(driver,1);
+		obj1.downloadReportChrome (driver, 1, l);
+		//Checks language in O&PiRCA
+		l=obj1.opirca(driver,1);
+		obj1.downloadReportChrome (driver, 1, l);
+		//Checks language in Job Observation
+		obj1.jobs(driver,1);
+		//Checks language in 3 Pass Review
+		obj1.passReview(driver,1);
+		//Checks language in Remote Verification
+		l=obj1.rv(driver,1);
+		obj1.downloadReportChrome (driver, 1, l);
 		//Logs out
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
