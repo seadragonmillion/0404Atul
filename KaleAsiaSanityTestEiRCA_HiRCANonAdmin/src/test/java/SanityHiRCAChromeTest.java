@@ -167,6 +167,7 @@ public class SanityHiRCAChromeTest {
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  Thread.sleep(4000);
 			  try{
                        if (login==1)
                        {
