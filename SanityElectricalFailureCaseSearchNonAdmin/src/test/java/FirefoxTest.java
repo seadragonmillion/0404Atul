@@ -199,6 +199,8 @@ public class FirefoxTest {
 		  Actions act1 = new Actions(driver);
 		  WebElement act= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a"));
 		  act1.click(act).build().perform();
+		  Thread.sleep(4000);		  
+		  driver.findElement(By.id("pii-efse-clear")).click();
 		  //Checks with new keyword with %
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).clear();
 		  driver.findElement(By.id("pii-efse-searchbykw-input")).sendKeys(keypercent);
