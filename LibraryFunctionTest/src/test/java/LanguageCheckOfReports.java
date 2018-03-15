@@ -710,7 +710,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]/strong"))).getText());
 		//Stores text of verifier status
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/strong"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText());
 		//Stores text of 2nd table
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[1]/th/div/strong"))).getText());
 		//Stores text of 3rd table
