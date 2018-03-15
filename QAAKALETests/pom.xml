@@ -1,17 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>KALE</groupId>
-  <artifactId>LogoutMessageCheck</artifactId>
+  <artifactId>ParentPom</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+ 
 <dependencies>
     <dependency>
     <groupId>com.example</groupId>
     <artifactId>mylib</artifactId>
     <version>1.0</version>
     <scope>system</scope>
-    <systemPath>C:/Users/IEUser/jar/KALE.jar</systemPath>
+    <systemPath>${main.basedir}/JavaKaleJar/bin/KALE.jar</systemPath>
   </dependency>
- <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
 <dependency>
     <groupId>org.apache.pdfbox</groupId>
     <artifactId>pdfbox</artifactId>
@@ -87,10 +89,19 @@
 </dependency>
 </dependencies>
 <properties>
+    <main.basedir>${project.basedir}</main.basedir>
      <aspectj.version>1.7.4</aspectj.version>
      <maven.compiler.source>1.8</maven.compiler.source>
      <maven.compiler.target>1.8</maven.compiler.target>
 </properties>
+  <repositories>
+        <repository>
+            <id>in-project</id>
+            <name>In Project Repo</name>
+            <url>file://${main.basedir}/lib</url>
+        </repository>
+</repositories>
+
 <build>
 <plugins>
 <plugin>
