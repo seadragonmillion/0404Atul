@@ -13,6 +13,11 @@
     <scope>system</scope>
     <systemPath>${main.basedir}/JavaKaleJar/bin/KALE.jar</systemPath>
   </dependency>
+    <dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.6.0</version>
+  </dependency>
 <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
 <dependency>
     <groupId>org.apache.pdfbox</groupId>
