@@ -251,7 +251,7 @@ public class LanguageCheckOfReports {
 	}
 	
 	public WebElement errorMeter(WebDriver driver, int y) throws Exception{
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on error meter side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
@@ -276,7 +276,8 @@ public class LanguageCheckOfReports {
 		//Stores text of SPV title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-epm-critical-input']"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-epm-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of username label
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td/strong"))).getText());
 		//Stores text of username label
@@ -347,7 +348,7 @@ public class LanguageCheckOfReports {
 	
 	public void hpi(WebDriver driver, int y) throws Exception{
 		
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on hpi side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
@@ -372,7 +373,8 @@ public class LanguageCheckOfReports {
 		//Stores text of HPI title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-hpi-critical-input']"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-hpi-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of delete button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
 		//Stores text of share button
@@ -390,7 +392,7 @@ public class LanguageCheckOfReports {
 	}
 	
 	public WebElement hirca(WebDriver driver, int y) throws Exception{
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on hirca side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
@@ -415,7 +417,8 @@ public class LanguageCheckOfReports {
 		//Stores text of HiRCA title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of back button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
 		//Stores text of open button
@@ -465,7 +468,7 @@ public class LanguageCheckOfReports {
 	}
 	
 	public WebElement eirca(WebDriver driver, int y) throws Exception{
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on eirca side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-mirca"))).click();
@@ -490,7 +493,8 @@ public class LanguageCheckOfReports {
 		//Stores text of EiRCA title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-mirca-critical-input']"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-mirca-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of back button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
 		//Stores text of open button
@@ -535,7 +539,7 @@ public class LanguageCheckOfReports {
 	
 	public WebElement opirca(WebDriver driver, int y) throws Exception{
 		
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on opirca side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-opa"))).click();
@@ -575,7 +579,7 @@ public class LanguageCheckOfReports {
 	
 	public void jobs(WebDriver driver, int y) throws Exception{
 		
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on job observation side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
@@ -598,7 +602,8 @@ public class LanguageCheckOfReports {
 				  
 			  }
 		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-jo-critical-input']"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-jo-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of back button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
 		//Stores text of delete button
@@ -620,7 +625,7 @@ public class LanguageCheckOfReports {
 	
 	public void passReview(WebDriver driver, int y) throws Exception{
 		
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on 3 pass review side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
@@ -643,7 +648,8 @@ public class LanguageCheckOfReports {
 				  
 			  }
 		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-3pr-critical-input']"))).getText());
+		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-3pr-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of back button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
 		//Stores text of open button
@@ -667,7 +673,7 @@ public class LanguageCheckOfReports {
 	
 	public WebElement rv(WebDriver driver, int y) throws Exception{
 		
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on remote verification side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
@@ -710,7 +716,6 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]/strong"))).getText());
 		//Stores text of verifier status
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/strong"))).getText());
-		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText());
 		//Stores text of 2nd table
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[1]/th/div/strong"))).getText());
 		//Stores text of 3rd table
@@ -729,7 +734,7 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();		
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
+		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))));
 
 	}
 	

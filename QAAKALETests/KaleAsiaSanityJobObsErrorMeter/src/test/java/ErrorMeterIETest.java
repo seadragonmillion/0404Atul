@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ErrorMeterIETest {
 
-	private WebDriver driver;
+	private InternetExplorerDriver driver;
 	private String username ="ritica";
 	private String password = "S2FsZTQ2MTkxODAyQA==";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer_Win32_3.6.0\\IEDriverServer.exe";

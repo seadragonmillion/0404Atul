@@ -136,6 +136,7 @@ public class IETest {
 		//Checks language in 3 Pass Review
 		obj1.passReview(driver,0);
 		//Checks language in Remote Verification
+		Thread.sleep(2000);
 		l = obj1.rv(driver,0);
 		obj1.downloadReportIE (driver, 0, l);
 		//Logs out

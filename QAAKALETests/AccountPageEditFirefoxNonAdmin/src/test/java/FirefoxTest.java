@@ -248,6 +248,7 @@ public class FirefoxTest {
 		//Checks language in 3 Pass Review
 		obj1.passReview(driver,1);
 		//Checks language in Remote Verification
+		Thread.sleep(2000);
 		l=obj1.rv(driver,1);
 		obj1.downloadReportFirefox (driver, 1, l);
 		//Logs out
