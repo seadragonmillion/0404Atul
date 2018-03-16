@@ -130,7 +130,7 @@ public class ErrorMeterIETest {
 		  //Checks if the record name is correct
 		  assertEquals(name,recordName);
 		  Thread.sleep(2000);
-		  obj1.reportCheck0(driver);
+		  obj1.reportCheck100(driver);
 		  //Downloads record, the integer indicates error meter tests based on error %= 0,50,100
 		  obj1.downloadReportIE(driver, 100);
 		  Thread.sleep(2000);
