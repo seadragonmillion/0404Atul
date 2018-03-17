@@ -186,36 +186,218 @@ public class IETest {
 		  }
 		  else softly.fail("Record not deleted "+recordName);
 	  }
+
+	  public void saveThirdReportCheckImages() throws Exception {
+			  
+			  WebDriverWait wait = new WebDriverWait(driver,30);
+			  JavascriptExecutor jse = (JavascriptExecutor)driver;
+			  while(true)
+			  {
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
+			  }
+			  //Logout
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			  driver.switchTo().defaultContent();
+			  Thread.sleep(2000);
+			  //Login
+			  Login();
+			  Thread.sleep(2000);
+			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  Thread.sleep(5000);
+			  //Clicks on Analysis 
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+			  //Click on HiRCA
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
+			  //Click on saved activities
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+			  //Click on newly created record
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			  //Click on Open button
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		      //Clicks on open report
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		      //Clicks on Info tab
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		      //Changes the event title
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).clear();
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys("changed title twice");
+		      //Clicks on Save
+		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+			  //Clicks on Save report
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+			  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			  //Scroll down and check for 5 images uploaded
+			  jse.executeScript("scroll(0, 600)");
+			  for (int i=0;i<=4;i++)
+			  {
+				  //Clicks on collapsible
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  try{
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					 }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
+				  //Checks for image
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
+				  //Clicks on collapsible again
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+			  }
+			  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
+			  String newRecord=creationDate + "_"+username+"_"+ "changed title";
+			  jse.executeScript("scroll(0, 0)");
+		      //Clicks on Saved activities
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+			  Thread.sleep(2000);
+			  //call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
+			  deleteNewRecord(newRecord);
+			  //5
+			  
+		  }
 	
 	public void saveNewReport() throws Exception{
-    	
-    	//Clicks on Open button
-    	WebDriverWait wait1 = new WebDriverWait(driver,30);
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	//Clicks on open report
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-    	//Clicks on Info tab
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
-    	//Changes the event title
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).clear();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys("changed title");
-    	//Clicks on Save
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
-		//Clicks on Save report
-	    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-		Thread.sleep(1000);
-		String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
-		String newRecord=creationDate + "_"+username+"_"+ "changed title";
-        //Clicks on Saved activities
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
-		Thread.sleep(2000);
-		//call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
-		deleteNewRecord(newRecord);
-		
-    }
+		    	
+			  WebDriverWait wait = new WebDriverWait(driver,30);
+			  JavascriptExecutor jse = (JavascriptExecutor)driver;
+			  while(true)
+			  {
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
+			  }
+			  //Logout
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			  driver.switchTo().defaultContent();
+			  Thread.sleep(2000);
+			  //Login
+			  Login();
+			  Thread.sleep(2000);
+			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+			  Thread.sleep(5000);
+			  //Clicks on Analysis 
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+			  //Click on HiRCA
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
+			  //Click on saved activities
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+			  //Click on newly created record
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			  try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			    //Clicks on Open button
+		    	WebDriverWait wait1 = new WebDriverWait(driver,30);
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		    	//Clicks on open report
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		    	//Clicks on Info tab
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		    	//Changes the event title
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).clear();
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys("changed title");
+		    	//Clicks on Save
+		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				//Clicks on Save report
+			    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				try{
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					 }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
+				//Scroll down and check for 5 images uploaded
+				  jse.executeScript("scroll(0, 600)");
+				  for (int i=0;i<=4;i++)
+				  {
+					  //Clicks on collapsible
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+					  try{
+						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+						  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+						 }catch (org.openqa.selenium.TimeoutException e)
+						  {
+							  
+						  }
+					  //Checks for image
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
+					  //Clicks on collapsible again
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  }
+				Thread.sleep(1000);
+				String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
+				String newRecord=creationDate + "_"+username+"_"+ "changed title";
+				jse.executeScript("scroll(0, 0)");
+		        //Clicks on Saved activities
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+				Thread.sleep(2000);
+				saveThirdReportCheckImages();
+				//call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
+				deleteNewRecord(newRecord);
+				
+		    }
 	  
 	    public void openReport() throws Exception{
 
