@@ -280,12 +280,14 @@ public class FirefoxTest {
 					  
 				  }
 			 //Scroll down and check for 5 images uploaded
-			  int scroll =700;
-			  jse.executeScript("scroll(0, "+scroll+")");
+			  int scroll =600;
+			  
 			  for (int i=0;i<=4;i++)
 			  {
+			  	  jse.executeScript("scroll(0, "+scroll+")");
 				  //Clicks on collapsible
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  Thread.sleep(2000);
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -295,10 +297,11 @@ public class FirefoxTest {
 					  }
 				  //Checks for image
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
+				  Thread.sleep(2000);
 				  //Clicks on collapsible again
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))).click();
 				  scroll=scroll+20;
-				  jse.executeScript("scroll(0, "+scroll+")");
+				  
 			  }
 			  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 			  String newRecord=creationDate + "_"+username+"_"+ "changed title";
@@ -389,12 +392,14 @@ public class FirefoxTest {
 						  
 					  }
 				//Scroll down and check for 5 images uploaded
-			  int scroll =700;
-			  jse.executeScript("scroll(0, "+scroll+")");
+			  int scroll =600;
+			  
 			  for (int i=0;i<=4;i++)
 			  {
+			  	  jse.executeScript("scroll(0, "+scroll+")");
 				  //Clicks on collapsible
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  Thread.sleep(2000);
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -404,10 +409,11 @@ public class FirefoxTest {
 					  }
 				  //Checks for image
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
+				  Thread.sleep(2000);
 				  //Clicks on collapsible again
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))).click();
 				  scroll=scroll+20;
-				  jse.executeScript("scroll(0, "+scroll+")");
+				  
 			  }
 				Thread.sleep(1000);
 				String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
