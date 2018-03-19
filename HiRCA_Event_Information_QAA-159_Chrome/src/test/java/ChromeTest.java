@@ -278,6 +278,7 @@ public class ChromeTest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+			  Thread.sleep(2000);
 			  try{
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -286,12 +287,13 @@ public class ChromeTest {
 					  
 				  }
 			  //Scroll down and check for 5 images uploaded
-			  int scroll =700;
+			  int scroll =600;
 			  jse.executeScript("scroll(0, "+scroll+")");
 			  for (int i=0;i<=4;i++)
 			  {
 				  //Clicks on collapsible
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  Thread.sleep(2000);
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -387,6 +389,7 @@ public class ChromeTest {
 			    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				Thread.sleep(2000);
 				try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -401,6 +404,7 @@ public class ChromeTest {
 			  {
 				  //Clicks on collapsible
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  Thread.sleep(2000);
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
