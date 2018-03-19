@@ -263,7 +263,8 @@ public class IETest {
 					  
 				  }
 			  //Scroll down and check for 5 images uploaded
-			  jse.executeScript("scroll(0, 600)");
+			  int scroll =700;
+			  jse.executeScript("scroll(0, "+scroll+")");
 			  for (int i=0;i<=4;i++)
 			  {
 				  //Clicks on collapsible
@@ -279,6 +280,8 @@ public class IETest {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
 				  //Clicks on collapsible again
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  scroll=scroll+20;
+				  jse.executeScript("scroll(0, "+scroll+")");
 			  }
 			  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 			  String newRecord=creationDate + "_"+username+"_"+ "changed title";
@@ -369,23 +372,26 @@ public class IETest {
 						  
 					  }
 				//Scroll down and check for 5 images uploaded
-				  jse.executeScript("scroll(0, 600)");
-				  for (int i=0;i<=4;i++)
-				  {
-					  //Clicks on collapsible
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
-					  try{
-						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-						  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-						 }catch (org.openqa.selenium.TimeoutException e)
-						  {
-							  
-						  }
-					  //Checks for image
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
-					  //Clicks on collapsible again
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
-				  }
+			  int scroll =700;
+			  jse.executeScript("scroll(0, "+scroll+")");
+			  for (int i=0;i<=4;i++)
+			  {
+				  //Clicks on collapsible
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  try{
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					 }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
+				  //Checks for image
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
+				  //Clicks on collapsible again
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
+				  scroll=scroll+20;
+				  jse.executeScript("scroll(0, "+scroll+")");
+			  }
 				Thread.sleep(1000);
 				String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 				String newRecord=creationDate + "_"+username+"_"+ "changed title";
