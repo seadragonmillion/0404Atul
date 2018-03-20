@@ -179,9 +179,9 @@ public class FirefoxTest {
 	public void deleteNewRecord(String recordName) throws Exception{
 		  
 	      
-		  WebDriverWait wait = new WebDriverWait(driver,40);
+		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Compares name of newly created record with expected name
-		  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
+		 // String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 		  //Clicks on new record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		  try{
@@ -192,9 +192,7 @@ public class FirefoxTest {
 					  {
 						  
 					  }
-		  if(name1.equals(recordName))
-		  {
-			  //Clicks on delete button
+		   //Clicks on delete button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			  //Clicks on delete report
@@ -210,8 +208,7 @@ public class FirefoxTest {
 				  System.out.println("Record deleted "+name);
 			  else
 				  System.out.println("Record could not be deleted");
-		  }
-		  else softly.fail("Record not deleted "+recordName);
+		  
 	  }
 
 	  public void saveThirdReportCheckImages() throws Exception {

@@ -174,23 +174,22 @@ public class ChromeTest {
 		      
 		  
 		    public void deleteNewRecord(String recordName) throws Exception{
-			  
-		      
-			  WebDriverWait wait = new WebDriverWait(driver,40);
-			  //Compares name of newly created record with expected name
-			  String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
-			  //Clicks on new record
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
-			  if(name1.equals(recordName))
-			  {
-			  //Clicks on delete button
+		  
+	      
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  //Compares name of newly created record with expected name
+		 // String name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
+		  //Clicks on new record
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		  try{
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+					  }catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  
+					  }
+		   //Clicks on delete button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			  //Clicks on delete report
@@ -206,9 +205,8 @@ public class ChromeTest {
 				  System.out.println("Record deleted "+name);
 			  else
 				  System.out.println("Record could not be deleted");
-			  }
-			  else softly.fail("Record not deleted "+recordName);			  			  
-		  }
+		  
+	  }
 
 		  public void saveThirdReportCheckImages() throws Exception {
 			  
