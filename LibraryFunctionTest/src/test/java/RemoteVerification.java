@@ -350,6 +350,48 @@ public class RemoteVerification {
     		    	
     }
 	
+	
+	public void downloadRecordIE11(WebDriver driver, String verifier, String username) throws Exception {
+    	
+	    //deletes files in reports folder before starting to download
+    	File file = new File("C://Users//IEUser//Downloads//reports//");
+    	deleteFiles(file);		  
+	    WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	//Clicks on first newly created record
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+    	Thread.sleep(4000);
+    	try {
+			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			  q.waitFor();
+			  }catch (UnhandledAlertException f){	
+				  System.out.println("Unexpected alert");
+				  driver.switchTo().alert().accept();
+				  
+		  	  }catch (NoAlertPresentException f){
+		  		  System.out.println ("No unexpected alert");
+		  		  }
+    	Thread.sleep(10000);
+    	//pdf verification
+    	pdfCheck(verifier,username);
+    	Thread.sleep(4000);
+    	driver.switchTo().window(window);
+    		    	
+    }
+	
   public void deleteFiles(File folder) throws IOException {
         File[] files = folder.listFiles();
          for(File file: files){
