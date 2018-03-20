@@ -935,7 +935,7 @@ public class ChromeTest {
 			  String rc78 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[11]/td[3]"))).getText();
 			  softly.assertThat(rc78).as("test data").isEqualTo("");
 			  jse.executeScript("scroll(0, 3300)");
-			  int n =3500;
+			  int n =3600;
 			  //Checks the 5 images if appearing
 			  for (int j=0; j<5; j++)
 			  {				  

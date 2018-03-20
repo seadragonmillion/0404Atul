@@ -290,7 +290,7 @@ public class FirefoxTest {
 					  
 				  }
 			  //Scroll down and check for 5 images uploaded
-			  int scroll =600;
+			  int scroll =700;
 			  
 			  for (int i=0;i<=4;i++)
 			  {
@@ -402,7 +402,7 @@ public class FirefoxTest {
 						  
 					  }
 				//Scroll down and check for 5 images uploaded
-			  int scroll =600;
+			  int scroll =700;
 			  
 			  for (int i=0;i<=4;i++)
 			  {

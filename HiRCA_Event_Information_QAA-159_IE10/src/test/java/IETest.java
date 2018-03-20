@@ -336,7 +336,7 @@ public class IETest {
 			  //Logout
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-			  driver.switchTo().defaultContent();
+			  //driver.switchTo().defaultContent();
 			  Thread.sleep(2000);
 			  //Login
 			  Login();
