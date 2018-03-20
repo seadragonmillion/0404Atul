@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ <!--The identifier of the parent POM-->
+   <parent>
+        <groupId>KALE</groupId>
+        <artifactId>ParentPom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Kale</groupId>
+  <artifactId>SanityRVFirefox</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ <packaging>jar</packaging>
+<properties>
+        <main.basedir>${project.basedir}/..</main.basedir>
+    </properties>
+
+    <repositories>
+            <repository>
+                <id>in-project</id>
+                <name>In Project Repo</name>
+                <url>file://${main.basedir}/lib</url>
+            </repository>
+    </repositories>
+</project>
