@@ -90,7 +90,7 @@ public class RemoteVerification {
 		String address = "462 Stevens Avenue, Suite #306 Solana Beach, CA 92705";
 		Thread.sleep(4000);
 		String latLongs[] = getLatLongPositions(address);
-		if(latLongs.length>0 && latLongs!=null)
+		if((latLongs[0]!="") && (latLongs[1]!=""))
 		{
 	    System.out.println("Latitude: "+latLongs[0]+" and Longitude: "+latLongs[1]);
 	    //Verify image appears
@@ -136,7 +136,7 @@ public class RemoteVerification {
 	         System.out.println("Error from the API - response status: "+status);
 	      }
 	    }
-	    return null;
+	    return new String[] {"",""};
 	  }
 	
 	public String decideSharer (int y) throws Exception{
