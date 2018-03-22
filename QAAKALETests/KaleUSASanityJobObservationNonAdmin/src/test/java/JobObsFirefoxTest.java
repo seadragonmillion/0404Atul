@@ -18,7 +18,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FirefoxTest {
+public class JobObsFirefoxTest {
 
 	private FirefoxDriver driver;
 	private String username ="jenkinsvmnonadmin";
