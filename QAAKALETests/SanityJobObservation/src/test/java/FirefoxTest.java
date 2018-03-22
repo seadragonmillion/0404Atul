@@ -1,3 +1,4 @@
+
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
@@ -5,40 +6,52 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class IETest {
+public class FirefoxTest {
 
-	private InternetExplorerDriver driver;
-	private String username ="jenkinsvmnonadmin";
+	private FirefoxDriver driver;
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
-	private String url = "https://kale.error-free.com/";
+	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
+	private String url = "https://kaledev.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		  System.out.println("Performing sanity test on Job Observation Analysis in Internet Explorer");
-		  System.setProperty("webdriver.ie.driver",ie_path);
-		  DesiredCapabilities cap = new DesiredCapabilities(); 
-		  cap.setCapability("ignoreZoomSettings", true);
-		  cap.setCapability("requireWindowFocus", true);
-		  driver = new InternetExplorerDriver(cap);
-		  //Browser is maximized
-		  driver.manage().window().maximize();
+		 System.out.println("Performing sanity test on Job Observation Analysis in Firefox");
+		 System.setProperty("webdriver.gecko.driver",gecko_path);
+		 ProfilesIni ffProfiles = new ProfilesIni();
+		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
+		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(capabilities);
+		  Dimension initialSize= driver.manage().window().getSize();
+		 System.out.println(initialSize);
+		 int height=initialSize.getHeight();
+		 if(height<1900)
+		 {
+			//Browser is maximized
+			driver.manage().window().maximize(); 
+		 }
+		 Dimension finalSize=driver.manage().window().getSize();
+		 System.out.println(finalSize);
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
-	
-	
+
 	@Test
 	  public void SanityTest() throws Exception{
 		  Login obj = new Login();
@@ -48,10 +61,17 @@ public class IETest {
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	      Thread.sleep(2000);
-	      //Switches to the iframe
+		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		  
+		  try{
+             if (login==1)
+             {
+                   WebDriverWait wait2 = new WebDriverWait(driver,20);
+                   wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+             }
+      }catch (NoSuchElementException e){
+             throw e;
+      }
 		  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
@@ -61,21 +81,7 @@ public class IETest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  if (login==1)
-          {
-                
-                while(true)
-    		  {
-               	 Thread.sleep(1000);
-    			  if (driver.findElement(By.cssSelector(".sticky-queue.top-right")).isDisplayed())
-    			  {
-    				  WebElement ele =driver.findElement(By.cssSelector(".sticky-queue.top-right"));
-    				  ele.findElement(By.className("sticky-close")).click();
-    				  break;
-    			  }
-    			  else break;
-    		  }
-          }
+		  
 		  //Clicks on Job Observation Analysis
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
 		  //Clicks on new
@@ -108,9 +114,9 @@ public class IETest {
 		  //Clicks on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button"))).click();
 		  //Uploads image, clears it, rotates it
-		  obj1.imageUploadIE(driver);
+		  obj1.imageUploadFirefox(driver);
 		  //Modify date time
-		  obj1.dateTimeModifyIE(driver);
+		  obj1.dateTimeModifyFirefox(driver);
 		  //Clicks on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
 		  //Clicks on Knowledge based button in step 3
@@ -119,14 +125,14 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
 		  //CLicks on both answers in step 5
 		  Thread.sleep(1000);
+		  Actions act = new Actions(driver);
 		  WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-0")));
-		  Actions act = new Actions (driver);
 		  act.moveToElement(element).click().build().perform();
 		  Thread.sleep(1000);
 		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-1")));
 		  act.moveToElement(element).click().build().perform();
 		  //Clicks on Next
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-button"))).click();
+		  driver.findElement(By.id("pii-joa-tab-5-button")).click();
 		  //Clicks on both answers in step 6
 		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-0")));
 		  act.moveToElement(element).click().build().perform();
@@ -161,7 +167,7 @@ public class IETest {
 		  
 		  Thread.sleep(2000);
 		  //Shares report 0 for admin and 1 for non admin
-		  obj1.shareReport(driver, 1);
+		  obj1.shareReport(driver, 0);
 		  Thread.sleep(2000);
 		  //Mark critical
 		  obj1.markCritical(driver);
@@ -173,13 +179,13 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  Thread.sleep(2000);
 		  afterTest();
-		  		  
 	}
 	
 	
 	public void afterTest(){
 		
-	    //Browser closes
+		driver.manage().window().maximize();
+		//Browser closes
 		driver.quit();
 		softly.assertAll();
 	}

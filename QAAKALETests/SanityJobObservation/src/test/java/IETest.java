@@ -16,10 +16,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkinsvmnonadmin";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
-	private String url = "https://kale.error-free.com/";
+	private String url = "https://kaledev.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Before
@@ -161,7 +161,7 @@ public class IETest {
 		  
 		  Thread.sleep(2000);
 		  //Shares report 0 for admin and 1 for non admin
-		  obj1.shareReport(driver, 1);
+		  obj1.shareReport(driver, 0);
 		  Thread.sleep(2000);
 		  //Mark critical
 		  obj1.markCritical(driver);
