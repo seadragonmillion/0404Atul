@@ -15,6 +15,54 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class JobObservation {
 
 	SoftAssertions softly = new SoftAssertions();
+	String text = "I think I will buy the red car, or I will lease the blue one.";
+	String text1 = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
+	
+	public void path(WebDriver driver) throws Exception {
+		
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  //Clicks on next
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
+		  //Clicks on Knowledge based button in step 3
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).click();
+		  //Clicks on Attention bank & span insufficiency button in step 4
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
+		  //Clicks on both answers in step 5
+		  Thread.sleep(1000);
+		  Actions act = new Actions(driver);
+		  WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-0")));
+		  act.moveToElement(element).click().build().perform();
+		  Thread.sleep(1000);
+		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-1")));
+		  act.moveToElement(element).click().build().perform();
+		  //Enters text 
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step5"))).sendKeys(text);
+		  //Clicks on Next
+		  driver.findElement(By.id("pii-joa-tab-5-button")).click();
+		  //Clicks on both answers in step 6
+		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-0")));
+		  act.moveToElement(element).click().build().perform();
+		  Thread.sleep(1000);
+		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-1")));
+		  act.moveToElement(element).click().build().perform();
+		  //Enters text
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step6"))).sendKeys(text1);
+		  //Clicks on build report
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-report"))).click();
+		  //Clicks on build report
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+		  //Verifies the text entered before
+		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
+		  softly.assertThat(s).as("test data").isEqualTo(text);
+		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
+		  softly.assertThat(s1).as("test data").isEqualTo(text1);
+		  //Clicks on save
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
+		  //Clicks on save report
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+	}
 	
 	public void dateTimeModifyChrome (WebDriver driver) throws Exception {
 		
@@ -291,6 +339,16 @@ public class JobObservation {
 		  }
 		  			  
 	  }
+	
+	public void verifyTextReport(WebDriver driver) throws Exception {
+		
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  //Verifies the text entered before
+		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
+		  softly.assertThat(s).as("test data").isEqualTo(text);
+		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
+		  softly.assertThat(s1).as("test data").isEqualTo(text1);
+	}
 
 	  public void shareReport(WebDriver driver,int y) throws Exception{
 		  
@@ -300,9 +358,9 @@ public class JobObservation {
 	    	//CLicks on first newly created record
 		    driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
 		   	WebDriverWait wait1 = new WebDriverWait(driver,60);
-			//Switches to the iframe
-			//wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	    	//Clicks on share button
+			//Calls verifyTextReport to check text entered
+		   	verifyTextReport(driver);
+		   	//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Enters username
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);

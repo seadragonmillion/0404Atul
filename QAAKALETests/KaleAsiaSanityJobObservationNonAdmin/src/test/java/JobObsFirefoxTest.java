@@ -116,38 +116,8 @@ public class FirefoxTest {
 		  obj1.imageUploadFirefox(driver);
 		  //Modify date time
 		  obj1.dateTimeModifyFirefox(driver);
-		  //Clicks on next
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
-		  //Clicks on Knowledge based button in step 3
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).click();
-		  //Clicks on Attention bank & span insufficiency button in step 4
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
-		  //CLicks on both answers in step 5
-		  Thread.sleep(1000);
-		  Actions act = new Actions(driver);
-		  WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-0")));
-		  act.moveToElement(element).click().build().perform();
-		  Thread.sleep(1000);
-		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-1")));
-		  act.moveToElement(element).click().build().perform();
-		  //Clicks on Next
-		  driver.findElement(By.id("pii-joa-tab-5-button")).click();
-		  //Clicks on both answers in step 6
-		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-0")));
-		  act.moveToElement(element).click().build().perform();
-		  Thread.sleep(1000);
-		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-1")));
-		  act.moveToElement(element).click().build().perform();
-		  //Clicks on build report
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-report"))).click();
-		  //Clicks on build report
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
-		  //Clicks on save
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
-		  //Clicks on save report
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+		  //Continues on 
+		  obj1.path(driver);
 		  //Waits for the green popup on the right top corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Clicks on saved activities
