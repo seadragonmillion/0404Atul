@@ -1635,7 +1635,7 @@ public class HiRCAEvent {
 				  String del = "pii-irca-event-file-remove-"+j;
 				  Thread.sleep(1000);
 				  jse.executeScript("scroll(0,"+(x-150)+")");
-				  if(j==0||j==2||j==4)
+				  if(j==0||j==2||j==4 || j==3)
 				  {
 				  	Thread.sleep(1000);
 				  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).sendKeys(Keys.ARROW_UP);
