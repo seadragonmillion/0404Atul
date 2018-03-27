@@ -449,7 +449,7 @@ public class SanityIETest {
 			}
 			if(num.get(m)==6)
 			{
-				op[m]="Project Management";
+				op[m]="Performance Accountability & Analytics";
 			}
 			if(num.get(m)==7)
 			{
@@ -1084,7 +1084,7 @@ public class SanityIETest {
 				}
 				if(num.get(m)==6)
 				{
-					op[m]="Project Management";
+					op[m]="Performance Accountability & Analytics";
 				}
 				if(num.get(m)==7)
 				{
