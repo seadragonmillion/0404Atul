@@ -1615,7 +1615,7 @@ public class HiRCAEvent {
 			  String file = "pii-irca-event-file-"+j;
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
-			  act.doubleClick(element).build().perform();
+			  act.click(element).build().perform();
 			  Thread.sleep(2000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
@@ -1663,7 +1663,7 @@ public class HiRCAEvent {
 				  //re-upload file
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
-				  act1.doubleClick(element1).build().perform();
+				  act1.click(element1).build().perform();
 				  Thread.sleep(2000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
