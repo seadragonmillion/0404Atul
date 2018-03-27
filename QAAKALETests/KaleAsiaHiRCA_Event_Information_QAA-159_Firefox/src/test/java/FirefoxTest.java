@@ -661,8 +661,8 @@ public class FirefoxTest {
 		  //Mark critical
 		  obj1.markCritical(driver);
 		  Thread.sleep(2000);
-		  //Creates new record by changing title
-		  obj1.saveNewReport(driver, username, password, obj);
+		  //Creates new record by changing title if f==1 firefox
+		  obj1.saveNewReport(driver, username, password, obj,1);
 		  Thread.sleep(2000);
 		  //Deletes the newly created record
 		  obj1.deleteNewRecord(driver, recordName);

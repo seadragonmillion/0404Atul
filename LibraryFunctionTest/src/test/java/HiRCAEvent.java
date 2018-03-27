@@ -110,7 +110,7 @@ public class HiRCAEvent {
 		 
 	  }
 	
-	public void saveFourthReportCheckImages(WebDriver driver, String username, String password, Login obj) throws Exception {
+	public void saveFourthReportCheckImages(WebDriver driver, String username, String password, Login obj, int f) throws Exception {
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -125,7 +125,7 @@ public class HiRCAEvent {
 			  {
 				  break;
 			  }
-			  catch( StaleElementReferenceException f)
+			  catch( StaleElementReferenceException f1)
 			  {
 				  
 				 break;
@@ -141,7 +141,8 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-		  driver.switchTo().defaultContent();
+		  if(f==1)
+			  driver.switchTo().defaultContent();
 		  Thread.sleep(2000);
 		  //Login
 		  obj.LoginUser(driver, username, password);
@@ -224,7 +225,7 @@ public class HiRCAEvent {
 		  		  
 	  }
 
-	  public void saveThirdReportCheckImages(WebDriver driver, String username, String password, Login obj) throws Exception {
+	  public void saveThirdReportCheckImages(WebDriver driver, String username, String password, Login obj,int f) throws Exception {
 			  
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -239,7 +240,7 @@ public class HiRCAEvent {
 				  {
 					  break;
 				  }
-				  catch( StaleElementReferenceException f)
+				  catch( StaleElementReferenceException f1)
 				  {
 					  
 					 break;
@@ -255,7 +256,8 @@ public class HiRCAEvent {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-			  driver.switchTo().defaultContent();
+			  if(f==1)
+				  driver.switchTo().defaultContent();
 			  Thread.sleep(2000);
 			  //Login
 			  obj.LoginUser(driver, username, password);
@@ -333,13 +335,13 @@ public class HiRCAEvent {
 		      //Clicks on Saved activities
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 			  Thread.sleep(2000);
-			  saveFourthReportCheckImages(driver, username, password, obj);
+			  saveFourthReportCheckImages(driver, username, password, obj,f);
 			  //call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
 			  deleteNewRecord(driver, newRecord);
 			  
 		  }
 	    
-	    public void saveNewReport(WebDriver driver, String username, String password, Login obj) throws Exception{
+	    public void saveNewReport(WebDriver driver, String username, String password, Login obj,int f) throws Exception{
 		    	
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -354,7 +356,7 @@ public class HiRCAEvent {
 				  {
 					  break;
 				  }
-				  catch( StaleElementReferenceException f)
+				  catch( StaleElementReferenceException f1)
 				  {
 					  
 					 break;
@@ -370,7 +372,8 @@ public class HiRCAEvent {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
-			  driver.switchTo().defaultContent();
+			  if(f==1)
+				  driver.switchTo().defaultContent();
 			  Thread.sleep(2000);
 			  //Login
 			  obj.LoginUser(driver, username, password);
@@ -452,7 +455,7 @@ public class HiRCAEvent {
 		        //Clicks on Saved activities
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 				Thread.sleep(2000);
-				saveThirdReportCheckImages(driver, username, password, obj);
+				saveThirdReportCheckImages(driver, username, password, obj,f);
 				//call delete function and delete the record also before deleting compare the record name if correct record is getting deleted
 				deleteNewRecord(driver, newRecord);
 				
