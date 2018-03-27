@@ -136,8 +136,10 @@ public class HiRCAEvent {
 			  }
 			 
 		  }
+		  Thread.sleep(2000);
 		  //Logout
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  driver.switchTo().defaultContent();
 		  Thread.sleep(2000);
@@ -248,8 +250,10 @@ public class HiRCAEvent {
 				  }
 				 
 			  }
+			  Thread.sleep(2000);
 			  //Logout
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 			  driver.switchTo().defaultContent();
 			  Thread.sleep(2000);
@@ -361,8 +365,10 @@ public class HiRCAEvent {
 				  }
 				 
 			  }
+			  Thread.sleep(2000);
 			  //Logout
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 			  driver.switchTo().defaultContent();
 			  Thread.sleep(2000);

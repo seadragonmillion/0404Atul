@@ -697,6 +697,7 @@ public class IETest {
 		  Thread.sleep(2000);	
 		  
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		  
 		  afterTest();  
