@@ -799,7 +799,7 @@ public class FirefoxTest {
 	
 	@Test
 	public void test()  throws Exception{
-		  WebDriverWait wait = new WebDriverWait(driver,30);
+		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
 		  Thread.sleep(4000);
