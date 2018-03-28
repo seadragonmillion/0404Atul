@@ -393,6 +393,28 @@ public class SanityTestEiRCA_FirefoxTest {
 		  //Deletes the newly created record
 		  deleteNewRecord(recordName);
 		  Thread.sleep(3000);
+		   while(true)
+			  {
+				  try{
+				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				  {
+					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  
+				  }}catch (org.openqa.selenium.NoSuchElementException e)
+				  {
+					  break;
+				  }
+				  catch( org.openqa.selenium.StaleElementReferenceException f)
+				  {
+					  
+					 break;
+				  }
+				  catch (org.openqa.selenium.TimeoutException u)
+				  {
+					  break;
+				  }
+				 
+			  }
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	

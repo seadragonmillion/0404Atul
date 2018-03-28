@@ -39,7 +39,7 @@ public class ChromeTest {
 	    public ErrorCollector collector = new ErrorCollector();
 
 	@Rule
-	  public Timeout globalTimeout= new Timeout(150000,TimeUnit.SECONDS);
+	  public Timeout globalTimeout= new Timeout(300000,TimeUnit.SECONDS);
 	  
 		@Before
 		  public void beforeTest() throws MalformedURLException{
@@ -783,9 +783,10 @@ public class ChromeTest {
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  Login();
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(9000);
+		  Thread.sleep(8000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      Thread.sleep(5000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(5000);
