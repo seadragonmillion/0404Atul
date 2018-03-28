@@ -143,6 +143,8 @@ public class HiRCAEvent {
 			  }
 			 
 		  }
+		  //Clicks on side panel
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		  Thread.sleep(2000);
 		  Actions act = new Actions (driver);
 		  //Logout
@@ -261,6 +263,8 @@ public class HiRCAEvent {
 				  }
 				 
 			  }
+			  //Clicks on side panel
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 			  Thread.sleep(2000);
 			  Actions act = new Actions (driver);
 			  //Logout
@@ -380,6 +384,8 @@ public class HiRCAEvent {
 				  }
 				 
 			  }
+			  //Clicks on side panel
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 			  Thread.sleep(2000);
 			  Actions act = new Actions (driver);
 			  //Logout
