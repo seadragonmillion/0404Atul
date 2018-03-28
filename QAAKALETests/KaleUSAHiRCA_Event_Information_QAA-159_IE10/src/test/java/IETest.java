@@ -336,6 +336,7 @@ public class IETest {
 			  driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(obj1.paragraph_problem);
 			  
 			  jse.executeScript("scroll(0, 0)");
+			  Thread.sleep(2000);
 			  
 			  //Department
 			  WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));

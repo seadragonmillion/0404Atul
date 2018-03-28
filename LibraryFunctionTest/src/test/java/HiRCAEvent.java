@@ -59,6 +59,13 @@ public class HiRCAEvent {
 	public void deleteNewRecord(WebDriver driver, String recordName) throws Exception{	  
 	      
 		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on new record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		  try{
@@ -137,10 +144,13 @@ public class HiRCAEvent {
 			 
 		  }
 		  Thread.sleep(2000);
+		  Actions act = new Actions (driver);
 		  //Logout
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		  WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+		  act.click(element).build().perform();
 		  Thread.sleep(2000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		  element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
+		  act.click(element).build().perform();
 		  if(f==1)
 			  driver.switchTo().defaultContent();
 		  Thread.sleep(2000);
@@ -252,10 +262,13 @@ public class HiRCAEvent {
 				 
 			  }
 			  Thread.sleep(2000);
+			  Actions act = new Actions (driver);
 			  //Logout
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			  WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+			  act.click(element).build().perform();
 			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			  element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
+			  act.click(element).build().perform();
 			  if(f==1)
 				  driver.switchTo().defaultContent();
 			  Thread.sleep(2000);
@@ -368,10 +381,13 @@ public class HiRCAEvent {
 				 
 			  }
 			  Thread.sleep(2000);
+			  Actions act = new Actions (driver);
 			  //Logout
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			  WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+			  act.click(element).build().perform();
 			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			  element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
+			  act.click(element).build().perform();
 			  if(f==1)
 				  driver.switchTo().defaultContent();
 			  Thread.sleep(2000);

@@ -48,7 +48,7 @@ public class LanguageCheckOfReports {
     	//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
     	deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,30);
+    	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	Thread.sleep(2000);
 		//Clicks on download button
 		element.click();
@@ -91,7 +91,7 @@ public class LanguageCheckOfReports {
     	//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
     	deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,30);
+    	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	Thread.sleep(2000);
 		//Clicks on download button
 		element.click();
