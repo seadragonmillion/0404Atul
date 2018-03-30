@@ -1,6 +1,14 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -14,6 +22,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class UserManagement {
 	
 	SoftAssertions softly = new SoftAssertions();
+	
+	public void excelStore() throws Exception {
+		
+		File file = new File("E:/EmailError.xlsx");		
+		// Open the Excel file
+		FileInputStream ExcelFile = new FileInputStream(file);
+		// Access the required test data sheet
+		XSSFWorkbook ExcelWBook = new XSSFWorkbook(ExcelFile);
+		XSSFSheet ExcelWSheet = ExcelWBook.getSheet("Sheet1");
+		//Get number of rows
+		int rows = ExcelWSheet.getPhysicalNumberOfRows();
+		//Get current date 
+		SimpleDateFormat sfdate = new SimpleDateFormat("MM/dd/yyy HH:mm:ss a");
+		Date date = new Date();
+		System.out.println(sfdate.format(date));
+		//Create a new row for only images
+		Row row1 = ExcelWSheet.createRow(rows);
+		row1.createCell(0).setCellValue(sfdate.format(date));
+		row1.createCell(1).setCellValue("No Email");
+		//Close File input stream
+		ExcelFile.close();
+		//Create an object of FileOutputStream class to create write data in excel file
+		FileOutputStream outputStream = new FileOutputStream(file);
+		ExcelWBook.write(outputStream);
+		ExcelWBook.close();
+		outputStream.close();
+				
+	}
 	
 	public void checkAccess(WebDriver driver, int login, String[]op) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,20);
