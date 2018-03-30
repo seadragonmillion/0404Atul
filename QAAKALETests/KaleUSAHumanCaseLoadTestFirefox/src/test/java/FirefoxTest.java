@@ -116,7 +116,7 @@ public class FirefoxTest {
 		System.out.println("Total time in seconds for case with no images:"+(total2/1000));
 		System.out.println("Total time in seconds for case with 50 images:"+(total3/1000));
 		//Store data in excel in Human Kale Asia
-		obj1.storeData(driver,total1,total2,total3,obj1.sheetHumanAsia);
+		obj1.storeData(driver,total1,total2,total3,obj1.sheetHumanUSA);
 		//Deletes all cases
 		obj1.deleteCase(driver, case1);
 		obj1.deleteCase(driver, case2);

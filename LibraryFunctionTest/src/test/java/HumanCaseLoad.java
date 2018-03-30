@@ -23,6 +23,9 @@ public class HumanCaseLoad {
 	String keyword1 = "Slide100images";
 	String keyword2 = "Slide100NoImages";
 	String keyword3 = "Slide100Images50";
+	String keyword1ie = "Slide100imagesie";
+	String keyword2ie = "Slide100NoImagesie";
+	String keyword3ie = "Slide100Images50ie";
 	String title1 = "QAA 100 Slides only images";
 	String title2 = "QAA 100 Slides no images";
 	String title3 = "QAA 100 Slides 50 images";
@@ -50,6 +53,7 @@ public class HumanCaseLoad {
 		//Clicks on Human Performance Search
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 	}
+	
 	public String createCaseChrome (WebDriver driver, String title, String keyword, int r) throws Exception {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,90);
