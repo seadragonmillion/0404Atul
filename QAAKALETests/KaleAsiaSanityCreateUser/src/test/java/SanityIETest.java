@@ -263,6 +263,7 @@ public class SanityIETest {
         	if(currentTime>time15)
         	{
         		System.out.println("Time elapsed for email: More than 15 minutes");
+        		//obj1.excelStore(time15);
         		break;
         	}
         	if (messageCount1>0)
@@ -710,6 +711,7 @@ public class SanityIETest {
         	if(currentTime>time15)
         	{
         		System.out.println("Time elapsed for email: More than 15 minutes");
+        		//obj1.excelStore(time15);
         		break;
         	}
         	if (messageCount1>0)
