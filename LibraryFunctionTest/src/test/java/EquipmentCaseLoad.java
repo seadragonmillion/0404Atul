@@ -1067,7 +1067,7 @@ public class EquipmentCaseLoad {
 	
 	public void storeData(WebDriver driver, long total1, long total2, long total3, String sheet) throws Exception {
 		
-		File file = new File("C:/Users/rramakrishnan/VMSharedFolder/LoadCase.xlsx");		
+		File file = new File("E:/LoadCase.xlsx");		
 		// Open the Excel file
 		FileInputStream ExcelFile = new FileInputStream(file);
 		// Access the required test data sheet
