@@ -110,56 +110,18 @@ public class FirefoxTest {
 		  obj1.verifierSelect(driver);
 		  Thread.sleep(2000);
 		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
-		  //Clicks on browse button of 2nd picture
-		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
-		  Thread.sleep(2000);
-		  //Uploads picture 2
-		  Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
-		  p3.waitFor();
-		  Thread.sleep(8000);
-		  //*Clears image
-		  WebDriverWait wait1 = new WebDriverWait(driver,20);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
-		  //Re-uploads picture 2
-		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
-		  Thread.sleep(2000);
-		  Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
-		  p2.waitFor();
-		  Thread.sleep(8000);
-		  //Rotates image 2 once
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
-		  //*
-		 
+		  //Uploads 2nd image
+		  obj1.upload2ndpictureFirefox(driver);
 		  jse.executeScript("scroll(0, 250)");
-		  //Clicks on browse button of 1st picture
-		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
-		  Thread.sleep(2000);
-		  //Uploads picture 1
-		  Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
-		  p.waitFor();
-		  Thread.sleep(4000);
-		  //*Clears image
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
-		  //Re-uploads picture 1
-		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
-		  Thread.sleep(2000);
-		  Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
-		  p1.waitFor();
-		  Thread.sleep(4000);
-		  //Rotates image 1 twice
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
-		  Thread.sleep(1000);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		  //Uploads 1st image
+		  obj1.upload1stpictureFirefox(driver);
 		  jse.executeScript("scroll(0, 0)");
 		  //Verifies Date and time
 		  obj1.verifyDateTime(driver);
 		  //Verifies location of office
 		  obj1.verifyLongitudeLatitude(driver);
-		  //Clicks on Save and Send
-		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
-		  //Clicks on save and send report
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
-		  driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
+		  //Verify status
+		  obj1.checkStatusReport(driver);
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
 		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div[1]/div[2]/div[3]")).getText();
@@ -193,7 +155,7 @@ public class FirefoxTest {
 				  try{
 				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 				  {
-					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 					  
 				  }}catch (org.openqa.selenium.NoSuchElementException e)
 				  {

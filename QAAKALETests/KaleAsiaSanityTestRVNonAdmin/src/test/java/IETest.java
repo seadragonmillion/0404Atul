@@ -127,100 +127,19 @@ public class IETest {
 		  obj1.verifierSelect(driver);
 		  Thread.sleep(1000);
 		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
-		  //Clicks twice on browse button of 2nd picture
-		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
-		  Actions act = new Actions(driver);
-		  act.doubleClick(element).build().perform();
-		  Thread.sleep(3000);
-		  try{
-			  try {
-					//Uploads picture 2
-					  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");
-					  p.waitFor();
-				  }catch (UnhandledAlertException f){		
-					  System.out.println("Unexpected alert for picture 2");
-					  driver.switchTo().alert().accept();
-				  }
-			  
-		  }catch (NoAlertPresentException f){			  
-			  System.out.println ("No unexpected alert for picture 2");
-		  }
-		  Thread.sleep(4000);
-		  //*Clears image
-		  WebDriverWait wait1 = new WebDriverWait(driver,20);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
-		  //Re-uploads picture 2
-		  act.doubleClick(element).build().perform();
-		  Thread.sleep(3000);
-		  try{
-			  try {
-					//Uploads picture 2
-					  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");
-					  p.waitFor();
-				  }catch (UnhandledAlertException f){		
-					  System.out.println("Unexpected alert for picture 2");
-					  driver.switchTo().alert().accept();
-				  }
-			  
-		  }catch (NoAlertPresentException f){			  
-			  System.out.println ("No unexpected alert for picture 2");
-		  }
-		  Thread.sleep(4000);
-		  //Rotates image 2 once
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
-		  //*
+		  //Upload 2nd image
+		  obj1.upload2ndpictureIE10(driver);
 		  jse.executeScript("scroll(0, 250)");
 		  Thread.sleep(3000);
-		  //Clicks twice on browse button of 1st picture
-		  WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
-		  act.doubleClick(element2).build().perform();
-		  Thread.sleep(3000);
-		  try{
-			  try {
-					  //Uploads picture 1
-					  Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");				  
-					  q.waitFor();
-			      }catch (UnhandledAlertException g){
-			    	  System.out.println("Unexpected alert for picture 1");
-					  driver.switchTo().alert().accept();
-			      }
-		     }catch (NoAlertPresentException g){			  
-			  System.out.println ("No unexpected alerts for picture 1");
-		     }			 
-		  Thread.sleep(4000);
-		  //*Clears image
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
-		  //Re-uploads picture 1
-		  act.doubleClick(element2).build().perform();
-		  Thread.sleep(3000);
-		  try{
-			  try {
-					  //Uploads picture 1
-					  Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");				  
-					  q.waitFor();
-			      }catch (UnhandledAlertException g){
-			    	  System.out.println("Unexpected alert for picture 1");
-					  driver.switchTo().alert().accept();
-			      }
-		     }catch (NoAlertPresentException g){			  
-			  System.out.println ("No unexpected alerts for picture 1");
-		     }			 
-		  Thread.sleep(4000);
-		  //Rotates image 1 twice
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
-		  Thread.sleep(1000);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
-		  //*
+		  //Upload 1st image
+		  obj1.upload1stpictureIE10(driver);
 		  jse.executeScript("scroll(0, 0)");
 		  //Verifies Date and time
 		  obj1.verifyDateTime(driver);
 		  //Verifies location of office
 		  obj1.verifyLongitudeLatitude(driver);
-		  //Clicks on Save and Send
-		  jse.executeScript("return document.querySelector(\"[class='pii-rv-save-send pii-new-button pii-color-purple ui-block-c ui-btn ui-btn-inline']\").click();");
-		  //Clicks on save and send report
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title")));
-		  jse.executeScript("return document.getElementById('pii-rv-dialog-confirmed').click();");
+		  //Verify status
+		  obj1.checkStatusReport(driver);
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
 		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();

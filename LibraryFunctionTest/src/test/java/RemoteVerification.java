@@ -39,6 +39,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -48,7 +49,384 @@ public class RemoteVerification {
 	SoftAssertions softly = new SoftAssertions();	
 	String event_title="I think I will buy the red car, or I will lease the blue one.";
 	String details ="There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890";
+	
+	public void checkStatusReport (WebDriver driver) throws Exception {
 		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Clicks on Save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+		//Waits for black loading message to disappear
+		try{
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		}catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }
+		//Click on Saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-savedactivities"))).click();
+		//Waits for black loading message to disappear
+		try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Clicks on newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+		//Waits for black loading message to disappear
+		try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Verify status
+		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText();
+		softly.assertThat(status).as("test data").contains("Not yet sent to verifier");
+		//Click on Open
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		//Clicks on Save and Send
+		driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
+		//Clicks on save and send report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
+		driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
+		//Waits for black loading message to disappear
+		try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Verify status
+		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText();
+		softly.assertThat(status1).as("test data").contains("Sent, waiting upon verification");
+	}
+	
+	public void upload1stpictureChrome(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		//Uploads picture 1
+		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
+		driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Re-uploads same picture 1
+		driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Re-uploads different picture 1
+		driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");
+		//Rotates image 1 twice
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		Thread.sleep(1000);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+	}
+	
+	public void upload1stpictureFirefox(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		//Clicks on browse button of 1st picture
+		driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		Thread.sleep(2000);
+		//Uploads picture 1
+		Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		p.waitFor();
+		Thread.sleep(4000);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Re-uploads same picture 1
+		driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		Thread.sleep(2000);
+		Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		p1.waitFor();
+		Thread.sleep(4000);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Re-uploads different picture 1
+		driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		Thread.sleep(2000);
+		Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		p2.waitFor();
+		Thread.sleep(4000);
+		//Rotates image 1 twice
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		Thread.sleep(1000);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+	}
+	
+	public void upload1stpictureIE10(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		Actions act = new Actions(driver);
+		//Clicks twice on browse button of 1st picture
+		WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
+		act.doubleClick(element2).build().perform();
+		Thread.sleep(3000);
+		try{
+		 try {
+				  //Uploads picture 1
+				  Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");				  
+				  q.waitFor();
+		      }catch (UnhandledAlertException g){
+		    	  System.out.println("Unexpected alert for picture 1");
+				  driver.switchTo().alert().accept();
+		      }
+		    }catch (NoAlertPresentException g){			  
+		  System.out.println ("No unexpected alerts for picture 1");
+		     }			 
+		 Thread.sleep(4000);
+		//*Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Re-uploads picture 1
+		act.doubleClick(element2).build().perform();
+		Thread.sleep(3000);
+		try{
+		  try {
+				  //Uploads picture 1
+				  Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");				  
+				  q.waitFor();
+		      }catch (UnhandledAlertException g){
+		    	  System.out.println("Unexpected alert for picture 1");
+				  driver.switchTo().alert().accept();
+		      }
+		    }catch (NoAlertPresentException g){			  
+		  System.out.println ("No unexpected alerts for picture 1");
+		    }			 
+		Thread.sleep(4000);
+		//Rotates image 1 twice
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		Thread.sleep(1000);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+	}
+	
+	public void upload1stpictureIE11(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		//Clicks twice on browse button of 1st picture
+		WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
+		Actions act = new Actions(driver);
+		act.doubleClick(element2).build().perform();
+		Thread.sleep(3000);
+		try{
+		  try {
+				  //Uploads picture 1
+				  Process q=Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEChrysanthemum.exe");				  
+				  q.waitFor();
+		      }catch (UnhandledAlertException g){
+		    	  System.out.println("Unexpected alert for picture 1");
+				  driver.switchTo().alert().accept();
+		      }
+		    }catch (NoAlertPresentException g){			  
+		  System.out.println ("No unexpected alerts for picture 1");
+		    }			 
+		Thread.sleep(4000);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Same image
+		act.doubleClick(element2).build().perform();
+		Thread.sleep(3000);
+		try{
+		  try {
+				  //Uploads picture 1
+				  Process q=Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEChrysanthemum.exe");				  
+				  q.waitFor();
+		      }catch (UnhandledAlertException g){
+		    	  System.out.println("Unexpected alert for picture 1");
+				  driver.switchTo().alert().accept();
+		      }
+		    }catch (NoAlertPresentException g){			  
+		  System.out.println ("No unexpected alerts for picture 1");
+		    }			 
+		Thread.sleep(4000);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		//Re-uploads different picture 1
+		act.doubleClick(element2).build().perform();
+		Thread.sleep(3000);
+		try{
+		  try {
+				  //Uploads picture 1
+				  Process q=Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEDesert.exe");				  
+				  q.waitFor();
+		      }catch (UnhandledAlertException g){
+		    	  System.out.println("Unexpected alert for picture 1");
+				  driver.switchTo().alert().accept();
+		      }
+		   }catch (NoAlertPresentException g){			  
+		System.out.println ("No unexpected alerts for picture 1");
+		}			 
+		Thread.sleep(4000);
+		//Rotates image 1 twice
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		Thread.sleep(1000);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+	}
+		
+    public void upload2ndpictureChrome(WebDriver driver) throws Exception {
+		
+    	WebDriverWait wait1 = new WebDriverWait(driver,20);
+		//Uploads picture 2
+		String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		//Re-uploads same picture 2
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		//Re-uploads different picture 2
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		//Rotates image 2 once
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+	}
+	
+	public void upload2ndpictureFirefox(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		//Clicks on browse button of 2nd picture
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
+		Thread.sleep(2000);
+		//Uploads picture 2
+		Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		p3.waitFor();
+		Thread.sleep(8000);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		//Re-uploads same picture 2
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
+		Thread.sleep(2000);
+		Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
+		p2.waitFor();
+		Thread.sleep(8000);
+		//Clears image
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		//Re-uploads different picture 2
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
+		Thread.sleep(2000);
+		Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		p1.waitFor();
+		Thread.sleep(8000);
+		//Rotates image 2 once
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+	}
+	
+	public void upload2ndpictureIE10(WebDriver driver) throws Exception {
+		
+		//Clicks twice on browse button of 2nd picture
+		WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
+		Actions act = new Actions(driver);
+		act.doubleClick(element).build().perform();
+		Thread.sleep(3000);
+		try{
+		  try {
+				//Uploads picture 2
+				Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");
+		    	p.waitFor();
+			}catch (UnhandledAlertException f){		
+			  System.out.println("Unexpected alert for picture 2");
+			  driver.switchTo().alert().accept();
+		 }
+		 }catch (NoAlertPresentException f){			  
+		  System.out.println ("No unexpected alert for picture 2");
+		 }
+		 Thread.sleep(4000);
+		 //Clears image
+		 WebDriverWait wait1 = new WebDriverWait(driver,20);
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		 //Re-uploads picture 2
+		 act.doubleClick(element).build().perform();
+		 Thread.sleep(3000);
+		 try{
+		  try {
+				//Uploads picture 2
+				  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEDesert.exe");
+				  p.waitFor();
+			  }catch (UnhandledAlertException f){		
+				  System.out.println("Unexpected alert for picture 2");
+				  driver.switchTo().alert().accept();
+			  }
+		  
+		 }catch (NoAlertPresentException f){			  
+		  System.out.println ("No unexpected alert for picture 2");
+		 }
+		 Thread.sleep(4000);
+		 //Rotates image 2 once
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+	}
+	
+	public void upload2ndpictureIE11(WebDriver driver) throws Exception {
+		
+		  //Clicks twice on browse button of 2nd picture
+		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
+		  Actions act = new Actions(driver);
+		  act.doubleClick(element).build().perform();
+		  Thread.sleep(3000);
+		  try{
+			  try {
+					//Uploads picture 2
+					  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEChrysanthemum.exe");
+					  p.waitFor();
+				  }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpected alert for picture 2");
+					  driver.switchTo().alert().accept();
+				  }
+			  
+		  }catch (NoAlertPresentException f){			  
+			  System.out.println ("No unexpected alert for picture 2");
+		  }
+		  Thread.sleep(4000);
+		  //Clears image
+		  WebDriverWait wait1 = new WebDriverWait(driver,20);
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		  //Re-uploads same picture 2
+		  act.doubleClick(element).build().perform();
+		  Thread.sleep(3000);
+		  try{
+			  try {
+					//Uploads picture 2
+					  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEChrysanthemum.exe");
+					  p.waitFor();
+				  }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpected alert for picture 2");
+					  driver.switchTo().alert().accept();
+				  }
+			  
+		  }catch (NoAlertPresentException f){			  
+			  System.out.println ("No unexpected alert for picture 2");
+		  }
+		  Thread.sleep(4000);
+		  //Clears image
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		  //Re-uploads same picture 2
+		  act.doubleClick(element).build().perform();
+		  Thread.sleep(3000);
+		  try{
+			  try {
+					//Uploads picture 2
+					  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEDesert.exe");
+					  p.waitFor();
+				  }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpected alert for picture 2");
+					  driver.switchTo().alert().accept();
+				  }
+			  
+		  }catch (NoAlertPresentException f){			  
+			  System.out.println ("No unexpected alert for picture 2");
+		  }
+		  Thread.sleep(4000);
+		  //Rotates image 2 once
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+	}
 	
 	public void verifyDateTime(WebDriver driver) throws Exception {
 		

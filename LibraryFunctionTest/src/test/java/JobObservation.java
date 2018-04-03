@@ -164,11 +164,16 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
-		//Re-upload photo
+		//Re-upload photo same photo
 		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		//Click on clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		//Re-upload different photo
+		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");		
 		//Clicks on rotate
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		
 	}
 	
 	public void imageUploadFirefox(WebDriver driver) throws Exception{
@@ -186,6 +191,13 @@ public class JobObservation {
 		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
 		Process q =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		q.waitFor();
+		Thread.sleep(3000);
+		//Click on clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		//Re-upload different photo
+		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
+		Process w =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
+		w.waitFor();
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
 		//Clicks on rotate
@@ -277,6 +289,27 @@ public class JobObservation {
 		  try{
 			  try {
 		  Process p = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
+		  p.waitFor();
+		  }catch (UnhandledAlertException f){		
+					  System.out.println("Unexpeceted alert for picture 2");
+					  driver.switchTo().alert().accept();
+				  }
+			  
+		  }catch (NoAlertPresentException f){			  
+			  System.out.println ("No unexpected alert for picture 2");
+		  }
+	    Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		//Click on clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		//Re-upload photo
+		Thread.sleep(1000);
+		act.click(element).build().perform();
+		Thread.sleep(2000);
+		//Uploads a different picture
+		  try{
+			  try {
+		  Process p = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEDesert.exe");
 		  p.waitFor();
 		  }catch (UnhandledAlertException f){		
 					  System.out.println("Unexpeceted alert for picture 2");

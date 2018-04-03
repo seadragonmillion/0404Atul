@@ -105,29 +105,12 @@ public class SanityTestRV_ChromeTest {
 		  Thread.sleep(1000);
 		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
 		  //Uploads picture 2
-		  String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
-		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
-		  //*Clears image
-		  WebDriverWait wait1 = new WebDriverWait(driver,20);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
-		  //Re-uploads picture 2
-		  driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
-		  //Rotates image 2 once
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		  obj1.upload2ndpictureChrome(driver);
 		  //*
 		  jse.executeScript("scroll(0, 250)");
 		  Thread.sleep(3000);
 		  //Uploads picture 1
-		  String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
-		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
-		  //*Clears image
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
-		  //Re-uploads picture 1
-		  driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
-		  //Rotates image 1 twice
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
-		  Thread.sleep(1000);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		  obj1.upload1stpictureChrome(driver);
 		  //*
 		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0, 0)");
@@ -135,12 +118,8 @@ public class SanityTestRV_ChromeTest {
 		  obj1.verifyDateTime(driver);
 		  //Verifies location of office
 		  obj1.verifyLongitudeLatitude(driver);
-		  //Clicks on Save and Send
-		  driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
-		  //Clicks on save and send report
-		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
-		  driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
+		  //Verify status 
+		  obj1.checkStatusReport(driver);
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
 		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
