@@ -882,6 +882,7 @@ public class HumanCaseLoad {
 			  {
 				  
 			  }
+		  jse.executeScript("scroll(0,0)");
 		  //Click on enter case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
 		  Thread.sleep(2000);
@@ -895,6 +896,7 @@ public class HumanCaseLoad {
 			  {
 				  
 			  }
+		  jse.executeScript("scroll(0,0)");
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).click();
 		  //Clicks on delete case
