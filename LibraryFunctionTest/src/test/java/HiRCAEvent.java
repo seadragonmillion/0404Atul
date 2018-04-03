@@ -121,7 +121,7 @@ public class HiRCAEvent {
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  while(true)
+		 /* while(true)
 		  {
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
@@ -142,7 +142,7 @@ public class HiRCAEvent {
 				  break;
 			  }
 			 
-		  }
+		  }*/
 		  //Clicks on side panel
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		  Thread.sleep(2000);
@@ -241,7 +241,7 @@ public class HiRCAEvent {
 			  
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
-			  while(true)
+			  /*while(true)
 			  {
 				  try{
 				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
@@ -262,7 +262,7 @@ public class HiRCAEvent {
 					  break;
 				  }
 				 
-			  }
+			  }*/
 			  //Clicks on side panel
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 			  Thread.sleep(2000);
@@ -362,7 +362,7 @@ public class HiRCAEvent {
 		    	
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
-			  while(true)
+			 /* while(true)
 			  {
 				  try{
 				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
@@ -383,7 +383,7 @@ public class HiRCAEvent {
 					  break;
 				  }
 				 
-			  }
+			  }*/
 			  //Clicks on side panel
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 			  Thread.sleep(2000);
@@ -1385,6 +1385,39 @@ public class HiRCAEvent {
 				  
 			  }
 		  }
+		  //Delete 3rd image
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,600)");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		  //Click on last collapsible
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
+		  //Fill title and description
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
+		  //Upload image
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-4"))).sendKeys(filepath);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
+		  Thread.sleep(2000);
+		  //Clicks on save without images
+		  jse.executeScript("scroll(0,0)");
+		  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		  Thread.sleep(2000);
+		  //Clicks on Save
+		  driver.findElement(By.id("efi-irca-button-save")).click();
+		  //Clicks on Save report
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		  Thread.sleep(500);
+		  try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }	
+		  jse.executeScript("scroll(0, 2000)");
 	}
 	
 	public void uploadFiveImagesFirefox(WebDriver driver) throws Exception {
@@ -1493,6 +1526,65 @@ public class HiRCAEvent {
 				  
 			  }
 		  }
+		//Delete 3rd image
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,600)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		//Click on last collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
+		//Fill title and description
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
+		//Upload image
+		WebElement l=driver.findElement(By.id("pii-irca-event-file-4"));
+		jse.executeScript("arguments[0].scrollIntoView();", l);
+		l.click();
+		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
+		q.waitFor();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
+		Thread.sleep(2000);
+		//Clicks on save without images
+		jse.executeScript("scroll(0,0)");
+		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		Thread.sleep(2000);
+		//Clicks on Save
+		driver.findElement(By.id("efi-irca-button-save")).click();
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(500);
+		try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }	
+		Thread.sleep(2000);
+		//Clicks on Save
+		driver.findElement(By.id("efi-irca-button-save")).click();
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }	
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(500);
+		try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }	
+		jse.executeScript("scroll(0, 2000)");
 		
 	}
 	
@@ -1616,6 +1708,45 @@ public class HiRCAEvent {
 				  
 			  }
 		  }
+		//Delete 3rd image
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,600)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		//Click on last collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
+		//Fill title and description
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
+		//Upload image
+		WebElement l=driver.findElement(By.id("pii-irca-event-file-4"));
+		Actions act1 = new Actions(driver);
+		act1.doubleClick(l).build().perform();
+		Thread.sleep(8000);
+		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
+		q.waitFor();
+		Thread.sleep(8000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
+		Thread.sleep(2000);
+		//Clicks on save without images
+		jse.executeScript("scroll(0,0)");
+		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		Thread.sleep(2000);
+		//Clicks on Save
+		driver.findElement(By.id("efi-irca-button-save")).click();
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(500);
+		try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }	
+		jse.executeScript("scroll(0, 2000)");
 		
 	}
 	
@@ -1754,6 +1885,47 @@ public class HiRCAEvent {
 				  
 			  }
 		  }
+		//Delete 3rd image
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,600)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		//Click on last collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
+		//Fill title and description
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
+		//Upload image
+		WebElement l=driver.findElement(By.id("pii-irca-event-file-4"));
+		Actions act1 = new Actions(driver);
+		act1.click(l).build().perform();
+		Thread.sleep(8000);
+		Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
+		q.waitFor();
+		Thread.sleep(8000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
+		Thread.sleep(2000);
+		//Clicks on save without images
+		jse.executeScript("scroll(0,0)");
+		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
+		Thread.sleep(2000);
+		//Clicks on Save
+		driver.findElement(By.id("efi-irca-button-save")).click();
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(4000);
+		try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		  }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }	
+		
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0, 2000)");
 	}
 
 }
