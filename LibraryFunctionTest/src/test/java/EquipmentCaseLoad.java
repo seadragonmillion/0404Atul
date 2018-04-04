@@ -113,6 +113,15 @@ public class EquipmentCaseLoad {
 			  }
 		  //Clicks on new case button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
+		  //Waits for black loading message to disappear
+		  try{
+			  Thread.sleep(2000);
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
 		  //Clicks on new case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
@@ -400,13 +409,18 @@ public class EquipmentCaseLoad {
 		  int i;
 		  for (i=0; i<100;i++)
 		  {
+			  try{
 			  String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div["+(i+1)+"]";
 			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
 			  {
 				  System.out.println("Uploaded Image : " + (i+1));
 				  list.add(driver.findElement(By.xpath(xpath)));
 			  }
-			  
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  System.out.println("Couldn't view images at position "+(i+1));
+				  break;
+			  }
 		  }
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
 		  jse.executeScript("scroll(0,0)");
@@ -602,7 +616,7 @@ public class EquipmentCaseLoad {
 		  for (i=0; i<100;i++)
 		  {
 			  String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div["+(i+1)+"]";
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+			  if (driver.findElement(By.xpath(xpath)).isDisplayed())
 			  {
 				  System.out.println("Uploaded Image : " + (i+1));
 				  list.add(driver.findElement(By.xpath(xpath)));
