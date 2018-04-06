@@ -548,6 +548,7 @@ public class SanityIETest {
 
 	public void editPassword() throws Exception{
 		
+		UserManagement obj1 = new UserManagement();
 		//Mark all messages in inbox as read
 		emailMarkRead();
 		WebDriverWait wait = new WebDriverWait(driver,20);
