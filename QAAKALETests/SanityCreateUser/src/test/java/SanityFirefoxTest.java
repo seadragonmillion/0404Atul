@@ -1213,6 +1213,8 @@ public void LoginDummyUser() throws Exception{
 			  driver.findElement(By.id("pii-admin-user-email")).clear();
 			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaa@gmail.com");
 		  }
+		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
+		  dd4.selectByVisibleText(company_id);
 		  driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		  //ele1.findElement(By.linkText(company_id)).click();
@@ -1222,8 +1224,7 @@ public void LoginDummyUser() throws Exception{
 		  dd2.selectByVisibleText("Accounting");
 		  Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
 		  dd3.selectByVisibleText("Engineer");
-		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
-		  dd4.selectByVisibleText(company_id);
+		  
 		  //Clicks on save button
 		  driver.findElement(By.id("pii-admin-user-button-save")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
