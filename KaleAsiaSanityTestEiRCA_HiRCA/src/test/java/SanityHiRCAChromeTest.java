@@ -247,9 +247,9 @@ public class SanityHiRCAChromeTest {
 			  String name = creationDate + "_" +username +"_" + EventTitleChrome;
 			  System.out.println(name);
 			  driver.findElement(By.id("efi-irca-btn-savedactivities")).click();
-			  Thread.sleep(2000);
+			  Thread.sleep(5000);
 			  driver.findElement(By.id("pii-user-home-panel-btn-irca")).click();
-			  Thread.sleep(2000);
+			  Thread.sleep(5000);
 			  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"));
 			  String recordName = record.getText();
 			  if (record.isDisplayed())

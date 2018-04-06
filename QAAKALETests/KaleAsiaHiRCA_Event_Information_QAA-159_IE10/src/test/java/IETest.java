@@ -532,6 +532,7 @@ public class IETest {
 		  WebElement set=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")));
 		  actr.click(set).build().perform();
 		  Thread.sleep(5000);
+		  set=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"));
 		  if (set.isDisplayed())
 		  {
 		  	actr.click(set).build().perform();
