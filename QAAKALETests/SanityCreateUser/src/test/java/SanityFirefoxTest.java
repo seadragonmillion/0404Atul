@@ -1217,8 +1217,8 @@ public void LoginDummyUser() throws Exception{
 		  dd4.selectByVisibleText(company_id);
 		  driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
-		  //ele1.findElement(By.linkText(company_id)).click();
-		  ele1.findElement(By.className("ui-first-child ui-last-child")).click();
+		  ele1.findElement(By.linkText(company_id)).click();
+		  //ele1.findElement(By.className("ui-first-child ui-last-child")).click();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a")).click();
 		  Select dd2 = new Select (driver.findElement(By.id("pii-admin-user-dept")));
 		  dd2.selectByVisibleText("Accounting");
