@@ -828,6 +828,7 @@ public void LoginDummyUser() throws Exception{
 		  obj.LoginUser(driver, username, password);
 		  JavascriptExecutor jse =(JavascriptExecutor) driver;
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(5000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
@@ -1219,7 +1220,8 @@ public void LoginDummyUser() throws Exception{
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		  ele1.findElement(By.linkText(company_id)).click();
 		  //ele1.findElement(By.className("ui-first-child ui-last-child")).click();
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a")).click();
+		  //driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a")).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		  Select dd2 = new Select (driver.findElement(By.id("pii-admin-user-dept")));
 		  dd2.selectByVisibleText("Accounting");
 		  Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));

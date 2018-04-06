@@ -802,6 +802,7 @@ public class SanityIETest {
 		  UserManagement obj1 = new UserManagement();
 		  obj.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(5000);
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  Thread.sleep(5000);
 		  //Switches to the iframe
@@ -1201,7 +1202,8 @@ public class SanityIETest {
 		  Thread.sleep(1000);
 		  ele1.findElement(By.linkText(company_id)).click();
 		  //ele1.findElement(By.className("ui-first-child ui-last-child")).click();
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a")).click();
+		  //driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a")).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		  Select dd2 = new Select (driver.findElement(By.id("pii-admin-user-dept")));
 		  dd2.selectByVisibleText("Accounting");
 		  Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
