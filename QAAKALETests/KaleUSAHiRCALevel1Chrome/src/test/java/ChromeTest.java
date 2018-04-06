@@ -15,8 +15,8 @@ import org.openqa.selenium.remote.CapabilityType;
 public class ChromeTest {
 
 	private WebDriver driver;
-	private String username = "qaacfi";
-	private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username = "jenkins_1_nonadmin";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	   
 		@Before
 		  public void beforeTest() throws MalformedURLException{
