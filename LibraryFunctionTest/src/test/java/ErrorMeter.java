@@ -2211,6 +2211,8 @@ public class ErrorMeter {
 			  System.out.println("Record could not be deleted");		  
 		  			  
 	  }  
-	
+    public void softAssert() throws Exception {
+		softly.assertAll();
+	}
 		
 }

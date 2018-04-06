@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.w3c.dom.Document;
 
@@ -93,8 +94,11 @@ public class RemoteVerification {
 		//Click on Open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Clicks on Save and Send
-		driver.findElement(By.xpath("//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
+		driver.findElement(By.xpath(".//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
 		//Clicks on save and send report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
 		driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
@@ -108,7 +112,7 @@ public class RemoteVerification {
 				  
 			  }
 		//Verify status
-		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText();
+		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/span"))).getText();
 		softly.assertThat(status1).as("test data").contains("Sent, waiting upon verification");
 	}
 	
@@ -929,5 +933,9 @@ public class RemoteVerification {
 		  }
 		  			  
 	  }
+	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+	}
 
 }

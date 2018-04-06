@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -9,11 +11,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -1089,18 +1093,32 @@ public class EquipmentCaseLoad {
 		XSSFSheet ExcelWSheet = ExcelWBook.getSheet(sheet);
 		//Get number of rows
 		int rows = ExcelWSheet.getPhysicalNumberOfRows();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    //Get date
+	    SimpleDateFormat sfdate = new SimpleDateFormat("MM/dd/yyy");
+	    Date date = new Date();
+	    //System.out.println(sfdate.format(date));
 		//Create a new row for only images
 		Row row1 = ExcelWSheet.createRow(rows);
 		row1.createCell(0).setCellValue("Only Images");
 		row1.createCell(1).setCellValue(total1/1000);	
+		row1.createCell(2).setCellValue(browserName);
+		row1.createCell(3).setCellValue(sfdate.format(date));
 		//Create a new row for No images
 		Row row2 = ExcelWSheet.createRow(rows+1);
 		row2.createCell(0).setCellValue("No Images");
-		row2.createCell(1).setCellValue(total2/1000);	
+		row2.createCell(1).setCellValue(total2/1000);
+		row2.createCell(2).setCellValue(browserName);
+		row2.createCell(3).setCellValue(sfdate.format(date));
 		//Create a new row for 50 images
 		Row row3 = ExcelWSheet.createRow(rows+2);
 		row3.createCell(0).setCellValue("50 Images");
-		row3.createCell(1).setCellValue(total3/1000);	
+		row3.createCell(1).setCellValue(total3/1000);
+		row3.createCell(2).setCellValue(browserName);
+		row3.createCell(3).setCellValue(sfdate.format(date));
 		//Close File input stream
 		ExcelFile.close();
 		//Create an object of FileOutputStream class to create write data in excel file

@@ -409,5 +409,9 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  System.out.println("Company deleted");
 	}
+	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+	}
 
 }

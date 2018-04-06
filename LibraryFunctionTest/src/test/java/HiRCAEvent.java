@@ -1927,5 +1927,9 @@ public class HiRCAEvent {
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0, 2000)");
 	}
+	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+	}
 
 }

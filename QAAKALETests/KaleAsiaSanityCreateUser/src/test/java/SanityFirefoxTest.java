@@ -589,6 +589,7 @@ public void LoginDummyUser() throws Exception{
 	public void editPassword() throws Exception{
 		
 		//Mark all messages in inbox as read
+		UserManagement obj1 = new UserManagement();
 		emailMarkRead();
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(3000);

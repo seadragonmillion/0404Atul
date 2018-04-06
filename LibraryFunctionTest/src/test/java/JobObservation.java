@@ -435,4 +435,8 @@ public class JobObservation {
 			}
 				
 	    }
+	    
+	    public void softAssert() throws Exception {
+			softly.assertAll();
+		}
 }

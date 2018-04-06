@@ -738,5 +738,9 @@ public class LanguageCheckOfReports {
 
 	}
 	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+	}
+	
 	
 }
