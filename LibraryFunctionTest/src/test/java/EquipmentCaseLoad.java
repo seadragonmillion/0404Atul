@@ -17,6 +17,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -701,6 +702,7 @@ public class EquipmentCaseLoad {
 		
 		WebDriverWait wait = new WebDriverWait(driver,90);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  Actions act1 = new Actions (driver);
 		  //Clicks on admin user name on top right corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  //Clicks on admin option
@@ -710,25 +712,36 @@ public class EquipmentCaseLoad {
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 			  }
-		  //Clicks on Equipment cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
-		  //Enters mandatory data
-		  //Enters case id
-		  Random random = new Random();
-		  String caseId="";
-		  List<WebElement> list = new ArrayList<WebElement>();
+		  WebElement button= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button")));
+		  act1.click(button).build().perform();
 		  //Waits for black loading message to disappear
 		  try{
-			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
 			  }
-		  Thread.sleep(1000);
+		  
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(4000);
+		  //Waits for black loading message to disappear
+	     try{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+		 }catch (org.openqa.selenium.TimeoutException e)
+		  {
+			  
+		  }
+	      Thread.sleep(3000);
+	      jse.executeScript("scroll(0,0)");
+	      Thread.sleep(6000);
+		  //Enters mandatory data
+		  //Enters case id
+		  Random random = new Random();
+		  String caseId="";
+		  List<WebElement> list = new ArrayList<WebElement>();
 		  //Clicks on new case button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		  //Clicks on new case
@@ -736,7 +749,7 @@ public class EquipmentCaseLoad {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		  while (true)
 		  {
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  int y=random.nextInt(10000);
 			  if(y<1000)
 			     continue;
@@ -784,20 +797,22 @@ public class EquipmentCaseLoad {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		  //Enters Answer
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Enters Keyword
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,2000)");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
+		  WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input")));
+		  act1.click(ele).build().perform();
+		  Thread.sleep(2000);
 		  if(r==1)
 		  {
 			  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE10NoImages100.exe");
@@ -813,10 +828,11 @@ public class EquipmentCaseLoad {
 			  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE1050ImagesAndText100.exe");
 			  p.waitFor();
 		  }
-		  Thread.sleep(3000);
+		  Thread.sleep(6000);
 		  //Checks if 100 images have been uploaded
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		  Thread.sleep(2000);
+		  WebElement collapsible=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a")));
+		  act1.click(collapsible).build().perform();
+		  Thread.sleep(6000);
 		  int i;
 		  for (i=0; i<100;i++)
 		  {
@@ -830,7 +846,7 @@ public class EquipmentCaseLoad {
 		  }
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		  //Clicks on create case
@@ -892,9 +908,9 @@ public class EquipmentCaseLoad {
 					  }
 			  }
 		  }
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  return caseId;	  
 	}
 	

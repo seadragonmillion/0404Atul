@@ -15,8 +15,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -64,21 +62,13 @@ public class LanguageCheckOfReports {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(3000);
-    	try {
-			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
-			  q.waitFor();
-			  }catch (UnhandledAlertException f){	
-				  System.out.println("Unexpected alert for picture 2");
-				  driver.switchTo().alert().accept();
-				  
-		  	  }catch (NoAlertPresentException f){
-		  		  System.out.println ("No unexpected alert for picture 2");
-		  		  }
-    	Thread.sleep(15000);
+		Thread.sleep(7000);
+    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+		q.waitFor();
+		Thread.sleep(15000);
     	//pdf verification
     	pdfCheck(y);
-    	Thread.sleep(4000);
+    	Thread.sleep(8000);
     	//Switch to window    	
     	driver.switchTo().window(window);
     	//Switches to the iframe
@@ -107,21 +97,13 @@ public class LanguageCheckOfReports {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(3000);
-    	try {
-			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
-			  q.waitFor();
-			  }catch (UnhandledAlertException f){	
-				  System.out.println("Unexpected alert for picture 2");
-				  driver.switchTo().alert().accept();
-				  
-		  	  }catch (NoAlertPresentException f){
-		  		  System.out.println ("No unexpected alert for picture 2");
-		  		  }
-    	Thread.sleep(15000);
+		Thread.sleep(7000);
+    	Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+		q.waitFor();
+		Thread.sleep(15000);
     	//pdf verification
     	pdfCheck(y);
-    	Thread.sleep(4000);
+    	Thread.sleep(8000);
     	//Switch to window    	
     	driver.switchTo().window(window);
     	//Switches to the iframe
@@ -148,18 +130,18 @@ public class LanguageCheckOfReports {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(8000);
+	    	Thread.sleep(12000);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
-	    	Thread.sleep(4000);
+	    	Thread.sleep(14000);
 	    	Robot robot = new Robot();
 	    	// press Ctrl+S the Robot's way
 	    	robot.keyPress(KeyEvent.VK_CONTROL);
 	    	robot.keyPress(KeyEvent.VK_S);
 	    	robot.keyRelease(KeyEvent.VK_CONTROL);
 	    	robot.keyRelease(KeyEvent.VK_S);
-	    	Thread.sleep(4000);
+	    	Thread.sleep(8000);
 	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 	    	p.waitFor();
 	    	Thread.sleep(4000);

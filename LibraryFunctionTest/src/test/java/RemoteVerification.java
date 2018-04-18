@@ -438,6 +438,7 @@ public class RemoteVerification {
 		//Get time and date from RV location map
 		String timeDate = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-repdatetime"))).getText();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		System.out.println(dateFormat.format(cal.getTime()));
 		int minute = cal.get(Calendar.MINUTE);
@@ -451,7 +452,7 @@ public class RemoteVerification {
 		}
 		else softly.fail("Time minutes part is not within 20 minutes of actual time");
 		//Verify if date is correct
-		softly.assertThat(timeDate).as("test data").contains(dateFormat.format(cal.getTime()));
+		softly.assertThat(timeDate).as("test data").contains(dateFormat1.format(cal.getTime()));
 		
 	}
 	
@@ -561,8 +562,10 @@ public class RemoteVerification {
     	//Clicks on share button
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
     	//Verifies if verifier displayed is disabled
-    	WebElement verify = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul/li")));
-    	if(verify.isEnabled()==true)
+    	WebElement verify = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul")));
+    	String s = verify.getAttribute("data-inset");
+    	System.out.println(s);
+    	if(s.equals("true")==false)
     		softly.fail("Verifier text box not suppose to be enabled");    	
     	//Enters verifier username and tries to add verifier
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(verifier);

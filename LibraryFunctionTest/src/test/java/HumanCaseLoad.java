@@ -17,6 +17,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -457,7 +458,7 @@ public class HumanCaseLoad {
 			  }
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Clicks on Human cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 		  //Enters mandatory data
@@ -467,7 +468,7 @@ public class HumanCaseLoad {
 		  List<WebElement> list = new ArrayList<WebElement>();
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Waits for black loading message to disappear
 		  try{
 			  Thread.sleep(2000);
@@ -479,7 +480,7 @@ public class HumanCaseLoad {
 			  }
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 			  //Clicks on new case
@@ -516,7 +517,7 @@ public class HumanCaseLoad {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Enters Keyword
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -538,7 +539,7 @@ public class HumanCaseLoad {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
 		  if(r==1)
@@ -655,19 +656,26 @@ public class HumanCaseLoad {
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 			  }
-		  Thread.sleep(1000);
+		//Waits for black loading message to disappear
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);		
 		  //Clicks on Human cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
+		  WebElement button1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button")));
+		  Actions act2= new Actions(driver);
+		  act2.click(button1).build().perform();
 		  //Enters mandatory data
 		  //Enters case id
 		  Random random = new Random();
 		  String caseId="";
 		  List<WebElement> list = new ArrayList<WebElement>();
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
 		  //Waits for black loading message to disappear
 		  try{
 			  Thread.sleep(2000);
@@ -679,12 +687,16 @@ public class HumanCaseLoad {
 			  }
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Clicks on new case button
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
+		  WebElement button2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new")));
+		  act2.click(button2).build().perform();
+		  Thread.sleep(4000);
 		  //Clicks on new case
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		  WebElement button3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title")));
+		  act2.click(button3).build().perform();
+		  WebElement button4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed")));
+		  act2.click(button4).build().perform();
 		  while (true)
 		  {
 			  Thread.sleep(1000);
@@ -716,7 +728,7 @@ public class HumanCaseLoad {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(1000);
+		  Thread.sleep(3000);
 		  //Enters Keyword
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -724,23 +736,24 @@ public class HumanCaseLoad {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
 		  //Enters task
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
+		  Thread.sleep(3000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
 		  //Enters purpose
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
+		  Thread.sleep(3000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
 		  jse.executeScript("scroll(0,2000)");
 		  //Enters condition
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
+		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,2000)");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(4000);
 		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
+		  WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input")));
+		  act2.click(ele).build().perform();
 		  if(r==1)
 		  {
 			  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE10NoImages100.exe");
@@ -758,8 +771,8 @@ public class HumanCaseLoad {
 		  }
 		  Thread.sleep(3000);
 		  //Checks if 100 images have been uploaded
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  Thread.sleep(2000);
+		  WebElement button11=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div")));
+		  act2.click(button11).build().perform();
 		  int i;
 		  for (i=0; i<100;i++)
 		  {
@@ -771,7 +784,9 @@ public class HumanCaseLoad {
 			  }
 			  
 		  }
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		  WebElement plussign=driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"));
+		  act2.click(plussign).build().perform();
+		  Thread.sleep(3000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
 		  //Clicks on save

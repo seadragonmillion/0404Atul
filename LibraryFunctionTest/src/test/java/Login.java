@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -119,8 +120,13 @@ public class Login {
 			  }
 			 
 		  }
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		Actions act = new Actions (driver);
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+		act.click(element).build().perform();
+		Thread.sleep(2000);
+		element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
+		act.click(element).build().perform();
+		Thread.sleep(2000);
 	}
 		
 }

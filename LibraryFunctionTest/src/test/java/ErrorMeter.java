@@ -2135,10 +2135,12 @@ public class ErrorMeter {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
+		Thread.sleep(3000);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Waits for black loading message to disappear
 		  try{
+			  Thread.sleep(1000);
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)

@@ -54,9 +54,9 @@ public class JobObservation {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
 		  //Verifies the text entered before
 		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
-		  softly.assertThat(s).as("test data").isEqualTo(text);
+		  softly.assertThat(s).as("test data").contains(text);
 		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
-		  softly.assertThat(s1).as("test data").isEqualTo(text1);
+		  softly.assertThat(s1).as("test data").contains(text1);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
 		  //Clicks on save report
@@ -378,9 +378,9 @@ public class JobObservation {
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Verifies the text entered before
 		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
-		  softly.assertThat(s).as("test data").isEqualTo(text);
+		  softly.assertThat(s).as("test data").contains(text);
 		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
-		  softly.assertThat(s1).as("test data").isEqualTo(text1);
+		  softly.assertThat(s1).as("test data").contains(text1);
 	}
 
 	  public void shareReport(WebDriver driver,int y) throws Exception{
