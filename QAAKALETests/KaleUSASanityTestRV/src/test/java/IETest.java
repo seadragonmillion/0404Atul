@@ -162,8 +162,19 @@ public class IETest {
 		  assertEquals(name, recordName);
 		  //Downloads record
 		  obj1.downloadRecordIE(driver,verifier,username);
-		  //Shares report, the integer indicates admin test =0 and non admin test =1
-		  obj1.shareReport(driver,verifier,username,0);
+		  //Shares report
+		  /* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
+		  obj1.shareReport(driver,verifier,username,password,4);
 		  //Mark critical
 		  obj1.markCritical(driver);
 		  //Deletes the newly created record

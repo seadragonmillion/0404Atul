@@ -873,26 +873,43 @@ public class HiRCAEvent {
 	            }
 	        }
 	    
-	    public void shareReport(WebDriver driver) throws Exception{
+	    public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+	    	ErrorMeter obj = new ErrorMeter();
+	    	String sharer = obj.decideSharer (y);
+	    	String sharerAdded = obj.decideSharerAdded (y);
 			//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	    	//Clicks on share button
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 			//Enters username
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("qaacfiverifier");
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
 	    	//Selects from dropdown
 			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+			dropdown.findElement(By.cssSelector(".ui-first-child")).click();
 			//Clicks on add user
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-			softly.assertThat(user).as("test data").isEqualTo("QAA (qaacfiverifier)");
+			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			//Calls the Share check function
+			ShareCheck obj1 = new ShareCheck();
+			obj1.receiptReport(driver, sharer, username, password1);
+			//Clicks on HiRCA side panel
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
+			try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			 //Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();;
 	    }
 	    
 	    public void markCritical(WebDriver driver) throws Exception{

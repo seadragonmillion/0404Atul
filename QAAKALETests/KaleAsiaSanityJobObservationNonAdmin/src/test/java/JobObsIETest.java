@@ -130,8 +130,19 @@ public class JobObsIETest {
 			  System.out.println ("Record not found.");
 		  
 		  Thread.sleep(2000);
-		  //Shares report 0 for admin and 1 for non admin
-		  obj1.shareReport(driver, 1);
+		  //Shares report
+		  /* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
+		  obj1.shareReport(driver,username,password, 1);
 		  Thread.sleep(2000);
 		  //Mark critical
 		  obj1.markCritical(driver);

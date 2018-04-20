@@ -685,7 +685,18 @@ public class IETest {
 		  obj1.downloadRecordIE(driver, get_date, get_time, get_dept, creationDate);
 		  Thread.sleep(2000);
 		  //Shares report
-		  obj1.shareReport(driver);
+		  /* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
+		  obj1.shareReport(driver,username,password, 5);
 		  Thread.sleep(2000);
 		  //Mark critical
 		  obj1.markCritical(driver);

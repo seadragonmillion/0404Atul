@@ -522,41 +522,12 @@ public class RemoteVerification {
 	    return new String[] {"",""};
 	  }
 	
-	public String decideSharer (int y) throws Exception{
-		
-		if(y==0)
-    	{
-    		String sharer ="qaacreator";
-    		return sharer;
-       	}
-    	else
-    	{
-    		String sharer ="qaacfiverifier";
-    		return sharer;
-       	}
-		
-	}
-	
-	public String decideSharerAdded (int y) throws Exception{
-		
-		if(y==0)
-    	{
-    		String sharer ="QAA Creator (qaacreator)";
-    		return sharer;
-       	}
-    	else
-    	{
-    		String sharer ="QAA (qaacfiverifier)";
-    		return sharer;
-       	}
-		
-	}
-	
-	public void shareReport(WebDriver driver, String verifier, String username,int y) throws Exception{
+	public void shareReport(WebDriver driver, String verifier, String username,String password1,int y) throws Exception{
     	
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	String sharer = decideSharer (y);
-    	String sharerAdded = decideSharerAdded (y);
+    	ErrorMeter obj = new ErrorMeter();
+    	String sharer = obj.decideSharer (y);
+    	String sharerAdded = obj.decideSharerAdded (y);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
     	//Clicks on share button
@@ -614,6 +585,20 @@ public class RemoteVerification {
 		 String verifierUsername = verifier1.getText();
 		 System.out.println(verifierUsername);
 		 softly.assertThat(verifier).as("test data").isSubstringOf(verifierUsername);
+		 //Calls the Share check function
+		 ShareCheck obj1 = new ShareCheck();
+		 obj1.receiptReport(driver, sharer, username, password1);
+		 //Clicks on Remote Verification side panel
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
+		 try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+					  
+			  }
+		 //Clicks on first newly created record
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();;
     }
 	
 	public void downloadRecordChrome(WebDriver driver, String verifier, String username) throws Exception {

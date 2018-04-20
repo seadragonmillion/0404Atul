@@ -140,8 +140,19 @@ public class SanityTestRV_ChromeTest {
 		  softly.assertThat(recordName).as("test data").isEqualTo(name);
 		  //Downloads record
 		  obj1.downloadRecordChrome(driver,verifier,username);
-		  //Shares report, the integer indicates admin test =0 and non admin test =1
-		  obj1.shareReport(driver,verifier,username,1);
+		  //Shares report
+		  /* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
+		  obj1.shareReport(driver,verifier,username,password,5);
 		  //Mark critical
 		  obj1.markCritical(driver);
 		  //Deletes the newly created record

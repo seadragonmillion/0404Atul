@@ -383,7 +383,7 @@ public class JobObservation {
 		  softly.assertThat(s1).as("test data").contains(text1);
 	}
 
-	  public void shareReport(WebDriver driver,int y) throws Exception{
+	  public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 		  
 		    ErrorMeter obj = new ErrorMeter();
 		    String sharer = obj.decideSharer (y);
@@ -399,7 +399,7 @@ public class JobObservation {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
 	    	//Selects from dropdown
 			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-			dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+			dropdown.findElement(By.cssSelector(".ui-first-child")).click();
 			//Clicks on add user
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -408,6 +408,20 @@ public class JobObservation {
 			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			//Calls the Share check function
+			ShareCheck obj1 = new ShareCheck();
+			obj1.receiptReport(driver, sharer, username, password1);
+			//Clicks on Job Observation side panel
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+			try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }
+			 //Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();;
 	    }
 	    
 	    public void markCritical(WebDriver driver) throws Exception{

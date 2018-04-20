@@ -2089,14 +2089,55 @@ public class ErrorMeter {
 	
 	public String decideSharer (int y) throws Exception{
 		
+		/* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
 		if(y==0)
     	{
-    		String sharer ="qaacreator";
+    		String sharer ="qaasharer";
+    		return sharer;
+       	}
+    	if(y==1)
+    	{
+    		String sharer ="qaasharernonadmin";
+    		return sharer;
+       	}
+    	if(y==2)
+    	{
+    		String sharer ="qaasharerie11";
+    		return sharer;
+       	}
+    	if(y==3)
+    	{
+    		String sharer ="qaasharernonadminie11";
+    		return sharer;
+       	}
+    	if(y==4)
+    	{
+    		String sharer ="qaasharerus";
+    		return sharer;
+       	}
+    	if(y==5)
+    	{
+    		String sharer ="qaasharernonadminus";
+    		return sharer;
+       	}
+    	if(y==6)
+    	{
+    		String sharer ="qaasharerusie11";
     		return sharer;
        	}
     	else
     	{
-    		String sharer ="qaacfiverifier";
+    		String sharer ="qaasharernonadminusie11";
     		return sharer;
        	}
 		
@@ -2104,20 +2145,61 @@ public class ErrorMeter {
 	
 	public String decideSharerAdded (int y) throws Exception{
 		
+		/* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
 		if(y==0)
     	{
-    		String sharer ="QAA Creator (qaacreator)";
+    		String sharer ="QAA (qaasharer)";
+    		return sharer;
+       	}
+    	if(y==1)
+    	{
+    		String sharer ="QAA (qaasharernonadmin)";
+    		return sharer;
+       	}
+    	if(y==2)
+    	{
+    		String sharer ="QAA (qaasharerie11)";
+    		return sharer;
+       	}
+    	if(y==3)
+    	{
+    		String sharer ="QAA (qaasharernonadminie11)";
+    		return sharer;
+       	}
+    	if(y==4)
+    	{
+    		String sharer ="QAA (qaasharerus)";
+    		return sharer;
+       	}
+    	if(y==5)
+    	{
+    		String sharer ="QAA (qaasharernonadminus)";
+    		return sharer;
+       	}
+    	if(y==6)
+    	{
+    		String sharer ="QAA (qaasharerusie11)";
     		return sharer;
        	}
     	else
     	{
-    		String sharer ="QAA (qaacfiverifier)";
+    		String sharer ="QAA (qaasharernonadminusie11)";
     		return sharer;
        	}
 		
 	}
 	
-	public void shareReport(WebDriver driver, String username, int y) throws Exception{
+	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
     	
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	String sharer = decideSharer (y);
@@ -2128,7 +2210,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
     	//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-		dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
 		//Clicks on add user
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -2160,7 +2242,20 @@ public class ErrorMeter {
 		 String sharedText = shared.getText();
 		 System.out.println(sharedText);
 		 softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText);
-		 
+		//Calls the Share check function
+		ShareCheck obj1 = new ShareCheck();
+		obj1.receiptReport(driver, sharer, username, password1);
+		//Clicks on Error Meter side panel
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();;
     }
     
     public void markCritical(WebDriver driver) throws Exception{

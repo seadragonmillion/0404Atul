@@ -150,8 +150,19 @@ public class ErrorMeterFirefoxTest {
 		  //Downloads record, the integer indicates error meter tests based on error %= 0,50,100
 		  obj1.downloadReportFirefox(driver, 100);
 		  Thread.sleep(2000);
-		  //Shares report, the integer indicates admin test =0 and non admin test =1
-		  obj1.shareReport(driver,username,0);
+		  //Shares report
+		  /* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2= admin ie11
+		 * 3= non admin ie11
+		 * US
+		 * 4=admin
+		 * 5=non admin
+		 * 6=admin ie11
+		 * 7=non admin ie11
+		 */
+		  obj1.shareReport(driver,username,password, 0);
 		  Thread.sleep(2000);
 		  //Mark critical
 		  obj1.markCritical(driver);
