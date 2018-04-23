@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -12,12 +13,72 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.collect.Iterables;
+
 
 public class HiRCALevel1 {
 	
 	SoftAssertions softly = new SoftAssertions();
 	String text = "HiRCA Level 1 test";
 	String text1 = "HiRCA Level 1 changed";
+	
+	public List<String> variableText() throws Exception{
+		List<String> text = new ArrayList<String>();
+		text.add("Curabitur lacinia odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus.");
+		text.add("Vestibulum eget lectus ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks!");
+		text.add("Integer ac enim eget nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia.");
+		text.add("Donec in massa pulvinar, mattis turpis ut, aliquam ligula.");
+		text.add("Morbi dictum mi et nisl interdum, vel iaculis lacus suscipit. The stroke pushes the coach beneath any wood outcome?");
+		text.add("Ut eu quam non orci consectetur vestibulum et scelerisque sapien. The debt destroys every refined boy behind an ethic. Whatever compound sweeps into the concealed noun. The tomato posts a helmet.");
+		text.add("Morbi accumsan leo non ex tempor, congue ullamcorper urna viverra. Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+		text.add("In quis enim a odio venenatis scelerisque dignissim sed mauris.");
+		text.add("Maecenas ultrices nulla nec malesuada ullamcorper.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.");
+		text.add("Mauris mattis nisi quis rhoncus mollis. In addition to generating an entire comedy routine, the software provides additional means to make existing content funnier.");
+		text.add("In auctor lorem quis eros fermentum ultricies a at nibh. The tray boils under a deprived alcoholic. How can a beaten populace fork the climbing developer?");
+		text.add("Curabitur quis mauris ullamcorper, ultricies orci non, porttitor diam. A chord degenerates into the based fairy.");
+		text.add("Fusce aliquet libero vel risus luctus ullamcorper.");
+		text.add("Vestibulum non risus sit amet lorem blandit tempus.");
+		text.add("Fusce gravida libero a neque cursus gravida.");
+		text.add("Proin eget urna tempor, ullamcorper lectus eget, elementum massa. The assumed plotter rushs toward the anatomy.");
+		text.add("Quisque at justo elementum, finibus elit ut, ultrices nibh.");
+		text.add("Pellentesque nec nulla vel neque tincidunt rutrum.");
+		text.add("Donec dictum enim nec mi pulvinar, nec consequat eros tristique. A sky deletes a curtain over the bearded parameter. A handicap escapes near the constant! The vicar dances a threshold opposite a rough limb. The architecture outcries the pat jack after the reflex. An article cruises in the wartime.");
+		text.add("Vestibulum lobortis diam vel erat congue pulvinar sed a tortor.");
+		text.add("In non leo et nibh porttitor lobortis. A pan disturbs the barrister. Its password invalidates the gospel. A silver bath rests. When will the tempting fossil escape a shade? The unsafe collective lands a populace. When will our digital threshold moan? The ice grabs this carpet.");
+		text.add("Donec hendrerit lacus semper justo bibendum fermentum. The lousy lung stirs across the pedestrian homosexual. A vocal distresses the tile. How does an ineffective disease refresh the imperial rage? The complicate potato edges the derived nostalgia.");
+		text.add("Sed tempus nunc interdum neque sodales, at mollis magna convallis.");
+		text.add("Aliquam efficitur sem quis facilisis aliquam. Why won't the horizon progress above a crash friendship? How will the fine muck break outside the boy?");
+		text.add("Proin blandit ante at molestie finibus.");
+		text.add("Etiam quis lorem laoreet, malesuada lorem in, tristique sem.");
+		text.add("Maecenas vitae orci non dui ultrices posuere vulputate at elit. Why can't a south toe the line? A borderline beams beside the scheme. Can the duplicate rebuild the coincidence? The tooth destroys a raw powder into the tribe. How will the uncommon article stretch after the theology? The tolerant blessed slashes an ass.");
+		text.add("Mauris blandit elit sit amet tellus dignissim, eget maximus sem dignissim.");
+		text.add("Morbi in dui semper, sagittis augue in, elementum lorem.");
+		text.add("Vivamus ut lacus finibus, dictum neque interdum, tincidunt eros. Why does the axiom aim a cathedral purpose? An archive opens my orbital below the dangerous misprint. The sixty filter prices her metric lesbian. A world appears in the enemy listener. When will a mailed system interrupt the attendant? The milk detail frightens the improving warehouse.");
+		text.add("Duis vestibulum ipsum at dui tincidunt, semper eleifend est congue.");
+		text.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		return text;
+	}
+	
+	public List<String> modifyText() throws Exception{
+		List<String> text = new ArrayList<String>();
+		text.add("Quisque at justo elementum, finibus elit ut, ultrices nibh.");
+		text.add("Pellentesque nec nulla vel neque tincidunt rutrum.");
+		text.add("Donec dictum enim nec mi pulvinar, nec consequat eros tristique.");
+		text.add("Vestibulum lobortis diam vel erat congue pulvinar sed a tortor.");
+		text.add("In non leo et nibh porttitor lobortis.");
+		text.add("Donec hendrerit lacus semper justo bibendum fermentum.");
+		text.add("Sed tempus nunc interdum neque sodales, at mollis magna convallis.");
+		text.add("Aliquam efficitur sem quis facilisis aliquam.");
+		text.add("Proin blandit ante at molestie finibus.");
+		text.add("Etiam quis lorem laoreet, malesuada lorem in, tristique sem.");
+		text.add("Maecenas vitae orci non dui ultrices posuere vulputate at elit.");
+		text.add("Mauris blandit elit sit amet tellus dignissim, eget maximus sem dignissim.");
+		text.add("Morbi in dui semper, sagittis augue in, elementum lorem.");
+		text.add("Vivamus ut lacus finibus, dictum neque interdum, tincidunt eros.");
+		text.add("Duis vestibulum ipsum at dui tincidunt, semper eleifend est congue.");
+		text.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		return text;
+	}
 	
 	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist) throws Exception {
 		
@@ -179,6 +240,8 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Get text list
+		List<String> modText = modifyText();
 		//Hashmap for storing HML for root cause and contributing factors
 		HashMap<String,String> hml= new HashMap<String,String>();
 		//No Level 3 selected then return
@@ -203,6 +266,7 @@ public class HiRCALevel1 {
 		//tr starts at 2 and each root cause has 4 four rows
 		int i=2;
 		int scroll=42;
+		Iterator<String> iter = Iterables.cycle(modText).iterator();
 		//Verify if any root causes are appearing
 		while(i<=((count*4)+1))
 		{
@@ -288,18 +352,26 @@ public class HiRCALevel1 {
 			//Fill the text boxes 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).sendKeys(text1);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).sendKeys(iter.next());
+			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).sendKeys(text1);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).sendKeys(iter.next());
+			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))).sendKeys(text1);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))).sendKeys(iter.next());
+			}
 			//Increase i for changing corrective actions
 			i=i+1;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(text1);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(iter.next());
+			}
 			//Increase i for next root cause
 			i=i+1;
 			//Scroll down
@@ -397,7 +469,9 @@ public class HiRCALevel1 {
 			i=i+1;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(text1);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(iter.next());
+			}
 			//Increase i for next contributing factor
 			i=i+1;
 			//Scroll down
@@ -685,6 +759,9 @@ public class HiRCALevel1 {
 	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Get List to compare
+		List<String> varText = variableText();
+		List<String> modText = modifyText();
 		//List to help compare
 		List<String>lopOptions1 = new ArrayList<String>();
 		//Remove the ] from Level 3 answers
@@ -744,30 +821,62 @@ public class HiRCALevel1 {
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr/td[3]"))).getText();
 			if(d==0)
-				softly.assertThat(s3).as("test data").isEqualTo(text);
+			{
+				if(varText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text);
+			}
 			if(d==1)
-				softly.assertThat(s3).as("test data").isEqualTo(text1);
+			{
+				if(modText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text1);
+			}
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
 			softly.assertThat(s4).as("test data").contains(text);
 			//Verify Extent of condition
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[2]/td[2]"))).getText();
 			if(d==0)
-				softly.assertThat(s5).as("test data").isEqualTo(text);
+			{
+				if(varText.contains(s5)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s5).as("test data").isEqualTo(text);
+			}
 			if(d==1)
-				softly.assertThat(s5).as("test data").isEqualTo(text1);
+			{
+				if(modText.contains(s5)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s5).as("test data").isEqualTo(text1);
+			}
 			//Verify Operating Experience
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[3]/td[2]"))).getText();
 			if(d==0)
-				softly.assertThat(s6).as("test data").isEqualTo(text);
+			{
+				if(varText.contains(s6)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s6).as("test data").isEqualTo(text);
+			}
 			if(d==1)
-				softly.assertThat(s6).as("test data").isEqualTo(text1);
+			{
+				if(modText.contains(s6)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s6).as("test data").isEqualTo(text1);
+			}
 			//Verify Safety Culture
 			String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[4]/td[2]"))).getText();
 			if(d==0)
-				softly.assertThat(s7).as("test data").isEqualTo(text);
+			{
+				if(varText.contains(s7)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s7).as("test data").isEqualTo(text);
+			}
 			if(d==1)
-				softly.assertThat(s7).as("test data").isEqualTo(text1);
+			{
+				if(modText.contains(s7)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s7).as("test data").isEqualTo(text1);
+			}
 		}
 		if(rc==0)
 		{
@@ -811,9 +920,17 @@ public class HiRCALevel1 {
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[3]"))).getText();
 			if(d==0)
-				softly.assertThat(s3).as("test data").isEqualTo(text);
+			{
+				if(varText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text);
+			}
 			if(d==1)
-				softly.assertThat(s3).as("test data").isEqualTo(text1);
+			{
+				if(modText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text1);
+			}
 			//Increase i for supporting evidence
 			i=i+1;
 			//Verify Supporting Evidence
@@ -886,6 +1003,8 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Get text of varying length
+		List<String> varText = variableText();
 		//Verify title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(title).as("test data").contains("Step 4 - Level of Importance Attribution For Root Causes & Contributing Factors");
@@ -914,6 +1033,7 @@ public class HiRCALevel1 {
 		//tr starts at 2 and each root cause has 4 four rows
 		int i=2;
 		int scroll=42;
+		Iterator<String> iter = Iterables.cycle(varText).iterator();
 		//Verify if any root causes are appearing
 		while(i<=((count*4)+1))
 		{
@@ -994,15 +1114,23 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for extra root cause text boxes
 			i=i+1;
-			//Fill the text boxes 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).sendKeys(text);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).sendKeys(text);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))).sendKeys(text);
+			//Fill the text boxes
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).sendKeys(iter.next());
+			}
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).sendKeys(iter.next());
+			}
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))).sendKeys(iter.next());
+			}
 			//Increase i for changing corrective actions
 			i=i+1;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(text);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(iter.next());
+			}
 			//Increase i for next root cause
 			i=i+1;
 			//Scroll down
@@ -1093,7 +1221,9 @@ public class HiRCALevel1 {
 			i=i+1;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).clear();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(text);
+			if(iter.hasNext()) {
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(iter.next());
+			}
 			//Increase i for next contributing factor
 			i=i+1;
 			//Scroll down
