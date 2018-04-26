@@ -118,6 +118,10 @@ public class Login {
 			  {
 				  break;
 			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException u)
+			  {
+				  break;
+			  }
 			 
 		  }
 		Actions act = new Actions (driver);

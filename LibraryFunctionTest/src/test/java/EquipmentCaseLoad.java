@@ -100,7 +100,7 @@ public class EquipmentCaseLoad {
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 			  }
-		  //Clicks on Human cases
+		  //Clicks on Equipment cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 		  //Enters mandatory data
 		  //Enters case id

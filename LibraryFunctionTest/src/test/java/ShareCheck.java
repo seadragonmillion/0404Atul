@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,6 +28,7 @@ public class ShareCheck {
 		{
 		  	driver.switchTo().defaultContent();
 		}
+		Thread.sleep(6000);
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
@@ -91,14 +93,15 @@ public class ShareCheck {
 		{
 		  	driver.switchTo().defaultContent();
 		}
+		Thread.sleep(6000);
 		login = obj.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		if (login==1)
 		{
           
@@ -114,11 +117,15 @@ public class ShareCheck {
 			  else break;
 		  }
         }	
-		Thread.sleep(4000);
+		Thread.sleep(3000);
+		Actions act = new Actions(driver);
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+		act.click(ele).build().perform();
 		//Clicks on Activity
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();		
+		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity")));
+		act.click(ele1).build().perform();
+		Thread.sleep(4000);
 	}
 	
 
