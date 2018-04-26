@@ -15,8 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class IE10Test {
 
 	private WebDriver driver;
-	private String username ="ritica_only_nonadmin";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String username ="qaacfi";
+	private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
 	
