@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FirefoxTest {
 
 	private WebDriver driver;
-	private String username ="ritica_only_admin";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String username ="ritica";
+	private String password = "S2FsZTQ2MTkxODAyQA==";
 	private String company_id="2017qaadeptedit";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
