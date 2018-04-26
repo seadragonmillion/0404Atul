@@ -243,6 +243,8 @@ public class OPiRCA {
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
+			ShareCheck obj1 = new ShareCheck();
+			obj1.shareTwice (driver);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Waits for black loading message to disappear
@@ -259,7 +261,6 @@ public class OPiRCA {
 			 System.out.println(creatorUsername);
 			 softly.assertThat(creatorUsername).as("test data").isEqualTo(username);
 			//Calls the Share check function
-			ShareCheck obj1 = new ShareCheck();
 			obj1.receiptReport(driver, sharer, username, password1);
 			//Clicks on OPiRCA side panel
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-opa"))).click();

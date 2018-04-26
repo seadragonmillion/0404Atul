@@ -13,6 +13,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ShareCheck {
 	
 	private String password = "S2FsZWplbmtpbnNAMTIz";
+	
+	public void shareTwice (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		Thread.sleep(2000);
+		//Enters sharer username
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys("jenkins_1_nonadmin");
+		Thread.sleep(2000);
+    	//Selects from dropdown
+		WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
+		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
+		//Clicks on add user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Click on new shared row
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("QAA (jenkins_1_nonadmin)"))).click();
+		//Click on remove sharing
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	}
 
 	public void receiptReport(WebDriver driver, String sharer, String username, String password1) throws Exception {
 		

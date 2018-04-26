@@ -2218,6 +2218,8 @@ public class ErrorMeter {
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		Thread.sleep(3000);
+		ShareCheck obj1 = new ShareCheck();
+		obj1.shareTwice (driver);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Waits for black loading message to disappear
@@ -2243,7 +2245,6 @@ public class ErrorMeter {
 		 System.out.println(sharedText);
 		 softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText);
 		//Calls the Share check function
-		ShareCheck obj1 = new ShareCheck();
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on Error Meter side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();

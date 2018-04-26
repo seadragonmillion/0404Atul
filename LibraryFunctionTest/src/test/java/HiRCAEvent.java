@@ -894,10 +894,11 @@ public class HiRCAEvent {
 			//Verifies user added
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
+			ShareCheck obj1 = new ShareCheck();
+			obj1.shareTwice (driver);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Calls the Share check function
-			ShareCheck obj1 = new ShareCheck();
 			obj1.receiptReport(driver, sharer, username, password1);
 			//Clicks on HiRCA side panel
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
