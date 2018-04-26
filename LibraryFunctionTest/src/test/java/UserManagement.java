@@ -43,7 +43,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class UserManagement {
 	
 	SoftAssertions softly = new SoftAssertions();
-	
+	String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
+	String emailDev = "fakeemailtestqaa@gmail.com";
+	String emailUSie11 = "fakeemailtestqaaie11usa@gmail.com";
+	String emailUS = "fakeemailtestqaausa@gmail.com";
+	String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
+	String emailAsia = "fakeemailtestqaaasia@gmail.com";
+		
 	public void activateUser(String email,WebDriver driver)throws Exception {
 		
 		UserManagement obj1 = new UserManagement();
@@ -402,10 +408,10 @@ public class UserManagement {
 			  driver.findElement(By.id("pii-admin-user-company")).clear();
 			  driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
 		  }
-		  if ((ev3.equals("fakeemailtestqaa@gmail.com")==false))
+		  if ((ev3.equals(email)==false))
 		  {
 			  driver.findElement(By.id("pii-admin-user-email")).clear();
-			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaa@gmail.com");
+			  driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
 		  }
 		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		  dd4.selectByVisibleText(company_id);
