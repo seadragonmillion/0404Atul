@@ -1,18 +1,34 @@
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.remote.RemoteWebDriver;
 import com.google.common.collect.Iterables;
 
 
@@ -21,6 +37,7 @@ public class HiRCALevel1 {
 	SoftAssertions softly = new SoftAssertions();
 	String text = "HiRCA Level 1 test";
 	String text1 = "HiRCA Level 1 changed";
+	String textEvidence = "HiRCA evidence entry text to be counted";
 	
 	public List<String> variableText() throws Exception{
 		List<String> text = new ArrayList<String>();
@@ -80,9 +97,458 @@ public class HiRCALevel1 {
 		return text;
 	}
 	
+	public void verifyHTMLReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Get List to compare
+		List<String> varText = variableText();
+		List<String> modText = modifyText();
+		//List to help compare
+		List<String>lopOptions1 = new ArrayList<String>();
+		//Remove the ] from Level 3 answers
+		for (int j=0;j<lopOptions.size();j++)
+		{
+			String p = lopOptions.get(j).replace("]", "");
+			lopOptions1.add(p);
+		}
+		//verify if any root cause exists
+		//int rc = Collections.frequency(options, 4);
+		int rc,cf;
+		if(lopOptions.size()>0)
+		{
+			rc = options.get("Root causes");
+			System.out.println(rc);
+			//Get number of contributing factors
+			cf = lopOptions.size()-rc;
+			System.out.println(cf);
+		}
+		else
+		{
+			rc=0;
+			cf=0;
+		}
+		//When no root causes present
+		if (rc==0)
+		{
+			//Verify Root cause as n/a
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr/td[1]"))).getText();
+			softly.assertThat(s).as("test data").isEqualTo("n/a");
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr/td[2]"))).getText();
+			softly.assertThat(s1).as("test data").isEqualTo("n/a");
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr/td[3]"))).getText();
+			softly.assertThat(s2).as("test data").isEqualTo("n/a");		
+		}
+		//When root cause is present
+		for (int i=4;i<=rc+3;i++)
+		{
+			//Get name of level 3 answer
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr/td[1]"))).getText();
+			//Verify if this level 3 answer was selected
+			if(lopOptions1.contains(s)==false)
+			{
+				softly.fail("Level 3 is not suppose to be here: "+s);
+			}
+			//Check if it has 4 boxes ticked
+			if(options.get(s)!=4)
+			{
+				softly.fail("Not a root cause, Not all four boxes are ticked, only some are: "+ options.get(s));
+			}
+			//Get importance and verify
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr/td[2]"))).getText();
+			//Get corresponding Importance value from hashmap
+			String s2 = hml.get(s);
+			//Verify high medium low
+			softly.assertThat(s1).as("test data").isEqualTo(s2);
+			//Get corrective actions
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr/td[3]"))).getText();
+			if(d==0)
+			{
+				if(varText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text);
+			}
+			if(d==1)
+			{
+				if(modText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text1);
+			}
+			//Verify Supporting Evidence
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
+			softly.assertThat(s4).as("test data").contains(textEvidence);
+			//Verify Extent of condition
+			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table[2]/tbody/tr[2]/td[2]"))).getText();
+			if(d==0)
+			{
+				if(varText.contains(s5)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s5).as("test data").isEqualTo(text);
+			}
+			if(d==1)
+			{
+				if(modText.contains(s5)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s5).as("test data").isEqualTo(text1);
+			}
+			//Verify Operating Experience
+			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table[2]/tbody/tr[3]/td[2]"))).getText();
+			if(d==0)
+			{
+				if(varText.contains(s6)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s6).as("test data").isEqualTo(text);
+			}
+			if(d==1)
+			{
+				if(modText.contains(s6)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s6).as("test data").isEqualTo(text1);
+			}
+			//Verify Safety Culture
+			String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table[2]/tbody/tr[4]/td[2]"))).getText();
+			if(d==0)
+			{
+				if(varText.contains(s7)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s7).as("test data").isEqualTo(text);
+			}
+			if(d==1)
+			{
+				if(modText.contains(s7)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s7).as("test data").isEqualTo(text1);
+			}
+		}
+		if(rc==0)
+		{
+			//Because there will be a div with Root Cause as n/a
+			rc=rc+1;
+		}		
+		//When no contributing factors present
+		if(cf==0)
+		{
+			//Verify Contributing factors as n/a
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[1]"))).getText();
+			softly.assertThat(s).as("test data").isEqualTo("n/a");
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[2]"))).getText();
+			softly.assertThat(s1).as("test data").isEqualTo("n/a");
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[3]"))).getText();
+			softly.assertThat(s2).as("test data").isEqualTo("n/a");					
+		}
+		//When contributing factors are present
+		int i=1;
+		while(i<=(cf*2))
+		{
+			//Get name of level 3 answer
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
+			System.out.println(s);
+			//Verify if this level 3 answer was selected
+			if(lopOptions1.contains(s)==false)
+			{
+				softly.fail("Level 3 is not suppose to be here: "+s);
+			}
+			//Check if it has 4 boxes ticked
+			if(options.get(s)==4)
+			{
+				softly.fail("Not a contributing factor, All four boxes are ticked, only some should be: "+ options.get(s));
+			}
+			//Get importance and verify
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[2]"))).getText();
+			//Get corresponding Importance value from hashmap
+			String s2 = hml.get(s);
+			//Verify high medium low
+			softly.assertThat(s1).as("test data").isEqualTo(s2);
+			//Get corrective actions
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			if(d==0)
+			{
+				if(varText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text);
+			}
+			if(d==1)
+			{
+				if(modText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text1);
+			}
+			//Increase i for supporting evidence
+			i=i+1;
+			//Verify Supporting Evidence
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
+			softly.assertThat(s4).as("test data").contains(textEvidence);
+			//Increase i for next cf
+			i=i+1;
+		}
+		//Verify Root Cause Analysis
+		String rc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[1]/td[2]"))).getText();
+		softly.assertThat(rc1).as("test data").isEqualTo("Equipment failure");
+		//Verify 3.17 answer under Root Cause Analysis
+		for(i=1;i<=lopOptions1.size();i++)
+		{
+		  try{
+			  String lop1=driver.findElement(By.xpath(".//*[@id='irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[1]")).getText();
+			  //Verify if this level 3 answer was selected
+			  if(lopOptions1.contains(lop1)==false)
+			  {
+				softly.fail("Level 3 is not suppose to be here: "+lop1);
+			  }
+			  String lop2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[2]")).getText();
+			  softly.assertThat(lop2).as("test data").isEqualTo(textEvidence);
+		  }catch(org.openqa.selenium.NoSuchElementException u)
+		  {
+			  break;
+		  }		  
+		}
+		//Verify SUEP
+		for(i=1;i<=lopOptions1.size();i++)
+		{
+			//Verify level3 answer
+			String s1=driver.findElement(By.xpath(".//*[@id='irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td[1]")).getText();
+			//Verify if this level 3 answer was selected
+			if(lopOptions1.contains(s1)==false)
+		    {
+				softly.fail("Level 3 is not suppose to be here: "+s1);
+			}
+			//Number of SUEP checks
+			int num = options.get(s1);
+			if(num==0)
+				continue;
+			for (int j=1;j<=num;j++)
+			{
+				String s2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td["+(j+1)+"]"))).getText();
+				softly.assertThat(s2).as("test data").isEqualTo("Yes");
+			}
+		}
+		//No Level 3 answers selected, SUEP skipped increases one more div, so rc increased by 1
+		if(lopOptions.size()==0)
+			rc=rc+1;
+		//Verify HiRCA self checklist
+		//if checklist is empty then return
+		if (checklist.size()==0)
+			return;
+		for(i=1;i<=11;i++)
+		{
+			//Get Area Checked
+			String s1=driver.findElement(By.xpath(".//*[@id='irca-rpt']/div["+(rc+9)+"]/table/tbody/tr["+i+"]/td[2]")).getText();
+			//Verify if Yes
+			if(checklist.contains(s1)==true)
+			{
+				String s2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/div["+(rc+9)+"]/table/tbody/tr["+i+"]/td[3]")).getText();
+				softly.assertThat(s2).as("test data").isEqualTo("Yes");
+			}
+		}
+	}
+	
+	public void downloadReportChrome (WebDriver driver, List<String>lopOptions) throws Exception {
+		
+		//deletes files in reports folder before starting to download
+    	File file = new File("C://Users//IEUser//Downloads//reports//");
+    	HiRCAEvent obj1 = new HiRCAEvent();
+    	obj1.deleteFiles(file);
+    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	//Clicks on first newly created record
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		String window = driver.getWindowHandle();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+    	Thread.sleep(8000);
+    	pdfCheck(lopOptions);
+    	for(String winHandle : driver.getWindowHandles()){
+	    driver.switchTo().window(winHandle);
+	    }
+        driver.close();
+    	driver.switchTo().window(window);
+    	Thread.sleep(1000);
+	}
+	
+	public void downloadReportFirefox(WebDriver driver, List<String>lopOptions) throws Exception {
+		
+		//deletes files in reports folder before starting to download
+    	File file = new File("C://Users//IEUser//Downloads//reports//");
+    	HiRCAEvent obj1 = new HiRCAEvent();
+    	obj1.deleteFiles(file);
+    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	//Clicks on first newly created record
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+    	Thread.sleep(8000);
+    	for(String winHandle : driver.getWindowHandles()){
+    	    driver.switchTo().window(winHandle);
+    	}
+    	Thread.sleep(2000);
+    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
+    	Robot robot = new Robot();
+    	// press Ctrl+S the Robot's way
+    	robot.keyPress(KeyEvent.VK_CONTROL);
+    	robot.keyPress(KeyEvent.VK_S);
+    	robot.keyRelease(KeyEvent.VK_CONTROL);
+    	robot.keyRelease(KeyEvent.VK_S);
+    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+    	p.waitFor();
+    	pdfCheck(lopOptions);
+    	Thread.sleep(4000);
+    	driver.close();
+    	Thread.sleep(4000);
+    	driver.switchTo().window(window);
+    	driver.switchTo().defaultContent();      	    		    	
+    }
+	
+	public void downloadReportIE(WebDriver driver, List<String>lopOptions)throws Exception {
+		
+		//deletes files in reports folder before starting to download
+    	File file = new File("C://Users//IEUser//Downloads//reports//");
+    	HiRCAEvent obj1 = new HiRCAEvent();
+    	obj1.deleteFiles(file);
+    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	//Clicks on first newly created record
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		Thread.sleep(2000);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		Thread.sleep(3000);
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(3000);
+    	try {
+			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+			  q.waitFor();
+			  }catch (UnhandledAlertException f){	
+				  System.out.println("Unexpected alert");
+				  driver.switchTo().alert().accept();
+				  
+		  	  }catch (NoAlertPresentException f){
+		  		  System.out.println ("No unexpected alert");
+		  		  }
+    	Thread.sleep(7000);
+    	//pdf verification
+	    pdfCheck(lopOptions);
+	    Thread.sleep(4000);
+    	//Switch to window    	
+    	driver.switchTo().window(window);				    		    	
+    }
+	
+	
+	public void downloadReportIE11(WebDriver driver, List<String>lopOptions)throws Exception {
+		
+		//deletes files in reports folder before starting to download
+    	File file = new File("C://Users//IEUser//Downloads//reports//");
+    	HiRCAEvent obj1 = new HiRCAEvent();
+    	obj1.deleteFiles(file);
+    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	//Clicks on first newly created record
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		Thread.sleep(2000);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		Thread.sleep(3000);
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(3000);
+    	try {
+			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			  q.waitFor();
+			  }catch (UnhandledAlertException f){	
+				  System.out.println("Unexpected alert");
+				  driver.switchTo().alert().accept();
+				  
+		  	  }catch (NoAlertPresentException f){
+		  		  System.out.println ("No unexpected alert");
+		  		  }
+    	Thread.sleep(7000);
+    	//pdf verification
+	    pdfCheck(lopOptions);
+	    Thread.sleep(4000);
+    	//Switch to window    	
+    	driver.switchTo().window(window);				    		    	
+    }
+	
+	public void pdfCheck(List<String>lopOptions) throws Exception{
+    	
+		// specify your directory
+    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+    	// here we get the stream with full directory listing
+    	// exclude subdirectories from listing
+    	// finally get the last file using simple comparator by lastModified field
+    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+    	System.out.println(lastFilePath.get());
+    	//Loads the file to check if correct data is present
+	    String fileName=lastFilePath.get().toString();
+	    File oldfile = new File(fileName);
+	    PDDocument pddoc= PDDocument.load(oldfile);
+	    //Checks text in pdf
+	    String data = new PDFTextStripper().getText(pddoc);
+	    List<String> ans= Arrays.asList(data.split("\r\n"));
+	    String newData1="";
+	    for (int i = 0; i < ans.size(); i++)
+	        {	        	
+	        	int n=ans.get(i).length()-1;
+	        	if (ans.get(i).charAt(n)==' ')
+	        		newData1 = newData1+ans.get(i);
+	        	if (ans.get(i).charAt(n)!=' ')
+	        		newData1 = newData1+" "+ans.get(i);	        	
+	        }
+       newData1=newData1.replace("  ", " ");
+       System.out.println(newData1);
+       //Counts number of times evidence entry was entered
+       int n= lopOptions.size();
+       Pattern p = Pattern.compile(textEvidence);
+       Matcher m = p.matcher(newData1);
+       int count = 0;
+       while (m.find()){
+           count +=1;
+       }
+       System.out.println("No. of evidence entries: "+count);
+       softly.assertThat(count).as("test data").isEqualTo(n*2);
+	}
+	
 	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		Thread.sleep(2000);
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		//Click on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for black server load message to disappear
@@ -103,6 +569,8 @@ public class HiRCALevel1 {
 			  {
 				  
 			  }
+		//Verify HTML
+		verifyHTMLReport(driver, lopOptions, options, hml, checklist,0);
 		//Click on Open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -191,6 +659,18 @@ public class HiRCALevel1 {
 			 {
 						  
 			 }				
+		//Click on newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		//Wait for black server load message to disappear
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Verify HTML report
+		verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1);
 	}
 	
 	public List<String> modifyHiRCAChecklist(WebDriver driver,List<String> checklistOriginal) throws Exception {
@@ -344,7 +824,7 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(text);
+			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for extra root cause text boxes
@@ -462,7 +942,7 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(text);
+			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for changing corrective actions
@@ -523,6 +1003,7 @@ public class HiRCALevel1 {
 			Random random = new Random();
 			//Choose a number between 0 and 4 for number of selections
 			int num=random.nextInt(5);
+			System.out.println(num);
 			if (num==4)
 				r=r+1;
 			//Store no of SUEP checkboxes in hashmap: key=level 3 answer, value = no of suep checks
@@ -551,7 +1032,7 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Get text from Evidence Entry and verify if equal to text
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
-			softly.assertThat(s6).as("test data").isEqualTo(text);
+			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i+1 for next option
@@ -656,20 +1137,20 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Verify Step 3 SUEP
 		HashMap<String,Integer> options = verifySUEP(driver,lopOptions);
-		if(options.size()==0)
+		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
+		if(skip.contains("ui-state-disabled"))
+		{
+			//Click on next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		}
+		else
 		{
 			//Click on skip
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
-		else 
-		{
-			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		}
 		//Verify Step 4
 		HashMap<String,String> hml =verifyStep4(driver,options,lopOptions);
 		Thread.sleep(4000);
-		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		if(skip.contains("ui-state-disabled"))
 		{
 			//Click on next
@@ -682,15 +1163,15 @@ public class HiRCALevel1 {
 		}
 		//Verify Step 5
 		List<String> checklist=verifyHiRCAChecklist(driver);
-		if(checklist.size()==0)
+		if(skip.contains("ui-state-disabled"))
+		{
+			//Click on next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		}
+		else
 		{
 			//Click on skip
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
-		}
-		else 
-		{
-			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		}
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
@@ -716,33 +1197,31 @@ public class HiRCALevel1 {
 			  {
 				  
 			  }
-		//Modify report
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    //Download report to check pdf
+	    if (browserName.equals("chrome"))
+	    	downloadReportChrome(driver,lopOptions);
+	    if (browserName.equals("firefox"))
+	    	downloadReportFirefox(driver,lopOptions);
+	    if (browserName.equals("internet explorer"))
+	    {
+	    	if (v.startsWith("10"))
+	    		downloadReportIE(driver,lopOptions);
+	    	if (v.startsWith("11"))
+	    		downloadReportIE11(driver,lopOptions);
+	    }
+	    //Modify report
 		modifyReport(driver,lopOptions,options,hml,checklist);
 	}
 	
 	public void deleteReport (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Click on side panel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-		//Wait for black server load message to disappear
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
-		//Click on newly created record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		//Wait for black server load message to disappear
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
 		//Click on delete
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -834,7 +1313,7 @@ public class HiRCALevel1 {
 			}
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(text);
+			softly.assertThat(s4).as("test data").contains(textEvidence);
 			//Verify Extent of condition
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[2]/td[2]"))).getText();
 			if(d==0)
@@ -935,7 +1414,7 @@ public class HiRCALevel1 {
 			i=i+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(text);
+			softly.assertThat(s4).as("test data").contains(textEvidence);
 			//Increase i for next cf
 			i=i+1;
 		}
@@ -953,7 +1432,7 @@ public class HiRCALevel1 {
 				softly.fail("Level 3 is not suppose to be here: "+lop1);
 			  }
 			  String lop2=driver.findElement(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[2]")).getText();
-			  softly.assertThat(lop2).as("test data").isEqualTo(text);
+			  softly.assertThat(lop2).as("test data").isEqualTo(textEvidence);
 		  }catch(org.openqa.selenium.NoSuchElementException u)
 		  {
 			  break;
@@ -1109,7 +1588,7 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(text);
+			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for extra root cause text boxes
@@ -1214,7 +1693,7 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(text);
+			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for changing corrective actions
@@ -1378,7 +1857,7 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Get text from Evidence Entry and verify if equal to text
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
-			softly.assertThat(s6).as("test data").isEqualTo(text);
+			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i+1 for next option
@@ -1595,7 +2074,7 @@ public class HiRCALevel1 {
 		  //Click on Evidence Entry
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
 		  //Fill in evidence entry text
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(textEvidence);
 		  //Click on Evidence Entry
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
 		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText();
