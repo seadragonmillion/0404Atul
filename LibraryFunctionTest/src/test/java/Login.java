@@ -97,7 +97,7 @@ public class Login {
 	
 	public void logout (WebDriver driver) throws Exception {
 		
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,10);
 		while(true)
 		  {
 			  try{

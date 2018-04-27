@@ -143,6 +143,7 @@ public class ShareCheck {
 		//Clicks on admin user name on top right corner
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
 		act.click(ele).build().perform();
+		Thread.sleep(2000);
 		//Clicks on Activity
 		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity")));
 		act.click(ele1).build().perform();
