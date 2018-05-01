@@ -1615,7 +1615,7 @@ public class HiRCAEvent {
 		  {
 			  
 			  //Click on Supporting file details
-			  Thread.sleep(500);
+			  Thread.sleep(1500);
 			  String id = "pii-irca-event-filecollapsible-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			  //Uploads file
@@ -1779,7 +1779,7 @@ public class HiRCAEvent {
 		  {
 			  
 			  //Click on Supporting file details
-			  Thread.sleep(500);
+			  Thread.sleep(1500);
 			  String id = "pii-irca-event-filecollapsible-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			   x=x+200;

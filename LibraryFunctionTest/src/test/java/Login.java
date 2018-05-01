@@ -124,11 +124,14 @@ public class Login {
 			  }
 			 
 		  }
-		Actions act = new Actions (driver);
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
-		act.click(element).build().perform();
 		Thread.sleep(2000);
-		element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
+		Actions act = new Actions (driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+		WebElement element = driver.findElement(By.id("pii-user-loginname"));
+		act.click(element).build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
+		element = driver.findElement(By.id("pii-signout-button"));
 		act.click(element).build().perform();
 		Thread.sleep(2000);
 	}

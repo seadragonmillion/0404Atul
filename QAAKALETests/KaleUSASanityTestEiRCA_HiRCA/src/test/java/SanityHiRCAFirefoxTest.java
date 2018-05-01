@@ -258,6 +258,7 @@ public class SanityHiRCAFirefoxTest {
 			  deleteNewRecord(recordName);
 			  Thread.sleep(3000);
 			  driver.findElement(By.id("pii-user-loginname")).click();
+			  Thread.sleep(2000);
 			  driver.findElement(By.id("pii-signout-button")).click();
 			  afterTest();
 			  }catch (TimeoutException e)

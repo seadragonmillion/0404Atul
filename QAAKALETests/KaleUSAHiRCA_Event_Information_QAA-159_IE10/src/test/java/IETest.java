@@ -412,8 +412,9 @@ public class IETest {
 		  Thread.sleep(1000);
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
+		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(obj1.text184);
-		  Thread.sleep(3000);
+		  Thread.sleep(5000);
 		  String limit_text = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div/span")).getText(); 
 		  int index=limit_text.indexOf("/");
 		  System.out.println(index);

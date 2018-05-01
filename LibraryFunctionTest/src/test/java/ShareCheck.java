@@ -41,6 +41,7 @@ public class ShareCheck {
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
+		Thread.sleep(2000);
 		//If browser is firefox then switch to default content
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -49,7 +50,7 @@ public class ShareCheck {
 		{
 		  	driver.switchTo().defaultContent();
 		}
-		Thread.sleep(6000);
+		Thread.sleep(8000);
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
@@ -143,7 +144,7 @@ public class ShareCheck {
 		//Clicks on admin user name on top right corner
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
 		act.click(ele).build().perform();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		//Clicks on Activity
 		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity")));
 		act.click(ele1).build().perform();

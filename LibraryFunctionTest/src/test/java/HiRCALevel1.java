@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,6 +30,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
 import com.google.common.collect.Iterables;
 
 
@@ -100,6 +102,8 @@ public class HiRCALevel1 {
 	public void verifyHTMLReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Get List to compare
 		List<String> varText = variableText();
 		List<String> modText = modifyText();
@@ -1138,6 +1142,7 @@ public class HiRCALevel1 {
 		//Verify Step 3 SUEP
 		HashMap<String,Integer> options = verifySUEP(driver,lopOptions);
 		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
+		Thread.sleep(2000);
 		if(skip.contains("ui-state-disabled"))
 		{
 			//Click on next
@@ -1163,6 +1168,7 @@ public class HiRCALevel1 {
 		}
 		//Verify Step 5
 		List<String> checklist=verifyHiRCAChecklist(driver);
+		Thread.sleep(2000);
 		if(skip.contains("ui-state-disabled"))
 		{
 			//Click on next
@@ -1173,6 +1179,7 @@ public class HiRCALevel1 {
 			//Click on skip
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
+		Thread.sleep(2000);
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
 		verifyReport(driver, lopOptions, options, hml, checklist,0);
@@ -1238,6 +1245,8 @@ public class HiRCALevel1 {
 	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Get List to compare
 		List<String> varText = variableText();
 		List<String> modText = modifyText();
@@ -1855,6 +1864,10 @@ public class HiRCALevel1 {
 			i=i+1;
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div")).isDisplayed()==false)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			}
 			//Get text from Evidence Entry and verify if equal to text
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
