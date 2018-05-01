@@ -351,7 +351,12 @@ public class IETest {
 				  if (noerror_dept_dotted.isDisplayed())
 					  System.out.println("Error dotted line disappeared on Department textbox");
 			  }
+		  	  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Location of event
 		  driver.findElement(By.id("pii-irca-event-location")).sendKeys(obj1.text);
 		  if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed()==false)
@@ -363,26 +368,57 @@ public class IETest {
 			  if (noerror_location_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on location of event textbox");
 		  }
+		  	  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears some text
 		  for(int i =0; i<20; i++)
 		  {
 			  driver.findElement(By.id("pii-irca-event-location")).sendKeys(Keys.BACK_SPACE); 
 		  }
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears by cross mark
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/div/a"))).click();
+		  	  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Re enters text
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(obj1.text);
+		  	  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears all text
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).clear();
 		  Thread.sleep(2000);
+		  	  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Re enters text
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(obj1.text);
 		  Thread.sleep(2000);
+		  	  Thread.sleep(1000);
 		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Event title
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(obj1.text);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
@@ -394,15 +430,39 @@ public class IETest {
 			  if (noerror_title_dotted.isDisplayed())
 				  System.out.println("Error dotted line disappeared on event title textbox");
 		  }
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears some text
 		  for(int i =0; i<20; i++)
 		  {
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE); 
 		  }
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears by cross mark
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div/div/a"))).click();
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Re enters text
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(obj1.text);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears all text
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  //Re enters text
@@ -410,8 +470,17 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Checks event title text box limit
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
 		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(obj1.text184);
 		  Thread.sleep(5000);
@@ -424,9 +493,17 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  for(int i=obj1.text184.length()+1; i<=limit+1;i++)
 			  driver.findElement(By.id("pii-irca-event-title")).sendKeys(".");
-		  
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
 		  {
 			  String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
@@ -436,6 +513,9 @@ public class IETest {
 			  if (error_title_dotted.isDisplayed())
 				  System.out.println("Error dotted line displayed on event title textbox");
 		  }
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -443,6 +523,9 @@ public class IETest {
 		     driver.findElement(By.id("pii-irca-event-title")).sendKeys(Keys.BACK_SPACE);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
 		  Thread.sleep(1000);
 		  if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed()==false)
 		  {
@@ -456,14 +539,23 @@ public class IETest {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  //Clears and reenters event title
 		  driver.findElement(By.id("pii-irca-event-title")).clear();
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
+		  Thread.sleep(1000);
 		  driver.findElement(By.id("pii-irca-event-title")).sendKeys(obj1.text184);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
+		  	  Thread.sleep(1000);
+		  jse.executeScript("scroll(0, 0)");
 		  Thread.sleep(1000);
 		  //Check the date picker
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a"))).click();
