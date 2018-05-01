@@ -70,7 +70,7 @@ public class SanityTestEiRCA_ChromeTest {
 		  //Downloads record
 		  obj1.downloadRecordChrome(driver);
 		  //Shares report 0 for admin and 1 for non admin
-		  obj1.shareReport(driver, username, password,0);
+		  obj1.shareReport(driver, username, password,1);
 		  //Mark critical
 		  obj1.markCritical(driver);
 		  //Deletes the newly created record
