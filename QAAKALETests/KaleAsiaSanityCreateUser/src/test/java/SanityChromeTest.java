@@ -440,7 +440,7 @@ public class SanityChromeTest {
 			}
 			if(num.get(m)==6)
 			{
-				op[m]="Project Management";
+				op[m]="Performance Accountability & Analytics";
 			}
 			if(num.get(m)==7)
 			{
@@ -1058,7 +1058,7 @@ public class SanityChromeTest {
 				}
 				if(num.get(m)==6)
 				{
-					op[m]="Project Management";
+					op[m]="Performance Accountability & Analytics";
 				}
 				if(num.get(m)==7)
 				{

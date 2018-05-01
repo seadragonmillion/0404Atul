@@ -487,7 +487,7 @@ public void LoginDummyUser() throws Exception{
 			}
 			if(num.get(m)==6)
 			{
-				op[m]="Project Management";
+				op[m]="Performance Accountability & Analytics";
 			}
 			if(num.get(m)==7)
 			{
@@ -1146,7 +1146,7 @@ public void LoginDummyUser() throws Exception{
 				}
 				if(num.get(m)==6)
 				{
-					op[m]="Project Management";
+					op[m]="Performance Accountability & Analytics";
 				}
 				if(num.get(m)==7)
 				{
