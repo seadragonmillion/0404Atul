@@ -134,6 +134,90 @@ public class UserManagement {
         Thread.sleep(10000);
 	}
 	
+	public void activateUserIE11(String email,WebDriver driver)throws Exception {
+		
+		UserManagement obj1 = new UserManagement();
+		//Get current Time
+        long currentTime = System.currentTimeMillis();
+        //Add 15 minutes to it
+        long time15 = currentTime + (15*60*1000);
+		String SMTP_HOST = "smtp.gmail.com";
+	    String EMAIL_ADDRESS = email;
+	    String PASSWORD = "5sepkale";
+	    String INBOX_FOLDER = "INBOX";	    
+	    Properties props = new Properties();
+	    props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+	    Session session = Session.getDefaultInstance(props, null);
+	    Store store = session.getStore("imaps");
+	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
+	    Folder inbox = store.getFolder(INBOX_FOLDER);
+	    inbox.open(Folder.READ_ONLY);
+	    int messageCount = inbox.getMessageCount(); 
+	    System.out.println("Total Messages:- " + messageCount);
+        Flags seen = new Flags(Flags.Flag.SEEN);
+        FlagTerm unseenFlagTerm = new FlagTerm(seen, false);
+        Message[] messages1 = inbox.search(unseenFlagTerm);
+        int messageCount1 = messages1.length;
+        while(true)
+        {
+        	Thread.sleep(2000);
+        	if(currentTime>time15)
+        	{
+        		System.out.println("Time elapsed for email: More than 15 minutes");
+        		obj1.excelStore();
+        		break;
+        	}
+        	if (messageCount1>0)
+        		break;
+        	messages1 = inbox.getMessages();
+        	Thread.sleep(1000);
+        	messages1 = inbox.search(unseenFlagTerm);
+        	messageCount1 = messages1.length;
+        }
+        System.out.println("Unread messages: "+messageCount1);
+        for (int i = 0; i < messageCount1; i++) {
+        	Message message1 = messages1[i];
+        	System.out.println(i);
+            System.out.println("Mail Subject:- " + messages1[i].getSubject());
+            System.out.println("From: " + message1.getFrom());
+            System.out.println("Text: " + message1.getContent().toString());
+        }
+        String emailText=messages1[messageCount1-1].getContent().toString();
+        int n=emailText.indexOf("https");
+        int e=emailText.indexOf(">click ");
+        System.out.println();
+        String activate=emailText.substring(n, e-1);
+        System.out.println(activate);
+        inbox.close(true);
+        store.close();
+        //Open activate URL in new window
+        //Get Browser value
+        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    WebDriver driver2 = null;
+	    //chrome
+	    if(browserName.equals("chrome"))
+	    {
+	    	driver2= new ChromeDriver();
+	    }
+        //firefox
+	    if(browserName.equals("firefox"))
+	    {
+	    	driver2= new FirefoxDriver();
+	    }
+        //ie
+	    if(browserName.equals("internet explorer"))
+	    {
+	    	driver2= new InternetExplorerDriver();
+	    }        
+        driver2.get(activate);
+        Thread.sleep(2000);
+        driver2.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver2.quit();
+        //Wait for 10 seconds
+        Thread.sleep(10000);
+	}
+	
 	public void emailMarkRead(String email) throws Exception{
 		
 		String SMTP_HOST = "smtp.gmail.com";
@@ -142,6 +226,26 @@ public class UserManagement {
 	    String INBOX_FOLDER = "INBOX";	    
 	    Properties props = new Properties();
 	    props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	    Session session = Session.getDefaultInstance(props, null);
+	    Store store = session.getStore("imaps");
+	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
+	    Folder inbox = store.getFolder(INBOX_FOLDER);
+	    inbox.open(Folder.READ_WRITE);
+	    Message[] messages = inbox.getMessages();
+	    inbox.setFlags(messages, new Flags(Flags.Flag.SEEN), true);
+	    System.out.println("Marked all messages read");	    
+	    inbox.close(true);
+        store.close();
+	}
+	
+	public void emailMarkReadIE11(String email) throws Exception{
+		
+		String SMTP_HOST = "smtp.gmail.com";
+	    String EMAIL_ADDRESS = email;
+	    String PASSWORD = "5sepkale";
+	    String INBOX_FOLDER = "INBOX";	    
+	    Properties props = new Properties();
+	    props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
 	    Session session = Session.getDefaultInstance(props, null);
 	    Store store = session.getStore("imaps");
 	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);

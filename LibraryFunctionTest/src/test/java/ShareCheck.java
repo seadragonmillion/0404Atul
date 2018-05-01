@@ -146,6 +146,7 @@ public class ShareCheck {
 		act.click(ele).build().perform();
 		Thread.sleep(3000);
 		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity")));
 		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity")));
 		act.click(ele1).build().perform();
 		Thread.sleep(4000);

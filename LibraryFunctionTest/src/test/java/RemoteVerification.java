@@ -559,7 +559,7 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
     	//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-		dropdown.findElement(By.cssSelector(".ui-first-child.ui-last-child")).click();
+		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
 		//Clicks on add user
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -918,7 +918,10 @@ public class RemoteVerification {
 				  {
 					  break;
 				  }
-			 
+			  catch (org.openqa.selenium.ElementNotInteractableException u)
+			  {
+				  break;
+			  }
 		  }
 		  			  
 	  }

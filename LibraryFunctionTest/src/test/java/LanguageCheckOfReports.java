@@ -106,6 +106,7 @@ public class LanguageCheckOfReports {
     	Thread.sleep(8000);
     	//Switch to window    	
     	driver.switchTo().window(window);
+    	Thread.sleep(3000);
     	//Switches to the iframe
         wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 			    		    	
