@@ -15,6 +15,8 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -97,9 +99,18 @@ public class LanguageCheckOfReports {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(7000);
-    	Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
-		q.waitFor();
+		Thread.sleep(3000);
+		try{
+			 try {
+					  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+					  q.waitFor();
+			 }catch (UnhandledAlertException g){
+		    	  System.out.println("Unexpected alert");
+				  driver.switchTo().alert().accept();
+		      }
+		    }catch (NoAlertPresentException g){			  
+		  System.out.println ("No unexpected alerts");
+		     }
 		Thread.sleep(15000);
     	//pdf verification
     	pdfCheck(y);

@@ -1857,6 +1857,7 @@ public class HiRCALevel1 {
 			Thread.sleep(2000);
 			for (int j=1;j<=num;j++)
 			{
+				Thread.sleep(1000);
 				//Click on checkbox of SUEP
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))).click();
 			}			
@@ -2086,6 +2087,13 @@ public class HiRCALevel1 {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		  //Click on Evidence Entry
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
+		  while (true)
+		  {
+			  if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea")).isDisplayed()==true)
+				  break;
+			  else
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();  
+		  }
 		  //Fill in evidence entry text
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(textEvidence);
 		  //Click on Evidence Entry

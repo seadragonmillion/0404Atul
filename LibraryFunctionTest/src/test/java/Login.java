@@ -2,11 +2,13 @@ import java.util.Base64;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -124,7 +126,19 @@ public class Login {
 			  }
 			 
 		  }
-		Thread.sleep(2000);
+		Thread.sleep(4000);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if(browserName.equals("firefox"))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();		
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			Thread.sleep(2000);
+		}
+		else
+		{
 		Actions act = new Actions (driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
 		WebElement element = driver.findElement(By.id("pii-user-loginname"));
@@ -134,6 +148,7 @@ public class Login {
 		element = driver.findElement(By.id("pii-signout-button"));
 		act.click(element).build().perform();
 		Thread.sleep(2000);
+		}
 	}
 		
 }

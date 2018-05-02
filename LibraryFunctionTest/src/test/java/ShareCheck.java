@@ -2,6 +2,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -38,6 +39,7 @@ public class ShareCheck {
 	public void receiptReport(WebDriver driver, String sharer, String username, String password1) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
@@ -80,6 +82,9 @@ public class ShareCheck {
 		System.out.println("Number of notifications: "+count);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button"))).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
 		//Click on 1st record/notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]"))).click();
 		//Click on Open Report button
@@ -116,7 +121,7 @@ public class ShareCheck {
 		  	driver.switchTo().defaultContent();
 		}
 		Thread.sleep(6000);
-		login = obj.LoginUser(driver, username, password1);
+		int login1 = obj.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
 		//Waits for the page to load
@@ -124,7 +129,7 @@ public class ShareCheck {
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(8000);
-		if (login==1)
+		if (login1==1)
 		{
           
           while(true)
@@ -141,6 +146,15 @@ public class ShareCheck {
         }	
 		Thread.sleep(3000);
 		Actions act = new Actions(driver);
+		if(browserName.equals("firefox"))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+			Thread.sleep(4000);
+		}
+		else
+		{
 		//Clicks on admin user name on top right corner
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
 		act.click(ele).build().perform();
@@ -150,6 +164,7 @@ public class ShareCheck {
 		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity")));
 		act.click(ele1).build().perform();
 		Thread.sleep(4000);
+		}
 	}
 	
 
