@@ -800,11 +800,11 @@ public class SanityIETest {
 		  emailMarkRead();  
 		  Login obj = new Login();
 		  UserManagement obj1 = new UserManagement();
-		  obj.LoginUser(driver, username, password);
+		  int login = obj.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(5000);
+		  Thread.sleep(8000);
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  Thread.sleep(5000);
+		  Thread.sleep(6000);
 		  //Switches to the iframe
 		  WebDriverWait wait1 = new WebDriverWait(driver,10);
 		  wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));

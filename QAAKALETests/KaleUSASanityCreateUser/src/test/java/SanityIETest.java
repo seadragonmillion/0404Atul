@@ -797,8 +797,9 @@ public class SanityIETest {
 		  emailMarkRead();  
 		  Login obj = new Login();
 		  UserManagement obj1 = new UserManagement();
-		  obj.LoginUser(driver, username, password);
+		  int login = obj.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(5000);
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  Thread.sleep(8000);
 		  //Switches to the iframe
