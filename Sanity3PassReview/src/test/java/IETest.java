@@ -306,6 +306,11 @@ public class IETest {
 				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException e)
+	          {
+				  
+				 break;
+			  }
 			 
 		  }
 

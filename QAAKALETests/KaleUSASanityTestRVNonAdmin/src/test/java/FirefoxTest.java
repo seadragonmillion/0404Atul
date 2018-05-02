@@ -33,7 +33,7 @@ public class FirefoxTest {
 		 System.out.println("Performing sanity test on Remote Verification admin in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
+		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 		 profile.setPreference("browser.download.folderList", 2);
 		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
 		 FirefoxOptions options = new FirefoxOptions();
