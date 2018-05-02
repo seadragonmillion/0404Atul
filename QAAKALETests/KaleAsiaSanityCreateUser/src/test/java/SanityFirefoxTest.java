@@ -12,6 +12,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -62,11 +63,13 @@ public class SanityFirefoxTest {
 		 System.out.println("Performing sanity test on create Company/Group/User in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
-		Dimension initialSize= driver.manage().window().getSize();
+		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		 profile.setPreference("browser.download.folderList", 2);
+		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 FirefoxOptions options = new FirefoxOptions();
+		 options.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(options);
+		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
 		 if(height<1900)
@@ -1254,6 +1257,8 @@ public void LoginDummyUser() throws Exception{
 			  driver.findElement(By.id("pii-admin-user-email")).clear();
 			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaaasia@gmail.com");
 		  }
+		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
+		  dd4.selectByVisibleText(company_id);
 		  driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		  ele1.findElement(By.linkText(company_id)).click();
@@ -1262,8 +1267,7 @@ public void LoginDummyUser() throws Exception{
 		  dd2.selectByVisibleText("Accounting");
 		  Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
 		  dd3.selectByVisibleText("Engineer");
-		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
-		  dd4.selectByVisibleText(company_id);
+		  
 		  //Clicks on save button
 		  driver.findElement(By.id("pii-admin-user-button-save")).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();

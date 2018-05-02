@@ -1,27 +1,13 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.Dimension;
-
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -31,14 +17,24 @@ import javax.mail.Store;
 import javax.mail.search.FlagTerm;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.Timeout;
-import org.junit.rules.Timeout;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SanityFirefoxTest {
 
@@ -63,10 +59,12 @@ public class SanityFirefoxTest {
 		 System.out.println("Performing sanity test on create Company/Group/User in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
+		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		 profile.setPreference("browser.download.folderList", 2);
+		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 FirefoxOptions options = new FirefoxOptions();
+		 options.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(options);
 		 Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
@@ -303,9 +301,9 @@ public void LoginDummyUser() throws Exception{
         //Open activate URL in new window
         ProfilesIni ffProfiles = new ProfilesIni();
 		FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-	    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-	    capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		WebDriver driver2 = new FirefoxDriver(capabilities);
+		FirefoxOptions options = new FirefoxOptions();
+		options.setCapability(FirefoxDriver.PROFILE, profile);
+		WebDriver driver2 = new FirefoxDriver(options);
         driver2.get(activate);
         Thread.sleep(4000);
         driver2.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

@@ -1197,6 +1197,8 @@ public class SanityIETest {
 			  driver.findElement(By.id("pii-admin-user-email")).clear();
 			  driver.findElement(By.id("pii-admin-user-email")).sendKeys("fakeemailtestqaausa@gmail.com");
 		  }
+		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
+		  dd4.selectByVisibleText(company_id);
 		  jse.executeScript("return document.getElementById('pii-admin-user-groups-button').click();");
 		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		  Thread.sleep(1000);
@@ -1206,8 +1208,7 @@ public class SanityIETest {
 		  dd2.selectByVisibleText("Accounting");
 		  Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
 		  dd3.selectByVisibleText("Engineer");
-		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
-		  dd4.selectByVisibleText(company_id);
+		  
 		  //Clicks on save button
 		  jse.executeScript("return document.getElementById('pii-admin-user-button-save').click();");
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
