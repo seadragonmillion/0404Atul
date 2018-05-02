@@ -6,10 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -344,7 +346,7 @@ public class HiRCALevel1 {
 		}
 	}
 	
-	public void downloadReportChrome (WebDriver driver, List<String>lopOptions) throws Exception {
+	public void downloadReportChrome (WebDriver driver, List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options) throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -367,7 +369,7 @@ public class HiRCALevel1 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
     	Thread.sleep(8000);
-    	pdfCheck(lopOptions);
+    	pdfCheck(lopOptions,hml,options);
     	for(String winHandle : driver.getWindowHandles()){
 	    driver.switchTo().window(winHandle);
 	    }
@@ -376,7 +378,7 @@ public class HiRCALevel1 {
     	Thread.sleep(1000);
 	}
 	
-	public void downloadReportFirefox(WebDriver driver, List<String>lopOptions) throws Exception {
+	public void downloadReportFirefox(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options) throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -413,7 +415,7 @@ public class HiRCALevel1 {
     	robot.keyRelease(KeyEvent.VK_S);
     	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
     	p.waitFor();
-    	pdfCheck(lopOptions);
+    	pdfCheck(lopOptions,hml,options);
     	Thread.sleep(4000);
     	driver.close();
     	Thread.sleep(4000);
@@ -421,7 +423,7 @@ public class HiRCALevel1 {
     	driver.switchTo().defaultContent();      	    		    	
     }
 	
-	public void downloadReportIE(WebDriver driver, List<String>lopOptions)throws Exception {
+	public void downloadReportIE(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options)throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -458,14 +460,14 @@ public class HiRCALevel1 {
 		  		  }
     	Thread.sleep(7000);
     	//pdf verification
-	    pdfCheck(lopOptions);
+	    pdfCheck(lopOptions,hml,options);
 	    Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);				    		    	
     }
 	
 	
-	public void downloadReportIE11(WebDriver driver, List<String>lopOptions)throws Exception {
+	public void downloadReportIE11(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options)throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -502,13 +504,13 @@ public class HiRCALevel1 {
 		  		  }
     	Thread.sleep(7000);
     	//pdf verification
-	    pdfCheck(lopOptions);
+	    pdfCheck(lopOptions,hml,options);
 	    Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);				    		    	
     }
 	
-	public void pdfCheck(List<String>lopOptions) throws Exception{
+	public void pdfCheck(List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options) throws Exception{
     	
 		// specify your directory
     	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
@@ -545,6 +547,320 @@ public class HiRCALevel1 {
        }
        System.out.println("No. of evidence entries: "+count);
        softly.assertThat(count).as("test data").isEqualTo(n*2);
+       System.out.println(options);
+       System.out.println(hml);
+       if(n>0)
+       {
+    	   //Check HML order for root cause
+    	   if(options.get("Root causes")>0)
+    	   {
+    		   //Create 4 different lists to store level 3 for High, Medium, Low, ""
+    		   List<String> highrc = new ArrayList<String>();
+    		   List<String> mediumrc = new ArrayList<String>();
+    		   List<String> lowrc = new ArrayList<String>();
+    		   List<String> nonerc = new ArrayList<String>();
+    		   for (Map.Entry<String, Integer> e : options.entrySet())
+    		   {
+    			   //If it has 4 ticks in SUEP then its a RC
+    			   if(e.getValue()==4)
+    			   {
+    				   String s = e.getKey();
+    				   if(s.startsWith("3.17.4"))
+    				   {
+    					   s=s.replace("3.17.4:", "3.17.4");
+    				   }
+    				   else
+    					   s=s.replace(":", "");
+    				   if(hml.get(s)=="High")
+    				   {
+    					   highrc.add(s);
+    				   }
+    				   if(hml.get(s)=="Medium")
+    				   {
+    					   mediumrc.add(s);
+    				   }
+    				   if(hml.get(s)=="Low")
+    				   {
+    					   lowrc.add(s);
+    				   }
+    				   if(hml.get(s)=="")
+    				   {
+    					   nonerc.add(s);
+    				   }
+    			   }    			   
+    		   }
+    		   //Sort the lists
+    		   Collections.sort(highrc);
+    		   Collections.sort(mediumrc);
+    		   Collections.sort(lowrc);
+    		   Collections.sort(nonerc);
+    		   System.out.println(highrc);
+    		   System.out.println(mediumrc);
+    		   System.out.println(lowrc);
+    		   System.out.println(nonerc);
+    		   if(highrc.size()>0)
+    		   {
+    			   //Look for Level 3 answers with high importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf((highrc.get(0)+ " High"))-1;
+        		   for(int i =0;i<highrc.size();i++)
+        		   {
+        			   index = newData1.indexOf((highrc.get(i)+ " High"));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for High is wrong for root cause in pdf");
+        		   }
+    		   }
+    		   if(mediumrc.size()>0)
+    		   {
+    			   //Look for Level 3 answers with medium importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf((mediumrc.get(0)+ " Medium"))-1;
+        		   for(int i =0;i<mediumrc.size();i++)
+        		   {
+        			   index = newData1.indexOf((mediumrc.get(i)+ " Medium"));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for Medium is wrong for root cause in pdf");
+        		   }
+    		   }
+    		   if(lowrc.size()>0)
+    		   {
+    			   //Look for Level 3 answers with low importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf((lowrc.get(0)+ " Low"))-1;
+        		   for(int i =0;i<lowrc.size();i++)
+        		   {
+        			   index = newData1.indexOf((lowrc.get(i)+ " Low"));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for Low is wrong for root cause in pdf");
+        		   }
+    		   }
+    		   if(nonerc.size()>0)
+    		   {
+    			   //Look for Level 3 answers with no importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf(nonerc.get(0))-1;
+        		   for(int i =0;i<nonerc.size();i++)
+        		   {
+        			   index = newData1.indexOf(nonerc.get(i));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for no importance is wrong for root cause in pdf");
+        		   }
+    		   }
+    		   //Check if last high comes before 1st medium, 1st low, 1st none
+    		   if(highrc.size()>0 && mediumrc.size()>0)
+    		   {
+    			   int index = newData1.indexOf(highrc.get(highrc.size()-1));
+    			   int index1 = newData1.indexOf(mediumrc.get(0));
+    			   if(index>index1)
+    				   softly.fail("High importance comes after medium in root cause in pdf");
+    		   }
+    		   if(highrc.size()>0 && lowrc.size()>0)
+    		   {
+    			   int index = newData1.indexOf(highrc.get(highrc.size()-1));
+    			   int index1 = newData1.indexOf(lowrc.get(0));
+    			   if(index>index1)
+    				   softly.fail("High importance comes after low in root cause in pdf");
+    		   }
+    		   if(highrc.size()>0 && nonerc.size()>0)
+    		   {
+    			   int index = newData1.indexOf(highrc.get(highrc.size()-1));
+    			   int index1 = newData1.indexOf(nonerc.get(0));
+    			   if(index>index1)
+    				   softly.fail("High importance comes after none in root cause in pdf");
+    		   }
+    		   //Check if last medium comes before 1st low, 1st none
+    		   if(mediumrc.size()>0 && lowrc.size()>0)
+    		   {
+    			   int index = newData1.indexOf(mediumrc.get(mediumrc.size()-1));
+    			   int index1 = newData1.indexOf(lowrc.get(0));
+    			   if(index>index1)
+    				   softly.fail("Medium importance comes after low in root cause in pdf");
+    		   }
+    		   if(mediumrc.size()>0 && nonerc.size()>0)
+    		   {
+    			   int index = newData1.indexOf(mediumrc.get(mediumrc.size()-1));
+    			   int index1 = newData1.indexOf(nonerc.get(0));
+    			   if(index>index1)
+    				   softly.fail("Medium importance comes after none in root cause in pdf");
+    		   }
+    		   //Check if last low comes before 1st none
+    		   if(lowrc.size()>0 && nonerc.size()>0)
+    		   {
+    			   int index = newData1.indexOf(lowrc.get(lowrc.size()-1));
+    			   int index1 = newData1.indexOf(nonerc.get(0));
+    			   if(index>index1)
+    				   softly.fail("Low importance comes after none in root cause in pdf");
+    		   }
+    	   }
+           
+           //Check HML order for contributing factor
+    	   int cf = n-options.get("Root causes");
+    	   if(cf>0)
+    	   {
+    		   //Create 4 different lists to store level 3 for High, Medium, Low, ""
+    		   List<String> highcf = new ArrayList<String>();
+    		   List<String> mediumcf = new ArrayList<String>();
+    		   List<String> lowcf = new ArrayList<String>();
+    		   List<String> nonecf = new ArrayList<String>();
+    		   for (Map.Entry<String, Integer> e : options.entrySet())
+    		   {
+    			   //If it has 4 ticks in SUEP then its a RC
+    			   if(e.getValue()!=4)
+    			   {
+    				   String s = e.getKey();
+    				   if(s.startsWith("3.17.4"))
+    				   {
+    					   s=s.replace("3.17.4:", "3.17.4");
+    				   }
+    				   else
+    					   s=s.replace(":", "");
+    				   if(hml.get(s)=="High")
+    				   {
+    					   highcf.add(s);
+    				   }
+    				   if(hml.get(s)=="Medium")
+    				   {
+    					   mediumcf.add(s);
+    				   }
+    				   if(hml.get(s)=="Low")
+    				   {
+    					   lowcf.add(s);
+    				   }
+    				   if(hml.get(s)=="")
+    				   {
+    					   nonecf.add(s);
+    				   }
+    			   }    			   
+    		   }
+    		   //Sort the lists
+    		   Collections.sort(highcf);
+    		   Collections.sort(mediumcf);
+    		   Collections.sort(lowcf);
+    		   Collections.sort(nonecf);
+    		   System.out.println(highcf);
+    		   System.out.println(mediumcf);
+    		   System.out.println(lowcf);
+    		   System.out.println(nonecf);
+    		   if(highcf.size()>0)
+    		   {
+    			   //Look for Level 3 answers with high importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf((highcf.get(0)+ " High"))-1;
+        		   for(int i =0;i<highcf.size();i++)
+        		   {
+        			   index = newData1.indexOf((highcf.get(i)+ " High"));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for High is wrong for contributing factor in pdf");
+        		   }
+    		   }
+    		   if(mediumcf.size()>0)
+    		   {
+    			   //Look for Level 3 answers with medium importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf((mediumcf.get(0)+ " Medium"))-1;
+        		   for(int i =0;i<mediumcf.size();i++)
+        		   {
+        			   index = newData1.indexOf((mediumcf.get(i)+ " Medium"));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for Medium is wrong for contributing factor in pdf");
+        		   }
+    		   }
+    		   if(lowcf.size()>0)
+    		   {
+    			   //Look for Level 3 answers with low importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf((lowcf.get(0)+ " Low"))-1;
+        		   for(int i =0;i<lowcf.size();i++)
+        		   {
+        			   index = newData1.indexOf((lowcf.get(i)+ " Low"));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for Low is wrong for contributing factor in pdf");
+        		   }
+    		   }
+    		   if(nonecf.size()>0)
+    		   {
+    			   //Look for Level 3 answers with no importance and verify if index in pdf data is lower
+        		   int index;
+        		   int index1=newData1.indexOf(nonecf.get(0))-1;
+        		   for(int i =0;i<nonecf.size();i++)
+        		   {
+        			   index = newData1.indexOf(nonecf.get(i));
+        			   if(index>index1)
+        			   {
+        				   index1 = index;
+        			   }
+        			   else softly.fail("Order for no importance is wrong for contributing factor in pdf");
+        		   }
+    		   }
+    		   //Check if last high comes before 1st medium, 1st low, 1st none
+    		   if(highcf.size()>0 && mediumcf.size()>0)
+    		   {
+    			   int index = newData1.indexOf(highcf.get(highcf.size()-1));
+    			   int index1 = newData1.indexOf(mediumcf.get(0));
+    			   if(index>index1)
+    				   softly.fail("High importance comes after medium in contributing factor in pdf");
+    		   }
+    		   if(highcf.size()>0 && lowcf.size()>0)
+    		   {
+    			   int index = newData1.indexOf(highcf.get(highcf.size()-1));
+    			   int index1 = newData1.indexOf(lowcf.get(0));
+    			   if(index>index1)
+    				   softly.fail("High importance comes after low in contributing factor in pdf");
+    		   }
+    		   if(highcf.size()>0 && nonecf.size()>0)
+    		   {
+    			   int index = newData1.indexOf(highcf.get(highcf.size()-1));
+    			   int index1 = newData1.indexOf(nonecf.get(0));
+    			   if(index>index1)
+    				   softly.fail("High importance comes after none in contributing factor in pdf");
+    		   }
+    		   //Check if last medium comes before 1st low, 1st none
+    		   if(mediumcf.size()>0 && lowcf.size()>0)
+    		   {
+    			   int index = newData1.indexOf(mediumcf.get(mediumcf.size()-1));
+    			   int index1 = newData1.indexOf(lowcf.get(0));
+    			   if(index>index1)
+    				   softly.fail("Medium importance comes after low in contributing factor in pdf");
+    		   }
+    		   if(mediumcf.size()>0 && nonecf.size()>0)
+    		   {
+    			   int index = newData1.indexOf(mediumcf.get(mediumcf.size()-1));
+    			   int index1 = newData1.indexOf(nonecf.get(0));
+    			   if(index>index1)
+    				   softly.fail("Medium importance comes after none in contributing factor in pdf");
+    		   }
+    		   //Check if last low comes before 1st none
+    		   if(lowcf.size()>0 && nonecf.size()>0)
+    		   {
+    			   int index = newData1.indexOf(lowcf.get(lowcf.size()-1));
+    			   int index1 = newData1.indexOf(nonecf.get(0));
+    			   if(index>index1)
+    				   softly.fail("Low importance comes after none in contributing factor in pdf");
+    		   }
+    	   }
+       }    
+       
 	}
 	
 	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist) throws Exception {
@@ -1168,8 +1484,9 @@ public class HiRCALevel1 {
 		}
 		//Verify Step 5
 		List<String> checklist=verifyHiRCAChecklist(driver);
-		Thread.sleep(2000);
-		if(skip.contains("ui-state-disabled"))
+		Thread.sleep(4000);
+		String skip1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
+		if(skip1.contains("ui-state-disabled"))
 		{
 			//Click on next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1212,15 +1529,15 @@ public class HiRCALevel1 {
 	    System.out.println(v);
 	    //Download report to check pdf
 	    if (browserName.equals("chrome"))
-	    	downloadReportChrome(driver,lopOptions);
+	    	downloadReportChrome(driver,lopOptions,hml,options);
 	    if (browserName.equals("firefox"))
-	    	downloadReportFirefox(driver,lopOptions);
+	    	downloadReportFirefox(driver,lopOptions,hml,options);
 	    if (browserName.equals("internet explorer"))
 	    {
 	    	if (v.startsWith("10"))
-	    		downloadReportIE(driver,lopOptions);
+	    		downloadReportIE(driver,lopOptions,hml,options);
 	    	if (v.startsWith("11"))
-	    		downloadReportIE11(driver,lopOptions);
+	    		downloadReportIE11(driver,lopOptions,hml,options);
 	    }
 	    //Modify report
 		modifyReport(driver,lopOptions,options,hml,checklist);
@@ -2110,6 +2427,7 @@ public class HiRCALevel1 {
 	
 	public void softAssert() throws Exception {
 		softly.assertAll();
+		System.gc();
 	}
 
 }

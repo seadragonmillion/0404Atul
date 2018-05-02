@@ -848,6 +848,7 @@ public class HPI {
 		
 		public void softAssert() throws Exception {
 			softly.assertAll();
+			System.gc();
 		}
 
 }

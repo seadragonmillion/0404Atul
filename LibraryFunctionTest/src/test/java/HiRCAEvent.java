@@ -112,7 +112,11 @@ public class HiRCAEvent {
 			  {
 				  break;
 			  }
-			 
+			  catch (org.openqa.selenium.JavascriptException o)
+			  {
+				  Thread.sleep(3000);
+				  break;
+			  }
 		  }
 		 
 	  }
@@ -1948,6 +1952,7 @@ public class HiRCAEvent {
 	
 	public void softAssert() throws Exception {
 		softly.assertAll();
+		System.gc();
 	}
 
 }

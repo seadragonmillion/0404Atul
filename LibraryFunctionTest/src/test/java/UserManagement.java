@@ -1164,6 +1164,7 @@ public class UserManagement {
 	
 	public void softAssert() throws Exception {
 		softly.assertAll();
+		System.gc();
 	}
 
 }
