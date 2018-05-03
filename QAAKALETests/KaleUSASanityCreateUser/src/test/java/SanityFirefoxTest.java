@@ -305,9 +305,9 @@ public void LoginDummyUser() throws Exception{
         //Open activate URL in new window
         ProfilesIni ffProfiles = new ProfilesIni();
 		FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-	    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-	    capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		WebDriver driver2 = new FirefoxDriver(capabilities);
+		FirefoxOptions options = new FirefoxOptions();
+		options.setCapability(FirefoxDriver.PROFILE, profile);
+		WebDriver driver2 = new FirefoxDriver(options);
         //WebDriver driver2= new ChromeDriver();
         driver2.get(activate);
         Thread.sleep(4000);
