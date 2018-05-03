@@ -304,9 +304,11 @@ public void LoginDummyUser() throws Exception{
         store.close();
         //Open activate URL in new window
         ProfilesIni ffProfiles = new ProfilesIni();
-		FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		FirefoxOptions options = new FirefoxOptions();
-		options.setCapability(FirefoxDriver.PROFILE, profile);
+		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		 profile.setPreference("browser.download.folderList", 2);
+		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 FirefoxOptions options = new FirefoxOptions();
+		 options.setCapability(FirefoxDriver.PROFILE, profile);
 		WebDriver driver2 = new FirefoxDriver(options);
         //WebDriver driver2= new ChromeDriver();
         driver2.get(activate);

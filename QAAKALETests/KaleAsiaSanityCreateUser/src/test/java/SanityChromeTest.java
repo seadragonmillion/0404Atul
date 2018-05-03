@@ -787,10 +787,10 @@ public class SanityChromeTest {
 		  int login = obj.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  JavascriptExecutor jse =(JavascriptExecutor) driver;
-		  Thread.sleep(7000);
+		  Thread.sleep(8000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	      Thread.sleep(5000);
+	      Thread.sleep(7000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
