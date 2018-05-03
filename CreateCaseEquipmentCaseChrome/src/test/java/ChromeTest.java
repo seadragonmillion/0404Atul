@@ -53,7 +53,7 @@ public class ChromeTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3500000);
+	  public Timeout globalTimeout= new Timeout(4000000);
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
