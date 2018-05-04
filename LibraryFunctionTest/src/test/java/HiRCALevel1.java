@@ -243,6 +243,8 @@ public class HiRCALevel1 {
 		}
 		//When contributing factors are present
 		int i=1;
+		if (options.get("Root causes")!=0)
+		{
 		while(i<=(cf*2))
 		{
 			//Get name of level 3 answer
@@ -285,6 +287,53 @@ public class HiRCALevel1 {
 			softly.assertThat(s4).as("test data").contains(textEvidence);
 			//Increase i for next cf
 			i=i+1;
+		}
+		}
+		if (options.get("Root causes")==0)
+		{
+		while(i<(cf*2))
+		{
+			//Get name of level 3 answer
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
+			System.out.println(s);
+			//Verify if this level 3 answer was selected
+			if(lopOptions1.contains(s)==false)
+			{
+				softly.fail("Level 3 is not suppose to be here: "+s);
+			}
+			//Check if it has 4 boxes ticked
+			if(options.get(s)==4)
+			{
+				softly.fail("Not a contributing factor, All four boxes are ticked, only some should be: "+ options.get(s));
+			}
+			//Get importance and verify
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[2]"))).getText();
+			//Get corresponding Importance value from hashmap
+			String s2 = hml.get(s);
+			//Verify high medium low
+			softly.assertThat(s1).as("test data").isEqualTo(s2);
+			//Get corrective actions
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			if(d==0)
+			{
+				if(varText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text);
+			}
+			if(d==1)
+			{
+				if(modText.contains(s3)==false)
+					softly.fail("Text wrong: "+s3);
+				//softly.assertThat(s3).as("test data").isEqualTo(text1);
+			}
+			//Increase i for supporting evidence
+			i=i+1;
+			//Verify Supporting Evidence
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
+			softly.assertThat(s4).as("test data").contains(textEvidence);
+			//Increase i for next cf
+			i=i+1;
+		}
 		}
 		//Verify Root Cause Analysis
 		String rc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[1]/td[2]"))).getText();
