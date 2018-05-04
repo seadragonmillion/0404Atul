@@ -29,6 +29,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -172,13 +173,13 @@ public class UserManagement {
 			Thread.sleep(2000);
 		}
 		else System.out.println("HPI disabled");
-	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
+	  	/*element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
 		if(element.getAttribute("class").contains("ui-state-disabled")==false)
 		{
 			softly.fail("HiRCA enabled");
 			Thread.sleep(2000);
 		}
-		else System.out.println("HiRCA disabled");
+		else System.out.println("HiRCA disabled");*/
 	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca")));
 		if(element.getAttribute("class").contains("ui-state-disabled")==false)
 		{
@@ -383,7 +384,7 @@ public class UserManagement {
 				  
 			  }
 		 //Verify if group name is as expected
-		 String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-name"))).getText();
+		 String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-name"))).getAttribute("value");
 		 softly.assertThat(s1).as("test data").isEqualTo(company_id1);
 		 //Edit the group by changing the module access
 		 driver.findElement(By.id("pii-admin-group-modules-button")).click();
@@ -459,7 +460,7 @@ public class UserManagement {
 				  
 			  }
 		 //Verify if group name is as expected
-		 String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-name"))).getText();
+		 String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-name"))).getAttribute("value");
 		 softly.assertThat(s4).as("test data").isEqualTo(company_id2);
 	}
 	
@@ -508,10 +509,13 @@ public class UserManagement {
 		  //Waits for the page to load
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Click on + sign for next month
-		  //WebElement ele1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active")));
+		  //WebElement ele1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']")));
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ui-datebox-gridplus"))).click();
 		  Thread.sleep(2000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("28"))).click();
+		  //Select a date
+		  WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ui-datebox-grid")));
+		  ele1.findElement(By.xpath(".//*[@class='ui-datebox-gridrow ui-datebox-gridrow-last']/div[5]")).click();
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("28"))).click();
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
@@ -758,6 +762,7 @@ public class UserManagement {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
 			  Thread.sleep(2000);
 			  //Searches for newly created user
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(Keys.ENTER);
 			  try{
@@ -1295,6 +1300,9 @@ public class UserManagement {
 		}catch (NoSuchElementException r){
 			throw r;
 		}
+		catch (TimeoutException r){
+			throw r;
+		}
 		List<String>f = Arrays.asList(op);
 		WebElement element;
 		//Verify the modules selected
@@ -1514,7 +1522,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
-		if(f.contains("Human Performance Search"))
+		if(f.contains("Human Performance"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
@@ -1528,7 +1536,7 @@ public class UserManagement {
 			}
 			else softly.fail("Human Performance disabled");
 		}
-		if(f.contains("Equipment Performance Search"))
+		if(f.contains("Equipment Performance"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
@@ -1542,7 +1550,7 @@ public class UserManagement {
 			}
 			else softly.fail("Equipment Performance disabled");
 		}
-		if(f.contains("Electrical Failure Mode Search"))
+		if(f.contains("Electrical Failure Modes"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
@@ -1556,7 +1564,7 @@ public class UserManagement {
 			}
 			else softly.fail("Electrical Failure Modes disabled");
 		}
-		if(f.contains("Mechanical Failure Mode Search"))
+		if(f.contains("Mechanical Failure Modes"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
@@ -1578,14 +1586,17 @@ public class UserManagement {
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Edit user
 		  driver.findElement(By.id("pii-admin-user-edit")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Searches for newly created user
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
 		  //Selects the newly created user
 		  WebElement select = driver.findElement(By.id("pii-admin-user-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		  option.click();
+		  Thread.sleep(4000);
 		  //Clicks on delete
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-delete"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -1600,15 +1611,17 @@ public class UserManagement {
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Edit group
 		  driver.findElement(By.id("pii-admin-group-edit")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Searches for newly created group
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).clear();
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input")).sendKeys(Keys.ENTER);
 		  //Selects the newly created group
 		  WebElement select = driver.findElement(By.id("pii-admin-group-list"));
 		  WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		  option.click();
+		  Thread.sleep(4000);
 		  //Clicks on delete
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-delete"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
@@ -1626,11 +1639,13 @@ public class UserManagement {
 		  Thread.sleep(2000);
 		  //Enters company id in ID field 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(company_id);
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(Keys.ENTER);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Clicks on delete
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();

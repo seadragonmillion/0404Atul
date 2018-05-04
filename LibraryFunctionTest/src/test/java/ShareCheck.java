@@ -98,16 +98,38 @@ public class ShareCheck {
 				  
 			  }
 		Thread.sleep(2000);
-		//Go back to notifications
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button"))).click();
-		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]"))).click();
-		Thread.sleep(2000);
-		//Click on read
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-ack-btn"))).click();
-		Thread.sleep(2000);
-		//Click on mark as read
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notifcenter-dialog-confirmed"))).click();
+		if(browserName.equals("internet explorer"))
+		{
+			Actions act = new Actions (driver);
+			//Go back to notifications
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button")));
+			act.click(ele).build().perform();
+			//Click on 1st record/notification
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]")));
+			act.click(ele).build().perform();
+			Thread.sleep(2000);
+			//Click on read
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-ack-btn")));
+			act.click(ele).build().perform();
+			Thread.sleep(2000);
+			//Click on mark as read
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notifcenter-dialog-confirmed")));
+			act.click(ele).build().perform();
+			Thread.sleep(2000);
+		}
+		else{
+			//Go back to notifications
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button"))).click();
+			//Click on 1st record/notification
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]"))).click();
+			Thread.sleep(2000);
+			//Click on read
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-ack-btn"))).click();
+			Thread.sleep(2000);
+			//Click on mark as read
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notifcenter-dialog-confirmed"))).click();
+			Thread.sleep(2000);
+		}		
 		//Wait for black server load message to disappear
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
