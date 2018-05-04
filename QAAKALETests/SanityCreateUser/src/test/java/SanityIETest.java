@@ -499,19 +499,19 @@ public class SanityIETest {
 			}
 			if(num.get(m)==18)
 			{
-				op[m]="Human Performance Search";
+				op[m]="Human Performance";
 			}
 			if(num.get(m)==19)
 			{
-				op[m]="Equipment Performance Search";
+				op[m]="Equipment Performance";
 			}
 			if(num.get(m)==20)
 			{
-				op[m]="Electrical Failure Mode Search";
+				op[m]="Electrical Failure Modes";
 			}
 			if(num.get(m)==21)
 			{
-				op[m]="Mechanical Failure Mode Search";
+				op[m]="Mechanical Failure Modes";
 			}	
 			//Checks it
 			ele.findElement(By.linkText(op[m])).click();
@@ -1137,19 +1137,19 @@ public class SanityIETest {
 				}
 				if(num.get(m)==18)
 				{
-					op[m]="Human Performance Search";
+					op[m]="Human Performance";
 				}
 				if(num.get(m)==19)
 				{
-					op[m]="Equipment Performance Search";
+					op[m]="Equipment Performance";
 				}
 				if(num.get(m)==20)
 				{
-					op[m]="Electrical Failure Mode Search";
+					op[m]="Electrical Failure Modes";
 				}
 				if(num.get(m)==21)
 				{
-					op[m]="Mechanical Failure Mode Search";
+					op[m]="Mechanical Failure Modes";
 				}	
 				//Checks it
 				ele.findElement(By.linkText(op[m])).click();
