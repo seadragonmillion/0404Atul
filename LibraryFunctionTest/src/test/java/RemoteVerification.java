@@ -889,6 +889,14 @@ public class RemoteVerification {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
+		  //Wait for black server load message to disappear
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				}catch (org.openqa.selenium.TimeoutException e)
+				 {
+					  
+				 }
 		  //Verify record deleted
 		  //Click on 1st record
 		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).getText();

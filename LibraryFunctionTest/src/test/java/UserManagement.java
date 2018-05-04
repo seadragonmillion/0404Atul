@@ -49,10 +49,481 @@ public class UserManagement {
 	String emailUS = "fakeemailtestqaausa@gmail.com";
 	String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
 	String emailAsia = "fakeemailtestqaaasia@gmail.com";
+	String companyPII="pii";
+	String groupPII="pii";
+	String groupAdmin="admin";
+	String company_id1DevAsia="2017qaagroupedit1";
+	String company_id2DevAsia="2017qaagroupedit2";
+	String company_id1DevAsiaIE11="2017qaagroupedit1ie11";
+	String company_id2DevAsiaIE11="2017qaagroupedit2ie11";
+	String company_id2US="2017qaagroupedit2us";
+	String company_id1USIE11="2017qaagroupedit1ie11us";
+	
+	public String[] allModuleList () throws Exception {
 		
+		List<String> text = new ArrayList<String>();
+		text.add("Event Reports");
+		text.add("JIT Wisdom");
+		text.add("JIT Risk Joggers");
+		text.add("Knowledge Bank");
+		text.add("Knowledge Exchange");
+		text.add("Performance Accountability & Analytics");
+		text.add("SPV Error Meter");
+		text.add("Human Performance Inspector");
+		text.add("Human Error Instant RCA");
+		text.add("Equipment Failure Instant RCA");
+		text.add("Organization & Programmatic Instant RCA");
+		text.add("Instant Common Cause Analysis");
+		text.add("Job Observation Analysis");
+		text.add("3-Pass Review");
+		text.add("Remote Verification");
+		text.add("eLearning");
+		text.add("Error-Free Trainings");
+		text.add("Human Performance");
+		text.add("Equipment Performance");
+		text.add("Electrical Failure Modes");
+		text.add("Mechanical Failure Modes");
+		String[] list = text.stream().toArray(String[]::new);
+		return list;
+	}
+	
+	public void accessOneModule(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		Thread.sleep(2000);
+		//Click on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+		Thread.sleep(2000);
+		//Verify HiRCA is enabled
+		WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			System.out.println("HiRCA enabled");
+			element.click();
+			Thread.sleep(2000);
+			//Clicks on Analysis
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+		    Thread.sleep(2000);
+		}
+		else softly.fail("HiRCA disabled");
+		//Click on HiRCA
+		element.click();
+		Thread.sleep(2000);
+		//Verify all other mpdules don't have access
+		//Go to KALE homepage
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+	    //Click on Knowledge
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-k"))).click();
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Event Reports")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Event Reports enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Event Reports disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("JIT Wisdom")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("JIT Wisdom enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("JIT Wisdom disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("JIT Risk Joggers")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("JIT Risk Joggers enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("JIT Risk Joggers disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge Bank")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Knowledge Bank enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Knowledge Bank disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge Exchange")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Knowledge Exchange enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Knowledge Exchange disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Performance Accountability & Analytics")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Performance Accountability & Analytics enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Performance Accountability & Analytics disabled");
+		//Click on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+		element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("SPV Error Meter enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("SPV Error Meter disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hpi")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("HPI enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("HPI disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("HiRCA enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("HiRCA disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("EiRCA enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("EiRCA disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-opirca")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("O&PiRCA enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("O&PiRCA disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-icca")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("ICCA enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("ICCA disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Job Observation enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Job Observation disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("3 Pass Review enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("3 Pass Review disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-rv")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Remote Verification enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Remote Verification disabled");
+		//Clicks on Learning
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
+		//Clicks on Error-Free Bank
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Human Performance enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Human Performance disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Equipment Performance enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Equipment Performance disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Electrical Failure Modes enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Electrical Failure Modes disabled");
+	  	element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
+		if(element.getAttribute("class").contains("ui-state-disabled")==false)
+		{
+			softly.fail("Mechanical Failure Modes enabled");
+			Thread.sleep(2000);
+		}
+		else System.out.println("Mechanical Failure Modes disabled");
+	}
+	
+	public void logoutLogin(WebDriver driver, Login obj, String username, String password) throws Exception {
+		
+		//Logout as admin/new user
+		obj.logout(driver);
+		//If browser is firefox then switch to default content
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if(browserName.equals("firefox"))
+		{
+		 	driver.switchTo().defaultContent();
+		}
+		Thread.sleep(2000);
+		//Login as new user/admin
+		int login = obj.LoginUser(driver, username, password);
+		System.out.println("Title after login: "+driver.getTitle());
+		Thread.sleep(5000);
+		//Waits for the page to load
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Switches to the iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		try{
+	           if (login==1)
+	            {
+	                  WebDriverWait wait2 = new WebDriverWait(driver,20);
+	                  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+	            }
+	       }catch (NoSuchElementException e){
+	            throw e;
+	       }
+		Thread.sleep(5000);
+	}
+	
+	public void changeGroupCompany (WebDriver driver, String company_id, String groupChange, String companyChange) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		//Clicks on Accounts
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
+		//Click on edit user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
+		//Searches for newly created user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
+		//Selects the newly created user
+		WebElement select = driver.findElement(By.id("pii-admin-user-list"));
+		WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
+		option.click();
+		//Waits for black loading message to disappear
+		try{
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Change company id
+		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
+		dd1.selectByVisibleText(companyChange);
+		//Select pii group
+		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
+		ele1.findElement(By.linkText(groupChange)).click();
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		//Click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//Waits for black loading message to disappear
+		try{
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+	}
+	
+	public void groupView (WebDriver driver, String company_id1, String company_id2) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);	
+		//Click on Companies
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
+		//Enters company id in ID field 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id1);
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		//Waits for black loading message to disappear
+		try{
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Clicks on newly created company id
+		 driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		 //Waits for black loading message to disappear
+		 try{
+		     Thread.sleep(2000);
+			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Click on edit
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+		 //Get name of group to verify if group name is as expected
+		 String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).getText();
+		 softly.assertThat(s).as("test data").isEqualTo(company_id1);
+		 //Click on group under company
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).click();
+		 //Waits for black loading message to disappear
+		 try{
+		     Thread.sleep(1000);
+			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Verify if group name is as expected
+		 String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-name"))).getText();
+		 softly.assertThat(s1).as("test data").isEqualTo(company_id1);
+		 //Edit the group by changing the module access
+		 driver.findElement(By.id("pii-admin-group-modules-button")).click();
+		 WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
+		 //Checks it
+		 ele.findElement(By.linkText("Human Error Instant RCA")).click();
+		 Thread.sleep(2000);
+		 ele.findElement(By.linkText("Equipment Failure Instant RCA")).click();
+		 try{
+			  driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
+		 }catch (NoSuchElementException e)
+			  {
+			     driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
+			  }
+		 catch (ElementNotInteractableException e1)
+		 {
+		    driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
+		 }
+		 //Clicks on save
+		 driver.findElement(By.id("pii-admin-group-button-save")).click();
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
+		 //Clicks on Save
+		 driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
+		 //Waits for black loading message to disappear
+		 try{
+		     Thread.sleep(2000);
+			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		//Click on Companies
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
+		//Enters company id in ID field 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id2);
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		//Waits for black loading message to disappear
+		try{
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Clicks on newly created company id
+		 driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		 //Waits for black loading message to disappear
+		 try{
+		     Thread.sleep(2000);
+			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Click on edit
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+		 //Get name of group to verify if group name is as expected
+		 String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).getText();
+		 softly.assertThat(s3).as("test data").isEqualTo(company_id2);
+		 //Click on group under company
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).click();
+		 //Waits for black loading message to disappear
+		 try{
+		     Thread.sleep(1000);
+			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }
+		 //Verify if group name is as expected
+		 String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-name"))).getText();
+		 softly.assertThat(s4).as("test data").isEqualTo(company_id2);
+	}
+	
+	public void createGroupWithExpirationDate (WebDriver driver, String company_id) throws Exception {
+		
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  Thread.sleep(2000);
+		  //Clicks on create group
+		  driver.findElement(By.id("pii-admin-group-create")).click();
+		  Thread.sleep(2000);
+		  //Fills all mandatory 
+		  driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
+		  driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
+		  String ev1 = driver.findElement(By.id("pii-admin-group-name")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-admin-group-cases")).getAttribute("value");
+		  if ((ev1.equals(company_id)==false))
+		  {
+			  driver.findElement(By.id("pii-admin-group-name")).clear();
+			  driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
+		  }
+		  if ((ev2.equals("all")==false))
+		  {
+			  driver.findElement(By.id("pii-admin-group-cases")).clear();
+			  driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
+		  }
+		  WebElement element = driver.findElement(By.id("pii-admin-group-cid"));
+		  Select dropdown = new Select (element);
+		  dropdown.selectByVisibleText(company_id);
+		  driver.findElement(By.id("pii-admin-group-modules-button")).click();
+		  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
+		  //Checks it
+		  ele.findElement(By.linkText("Human Error Instant RCA")).click();
+		  try{
+			  driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
+		  }catch (NoSuchElementException e)
+			  {
+			     driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
+			  }
+		  catch (ElementNotInteractableException e1)
+		  {
+		     driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
+		  }
+		  //Fill expiration date
+		  driver.findElement(By.xpath(".//*[@title='Open Date Picker']")).click();
+		  Thread.sleep(2000);
+		  //Waits for the page to load
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  //Click on + sign for next month
+		  //WebElement ele1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active")));
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ui-datebox-gridplus"))).click();
+		  Thread.sleep(2000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("28"))).click();
+		  //Clicks on save
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
+		  //Clicks on Save
+		  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  System.out.println("Group created");
+		  
+	}
+	
 	public void activateUser(String email,WebDriver driver)throws Exception {
 		
-		UserManagement obj1 = new UserManagement();
 		//Get current Time
         long currentTime = System.currentTimeMillis();
         //Add 15 minutes to it
@@ -80,7 +551,7 @@ public class UserManagement {
         	if(currentTime>time15)
         	{
         		System.out.println("Time elapsed for email: More than 15 minutes");
-        		obj1.excelStore();
+        		excelStore();
         		break;
         	}
         	if (messageCount1>0)
@@ -136,7 +607,6 @@ public class UserManagement {
 	
 	public void activateUserIE11(String email,WebDriver driver)throws Exception {
 		
-		UserManagement obj1 = new UserManagement();
 		//Get current Time
         long currentTime = System.currentTimeMillis();
         //Add 15 minutes to it
@@ -164,7 +634,7 @@ public class UserManagement {
         	if(currentTime>time15)
         	{
         		System.out.println("Time elapsed for email: More than 15 minutes");
-        		obj1.excelStore();
+        		excelStore();
         		break;
         	}
         	if (messageCount1>0)
@@ -265,11 +735,16 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  //Clicks on admin option
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		  //Clicks on Accounts
-		  driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
+		  if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
+		  {
+			  //Clicks on Accounts
+			  driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
+		  }		  
 		  //Clicks on Companies
 		  driver.findElement(By.id("pii-admin-customers-button")).click();
 		  //Enters company id in ID field 
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).clear();
+		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		  Thread.sleep(3000);
@@ -333,6 +808,9 @@ public class UserManagement {
 	public void createCompany (WebDriver driver, String company_id) throws Exception {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  //Click on companies
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
+		  Thread.sleep(2000);
 		  //CLicks on new button
 		  driver.findElement(By.id("pii-admin-cust-button-new")).click();
 		  //Waits for black loading message to disappear
@@ -890,7 +1368,7 @@ public class UserManagement {
 			}
 			else softly.fail("Knowledge Exchange disabled");
 		}
-		if(f.contains("Project Management"))
+		if(f.contains("Performance Accountability & Analytics"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Performance Accountability & Analytics")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)

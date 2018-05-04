@@ -97,6 +97,7 @@ public class HiRCAEvent {
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
+				  Thread.sleep(1000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 				  
 			  }}catch (NoSuchElementException e)

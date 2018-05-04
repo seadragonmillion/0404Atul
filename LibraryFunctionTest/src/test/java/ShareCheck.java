@@ -102,8 +102,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button"))).click();
 		//Click on 1st record/notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]"))).click();
+		Thread.sleep(2000);
 		//Click on read
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-ack-btn"))).click();
+		Thread.sleep(2000);
 		//Click on mark as read
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notifcenter-dialog-confirmed"))).click();
 		//Wait for black server load message to disappear

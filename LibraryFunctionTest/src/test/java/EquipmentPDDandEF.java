@@ -1008,21 +1008,31 @@ public class EquipmentPDDandEF {
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-listbox")));
 	    if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11))
 	    {
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Engineering Fundamentals"))).click();
+	    	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Engineering Fundamentals")));
+	    	Actions act = new Actions (driver);
+	    	act.click(ele).build().perform();
 	    }
 	    if(keyword.equals(keywordPDD)||keyword.equals(keywordPDDie11))
 	    {
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Prevention of Design Deficiencies"))).click();
+	    	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Prevention of Design Deficiencies")));
+	    	Actions act = new Actions (driver);
+	    	act.click(ele).build().perform();
 	    }
 	    try{
-	    	driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
+	    	WebElement ele = driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete"));
+	    	Actions act = new Actions (driver);
+	    	act.click(ele).build().perform();
 	    }catch (NoSuchElementException e)
 		  {
-		     driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
+	    	WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a"));
+		     Actions act = new Actions (driver);
+		     act.click(ele).build().perform();
 		  }
 	    catch (ElementNotInteractableException e1)
 	    {
-	    	driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
+	    	WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a"));
+	    	Actions act = new Actions (driver);
+	    	act.click(ele).build().perform();
 	    }
 	    //Enters Question
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
@@ -1036,6 +1046,7 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,2000)");
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
