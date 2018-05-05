@@ -16,8 +16,8 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 public class FirefoxTest {
 
 	private WebDriver driver;
-	private String username = "qaacfi";
-	private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username = "jenkinsvmnonadmin";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";
 	   

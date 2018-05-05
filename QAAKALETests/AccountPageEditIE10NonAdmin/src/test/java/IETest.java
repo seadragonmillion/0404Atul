@@ -17,8 +17,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class IETest {
 
 	private WebDriver driver;
-	private String username ="qaacfi";
-	private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username ="jenkinsvmnonadmin";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaledev.error-free.com/";
     SoftAssertions softly = new SoftAssertions();
