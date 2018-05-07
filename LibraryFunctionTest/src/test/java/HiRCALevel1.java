@@ -243,7 +243,7 @@ public class HiRCALevel1 {
 		}
 		//When contributing factors are present
 		int i=1;
-		if (options.get("Root causes")!=0)
+		if ((options.size()>0)&&(options.get("Root causes")!=0))
 		{
 		while(i<=(cf*2))
 		{
@@ -289,7 +289,7 @@ public class HiRCALevel1 {
 			i=i+1;
 		}
 		}
-		if (options.get("Root causes")==0)
+		if ((options.size()>0)&&(options.get("Root causes")==0))
 		{
 		while(i<(cf*2))
 		{

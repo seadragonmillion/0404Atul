@@ -48,10 +48,6 @@ public class SanityChromeTest {
 	private String[]op=new String [25];
 	private List<Integer> num = new ArrayList<Integer>();
 
-	@SuppressWarnings("deprecation")
-	@Rule
-	  public Timeout globalTimeout= new Timeout(1200000);
-	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -984,6 +980,8 @@ public class SanityChromeTest {
 		  //Checks if company address has been edited
 		  String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
 		  softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");
+		  //Verify if company id can be retrieved as per bug KALE 1733
+		  obj1.companyRetrieveAgain(driver, company_id);
 		  
 		  
 		  Thread.sleep(2000);
@@ -1204,6 +1202,8 @@ public class SanityChromeTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  System.out.println("User created");
+		  //Verify if new user can be searched
+		  obj1.userRetrieveAfterProfileView(driver, company_id, username, password, obj);
 		  
 		  Thread.sleep(10000);
 		  editGroupCheckAccess();

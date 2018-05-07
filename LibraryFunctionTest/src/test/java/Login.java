@@ -105,6 +105,7 @@ public class Login {
 			  try{
 			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
 			  {
+				  Thread.sleep(1000);
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 				  
 			  }}catch (NoSuchElementException e)
@@ -122,6 +123,11 @@ public class Login {
 			  }
 			  catch (org.openqa.selenium.ElementNotInteractableException u)
 			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.JavascriptException t)
+			  {
+				  Thread.sleep(2000);
 				  break;
 			  }
 			 

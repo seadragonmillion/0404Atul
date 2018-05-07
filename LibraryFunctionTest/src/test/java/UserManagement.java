@@ -60,6 +60,111 @@ public class UserManagement {
 	String company_id2US="2017qaagroupedit2us";
 	String company_id1USIE11="2017qaagroupedit1ie11us";
 	
+	public void userRetrieveAfterProfileView(WebDriver driver, String company_id, String username, String password, Login obj) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Logout and login as admin
+		logoutLogin(driver,obj,username,password);		
+		//Clicks on admin user name on top right corner
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+      	//Click on Account
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+      	//Verify if User profile opened 
+      	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))).getText();
+      	softly.assertThat(s).as("test data").isEqualTo("User Profile");
+      	System.out.println(s);
+      	//Verify if username is displayed
+      	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).getAttribute("value");
+      	softly.assertThat(s1).as("test data").isEqualTo(username);
+      	System.out.println(s1);
+        //Clicks on admin user name on top right corner
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+      	//Click on Admin
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+      	//Click on Accounts
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
+      	//Click on edit user
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
+        //Searches for newly created user
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
+      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(Keys.ENTER);
+      	Thread.sleep(2000);
+      	//Selects the newly created user
+      	WebElement select = driver.findElement(By.id("pii-admin-user-list"));
+      	WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
+      	option.click();
+      	//Waits for loading message to disappear
+      	try{
+      		Thread.sleep(2000);
+      		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+      		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+      	}catch (org.openqa.selenium.TimeoutException e)
+      	{
+      					  
+      	}
+      	//Verify login name of new user
+      	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).getAttribute("value");
+      	System.out.println(s2);
+      	softly.assertThat(s2).as("test data").isEqualTo(company_id);
+	}
+	
+	public void companyRetrieveAgain(WebDriver driver, String company_id) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Clear company id from search field
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		//Click enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(Keys.ENTER);
+		//Click on new button to create a company with same company id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-new"))).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
+		//Clicks on new company
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		//Enter same company id in company id field
+		driver.findElement(By.id("pii-admin-cust-cid")).sendKeys(company_id);
+		Thread.sleep(2000);
+		//Verify error that company id exists
+		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-cid-error")));
+		String s = ele.getText();
+		softly.assertThat(s).as("test data").isEqualTo("This company ID is already in use");
+		System.out.println(s);
+		Thread.sleep(2000);
+		//Enter company id in search field
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(company_id);
+		Thread.sleep(2000);
+		//Verify if table is still there
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table")));
+		//Click enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
+		//Verify if company comes up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")));
+		Thread.sleep(2000);
+		//Clear the field
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		Thread.sleep(2000);
+		//Enter company id in search field
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(company_id);
+		Thread.sleep(2000);
+		//Verify if table is still there
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table")));
+		//Verify that company "Not found" does not come up
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td"))).getText();
+		softly.assertThat(s1).as("test data").isNotEqualTo("Not found");
+		System.out.println(s1);
+		//Click enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).sendKeys(Keys.ENTER);
+		//Verify if company comes up and click on it
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td"))).click();
+		//Verify that company "Not found" does not come up
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td"))).getText();
+		softly.assertThat(s2).as("test data").isNotEqualTo("Not found");
+		System.out.println(s2);
+	}
+	
 	public String[] allModuleList () throws Exception {
 		
 		List<String> text = new ArrayList<String>();

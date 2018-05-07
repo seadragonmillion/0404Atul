@@ -1701,9 +1701,10 @@ public class HiRCAEvent {
 				  jse.executeScript("scroll(0,0)");
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
-				  Thread.sleep(1000);
+				  Thread.sleep(3000);
 				  //Clicks on Save
-				  driver.findElement(By.id("efi-irca-button-save")).click();
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				  Thread.sleep(3000);
 				  //Clicks on Save report
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
