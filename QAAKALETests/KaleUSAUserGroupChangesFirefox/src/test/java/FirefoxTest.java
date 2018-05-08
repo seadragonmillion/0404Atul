@@ -109,7 +109,7 @@ public class FirefoxTest {
 		//Get the list of all modules under PII group
 		String [] op = obj1.allModuleList();
 		//Check access to all modules
-		obj1.checkAccess(driver, login, op);
+		obj1.checkAccess(driver, 0, op);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change user access to group 2 company 2
@@ -125,7 +125,7 @@ public class FirefoxTest {
 		//Logout as Admin login as new user from company 2
 		obj1.logoutLogin(driver, obj, obj1.company_id2US, password);		
 		//Check access to all modules
-		obj1.checkAccess(driver, login, op);
+		obj1.checkAccess(driver, 0, op);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change user access to group 2 company 2
@@ -159,6 +159,7 @@ public class FirefoxTest {
 	
 	public void afterTest(UserManagement obj1) throws Exception{
 		
+		driver.manage().window().maximize(); 
 		driver.quit();
 		obj1.softAssert();
 	}
