@@ -61,37 +61,37 @@ public class IETest {
 		Thread.sleep(5000);	
 		WebDriverWait wait = new WebDriverWait(driver,20);	
 		//Mark all email read
-		obj1.emailMarkRead(obj1.emailDev);
+		obj1.emailMarkRead(obj1.emailUS,driver);
 		//Deletes previous created company1,user1,group1
-		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
+		obj1.deletesPrevious(driver, obj1.company_id1US);
 		//Deletes previous created company2,user2,group2
-		obj1.deletesPrevious(driver, obj1.company_id2DevAsia);
+		obj1.deletesPrevious(driver, obj1.company_id2US);
 		//Create company 1
-		obj1.createCompany(driver, obj1.company_id1DevAsia);
+		obj1.createCompany(driver, obj1.company_id1US);
 		//Create group 1
-		obj1.createGroupWithExpirationDate(driver, obj1.company_id1DevAsia);
+		obj1.createGroupWithExpirationDate(driver, obj1.company_id1US);
 		//Create company 2
-		obj1.createCompany(driver, obj1.company_id2DevAsia);
+		obj1.createCompany(driver, obj1.company_id2US);
 		//Create group 2
-		obj1.createGroupWithExpirationDate(driver, obj1.company_id2DevAsia);
+		obj1.createGroupWithExpirationDate(driver, obj1.company_id2US);
 		//Check if group view is correct
-		obj1.groupView(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
+		obj1.groupView(driver, obj1.company_id1US, obj1.company_id2US);
 		//Verify change in group list and group moderator list when company is changed while creating new user
-		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
+		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1US, obj1.company_id2US);
 		//Create user in group 2
-		obj1.createUser(driver, obj1.company_id2DevAsia, password, obj1.emailDev);
+		obj1.createUser(driver, obj1.company_id2US, password, obj1.emailUS);
 		//Logout as admin
 		obj.logout(driver);
 		//Activate user
-		obj1.activateUser(obj1.emailDev,driver);
+		obj1.activateUser(obj1.emailUS,driver);
 		//Login as new user under company 2
-		obj1.loginAsNewUser(driver, obj1.company_id2DevAsia, password);
+		obj1.loginAsNewUser(driver, obj1.company_id2US, password);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change group and company to PII
-		obj1.changeGroupCompany(driver, obj1.company_id2DevAsia, obj1.groupPII, obj1.companyPII);
+		obj1.changeGroupCompany(driver, obj1.company_id2US, obj1.groupPII, obj1.companyPII);
 		//Logout as Admin login as new user from company 2
-		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);
+		obj1.logoutLogin(driver, obj, obj1.company_id2US, password);
 		//Get the list of all modules under PII group
 		String [] op = obj1.allModuleList();
 		//Check access to all modules
@@ -99,25 +99,25 @@ public class IETest {
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change user access to group 2 company 2
-		obj1.changeGroupCompany(driver, obj1.company_id2DevAsia, obj1.company_id2DevAsia, obj1.company_id2DevAsia);
+		obj1.changeGroupCompany(driver, obj1.company_id2US, obj1.company_id2US, obj1.company_id2US);
 		//Logout as Admin login as new user from company 2
-		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);
+		obj1.logoutLogin(driver, obj, obj1.company_id2US, password);
 		//Verify new user has access to one module only
 		obj1.accessOneModule(driver);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change group to admin and company pii
-		obj1.changeGroupCompany(driver, obj1.company_id2DevAsia, obj1.groupAdmin, obj1.companyPII);
+		obj1.changeGroupCompany(driver, obj1.company_id2US, obj1.groupAdmin, obj1.companyPII);
 		//Logout as Admin login as new user from company 2
-		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);		
+		obj1.logoutLogin(driver, obj, obj1.company_id2US, password);		
 		//Check access to all modules
 		obj1.checkAccess(driver, login, op);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change user access to group 2 company 2
-		obj1.changeGroupCompany(driver, obj1.company_id2DevAsia, obj1.company_id2DevAsia, obj1.company_id2DevAsia);
+		obj1.changeGroupCompany(driver, obj1.company_id2US, obj1.company_id2US, obj1.company_id2US);
 		//Logout as Admin login as new user from company 2
-		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);		
+		obj1.logoutLogin(driver, obj, obj1.company_id2US, password);		
 		//Verify new user has access to only module
 		obj1.accessOneModule(driver);
 		//Logout as new user of company 2, login as Admin
@@ -129,15 +129,15 @@ public class IETest {
 		//Clicks on Accounts
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
 		//Delete user
-		obj1.deleteUser(driver, obj1.company_id2DevAsia);
+		obj1.deleteUser(driver, obj1.company_id2US);
 		//Delete group 2
-		obj1.deleteGroup(driver, obj1.company_id2DevAsia);
+		obj1.deleteGroup(driver, obj1.company_id2US);
 		//Delete company 2
-		obj1.deleteCompany(driver, obj1.company_id2DevAsia);
+		obj1.deleteCompany(driver, obj1.company_id2US);
 		//Delete group 1
-		obj1.deleteGroup(driver, obj1.company_id1DevAsia);
+		obj1.deleteGroup(driver, obj1.company_id1US);
 		//Delete company 1
-		obj1.deleteCompany(driver, obj1.company_id1DevAsia);
+		obj1.deleteCompany(driver, obj1.company_id1US);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);

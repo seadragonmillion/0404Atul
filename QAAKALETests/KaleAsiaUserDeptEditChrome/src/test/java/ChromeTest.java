@@ -60,7 +60,7 @@ public class ChromeTest {
 		 Thread.sleep(5000);
 		 WebDriverWait wait = new WebDriverWait(driver,20);	
 		 //Mark all email read
-		 obj1.emailMarkRead(obj1.emailAsia);
+		 obj1.emailMarkRead(obj1.emailAsia,driver);
 		 //Deletes previous created company,user,group
 		 obj1.deletesPrevious(driver, company_id);
 		 //Create company

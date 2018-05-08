@@ -61,7 +61,7 @@ public class IETest {
 		Thread.sleep(5000);	
 		WebDriverWait wait = new WebDriverWait(driver,20);	
 		//Mark all email read
-		obj1.emailMarkRead(obj1.emailDev);
+		obj1.emailMarkRead(obj1.emailDev,driver);
 		//Deletes previous created company1,user1,group1
 		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
 		//Deletes previous created company2,user2,group2

@@ -57,7 +57,7 @@ public class ChromeTest {
 		Thread.sleep(5000);	
 		WebDriverWait wait = new WebDriverWait(driver,20);	
 		//Mark all email read
-		obj1.emailMarkRead(obj1.emailDev);
+		obj1.emailMarkRead(obj1.emailAsia,driver);
 		//Deletes previous created company1,user1,group1
 		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
 		//Deletes previous created company2,user2,group2
@@ -75,11 +75,11 @@ public class ChromeTest {
 		//Verify change in group list and group moderator list when company is changed while creating new user
 		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
 		//Create user in group 2
-		obj1.createUser(driver, obj1.company_id2DevAsia, password, obj1.emailDev);
+		obj1.createUser(driver, obj1.company_id2DevAsia, password, obj1.emailAsia);
 		//Logout as admin
 		obj.logout(driver);
 		//Activate user
-		obj1.activateUser(obj1.emailDev,driver);
+		obj1.activateUser(obj1.emailAsia,driver);
 		//Login as new user under company 2
 		obj1.loginAsNewUser(driver, obj1.company_id2DevAsia, password);
 		//Logout as new user of company 2, login as Admin
