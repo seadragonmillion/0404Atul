@@ -295,11 +295,13 @@ public void LoginDummyUser() throws Exception{
         inbox.close(true);
         store.close();
         //Open activate URL in new window
-        ProfilesIni ffProfiles = new ProfilesIni();
-		FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		FirefoxOptions options = new FirefoxOptions();
-		options.setCapability(FirefoxDriver.PROFILE, profile);
-		WebDriver driver2 = new FirefoxDriver(options);
+        ProfilesIni ffProfiles1 = new ProfilesIni();
+		 FirefoxProfile profile1 = ffProfiles1.getProfile("HiRCAEvent");
+		 profile1.setPreference("browser.download.folderList", 2);
+		 profile1.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 FirefoxOptions options1 = new FirefoxOptions();
+		 options1.setCapability(FirefoxDriver.PROFILE, profile1);
+		 WebDriver driver2 = new FirefoxDriver(options1);
         driver2.get(activate);
         Thread.sleep(4000);
         driver2.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
