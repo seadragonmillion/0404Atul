@@ -57,8 +57,138 @@ public class UserManagement {
 	String company_id2DevAsia="2017qaagroupedit2";
 	String company_id1DevAsiaIE11="2017qaagroupedit1ie11";
 	String company_id2DevAsiaIE11="2017qaagroupedit2ie11";
+	String company_id1US="2017qaagroupedit1us";
 	String company_id2US="2017qaagroupedit2us";
 	String company_id1USIE11="2017qaagroupedit1ie11us";
+	String company_id2USIE11="2017qaagroupedit2ie11us";
+	
+	public void verifyGroupListGroupModeratorChange (WebDriver driver, String company_id1, String company_id2) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Clicks on create user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-create"))).click();
+		Thread.sleep(2000);
+		//Click on Select group dropdown
+		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		//Verify Group List is empty
+		try{
+			driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[1]"));
+			softly.fail("No Group list should exist without company selection");
+		}catch (NoSuchElementException u)
+		{
+			System.out.println("Group list empty");
+		}
+		Thread.sleep(2000);
+		//Close group pop up
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		//Click on Select group moderator
+		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		//Verify Group moderator list is empty
+		try{
+			driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-menu']/li[1]"));
+		softly.fail("No Group moderator list should exist without group selection");
+		}catch (NoSuchElementException u)
+		{
+			System.out.println("Group moderator list empty");
+		}
+		//Close group moderator pop up
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
+		//Select company1
+		Select dd = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
+		dd.selectByVisibleText(company_id1);
+		//Click on Select group dropdown
+		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		//Verify group1 of company1 is only present in list
+		int c=2;
+		while(true)
+		{
+			try{
+				driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li["+c+"]"));
+				String s = driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li["+c+"]/a")).getText();
+				System.out.println(s);
+				softly.assertThat(s).as("test data").isEqualTo(company_id1);
+				c=c+1;
+			}catch (NoSuchElementException u)
+			{
+				break;
+			}
+		}	
+		//Select group1
+		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
+		ele1.findElement(By.linkText(company_id1)).click();
+		//Close group pop up
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		//Click on Select group moderator
+		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		//Verify group moderator list
+		c=2;
+		while(true)
+		{
+			try{
+				driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-menu']/li["+c+"]"));
+				String s = driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-menu']/li["+c+"]/a")).getText();
+				System.out.println(s);
+				softly.assertThat(s).as("test data").isEqualTo(company_id1);
+				c=c+1;
+			}catch (NoSuchElementException u)
+			{
+				break;
+			}
+		}
+		//Select moderated group 1
+		ele1 = driver.findElement(By.id("pii-admin-user-modgroups-menu"));
+		ele1.findElement(By.linkText(company_id1)).click();
+		//Close group moderator pop up
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
+		//Change to company 2
+		dd.selectByVisibleText(company_id2);
+		//Click on Select group dropdown
+		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		//Verify group2 of company2 is only present in list
+		c=2;
+		while(true)
+		{
+			try{
+				driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li["+c+"]"));
+				String s = driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li["+c+"]/a")).getText();
+				System.out.println(s);
+				softly.assertThat(s).as("test data").isEqualTo(company_id2);
+				c=c+1;
+			}catch (NoSuchElementException u)
+			{
+				break;
+			}
+		}	
+		//Select group2
+		ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
+		ele1.findElement(By.linkText(company_id2)).click();
+		//Close group pop up
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		//Click on Select group moderator
+		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		//Verify group2 moderator list
+		c=2;
+		while(true)
+		{
+			try{
+				driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-menu']/li["+c+"]"));
+				String s = driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-menu']/li["+c+"]/a")).getText();
+				System.out.println(s);
+				softly.assertThat(s).as("test data").isEqualTo(company_id2);
+				c=c+1;
+			}catch (NoSuchElementException u)
+			{
+				break;
+			}
+		}
+		//Select moderated group 2
+		ele1 = driver.findElement(By.id("pii-admin-user-modgroups-menu"));
+		ele1.findElement(By.linkText(company_id2)).click();
+		//Close group moderator pop up
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
+	}
+	
+	
 	
 	public void userRetrieveAfterProfileView(WebDriver driver, String company_id, String username, String password, Login obj) throws Exception {
 		
@@ -642,7 +772,21 @@ public class UserManagement {
 	    String PASSWORD = "5sepkale";
 	    String INBOX_FOLDER = "INBOX";	    
 	    Properties props = new Properties();
-	    props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	    //Get browser name
+	  	Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	  	String browserName = cap.getBrowserName().toLowerCase();
+	  	System.out.println(browserName);
+	  	String v = cap.getVersion().toString();
+	  	System.out.println(v);
+	  	if (browserName.equals("internet explorer"))
+	  	{
+	  	   	if (v.startsWith("11"))
+	  	   		props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+	  	   	else
+	  	   		props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	  	}
+	  	else
+	  	   	props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
 	    Session session = Session.getDefaultInstance(props, null);
 	    Store store = session.getStore("imaps");
 	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -688,9 +832,7 @@ public class UserManagement {
         store.close();
         //Open activate URL in new window
         //Get Browser value
-        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-	    String browserName = cap.getBrowserName().toLowerCase();
-	    WebDriver driver2 = null;
+        WebDriver driver2 = null;
 	    //chrome
 	    if(browserName.equals("chrome"))
 	    {
@@ -797,14 +939,28 @@ public class UserManagement {
         Thread.sleep(10000);
 	}
 	
-	public void emailMarkRead(String email) throws Exception{
+	public void emailMarkRead(String email, WebDriver driver) throws Exception{
 		
 		String SMTP_HOST = "smtp.gmail.com";
 	    String EMAIL_ADDRESS = email;
 	    String PASSWORD = "5sepkale";
 	    String INBOX_FOLDER = "INBOX";	    
 	    Properties props = new Properties();
-	    props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    if (browserName.equals("internet explorer"))
+	    {
+	    	if (v.startsWith("11"))
+	    		props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+	    	else
+	    		props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	    }
+	    else
+	    	props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
 	    Session session = Session.getDefaultInstance(props, null);
 	    Store store = session.getStore("imaps");
 	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -1756,7 +1912,8 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 		  //Clicks on delete company
 		  driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  Thread.sleep(4000);
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  System.out.println("Company deleted");
 	}
 	

@@ -73,6 +73,7 @@ public class LanguageCheckOfReports {
     	Thread.sleep(8000);
     	//Switch to window    	
     	driver.switchTo().window(window);
+    	Thread.sleep(4000);
     	//Switches to the iframe
         wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 			    		    	
@@ -99,7 +100,7 @@ public class LanguageCheckOfReports {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		try{
 			 try {
 					  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
@@ -117,7 +118,7 @@ public class LanguageCheckOfReports {
     	Thread.sleep(8000);
     	//Switch to window    	
     	driver.switchTo().window(window);
-    	Thread.sleep(3000);
+    	Thread.sleep(8000);
     	//Switches to the iframe
         wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 			    		    	
@@ -163,6 +164,7 @@ public class LanguageCheckOfReports {
 	    	Thread.sleep(4000);
 	    	driver.switchTo().window(window);
 	    	driver.switchTo().defaultContent();
+	    	Thread.sleep(4000);
 	    	//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	       	    		    	
@@ -194,7 +196,7 @@ public class LanguageCheckOfReports {
 	    }
 		driver.close();
 		driver.switchTo().window(window);
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
