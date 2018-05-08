@@ -76,6 +76,8 @@ public class IETest {
 		obj1.createGroupWithExpirationDate(driver, obj1.company_id2DevAsia);
 		//Check if group view is correct
 		obj1.groupView(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
+		//Verify change in group list and group moderator list when company is changed while creating new user
+		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
 		//Create user in group 2
 		obj1.createUser(driver, obj1.company_id2DevAsia, password, obj1.emailDev);
 		//Logout as admin
