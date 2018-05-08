@@ -65,6 +65,7 @@ public class UserManagement {
 	public void verifyGroupListGroupModeratorChange (WebDriver driver, String company_id1, String company_id2) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on create user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-create"))).click();
 		Thread.sleep(2000);
@@ -78,9 +79,11 @@ public class UserManagement {
 		{
 			System.out.println("Group list empty");
 		}
-		Thread.sleep(2000);
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1500)");
+		Thread.sleep(2000);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify Group moderator list is empty
@@ -96,6 +99,9 @@ public class UserManagement {
 		//Select company1
 		Select dd = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd.selectByVisibleText(company_id1);
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
 		//Click on Select group dropdown
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		//Verify group1 of company1 is only present in list
@@ -118,6 +124,9 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id1)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1500)");
+		Thread.sleep(2000);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify group moderator list
@@ -142,6 +151,9 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
 		//Change to company 2
 		dd.selectByVisibleText(company_id2);
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
 		//Click on Select group dropdown
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		//Verify group2 of company2 is only present in list
@@ -164,6 +176,9 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id2)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1500)");
+		Thread.sleep(2000);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify group2 moderator list
@@ -186,6 +201,9 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id2)).click();
 		//Close group moderator pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
 	}
 	
 	
