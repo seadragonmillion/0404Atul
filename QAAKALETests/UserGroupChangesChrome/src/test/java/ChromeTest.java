@@ -1,5 +1,6 @@
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
