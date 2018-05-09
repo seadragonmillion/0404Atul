@@ -38,7 +38,7 @@ public class SanityHiRCAFirefoxTest {
 			  Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
-		 if(height<1900)
+		 if(height<930)
 		 {
 			//Browser is maximized
 			driver.manage().window().maximize(); 
@@ -296,6 +296,7 @@ public class SanityHiRCAFirefoxTest {
 		  		  
 		 
 		  public void afterTest() throws Exception{
+		  	driver.manage().window().maximize(); 
 			  driver.switchTo().defaultContent();
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  WebDriverWait wait = new WebDriverWait(driver,20);

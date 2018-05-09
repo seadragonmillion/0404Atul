@@ -51,7 +51,7 @@ public class FirefoxTest {
 		Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
-		 if(height<1900)
+		 if(height<930)
 		 {
 			//Browser is maximized
 			driver.manage().window().maximize(); 
