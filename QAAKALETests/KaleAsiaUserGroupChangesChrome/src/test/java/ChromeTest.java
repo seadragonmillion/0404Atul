@@ -58,22 +58,28 @@ public class ChromeTest {
 		WebDriverWait wait = new WebDriverWait(driver,20);	
 		//Mark all email read
 		obj1.emailMarkRead(obj1.emailAsia,driver);
+		//Deletes previous created group 2 under company 1
+		obj1.deletesPreviousGroup(driver, obj1.group2DevAsia);
+		//Deletes previous created company1,user1,group1
+		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
 		//Deletes previous created company1,user1,group1
 		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
 		//Deletes previous created company2,user2,group2
 		obj1.deletesPrevious(driver, obj1.company_id2DevAsia);
 		//Create company 1
 		obj1.createCompany(driver, obj1.company_id1DevAsia);
-		//Create group 1
-		obj1.createGroupWithExpirationDate(driver, obj1.company_id1DevAsia);
+		//Create group 1 under company 1
+		HashMap<String, String> gpc1g1=obj1.createGroupWithExpirationDate(driver, obj1.company_id1DevAsia, obj1.company_id1DevAsia);
+		//Create group 2 under company 1
+		HashMap<String, String> gpc1g2=obj1.createGroupWithExpirationDate(driver, obj1.company_id1DevAsia, obj1.group2DevAsia);
 		//Create company 2
 		obj1.createCompany(driver, obj1.company_id2DevAsia);
 		//Create group 2
-		obj1.createGroupWithExpirationDate(driver, obj1.company_id2DevAsia);
+		HashMap<String, String> gpc2g2=obj1.createGroupWithExpirationDate(driver, obj1.company_id2DevAsia, obj1.company_id2DevAsia);
 		//Check if group view is correct
-		obj1.groupView(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
+		obj1.groupView(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia, obj1.group2DevAsia, gpc1g1, gpc1g2, gpc2g2);
 		//Verify change in group list and group moderator list when company is changed while creating new user
-		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia);
+		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia, obj1.group2DevAsia);
 		//Create user in group 2
 		obj1.createUser(driver, obj1.company_id2DevAsia, password, obj1.emailAsia);
 		//Logout as admin
@@ -91,7 +97,7 @@ public class ChromeTest {
 		//Get the list of all modules under PII group
 		String [] op = obj1.allModuleList();
 		//Check access to all modules
-		obj1.checkAccess(driver, 0, op);
+		obj1.checkAccess(driver, login, op);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change user access to group 2 company 2
@@ -99,7 +105,7 @@ public class ChromeTest {
 		//Logout as Admin login as new user from company 2
 		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);
 		//Verify new user has access to one module only
-		obj1.accessOneModule(driver);
+		obj1.accessOneModule(driver,gpc2g2);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change group to admin and company pii
@@ -107,7 +113,7 @@ public class ChromeTest {
 		//Logout as Admin login as new user from company 2
 		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);		
 		//Check access to all modules
-		obj1.checkAccess(driver, 0, op);
+		obj1.checkAccess(driver, login, op);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Change user access to group 2 company 2
@@ -115,7 +121,7 @@ public class ChromeTest {
 		//Logout as Admin login as new user from company 2
 		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);		
 		//Verify new user has access to only module
-		obj1.accessOneModule(driver);
+		obj1.accessOneModule(driver,gpc2g2);
 		//Logout as new user of company 2, login as Admin
 		obj1.logoutLogin(driver, obj, username, password);
 		//Clicks on admin user name on top right corner
@@ -130,6 +136,8 @@ public class ChromeTest {
 		obj1.deleteGroup(driver, obj1.company_id2DevAsia);
 		//Delete company 2
 		obj1.deleteCompany(driver, obj1.company_id2DevAsia);
+		//Delete group 2 under company 1
+		obj1.deleteGroup(driver, obj1.group2DevAsia);
 		//Delete group 1
 		obj1.deleteGroup(driver, obj1.company_id1DevAsia);
 		//Delete company 1
