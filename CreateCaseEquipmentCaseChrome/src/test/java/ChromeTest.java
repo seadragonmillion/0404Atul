@@ -819,6 +819,7 @@ public class ChromeTest {
 		  Thread.sleep(8000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      Thread.sleep(4000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(8000);
