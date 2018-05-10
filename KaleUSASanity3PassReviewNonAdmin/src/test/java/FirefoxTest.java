@@ -241,8 +241,10 @@ public class FirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Clicks on saved activities
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-3pr-savedactivities"))).click();
+		  Thread.sleep(2000);
 		  //Clicks on side panel option for job observation
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
+		  Thread.sleep(2000);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"));
 		  String recordName = record.getText();
@@ -277,6 +279,7 @@ public class FirefoxTest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Clicks on saved activities
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-3pr-savedactivities"))).click();
+		  Thread.sleep(2000);
 		  //Clicks on side panel option for job observation
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
 		  //Deletes record
