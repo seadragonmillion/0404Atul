@@ -2,11 +2,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,9 +23,27 @@ public class HiRCAChinese {
 	public void changeToChinese (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Clicks on Account
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if(browserName.equals("firefox"))
+		{
+			//Clicks on Account
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		}
+		else
+		{
+			Actions act = new Actions (driver);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+			WebElement element = driver.findElement(By.id("pii-user-loginname"));
+			act.click(element).build().perform();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct")));
+			element = driver.findElement(By.id("pii-user-acct"));
+			act.click(element).build().perform();
+			Thread.sleep(2000);
+		}
 		//Changes language to Chinese
 		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
 		Select s4 = new Select (dropdown1);
@@ -78,9 +99,27 @@ public class HiRCAChinese {
 			  }
 			 
 		  }
-		//Clicks on Account
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if(browserName.equals("firefox"))
+		{
+			//Clicks on Account
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		}
+		else
+		{
+			Actions act = new Actions (driver);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+			WebElement element = driver.findElement(By.id("pii-user-loginname"));
+			act.click(element).build().perform();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct")));
+			element = driver.findElement(By.id("pii-user-acct"));
+			act.click(element).build().perform();
+			Thread.sleep(2000);
+		}
 		//Changes language to English
 		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
 		Select s4 = new Select (dropdown1);
@@ -147,214 +186,257 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.2
 		chineseStepOneq12(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.4
 		chineseStepOneL34(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify 3.18
 		chineseStepOneL318(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.6
 		chineseStepOneq16(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.15
 		chineseStepOneL315(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.7
 		chineseStepOneq17(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.8
 		chineseStepOneq18(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.9
 		chineseStepOneL39(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify 3.10
 		chineseStepOneL310(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify 3.11
 		chineseStepOneL311(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.9
 		chineseStepOneq19(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.2
 		chineseStepOneL32(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify 3.11
 		chineseStepOneL311(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.10
 		chineseStepOneq110(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.11
 		chineseStepOneq111(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.9
 		chineseStepOneL39(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.12
 		chineseStepOneq112(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.13
 		chineseStepOneq113(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.14
 		chineseStepOneq114(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.2
 		chineseStepOneL32(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.15
 		chineseStepOneq115(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.6
 		chineseStepOneL36(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.16
 		chineseStepOneq116(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.2
 		chineseStepOneL32(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.17
 		chineseStepOneq117(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.3
 		chineseStepOneL33(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.18
 		chineseStepOneq118(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.22
 		chineseStepOneL322(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.19
 		chineseStepOneq119(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.3
 		chineseStepOneL33(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify 3.5
 		chineseStepOneL35(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.20
 		chineseStepOneq120(driver);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.5
 		chineseStepOneL35(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify pop up for LOP/RC
 		chineseLOPRC(driver);
 		//LOP pop up opens, click cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-cancel"))).click();
 		//Click on Step 1 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		chineseStepOneq11(driver);
 		//Select answer 2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify 3.17
 		chineseStepOneL317(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify pop up for LOP/RC
 		chineseLOPRC(driver);
 		//LOP pop up opens, click cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-cancel"))).click();
 		//Click on Step 1 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click();
+		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		chineseStepOneq11(driver);
 		//Select answer 3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
 		//Verify pop up for LOP/RC
 		chineseLOPRC(driver);
 		//LOP pop up opens, click Root Cause
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		Thread.sleep(2000);
 		//Verify SUEP
 		chineseSUEP(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify Step 4
 		chineseStep4(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify HiRCA Checklist
 		chineseHIRCAChecklist(driver);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(2000);
 		//Verify Report
 		chineseReport(driver);
 		//Save report

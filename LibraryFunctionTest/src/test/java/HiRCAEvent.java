@@ -1699,14 +1699,21 @@ public class HiRCAEvent {
 				  //Debug
 				  //Clicks on save without images
 				  jse.executeScript("scroll(0,0)");
-				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
-				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  Thread.sleep(3000);
 				  //Clicks on Save
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
+				  act.click(ele).build().perform();
 				  Thread.sleep(3000);
 				  //Clicks on Save report
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+				 /* try{
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
+				  }catch (UnhandledAlertException f){	
+					  System.out.println("Unexpecetd alert");
+					  driver.switchTo().alert().accept();
+					  
+			  	  }catch (NoAlertPresentException f){
+			  		  System.out.println ("No unexpected alert");
+			  		  }*/
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(500);
