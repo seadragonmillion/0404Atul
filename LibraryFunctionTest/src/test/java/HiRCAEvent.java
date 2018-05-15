@@ -341,7 +341,25 @@ public class HiRCAEvent {
 			  	  jse.executeScript("scroll(0, "+scroll+")");
 				  //Clicks on collapsible
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
-				  
+				  String s = driver.getCurrentUrl();
+				  if(s.contains("kaleasia")==true)
+				  {
+					  while (true)
+					  {
+						  try{
+							  Thread.sleep(2000);
+							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+							  {
+								  Thread.sleep(3000);
+							  }
+							  else
+								  break;
+							  }catch (org.openqa.selenium.NoSuchElementException e)
+							  {
+								  break;
+							  }
+					  }
+				  }
 				  //Checks for image
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
 				  Thread.sleep(2000);
@@ -520,13 +538,33 @@ public class HiRCAEvent {
 			String window = driver.getWindowHandle();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			String s = driver.getCurrentUrl();
+			  if(s.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -553,13 +591,33 @@ public class HiRCAEvent {
 			
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			String s = driver.getCurrentUrl();
+			  if(s.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -600,13 +658,33 @@ public class HiRCAEvent {
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			Thread.sleep(3000);
+			String s = driver.getCurrentUrl();
+			  if(s.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -637,13 +715,34 @@ public class HiRCAEvent {
 		    		deleteFiles(file);
 		    		//Clicks on download button
 					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-					try{
+					
+					if(s.contains("kaleasia")==true)
+					  {
+						  while (true)
+						  {
+							  try{
+								  Thread.sleep(2000);
+								  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+								  {
+									  Thread.sleep(3000);
+								  }
+								  else
+									  break;
+								  }catch (org.openqa.selenium.NoSuchElementException e)
+								  {
+									  break;
+								  }
+						  }
+					  }
+					else{
+						try{
+					
 						  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 						 }catch (org.openqa.selenium.TimeoutException e)
 						  {
 							  
-						  }
+						  }}
 					//Clicks on open pdf report
 					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -679,13 +778,33 @@ public class HiRCAEvent {
 			
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			String s = driver.getCurrentUrl();
+			  if(s.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1385,16 +1504,38 @@ public class HiRCAEvent {
 				  //Clicks on Save report
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-				  Thread.sleep(500);
-				  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-				  }catch (org.openqa.selenium.TimeoutException e)
+				 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(1500);
+				  String s = driver.getCurrentUrl();
+				  if(s.contains("kaleasia")==true)
 				  {
+					  while (true)
+					  {
+						  try{
+							  Thread.sleep(2000);
+							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+							  {
+								  Thread.sleep(3000);
+							  }
+							  else
+								  break;
+							  }catch (org.openqa.selenium.NoSuchElementException e)
+							  {
+								  break;
+							  }
+					  }
+				  }
+				  else
+				  {
+					  try{
+						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+						  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+						  }catch (org.openqa.selenium.TimeoutException e)
+					  {
 					  
-				  }			  		  
+					  }	
+				  }	  		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1525,8 +1666,28 @@ public class HiRCAEvent {
 				  //Clicks on Save report
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-				  Thread.sleep(500);
+				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(1500);
+				  String s = driver.getCurrentUrl();
+				  if(s.contains("kaleasia")==true)
+				  {
+					  while (true)
+					  {
+						  try{
+							  Thread.sleep(2000);
+							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+							  {
+								  Thread.sleep(3000);
+							  }
+							  else
+								  break;
+							  }catch (org.openqa.selenium.NoSuchElementException e)
+							  {
+								  break;
+							  }
+					  }
+				  }
+				  else{
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1534,7 +1695,7 @@ public class HiRCAEvent {
 				  }catch (org.openqa.selenium.TimeoutException e)
 				  {
 						  
-				  }			  		  
+				  }}	  		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1715,8 +1876,28 @@ public class HiRCAEvent {
 			  		  System.out.println ("No unexpected alert");
 			  		  }*/
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-				  Thread.sleep(500);
+				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(1500);
+				  String s = driver.getCurrentUrl();
+				  if(s.contains("kaleasia")==true)
+				  {
+					  while (true)
+					  {
+						  try{
+							  Thread.sleep(2000);
+							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+							  {
+								  Thread.sleep(3000);
+							  }
+							  else
+								  break;
+							  }catch (org.openqa.selenium.NoSuchElementException e)
+							  {
+								  break;
+							  }
+					  }
+				  }
+				  else{
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1724,7 +1905,7 @@ public class HiRCAEvent {
 				  }catch (org.openqa.selenium.TimeoutException e)
 				  {
 						  
-				  }			  		  
+				  }		}	  		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1886,8 +2067,28 @@ public class HiRCAEvent {
 				  //Clicks on Save report
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-				  Thread.sleep(500);
+				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+				  Thread.sleep(1500);
+				  String s = driver.getCurrentUrl();
+				  if(s.contains("kaleasia")==true)
+				  {
+					  while (true)
+					  {
+						  try{
+							  Thread.sleep(2000);
+							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+							  {
+								  Thread.sleep(4000);
+							  }
+							  else
+								  break;
+							  }catch (org.openqa.selenium.NoSuchElementException e)
+							  {
+								  break;
+							  }
+					  }
+				  }
+				  else{
 				  try{
 					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1895,7 +2096,7 @@ public class HiRCAEvent {
 				  }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }			  		  
+				  }}  		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())

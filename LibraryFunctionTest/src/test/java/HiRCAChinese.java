@@ -20,6 +20,54 @@ public class HiRCAChinese {
 	SoftAssertions softly = new SoftAssertions();
 	String text = "Chinese check";
 	
+	public void chineseAddContributingFactor(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Scroll down
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1300)");
+		Thread.sleep(2000);
+		//Click on add contributing factor
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).click();
+		//Scroll down
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1400)");
+		Thread.sleep(2000);
+		//Verify all labels
+		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-cf']"))).getText();
+		System.out.println(label1);
+		softly.assertThat(label1).as("test data").contains("促成因素:");
+		String label2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-fi']"))).getText();
+		System.out.println(label2);
+		softly.assertThat(label2).as("test data").contains("进一步调查:");
+		String label3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-ca']"))).getText();
+		System.out.println(label3);
+		softly.assertThat(label3).as("test data").contains("可能的纠正行动:");
+		//Verify placeholders
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))).getAttribute("placeholder");
+		System.out.println(ph1);
+		softly.assertThat(ph1).as("test data").contains("输入 促成因素");
+		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-fi"))).getAttribute("placeholder");
+		System.out.println(ph2);
+		softly.assertThat(ph2).as("test data").contains("输入 进一步调查 (非必填)");
+		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-ca"))).getAttribute("placeholder");
+		System.out.println(ph3);
+		softly.assertThat(ph3).as("test data").contains("输入 可能的纠正行动 (非必填)");
+		//Cancel button
+		String cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cancel"))).getText();
+		System.out.println(cancel);
+		softly.assertThat(cancel).as("test data").contains("取消");
+		//Save button
+		String save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-save"))).getText();
+		System.out.println(save);
+		softly.assertThat(save).as("test data").contains("保存");
+		//Scroll up
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
+	}
+	
 	public void changeToChinese (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -1201,6 +1249,8 @@ public class HiRCAChinese {
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c33);
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
@@ -1461,6 +1511,8 @@ public class HiRCAChinese {
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c15);
 		softly.assertThat(c15).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneq119 (WebDriver driver) throws Exception {
@@ -1759,6 +1811,8 @@ public class HiRCAChinese {
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c15);
 		softly.assertThat(c15).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneq118 (WebDriver driver) throws Exception {
@@ -2350,6 +2404,8 @@ public class HiRCAChinese {
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c33);
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
@@ -2933,6 +2989,8 @@ public class HiRCAChinese {
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c33);
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
@@ -3194,6 +3252,7 @@ public class HiRCAChinese {
 	public void chineseStepOneL32 (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -3452,6 +3511,9 @@ public class HiRCAChinese {
 		softly.assertThat(c24).as("test data").contains("监督行为规范的管理");
 		//Click on 3rd collapsible for 3.2.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1200)");
+		Thread.sleep(2000);
 		//3.2.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		System.out.println(q396);
@@ -3504,6 +3566,11 @@ public class HiRCAChinese {
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c33);
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
 	}
 	
 	public void chineseStepOneq19 (WebDriver driver) throws Exception {
@@ -3836,6 +3903,8 @@ public class HiRCAChinese {
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c15);
 		softly.assertThat(c15).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneL310 (WebDriver driver) throws Exception {
@@ -4089,11 +4158,14 @@ public class HiRCAChinese {
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c22);
 		softly.assertThat(c22).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneL39 (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -4356,6 +4428,9 @@ public class HiRCAChinese {
 		softly.assertThat(c26).as("test data").contains("完善培训资源");
 		//Click on 3rd collapsible for 3.9.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1200)");
+		Thread.sleep(2000);
 		//3.9.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		System.out.println(q396);
@@ -4411,6 +4486,11 @@ public class HiRCAChinese {
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c33);
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
 	}
 	
 	public void chineseStepOneq18 (WebDriver driver) throws Exception {
@@ -4715,6 +4795,8 @@ public class HiRCAChinese {
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c22);
 		softly.assertThat(c22).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneq16 (WebDriver driver) throws Exception {
@@ -5027,6 +5109,8 @@ public class HiRCAChinese {
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c15);
 		softly.assertThat(c15).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneL34 (WebDriver driver) throws Exception {
@@ -5282,6 +5366,8 @@ public class HiRCAChinese {
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		System.out.println(c22);
 		softly.assertThat(c22).as("test data").contains("新增促成因素");
+		//Verify Add Contributing factor
+		chineseAddContributingFactor(driver);
 	}
 	
 	public void chineseStepOneq12 (WebDriver driver) throws Exception {

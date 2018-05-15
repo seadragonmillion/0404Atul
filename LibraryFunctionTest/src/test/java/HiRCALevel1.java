@@ -395,7 +395,7 @@ public class HiRCALevel1 {
 		}
 	}
 	
-	public void downloadReportChrome (WebDriver driver, List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options) throws Exception {
+	public void downloadReportChrome (WebDriver driver, List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options,List<String>checklist) throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -407,18 +407,38 @@ public class HiRCALevel1 {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
     	Thread.sleep(8000);
-    	pdfCheck(lopOptions,hml,options);
+    	pdfCheck(lopOptions,hml,options,checklist);
     	for(String winHandle : driver.getWindowHandles()){
 	    driver.switchTo().window(winHandle);
 	    }
@@ -427,7 +447,7 @@ public class HiRCALevel1 {
     	Thread.sleep(1000);
 	}
 	
-	public void downloadReportFirefox(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options) throws Exception {
+	public void downloadReportFirefox(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options,List<String>checklist) throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -438,14 +458,35 @@ public class HiRCALevel1 {
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		try{
+		
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
+    	try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -464,7 +505,7 @@ public class HiRCALevel1 {
     	robot.keyRelease(KeyEvent.VK_S);
     	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
     	p.waitFor();
-    	pdfCheck(lopOptions,hml,options);
+    	pdfCheck(lopOptions,hml,options,checklist);
     	Thread.sleep(4000);
     	driver.close();
     	Thread.sleep(4000);
@@ -472,7 +513,7 @@ public class HiRCALevel1 {
     	driver.switchTo().defaultContent();      	    		    	
     }
 	
-	public void downloadReportIE(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options)throws Exception {
+	public void downloadReportIE(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options,List<String>checklist)throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -485,13 +526,33 @@ public class HiRCALevel1 {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -509,14 +570,14 @@ public class HiRCALevel1 {
 		  		  }
     	Thread.sleep(7000);
     	//pdf verification
-	    pdfCheck(lopOptions,hml,options);
+	    pdfCheck(lopOptions,hml,options,checklist);
 	    Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);				    		    	
     }
 	
 	
-	public void downloadReportIE11(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options)throws Exception {
+	public void downloadReportIE11(WebDriver driver, List<String>lopOptions,HashMap<String,String>hml,HashMap<String,Integer>options,List<String>checklist)throws Exception {
 		
 		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -529,13 +590,33 @@ public class HiRCALevel1 {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -553,13 +634,13 @@ public class HiRCALevel1 {
 		  		  }
     	Thread.sleep(7000);
     	//pdf verification
-	    pdfCheck(lopOptions,hml,options);
+	    pdfCheck(lopOptions,hml,options,checklist);
 	    Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);				    		    	
     }
 	
-	public void pdfCheck(List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options) throws Exception{
+	public void pdfCheck(List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options, List<String>checklist) throws Exception{
     	
 		// specify your directory
     	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
@@ -586,6 +667,59 @@ public class HiRCALevel1 {
 	        }
        newData1=newData1.replace("  ", " ");
        System.out.println(newData1);
+       //Verifies if selected RCs and CFs appear in pdf
+       for (int i= 0; i<lopOptions.size();i++)
+       {
+    	  String s = lopOptions.get(i).replace("]", "");
+    	  softly.assertThat(s).as("test data").isSubstringOf(newData1);
+       }
+       //Verifies if selected HiRCA checklist appears with yes in pdf
+       for(int i=0;i<checklist.size();i++)
+       {
+    	   String s = checklist.get(i)+ " Yes";
+    	   softly.assertThat(s).as("test data").isSubstringOf(newData1);
+       }
+       //Verify RC and CF text in pdf
+	   //Get List to compare
+	   List<String> varText = variableText();
+	   List<String> modText = modifyText();
+	   int c1=0;
+	   int c2=0;
+	   for (int i=0;i<varText.size();i++)
+	   {
+		   if(newData1.contains(varText.get(i)))
+			   c1 = c1+1;
+	   }
+	   for (int i=0;i<modText.size();i++)
+	   {
+		   if(newData1.contains(modText.get(i)))
+			   c2 = c2+1;
+	   }
+	   if((c2==0) && (c1==0) && (lopOptions.size()>0))
+		   softly.fail("pdf doesn't contain any text from Step 4 text boxes");
+       //Verify SUEP Yes
+       for (int i= 0; i<lopOptions.size();i++)
+       {
+    	  String s = lopOptions.get(i).replace("]", "");
+    	  if(options.get(s)==4)
+    	  {
+    		  softly.assertThat(s+" Yes Yes Yes Yes").as("test data").isSubstringOf(newData1);
+    	  }
+    	  if(options.get(s)==3)
+    	  {
+    		  softly.assertThat(s+" Yes Yes Yes").as("test data").isSubstringOf(newData1);
+    	  }
+    	  if(options.get(s)==2)
+    	  {
+    		  softly.assertThat(s+" Yes Yes").as("test data").isSubstringOf(newData1);
+    	  }
+    	  if(options.get(s)==1)
+    	  {
+    		  softly.assertThat(s+" Yes").as("test data").isSubstringOf(newData1);
+    	  }
+    	  else
+    		  softly.assertThat(s).as("test data").isSubstringOf(newData1);
+       }
        //Counts number of times evidence entry was entered
        int n= lopOptions.size();
        Pattern p = Pattern.compile(textEvidence);
@@ -921,23 +1055,62 @@ public class HiRCALevel1 {
 		//Click on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for black server load message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Click on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Verify HTML
 		verifyHTMLReport(driver, lopOptions, options, hml, checklist,0);
 		//Click on Open button
@@ -1011,33 +1184,140 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			}catch (org.openqa.selenium.TimeoutException e)
 			 {
 				  
-			 }
+			 }}
     	//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			}catch (org.openqa.selenium.TimeoutException e)
 			 {
 						  
-			 }				
-		//Click on newly created record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			 }	}	
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    //Download report to check pdf
+	    if (browserName.equals("chrome"))
+	    	downloadReportChrome(driver,lopOptions,hmlNew,optionsNew,checklistNew);
+	    if (browserName.equals("firefox"))
+	    	downloadReportFirefox(driver,lopOptions,hmlNew,optionsNew,checklistNew);
+	    if (browserName.equals("internet explorer"))
+	    {
+	    	if (v.startsWith("10"))
+	    		downloadReportIE(driver,lopOptions,hmlNew,optionsNew,checklistNew);
+	    	if (v.startsWith("11"))
+	    		downloadReportIE11(driver,lopOptions,hmlNew,optionsNew,checklistNew);
+	    }
+		Thread.sleep(2000);
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+	    //Click on side panel HiRCA
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
+			  }}
+		//Click on newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
 			  }
+		  }
+		  else{
+		try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			  }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }}
 		//Verify HTML report
 		verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1);
 	}
@@ -1373,8 +1653,6 @@ public class HiRCALevel1 {
 			//Choose a number between 0 and 4 for number of selections
 			int num=random.nextInt(5);
 			System.out.println(num);
-			if (num==4)
-				r=r+1;
 			//Store no of SUEP checkboxes in hashmap: key=level 3 answer, value = no of suep checks
 			options.put(s5, num);
 			//Check if new selections is same or different than before
@@ -1390,6 +1668,8 @@ public class HiRCALevel1 {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))).click();
 				}	
 			}
+			if (num==4)
+				r=r+1;
 			for (int j=1;j<=num;j++)
 			{
 				//Click on checkbox of SUEP
@@ -1479,13 +1759,33 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Wait for black server load message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Click back
@@ -1553,23 +1853,61 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for black server load message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 	    String browserName = cap.getBrowserName().toLowerCase();
@@ -1578,15 +1916,15 @@ public class HiRCALevel1 {
 	    System.out.println(v);
 	    //Download report to check pdf
 	    if (browserName.equals("chrome"))
-	    	downloadReportChrome(driver,lopOptions,hml,options);
+	    	downloadReportChrome(driver,lopOptions,hml,options,checklist);
 	    if (browserName.equals("firefox"))
-	    	downloadReportFirefox(driver,lopOptions,hml,options);
+	    	downloadReportFirefox(driver,lopOptions,hml,options,checklist);
 	    if (browserName.equals("internet explorer"))
 	    {
 	    	if (v.startsWith("10"))
-	    		downloadReportIE(driver,lopOptions,hml,options);
+	    		downloadReportIE(driver,lopOptions,hml,options,checklist);
 	    	if (v.startsWith("11"))
-	    		downloadReportIE11(driver,lopOptions,hml,options);
+	    		downloadReportIE11(driver,lopOptions,hml,options,checklist);
 	    }
 	    //Modify report
 		modifyReport(driver,lopOptions,options,hml,checklist);
@@ -1599,13 +1937,33 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		//Wait for black server load message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 	}
 	
 	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {

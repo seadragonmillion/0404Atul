@@ -46,7 +46,7 @@ public class EquipmentPDDandEF {
 	String casePDDProdPercent = "3037";
 	String titleEFDev = "Sanity: QAA Test (DO NOT DELETE)";
 	String titlePDDDev = "Sanity: QAA Test (DO NOT DELETE)";
-	String titleEFProd = "What is Faraday’s Law and Ampere’s Law?"+"\n";
+	String titleEFProd = "What is Faradayï¿½s Law and Ampereï¿½s Law?"+"\n";
 	String titlePDDProd = "How do you reduce valve packing friction force?";
 	
 	public void searchWithPercent(WebDriver driver, String keypercent, String identifier) throws Exception {
@@ -172,13 +172,33 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]"))).click();
 		}
 		//Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			}catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }		
+				  }	}	
 	}
 	
 	public void verifyCaseModuleNames (WebDriver driver) throws Exception {
@@ -219,13 +239,33 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-btn"))).click();
 		//Waits for black loading message
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
@@ -234,23 +274,61 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(Keys.ENTER);
 		//Waits for black loading message
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Waits for black loading message
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+identifier));
@@ -370,23 +448,62 @@ public class EquipmentPDDandEF {
 		}
 		}
 		//Waits for black loading message
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Waits for black loading message
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+identifier));
@@ -519,23 +636,62 @@ public class EquipmentPDDandEF {
 		}
 		}
 		//Waits for black loading message
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Waits for black loading message
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+identifier));
@@ -674,6 +830,26 @@ public class EquipmentPDDandEF {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 	    //Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 		    Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -681,7 +857,7 @@ public class EquipmentPDDandEF {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		//Clicks on new case
@@ -784,6 +960,25 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -792,7 +987,7 @@ public class EquipmentPDDandEF {
 		}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		return caseId;
 	}
 	
@@ -812,6 +1007,26 @@ public class EquipmentPDDandEF {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 	    //Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 		    Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -819,7 +1034,7 @@ public class EquipmentPDDandEF {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		Thread.sleep(1000);
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(1000);
@@ -929,6 +1144,25 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -937,7 +1171,7 @@ public class EquipmentPDDandEF {
 		}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		return caseId;
 	}
 	
@@ -957,6 +1191,26 @@ public class EquipmentPDDandEF {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 	    //Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 		    Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -964,7 +1218,7 @@ public class EquipmentPDDandEF {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		Thread.sleep(1000);
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(1000);
@@ -1082,6 +1336,25 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1090,7 +1363,7 @@ public class EquipmentPDDandEF {
 		}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		return caseId;
 	}
 	
@@ -1110,6 +1383,26 @@ public class EquipmentPDDandEF {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 	    //Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 		    Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1117,7 +1410,7 @@ public class EquipmentPDDandEF {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		Thread.sleep(1000);
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(1000);
@@ -1223,6 +1516,25 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1231,7 +1543,7 @@ public class EquipmentPDDandEF {
 		}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		return caseId;
 	}
 	

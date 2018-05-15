@@ -246,6 +246,26 @@ public class UserManagement {
       	WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
       	option.click();
       	//Waits for loading message to disappear
+        String r = driver.getCurrentUrl();
+		  if(r.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
       	try{
       		Thread.sleep(2000);
       		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -253,7 +273,7 @@ public class UserManagement {
       	}catch (org.openqa.selenium.TimeoutException e)
       	{
       					  
-      	}
+      	}}
       	//Verify login name of new user
       	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).getAttribute("value");
       	System.out.println(s2);
@@ -406,6 +426,26 @@ public class UserManagement {
 		WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		option.click();
 		//Waits for black loading message to disappear
+		  String s = driver.getCurrentUrl();
+		  if(s.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -413,7 +453,7 @@ public class UserManagement {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Change company id
 		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd1.selectByVisibleText(companyChange);
@@ -429,6 +469,26 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Waits for black loading message to disappear
+		  String r = driver.getCurrentUrl();
+		  if(r.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -436,7 +496,7 @@ public class UserManagement {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 	}
 	
 	public void verifyGroupFields(WebDriver driver, HashMap<String, String>op) throws Exception {
@@ -479,6 +539,26 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id1);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Waits for black loading message to disappear
+		  String r = driver.getCurrentUrl();
+		  if(r.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -486,10 +566,30 @@ public class UserManagement {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Clicks on newly created company id
 		 driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		 //Waits for black loading message to disappear
+		  String r1 = driver.getCurrentUrl();
+		  if(r1.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 try{
 		     Thread.sleep(2000);
 			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -497,7 +597,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Click on edit
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		 //Get name of group to verify if group name is as expected
@@ -506,6 +606,26 @@ public class UserManagement {
 		 //Click on group under company
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[2]/td[1]"))).click();
 		 //Waits for black loading message to disappear
+		  String r2 = driver.getCurrentUrl();
+		  if(r2.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 try{
 		     Thread.sleep(1000);
 			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -513,7 +633,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Verify if group fields are as expected
 		 verifyGroupFields(driver, opc1g1);
 		 //Edit the group by changing the expiration date
@@ -535,6 +655,26 @@ public class UserManagement {
 		 //Clicks on Save
 		 driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
 		 //Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 try{
 		     Thread.sleep(2000);
 			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -542,7 +682,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }		
+			  }		}
 		//Click on Companies
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
 		//Enters company id in ID field 
@@ -550,6 +690,26 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id1);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Waits for black loading message to disappear
+		  String r4 = driver.getCurrentUrl();
+		  if(r4.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -557,9 +717,28 @@ public class UserManagement {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Clicks on newly created company id
 		 driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 //Waits for black loading message to disappear
 		 try{
 		     Thread.sleep(2000);
@@ -568,7 +747,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Click on edit
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		 //Get name of group to verify if group name is as expected
@@ -577,6 +756,25 @@ public class UserManagement {
 		 //Click on group under company
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[1]/td[1]"))).click();
 		 //Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 try{
 		     Thread.sleep(1000);
 			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -584,7 +782,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Verify if group fields are as expected
 		verifyGroupFields(driver, opc1g2);
 		//Click on Companies
@@ -594,6 +792,25 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id2);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -601,10 +818,29 @@ public class UserManagement {
 			}catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Clicks on newly created company id
 		 driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		 //Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 try{
 		     Thread.sleep(2000);
 			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -612,7 +848,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		 //Click on edit
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		 //Get name of group to verify if group name is as expected
@@ -621,6 +857,25 @@ public class UserManagement {
 		 //Click on group under company
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).click();
 		 //Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		 try{
 		     Thread.sleep(1000);
 			 wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -628,7 +883,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Verify if group fields are as expected
 		verifyGroupFields(driver, opc2g2);
 	}
@@ -818,6 +1073,26 @@ public class UserManagement {
 		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  System.out.println("Group created");
 		  //Waits for black loading message to disappear
+		  String r = driver.getCurrentUrl();
+		  if(r.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -825,7 +1100,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		  //Hashmap for group properties
 		  HashMap<String, String> gp = new HashMap<String,String>();
 		  //Get group name
@@ -1183,6 +1458,26 @@ public class UserManagement {
 			  System.out.println("Company does not exist, it can be created");
 		  }
 		  //Waits for black loading message to disappear
+		  String r = driver.getCurrentUrl();
+		  if(r.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1190,7 +1485,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 	}
 	
 	public void createCompany (WebDriver driver, String company_id) throws Exception {
@@ -1202,6 +1497,26 @@ public class UserManagement {
 		  //CLicks on new button
 		  driver.findElement(By.id("pii-admin-cust-button-new")).click();
 		  //Waits for black loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1209,7 +1524,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 		  //Clicks on new company
@@ -1264,6 +1579,25 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1271,12 +1605,31 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		  //Enters company id in ID field 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1284,10 +1637,29 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		  //Waits for black loading message to disappear
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -1295,7 +1667,7 @@ public class UserManagement {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		  System.out.println("Company created");
 	}
 	
@@ -1403,13 +1775,33 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  System.out.println("User created");
 		  //Waits for loading message to disappear
+		  String r3 = driver.getCurrentUrl();
+		  if(r3.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		  try{
 			    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 	}
 	
 	public void loginAsNewUser(WebDriver driver, String company_id, String password) throws Exception {
@@ -1616,13 +2008,33 @@ public class UserManagement {
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 	//Waits for loading message to disappear
+	  String r3 = driver.getCurrentUrl();
+	  if(r3.contains("kaleasia")==true)
+	  {
+		  while (true)
+		  {
+			  try{
+				  Thread.sleep(2000);
+				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+				  {
+					  Thread.sleep(3000);
+				  }
+				  else
+					  break;
+				  }catch (org.openqa.selenium.NoSuchElementException e)
+				  {
+					  break;
+				  }
+		  }
+	  }
+	  else{
 	try{
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 		 }catch (org.openqa.selenium.TimeoutException e)
 		  {
 			  
-		  }		
+		  }		}
 	}
 	
 	public List<String> storeDepartmentList(WebDriver driver) throws Exception {

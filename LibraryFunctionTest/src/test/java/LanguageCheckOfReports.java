@@ -53,13 +53,33 @@ public class LanguageCheckOfReports {
 		//Clicks on download button
 		element.click();
 		Thread.sleep(3000);
+		  String s = driver.getCurrentUrl();
+		  if(s.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -89,13 +109,33 @@ public class LanguageCheckOfReports {
 		//Clicks on download button
 		element.click();
 		Thread.sleep(3000);
+		  String s = driver.getCurrentUrl();
+		  if(s.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -120,8 +160,16 @@ public class LanguageCheckOfReports {
     	driver.switchTo().window(window);
     	Thread.sleep(8000);
     	//Switches to the iframe
+    	try{
+    	try{
         wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-			    		    	
+    	}catch (UnhandledAlertException g1){
+    		wait1.until(ExpectedConditions.alertIsPresent());
+            driver.switchTo().alert().accept();
+    	}
+    	}catch (NoAlertPresentException g){			  
+  		  System.out.println ("No unexpected alerts");
+	     }			    		    	
     }
 	
 	 public void downloadReportFirefox (WebDriver driver, int y, WebElement element) throws Exception {
@@ -132,13 +180,33 @@ public class LanguageCheckOfReports {
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on download button
 			element.click();
+			  String s = driver.getCurrentUrl();
+			  if(s.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -178,13 +246,33 @@ public class LanguageCheckOfReports {
     	String window = driver.getWindowHandle();
 		//Clicks on download button
 		element.click();
+		  String s = driver.getCurrentUrl();
+		  if(s.contains("kaleasia")==true)
+		  {
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+		  }
+		  else{
 		try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }
+			  }}
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();

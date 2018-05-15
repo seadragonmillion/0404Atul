@@ -73,13 +73,33 @@ public class EiRCA {
 			String window = driver.getWindowHandle();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			  String r3 = driver.getCurrentUrl();
+			  if(r3.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -97,6 +117,26 @@ public class EiRCA {
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			  String r3 = driver.getCurrentUrl();
+			  if(r3.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -104,7 +144,7 @@ public class EiRCA {
 				  {
 					  
 				  }
-			
+			  }
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -130,6 +170,26 @@ public class EiRCA {
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			  String r3 = driver.getCurrentUrl();
+			  if(r3.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
@@ -137,7 +197,7 @@ public class EiRCA {
 				  {
 					  
 				  }
-			
+			  }
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -170,13 +230,33 @@ public class EiRCA {
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			  String r3 = driver.getCurrentUrl();
+			  if(r3.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 			//String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -241,13 +321,33 @@ public class EiRCA {
 			obj1.receiptReport(driver, sharer, username, password1);
 			//Clicks on EiRCA side panel
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-mirca"))).click();
+			  String r3 = driver.getCurrentUrl();
+			  if(r3.contains("kaleasia")==true)
+			  {
+				  while (true)
+				  {
+					  try{
+						  Thread.sleep(2000);
+						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+						  {
+							  Thread.sleep(3000);
+						  }
+						  else
+							  break;
+						  }catch (org.openqa.selenium.NoSuchElementException e)
+						  {
+							  break;
+						  }
+				  }
+			  }
+			  else{
 			try{
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 				 }catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  
-				  }
+				  }}
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 	    }
