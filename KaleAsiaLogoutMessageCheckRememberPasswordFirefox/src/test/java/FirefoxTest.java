@@ -31,7 +31,7 @@ public class FirefoxTest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(3500000);
+	  public Timeout globalTimeout= new Timeout(3600000);
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -233,11 +233,44 @@ public String decode(String pw){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-header-message-passwd"))).sendKeys(Keys.ENTER);
 		System.out.println("Logged in");
 		Thread.sleep(4000);
+		while(true)
+		  {
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  Thread.sleep(1000);
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.JavascriptException t)
+			  {
+				  Thread.sleep(2000);
+				  break;
+			  }
+			 
+		  }
 		//Logs out
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 	    Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
 		Thread.sleep(2000);
+
 		afterTest();
 		/*xpath: id=pii-header-message-div/a
 			id:pii-header-message-button //click here
