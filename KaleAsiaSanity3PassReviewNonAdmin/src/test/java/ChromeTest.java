@@ -274,8 +274,13 @@ public class ChromeTest {
 				 break;
 			  }
 			  catch (org.openqa.selenium.TimeoutException e)
+	          {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException r)
 			  {
-				 break;		  
+			  	break;
 			  }
 			  
 			 

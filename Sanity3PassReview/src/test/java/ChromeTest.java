@@ -279,6 +279,10 @@ public class ChromeTest {
 				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException r)
+			  {
+			  	break;
+			  }
 			 
 		  }
 

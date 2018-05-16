@@ -294,6 +294,10 @@ public class FirefoxTest {
 				  
 				 break;
 			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException r)
+			  {
+			  	break;
+			  }
 		  }
 
 		  //Logs out
