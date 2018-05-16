@@ -162,11 +162,10 @@ public class ErrorMeterChromeTest {
 		 */
 		  obj1.shareReport(driver,username,password, 0);
 		  Thread.sleep(2000);
-		  //Mark critical
-		  obj1.markCritical(driver);
-		  Thread.sleep(2000);
-		  //Deletes the record
-		   obj1.deleteNewRecord(recordName,driver);
+		  //Mark critical integer same as shareReport
+		  obj1.markCritical(driver,username, password,0);
+		  //Deletes the newly created record, integer same as shareReport
+		  obj1.deleteNewRecord(driver, recordName,0);
 		   Thread.sleep(2000);
 		  while(true)
 			  {

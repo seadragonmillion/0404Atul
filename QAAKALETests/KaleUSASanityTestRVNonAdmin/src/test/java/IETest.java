@@ -175,10 +175,10 @@ public class IETest {
 		 * 7=non admin ie11
 		 */
 		  obj1.shareReport(driver,verifier,username,password,5);
-		  //Mark critical
-		  obj1.markCritical(driver);
-		  //Deletes the newly created record
-		  obj1.deleteNewRecord(driver,recordName);
+		  //Mark critical integer same as shareReport
+		  obj1.markCritical(driver,username, password,5);
+		  //Deletes the newly created record, integer same as shareReport
+		  obj1.deleteNewRecord(driver, recordName,5);
 		  while(true)
 			  {
 				  try{

@@ -662,7 +662,7 @@ public class ChromeTest {
 		  obj1.shareReport(driver,username,password, 1);
 			  Thread.sleep(2000);
 			  //Mark critical
-			  obj1.markCritical(driver);
+			  obj1.markCritical(driver,username,password,1);
 			  Thread.sleep(2000);
 			  //Creates new record by changing title if f==1 firefox
 			  obj1.saveNewReport(driver, username, password, obj, 0);

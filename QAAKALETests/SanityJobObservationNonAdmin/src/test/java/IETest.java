@@ -144,11 +144,10 @@ public class IETest {
 		 */
 		  obj1.shareReport(driver,username,password, 1);
 		  Thread.sleep(2000);
-		  //Mark critical
-		  obj1.markCritical(driver);
-		  Thread.sleep(2000);
-		  //Deletes the record
-		  obj1.deleteNewRecord(driver,recordName);
+		  //Mark critical integer same as shareReport
+		  obj1.markCritical(driver,username, password,1);
+		  //Deletes the newly created record, integer same as shareReport
+		  obj1.deleteNewRecord(driver, recordName,1);
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

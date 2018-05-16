@@ -155,10 +155,10 @@ public class SanityTestRV_ChromeTest {
 		 * 7=non admin ie11
 		 */
 		  obj1.shareReport(driver,verifier,username,password,0);
-		  //Mark critical
-		  obj1.markCritical(driver);
-		  //Deletes the newly created record
-		  obj1.deleteNewRecord(driver,recordName);
+		  //Mark critical integer same as shareReport
+		  obj1.markCritical(driver,username, password,0);
+		  //Deletes the newly created record, integer same as shareReport
+		  obj1.deleteNewRecord(driver, recordName,0);
 		  //Logs out
 		  driver.findElement(By.id("pii-user-loginname")).click();
 		  driver.findElement(By.id("pii-signout-button")).click();	

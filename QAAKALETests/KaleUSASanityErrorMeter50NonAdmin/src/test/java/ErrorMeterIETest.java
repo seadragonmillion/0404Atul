@@ -149,11 +149,10 @@ public class ErrorMeterIETest {
 		 */
 		  obj1.shareReport(driver,username,password, 5);
 		  Thread.sleep(2000);
-		  //Mark critical
-		  obj1.markCritical(driver);
-		  Thread.sleep(2000);
-		  //Deletes the record
-		   obj1.deleteNewRecord(recordName,driver);
+		  //Mark critical integer same as shareReport
+		  obj1.markCritical(driver,username, password,5);
+		  //Deletes the newly created record, integer same as shareReport
+		  obj1.deleteNewRecord(driver, recordName,5);
 		  Thread.sleep(2000);
 		   //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
