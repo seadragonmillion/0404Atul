@@ -406,7 +406,7 @@ public void LoginDummyUser() throws Exception{
 			while (true)
 			  {
 				  m=random.nextInt(n+1);
-				  if (m<1)
+				  if (m<1||m==16||m==17)
 					  continue;
 				  if(num.contains(m)==true)
 					  continue;
@@ -1062,7 +1062,7 @@ public void LoginDummyUser() throws Exception{
 				while (true)
 				  {
 					  m=random.nextInt(n+1);
-					  if (m<1)
+					  if (m<1||m==16||m==17)
 						  continue;
 					  if(num.contains(m)==true)
 						  continue;

@@ -402,7 +402,7 @@ public class SanityIETest {
 			while (true)
 			  {
 				  m=random.nextInt(n+1);
-				  if (m<1)
+				  if (m<1||m==16||m==17)
 					  continue;
 				  if(num.contains(m)==true)
 					  continue;
@@ -1046,7 +1046,7 @@ public class SanityIETest {
 				while (true)
 				  {
 					  m=random.nextInt(n+1);
-					  if (m<1)
+					  if (m<1||m==16||m==17)
 						  continue;
 					  if(num.contains(m)==true)
 						  continue;
