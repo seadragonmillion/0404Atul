@@ -140,6 +140,38 @@ public class JobObsChromeTest {
 		  obj1.markCritical(driver,username, password,5);
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,5);
+		  while(true)
+		  {
+			  try{
+			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  {
+				  Thread.sleep(1000);
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  
+			  }}catch (org.openqa.selenium.NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( org.openqa.selenium.StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.JavascriptException t)
+			  {
+				  Thread.sleep(2000);
+				  break;
+			  }
+			 
+		  }
 		  //Logs out
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
