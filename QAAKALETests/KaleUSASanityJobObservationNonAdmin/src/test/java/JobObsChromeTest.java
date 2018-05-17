@@ -173,8 +173,7 @@ public class JobObsChromeTest {
 			 
 		  }
 		  //Logs out
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		  obj.logout(driver);
 		  Thread.sleep(2000);
 		  afterTest();
 	}

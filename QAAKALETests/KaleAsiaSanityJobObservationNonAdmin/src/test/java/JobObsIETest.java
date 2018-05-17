@@ -149,8 +149,7 @@ public class JobObsIETest {
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,1);
 		  //Logs out
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		  obj.logout(driver);
 		  Thread.sleep(2000);
 		  afterTest();
 		  		  
