@@ -46,7 +46,7 @@ public class EquipmentPDDandEF {
 	String casePDDProdPercent = "3037";
 	String titleEFDev = "Sanity: QAA Test (DO NOT DELETE)";
 	String titlePDDDev = "Sanity: QAA Test (DO NOT DELETE)";
-	String titleEFProd = "What is Faraday�s Law and Ampere�s Law?"+"\n";
+	String titleEFProd = "What is Faraday’s Law and Ampere’s Law?"+"\n";
 	String titlePDDProd = "How do you reduce valve packing friction force?";
 	
 	public void searchWithPercent(WebDriver driver, String keypercent, String identifier) throws Exception {

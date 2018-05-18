@@ -16,6 +16,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,6 +64,7 @@ public class LanguageCheckOfReports {
 					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
 					  {
 						  Thread.sleep(3000);
+						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 					  }
 					  else
 						  break;
@@ -70,6 +72,10 @@ public class LanguageCheckOfReports {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  Thread.sleep(3000);
+				  }
 			  }
 		  }
 		  else{
@@ -82,7 +88,7 @@ public class LanguageCheckOfReports {
 			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(7000);
     	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
@@ -119,12 +125,16 @@ public class LanguageCheckOfReports {
 					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
 					  {
 						  Thread.sleep(3000);
+						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 					  }
 					  else
 						  break;
 					  }catch (org.openqa.selenium.NoSuchElementException e)
 					  {
 						  break;
+					  }catch (org.openqa.selenium.TimeoutException e)
+				  {
+						  Thread.sleep(3000);
 					  }
 			  }
 		  }
@@ -138,7 +148,7 @@ public class LanguageCheckOfReports {
 			  }}
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(6000);
 		try{
@@ -165,11 +175,19 @@ public class LanguageCheckOfReports {
         wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
     	}catch (UnhandledAlertException g1){
     		wait1.until(ExpectedConditions.alertIsPresent());
-            driver.switchTo().alert().accept();
+            driver.switchTo().alert().dismiss();
     	}
     	}catch (NoAlertPresentException g){			  
   		  System.out.println ("No unexpected alerts");
-	     }			    		    	
+	     }catch(org.openqa.selenium.TimeoutException t){
+	    	 System.out.println ("Timed out: No unexpected alerts");
+	     }
+    	try{
+    	driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+    	}catch (NoSuchElementException e)
+    	{
+    		
+    	}
     }
 	
 	 public void downloadReportFirefox (WebDriver driver, int y, WebElement element) throws Exception {
@@ -190,6 +208,7 @@ public class LanguageCheckOfReports {
 						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
 						  {
 							  Thread.sleep(3000);
+							  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 						  }
 						  else
 							  break;
@@ -197,6 +216,14 @@ public class LanguageCheckOfReports {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.TimeoutException e)
+					  {
+						  Thread.sleep(3000);
+					  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  Thread.sleep(3000);
+					  }
 				  }
 			  }
 			  else{
@@ -209,7 +236,7 @@ public class LanguageCheckOfReports {
 				  }}
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 	    	Thread.sleep(12000);
 	    	for(String winHandle : driver.getWindowHandles()){
@@ -256,6 +283,7 @@ public class LanguageCheckOfReports {
 					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
 					  {
 						  Thread.sleep(3000);
+						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
 					  }
 					  else
 						  break;
@@ -263,6 +291,10 @@ public class LanguageCheckOfReports {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  Thread.sleep(3000);
+				  }
 			  }
 		  }
 		  else{
@@ -274,7 +306,7 @@ public class LanguageCheckOfReports {
 				  
 			  }}
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
     	Thread.sleep(3000);
     	pdfCheck(y);
@@ -817,8 +849,17 @@ public class LanguageCheckOfReports {
 				englishCheck(s.get(i));
 		}		
 		//Clear the list s
-		s.clear();		
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))));
+		s.clear();	
+		WebElement element=null;
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText();
+		System.out.println(s1);
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
+		System.out.println(s2);
+		if (s1.contains("download") || (s1.contains("打印")) )
+			element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));	
+		else if (s2.contains("download")||(s1.contains("打印")))
+			element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
+		return (element);
 
 	}
 	

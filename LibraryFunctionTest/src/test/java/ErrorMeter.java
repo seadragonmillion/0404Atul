@@ -2438,7 +2438,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();;
     }
     
-    public void markCritical(WebDriver driver) throws Exception{
+    public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
     	
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on mark critical
@@ -2461,10 +2461,44 @@ public class ErrorMeter {
 		{
 			System.out.println("Unmarked critical");
 		}
-			
+		//Verify report not retrieved by shared to person
+	    String sharer = decideSharer (y);
+		ShareCheck obj1 = new ShareCheck();
+		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
+		//Clicks on EiRCA side panel
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
+	    String r3 = driver.getCurrentUrl();
+		if(r3.contains("kaleasia")==true)
+		{
+		  while (true)
+		  {
+			  try{
+				  Thread.sleep(2000);
+				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+				  {
+					  Thread.sleep(3000);
+				  }
+				  else
+					  break;
+				  }catch (org.openqa.selenium.NoSuchElementException e)
+				  {
+					  break;
+				  }
+		  }
+		}
+		else{
+		try{
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			 }catch (org.openqa.selenium.TimeoutException e)
+			  {
+				  
+			  }}
+    	//Clicks on first newly created record
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();	
     }
     
-    public void deleteNewRecord(String recordName, WebDriver driver) throws Exception{
+    public void deleteNewRecord(WebDriver driver, String recordName,  int y) throws Exception{
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  //CLicks on first newly created record
@@ -2486,7 +2520,10 @@ public class ErrorMeter {
 			  System.out.println("Record deleted");
 		  else
 			  System.out.println("Record could not be deleted");		  
-		  			  
+		  //Verify report not retrieved by shared to person
+	      String sharer = decideSharer (y);
+		  ShareCheck obj1 = new ShareCheck();
+		  obj1.checkNoReportAfterDelete(driver, sharer, softly);	  
 	  }  
     public void softAssert() throws Exception {
 		softly.assertAll();

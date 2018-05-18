@@ -355,8 +355,8 @@ public class UserManagement {
 		text.add("Job Observation Analysis");
 		text.add("3-Pass Review");
 		text.add("Remote Verification");
-		text.add("eLearning");
-		text.add("Error-Free Trainings");
+		//text.add("eLearning");
+		//text.add("Error-Free Trainings");
 		text.add("Human Performance");
 		text.add("Equipment Performance");
 		text.add("Electrical Failure Modes");
@@ -1032,7 +1032,7 @@ public class UserManagement {
 		  {
 			  num1 = random.nextInt(22);
 			  System.out.println(num1);
-			  if(num1<1)
+			  if(num1<1||num1==16||num1==17)
 				  continue;
 			  else break;
 		  }
@@ -1070,7 +1070,12 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
 		  //Clicks on Save
 		  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
-		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  System.out.println("Group created");
 		  //Waits for black loading message to disappear
 		  String r = driver.getCurrentUrl();
@@ -1577,7 +1582,12 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 		  //Clicks on create company
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  //Waits for black loading message to disappear
 		  if(r3.contains("kaleasia")==true)
 		  {
@@ -1717,7 +1727,12 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
 		  //Clicks on Save
 		  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  System.out.println("Group created");
 		  
 	}
@@ -1772,7 +1787,12 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		  //Clicks on Save button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  System.out.println("User created");
 		  //Waits for loading message to disappear
 		  String r3 = driver.getCurrentUrl();
@@ -2107,6 +2127,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Event Reports enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Knowledge
@@ -2121,6 +2142,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("JIT Wisdom enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Knowledge
@@ -2135,6 +2157,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("JIT Risk Joggers enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Knowledge
@@ -2149,6 +2172,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Knowledge Bank enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Knowledge
@@ -2163,6 +2187,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Knowledge Exchange enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Knowledge
@@ -2177,6 +2202,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Performance Accountability & Analytics enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Knowledge
@@ -2193,6 +2219,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("SPV Error Meter enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2207,6 +2234,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("HPI enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2221,6 +2249,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("HiRCA enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2235,6 +2264,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("EiRCA enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2249,6 +2279,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("O&PiRCA enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2263,6 +2294,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("ICCA enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2277,6 +2309,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Job Obs enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2291,6 +2324,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("3 Pass Review enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2305,6 +2339,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Remote Verification enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Analysis
@@ -2314,7 +2349,7 @@ public class UserManagement {
 			else softly.fail("Remote Verification disabled");
 		}
 		//Clicks on Learning
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
 		if(f.contains("Human Performance"))
@@ -2323,6 +2358,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Human Performance enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Error-Free Bank
@@ -2337,6 +2373,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Equipment Performance enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Error-Free Bank
@@ -2351,6 +2388,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Electrical Failure Modes enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Error-Free Bank
@@ -2365,6 +2403,7 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Mechanical Failure Modes enabled");
+				Thread.sleep(2000);
 				element.click();
 				Thread.sleep(2000);
 				//Clicks on Error-Free Bank
@@ -2397,8 +2436,14 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		  //Clicks on delete user
 		  driver.findElement(By.id("pii-admin-user-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  System.out.println("User deleted");
+		  Thread.sleep(4000);
 	}
 	
 	public void deleteGroup(WebDriver driver, String company_id) throws Exception{
@@ -2422,8 +2467,14 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
 		  //Clicks on delete group
 		  driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  System.out.println("Group deleted");
+		  Thread.sleep(4000);
 	}
 	
 	public void deleteCompany(WebDriver driver, String company_id) throws Exception{
@@ -2447,8 +2498,14 @@ public class UserManagement {
 		  //Clicks on delete company
 		  driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();
 		  Thread.sleep(4000);
-		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
 		  System.out.println("Company deleted");
+		  Thread.sleep(4000);
 	}
 	
 	public void softAssert() throws Exception {

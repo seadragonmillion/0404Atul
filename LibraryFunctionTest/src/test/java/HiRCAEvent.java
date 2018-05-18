@@ -1037,7 +1037,7 @@ public class HiRCAEvent {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();;
 	    }
 	    
-	    public void markCritical(WebDriver driver) throws Exception{
+	    public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on mark critical
@@ -1057,6 +1057,42 @@ public class HiRCAEvent {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
 				System.out.println("Unmarked critical");
+			//Verify report not retrieved by shared to person
+		    ErrorMeter obj = new ErrorMeter();
+			String sharer = obj.decideSharer (y);
+			ShareCheck obj1 = new ShareCheck();
+			obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
+			//Clicks on EiRCA side panel
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
+		    String r3 = driver.getCurrentUrl();
+			if(r3.contains("kaleasia")==true)
+			{
+			  while (true)
+			  {
+				  try{
+					  Thread.sleep(2000);
+					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+					  {
+						  Thread.sleep(3000);
+					  }
+					  else
+						  break;
+					  }catch (org.openqa.selenium.NoSuchElementException e)
+					  {
+						  break;
+					  }
+			  }
+			}
+			else{
+			try{
+				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				 }catch (org.openqa.selenium.TimeoutException e)
+				  {
+					  
+				  }}
+	    	//Clicks on first newly created record
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 	    }
 	    
 	  public void openCheckRecord(WebDriver driver, String username,  String get_date, String get_time, String get_dept, String creationDate) throws Exception{

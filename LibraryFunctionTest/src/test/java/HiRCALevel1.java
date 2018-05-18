@@ -656,6 +656,7 @@ public class HiRCALevel1 {
 	    //Checks text in pdf
 	    String data = new PDFTextStripper().getText(pddoc);
 	    List<String> ans= Arrays.asList(data.split("\r\n"));
+	    System.out.println(ans);
 	    String newData1="";
 	    for (int i = 0; i < ans.size(); i++)
 	        {	        	
@@ -665,6 +666,8 @@ public class HiRCALevel1 {
 	        	if (ans.get(i).charAt(n)!=' ')
 	        		newData1 = newData1+" "+ans.get(i);	        	
 	        }
+	   int y=newData1.indexOf("℠");
+	   newData1 = new StringBuilder(newData1).insert(y+1, " ").toString();
        newData1=newData1.replace("  ", " ");
        System.out.println(newData1);
        //Verifies if selected RCs and CFs appear in pdf
