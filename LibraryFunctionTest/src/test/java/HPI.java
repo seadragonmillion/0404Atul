@@ -1,5 +1,3 @@
-import static org.junit.Assert.assertEquals;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -103,7 +101,7 @@ public class HPI {
 			  System.out.println ("Record not found.");
 		  	
 		  //Checks if the record name is correct
-		  assertEquals(name,recordName);
+		  softly.assertThat(name).isEqualTo(recordName);
 	}
 
 	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{
