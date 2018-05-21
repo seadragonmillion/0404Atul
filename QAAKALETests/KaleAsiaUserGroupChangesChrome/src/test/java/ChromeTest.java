@@ -86,7 +86,7 @@ public class ChromeTest {
 		//Logout as admin
 		obj.logout(driver);
 		//Activate user
-		obj1.activateUser(obj1.emailAsia,driver);
+		obj1.activateUser(obj1.emailAsia,obj1.company_id2DevAsia,driver);
 		//Login as new user under company 2
 		obj1.loginAsNewUser(driver, obj1.company_id2DevAsia, password);
 		//Logout as new user of company 2, login as Admin

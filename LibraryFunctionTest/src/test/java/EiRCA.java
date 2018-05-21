@@ -95,6 +95,10 @@ public class EiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -139,6 +143,10 @@ public class EiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -192,6 +200,10 @@ public class EiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -252,6 +264,10 @@ public class EiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -343,6 +359,10 @@ public class EiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -404,6 +424,10 @@ public class EiRCA {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 			}
 			else{

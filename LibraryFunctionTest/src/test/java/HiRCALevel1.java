@@ -424,6 +424,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -477,6 +481,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -543,6 +551,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -607,6 +619,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1075,6 +1091,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1104,6 +1124,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1203,6 +1227,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1232,6 +1260,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1282,6 +1314,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1311,6 +1347,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1779,6 +1819,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1823,8 +1867,9 @@ public class HiRCALevel1 {
 		}
 		//Verify Step 4
 		HashMap<String,String> hml =verifyStep4(driver,options,lopOptions);
-		Thread.sleep(4000);
-		if(skip.contains("ui-state-disabled"))
+		Thread.sleep(6000);
+		String skip2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
+		if(skip2.contains("ui-state-disabled"))
 		{
 			//Click on next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1872,6 +1917,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1901,6 +1950,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1957,6 +2010,10 @@ public class HiRCALevel1 {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{

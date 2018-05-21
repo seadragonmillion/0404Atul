@@ -62,6 +62,10 @@ public class HPI {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -181,6 +185,10 @@ public class HPI {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -224,6 +232,10 @@ public class HPI {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -285,6 +297,10 @@ public class HPI {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 			}
 			else{

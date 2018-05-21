@@ -189,6 +189,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -256,6 +260,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -290,6 +298,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -319,6 +331,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -465,6 +481,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -494,6 +514,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -653,6 +677,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -682,6 +710,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -847,6 +879,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -976,6 +1012,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1024,6 +1064,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1160,6 +1204,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1208,6 +1256,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1352,6 +1404,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1400,6 +1456,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1532,6 +1592,10 @@ public class EquipmentPDDandEF {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{

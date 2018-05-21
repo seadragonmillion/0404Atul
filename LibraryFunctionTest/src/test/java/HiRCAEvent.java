@@ -358,6 +358,10 @@ public class HiRCAEvent {
 							  {
 								  break;
 							  }
+						  catch (org.openqa.selenium.StaleElementReferenceException e)
+						  {
+							  break;
+						  }
 					  }
 				  }
 				  //Checks for image
@@ -555,6 +559,10 @@ public class HiRCAEvent {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -608,6 +616,10 @@ public class HiRCAEvent {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -626,7 +638,7 @@ public class HiRCAEvent {
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
-	    	Thread.sleep(2000);
+	    	Thread.sleep(4000);
 	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 	    	Robot robot = new Robot();
 	    	// press Ctrl+S the Robot's way
@@ -675,6 +687,10 @@ public class HiRCAEvent {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -732,6 +748,10 @@ public class HiRCAEvent {
 								  {
 									  break;
 								  }
+							  catch (org.openqa.selenium.StaleElementReferenceException e)
+							  {
+								  break;
+							  }
 						  }
 					  }
 					else{
@@ -795,6 +815,10 @@ public class HiRCAEvent {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -1081,6 +1105,10 @@ public class HiRCAEvent {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 			}
 			else{
@@ -1559,6 +1587,10 @@ public class HiRCAEvent {
 							  {
 								  break;
 							  }
+						  catch (org.openqa.selenium.StaleElementReferenceException e)
+						  {
+							  break;
+						  }
 					  }
 				  }
 				  else
@@ -1721,6 +1753,10 @@ public class HiRCAEvent {
 							  {
 								  break;
 							  }
+						  catch (org.openqa.selenium.StaleElementReferenceException e)
+						  {
+							  break;
+						  }
 					  }
 				  }
 				  else{
@@ -1931,6 +1967,10 @@ public class HiRCAEvent {
 							  {
 								  break;
 							  }
+						  catch (org.openqa.selenium.StaleElementReferenceException e)
+						  {
+							  break;
+						  }
 					  }
 				  }
 				  else{
@@ -2106,7 +2146,7 @@ public class HiRCAEvent {
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
 				  String s = driver.getCurrentUrl();
-				  if(s.contains("kaleasia")==true)
+				  if((s.contains("kaleasia")==true)||(s.contains("kaledev")==true))
 				  {
 					  while (true)
 					  {
@@ -2122,6 +2162,10 @@ public class HiRCAEvent {
 							  {
 								  break;
 							  }
+						  catch (org.openqa.selenium.StaleElementReferenceException e)
+						  {
+							  break;
+						  }
 					  }
 				  }
 				  else{

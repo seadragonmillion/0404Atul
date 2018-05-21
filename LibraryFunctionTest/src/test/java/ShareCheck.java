@@ -365,7 +365,7 @@ public class ShareCheck {
 			//Go back to notifications
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button")));
 			act.click(ele).build().perform();
-			Thread.sleep(2000);
+			Thread.sleep(4000);
 			for(int i=1;i<=n;i++)
 			{
 			Thread.sleep(2000);
@@ -495,6 +495,10 @@ public class ShareCheck {
 				  {
 					  break;
 				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
 			  }
 		}
 		else{
@@ -547,6 +551,10 @@ public class ShareCheck {
 				  {
 					  break;
 				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
 		  }
 		}
 	    else{
@@ -602,6 +610,10 @@ public class ShareCheck {
 				  {
 					  break;
 				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
 		  }
 		}
 	    else{
@@ -667,6 +679,10 @@ public class ShareCheck {
 				  {
 					  break;
 				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
 		  }
 		}
 	    else{

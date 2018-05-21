@@ -66,6 +66,10 @@ public class OPiRCA {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -94,6 +98,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -146,6 +154,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -190,6 +202,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -242,6 +258,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -303,6 +323,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -388,6 +412,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -423,6 +451,10 @@ public class OPiRCA {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -484,6 +516,10 @@ public class OPiRCA {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 			}
 			else{

@@ -75,6 +75,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -105,6 +109,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -135,6 +143,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -177,6 +189,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -664,6 +680,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -704,6 +724,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -746,6 +770,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -798,6 +826,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -863,6 +895,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -925,6 +961,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -1093,6 +1133,10 @@ public class RemoteVerification {
 				  {
 					  break;
 				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
 		  }
 		}
 		else{
@@ -1138,6 +1182,10 @@ public class RemoteVerification {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{

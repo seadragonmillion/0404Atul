@@ -436,6 +436,10 @@ public class JobObservation {
 						  {
 							  break;
 						  }
+					  catch (org.openqa.selenium.StaleElementReferenceException e)
+					  {
+						  break;
+					  }
 				  }
 			  }
 			  else{
@@ -497,6 +501,10 @@ public class JobObservation {
 					  {
 						  break;
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 			}
 			else{

@@ -90,7 +90,7 @@ public class IETest {
 		//Logout as admin
 		obj.logout(driver);
 		//Activate user
-		obj1.activateUser(obj1.emailDev,driver);
+		obj1.activateUser(obj1.emailDev,obj1.company_id2DevAsia,driver);
 		//Login as new user under company 2
 		obj1.loginAsNewUser(driver, obj1.company_id2DevAsia, password);
 		//Logout as new user of company 2, login as Admin

@@ -104,7 +104,7 @@ public class FirefoxTest {
 		//Logout as admin
 		obj.logout(driver);
 		//Activate user
-		obj1.activateUser(obj1.emailUS,driver);
+		obj1.activateUser(obj1.emailUS,obj1.company_id2US,driver);
 		//Login as new user under company 2
 		obj1.loginAsNewUser(driver, obj1.company_id2US, password);
 		//Logout as new user of company 2, login as Admin

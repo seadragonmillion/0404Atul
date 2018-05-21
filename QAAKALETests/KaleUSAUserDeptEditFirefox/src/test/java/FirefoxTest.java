@@ -78,6 +78,8 @@ public class FirefoxTest {
 		 WebDriverWait wait = new WebDriverWait(driver,20);	
 		 //Mark all email read
 		 obj1.emailMarkRead(obj1.emailUS,driver);
+		 //Deletes previous user with CM rights
+		 obj1.deletesPreviousCMUser(driver, company_id+"testcm");
 		 //Deletes previous created company,user,group
 		 obj1.deletesPrevious(driver, company_id);
 		 //Create company
@@ -88,10 +90,18 @@ public class FirefoxTest {
 		 obj1.createGroup (driver, company_id);
 		 //Create user
 		 obj1.createUser (driver, company_id, password,obj1.emailUS);
+		 //Create user with CM rights
+		 obj1.createUserCM (driver, company_id, password,obj1.emailUS);
 		 //Logout as admin
 		 obj.logout(driver);
 		 //Activate user
-		 obj1.activateUser(obj1.emailUS,driver);
+		 obj1.activateUser(obj1.emailUS,company_id,driver);
+		 //Activate user with CM rights
+		 obj1.activateUser(obj1.emailUS,company_id+"testcm",driver);
+		 //Login as new user with CM rights
+		 obj1.loginAsNewUser(driver, company_id+"testcm", password);
+		 //KALE 1842
+		 obj1.bugKALE1842(driver);
 		 //Login as new user
 		 obj1.loginAsNewUser(driver, company_id, password);
 		 //Go to HiRCA
@@ -159,6 +169,8 @@ public class FirefoxTest {
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		 //Clicks on Accounts
 		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
+		 //Delete user with CM rights
+		 obj1.deleteUser(driver, company_id+"testcm");
 		 //Delete user
 		 obj1.deleteUser(driver, company_id);
 		 //Delete group

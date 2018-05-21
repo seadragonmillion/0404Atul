@@ -76,6 +76,10 @@ public class LanguageCheckOfReports {
 				  {
 					  Thread.sleep(3000);
 				  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -136,6 +140,10 @@ public class LanguageCheckOfReports {
 				  {
 						  Thread.sleep(3000);
 					  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
+				  }
 			  }
 		  }
 		  else{
@@ -294,6 +302,10 @@ public class LanguageCheckOfReports {
 				  catch (org.openqa.selenium.TimeoutException e)
 				  {
 					  Thread.sleep(3000);
+				  }
+				  catch (org.openqa.selenium.StaleElementReferenceException e)
+				  {
+					  break;
 				  }
 			  }
 		  }
