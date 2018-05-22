@@ -423,11 +423,11 @@ public void LoginDummyUser() throws Exception{
 		Thread.sleep(2000);
 		WebElement ele = driver.findElement(By.id("pii-admin-group-modules-menu"));
 		Thread.sleep(1000);
-		//Selects random number to make number of selections between 1 to 21
+		//Selects random number to make number of selections between 1 to 19
 		Random random = new Random();
 		while (true)
 		  {
-			  n=random.nextInt(22);
+			  n=random.nextInt(20);
 			  if (n<1)
 				  continue;
 			  break;
@@ -444,7 +444,7 @@ public void LoginDummyUser() throws Exception{
 			Collections.sort(num);
 			while (true)
 			  {
-				  m=random.nextInt(n+1);
+				  m=random.nextInt(22);
 				  if (m<1||m==16||m==17)
 					  continue;
 				  if(num.contains(m)==true)
@@ -1086,12 +1086,12 @@ public void LoginDummyUser() throws Exception{
 		  driver.findElement(By.id("pii-admin-group-modules-button")).click();
 		  Thread.sleep(2000);
 		  WebElement ele = driver.findElement(By.id("pii-admin-group-modules-menu"));
-		  //Selects random number to make number of selections between 1 to 21
+		  //Selects random number to make number of selections between 1 to 19
 			Random random = new Random();
 			int n;
 			while (true)
 			  {
-				  n=random.nextInt(22);
+				  n=random.nextInt(20);
 				  if (n<1)
 					  continue;
 				  break;
@@ -1105,7 +1105,7 @@ public void LoginDummyUser() throws Exception{
 				Collections.sort(num);
 				while (true)
 				  {
-					  m=random.nextInt(n+1);
+					  m=random.nextInt(22);
 					  if (m<1||m==16||m==17)
 						  continue;
 					  if(num.contains(m)==true)
