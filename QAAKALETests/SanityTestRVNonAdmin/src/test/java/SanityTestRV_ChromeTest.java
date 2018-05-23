@@ -160,8 +160,7 @@ public class SanityTestRV_ChromeTest {
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,1);
 		  //Logs out
-		  driver.findElement(By.id("pii-user-loginname")).click();
-		  driver.findElement(By.id("pii-signout-button")).click();	
+		  obj.logout(driver);
 		  afterTest();
 		  
 	  }

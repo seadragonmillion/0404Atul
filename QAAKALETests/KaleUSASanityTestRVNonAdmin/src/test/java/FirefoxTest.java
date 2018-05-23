@@ -184,8 +184,7 @@ public class FirefoxTest {
 				 
 			  }
 		  //Logs out
-		  driver.findElement(By.id("pii-user-loginname")).click();
-		  driver.findElement(By.id("pii-signout-button")).click();	
+		  obj.logout(driver);	
 		  afterTest();
 		 
 	  }

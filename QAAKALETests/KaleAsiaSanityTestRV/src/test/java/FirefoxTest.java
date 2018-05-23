@@ -162,8 +162,7 @@ public class FirefoxTest {
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,0);
 		  //Logs out
-		  driver.findElement(By.id("pii-user-loginname")).click();
-		  driver.findElement(By.id("pii-signout-button")).click();	
+		  obj.logout(driver);
 		  afterTest();
 		 
 	  }
