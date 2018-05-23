@@ -81,6 +81,9 @@ public class ErrorMeterChromeTest {
                throw e;
         }
 		  Thread.sleep(4000);
+		  //Waits for the page to load
+	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
