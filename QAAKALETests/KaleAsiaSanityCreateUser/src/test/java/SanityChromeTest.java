@@ -499,9 +499,10 @@ public class SanityChromeTest {
 			{
 				op[m]="Mechanical Failure Modes";
 			}	
+			Thread.sleep(3000);
 			//Checks it
 			ele.findElement(By.linkText(op[m])).click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			String at=ele.findElement(By.linkText(op[m])).getAttribute("class");
 			System.out.println(at);	
 			if(at.contains("ui-checkbox-on")==false)
@@ -1121,8 +1122,9 @@ public class SanityChromeTest {
 					op[m]="Mechanical Failure Modes";
 				}	
 				//Checks it
+				Thread.sleep(3000);
 				ele.findElement(By.linkText(op[m])).click();
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 				String at=ele.findElement(By.linkText(op[m])).getAttribute("class");
 				System.out.println(at);						
 			}
