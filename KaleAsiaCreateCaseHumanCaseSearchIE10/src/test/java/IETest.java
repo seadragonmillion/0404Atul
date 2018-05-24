@@ -43,7 +43,7 @@ public class IETest {
 	
 	@SuppressWarnings("deprecation")
 	@Rule
-	  public Timeout globalTimeout= new Timeout(2600000);
+	  public Timeout globalTimeout= new Timeout(3000000);
 		  
 	@SuppressWarnings("deprecation")
 	@Before
@@ -505,6 +505,7 @@ public class IETest {
 		  //Clicks on new case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		  Thread.sleep(4000);
 		  while (true)
 		  {
 			  caseId = String.format(""+random.nextInt(10000));
@@ -588,7 +589,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();*/
 		  //Enters purpose
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword_same);
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  if(count==1)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
 		  else
@@ -601,7 +602,7 @@ public class IETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();*/
 		  //Enters condition
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword_same);
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  if(count==1)
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
 		  else
