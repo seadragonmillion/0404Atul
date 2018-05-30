@@ -57,107 +57,17 @@ public class RemoteVerification {
 		//Clicks on Save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
-		//Waits for black loading message to disappear
-		String r3 = driver.getCurrentUrl();
-		  if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-		  Thread.sleep(2000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		}catch (org.openqa.selenium.TimeoutException e)
-		  {
-			  
-		  }}
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		//Click on Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-savedactivities"))).click();
-		//Waits for black loading message to disappear
-		if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			}catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }}
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
-		//Waits for black loading message to disappear
-		if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			}catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }}
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Verify status
 		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText();
 		softly.assertThat(status).as("test data").contains("Not yet sent to verifier");
@@ -172,38 +82,8 @@ public class RemoteVerification {
 		//Clicks on save and send report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
 		driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
-		//Waits for black loading message to disappear
-		if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			}catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }}
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Verify status
 		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/span"))).getText();
 		softly.assertThat(status1).as("test data").contains("Sent, waiting upon verification");
@@ -663,38 +543,8 @@ public class RemoteVerification {
 		obj1.shareTwice (driver);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
-		String r3 = driver.getCurrentUrl();
-		  if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		//Waits for black loading message to disappear
-		  try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }	}
+		//Wait for loading message to disappear
+		obj1.loadingServer(driver);
 		 //Checks the username of creator and verifier
 		 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div")));
 		 String creatorUsername= creator.getText();
@@ -708,36 +558,8 @@ public class RemoteVerification {
 		 obj1.receiptReport(driver, sharer, username, password1);
 		 //Clicks on Remote Verification side panel
 		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
-		 if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		 try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-					  
-			  }}
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 		 //Clicks on first newly created record
 		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();;
     }
@@ -753,37 +575,9 @@ public class RemoteVerification {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		  String s = driver.getCurrentUrl();
-		  if(s.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }}
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -809,38 +603,9 @@ public class RemoteVerification {
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		  String s = driver.getCurrentUrl();
-		  if(s.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
-		  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -878,38 +643,9 @@ public class RemoteVerification {
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		  String s = driver.getCurrentUrl();
-		  if(s.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
-		  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -944,38 +680,9 @@ public class RemoteVerification {
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		  String s = driver.getCurrentUrl();
-		  if(s.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
-		  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1114,39 +821,10 @@ public class RemoteVerification {
 		String sharer = obj.decideSharer (y);
 		ShareCheck obj1 = new ShareCheck();
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
-		//Clicks on EiRCA side panel
+		//Clicks on rv side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
-	    String r3 = driver.getCurrentUrl();
-		if(r3.contains("kaleasia")==true)
-		{
-		  while (true)
-		  {
-			  try{
-				  Thread.sleep(2000);
-				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-				  {
-					  Thread.sleep(3000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
-				  {
-					  break;
-				  }
-			  catch (org.openqa.selenium.StaleElementReferenceException e)
-			  {
-				  break;
-			  }
-		  }
-		}
-		else{
-		try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }}
+		//Wait for loading message to disappear
+		obj1.loadingServer(driver);
     	//Clicks on first newly created record
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();	
     }
@@ -1164,38 +842,9 @@ public class RemoteVerification {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  Thread.sleep(2000);
 		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
-		  //Wait for black server load message to disappear
-		  String r3 = driver.getCurrentUrl();
-		  if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-			try{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				}catch (org.openqa.selenium.TimeoutException e)
-				 {
-					  
-				 }}
+			//Wait for loading message to disappear
+		  ShareCheck obj2 = new ShareCheck();
+			obj2.loadingServer(driver);
 		  //Verify record deleted
 		  //Click on 1st record
 		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).getText();

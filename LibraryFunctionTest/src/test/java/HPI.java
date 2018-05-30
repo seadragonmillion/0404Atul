@@ -44,38 +44,9 @@ public class HPI {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-dialog-confirmed"))).click(); 
 		  //Waits for the green popup on the right top corner
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		  //Waits for black loading message to disappear
-		  String r3 = driver.getCurrentUrl();
-		  if(r3.contains("kaleasia")==true)
-		  {
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-		  }
-		  else{
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }}
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  //Creates expected record name
 		  Thread.sleep(3000);
 		  String date= driver.findElement(By.xpath(".//*[@id='pii-hpi-rpt-header']/span/span")).getText();
@@ -167,38 +138,8 @@ public class HPI {
 			obj1.shareTwice (driver);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
-			//Waits for black loading message to disappear
-			  String r3 = driver.getCurrentUrl();
-			  if(r3.contains("kaleasia")==true)
-			  {
-				  while (true)
-				  {
-					  try{
-						  Thread.sleep(2000);
-						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-						  {
-							  Thread.sleep(3000);
-						  }
-						  else
-							  break;
-						  }catch (org.openqa.selenium.NoSuchElementException e)
-						  {
-							  break;
-						  }
-					  catch (org.openqa.selenium.StaleElementReferenceException e)
-					  {
-						  break;
-					  }
-				  }
-			  }
-			  else{
-			  try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }	}
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 			 //Checks the username of creator and verifier
 			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='hpi-rpt']/div/span[2]/span")));
 			 String creatorUsername= creator.getText();
@@ -216,36 +157,8 @@ public class HPI {
 			 obj1.receiptReport(driver, sharer, username, password1);
 			 //Clicks on HPI side panel
 			 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
-			  if(r3.contains("kaleasia")==true)
-			  {
-				  while (true)
-				  {
-					  try{
-						  Thread.sleep(2000);
-						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-						  {
-							  Thread.sleep(3000);
-						  }
-						  else
-							  break;
-						  }catch (org.openqa.selenium.NoSuchElementException e)
-						  {
-							  break;
-						  }
-					  catch (org.openqa.selenium.StaleElementReferenceException e)
-					  {
-						  break;
-					  }
-				  }
-			  }
-			  else{
-			 try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 		     //Clicks on first newly created record
 		     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 	    }
@@ -278,39 +191,10 @@ public class HPI {
 			String sharer = obj.decideSharer (y);
 			ShareCheck obj1 = new ShareCheck();
 			obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
-			//Clicks on EiRCA side panel
+			//Clicks on HPI side panel
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
-		    String r3 = driver.getCurrentUrl();
-			if(r3.contains("kaleasia")==true)
-			{
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-			}
-			else{
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 	    }

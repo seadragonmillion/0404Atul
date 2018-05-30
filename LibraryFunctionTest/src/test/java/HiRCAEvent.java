@@ -59,23 +59,13 @@ public class HiRCAEvent {
 	public void deleteNewRecord(WebDriver driver, String recordName) throws Exception{	  
 	      
 		  WebDriverWait wait = new WebDriverWait(driver,20);
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  //Clicks on new record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		  try{
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-					  }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		   //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -175,13 +165,9 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		  //Click on newly created record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj1 = new ShareCheck();
+			obj1.loadingServer(driver);
 		  //Click on Open button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -198,21 +184,11 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 		  Thread.sleep(2000);
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 		  //Scroll down and check for 5 images uploaded
 		  int scroll =700;
 		  
@@ -295,13 +271,9 @@ public class HiRCAEvent {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 			  //Click on newly created record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+			  ShareCheck obj1 = new ShareCheck();
+				obj1.loadingServer(driver);
 			  //Click on Open button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -318,21 +290,11 @@ public class HiRCAEvent {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-			  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 			  Thread.sleep(2000);
-			  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 			  //Scroll down and check for 5 images uploaded
 			  int scroll =700;
 			  
@@ -341,29 +303,8 @@ public class HiRCAEvent {
 			  	  jse.executeScript("scroll(0, "+scroll+")");
 				  //Clicks on collapsible
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
-				  String s = driver.getCurrentUrl();
-				  if(s.contains("kaleasia")==true)
-				  {
-					  while (true)
-					  {
-						  try{
-							  Thread.sleep(2000);
-							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-							  {
-								  Thread.sleep(3000);
-							  }
-							  else
-								  break;
-							  }catch (org.openqa.selenium.NoSuchElementException e)
-							  {
-								  break;
-							  }
-						  catch (org.openqa.selenium.StaleElementReferenceException e)
-						  {
-							  break;
-						  }
-					  }
-				  }
+					//Wait for loading message to disappear
+					obj1.loadingServer(driver);
 				  //Checks for image
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
 				  Thread.sleep(2000);
@@ -438,13 +379,9 @@ public class HiRCAEvent {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 			  //Click on newly created record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+			  ShareCheck obj1 = new ShareCheck();
+				obj1.loadingServer(driver);
 			    //Clicks on Open button
 		    	WebDriverWait wait1 = new WebDriverWait(driver,30);
 		    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
@@ -462,23 +399,11 @@ public class HiRCAEvent {
 			    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-				
-				try{
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
-				
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 				Thread.sleep(2000);
-				  try{
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 				//Scroll down and check for 5 images uploaded
 			  int scroll =700;
 			  
@@ -542,37 +467,9 @@ public class HiRCAEvent {
 			String window = driver.getWindowHandle();
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-			String s = driver.getCurrentUrl();
-			  if(s.contains("kaleasia")==true)
-			  {
-				  while (true)
-				  {
-					  try{
-						  Thread.sleep(2000);
-						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-						  {
-							  Thread.sleep(3000);
-						  }
-						  else
-							  break;
-						  }catch (org.openqa.selenium.NoSuchElementException e)
-						  {
-							  break;
-						  }
-					  catch (org.openqa.selenium.StaleElementReferenceException e)
-					  {
-						  break;
-					  }
-				  }
-			  }
-			  else{
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+			//Wait for loading message to disappear
+			ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -599,37 +496,9 @@ public class HiRCAEvent {
 			
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-			String s = driver.getCurrentUrl();
-			  if(s.contains("kaleasia")==true)
-			  {
-				  while (true)
-				  {
-					  try{
-						  Thread.sleep(2000);
-						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-						  {
-							  Thread.sleep(3000);
-						  }
-						  else
-							  break;
-						  }catch (org.openqa.selenium.NoSuchElementException e)
-						  {
-							  break;
-						  }
-					  catch (org.openqa.selenium.StaleElementReferenceException e)
-					  {
-						  break;
-					  }
-				  }
-			  }
-			  else{
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+			//Wait for loading message to disappear
+			ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -670,37 +539,9 @@ public class HiRCAEvent {
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			Thread.sleep(3000);
-			String s = driver.getCurrentUrl();
-			  if(s.contains("kaleasia")==true)
-			  {
-				  while (true)
-				  {
-					  try{
-						  Thread.sleep(2000);
-						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-						  {
-							  Thread.sleep(3000);
-						  }
-						  else
-							  break;
-						  }catch (org.openqa.selenium.NoSuchElementException e)
-						  {
-							  break;
-						  }
-					  catch (org.openqa.selenium.StaleElementReferenceException e)
-					  {
-						  break;
-					  }
-				  }
-			  }
-			  else{
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+			//Wait for loading message to disappear
+			ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -731,38 +572,8 @@ public class HiRCAEvent {
 		    		deleteFiles(file);
 		    		//Clicks on download button
 					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-					
-					if(s.contains("kaleasia")==true)
-					  {
-						  while (true)
-						  {
-							  try{
-								  Thread.sleep(2000);
-								  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-								  {
-									  Thread.sleep(3000);
-								  }
-								  else
-									  break;
-								  }catch (org.openqa.selenium.NoSuchElementException e)
-								  {
-									  break;
-								  }
-							  catch (org.openqa.selenium.StaleElementReferenceException e)
-							  {
-								  break;
-							  }
-						  }
-					  }
-					else{
-						try{
-					
-						  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-						  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-						 }catch (org.openqa.selenium.TimeoutException e)
-						  {
-							  
-						  }}
+					//Wait for loading message to disappear
+					obj.loadingServer(driver);
 					//Clicks on open pdf report
 					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -798,37 +609,9 @@ public class HiRCAEvent {
 			
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-			String s = driver.getCurrentUrl();
-			  if(s.contains("kaleasia")==true)
-			  {
-				  while (true)
-				  {
-					  try{
-						  Thread.sleep(2000);
-						  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-						  {
-							  Thread.sleep(3000);
-						  }
-						  else
-							  break;
-						  }catch (org.openqa.selenium.NoSuchElementException e)
-						  {
-							  break;
-						  }
-					  catch (org.openqa.selenium.StaleElementReferenceException e)
-					  {
-						  break;
-					  }
-				  }
-			  }
-			  else{
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+			//Wait for loading message to disappear
+			ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1050,13 +833,8 @@ public class HiRCAEvent {
 			obj1.receiptReport(driver, sharer, username, password1);
 			//Clicks on HiRCA side panel
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 			 //Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();;
 	    }
@@ -1086,39 +864,10 @@ public class HiRCAEvent {
 			String sharer = obj.decideSharer (y);
 			ShareCheck obj1 = new ShareCheck();
 			obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
-			//Clicks on EiRCA side panel
+			//Clicks on HiRCA side panel
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-		    String r3 = driver.getCurrentUrl();
-			if(r3.contains("kaleasia")==true)
-			{
-			  while (true)
-			  {
-				  try{
-					  Thread.sleep(2000);
-					  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-					  {
-						  Thread.sleep(3000);
-					  }
-					  else
-						  break;
-					  }catch (org.openqa.selenium.NoSuchElementException e)
-					  {
-						  break;
-					  }
-				  catch (org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  }
-			}
-			else{
-			try{
-				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 	    }
@@ -1369,14 +1118,9 @@ public class HiRCAEvent {
 				  Thread.sleep(500);
 				  String id = "pii-irca-h-event-report-filecollapsible-"+j;
 				  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
-				  try{
-					  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(1000);
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
+					//Wait for loading message to disappear
+				  ShareCheck obj = new ShareCheck();
+					obj.loadingServer(driver);
 				  n=n+1200;
 				  String scroll ="scroll(0,"+n+")";
 				  jse.executeScript(scroll);
@@ -1570,40 +1314,9 @@ public class HiRCAEvent {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
-				  String s = driver.getCurrentUrl();
-				  if(s.contains("kaleasia")==true)
-				  {
-					  while (true)
-					  {
-						  try{
-							  Thread.sleep(2000);
-							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-							  {
-								  Thread.sleep(3000);
-							  }
-							  else
-								  break;
-							  }catch (org.openqa.selenium.NoSuchElementException e)
-							  {
-								  break;
-							  }
-						  catch (org.openqa.selenium.StaleElementReferenceException e)
-						  {
-							  break;
-						  }
-					  }
-				  }
-				  else
-				  {
-					  try{
-						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-						  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-						  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-						  }catch (org.openqa.selenium.TimeoutException e)
-					  {
-					  
-					  }	
-				  }	  		  
+					//Wait for loading message to disappear
+				  ShareCheck obj = new ShareCheck();
+					obj.loadingServer(driver); 
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1642,13 +1355,9 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		  Thread.sleep(500);
-		  try{
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  }catch (org.openqa.selenium.TimeoutException e)
-		  {
-			  
-		  }	
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  jse.executeScript("scroll(0, 2000)");
 	}
 	
@@ -1736,38 +1445,9 @@ public class HiRCAEvent {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
-				  String s = driver.getCurrentUrl();
-				  if(s.contains("kaleasia")==true)
-				  {
-					  while (true)
-					  {
-						  try{
-							  Thread.sleep(2000);
-							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-							  {
-								  Thread.sleep(3000);
-							  }
-							  else
-								  break;
-							  }catch (org.openqa.selenium.NoSuchElementException e)
-							  {
-								  break;
-							  }
-						  catch (org.openqa.selenium.StaleElementReferenceException e)
-						  {
-							  break;
-						  }
-					  }
-				  }
-				  else{
-				  try{
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-				  }catch (org.openqa.selenium.TimeoutException e)
-				  {
-						  
-				  }}	  		  
+					//Wait for loading message to disappear
+				  ShareCheck obj = new ShareCheck();
+					obj.loadingServer(driver);  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -1812,34 +1492,20 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(500);
-		try{
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  }catch (org.openqa.selenium.TimeoutException e)
-		  {
-			  
-		  }	
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		Thread.sleep(2000);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }	
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(500);
-		try{
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  }catch (org.openqa.selenium.TimeoutException e)
-		  {
-			  
-		  }	
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		jse.executeScript("scroll(0, 2000)");
 		
 	}
@@ -1950,38 +1616,9 @@ public class HiRCAEvent {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
-				  String s = driver.getCurrentUrl();
-				  if(s.contains("kaleasia")==true)
-				  {
-					  while (true)
-					  {
-						  try{
-							  Thread.sleep(2000);
-							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-							  {
-								  Thread.sleep(3000);
-							  }
-							  else
-								  break;
-							  }catch (org.openqa.selenium.NoSuchElementException e)
-							  {
-								  break;
-							  }
-						  catch (org.openqa.selenium.StaleElementReferenceException e)
-						  {
-							  break;
-						  }
-					  }
-				  }
-				  else{
-				  try{
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-				  }catch (org.openqa.selenium.TimeoutException e)
-				  {
-						  
-				  }		}	  		  
+					//Wait for loading message to disappear
+				  ShareCheck obj = new ShareCheck();
+					obj.loadingServer(driver); 		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -2027,13 +1664,9 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(500);
-		try{
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  }catch (org.openqa.selenium.TimeoutException e)
-		  {
-			  
-		  }	
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		jse.executeScript("scroll(0, 2000)");
 		
 	}
@@ -2145,38 +1778,9 @@ public class HiRCAEvent {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
-				  String s = driver.getCurrentUrl();
-				  if((s.contains("kaleasia")==true)||(s.contains("kaledev")==true))
-				  {
-					  while (true)
-					  {
-						  try{
-							  Thread.sleep(2000);
-							  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-							  {
-								  Thread.sleep(4000);
-							  }
-							  else
-								  break;
-							  }catch (org.openqa.selenium.NoSuchElementException e)
-							  {
-								  break;
-							  }
-						  catch (org.openqa.selenium.StaleElementReferenceException e)
-						  {
-							  break;
-						  }
-					  }
-				  }
-				  else{
-				  try{
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-				  }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }}  		  
+					//Wait for loading message to disappear
+				  ShareCheck obj = new ShareCheck();
+					obj.loadingServer(driver);		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
 				  if(driver.findElement(By.id(img)).isDisplayed())
@@ -2228,14 +1832,9 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(4000);
-		try{
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		  }catch (org.openqa.selenium.TimeoutException e)
-		  {
-			  
-		  }	
-		
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0, 2000)");
 	}

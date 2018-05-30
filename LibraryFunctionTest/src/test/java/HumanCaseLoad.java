@@ -79,26 +79,13 @@ public class HumanCaseLoad {
 		  Random random = new Random();
 		  String caseId="";
 		  List<WebElement> list = new ArrayList<WebElement>();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
-			//Waits for black loading message to disappear
-			  try{
-				  Thread.sleep(2000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj.loadingServer(driver);
 			  //Clicks on new case
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
@@ -196,16 +183,8 @@ public class HumanCaseLoad {
 		  //Clicks on create case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  if(r==2 ||r==3)
 		  {
 			//Waits for black loading message to disappear
@@ -227,16 +206,8 @@ public class HumanCaseLoad {
 			  //Clicks on create case
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			  //Waits for black loading message to disappear
-			  try{
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj.loadingServer(driver);
 			  if(r==2 ||r==3)
 			  {
 				//Waits for black loading message to disappear
@@ -275,15 +246,9 @@ public class HumanCaseLoad {
 		  Random random = new Random();
 		  String caseId="";
 		  List<WebElement> list = new ArrayList<WebElement>();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 			  //Clicks on new case
@@ -383,16 +348,8 @@ public class HumanCaseLoad {
 		  //Clicks on create case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  if(r==2 ||r==3)
 		  {
 			//Waits for black loading message to disappear
@@ -414,16 +371,8 @@ public class HumanCaseLoad {
 			  //Clicks on create case
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			  //Waits for black loading message to disappear
-			  try{
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj.loadingServer(driver);
 			  if(r==2 ||r==3)
 			  {
 				//Waits for black loading message to disappear
@@ -469,15 +418,9 @@ public class HumanCaseLoad {
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(2000);
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(2000);
@@ -580,16 +523,8 @@ public class HumanCaseLoad {
 		  //Clicks on create case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  if(r==2 ||r==3)
 		  {
 			//Waits for black loading message to disappear
@@ -614,16 +549,8 @@ public class HumanCaseLoad {
 			  //Clicks on create case
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			  //Waits for black loading message to disappear
-			  try{
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj.loadingServer(driver);
 			  if(r==2 ||r==3)
 			  {
 				//Waits for black loading message to disappear
@@ -656,14 +583,9 @@ public class HumanCaseLoad {
 			  {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 			  }
-		//Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(2000);		
@@ -676,15 +598,8 @@ public class HumanCaseLoad {
 		  Random random = new Random();
 		  String caseId="";
 		  List<WebElement> list = new ArrayList<WebElement>();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(2000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(3000);
@@ -794,16 +709,8 @@ public class HumanCaseLoad {
 		  //Clicks on create case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  Thread.sleep(5000);
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  if(r==2 ||r==3)
 		  {
 			//Waits for black loading message to disappear
@@ -828,16 +735,8 @@ public class HumanCaseLoad {
 			  //Clicks on create case
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			  //Waits for black loading message to disappear
-			  try{
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
+				//Wait for loading message to disappear
+				obj.loadingServer(driver);
 			  if(r==2 ||r==3)
 			  {
 				//Waits for black loading message to disappear
@@ -868,14 +767,9 @@ public class HumanCaseLoad {
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
-		//Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		//Checks if Exact matches appear
 		try{
 			driver.findElement(By.xpath(".//*[@id='pii-question-list']/div/h4/a/div"));			
@@ -926,52 +820,27 @@ public class HumanCaseLoad {
 			  }
 		  //Clicks on Human cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(1000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+		  ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  jse.executeScript("scroll(0,0)");
 		  //Click on enter case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
 		  Thread.sleep(2000);
 		  //Clicks on case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-ul"))).click();
-		 //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(1000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  jse.executeScript("scroll(0,0)");
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(1000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  //Clicks on delete case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -991,24 +860,13 @@ public class HumanCaseLoad {
 		//Types in the keyword to get slide 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
-		//Waits for black loading message
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+identifier))).click();
-		//Waits for black loading message
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-"+identifier));

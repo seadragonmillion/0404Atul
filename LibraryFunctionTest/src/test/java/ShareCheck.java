@@ -89,14 +89,8 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]"))).click();
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-report-btn"))).click();
-		//Wait for black server load message to disappear
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }		
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		//Check in sticky pop up that the report is deleted
 		try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
@@ -208,14 +202,8 @@ public class ShareCheck {
 			ele.click();
 			}
 		}		
-		//Wait for black server load message to disappear
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		//LogOut
 		obj.logout(driver);
 		if(browserName.equals("firefox"))
@@ -330,14 +318,8 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]"))).click();
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-report-btn"))).click();
-		//Wait for black server load message to disappear
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }		
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText();
 		if(s.contains("iRCA")||s.contains("SPV Error Meter")||s.contains("Remote Verification"))
 		{
@@ -407,14 +389,8 @@ public class ShareCheck {
 			Thread.sleep(2000);
 			}
 		}		
-		//Wait for black server load message to disappear
-		try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		//LogOut
 		obj.logout(driver);
 		if(browserName.equals("firefox"))
@@ -478,38 +454,8 @@ public class ShareCheck {
     	String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		String r3 = driver.getCurrentUrl();
-		if(r3.contains("kaleasia")==true)
-		{
-		  while (true)
-		  {
-			  try{
-				  Thread.sleep(2000);
-				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-				  {
-					  Thread.sleep(3000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
-				  {
-					  break;
-				  }
-			  catch (org.openqa.selenium.StaleElementReferenceException e)
-			  {
-				  break;
-			  }
-			  }
-		}
-		else{
-		try{
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
-		}
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -534,38 +480,8 @@ public class ShareCheck {
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on download button		
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		String r3 = driver.getCurrentUrl();
-		if(r3.contains("kaleasia")==true)
-		{
-		  while (true)
-		  {
-			  try{
-				  Thread.sleep(2000);
-				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-				  {
-					  Thread.sleep(3000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
-				  {
-					  break;
-				  }
-			  catch (org.openqa.selenium.StaleElementReferenceException e)
-			  {
-				  break;
-			  }
-		  }
-		}
-	    else{
-    	try{
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		 }catch (org.openqa.selenium.TimeoutException e)
-		  {
-				  
-		  }
-    	}
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -593,38 +509,8 @@ public class ShareCheck {
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on download button		
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		String r3 = driver.getCurrentUrl();
-		if(r3.contains("kaleasia")==true)
-		{
-		  while (true)
-		  {
-			  try{
-				  Thread.sleep(2000);
-				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-				  {
-					  Thread.sleep(3000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
-				  {
-					  break;
-				  }
-			  catch (org.openqa.selenium.StaleElementReferenceException e)
-			  {
-				  break;
-			  }
-		  }
-		}
-	    else{
-    	try{
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		 }catch (org.openqa.selenium.TimeoutException e)
-		  {
-				  
-		  }
-    	}
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -662,38 +548,8 @@ public class ShareCheck {
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on download button		
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		String r3 = driver.getCurrentUrl();
-		if(r3.contains("kaleasia")==true)
-		{
-		  while (true)
-		  {
-			  try{
-				  Thread.sleep(2000);
-				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-				  {
-					  Thread.sleep(3000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
-				  {
-					  break;
-				  }
-			  catch (org.openqa.selenium.StaleElementReferenceException e)
-			  {
-				  break;
-			  }
-		  }
-		}
-	    else{
-    	try{
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-		  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-		 }catch (org.openqa.selenium.TimeoutException e)
-		  {
-				  
-		  }
-    	}
+		//Wait for loading message to disappear
+		loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -720,5 +576,28 @@ public class ShareCheck {
     	Thread.sleep(4000);
     	//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+	}
+	
+	public void loadingServer(WebDriver driver) throws Exception {
+		
+		while (true)
+		  {
+			  try{
+				  Thread.sleep(2000);
+				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+				  {
+					  Thread.sleep(3000);
+				  }
+				  else
+					  break;
+				  }catch (org.openqa.selenium.NoSuchElementException e)
+				  {
+					  break;
+				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
+		  }
 	}
 }
