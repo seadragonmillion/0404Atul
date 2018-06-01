@@ -232,11 +232,14 @@ public class ChromeTest {
 			  {
 				  
 			  }
+			  Thread.sleep(1000);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
+			  Thread.sleep(1000);
 			  //Clicks on new case
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
+			  Thread.sleep(1000);
 			while (true)
 		  {
 			  Thread.sleep(1000);
@@ -320,19 +323,19 @@ public class ChromeTest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();*/
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(key1);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
 			  /*wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();*/
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(key2);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
 			  /*wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();*/
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(key3);
-			  Thread.sleep(1000);
+			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
 			  /*wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();*/
@@ -349,7 +352,7 @@ public class ChromeTest {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();*/
 		  }
 		 
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
 		  //Uploads 5 slides
