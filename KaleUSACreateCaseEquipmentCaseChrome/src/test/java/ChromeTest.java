@@ -460,7 +460,7 @@ public class ChromeTest {
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
 		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='"+id+"']/ul/li/span/span")).getText();
-		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 		  softly.assertThat(actual_copyright1).as("test data").isEqualTo(expected_copyright1);
 		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();

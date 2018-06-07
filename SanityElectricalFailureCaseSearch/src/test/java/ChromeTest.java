@@ -249,7 +249,7 @@ public class ChromeTest {
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
 		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/span")).getText();
-		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 		  assertEquals (actual_copyright, expected_copyright);
 		  //Checking if slide number appears and is correct
 		  String actual_slide = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/span[2]")).getText();
@@ -366,7 +366,7 @@ public class ChromeTest {
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
 		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1678']/ul/li/span/span")).getText();
-		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 		  assertEquals (actual_copyright1, expected_copyright1);
 		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();

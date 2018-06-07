@@ -297,7 +297,7 @@ public class FirefoxTest {
 		  //Checking if copyright is correct
 		  Thread.sleep(2000);
 		  String actual_copyright = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1459']/ul/li/span/span")).getAttribute("textContent");
-		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 		  assertEquals (expected_copyright,actual_copyright);
 		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();
@@ -411,7 +411,7 @@ public class FirefoxTest {
 			  System.out.println("Logo is displayed");
 		  //Checking if copyright is correct
 		  String actual_copyright1 = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F1459']/ul/li/span/span")).getAttribute("textContent");
-		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+		  String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 		  assertEquals (actual_copyright1, expected_copyright1);
 		  //Click on next
 		  driver.findElement(By.linkText("Next")).click();
