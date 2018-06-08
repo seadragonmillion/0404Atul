@@ -2,12 +2,14 @@ import java.awt.Robot;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CaseBrowse {
 	
 	SoftAssertions softly = new SoftAssertions();
-	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 	String caseHumanDev = "1459";
 	String caseEquipDev = "1459";
 	String caseElecDev = "1678";
@@ -47,8 +49,219 @@ public class CaseBrowse {
 	String titleEquipProd = "What is the difference between a failure mechanism and a failure mode?";
 	String titleElecProd = "What are the operating principles and failure modes of a pneumatic controller?";
 	String titleMechProd = "What are the benefits and failure modes of U-cup (U-ring) or an O-ring Loaded U-cup?";
+	String keywordHumanProdAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
+	String keywordHumanProdAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
+	String keywordEquipProdAllSpecial = "Testequipqaa!@#$%^&*,.?/+-=;:";
+	String keywordEquipProdAllSpecial_ie11 = "Testie11equipqaa!@#$%^&*,.?/+-=;:_";
+	String keywordHumanDevAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
+	String keywordHumanDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
+	String keywordEquipDevAllSpecial = "Testequipqaa!@#$%^&*,.?/+-=;:_";
+	String keywordEquipDevAllSpecial_ie11 = "Testie11equipqaa!@#$%^&*,.?/+-=;:_";
 	
+	public void addKeywordWithAllSpecialCharactersEquip(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    String url = driver.getCurrentUrl();
+	    //Clear keyword field
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
+	    //Assigns keyword as per browser and url
+	    if(url.contains("kaledev"))
+	    {
+	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipDevAllSpecial_ie11);
+	    	}
+	    	else
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipDevAllSpecial);
+	    	}
+	    }
+	    else
+	    {
+	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipProdAllSpecial_ie11);
+	    	}
+	    	else
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipProdAllSpecial);
+	    	}
+	    }
+	    Thread.sleep(2000);
+	    //Click on add keyword
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();	
+	}
 	
+	public void addKeywordWithAllSpecialCharactersHuman(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    String url = driver.getCurrentUrl();
+	    //Clear keyword field
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+	    Thread.sleep(1000);
+	    //Assigns keyword as per browser and url
+	    if(url.contains("kaledev"))
+	    {
+	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanDevAllSpecial_ie11);
+	    	}
+	    	else
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanDevAllSpecial);
+	    	}
+	    }
+	    else
+	    {
+	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanProdAllSpecial_ie11);
+	    	}
+	    	else
+	    	{
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanProdAllSpecial);
+	    	}
+	    }
+	    Thread.sleep(2000);
+	    //Click on add keyword
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();		
+	}
+	
+	public void searchWithKeyKeywordWithAllSpecialCharacters(WebDriver driver,String identifier) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebElement ele=null;
+		//Search for either Human or Equipment search element for Term field
+		try{
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input")));
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input")));
+		}
+		//clear term field
+		ele.clear();
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    String url = driver.getCurrentUrl();
+		//Assigns keyword as per browser and url
+	    if(url.contains("kaledev"))
+	    {
+	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+	    	{
+	    		ele.sendKeys(keywordHumanDevAllSpecial_ie11);
+	    	}
+	    	else
+	    	{
+	    		ele.sendKeys(keywordHumanDevAllSpecial);
+	    	}
+	    }
+	    else
+	    {
+	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+	    	{
+	    		ele.sendKeys(keywordHumanProdAllSpecial_ie11);
+	    	}
+	    	else
+	    	{
+	    		ele.sendKeys(keywordHumanProdAllSpecial);
+	    	}
+	    }
+	    Thread.sleep(2000);
+	    //Press ENTER
+	    ele.sendKeys(Keys.ENTER);
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		//Look for case
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
+		}		
+		//Clear
+		try{
+			driver.findElement(By.id("pii-efse-clear")).click();
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotVisibleException e)
+		{
+			driver.findElement(By.id("pii-efsh-clear")).click();
+		}
+	}
+
+	
+	public void searchWithKeywordKALE1964(WebDriver driver, SoftAssertions softly1) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait1 = new WebDriverWait(driver,5);
+		WebElement ele=null;
+		//Search for either Human or Equipment search element for Term field
+		try{
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input")));
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input")));
+		}
+		//Array of special characters
+		String[] s= {"@","!","#","$","%","&"," ","/","?",",","."};
+		for (int i=0; i<s.length;i++)
+		{
+			//clear term field
+			ele.clear();
+			//search for foo<special character>foo
+			ele.sendKeys("qaafoo"+s[i]+"qaafoo");
+			WebElement dropdown;
+			//Look for dynamic dropdown
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-keyword-list")));
+			}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+			{
+				try{
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-keyword-list")));
+				}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e1)
+				{
+					System.out.println("Dropdown not visible as no case exists with keyword: " +"qaafoo"+s[i]+"qaafoo");
+				}				
+			}
+			//Press Enter
+			ele.sendKeys(Keys.ENTER);
+			//Wait for loading message to disappear
+			ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
+			//Verify dropdown has disappeared
+			try{
+				dropdown = driver.findElement(By.id("pii-efse-keyword-list"));
+			}catch (NoSuchElementException u)
+			{
+				dropdown = driver.findElement(By.id("pii-efsh-keyword-list"));
+			}
+			if(dropdown.isDisplayed()==true)
+			{
+				softly1.fail("Dropdown visible and the webelement is: "+dropdown.getAttribute("id"));
+			}
+			//Clear
+			try{
+				driver.findElement(By.id("pii-efse-clear")).click();
+			}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotVisibleException e)
+			{
+				driver.findElement(By.id("pii-efsh-clear")).click();
+			}
+		}	
+	}
+	
+		
 	public void searchWithPercentEquip(WebDriver driver, String keypercent, String identifier) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -522,6 +735,9 @@ public class CaseBrowse {
 		obj.loadingServer(driver);		
 	}
 	
-	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+		System.gc();
+	}
 
 }

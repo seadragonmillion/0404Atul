@@ -27,7 +27,7 @@ public class EquipmentPDDandEF {
 	String keywordEFie11 = "QAAEFTestSlidesie11";
 	String titlePDDie11 = "QAA IE11 PDD Test Slides";
 	String titleEFie11 = "QAA IE11 EF Test Slides";
-	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2017. Derivative Product Strictly Prohibited.";
+	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 	String keywordPDDDev ="SanityPDD";
 	String keywordPDDDevPercent ="SanityPDD%";
 	String keywordPDDDevSpcl ="SanityPDD./";
@@ -57,10 +57,6 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keypercent);
-		/*wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-btn"))).click();
-		//Wait for loading message to disappear
-		HiRCAChinese obj = new HiRCAChinese();
-		obj.loadingServer(driver);*/
 		if(identifier.equals(casePDDProdPercent))
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
 		else
@@ -79,11 +75,10 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyspcl);
-		/*wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-btn"))).click();
-		//Wait for loading message to disappear
-		HiRCAChinese obj = new HiRCAChinese();
-		obj.loadingServer(driver);*/
-		clickDropdown(driver);
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		Thread.sleep(2000);		  
@@ -103,12 +98,11 @@ public class EquipmentPDDandEF {
 		Actions act1 = new Actions(driver);
 		WebElement act= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a")));
 		act1.click(act).build().perform();
-		/*
 		//Checks for search method with magnifying glass
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-btn"))).click();
 		//Wait for loading message to disappear
-		HiRCAChinese obj = new HiRCAChinese();
+		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
@@ -123,7 +117,6 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		Thread.sleep(2000);
-		*/
 		//Checks for search method with dropdown
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);

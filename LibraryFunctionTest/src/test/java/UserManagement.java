@@ -812,10 +812,10 @@ public class UserManagement {
 		  Random random = new Random();
 		  List<Integer> num = new ArrayList<Integer>();
 		  int num1;
-		  //Choose a number between 1 and 21
+		  //Choose a number between 1 and 19 (does not include failure modes)
 		  while(true)
 		  {
-			  num1 = random.nextInt(22);
+			  num1 = random.nextInt(20);
 			  System.out.println(num1);
 			  if(num1<1||num1==16||num1==17)
 				  continue;
@@ -1469,6 +1469,74 @@ public class UserManagement {
 		  }
 		  System.out.println("Group created");
 		  
+	}
+	
+	public void createUserGM(WebDriver driver, String company_id, String password,String email) throws Exception{
+		
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  Login obj = new Login ();
+		  Thread.sleep(2000);
+		  //Clicks on create user
+		  driver.findElement(By.id("pii-admin-user-create")).click();
+		  Thread.sleep(2000);
+		  //Enters mandatory details
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).sendKeys(company_id+"testgroupm");
+		  driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id+"testgroupm");
+		  driver.findElement(By.id("pii-admin-user-password")).sendKeys(obj.decodePassword(password));
+		  driver.findElement(By.id("pii-admin-user-password-again")).sendKeys(obj.decodePassword(password));
+		  driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
+		  String ev1 = driver.findElement(By.id("pii-admin-user-name")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-admin-user-company")).getAttribute("value");
+		  String ev3 = driver.findElement(By.id("pii-admin-user-email")).getAttribute("value");
+		  if ((ev1.equals(company_id+"testgroupm")==false))
+		  {
+			  driver.findElement(By.id("pii-admin-user-name")).clear();
+			  driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
+		  }
+		  if ((ev2.equals("Sanity Test")==false))
+		  {
+			  driver.findElement(By.id("pii-admin-user-company")).clear();
+			  driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
+		  }
+		  if ((ev3.equals(email)==false))
+		  {
+			  driver.findElement(By.id("pii-admin-user-email")).clear();
+			  driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
+		  }
+		  //Select company
+		  Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
+		  dd4.selectByVisibleText(company_id);
+		  //Select group
+		  driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		  WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
+		  ele1.findElement(By.linkText(company_id)).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		  Select dd2 = new Select (driver.findElement(By.id("pii-admin-user-dept")));
+		  dd2.selectByVisibleText("Accounting");
+		  Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
+		  dd3.selectByVisibleText("Engineer");	
+		  //Select group under group moderator
+		  driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		  ele1 = driver.findElement(By.id("pii-admin-user-modgroups-menu"));
+		  //KALE 1316
+		  ele1.findElement(By.linkText(company_id)).click();
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
+		  //Clicks on save button
+		  driver.findElement(By.id("pii-admin-user-button-save")).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		  //Clicks on Save button
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		  try{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  
+		  }
+		  System.out.println("User created");
+			//Wait for loading message to disappear
+		  ShareCheck obj1 = new ShareCheck();
+			obj1.loadingServer(driver);
 	}
 	
 	public void createUserCM(WebDriver driver, String company_id, String password,String email) throws Exception{
@@ -2208,7 +2276,7 @@ public class UserManagement {
 			}
 			else softly.fail("Equipment Performance disabled");
 		}
-		if(f.contains("Electrical Failure Modes"))
+		/*if(f.contains("Electrical Failure Modes"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
@@ -2239,7 +2307,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 			}
 			else softly.fail("Mechanical Failure Modes disabled");
-		}		    
+		}		*/    
 	}
 	
 	
