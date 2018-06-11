@@ -552,12 +552,29 @@ public class IETest {
 		  //Clicks on Save report
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		  Thread.sleep(500);
+		  while (true)
+		  {
+			  try{
+				  Thread.sleep(2000);
+				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
+				  {
+					  Thread.sleep(3000);
+				  }
+				  else
+					  break;
+				  }catch (org.openqa.selenium.NoSuchElementException e)
+				  {
+					  break;
+				  }
+			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  {
+				  break;
+			  }
+		  }
 		  try{
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
 			  wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
