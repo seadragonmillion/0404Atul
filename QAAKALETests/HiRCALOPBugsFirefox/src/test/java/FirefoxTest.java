@@ -84,6 +84,8 @@ public class FirefoxTest {
 		obj1.bugPathWith2LopsKALE1926(driver);
 		//Bug KALE 1947
 		obj1.bugPath1KALE1947(driver);
+		//Bug KALE 1957
+		obj1.bugKALE1957(driver);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);
