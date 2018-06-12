@@ -2293,7 +2293,7 @@ public class HiRCALevel1 {
 		//Verify LOP title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(title).as("test data").contains("[2.21] What LOPs can prevent this event from happening?");
-		//Verify 3.17 questions
+		//Verify 2.21 options for LOP
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div/label"))).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Briefings (PJB, MJB, PSM, TO, etc.)");
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div/label"))).getText();

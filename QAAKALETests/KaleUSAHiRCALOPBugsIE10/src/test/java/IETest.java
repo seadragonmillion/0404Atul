@@ -74,6 +74,8 @@ public class IETest {
 		obj1.bugKALE1957(driver);
 		//Bug KALE 1846
 		obj1.bugKALE1846(driver);
+		//Bug KALE 1852
+		obj1.bugKALE1852(driver);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);
