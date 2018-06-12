@@ -191,9 +191,7 @@ public class HiRCAChinese2 {
 	    PDDocument pddoc= PDDocument.load(oldfile);
 	    //Checks text in pdf
 	    String data = new PDFTextStripper().getText(pddoc);
-	    System.out.println(data);
 	    List<String> ans= Arrays.asList(data.split("\r\n"));
-	    System.out.println(ans);
 	    String newData1="";
 	    for (int i = 0; i < ans.size(); i++)
 	        {	        	

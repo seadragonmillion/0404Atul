@@ -1512,6 +1512,8 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset[1]/div/div/label"))).click();
 		//Verify the LOP selection
 		verifyLOP(driver);
+		//Select random 3 options
+		select3LOP(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -2349,8 +2351,6 @@ public class HiRCALevel1 {
 		softly.assertThat(s11).as("test data").isEqualTo("Supervisory intervention");
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[13]/fieldset/div/div/label"))).getText();
 		softly.assertThat(s12).as("test data").isEqualTo("Other:");
-		//Select random 3 options
-		select3LOP(driver);
 	}
 	
 	public void select3LOP (WebDriver driver) throws Exception {

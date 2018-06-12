@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -49,6 +50,142 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		Thread.sleep(2000);
 	}
+	
+	public void bugKALE1957(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Click on new for new report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-new"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+		fillUpHiRCAEventInfo(driver);
+		//Click on Act of nature
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//Click on LOP
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Click on Yes
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		Thread.sleep(2000);
+		//Scroll down
+		jse.executeScript("scroll(0,1200)");
+		Thread.sleep(1000);
+		//Select 2 LOPs randomly
+		//Choose a number between 2 and 13 for LOPs
+		Random random = new Random();
+		int y;
+		for(int i=0;i<2;i++)
+		{
+			while(true)
+			{
+				y=random.nextInt(9);
+			    System.out.println("Chose a no"+y);
+			    if(y==0||y==1)
+			    	continue;
+			    String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
+			    if(e.contains("ui-checkbox-on"))
+				    continue;
+			    break;
+			}
+			System.out.println("Picked a no");
+			System.out.println("Option no: "+y);
+			Thread.sleep(500);
+			//Click on LOP
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		}
+		//Scroll to the top
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select Yes for 2.1 and answers for 3.17 for both LOPs
+		for(int i=1;i<=2;i++)
+		{
+			//Click Yes for 2.1
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+			Thread.sleep(2000);
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			Thread.sleep(2000);
+			//Select L 3.17 random options
+			select317Random(driver);
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			Thread.sleep(2000);
+		}
+		//Go Back to Step 1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click();
+		//Select Human error
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click on Knowledge-based 1.2.1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		Thread.sleep(2000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select 3.4 as random
+		select34Random(driver);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Skip from 3.18, 1.6-1.20
+		for(int i=1;i<=16;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+			Thread.sleep(1000);
+		}
+		Thread.sleep(2000);
+		//Select RC from pop up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		//Go to Step 2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
+		//Verify Step 2 page of question 2.0
+		verifyStep2Q2_0(driver);
+	}
+	
+	public void verifyStep2Q2_0(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[1]"))).getText();
+		softly.assertThat(s).as("test data").contains("Were there LOPs in place to prevent the triggering event?");
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
+		softly.assertThat(s13).as("test data").contains("[2.0] What were the failed LOPs (3 max) that caused this event to happen?");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]"))).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Briefings (PJB, MJB, PSM, TO, etc.)");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]"))).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Concurrent check");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]"))).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Error-proof design");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]"))).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Independent check");
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]"))).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("JIT alarm");
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]"))).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("JIT reminder (signage, not-to do postings)");
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]"))).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("Passive protection (safety net, fall protection, air bags, safety belt, etc.)");
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]"))).getText();
+		softly.assertThat(s8).as("test data").isEqualTo("Peer coaching");
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]"))).getText();
+		softly.assertThat(s9).as("test data").isEqualTo("Review (PNR, Technical review)");
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]"))).getText();
+		softly.assertThat(s10).as("test data").isEqualTo("Self-check");
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[12]"))).getText();
+		softly.assertThat(s11).as("test data").isEqualTo("Supervisory intervention");
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[13]"))).getText();
+		softly.assertThat(s12).as("test data").contains("Other:");
+	}
+	
 	
 	public void bugPathWith3LopsKALE1926(WebDriver driver) throws Exception {
 		
@@ -115,7 +252,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
-		//Click no for 2.1
+		//Click Yes for 2.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		Thread.sleep(2000);
 		//Click next
@@ -159,6 +296,108 @@ public class HiRCALOPBug {
 		//Verify reason entry empty
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getText();
 		softly.assertThat(s2).as("test data").contains("");
+	}
+	
+	public void bugPathWith1LopKALE1926(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Click on new for new report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-new"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+		fillUpHiRCAEventInfo(driver);
+		//Click on Act of nature
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click on Root Cause
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		Thread.sleep(2000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click on LOP
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Click on Yes
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		Thread.sleep(2000);
+		//Scroll down
+		jse.executeScript("scroll(0,1200)");
+		Thread.sleep(1000);
+		//Select 1 LOP randomly
+		//Choose a number between 2 and 13 for LOPs
+		Random random = new Random();
+		int y;
+		while(true)
+			{
+				y=random.nextInt(9);
+			    System.out.println("Chose a no"+y);
+			    if(y==0||y==1)
+			    	continue;
+			    String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
+			    if(e.contains("ui-checkbox-on"))
+				    continue;
+			    break;
+			}
+		System.out.println("Picked a no");
+		System.out.println("Option no: "+y);
+		Thread.sleep(500);
+		//Click on LOP
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		//Scroll to the top
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Enter reason entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
+		//Click Yes for 2.1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		Thread.sleep(2000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select L 3.17 random options
+		select317Random(driver);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Skip 2.20 and 2.22
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(1000);
+		//Verify 2.22
+		verify222(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		Thread.sleep(1000);		
+		//Verify Step 3 SUEP tab
+		verifyStep3SUEP(driver);
+	}
+	
+	public void verify222(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
+		softly.assertThat(s).as("test data").contains("[2.22] Was HiRCA");
+		softly.assertThat(s).as("test data").contains(" adequate in leading this investigation?");
+		//Click on Description
+		if(driver.findElement(By.id("efi-irca-description-text")).isDisplayed()==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
+		softly.assertThat(s1).as("test data").contains("This question looks into how HiRCA");
+		softly.assertThat(s1).as("test data").contains(" has provided support in the investigation.");
+		//Close description
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 	}
 	
 	public void bugPathWith2LopsKALE1926(WebDriver driver) throws Exception {
@@ -263,6 +502,8 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Skip 2.20
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		//Verify 2.22
+		verify222(driver);
 		//Skip 2.22
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Verify SUEP Tab appeared
@@ -270,6 +511,8 @@ public class HiRCALOPBug {
 		softly.assertThat(s).as("test data").contains("Step 3 - Root Causes Determination Checklist (SUEP");
 		//with 3 LOPs
 		bugPathWith3LopsKALE1926(driver);
+		//with 1 LOP
+		bugPathWith1LopKALE1926(driver);
 	}
 	
 	public void bugPath1KALE1947(WebDriver driver) throws Exception {
@@ -415,6 +658,8 @@ public class HiRCALOPBug {
 		//Skip 2.20 and 2.22
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		Thread.sleep(1000);
+		//Verify 2.22
+		verify222(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		Thread.sleep(1000);
 		//Verify Step 3 SUEP tab
@@ -461,10 +706,216 @@ public class HiRCALOPBug {
 		//Skip 2.20 and 2.22
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		Thread.sleep(1000);
+		//Verify 2.22
+		verify222(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		Thread.sleep(1000);
 		//Verify Step 3 SUEP tab
 		verifyStep3SUEP(driver);
+	}
+	
+	public void createReportForbugKALE1846(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Click on new for new report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-new"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+		fillUpHiRCAEventInfo(driver);
+		//Click on Equipment error 1.1.2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select 3.17 random
+		select317Random(driver);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select LOP from pop up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Click on Yes
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		Thread.sleep(2000);
+		//Select LOPs Briefings, Concurrent Check and Error Proof Design
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click yes for equipment failure
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		//Enter reason entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select 3.17.1 for briefings
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		Thread.sleep(1000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click yes for equipment failure
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		//Enter reason entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason2);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select 3.17.2 for concurrent check
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		Thread.sleep(1000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click yes for equipment failure
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
+		//Enter reason entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason3);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Select 3.17.3 for error proof design
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		Thread.sleep(1000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Verify 2.20 
+		verify220(driver);
+	}
+	
+	public void bugKALE1846(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Create a new report with 3 LOPs, reason entry and 3.17 selections
+		createReportForbugKALE1846(driver);
+		//Go to Step 2 Tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
+		//Uncheck EPD
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		//Click on modify
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		//Click next till 2.20
+		for (int i=1;i<=5;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			Thread.sleep(2000);
+		}
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Verify that 3.17 for Concurrent check occurs
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
+		softly.assertThat(s).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 2/2: Concurrent check");
+		//Verify 3.17.2 is checked
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getAttribute("class");
+		if(s1.contains("ui-checkbox-on")==false)
+		    softly.fail("3.17.2 not checked for Concurrent Check");
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Verify that 2.1 for Concurrent check
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
+		softly.assertThat(s2).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 2/2: Concurrent check");
+		//Verify reason entry
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getText();
+		softly.assertThat(s3).as("test data").isEqualTo(reason2);
+		//Verify 2.1 question
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
+		softly.assertThat(s6).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");	
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Verify that 3.17 for Briefings occurs
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
+		softly.assertThat(s4).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 1/2: Briefings (PJB, MJB, PSM, TO, etc.)");
+		//Verify 3.17.1 is checked
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getAttribute("class");
+		if(s5.contains("ui-checkbox-on")==false)
+		    softly.fail("3.17.1 not checked for Briefings");
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Verify that 2.1 for Concurrent check
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
+		softly.assertThat(s7).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 1/2: Briefings (PJB, MJB, PSM, TO, etc.)");
+		//Verify reason entry
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getText();
+		softly.assertThat(s8).as("test data").isEqualTo(reason1);
+		//Verify 2.1 question
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
+		softly.assertThat(s9).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");		
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Verify 2.0 question
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
+		softly.assertThat(s10).as("test data").contains("Step 2: Layers of Protection Failure Inquiry");
+		//Verify LOP mentioned in 2.0
+		HiRCALevel1 obj = new HiRCALevel1();
+		obj.verifyLOP(driver);
+		//Click next till you get to 2.20
+		for (int i=1;i<=5;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			Thread.sleep(2000);
+		}
+		//Click skip till report tab
+		for (int i=1;i<=5;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+			Thread.sleep(2000);
+		}
+		//Verify on Report Tab
+		//Failed LOPs
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[1]/tbody/tr[1]/td[1]"))).getText();
+		softly.assertThat(s11).as("test data").isEqualTo("Briefings (PJB, MJB, PSM, TO, etc.)");
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[1]/tbody/tr[1]/td[2]"))).getText();
+		softly.assertThat(s12).as("test data").isEqualTo("Concurrent check");
+		//LOP1 table
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[2]/thead/tr[1]/th[1]"))).getText();
+		softly.assertThat(s13).as("test data").isEqualTo("LOP1: Briefings (PJB, MJB, PSM, TO, etc.)");
+		//3.17.1 selected for briefings
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[2]/tbody/tr[1]/td[1]"))).getText();
+		softly.assertThat(s14).as("test data").isEqualTo("3.17.1 Inadequate procurement and/or design specifications");
+		//LOP2
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[3]/thead/tr[1]/th[1]"))).getText();
+		softly.assertThat(s15).as("test data").isEqualTo("LOP2: Concurrent check");
+		//3.17.2 selected for concurrent check
+		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[3]/tbody/tr[1]/td[1]"))).getText();
+		softly.assertThat(s16).as("test data").isEqualTo("3.17.2 Inadequate source audit / inspection QA/QC for compliance (if applicable)");
+		//2.0 selection of LOPs
+		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table[1]/tbody/tr[2]/td[2]/ul/li[1]"))).getText();
+		softly.assertThat(s17).as("test data").isEqualTo("Briefings (PJB, MJB, PSM, TO, etc.)");
+		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table[1]/tbody/tr[2]/td[2]/ul/li[2]"))).getText();
+		softly.assertThat(s18).as("test data").isEqualTo("Concurrent check");
+		//LOP1
+		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/thead/tr[1]/th[1]"))).getText();
+		softly.assertThat(s19).as("test data").isEqualTo("LOP1: Briefings (PJB, MJB, PSM, TO, etc.)");
+		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[1]/td[3]"))).getText();
+		softly.assertThat(s20).as("test data").isEqualTo(reason1);
+		//3.17.1 selected for briefings
+		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[2]/td/div/table/tbody/tr/td[1]"))).getText();
+		softly.assertThat(s21).as("test data").isEqualTo("3.17.1 Inadequate procurement and/or design specifications");
+		//LOP2
+		String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[9]/table/thead/tr[1]/th[1]"))).getText();
+		softly.assertThat(s22).as("test data").isEqualTo("LOP2: Concurrent check");
+		String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[9]/table/tbody/tr[1]/td[3]"))).getText();
+		softly.assertThat(s23).as("test data").isEqualTo(reason2);
+		//3.17.2 selected for concurrent check
+		String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[9]/table/tbody/tr[2]/td/div/table/tbody/tr/td[1]"))).getText();
+		softly.assertThat(s24).as("test data").isEqualTo("3.17.2 Inadequate source audit / inspection QA/QC for compliance (if applicable)");
 	}
 	
 	public void verifyStep3SUEP(WebDriver driver) throws Exception {

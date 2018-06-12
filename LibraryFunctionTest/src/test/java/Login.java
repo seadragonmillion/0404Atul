@@ -20,7 +20,7 @@ public class Login {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Login button is located and clicked
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("pii-login-button"))).click();
 		//Enter Username
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-un"))).sendKeys(username);
 		//Enter password

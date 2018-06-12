@@ -297,7 +297,7 @@ public class HiRCAChinese {
 		//Verify pop up for LOP/RC
 		chineseLOPRC(driver);		
 		//Save 2nd path
-		saveReport2nd(driver);		
+		saveReport2nd(driver);	
 		//3rd path
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();		
@@ -3015,6 +3015,10 @@ public class HiRCAChinese {
 		softly.assertThat(c37).as("test data").contains("改善排程和计划系统");
 		//Click on 3rd collapsible for 3.16.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		//Scroll to the end
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,1500)");
+		Thread.sleep(2000);
 		//3.16.5 question
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.16.5] 注意不足: 1.长时间工作而没有休息(> 140分钟); 2. 早上10点时做事; 3. 工作超过10小时");
@@ -3060,10 +3064,6 @@ public class HiRCAChinese {
 		softly.assertThat(c24).as("test data").contains("最大程度减少干扰");
 		//Click on 3rd collapsible for 3.16.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1300)");
-		Thread.sleep(2000);
 		//3.16.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.16.6] 学习技能时相关规定有误");
