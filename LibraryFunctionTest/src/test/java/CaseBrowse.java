@@ -60,38 +60,58 @@ public class CaseBrowse {
 	String keywordEquipDevAllSpecial_ie11 = "Testie11equipqaa!@#$%^&*,.?/+-=;:_";
 	String[] s= {"@","!","#","$","%","&"," ","/","?",",","."};
 	
-	public void getHumanPerformanceLink(WebDriver driver) throws Exception {
+	public void getHumanPerformanceLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on ErrorFree Bank
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    /*Verify order or modules
+	     * admin = 0
+	     * nonadmin = 1
+	    */
+	    verifyOrderOfModules(driver, y);
 		//Clicks on Human Performance
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 	}
 	
-	public void getEquipPerformanceLink(WebDriver driver) throws Exception {
+	public void getEquipPerformanceLink(WebDriver driver, int y) throws Exception {
 	
 		WebDriverWait wait = new WebDriverWait(driver,20);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    /*Verify order or modules
+	     * admin = 0
+	     * nonadmin = 1
+	    */
+	    verifyOrderOfModules(driver, y);
 	    //Clicks on Equipment Performance
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
 	}
 	
-	public void getEquipPerformancePIILink(WebDriver driver) throws Exception {
+	public void getEquipPerformancePIILink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    /*Verify order or modules
+	     * admin = 0
+	     * nonadmin = 1
+	    */
+	    verifyOrderOfModules(driver, y);
 	    //Clicks on Equipment Performance PII
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Data Bank (Instructor Only)"))).click();
 	}
 	
-	public void getElecFailureModeLink(WebDriver driver) throws Exception {
+	public void getElecFailureModeLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    /*Verify order or modules
+	     * admin = 0
+	     * nonadmin = 1
+	    */
+	    verifyOrderOfModules(driver, y);
 	    //Clicks on Electrical Failure Mode
         try{
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes"))).click();
@@ -101,11 +121,16 @@ public class CaseBrowse {
         }
 	}
 	
-	public void getMechFailureModeLink(WebDriver driver) throws Exception {
+	public void getMechFailureModeLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    /*Verify order or modules
+	     * admin = 0
+	     * nonadmin = 1
+	    */
+	    verifyOrderOfModules(driver, y);
 	    //Clicks on Mechanical Failure Mode
         try{
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes"))).click();
@@ -113,6 +138,67 @@ public class CaseBrowse {
         {
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Failure Modes"))).click();
         }	    
+	}
+	
+	public void verifyOrderOfModules(WebDriver driver, int y) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verify order
+		//Human Performance
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[1]/a"))).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Human Performance");
+		//Engineering Fundamentals
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[2]/a"))).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Engineering Fundamentals");
+		//Equipment Performance
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[3]/a"))).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Equipment Performance");
+		String url = driver.getCurrentUrl();
+		if(url.contains("kaledev"))
+		{
+			//Failure Modes
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a"))).getText();
+			softly.assertThat(s3).as("test data").isEqualTo("Failure Modes");
+			//Prevention of Design Deficiencies
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a"))).getText();
+			softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
+			if(y==0)
+			{
+				//Equipment Data Bank (Instructor Only)
+				String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a"))).getText();
+				softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
+			}
+		}
+		else
+		{
+			//Failure Modes
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a"))).getText();
+			softly.assertThat(s3).as("test data").isEqualTo("Electrical Failure Modes");
+			//Failure Modes
+			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a"))).getText();
+			softly.assertThat(s5).as("test data").isEqualTo("Mechanical Failure Modes");
+			//Prevention of Design Deficiencies
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a"))).getText();
+			softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
+			if(y==0)
+			{
+				//Equipment Data Bank (Instructor Only)
+				String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[7]/a"))).getText();
+				softly.assertThat(s6).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
+			}
+		}
+		if(y==1)
+			verifyNoEquipPII(driver);
+	}
+	
+	public void verifyNoEquipPII(WebDriver driver) throws Exception {
+		
+		//Checks for equipment search pii
+		if(driver.findElement(By.id("pii-e-menu-equipPII")).isDisplayed()==false)
+		{
+		  System.out.println("Non admin user cannot see Equipment Search PII");
+	    }
+		else softly.fail("Equipment PII is present in non admin");
 	}
 	
 	public void addKeywordWithAllSpecialCharactersEquip(WebDriver driver) throws Exception {

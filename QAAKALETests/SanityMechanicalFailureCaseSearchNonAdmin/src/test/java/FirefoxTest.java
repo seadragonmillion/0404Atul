@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="jenkinsvm";
+	private String username ="jenkinsvmnonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaledev.error-free.com/";
@@ -24,7 +24,7 @@ public class FirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing sanity test on Human Performance Search in Firefox");
+		 System.out.println("Performing sanity test on Mechanical Failure Modes in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
 		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
@@ -63,36 +63,34 @@ public class FirefoxTest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
-               if (login==1)
-               {
-                     WebDriverWait wait2 = new WebDriverWait(driver,20);
-                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-               }
-        }catch (NoSuchElementException e){
-               throw e;
-        }
+			  if (login==1)
+			  {
+				  WebDriverWait wait2 = new WebDriverWait(driver,20);
+				  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			  }
+			 }catch (NoSuchElementException e){
+				 throw e;
+			}
 		  Thread.sleep(4000);
-		  //Clicks on Human Performance Search
-		  		  /*Verify order or modules
+		  //Clicks on Mechanical Failure Modes
+		  /*Verify order or modules
 		     * admin = 0
 		     * nonadmin = 1
 		    */
-		  obj1.getHumanPerformanceLink(driver,0);
+		  obj1.getMechFailureModeLink(driver,1);
 		  //Verify all search options
-		  obj1.verifySearchOptionsHuman(driver, obj1.keywordHumanDev, obj1.caseHumanDev);
+		  obj1.verifySearchOptionsEquip(driver, obj1.keywordMechDev, obj1.caseMechDev);
 		  //Checks with keyword with %
-		  obj1.searchWithPercentHuman(driver, obj1.keywordHumanDevPercent, obj1.caseHumanDev);
+		  obj1.searchWithPercentEquip(driver, obj1.keywordMechDevPercent, obj1.caseMechDev);
 		  //Checks with new keyword with . and /
-		  obj1.searchWithSpclHuman(driver, obj1.keywordHumanDevSpcl, obj1.caseHumanDev);
+		  obj1.searchWithSpclEquip(driver, obj1.keywordMechDevSpcl, obj1.caseMechDev);
 		  Thread.sleep(1000);
 		  //Term search
-		  obj1.browseTermHuman(driver, obj1.keywordHumanDev, obj1.caseHumanDev, obj1.titleDev);
-		  //Case id search
-		  obj1.browseCaseIDHuman(driver, obj1.caseHumanDev, obj1.titleDev);
+		  obj1.browseCaseNonAdminEquip(driver, obj1.keywordMechDev, obj1.caseMechDev, obj1.titleDev);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);
-		  afterTest(obj1);		
+		  afterTest(obj1);		  	
 	}
 	
 	public void afterTest(CaseBrowse obj) throws Exception{

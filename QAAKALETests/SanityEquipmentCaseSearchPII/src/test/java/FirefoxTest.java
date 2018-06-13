@@ -24,7 +24,7 @@ public class FirefoxTest {
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
-		 System.out.println("Performing sanity test on Human Performance Search in Firefox");
+		 System.out.println("Performing sanity test on Equipment Databank only in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
 		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
@@ -63,32 +63,32 @@ public class FirefoxTest {
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
-               if (login==1)
-               {
-                     WebDriverWait wait2 = new WebDriverWait(driver,20);
-                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-               }
-        }catch (NoSuchElementException e){
-               throw e;
-        }
+           if (login==1)
+           {
+                 WebDriverWait wait2 = new WebDriverWait(driver,20);
+                 wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+           }
+    }catch (NoSuchElementException e){
+           throw e;
+    }
 		  Thread.sleep(4000);
-		  //Clicks on Human Performance Search
-		  		  /*Verify order or modules
+		  //Clicks on Equip Performance Search
+		  /*Verify order or modules
 		     * admin = 0
 		     * nonadmin = 1
 		    */
-		  obj1.getHumanPerformanceLink(driver,0);
+		  obj1.getEquipPerformancePIILink(driver,0);
 		  //Verify all search options
-		  obj1.verifySearchOptionsHuman(driver, obj1.keywordHumanDev, obj1.caseHumanDev);
+		  obj1.verifySearchOptionsEquip(driver, obj1.keywordEquipDev, obj1.caseEquipDev);
 		  //Checks with keyword with %
-		  obj1.searchWithPercentHuman(driver, obj1.keywordHumanDevPercent, obj1.caseHumanDev);
+		  obj1.searchWithPercentEquip(driver, obj1.keywordEquipDevPercent, obj1.caseEquipDev);
 		  //Checks with new keyword with . and /
-		  obj1.searchWithSpclHuman(driver, obj1.keywordHumanDevSpcl, obj1.caseHumanDev);
+		  obj1.searchWithSpclEquip(driver, obj1.keywordEquipDevSpcl, obj1.caseEquipDev);
 		  Thread.sleep(1000);
 		  //Term search
-		  obj1.browseTermHuman(driver, obj1.keywordHumanDev, obj1.caseHumanDev, obj1.titleDev);
+		  obj1.browseTermEquip(driver, obj1.keywordEquipDev, obj1.caseEquipDev, obj1.titleDev);
 		  //Case id search
-		  obj1.browseCaseIDHuman(driver, obj1.caseHumanDev, obj1.titleDev);
+		  obj1.browseCaseIDEquip(driver, obj1.caseEquipDev, obj1.titleDev);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);

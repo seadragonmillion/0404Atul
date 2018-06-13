@@ -59,7 +59,11 @@ public class IETest {
         }
 		  Thread.sleep(4000);
 		  //Clicks on Human Performance Search
-		  obj1.getHumanPerformanceLink(driver);
+		  		  /*Verify order or modules
+		     * admin = 0
+		     * nonadmin = 1
+		    */
+		  obj1.getHumanPerformanceLink(driver,0);
 		  //Verify all search options
 		  obj1.verifySearchOptionsHuman(driver, obj1.keywordHumanDev, obj1.caseHumanDev);
 		  //Checks with keyword with %

@@ -2,6 +2,8 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,8 +34,12 @@ import org.apache.pdfbox.pdmodel.graphics.PDXObject;
 import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -41,6 +48,7 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -443,6 +451,18 @@ public class RemoteVerification {
 	public void verifyLongitudeLatitude(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		//Get browser value
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    //Get longitude latitude from rv location image
+	    String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-location"))).getText();
+	    System.out.println(location); 
+	    String url = driver.getCurrentUrl();
+	    if(url.contains("kaledev"))
+	    {
+	    	//Store in excel
+		    excelStore(location,browserName);
+	    }	    
 		String address = "462 Stevens Avenue, Suite #306 Solana Beach, CA 92705";
 		Thread.sleep(4000);
 		String latLongs[] = getLatLongPositions(address);
@@ -451,16 +471,41 @@ public class RemoteVerification {
 	    System.out.println("Latitude: "+latLongs[0]+" and Longitude: "+latLongs[1]);
 	    //Verify image appears
 	    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-googlemap")));
-	    //Get longitude latitude from rv location image
-	    String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-location"))).getText();
-	    System.out.println(location); 
 	    //check if longitude matches upto first decimal point
 	    String longitude = latLongs[1].toString().substring(0, 5);
 	    softly.assertThat(location).as("test data").contains(longitude);
 	    //check if latitude matches upto first decimal point
 	    String latitude = latLongs[0].toString().substring(0, 3);
 	    softly.assertThat(location).as("test data").contains(latitude);
-		}
+		}		
+	}
+	
+	public void excelStore (String location, String browserName) throws Exception{
+		
+		File file = new File("E:/EmailError.xlsx");		
+		// Open the Excel file
+		FileInputStream ExcelFile = new FileInputStream(file);
+		// Access the required test data sheet
+		XSSFWorkbook ExcelWBook = new XSSFWorkbook(ExcelFile);
+		XSSFSheet ExcelWSheet = ExcelWBook.getSheet("RV location DEV");
+		//Get number of rows
+		int rows = ExcelWSheet.getPhysicalNumberOfRows();
+		//Get current date 
+		SimpleDateFormat sfdate = new SimpleDateFormat("MM/dd/yyy HH:mm:ss a");
+		Date date = new Date();
+		System.out.println(sfdate.format(date));
+		//Create a new row for only images
+		Row row1 = ExcelWSheet.createRow(rows);
+		row1.createCell(0).setCellValue(sfdate.format(date));
+		row1.createCell(1).setCellValue(browserName);
+		row1.createCell(2).setCellValue(location);
+		//Close File input stream
+		ExcelFile.close();
+		//Create an object of FileOutputStream class to create write data in excel file
+		FileOutputStream outputStream = new FileOutputStream(file);
+		ExcelWBook.write(outputStream);
+		ExcelWBook.close();
+		outputStream.close();
 	}
 	
 	public String[] getLatLongPositions(String address) throws Exception
