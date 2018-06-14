@@ -67,6 +67,67 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 	}
 	
+	public void searchCaseInEquipSearchByCaseID(WebDriver driver, String identifier) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Go to KALE homepage
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+	    //Clicks on ErrorFree Bank
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    //Clicks on Equipment Performance
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).clear();
+		Thread.sleep(1000);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(Keys.ENTER);
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		//Verifies no case appears
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
+			softly.fail("Case found in Equipment Search: "+identifier);
+		}catch(org.openqa.selenium.TimeoutException r)
+		{
+			System.out.println("Case not found in Equipment Search");
+		}		
+		Thread.sleep(2000);		  
+		//Verifies warning message
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-search-message']/div"))).getText();
+		softly.assertThat(s).as("test data").contains("Error: No equipment case found.");
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+	}
+	
+	public void searchCaseInEquipSearchByKeyword(WebDriver driver, String keyword, String identifier) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Go to KALE homepage
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+	    //Clicks on ErrorFree Bank
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    //Clicks on Equipment Performance
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
+		Thread.sleep(1000);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		//Verifies no case appears
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
+			softly.fail("Case found in Equipment Search: "+identifier);
+		}catch(org.openqa.selenium.TimeoutException r)
+		{
+			System.out.println("Case not found in Equipment Search");
+		}		
+		Thread.sleep(2000);	
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+	}
+	
 	public void searchWithSpcl(WebDriver driver, String keyspcl, String identifier) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);

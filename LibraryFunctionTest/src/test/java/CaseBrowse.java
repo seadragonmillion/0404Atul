@@ -54,12 +54,12 @@ public class CaseBrowse {
 	String titleMechProd = "What are the benefits and failure modes of U-cup (U-ring) or an O-ring Loaded U-cup?";
 	String keywordHumanProdAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
 	String keywordHumanProdAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
-	String keywordEquipProdAllSpecial = "Testequipqaa!@#$%^&*,.?/+-=;:";
-	String keywordEquipProdAllSpecial_ie11 = "Testie11equipqaa!@#$%^&*,.?/+-=;:_";
+	String keywordEquipProdAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:";
+	String keywordEquipProdAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
 	String keywordHumanDevAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
 	String keywordHumanDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
-	String keywordEquipDevAllSpecial = "Testequipqaa!@#$%^&*,.?/+-=;:_";
-	String keywordEquipDevAllSpecial_ie11 = "Testie11equipqaa!@#$%^&*,.?/+-=;:_";
+	String keywordEquipDevAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
+	String keywordEquipDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
 	String[] s= {"@","!","#","$","%","&"," ","/","?",",","."};
 	
 	public void getHumanPerformanceLink(WebDriver driver, int y) throws Exception {
@@ -206,6 +206,7 @@ public class CaseBrowse {
 	public void addKeywordWithAllSpecialCharactersEquip(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 	    String browserName = cap.getBrowserName().toLowerCase();
 	    System.out.println(browserName);
@@ -238,8 +239,29 @@ public class CaseBrowse {
 	    	}
 	    }
 	    Thread.sleep(2000);
+	    jse.executeScript("scroll(0,2000)");	
+	    Thread.sleep(2000);
 	    //Click on add keyword
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();	
+	    WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input")));
+	    for (int i=0; i<s.length;i++)
+		{
+			//clear keyword field
+			ele.clear();
+			Thread.sleep(1000);
+			//search for foo<special character>foo
+			if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+				ele.sendKeys("qaafooie"+s[i]+"qaafooie");
+			else
+				ele.sendKeys("qaafoo"+s[i]+"qaafoo");
+			Thread.sleep(1500);
+			jse.executeScript("scroll(0,2000)");	
+		    Thread.sleep(2000);
+			//Click on add keyword
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();	
+		}
+	    jse.executeScript("scroll(0,2000)");	
+	    Thread.sleep(2000);
 	}
 	
 	public void addKeywordWithAllSpecialCharactersHuman(WebDriver driver) throws Exception {
@@ -358,7 +380,7 @@ public class CaseBrowse {
 		//Clear
 		try{
 			driver.findElement(By.id("pii-efse-clear")).click();
-		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotVisibleException e)
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException e)
 		{
 			driver.findElement(By.id("pii-efsh-clear")).click();
 		}
@@ -422,7 +444,7 @@ public class CaseBrowse {
 			//Clear
 			try{
 				driver.findElement(By.id("pii-efse-clear")).click();
-			}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotVisibleException e)
+			}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException e)
 			{
 				driver.findElement(By.id("pii-efsh-clear")).click();
 			}
