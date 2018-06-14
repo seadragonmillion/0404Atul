@@ -24,7 +24,9 @@ public class CaseBrowse {
 	String caseElecDev = "1678";
 	String caseMechDev = "1210";
 	String caseHumanProd = "746";
-	String caseEquipProd = "718";
+	String caseHumanProdPercent = "618";
+	String caseEquipProd = "231";
+	String caseEquipProdPercent = "1341";
 	String caseElecProd = "1260";
 	String caseMechProd = "1638";
 	String keywordHumanDev = "test data";
@@ -41,13 +43,13 @@ public class CaseBrowse {
 	String keywordMechDevPercent = "Testpercentme%";
 	String keywordHumanProd = "power plant worker";
 	String keywordHumanProdPercent = "50%";
-	String keywordEquipProd = "failure";
+	String keywordEquipProd = "Static electrification failure mechanism";
 	String keywordEquipProdPercent = "20%";
-	String keywordElecProd = "failure";
+	String keywordElecProd = "pneumatic controller";
 	String keywordMechProd = "benefits and failure modes of U-cup";
 	String titleDev = "Sanity Test: DO NOT DELETE: QAA";
-	String titleHumanProd = "How is an Error-Free work day achieved for power plant workers?";
-	String titleEquipProd = "What is the difference between a failure mechanism and a failure mode?";
+	String titleHumanProd = "How is an Error-Free® work day achieved for power plant workers?";	
+	String titleEquipProd = "What are the controlling parameters affecting static electrification in a transformer?";
 	String titleElecProd = "What are the operating principles and failure modes of a pneumatic controller?";
 	String titleMechProd = "What are the benefits and failure modes of U-cup (U-ring) or an O-ring Loaded U-cup?";
 	String keywordHumanProdAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
