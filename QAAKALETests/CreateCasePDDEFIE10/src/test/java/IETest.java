@@ -106,6 +106,14 @@ public class IETest {
 	    obj2.getEFLink(driver);
 	    //Browse for Engineering Fundamentals case in EF
 	    obj2.browseCase(driver, obj2.keywordEF, caseEF, obj2.titleEF);
+	    //Search for case in Equipment non pii by keyword
+		obj2.searchCaseInEquipSearchByKeyword(driver, obj2.keywordPDD, casePDD);
+		//Search for case in Equipment non pii by case id
+		obj2.searchCaseInEquipSearchByCaseID(driver, casePDD);
+		//Search for case in Equipment non pii by keyword
+		obj2.searchCaseInEquipSearchByKeyword(driver, obj2.keywordEF, caseEF);
+		//Search for case in Equipment non pii by case id
+		obj2.searchCaseInEquipSearchByCaseID(driver, caseEF);
 	    //Delete Prevention of Design Deficiencies case
 	    obj1.deleteCase(driver, casePDD);
 	    //Delete Engineering Fundamentals case

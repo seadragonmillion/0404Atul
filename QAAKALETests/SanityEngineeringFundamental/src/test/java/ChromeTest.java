@@ -74,6 +74,10 @@ public class ChromeTest {
 		obj1.browseCase(driver, obj1.keywordEFDev, obj1.caseEFDev, obj1.titleEFDev);
 		//Browse case with case id
 		obj1.browseCaseID(driver, obj1.caseEFDev, obj1.titleEFDev);
+		//Search for case in Equipment non pii by keyword
+		obj1.searchCaseInEquipSearchByKeyword(driver, obj1.keywordEFDev, obj1.caseEFDev);
+		//Search for case in Equipment non pii by case id
+		obj1.searchCaseInEquipSearchByCaseID(driver, obj1.caseEFDev);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);		

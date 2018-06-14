@@ -78,6 +78,10 @@ public class IE10Test {
 		obj1.browseCase(driver, obj1.keywordEFProd, obj1.caseEFProd, obj1.titleEFProd);
 		//Browse case with case id
 		obj1.browseCaseID(driver, obj1.caseEFProd, obj1.titleEFProd);
+		//Search for case in Equipment non pii by keyword
+		obj1.searchCaseInEquipSearchByKeyword(driver, obj1.keywordEFProd, obj1.caseEFProd);
+		//Search for case in Equipment non pii by case id
+		obj1.searchCaseInEquipSearchByCaseID(driver, obj1.caseEFProd);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);		
