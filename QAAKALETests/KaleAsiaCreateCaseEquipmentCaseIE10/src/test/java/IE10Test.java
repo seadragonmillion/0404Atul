@@ -1,5 +1,6 @@
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -7,9 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -23,7 +22,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.Base64;
 
 public class IE10Test {
 
@@ -51,9 +49,7 @@ public class IE10Test {
 	private String ee_title="QAA Electrical Failure Case Upload";
 	private String me_title="QAA Mechanical Failure Case Upload";
 	SoftAssertions softly = new SoftAssertions();
-	
-		  
-	@SuppressWarnings("deprecation")
+			  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
 		  
@@ -62,15 +58,12 @@ public class IE10Test {
 		  DesiredCapabilities cap = new DesiredCapabilities(); 
 		  cap.setCapability("ignoreZoomSettings", true);
 		  cap.setCapability("requireWindowFocus", true);
-		  cap.isJavascriptEnabled();
 		  driver = new InternetExplorerDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
-		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		  
-		  
+		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		  
 	  }
 	  
 
@@ -170,14 +163,9 @@ public class IE10Test {
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(title);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
-		//Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		//Checks if Exact matches appear
 		WebElement exact = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-question-list-equip']/div/h4/a/div")));
 		String exactText=exact.getText();
@@ -231,26 +219,14 @@ public class IE10Test {
 		  {
 			  //Clicks on Equipment cases
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
-			  //Waits for black loading message to disappear
-			  try{
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
-			  
+			 //Wait for loading message to disappear
+			 ShareCheck obj1 = new ShareCheck();
+			 obj1.loadingServer(driver);
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");
 			  Thread.sleep(3000);
 			  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			  obj1.loadingServer(driver);
 		      Thread.sleep(1000);
 		      jse.executeScript("scroll(0,0)");
 		      Thread.sleep(3000);
@@ -418,15 +394,7 @@ public class IE10Test {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		  //Waits for black loading message to disappear
-		  try{
-			  Thread.sleep(1000);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  Thread.sleep(1000);
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj1.loadingServer(driver);
 		  //Waits for the green popup on the right top corner
 		  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  }
@@ -568,14 +536,9 @@ public class IE10Test {
 		  //Enters the term and check the search by enter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 		  Thread.sleep(1000);
-		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword_same);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
 		  //Checks for the five cases
@@ -610,13 +573,7 @@ public class IE10Test {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(key3);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  //Checks for the case id 1
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId[0])));
 		  Thread.sleep(1000);		 
@@ -658,13 +615,8 @@ public class IE10Test {
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(ee_caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  ShareCheck obj = new ShareCheck();
+		  obj.loadingServer(driver);
 		  //Checks for the error message
 		  if (driver.findElement(By.xpath(".//*[@id='pii-efse-search-message']/div")).isDisplayed())
 			  System.out.println("Electrical case not found in Equipment Search");
@@ -674,13 +626,7 @@ public class IE10Test {
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(me_caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  //Checks for the error message
 		  if (driver.findElement(By.xpath(".//*[@id='pii-efse-search-message']/div")).isDisplayed())
 			  System.out.println("Mechanical case not found in Equipment Search");
@@ -699,13 +645,7 @@ public class IE10Test {
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(ee_caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  //Checks for electrical case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+ee_caseId)));
 		  System.out.println("Electrical case found in Equipment Performance Search (PII)");
@@ -715,13 +655,7 @@ public class IE10Test {
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(me_caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  //Checks for mechanical case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+me_caseId)));
 		  System.out.println("Mechanical case found in Equipment Performance Search (PII)");
@@ -740,13 +674,7 @@ public class IE10Test {
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(eq_caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  //Checks for the error message
 		  if (driver.findElement(By.xpath(".//*[@id='pii-efse-search-message']/div")).isDisplayed())
 			  System.out.println("Equipment case not found in Electrical Search");
@@ -767,13 +695,7 @@ public class IE10Test {
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(eq_caseId);
 		  driver.findElement(By.id("pii-efse-searchbyid-input")).sendKeys(Keys.ENTER);
 		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  //Checks for the error message
 		  if (driver.findElement(By.xpath(".//*[@id='pii-efse-search-message']/div")).isDisplayed())
 			  System.out.println("Equipment case not found in Mechanical Search");
@@ -798,27 +720,16 @@ public class IE10Test {
 		   Thread.sleep(1000);
 		  //Clicks on Equipment cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
-		  //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+			//Wait for loading message to disappear
+			ShareCheck obj = new ShareCheck();
+			obj.loadingServer(driver);
 		  //Click on enter case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).sendKeys(caseId);
 		  Thread.sleep(2000);
 		  //Clicks on case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-ul"))).click();
 		 //Waits for black loading message to disappear
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  obj.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(3000);
@@ -827,13 +738,8 @@ public class IE10Test {
 		  //Clicks on delete case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
-		  try{
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-			  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-			 }catch (org.openqa.selenium.TimeoutException e)
-			  {
-				  
-			  }
+		  //Loading message
+		  obj.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
