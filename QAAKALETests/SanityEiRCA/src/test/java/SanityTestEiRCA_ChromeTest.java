@@ -1,4 +1,5 @@
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -9,6 +10,8 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,7 +26,19 @@ public class SanityTestEiRCA_ChromeTest {
 		  
 		  System.out.println("Performing sanity test on EiRCA in Chrome");
 		  System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
-		  driver = new ChromeDriver();
+		  ChromeOptions options = new ChromeOptions();
+          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+        		    "Chrome PDF Viewer"
+        		});
+          chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
+          options.setExperimentalOption("prefs", chromeOptionsMap);
+          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+          chromeOptionsMap.put("download.default_directory", downloadFilepath);
+          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+          options.setCapability(ChromeOptions.CAPABILITY, options);
+          driver = new ChromeDriver(options);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
@@ -61,14 +76,14 @@ public class SanityTestEiRCA_ChromeTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  obj1.reportCreate(driver, username);
+		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
 		  String recordName = record.getText();
 		  //Opens record
 		  obj1.openReport(driver);
 		  //Downloads record
-		  obj1.downloadRecordChrome(driver);
+		  obj1.downloadRecordChrome(driver,hm);
 		  //Shares report 0 for admin and 1 for non admin
 		  obj1.shareReport(driver, username, password,0);
 		  //Mark critical, integer same as shareReport

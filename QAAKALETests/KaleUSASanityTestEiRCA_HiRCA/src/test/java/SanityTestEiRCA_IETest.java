@@ -1,26 +1,17 @@
-import static org.junit.Assert.*;
-
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.NoSuchElementException;
-import org.junit.Rule;
-import org.junit.rules.Timeout;
-import java.util.concurrent.TimeoutException;
-import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.UnhandledAlertException;
-import org.openqa.selenium.StaleElementReferenceException;
-import java.util.Base64;
 
 public class SanityTestEiRCA_IETest {
 
@@ -76,14 +67,14 @@ public class SanityTestEiRCA_IETest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  obj1.reportCreate(driver, username);
+		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
 		  String recordName = record.getText();
 		  //Opens record
 		  obj1.openReport(driver);
 		  //Downloads record
-		  obj1.downloadRecordIE10(driver);
+		  obj1.downloadRecordIE10(driver,hm);
 		  //Shares report 
 		  /* Dev/Asia
 		 * 0=admin

@@ -1,4 +1,5 @@
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -63,15 +64,26 @@ public class SanityTestEiRCA_IETest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  obj1.reportCreate(driver, username);
+		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
 		  String recordName = record.getText();
 		  //Opens record
 		  obj1.openReport(driver);
 		  //Downloads record
-		  obj1.downloadRecordIE10(driver);
-		  //Shares report 0 for admin and 1 for non admin
+		  obj1.downloadRecordIE10(driver,hm);
+		  //Shares report
+		  /* Dev/Asia
+		   * 0=admin
+		   * 1=non admin
+		   * 2= admin ie11
+		   * 3= non admin ie11
+		   * US
+		   * 4=admin
+		   * 5=non admin
+		   * 6=admin ie11
+		   * 7=non admin ie11
+		  */
 		  obj1.shareReport(driver, username, password, 0);
 		  //Mark critical, integer same as shareReport
 		  obj1.markCritical(driver,username, password,0);

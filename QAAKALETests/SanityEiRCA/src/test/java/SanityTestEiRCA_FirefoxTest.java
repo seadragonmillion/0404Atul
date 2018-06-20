@@ -1,4 +1,5 @@
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -9,6 +10,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,7 +28,13 @@ public class SanityTestEiRCA_FirefoxTest {
 		  
 		  System.out.println("Performing sanity test on EiRCA in Firefox");
 		  System.setProperty("webdriver.gecko.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
-		  driver = new FirefoxDriver();
+		  ProfilesIni ffProfiles = new ProfilesIni();
+		  FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		  profile.setPreference("browser.download.folderList", 2);
+		  profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		  FirefoxOptions options = new FirefoxOptions();
+		  options.setCapability(FirefoxDriver.PROFILE, profile);
+		  driver = new FirefoxDriver(options);
 		  Dimension initialSize= driver.manage().window().getSize();
 		  System.out.println(initialSize);
 		  int height=initialSize.getHeight();
@@ -72,14 +82,14 @@ public class SanityTestEiRCA_FirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  obj1.reportCreate(driver, username);
+		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
 		  String recordName = record.getText();
 		  //Opens record
 		  obj1.openReport(driver);
 		  //Downloads record
-		  obj1.downloadRecordFirefox(driver);
+		  obj1.downloadRecordFirefox(driver,hm);
 		  //Shares report 0 for admin and 1 for non admin
 		  obj1.shareReport(driver, username, password,0);
 		  //Mark critical, integer same as shareReport

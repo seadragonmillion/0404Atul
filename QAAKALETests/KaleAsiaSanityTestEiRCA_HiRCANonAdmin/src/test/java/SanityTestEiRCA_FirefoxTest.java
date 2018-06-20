@@ -1,22 +1,20 @@
-import static org.junit.Assert.*;
-
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-import org.assertj.core.api.SoftAssertions;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.NoSuchElementException;
-import org.junit.Rule;
-import org.junit.rules.Timeout;
-import java.util.concurrent.TimeoutException;
-import org.openqa.selenium.Dimension;
-import java.util.Base64;
 
 public class SanityTestEiRCA_FirefoxTest {
 
@@ -31,17 +29,23 @@ public class SanityTestEiRCA_FirefoxTest {
 		  
 		  System.out.println("Performing sanity test on EiRCA in Firefox");
 		  System.setProperty("webdriver.gecko.driver",gecko_path);
-		  driver = new FirefoxDriver();
+		  ProfilesIni ffProfiles = new ProfilesIni();
+		  FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		  profile.setPreference("browser.download.folderList", 2);
+		  profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		  FirefoxOptions options = new FirefoxOptions();
+		  options.setCapability(FirefoxDriver.PROFILE, profile);
+		  driver = new FirefoxDriver(options);
 		  Dimension initialSize= driver.manage().window().getSize();
-		 System.out.println(initialSize);
-		 int height=initialSize.getHeight();
-		 if(height<930)
-		 {
+		  System.out.println(initialSize);
+		  int height=initialSize.getHeight();
+		  if(height<930)
+		  {
 			//Browser is maximized
 			driver.manage().window().maximize(); 
-		 }
-		 Dimension finalSize=driver.manage().window().getSize();
-		 System.out.println(finalSize);
+		  }
+		  Dimension finalSize=driver.manage().window().getSize();
+		  System.out.println(finalSize);
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -78,14 +82,14 @@ public class SanityTestEiRCA_FirefoxTest {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  obj1.reportCreate(driver, username);
+		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
 		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
 		  String recordName = record.getText();
 		  //Opens record
 		  obj1.openReport(driver);
 		  //Downloads record
-		  obj1.downloadRecordFirefox(driver);
+		  obj1.downloadRecordFirefox(driver,hm);
 		  //Shares report 0 for admin and 1 for non admin
 		  obj1.shareReport(driver, username, password,1);
 		  //Mark critical, integer same as shareReport
