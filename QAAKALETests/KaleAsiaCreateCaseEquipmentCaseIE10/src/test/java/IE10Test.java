@@ -374,12 +374,12 @@ public class IE10Test {
 		  		Thread.sleep(4000);
 		  		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
 		  	}
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  int i;
 		  for (i=0; i<5;i++)
 		  {
 			  String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div["+(i+1)+"]";
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+			  if (driver.findElement(By.xpath(xpath)).isDisplayed())
 			  {
 				  System.out.println("Uploaded Image : " + (i+1));
 				  list.add(driver.findElement(By.xpath(xpath)));
