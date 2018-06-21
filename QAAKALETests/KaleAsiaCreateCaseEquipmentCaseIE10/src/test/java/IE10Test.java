@@ -379,12 +379,17 @@ public class IE10Test {
 		  for (i=0; i<5;i++)
 		  {
 			  String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div["+(i+1)+"]";
+			  try{
 			  if (driver.findElement(By.xpath(xpath)).isDisplayed())
 			  {
 				  System.out.println("Uploaded Image : " + (i+1));
 				  list.add(driver.findElement(By.xpath(xpath)));
 			  }
-			  Thread.sleep(1000);
+			}catch(org.openqa.selenium.NoSuchElementException g)
+			{
+
+			}
+			  Thread.sleep(1000);			
 		  }
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
