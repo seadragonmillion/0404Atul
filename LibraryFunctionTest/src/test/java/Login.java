@@ -140,7 +140,16 @@ public class Login {
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();		
 			Thread.sleep(3000);
+			while(true)
+			{
+			try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			break;
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			}
+			}
 			Thread.sleep(2000);
 		}
 		else

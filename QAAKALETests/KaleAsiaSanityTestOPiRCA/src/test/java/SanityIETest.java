@@ -77,12 +77,6 @@ public class SanityIETest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  obj1.reportCreate(driver, username);
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
-		  String recordName = record.getText();
-		  //Open report
-		  obj1.openReport(driver);
-		  //Downloads record
-		  obj1.downloadRecordIE10(driver);
 		//Shares report
 		  /* Dev/Asia
 		 * 0=admin
@@ -98,6 +92,8 @@ public class SanityIETest {
 		  obj1.shareReport(driver, username, password, 0);
 		  //Mark critical integer same as shareReport
 		  obj1.markCritical(driver,username, password,0);
+		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
+		  String recordName = record.getText();
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,0);
 		  //Logs out

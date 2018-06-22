@@ -1,27 +1,19 @@
-import static org.junit.Assert.*;
-
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.junit.Rule;
-import org.junit.rules.Timeout;
-import java.util.concurrent.TimeoutException;
-import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.Dimension;
-import java.util.Base64;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class SanityFirefoxTest {
 
@@ -90,12 +82,6 @@ public class SanityFirefoxTest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  obj1.reportCreate(driver, username);
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
-		  String recordName = record.getText();
-		  //Open report
-		  obj1.openReport(driver);
-		  //Downloads record
-		  obj1.downloadRecordFirefox(driver);
 		//Shares report
 		  /* Dev/Asia
 		 * 0=admin
@@ -111,6 +97,8 @@ public class SanityFirefoxTest {
 		  obj1.shareReport(driver, username, password, 5);
 		  //Mark critical integer same as shareReport
 		  obj1.markCritical(driver,username, password,5);
+		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
+		  String recordName = record.getText();
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,5);
 		  //Logs out

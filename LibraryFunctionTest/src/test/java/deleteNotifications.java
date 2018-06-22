@@ -56,21 +56,8 @@ public class deleteNotifications {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-dialog-confirmed"))).click();
 		}
 		Thread.sleep(2000);
-		while (true)
-		  {
-			  try{
-				  Thread.sleep(2000);
-				  if(driver.findElement(By.className("ui-icon-loading")).isDisplayed())
-				  {
-					  Thread.sleep(3000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
-				  {
-					  break;
-				  }
-		  }	
+		ShareCheck obj1 = new ShareCheck();
+		obj1.loadingServer(driver);
 		//LogOut
 		obj.logout(driver);
 		Thread.sleep(4000);		

@@ -1,6 +1,5 @@
-import static org.junit.Assert.*;
-
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -11,13 +10,10 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.junit.Rule;
-import org.junit.rules.Timeout;
-import java.util.concurrent.TimeoutException;
-import org.assertj.core.api.SoftAssertions;
-import java.util.Base64;
 
 public class SanityChromeTest {
 	
@@ -32,7 +28,19 @@ public class SanityChromeTest {
 		  
 		  System.out.println("Performing sanity test on O&P-IRCA in Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
-		  driver = new ChromeDriver();
+		  ChromeOptions options = new ChromeOptions();
+          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+        		    "Chrome PDF Viewer"
+        		});
+          chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
+          options.setExperimentalOption("prefs", chromeOptionsMap);
+          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+          chromeOptionsMap.put("download.default_directory", downloadFilepath);
+          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+          options.setCapability(ChromeOptions.CAPABILITY, options);
+          driver = new ChromeDriver(options);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
@@ -72,12 +80,6 @@ public class SanityChromeTest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  obj1.reportCreate(driver, username);
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
-		  String recordName = record.getText();
-		  //Open report
-		  obj1.openReport(driver);
-		  //Downloads record
-		  obj1.downloadRecordChrome(driver);
 		//Shares report
 		  /* Dev/Asia
 		 * 0=admin
@@ -93,6 +95,8 @@ public class SanityChromeTest {
 		  obj1.shareReport(driver, username, password, 0);
 		  //Mark critical integer same as shareReport
 		  obj1.markCritical(driver,username, password,0);
+		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
+		  String recordName = record.getText();
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,0);
 		  //Logs out

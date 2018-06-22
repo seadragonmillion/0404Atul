@@ -10,6 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,9 +18,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+
 import java.util.concurrent.TimeoutException;
+
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Dimension;
+
 import java.util.Base64;
 
 public class SanityFirefoxTest {
@@ -36,10 +40,12 @@ public class SanityFirefoxTest {
 		 System.out.println("Performing sanity test on O&P-IRCA in Firefox");
 		 System.setProperty("webdriver.gecko.driver",gecko_path);
 		 ProfilesIni ffProfiles = new ProfilesIni();
-		 FirefoxProfile profile = ffProfiles.getProfile("customFirefox");
-		 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		 capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		 driver = new FirefoxDriver(capabilities);
+		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
+		 profile.setPreference("browser.download.folderList", 2);
+		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 FirefoxOptions options = new FirefoxOptions();
+		 options.setCapability(FirefoxDriver.PROFILE, profile);
+		 driver = new FirefoxDriver(options);
 		  Dimension initialSize= driver.manage().window().getSize();
 		 System.out.println(initialSize);
 		 int height=initialSize.getHeight();
@@ -87,12 +93,6 @@ public class SanityFirefoxTest {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  obj1.reportCreate(driver, username);
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
-		  String recordName = record.getText();
-		  //Open report
-		  obj1.openReport(driver);
-		  //Downloads record
-		  obj1.downloadRecordFirefox(driver);
 		//Shares report
 		  /* Dev/Asia
 		 * 0=admin
@@ -108,6 +108,8 @@ public class SanityFirefoxTest {
 		  obj1.shareReport(driver, username, password, 0);
 		  //Mark critical integer same as shareReport
 		  obj1.markCritical(driver,username, password,0);
+		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
+		  String recordName = record.getText();
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,0);
 		  //Logs out

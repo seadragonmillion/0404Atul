@@ -1,27 +1,42 @@
-import static org.junit.Assert.assertEquals;
-
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.collect.Iterables;
 
 
 public class EiRCA {
 	
-	SoftAssertions softly = new SoftAssertions();	
+	SoftAssertions softly = new SoftAssertions();
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 		  
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //CLicks on first newly created record
-		  //driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a")).click();
 		  //Clicks on delete button
 		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
 		  WebDriverWait wait = new WebDriverWait(driver,10);
@@ -43,36 +58,87 @@ public class EiRCA {
 	      ErrorMeter obj = new ErrorMeter();
 		  String sharer = obj.decideSharer (y);
 		  ShareCheck obj1 = new ShareCheck();
-		  obj1.checkNoReportAfterDelete(driver, sharer, softly);
-		  			  
+		  obj1.checkNoReportAfterDelete(driver, sharer, softly);		  			  
 	  }
+	
+	  public void verifyHTML(WebDriver driver,HashMap<String,String>hm)throws Exception {
+    	
+		  WebDriverWait wait = new WebDriverWait(driver,30);
+		  //Clicks on first newly created record
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	      ShareCheck obj1 = new ShareCheck();
+	      obj1.loadingServer(driver);
+	      //Verify Sequence of Events title
+	      String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/div"))).getText();
+	      softly.assertThat(s).as("test data").isEqualTo("Sequence of Events");
+	      String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[1]"))).getText();
+	      softly.assertThat(s1).as("test data").isEqualTo(hm.get("date")+", "+hm.get("time"));
+	      String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[2]"))).getText();
+	      softly.assertThat(s2).as("test data").isEqualTo(hm.get("what happened"));
+	      String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[3]"))).getText();
+	      softly.assertThat(s3).as("test data").isEqualTo(hm.get("what is supposed to happen"));	      
+	  }
+	  
+		public void pdfCheck(HashMap<String,String>hm) throws Exception{
+	    	
+			// specify your directory
+	    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+	    	// here we get the stream with full directory listing
+	    	// exclude subdirectories from listing
+	    	// finally get the last file using simple comparator by lastModified field
+	    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+	    	System.out.println(lastFilePath.get());
+	    	//Loads the file to check if correct data is present
+		    String fileName=lastFilePath.get().toString();
+		    File oldfile = new File(fileName);
+		    PDDocument pddoc= PDDocument.load(oldfile);
+		    //Checks text in pdf
+		    String data = new PDFTextStripper().getText(pddoc);
+		    List<String> ans= Arrays.asList(data.split("\r\n"));
+		    System.out.println(ans);
+		    String newData1="";
+		    for (int i = 0; i < ans.size(); i++)
+		        {	        	
+		        	int n=ans.get(i).length()-1;
+		        	if (ans.get(i).charAt(n)==' ')
+		        		newData1 = newData1+ans.get(i);
+		        	if (ans.get(i).charAt(n)!=' ')
+		        		newData1 = newData1+" "+ans.get(i);	        	
+		        }
+		    //Verify Sequence of Events in pdf
+		    softly.assertThat(newData1).as("test data").contains("Sequence of Events");
+		    softly.assertThat(newData1).as("test data").contains(hm.get("date")+", "+hm.get("time"));
+		    softly.assertThat(newData1).as("test data").contains(hm.get("what happened"));
+		    softly.assertThat(newData1).as("test data").contains(hm.get("what is supposed to happen"));
+		}
 
 	   public void openReport(WebDriver driver) throws Exception{
 
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
-		//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();		  
-		    //Clicks on Open button
-	    	
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	//Clicks on open report
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	//Clicks on Save
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-save"))).click();
-			//Clicks on Save report
-		    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-confirmed"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
-			Thread.sleep(1000);
-	        //Clicks on Saved activities
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-savedactivities"))).click();
-			Thread.sleep(2000);
+		  //Clicks on Open button
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+	      //Clicks on open report
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	      //Clicks on Save
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-save"))).click();
+		  //Clicks on Save report
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-title"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-confirmed"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		  Thread.sleep(1000);
+	      //Clicks on Saved activities
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-savedactivities"))).click();
+		  Thread.sleep(2000);
 	    }
 	   
-	   public void downloadRecordChrome(WebDriver driver) throws Exception {
+	   public void downloadRecordChrome(WebDriver driver, HashMap <String,String> hm) throws Exception {
 	    	
-	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+		    //deletes files in reports folder before starting to download
+	    	File file = new File("C://Users//IEUser//Downloads//reports//");
+	    	HiRCAEvent obj1 = new HiRCAEvent();
+	    	obj1.deleteFiles(file);
+		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 			String window = driver.getWindowHandle();
@@ -84,15 +150,23 @@ public class EiRCA {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(2000);
+	    	Thread.sleep(8000);
+	    	pdfCheck(hm);
+	    	for(String winHandle : driver.getWindowHandles()){
+		    driver.switchTo().window(winHandle);
+		    }
+	        driver.close();
 	    	driver.switchTo().window(window);
-	    	Thread.sleep(1000);
-	    		    	
+	    	Thread.sleep(1000);	    		    	
 	    }
 	   
-	   public void downloadRecordFirefox(WebDriver driver) throws Exception {
+	   public void downloadRecordFirefox(WebDriver driver, HashMap <String,String> hm) throws Exception {
 	    	
-	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
+		    //deletes files in reports folder before starting to download
+	    	File file = new File("C://Users//IEUser//Downloads//reports//");
+	    	HiRCAEvent obj1 = new HiRCAEvent();
+	    	obj1.deleteFiles(file);
+		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 			//Clicks on download button
@@ -104,22 +178,34 @@ public class EiRCA {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(6000);
-	    	driver.switchTo().window(window);
+	    	Thread.sleep(8000);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
 	    	}
-	    	
-	    	driver.close();
-	    	Thread.sleep(6000);
-	    	driver.switchTo().window(window);
 	    	Thread.sleep(2000);
-	    	driver.switchTo().defaultContent();
-	    		    	
+	    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
+	    	Robot robot = new Robot();
+	    	// press Ctrl+S the Robot's way
+	    	robot.keyPress(KeyEvent.VK_CONTROL);
+	    	robot.keyPress(KeyEvent.VK_S);
+	    	robot.keyRelease(KeyEvent.VK_CONTROL);
+	    	robot.keyRelease(KeyEvent.VK_S);
+	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+	    	p.waitFor();
+	    	pdfCheck(hm);
+	    	Thread.sleep(4000);
+	    	driver.close();
+	    	Thread.sleep(4000);
+	    	driver.switchTo().window(window);
+	    	driver.switchTo().defaultContent();	    		    	
 	    }
 	   
-	    public void downloadRecordIE10(WebDriver driver) throws Exception {
+	    public void downloadRecordIE10(WebDriver driver, HashMap <String,String> hm) throws Exception {
 	    	
+		    //deletes files in reports folder before starting to download
+	    	File file = new File("C://Users//IEUser//Downloads//reports//");
+	    	HiRCAEvent obj1 = new HiRCAEvent();
+	    	obj1.deleteFiles(file);
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
@@ -132,29 +218,31 @@ public class EiRCA {
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	    	Thread.sleep(3000);
 	    	try {
-				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
+				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
 				  q.waitFor();
 				  }catch (UnhandledAlertException f){	
-					  System.out.println("Unexpected alert for picture 2");
+					  System.out.println("Unexpected alert");
 					  driver.switchTo().alert().accept();
 					  
 			  	  }catch (NoAlertPresentException f){
-			  		  System.out.println ("No unexpected alert for picture 2");
+			  		  System.out.println ("No unexpected alert");
 			  		  }
-	    	Thread.sleep(10000);
-	    	//Close pdf
-	    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
-			q.waitFor();
-			Thread.sleep(4000);
-			//Switch to window    	
-	    	driver.switchTo().window(window);
-	    	driver.switchTo().defaultContent();
-	    		    	
+	    	Thread.sleep(7000);
+	    	//pdf verification
+		    pdfCheck(hm);
+		    Thread.sleep(4000);
+	    	//Switch to window    	
+	    	driver.switchTo().window(window);	    		    	
 	    }
 	    
-	    public void downloadRecordIE11(WebDriver driver) throws Exception {
+	    public void downloadRecordIE11(WebDriver driver, HashMap <String,String> hm) throws Exception {
 	    	
+		    //deletes files in reports folder before starting to download
+	    	File file = new File("C://Users//IEUser//Downloads//reports//");
+	    	HiRCAEvent obj1 = new HiRCAEvent();
+	    	obj1.deleteFiles(file);
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
@@ -163,36 +251,27 @@ public class EiRCA {
 			//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
-			//String window = driver.getWindowHandle();
+			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	    	Thread.sleep(3000);
 	    	try {
-				  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/OpenPdf.exe");
+				  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
 				  q.waitFor();
 				  }catch (UnhandledAlertException f){	
-					  System.out.println("Unexpected alert for picture 2");
+					  System.out.println("Unexpected alert");
 					  driver.switchTo().alert().accept();
 					  
 			  	  }catch (NoAlertPresentException f){
-			  		  System.out.println ("No unexpected alert for picture 2");
+			  		  System.out.println ("No unexpected alert");
 			  		  }
-			System.out.println("Opened pdf");
-	    	Thread.sleep(4000);
-	    	//Close pdf
-	    	Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/ClosePdf.exe");
-			q.waitFor();
-			Thread.sleep(8000);
-			System.out.println("Closed pdf");
-			//Switch to window  
-			for(String winHandle : driver.getWindowHandles()){
-	    	    driver.switchTo().window(winHandle);
-	    	}
-			Thread.sleep(2000);
-	    	driver.switchTo().defaultContent();
-			System.out.println("Switched to window");
-				    		    	
-	    		    	
+	    	Thread.sleep(7000);
+	    	//pdf verification
+		    pdfCheck(hm);
+		    Thread.sleep(4000);
+	    	//Switch to window    	
+	    	driver.switchTo().window(window);	
 	    }
 	    
 	    public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
@@ -269,12 +348,371 @@ public class EiRCA {
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 	    }
 	    
-	    public void reportCreate(WebDriver driver,String username) throws Exception {
+	    public void verifyProbStatementPlaceHolder(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Waits for the page to load
+		    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    	//Get place holder of Problem Statement and verify that it is not "foo"
+	    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-problem-statement"))).getAttribute("placeholder");
+	    	softly.assertThat(s).as("test data").isEqualTo("Fill in Problem statement");
+	    }
+	    
+	    public void verifySequenceOfEvents(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Verify title
+	    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-pagetitle"))).getText();
+	    	softly.assertThat(s).as("test data").isEqualTo("Sequence of Events");
+	    	//Click on Description
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-description']/h4/a"))).click();
+	    	//Verify description text
+	    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-description-text"))).getText();
+	    	String desc = "The sequence of events is a series of related situations occurring prior to and after the triggering error. "
+	    			+ "It is composed of a series of time-specific events of facts and data. The time-specific events are presented in a timeline to describe how"
+	    			+ " the final failure (or event or unacceptable consequence) occurred. The purpose of developing the sequence of events is to determine the "
+	    			+ "triggering error(s) that provoked the chain of events leading to the final failure (or unacceptable consequence)."
+	    			+"\n"+"\n"
+	    			+"Add and describe each time-specific event (or step) leading up to the final failure or unacceptable consequence. In the column to the right, "
+	    			+ "describe what should have happened instead of what actually occurred. This will help point out where any abnormal condition occurred.";
+	    	softly.assertThat(s1).as("test data").isEqualTo(desc);
+	    	//Click on Description again
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-description']/h4/a"))).click();
+	    	//Verify date box header
+	    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[1]/div[1]"))).getText();
+	    	softly.assertThat(s2).as("test data").isEqualTo("Date:");
+	    	//Verify time box header
+	    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[2]/div[1]"))).getText();
+	    	softly.assertThat(s3).as("test data").isEqualTo("Time:");
+	    	//Verify What happened box header
+	    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[3]/div[1]"))).getText();
+	    	softly.assertThat(s4).as("test data").isEqualTo("What happened?:");
+	    	//Verify What is supposed to happen box header
+	    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[4]/div[1]"))).getText();
+	    	softly.assertThat(s5).as("test data").isEqualTo("What is supposed to happen?:");
+	    	//Verify placeholder for What happened box
+	    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-descr"))).getAttribute("placeholder");
+	    	softly.assertThat(s6).as("test data").isEqualTo("Description of each related step prior to and after the triggering error, leading to the event.");
+	    	//Verify placeholder for What is supposed to happen box
+	    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-trigevt"))).getAttribute("placeholder");
+	    	softly.assertThat(s7).as("test data").isEqualTo("Description of what should happen instead of the abnormal condition that occurred.");
+	    }
+	    
+	    public void createNewEvent(WebDriver driver, String text) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	WebDriverWait wait1 = new WebDriverWait(driver,5);
+	    	//Select date
+	    	//Click on calendar icon
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[1]/div[2]/div/div/a"))).click();
+	    	//Click on - sign
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/a"))).click();
+	    	//Select 1st date of 1st row
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div"))).click();
+	    	Thread.sleep(1000);
+	    	//Wait for disappearance of date box
+	    	try{
+	    		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div")));
+	    	}catch(org.openqa.selenium.TimeoutException r)
+	    	{
+	    		
+	    	}
+	    	//Select time
+	    	//Click on clock icon
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[2]/div[2]/div/div/a"))).click();
+	    	//Click on set time
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
+	    	Thread.sleep(1000);
+	    	//Wait for disappearance of time box
+	    	try{
+	    		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")));
+	    	}catch(org.openqa.selenium.TimeoutException r)
+	    	{
+	    		
+	    	}
+	    	//Enter text in what happened
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-descr"))).sendKeys(text);
+	    	//Enter text in what is supposed to happen
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-trigevt"))).sendKeys(text);
+	    	//Click on add sign
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-add"))).click();
+	    }
+	    
+	    public void verifyEmptyTexBox(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Verify empty text in what happened
+	    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-descr"))).getText();
+	    	//Verify empty text in what is supposed to happen
+	    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-newevent-trigevt"))).getText();
+	    	//Get browser name
+			Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		    String browserName = cap.getBrowserName().toLowerCase();
+		    System.out.println(browserName);
+		    if (browserName.equals("internet explorer"))
+		    {
+		    	softly.assertThat(s).as("test data").isEqualTo("Description of each related step prior to and after the triggering error, leading to the event.");
+		    	softly.assertThat(s1).as("test data").isEqualTo("Description of what should happen instead of the abnormal condition that occurred.");
+		    }
+		    else
+		    {
+		    	softly.assertThat(s).as("test data").isEqualTo("");
+		    	softly.assertThat(s1).as("test data").isEqualTo("");
+		    }
+	    }
+	    
+	    public void verifyTextEditable(WebDriver driver,WebElement ele, String text) throws Exception {
+	    	
+	    	//Get text present in text box
+		    String s = ele.getAttribute("value");
+		    System.out.println(s);
+		    //CLear some text
+		    for (int i=0;i<6;i++)
+		    	ele.sendKeys(Keys.BACK_SPACE);
+		    //Clear all text
+		    ele.clear();
+		    //Enter new text in text box
+		    ele.sendKeys(text);
+		    String s1 = ele.getAttribute("value");
+		    System.out.println(s1);
+		    if(s.equals(s1)==true)
+		    	softly.fail("Text could not be edited for web element: \n"+ele);
+	    }
+	    
+	    public HashMap<String,String> storeEvent(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Get date
+	    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[2]/div/div/input"))).getAttribute("value");
+	    	//Get time
+	    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[3]/div/div/input"))).getAttribute("value");
+	    	//Get what happened
+	    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[4]/textarea"))).getAttribute("value");
+	    	//Get what is supposed to happen
+	    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[5]/textarea"))).getAttribute("value");
+	    	//Store in HashMap
+	    	HashMap <String,String> hm = new HashMap<String,String>();
+	    	hm.put("date", s);
+	    	hm.put("time", s1);
+	    	hm.put("what happened", s2);
+	    	hm.put("what is supposed to happen", s3);
+	    	return hm;
+	    }
+	    
+	    public HashMap<String,String> verifyOrderOfEvents(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Get date from 1st row
+	    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[2]/div/div/input"))).getAttribute("value");
+	    	//Get date from 2nd row
+	    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[2]/div/div/input"))).getAttribute("value");
+	    	//Get time from 1st row
+	    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[3]/div/div/input"))).getAttribute("value");
+	    	//Get time from 2nd row
+	    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[3]/div/div/input"))).getAttribute("value");
+	    	//Store date and time in HashMap
+	    	HashMap <String,String> hm = new HashMap<String,String>();
+	    	hm.put("Date 1st row", s);
+	    	hm.put("Date 2nd row", s1);
+	    	hm.put("Time 1st row", s2);
+	    	hm.put("Time 2nd row", s3);
+	    	//Compare date and time
+	    	String year1 = s.substring(0, 4);
+	    	String year2 = s1.substring(0, 4);
+	    	String month1 = s.substring(5, 7);
+	    	String month2 = s1.substring(5, 7);
+	    	String day1 = s.substring(8, 10);
+	    	String day2 = s1.substring(8, 10);	
+	    	String hour1 = s2.substring(0, 2);
+	    	String hour2 = s3.substring(0, 2);
+	    	String minute1 = s2.substring(3, 5);
+	    	String minute2 = s3.substring(3, 5);
+	    	//Compare year
+	    	int n1 = Integer.parseInt(year1);
+	    	int n2 = Integer.parseInt(year2);
+	    	if(n1>n2)
+	    	{
+	    		softly.fail("Year: Order wrong as later date "+n1+ " event appears before previous date event"+n2);
+	    	}
+	    	if(n1==n2)
+	    	{
+	    		//Compare month
+	    		n1 = Integer.parseInt(month1);
+	    		n2 = Integer.parseInt(month2);
+	    		if(n1>n2)
+		    	{
+		    		softly.fail("Month: Order wrong as later date "+n1+ " event appears before previous date event"+n2);
+		    	}
+	    		if(n1==n2)
+	    		{
+	    			//Compare day
+		    		n1 = Integer.parseInt(day1);
+		    		n2 = Integer.parseInt(day2);
+		    		if(n1>n2)
+			    	{
+			    		softly.fail("Day: Order wrong as later date "+n1+ " event appears before previous date event"+n2);
+			    	}
+		    		if(n1==n2)
+		    		{
+		    			//Compare time
+		    			//Minute
+		    			n1 = Integer.parseInt(hour1);
+			    		n2 = Integer.parseInt(hour2);
+			    		if(n1>n2)
+				    	{
+				    		softly.fail("Minute: Order wrong as later date and time"+n1+ " event appears before previous date and time event"+n2);
+				    	}
+			    		if(n1==n2)
+			    		{
+			    			//Compare time
+			    			//Second
+			    			n1 = Integer.parseInt(minute1);
+				    		n2 = Integer.parseInt(minute2);
+				    		if(n1>n2)
+					    	{
+					    		softly.fail("Second: Order wrong as later date and time"+n1+ " event appears before previous date and time event"+n2);
+					    	}
+			    		}
+		    		}
+	    		}
+	    	}
+	    	return hm;
+	    }
+	    
+	    public void changeDate(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Click on calendar icon
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[1]/div[2]/div/div/a"))).click();
+	    	//Click on - sign twice
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/a"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/a"))).click();
+	    	//Select 1st date of 1st row
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div"))).click();
+	    }
+	    
+	    public void makeDateSame(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Click on calendar icon
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[2]/div/div/a"))).click();
+	    	//Click on - sign twice
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/a"))).click();
+	    	//Select 1st date of 1st row
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div"))).click();	    	
+	    }
+	    
+	    public void changeTime(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Click on clock icon
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[3]/div/div/a"))).click();
+	    	//Click on - sign of hour
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[3]"))).click();
+	    	//Click on set time
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"))).click();
+	    }
+	    
+	    public String[] editTextBox(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[4]/textarea"))).sendKeys("aaaaa");
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[5]/textarea"))).sendKeys("aaaaa");
+	    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[4]/textarea"))).getAttribute("value");
+	    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[5]/textarea"))).getAttribute("value");
+	    	String[]s = {s1,s2};
+	    	return s;
+	    }
+	    
+	    public void verifyEditedText(WebDriver driver, String[]s) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[4]/textarea"))).getAttribute("value");
+	    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[5]/textarea"))).getAttribute("value");
+	    	softly.assertThat(s1).as("test data").isEqualTo(s[0]);
+	    	softly.assertThat(s2).as("test data").isEqualTo(s[1]);
+	    }
+	    
+	    public void delete2ndEvent(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Click on cross symbol of 2nd event row
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[6]/a"))).click();
+	    	//Click delete button
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-confirmed"))).click();
+	    }
+	    
+	    public HashMap<String,String> pathEiRCASequenceOfEvents(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Click next
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-form-submit"))).click();
+	    	Thread.sleep(2000);
+	    	//Waits for the page to load
+		    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		    //Verify text in Sequence of Events
+		    verifySequenceOfEvents(driver);
+		    //Get list of text
+		    ErrorMeter obj = new ErrorMeter();
+	    	List <String> list1=obj.error50Data();
+	    	Iterator<String> iter = Iterables.cycle(list1).iterator();
+		    //Create a new event
+		    createNewEvent(driver, iter.next());
+		    //Verify text boxes empty after adding event
+		    verifyEmptyTexBox(driver);
+		    //Edit text in boxes of event added
+		    String[]s=editTextBox(driver);
+		    //Create another new event
+		    createNewEvent(driver, iter.next());
+		    //Verify text edited in event added first
+		    verifyEditedText(driver,s);
+		    //Verify text boxes empty after adding event
+		    verifyEmptyTexBox(driver);
+		    //Verify text is editable in what happened box for 1st row
+		    WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[4]/textarea")));
+		    verifyTextEditable(driver,ele, iter.next());
+		    //Verify text is editable in what is supposed to happen box for 1st row
+		    ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[5]/textarea")));
+		    verifyTextEditable(driver,ele, iter.next());
+		    //Verify text is editable in what happened box for 2nd row
+		    ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[4]/textarea")));
+		    verifyTextEditable(driver,ele, iter.next());
+		    //Verify text is editable in what is supposed to happen box for 2nd row
+		    ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[5]/textarea")));
+		    verifyTextEditable(driver,ele, iter.next());
+		    //Verify the events are organised as per date and time
+		    HashMap<String,String> hm = verifyOrderOfEvents(driver);
+		    System.out.println(hm);
+		    //Change date on 2nd row
+		    changeDate(driver);
+		    Thread.sleep(1000);
+		    //Verify the events are organised as per date and time
+		    HashMap<String,String> hm1 = verifyOrderOfEvents(driver);
+		    System.out.println(hm1);
+		    //Make date same and change time on 2nd row
+		    makeDateSame(driver);
+		    Thread.sleep(1000);
+		    changeTime(driver);
+		    //Verify the events are organised as per date and time
+		    HashMap<String,String> hm2 = verifyOrderOfEvents(driver);
+		    System.out.println(hm2);
+		    //Delete 2nd event
+		    delete2ndEvent(driver);
+		    //Store all event data in hashmap
+		    HashMap<String,String>hm3 = storeEvent(driver);
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-next"))).click();		
+		    return hm3;
+	    }
+	    	       
+	    public HashMap<String,String> reportCreate(WebDriver driver,String username) throws Exception {
 	    	
 	    	  JavascriptExecutor jse = (JavascriptExecutor)driver;
 	    	  //Clicks on EiRCA
 			  jse.executeScript("return document.getElementById('pii-a-menu-eirca').click();");
 			  Thread.sleep(1000);
+			  //Verify placeholder of problem statement
+			  verifyProbStatementPlaceHolder(driver);
 			  //Fills all mandatory fields
 			  driver.findElement(By.id("pii-ircam-tab-1-title")).sendKeys("Sanity Test");
 			  driver.findElement(By.id("pii-ircam-tab-1-location")).sendKeys("San Diego");
@@ -332,6 +770,8 @@ public class EiRCA {
 				  driver.findElement(By.id("pii-ircam-tab-1-failed-component")).clear();
 				  driver.findElement(By.id("pii-ircam-tab-1-failed-component")).sendKeys("Sanity Test");
 			  }
+			  //Sequence of Events
+			  HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver);
 			  //Clicks on Save button
 			  jse.executeScript("return document.getElementById('pii-ircam-save').click();");
 			  //Clicks on Save Report button
@@ -340,6 +780,8 @@ public class EiRCA {
 			  jse.executeScript("return document.getElementById('pii-ircam-dialog-confirmed').click();");
 			  //Waits for the green popup on the right top corner
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  //Clicks on info tab
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-a"))).click();
 			  //Gets the value from the text field report creation date
 			  String creationDate = driver.findElement(By.id("pii-ircam-tab-1-repdatetime")).getAttribute("value");
 			  String name = creationDate + "_"+username+"_Sanity Test" ;
@@ -360,7 +802,10 @@ public class EiRCA {
 			  else
 				  System.out.println ("Record not found.");
 			  //Checks if the name displayed on record is same as expected
-			  assertEquals(name, recordName);
+			  softly.assertThat(recordName).as("test data").isEqualTo(name);
+			  //Open HTML and verify Sequence of Events
+			  verifyHTML(driver,hm);
+			  return hm;
 	    }
 	    
 	    public void softAssert() throws Exception {

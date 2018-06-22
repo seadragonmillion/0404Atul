@@ -214,8 +214,11 @@ public class EquipmentPDDandEF {
 	public void verifyCaseModuleNames (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
 		//Go to KALE homepage
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();	    
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();	
+	    obj.loadingServer(driver);
 	    //Clicks on ErrorFree Bank
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		//Look for Human Performance
@@ -1166,6 +1169,8 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Wait again for ie11
 		obj.loadingServer(driver);
 		return caseId;
 	}
