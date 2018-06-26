@@ -950,6 +950,8 @@ public class HiRCALevel1 {
     		   }
     	   }
        }    
+	      //Close pdf
+		  pddoc.close();
        
 	}
 	
@@ -2014,7 +2016,7 @@ public class HiRCALevel1 {
 		//tr starts at 2 and each root cause has 4 four rows
 		System.out.println("Starting row of contributing factors:"+i);
 		int start =i-1;
-		//Verify if any root causes are appearing
+		//Verify if any contributing factors are appearing
 		while(i<=((count1*3)+start))
 		{
 			//Get name of level 3 answer

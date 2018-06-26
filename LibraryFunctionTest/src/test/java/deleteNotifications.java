@@ -13,6 +13,15 @@ public class deleteNotifications {
 	String urlDev= "https://kaledev.error-free.com/";
 	String urlUS= "https://kale.error-free.com/";
 	
+	private By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
+	private By StickyPopUp = By.cssSelector(".sticky.border-top-right.sticky-error");
+	private By StickyClose = By.className("sticky-close");
+	private By NotificationBell = By.id("pii-notification-button");
+	private By NotificationAllCheckBox = By.id("pii-notif-jqgrid_cb");
+	private By NotificationDeleteButton = By.id("pii-notif-del-btn");
+	private By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
+	private By NotificationReadConfirmButton2 = By.id("pii-notif-dialog-confirmed");
+	
 	public void deleteNotif(WebDriver driver,Login obj, int login) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -22,7 +31,7 @@ public class deleteNotifications {
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(5000);
 		if (login==1)
 		{
@@ -30,10 +39,10 @@ public class deleteNotifications {
           while(true)
 		  {
          	 Thread.sleep(1000);
-			  if (driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error")).isDisplayed())
+			  if (driver.findElement(StickyPopUp).isDisplayed())
 			  {
-				  WebElement ele =driver.findElement(By.cssSelector(".sticky.border-top-right.sticky-error"));
-				  ele.findElement(By.className("sticky-close")).click();
+				  WebElement ele =driver.findElement(StickyPopUp);
+				  ele.findElement(StickyClose).click();
 				  break;
 			  }
 			  else break;
@@ -41,19 +50,19 @@ public class deleteNotifications {
         }	
 		Thread.sleep(4000);
 		//Click on notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notification-button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Click on check box for selecting all noifications
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-jqgrid_cb"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationAllCheckBox)).click();
 		Thread.sleep(2000);
 		//Click on delete button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-del-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationDeleteButton)).click();
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notifcenter-dialog-confirmed"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton)).click();
 		}catch(org.openqa.selenium.TimeoutException r){
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-notif-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton2)).click();
 		}
 		Thread.sleep(2000);
 		ShareCheck obj1 = new ShareCheck();

@@ -15,19 +15,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login {
 
 	SoftAssertions softly = new SoftAssertions();
+	private By LoginButton = By.id("pii-login-button");
+	private By UserName = By.id("pii-un");
+	private By Password = By.id("pii-pw");
+	private By SignInButton = By.id("pii-signin-button");
+	private By SignInMessage = By.id("pii-signin-message");
+	private By StickyNote = By.className("sticky-note");
+	private By StickyClose = By.className("sticky-close");
+	private By LoginNameOnTopRight = By.id("pii-user-loginname");
+	private By LogOutButton = By.id("pii-signout-button");
 	
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Login button is located and clicked
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("pii-login-button"))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(LoginButton)).click();
 		//Enter Username
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-un"))).sendKeys(username);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(UserName)).sendKeys(username);
 		//Enter password
-		driver.findElement(By.id("pii-pw")).sendKeys(decodePassword(password));
+		driver.findElement(Password).sendKeys(decodePassword(password));
 		Thread.sleep(2000);
-		String user = driver.findElement(By.id("pii-un")).getAttribute("value");
-		String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+		String user = driver.findElement(UserName).getAttribute("value");
+		String pw = driver.findElement(Password).getAttribute("value");
 		int c=1;
 		int login=0;
 		if (user.equals(username)==true)
@@ -35,11 +44,11 @@ public class Login {
 		  if(pw.equals(decodePassword(password))==true)
 		  {
 			  //Sign in button is located and clicked
-			  driver.findElement(By.id("pii-signin-button")).click();  
+			  driver.findElement(SignInButton).click();  
 			  while(c>0)
 			  {
 				  Thread.sleep(2000);
-				  WebElement element = driver.findElement(By.id("pii-signin-message"));
+				  WebElement element = driver.findElement(SignInMessage);
 				  String text = element.getText();
 				  if (element.isDisplayed())
 				  {
@@ -50,9 +59,9 @@ public class Login {
 					  }
 					  else
 					  {
-						  driver.findElement(By.id("pii-pw")).sendKeys(decodePassword(password));
+						  driver.findElement(Password).sendKeys(decodePassword(password));
 						  //Sign in button is located and clicked
-						  driver.findElement(By.id("pii-signin-button")).click();
+						  driver.findElement(SignInButton).click();
 						  login =1;
 						  break;
 					  }
@@ -67,21 +76,21 @@ public class Login {
 		  while(c>0)
 			{
 			  Thread.sleep(1000);
-			  driver.findElement(By.id("pii-un")).clear();
-			  driver.findElement(By.id("pii-pw")).clear();
+			  driver.findElement(UserName).clear();
+			  driver.findElement(Password).clear();
 			  //Username text field is located and the username is entered
-			  driver.findElement(By.id("pii-un")).sendKeys(username);
+			  driver.findElement(UserName).sendKeys(username);
 			  //Password field is located and the password is entered
-			  driver.findElement(By.id("pii-pw")).sendKeys(decodePassword(password));
+			  driver.findElement(Password).sendKeys(decodePassword(password));
 			  Thread.sleep(2000);
-			  user = driver.findElement(By.id("pii-un")).getAttribute("value");
-			  pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
+			  user = driver.findElement(UserName).getAttribute("value");
+			  pw = driver.findElement(Password).getAttribute("value");
 			  if (user.equals(username)==true)
 			  {
 			  if(pw.equals(decodePassword(password))==true)
 			  {
 				  //Sign in button is located and clicked
-				  driver.findElement(By.id("pii-signin-button")).click();
+				  driver.findElement(SignInButton).click();
 				  break;
 			  }
 			  }
@@ -103,10 +112,10 @@ public class Login {
 		while(true)
 		  {
 			  try{
-			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  if (driver.findElement(StickyNote).isDisplayed())
 			  {
 				  Thread.sleep(1000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(StickyClose)).click();
 				  
 			  }}catch (NoSuchElementException e)
 			  {
@@ -138,16 +147,16 @@ public class Login {
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("firefox"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();		
+			wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();		
 			Thread.sleep(3000);
 			while(true)
 			{
 			try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton)).click();
 			break;
 			}catch(org.openqa.selenium.TimeoutException t)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
 			}
 			}
 			Thread.sleep(2000);
@@ -155,12 +164,12 @@ public class Login {
 		else
 		{
 		Actions act = new Actions (driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
-		WebElement element = driver.findElement(By.id("pii-user-loginname"));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
+		WebElement element = driver.findElement(LoginNameOnTopRight);
 		act.click(element).build().perform();
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button")));
-		element = driver.findElement(By.id("pii-signout-button"));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton));
+		element = driver.findElement(LogOutButton);
 		act.click(element).build().perform();
 		Thread.sleep(2000);
 		}

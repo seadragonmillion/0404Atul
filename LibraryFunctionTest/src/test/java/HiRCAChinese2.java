@@ -206,6 +206,8 @@ public class HiRCAChinese2 {
 	    {
 	    	softly.assertThat(newData1).as("test data").contains(verifyChinese.get(i));
 	    }
+	    //Close pdf
+	    pddoc.close();
 	}
 	
 	public void selectAllChecklist(WebDriver driver) throws Exception {

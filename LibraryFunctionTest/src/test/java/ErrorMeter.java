@@ -1545,6 +1545,8 @@ public class ErrorMeter {
        //Verify that text left in was not part of pdf
        if (newData1.contains(text)==true)
     	   softly.fail("text present in pdf: "+text);
+        //Close pdf
+	    pddoc.close();
   }
 	
 	public void pdfCheckError50() throws Exception{

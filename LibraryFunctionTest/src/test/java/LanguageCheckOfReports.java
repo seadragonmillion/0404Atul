@@ -247,7 +247,8 @@ public class LanguageCheckOfReports {
 	    	chineseCheck(newData);
 		if (y==1)
 			englishCheck(newData);
-	      
+	    //Close pdf
+		pddoc.close();
 	}
 	
 	public WebElement errorMeter(WebDriver driver, int y) throws Exception{

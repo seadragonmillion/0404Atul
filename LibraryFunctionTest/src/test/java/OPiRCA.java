@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,58 @@ public class OPiRCA {
 	
 	SoftAssertions softly = new SoftAssertions();
 	String event_title = "Sanity Test";
+	
+	private By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	private By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	private By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	private By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
+	private By ShareTextBox = By.id("pii-uhshare-search-input");
+	private By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
+	private By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
+	private By SharerAdded = By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a");
+	private By UserNameDisplayInReport = By.xpath(".//*[@id='opa-rpt']/div/table/tbody/tr[6]/td[2]");
+	private By ShareSaveButton = By.id("pii-uhshare-save");
+	private By OPiRCASidePanel = By.id("pii-user-home-panel-btn-opa");
+	private By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
+	private By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
+	private By OPiRCASaveButton = By.id("efi-opa-button-save");
+	private By OPiRCASavePopupTitle = By.id("pii-opa-dialog-title");
+	private By OPiRCASaveConfirmButton = By.id("pii-opa-dialog-confirmed");
+	private By OPiRCASavedActivitiesButton = By.id("efi-opa-btn-savedactivities");
+	private By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
+	private By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
+	private By OPiRCAFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a");
+	private By StickyNote = By.className("sticky-note");
+	private By StickySuccess = By.className("sticky-success");
+	
+	private By HiRCADropdownMenuPopup = By.id("pii-opa-step1-select-menu");
+	private By HiRCADropdownMenuButton = By.id("pii-opa-step1-select-button");
+	private By HiRCADropdownMenuCloseButton = By.xpath(".//*[@id='pii-opa-step1-select-dialog']/div/div[1]/a");
+	
+	private By OPiRCANextButton = By.id("efi-opa-button-next");
+	private By OPiRCASkipButton = By.id("efi-opa-button-skip");
+	private By OPiRCAInfoTab = By.id("efi-opa-tab-0");
+	private By OPiRCAStep1Tab = By.id("efi-opa-tab-1");
+	private By OPiRCAStep3Tab = By.id("efi-opa-tab-3");
+	private By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button");
+	
+	private By OPiRCAReportCreationDateTimeField = By.id("pii-opa-event-repdatetime");
+	private By OPiRCAEventTitleField = By.id("pii-opa-event-title");
+	private By OPiRCAEventLocationField = By.id("pii-opa-event-location");
+	private By OPiRCAProblemStatementField = By.id("pii-opa-event-pbstatement");
+	private By OPiRCATimelineOfEventField = By.id("pii-opa-event-events");
+	private By OPiRCABackgroundInfoField = By.id("pii-opa-event-bginfos");
+	private By OPiRCAInvestigatorsField = By.id("pii-opa-event-investigators");
+	
+	private By PageTitle = By.id("efi-opa-question");
+	private By SField = By.xpath(".//*[@id='efi-opa-answers']/div[1]");
+	private By UField = By.xpath(".//*[@id='efi-opa-answers']/div[2]");
+	private By RField = By.xpath(".//*[@id='efi-opa-answers']/div[3]");
+	private By EField = By.xpath(".//*[@id='efi-opa-answers']/div[4]");
+	
+	private By OPiRCANoRCField1 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[1]");
+	private By OPiRCANoRCField2 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[2]");
+	private By OPiRCANoRCField3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[3]");
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 		  		
@@ -41,20 +94,20 @@ public class OPiRCA {
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
 		  ShareCheck obj1 = new ShareCheck();
 		  //Clicks on first newly created record
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	      obj1.loadingServer(driver);
 		  //Clicks on delete button
-		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
+		  driver.findElement(DeleteButton).click();
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle));
 		  //Clicks on delete report
 		  jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
 		  Thread.sleep(2000);
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-opa').click();");
 		  //Verify record deleted
 		  //Click on 1st record
-		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a")).getText();
+		  String name = driver.findElement(OPiRCAFirstRecord).getText();
 		  System.out.println(name);
 		  if (name!=recordName)
 			  System.out.println("Record deleted");
@@ -72,44 +125,44 @@ public class OPiRCA {
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
 		  ShareCheck obj = new ShareCheck();
 		  //Clicks on Open button	    	
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 	      //Clicks on open report
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	      //Clicks on Save
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-save"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveButton)).click();
 		  //Clicks on Save report
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-title"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-confirmed"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle)).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveConfirmButton)).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(StickySuccess));
 		  //Wait for loading message
 		  obj.loadingServer(driver);
 		  Thread.sleep(1000);
 	      //Clicks on Saved activities
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-btn-savedactivities"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavedActivitiesButton)).click();
 		  Thread.sleep(2000);		  
 		  //Wait for loading message
 		  obj.loadingServer(driver);
 	  }
 	  
-	  public void downloadRecordChrome(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception {
+	  public void downloadRecordChrome(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	ShareCheck obj = new ShareCheck();			
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	    	//Wait for loading message
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			obj.loadingServer(driver);
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(8000);
-	    	pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+	    	pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 	    	for(String winHandle : driver.getWindowHandles()){
 		    driver.switchTo().window(winHandle);
 		    }
@@ -118,22 +171,22 @@ public class OPiRCA {
 	    	Thread.sleep(1000);	    		    	
 	    }
 	  
-	  public void downloadRecordFirefox(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception {
+	  public void downloadRecordFirefox(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	ShareCheck obj = new ShareCheck();
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	    	//Wait for loading message to disappear			
 			obj.loadingServer(driver);
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear			
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(8000);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
@@ -148,7 +201,7 @@ public class OPiRCA {
 	    	robot.keyRelease(KeyEvent.VK_S);
 	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 	    	p.waitFor();
-	    	pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+	    	pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 	    	Thread.sleep(4000);
 	    	driver.close();
 	    	Thread.sleep(4000);
@@ -156,22 +209,22 @@ public class OPiRCA {
 	    	driver.switchTo().defaultContent();
 	    }
 	    
-	    public void downloadRecordIE10(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception {
+	    public void downloadRecordIE10(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	ShareCheck obj = new ShareCheck();
 			//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	    	//Wait for loading message to disappear			
 			obj.loadingServer(driver);
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(3000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
@@ -185,28 +238,28 @@ public class OPiRCA {
 			  		  }
 	    	Thread.sleep(7000);
 	    	//pdf verification
-		    pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+		    pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		    Thread.sleep(4000);
 	    	//Switch to window    	
 	    	driver.switchTo().window(window);	
 	    }
 	    
-	    public void downloadRecordIE11(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception {
+	    public void downloadRecordIE11(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	ShareCheck obj = new ShareCheck();
 			//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	    	//Wait for loading message to disappear			
 			obj.loadingServer(driver);
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(3000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
@@ -220,13 +273,13 @@ public class OPiRCA {
 			  		  }
 	    	Thread.sleep(7000);
 	    	//pdf verification
-		    pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+		    pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		    Thread.sleep(4000);
 	    	//Switch to window    	
 	    	driver.switchTo().window(window);
 	    }
 	    
-		public void pdfCheck(List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception{
+		public void pdfCheck(List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception{
 	    	
 			// specify your directory
 	    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
@@ -272,6 +325,164 @@ public class OPiRCA {
 		    {
 		    	softly.assertThat(newData1).as("test data").contains(apparentCausesAnswersNew.get(i));
 		    }
+		    //Check HML order for root cause
+		    checkOrderHMLRC(hml,options,newData1);
+		    //Check HML order for contributing factor
+		    int n = apparentCausesAnswersNew.size();
+		    int cf = n-options.get("Root causes");
+		    checkOrderHMLCF(hml,options,newData1,cf);
+		    //Close pdf
+		    pddoc.close();
+		}
+		
+		public void checkOrderHMLCF(HashMap<String,String> hml, HashMap<String,Integer> options, String newData1, int cf) {
+			
+			
+			if(cf>0)
+	    	   {
+	    		   List<Integer> high = new ArrayList<Integer>();
+	    		   List<Integer> medium = new ArrayList<Integer>();
+	    		   List<Integer> low = new ArrayList<Integer>();
+	    		   List<Integer> none = new ArrayList<Integer>();
+	    		   for (Map.Entry<String, Integer> e : options.entrySet())
+	    		   {
+	    			   //If it has 4 ticks in SURE then its a RC
+	    			   if(e.getValue()!=4)
+	    			   {
+	    				   String s2 = e.getKey();
+	    				   //Remove first : from options answer
+	    				   int m = s2.indexOf(":");
+	    				   if(m==-1)
+	    					   continue;
+	   	    			   String s = s2.substring(0, m)+s2.substring(m+1, s2.length());
+	    				   if(hml.get(s)=="High")
+	    				   {
+	    					   if(newData1.indexOf(s+ " High")>-1)
+	    						   high.add(newData1.indexOf(s+ " High"));
+	    					   if(newData1.indexOf(s+ "\n"+"High")>-1)
+	    						   high.add(newData1.indexOf(s+ "\n"+"High"));
+	    				   }
+	    				   if(hml.get(s)=="Medium")
+	    				   {
+	    					   if(newData1.indexOf(s+ " Medium")>-1)
+	    						   high.add(newData1.indexOf(s+ " Medium"));
+	    					   if(newData1.indexOf(s+ "\n"+"Medium")>-1)
+	    						   high.add(newData1.indexOf(s+ "\n"+"Medium"));
+	    				   }
+	    				   if(hml.get(s)=="Low")
+	    				   {
+	    					   if(newData1.indexOf(s+ " Low")>-1)
+	    						   high.add(newData1.indexOf(s+ " Low"));
+	    					   if(newData1.indexOf(s+ "\n"+"Low")>-1)
+	    						   high.add(newData1.indexOf(s+ "\n"+"Low"));
+	    				   }
+	    				   if(hml.get(s)=="")
+	    				   {
+	    					   none.add(newData1.indexOf(s));
+	    				   }
+	    			   }    			   
+	    		   }
+	    		   //Sort the lists
+	    		   Collections.sort(high);
+	    		   Collections.sort(medium);
+	    		   Collections.sort(low);
+	    		   Collections.sort(none);
+	    		   System.out.println(high);
+		    	   System.out.println(medium);
+		    	   System.out.println(low);
+		    	   System.out.println(none);
+		    	   //Verify the importance order
+		    		if(medium.size()>0 && high.size()>0)
+		    		{
+		    			if(high.get(high.size()-1)>medium.get(0))
+		    				softly.fail("Medium cf are before High cf");
+		    		}
+		    			
+		    		if(low.size()>0 && medium.size()>0)
+		    		{
+		    			if(medium.get(medium.size()-1)>low.get(0))
+		    				softly.fail("Low cf are before Medium cf");
+		    		}
+		    		if(none.size()>0 && low.size()>0)
+		    		{
+		    			if(low.get(low.size()-1)>none.get(0))
+		    				softly.fail("None cf are before Low cf");
+		    		}
+	    	   }
+		}
+		
+		public void checkOrderHMLRC(HashMap<String,String> hml, HashMap<String,Integer> options, String newData1) {
+			
+			if(options.get("Root causes")>0)
+	    	{
+	    		List<Integer> high = new ArrayList<Integer>();
+	    		List<Integer> medium = new ArrayList<Integer>();
+	    		List<Integer> low = new ArrayList<Integer>();
+	    		List<Integer> none = new ArrayList<Integer>();
+	    		for (Map.Entry<String, Integer> e : options.entrySet())
+	    		{
+	    		   //If it has 4 ticks in SURE then its a RC
+	    		   if(e.getValue()==4)
+	    		   {
+	    			   String s2 = e.getKey();
+    				   //Remove first : from options answer
+    				   int m = s2.indexOf(":");
+    				   if(m==-1)
+    					   continue;
+   	    			   String s = s2.substring(0, m)+s2.substring(m+1, s2.length());
+   	    			if(hml.get(s)=="High")
+ 				   {
+ 					   if(newData1.indexOf(s+ " High")>-1)
+ 						   high.add(newData1.indexOf(s+ " High"));
+ 					   if(newData1.indexOf(s+ "\n"+"High")>-1)
+ 						   high.add(newData1.indexOf(s+ "\n"+"High"));
+ 				   }
+ 				   if(hml.get(s)=="Medium")
+ 				   {
+ 					   if(newData1.indexOf(s+ " Medium")>-1)
+ 						   high.add(newData1.indexOf(s+ " Medium"));
+ 					   if(newData1.indexOf(s+ "\n"+"Medium")>-1)
+ 						   high.add(newData1.indexOf(s+ "\n"+"Medium"));
+ 				   }
+ 				   if(hml.get(s)=="Low")
+ 				   {
+ 					   if(newData1.indexOf(s+ " Low")>-1)
+ 						   high.add(newData1.indexOf(s+ " Low"));
+ 					   if(newData1.indexOf(s+ "\n"+"Low")>-1)
+ 						   high.add(newData1.indexOf(s+ "\n"+"Low"));
+ 				   }
+ 				   if(hml.get(s)=="")
+ 				   {
+ 					   none.add(newData1.indexOf(s));
+ 				   }	    			   
+	    		   }    		    		   
+	    		}
+	    		//Sort the lists
+	    		Collections.sort(high);
+	    		Collections.sort(medium);
+	    		Collections.sort(low);
+	    		Collections.sort(none);
+	    		System.out.println(high);
+	    		System.out.println(medium);
+	    		System.out.println(low);
+	    		System.out.println(none);
+	    		//Verify the importance order
+	    		if(medium.size()>0 && high.size()>0)
+	    		{
+	    			if(high.get(high.size()-1)>medium.get(0))
+	    				softly.fail("Medium rc are before High rc");
+	    		}	    			
+	    		if(low.size()>0 && medium.size()>0)
+	    		{
+	    			if(medium.get(medium.size()-1)>low.get(0))
+	    				softly.fail("Low rc are before Medium rc");
+	    		}
+	    		if(none.size()>0 && low.size()>0)
+	    		{
+	    			if(low.get(low.size()-1)>none.get(0))
+	    				softly.fail("None rc are before Low rc");
+	    		}
+	    	}
 		}
 	    
 	    public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
@@ -283,59 +494,59 @@ public class OPiRCA {
 			//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	    	//Clicks on share button
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareButton)).click();
 			//Enters username
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareTextBox)).sendKeys(sharer);
 	    	//Selects from dropdown
-			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-			dropdown.findElement(By.cssSelector(".ui-first-child")).click();
+			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareDropdown));
+			dropdown.findElement(FirstSelectionUnderDropdown).click();
 			//Clicks on add user
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 			//Verifies user added
-			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
+			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(SharerAdded)).getText();
 			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 			ShareCheck obj1 = new ShareCheck();
 			obj1.shareTwice (driver);
 			//Clicks on save
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
 			//Wait for loading message to disappear
 			obj1.loadingServer(driver);
 			 //Checks the username of creator
-			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div/table/tbody/tr[6]/td[2]")));
+			 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(UserNameDisplayInReport));
 			 String creatorUsername= creator.getText();
 			 System.out.println(creatorUsername);
 			 softly.assertThat(creatorUsername).as("test data").isEqualTo(username);
 			//Calls the Share check function
 			obj1.receiptReport(driver, sharer, username, password1);
 			//Clicks on OPiRCA side panel
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-opa"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASidePanel)).click();
 			//Wait for loading message to disappear
 			obj1.loadingServer(driver);
 		    //Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	    }
 	    
 	    public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on mark critical
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 	    	//Clicks on confirm change
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 			//Checks if marked critical
-			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong"))).getText();
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(OPIRCAMarkCriticalIndicatorText)).getText();
 			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
+			if(driver.findElement(OPIRCAMarkCriticalIndicatorText).isDisplayed())
 				System.out.println("Marked critical");
 			//Clicks on mark critical again
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 	    	//Clicks on confirm change
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 			Thread.sleep(2000);
-			if(driver.findElement(By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
+			if(driver.findElement(OPIRCAMarkCriticalIndicatorText).isDisplayed()==false)
 			{
 				System.out.println("Unmarked critical");
 			}
@@ -345,7 +556,7 @@ public class OPiRCA {
 			ShareCheck obj1 = new ShareCheck();
 			obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 			//Clicks on O&PiRCA side panel
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-opa"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASidePanel)).click();
 			//Wait for loading message to disappear
 			obj1.loadingServer(driver);	    					
 	    }
@@ -361,7 +572,7 @@ public class OPiRCA {
 	    	List<String> hircaL3 = new ArrayList<String>();
 	    	for(int i=1;i<=n;i++)
 	    	{
-	    		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-step1-select-menu")));
+	    		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuPopup));
 	    		int y;
 	    		//Choose a number between 1 and 31
 	    		while(true)
@@ -394,7 +605,7 @@ public class OPiRCA {
     		jse.executeScript("scroll(0,0)");
     		Thread.sleep(2000);
 	    	//Close the pop up
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-step1-select-dialog']/div/div[1]/a"))).click();	    	
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuCloseButton)).click();	    	
 	    	return hircaL3;
 	    }
 	    
@@ -485,7 +696,7 @@ public class OPiRCA {
 	    		jse.executeScript("scroll(0,0)");
 	    		Thread.sleep(2000);
 	    		//Click on next
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-next"))).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
 	    	}	    	
 	    	return ac;
 	    }
@@ -623,10 +834,16 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	//create a new list without the unselected hirca level 3 option
+	    	List<String> hircaNewList = new ArrayList<String>(hircaL3);
 	    	//Click on Step 1 tab
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-1"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep1Tab)).click();
+	    	if(hircaL3.size()<0)
+	    	{
+	    		return hircaNewList;
+	    	}
 	    	//Click on dropdown field
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-step1-select-button"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuButton)).click();
 	    	//Choose a number between 0 and hircaL3.size()-1
 	    	Random random = new Random();
 	    	int n = random.nextInt(hircaL3.size());
@@ -644,13 +861,9 @@ public class OPiRCA {
     		jse.executeScript("scroll(0,0)");
     		Thread.sleep(2000);
 	    	//Close the pop up
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-step1-select-dialog']/div/div[1]/a"))).click();
-	    	//create a new list without the unselected hirca level 3 option
-	    	List<String> hircaNewList = new ArrayList<String>(hircaL3);
-	    	System.out.println(hircaNewList);
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuCloseButton)).click();
 	    	//remove the unselected option from list
 	    	hircaNewList.remove(n);
-	    	System.out.println(hircaNewList);
 	    	return hircaNewList;
 	    }
 	    
@@ -703,47 +916,205 @@ public class OPiRCA {
 	    	return ac1;
 	    }
 	    
-	    public void verifyHTML(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception{
+	    public void verifyHTML(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception{
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 			//Clicks on first newly created record
-		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();	
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();	
 			//Wait for loading message to disappear
 			obj.loadingServer(driver);
-			//Verify Contributing factors
-			//Create a list to store contributing factors
-			List<String> list1 = new ArrayList<String>();
-			int i=1;
-			while (true)
+			//Number of root cause and contributing factors
+			int rc,cf;
+			if(apparentCausesAnswersNew.size()>0)
 			{
-				try{
-					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div[5]/table/tbody/tr["+i+"]/td[1]")).getText();
-					list1.add(s);
-					i=i+1;
-				}catch(NoSuchElementException e)
-				{
-					break;
-				}
+				rc = options.get("Root causes");
+				//Get number of contributing factors
+				cf = apparentCausesAnswersNew.size()-rc;				
 			}
-			System.out.println(apparentCausesAnswersNew);
-			//Verify if contributing factor list is same as new apparent cause answer list
-			softly.assertThat(list1).as("test data").containsAll(apparentCausesAnswersNew);
-			/*if(list1.equals(apparentCausesAnswersNew)==false)
+			else
 			{
-				softly.fail("Lists do not match \n"+list1+ "\n"+apparentCausesAnswersNew);
-				System.out.println(list1.removeAll(apparentCausesAnswersNew));
-			}*/
-			//Empty list1
-			list1.clear();
+				rc=0;
+				cf=0;
+			}
+			//When no root causes present
+			if (rc==0)
+			{
+				//Verify Root cause as n/a
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANoRCField1)).getText();
+				softly.assertThat(s).as("test data").isEqualTo("n/a");
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANoRCField2)).getText();
+				softly.assertThat(s1).as("test data").isEqualTo("n/a");
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANoRCField3)).getText();
+				softly.assertThat(s2).as("test data").isEqualTo("n/a");		
+			}
+			//Also checks if High Medium Low order is correct in Level 3 answers
+			int b=4;
+			//When root cause is present
+			for (int i=4;i<=rc+3;i++)
+			{
+				//Get name of level 3 answer
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+i+"]/table[1]/tbody/tr/td[1]"))).getText();
+				//Verify if this level 3 answer was selected
+				if(apparentCausesAnswersNew.contains(s)==false)
+				{
+					softly.fail("Apparent cause answer is not suppose to be here: "+s);
+				}
+				//Add : 
+				int m = s.indexOf(" ");
+    			if(Character.isDigit(s.charAt(m-1))==true)
+    			{
+    				String s1 = s.substring(0, m)+": "+s.substring(m+1, s.length());
+    				//Check if it has 4 boxes ticked
+    				if(options.get(s1)!=4)
+    				{
+    					softly.fail("Not a root cause, Not all four boxes are ticked, only some are: "+ options.get(s));
+    				}
+    				
+    			}  
+				//Get importance and verify
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+i+"]/table[1]/tbody/tr/td[2]"))).getText();
+				//Verify high medium low
+				softly.assertThat(s1).as("test data").isEqualTo(hml.get(s));	
+				//Verify order of High Medium Low
+				if(s1.equals("High"))
+				  {
+					  if(b>3||b==3)
+					  {
+						  b=3;
+						  System.out.println("Order is correct:High");
+					  }
+					  if(b<3)
+						  softly.fail("Currently in High Block: Order is wrong");
+				  }
+				if(s1.equals("Medium"))
+				  {
+					  if(b>2||b==2)
+					  {
+						  b=2;
+						  System.out.println("Order is correct:Medium");
+					  }
+					  if(b<2)
+						  softly.fail("Currently in Medium Block: Order is wrong");
+				  }
+				if(s1.equals("Low"))
+				  {
+					  if(b>1||b==1)
+					  {
+						  b=1;
+						  System.out.println("Order is correct:Low");
+					  }
+					  if(b<1)
+						  softly.fail("Currently in Low Block: Order is wrong");
+				  }
+				if(s1.equals("")||s1==""||s1.equals(null))
+				  {
+					  if(b>0||b==0)
+					  {
+						  b=0;
+						  System.out.println("Order is correct:None");
+					  }
+					  if(b<0)
+						  softly.fail("Currently in None Block: Order is wrong");
+				  }
+			}
+			if(rc==0)
+			{
+				//Because there will be a div with Root Cause as n/a
+				rc=rc+1;
+			}	
+			//When no contributing factors present
+			if(cf==0)
+			{
+				//Verify Contributing factors as n/a
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[1]"))).getText();
+				softly.assertThat(s).as("test data").isEqualTo("n/a");
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[2]"))).getText();
+				softly.assertThat(s1).as("test data").isEqualTo("n/a");
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[3]"))).getText();
+				softly.assertThat(s2).as("test data").isEqualTo("n/a");					
+			}
+			//When contributing factors are present
+			int i=1;
+			b=4;
+			while(i<=cf)
+			{
+				//Get name of level 3 answer
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
+				//Verify if this level 3 answer was selected
+				if(apparentCausesAnswersNew.contains(s)==false)
+				{
+					softly.fail("Apparent cause answer is not suppose to be here: "+s);
+				}
+				//Add : 
+				int m = s.indexOf(" ");
+    			if(Character.isDigit(s.charAt(m-1))==true)
+    			{
+    				String s1 = s.substring(0, m)+": "+s.substring(m+1, s.length());
+    				//Check if it has 4 boxes ticked
+    				if(options.get(s1)==4)
+    				{
+    					softly.fail("Not a contributing factor, All four boxes are ticked, only some should be: "+ options.get(s));
+    				}    				
+    			} 				
+				//Get importance and verify
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[2]"))).getText();
+				//Verify high medium low
+				softly.assertThat(s1).as("test data").isEqualTo(hml.get(s));
+				//Increase i for next cf
+				i=i+1;
+				//Verify order of High Medium Low
+				if(s1.equals("High"))
+				  {
+					  if(b>3||b==3)
+					  {
+						  b=3;
+						  System.out.println("Order is correct:High");
+					  }
+					  if(b<3)
+						  softly.fail("Currently in High Block: Order is wrong");
+				  }
+				if(s1.equals("Medium"))
+				  {
+					  if(b>2||b==2)
+					  {
+						  b=2;
+						  System.out.println("Order is correct:Medium");
+					  }
+					  if(b<2)
+						  softly.fail("Currently in Medium Block: Order is wrong");
+				  }
+				if(s1.equals("Low"))
+				  {
+					  if(b>1||b==1)
+					  {
+						  b=1;
+						  System.out.println("Order is correct:Low");
+					  }
+					  if(b<1)
+						  softly.fail("Currently in Low Block: Order is wrong");
+				  }
+				if(s1.equals("")||s1==""||s1.equals(null))
+				  {
+					  if(b>0||b==0)
+					  {
+						  b=0;
+						  System.out.println("Order is correct:None");
+					  }
+					  if(b<0)
+						  softly.fail("Currently in None Block: Order is wrong");
+				  }
+			}
+			//Create a list
+			List<String> list1 = new ArrayList<String>();
 			//Verify Selected HiRCA Results
 			i=1;
 			while (true)
 			{
 				try{
-					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[1]/td[1]/ul/li["+i+"]")).getText();
+					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+5)+"]/table/tbody/tr[1]/td[1]/ul/li["+i+"]")).getText();
 					//Remove first appearing : and store in list, since hirca new list doesnt have : after the numbering
 	    			int m = s.indexOf(":");
 	    			String s1 = s.replace(Character.toString(s.charAt(m)), "");
@@ -756,8 +1127,6 @@ public class OPiRCA {
 			}
 			//Verify if Selected HiRCA Results list is same as new hirca list
 			softly.assertThat(list1).as("test data").containsAll(hircaNewList);
-			/*if(list1.equals(hircaNewList)==false)
-				softly.fail("Lists do not match \n"+list1+ "\n"+hircaNewList);*/
 			//Empty list1
 			list1.clear();
 			//Verify Apparent O&P causes
@@ -765,7 +1134,7 @@ public class OPiRCA {
 			while (true)
 			{
 				try{
-					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[1]/td[2]/ul/li["+i+"]")).getText();
+					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+5)+"]/table/tbody/tr[1]/td[2]/ul/li["+i+"]")).getText();
 					list1.add(s);
 					i=i+1;
 				}catch(NoSuchElementException e)
@@ -775,8 +1144,6 @@ public class OPiRCA {
 			}
 			//Verify if Apparent O&P causes list is same as new apparent causes list
 			softly.assertThat(list1).as("test data").containsAll(apparentCausesNew);
-			/*if(list1.equals(apparentCausesNew)==false)
-				softly.fail("Lists do not match \n"+list1+ "\n"+apparentCausesNew);*/
 			//Empty list1
 			list1.clear();
 			//Verify Possible contributing factors
@@ -784,7 +1151,7 @@ public class OPiRCA {
 			while (true)
 			{
 				try{
-					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[1]")).getText();
+					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[1]")).getText();
 					list1.add(s);
 					i=i+1;
 				}catch(NoSuchElementException e)
@@ -794,8 +1161,6 @@ public class OPiRCA {
 			}
 			//Verify if Possible contributing factors or Apparent causes answers list is same as new apparent causes answers list
 			softly.assertThat(list1).as("test data").containsAll(apparentCausesAnswersNew);
-			/*if(list1.equals(apparentCausesAnswersNew)==false)
-				softly.fail("Lists do not match \n"+list1+ "\n"+apparentCausesAnswersNew);*/
 			//Empty list1
 			list1.clear();
 			//Verify contributing factors under SURE
@@ -803,7 +1168,7 @@ public class OPiRCA {
 			while (true)
 			{
 				try{
-					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div[8]/table/tbody/tr["+i+"]/td[1]")).getText();
+					String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td[1]")).getText();
 					list1.add(s);
 					i=i+1;
 				}catch(NoSuchElementException e)
@@ -813,20 +1178,296 @@ public class OPiRCA {
 			}			
 			//Verify if Possible contributing factors or Apparent causes answers list is same as new apparent causes answers list
 			softly.assertThat(list1).as("test data").containsAll(apparentCausesAnswersNew);
-			/*if(list1.equals(apparentCausesAnswersNew)==false)
-				softly.fail("Lists do not match \n"+list1+ "\n"+apparentCausesAnswersNew);*/
 			//Empty list1
 			list1.clear();
 	    }
+	    
+	    public void verifySURE(WebDriver driver) throws Exception{
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Verify SURE title
+			String title = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+			softly.assertThat(title).as("test data").contains("Step 3 - Root Causes Determination Checklist (SURE");
+			//Verify SURE full form
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(SField)).getText();
+			softly.assertThat(s1).as("test data").isEqualTo("S: Substandard Practice?");
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(UField)).getText();
+			softly.assertThat(s2).as("test data").isEqualTo("U: Under Management Control?");
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(RField)).getText();
+			softly.assertThat(s3).as("test data").isEqualTo("R: Reduce Probability Significantly?");
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EField)).getText();
+			softly.assertThat(s4).as("test data").isEqualTo("E: Not an Effect of Other Contributing Factors?");
+	    }
+	    
+	    public HashMap<String,Integer>  markSUREStep3(WebDriver driver, List<String> apparentCausesAnswersNew) throws Exception{
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	//Scroll to top
+			Thread.sleep(2000);
+    		jse.executeScript("scroll(0,0)");
+    		Thread.sleep(2000);
+    		//Verify SURE
+    		verifySURE(driver);
+    		//Hashmap for storing number of SURE checkboxes ticked
+    		HashMap<String,Integer> options = new HashMap<String,Integer> ();
+    		//Get size of Apparent Causes Answers
+    		int n=apparentCausesAnswersNew.size();
+    		if (n<1)
+    			return options;
+    		//Row no starts from 2
+    		//Count for root causes
+    		int r=0;
+    		for(int i =2;i<=n+1;i++)
+    		{
+    			//Get text of apparent answer
+    			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
+    			//Click on random SURE
+    			Random random = new Random();
+    			//Choose a number between 0 and 4 for number of selections
+    			int num=random.nextInt(5);
+    			if (num==4)
+    				r=r+1;
+    			//Store no of SURE checkboxes in hashmap: key=level 3 answer, value = no of sure checks
+    			options.put(s, num);
+    			for (int j=1;j<=num;j++)
+    			{
+    				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input")));
+    				//Scroll to element
+    	    		Point p = l.getLocation();
+    	    		int yaxis= p.getY()-250;
+    	    		Thread.sleep(1000);
+    	    		jse.executeScript("scroll(0,"+yaxis+")");
+    	    		Thread.sleep(1000);
+    				//Click on checkbox of SURE
+    				l.click();
+    			}
+    		}
+    		//Add no of root causes in hashmap
+    		options.put("Root causes",r);
+    		System.out.println(options);
+    		//Scroll up
+    		jse.executeScript("scroll(0,0)");
+    		Thread.sleep(2000);
+    		return options;
+	    }
+	    
+	    public void clickNextSkip(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASkipButton)).getAttribute("class");
+			Thread.sleep(2000);
+			if(skip.contains("ui-state-disabled"))
+			{
+				//Click on next
+				wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
+			}
+			else
+			{
+				//Click on skip
+				wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASkipButton)).click();
+			}
+	    }
+	    
+		public HashMap<String,String> markHML(WebDriver driver,HashMap<String,Integer>options,List<String>apparentCausesAnswersNew) throws Exception {
+			
+			WebDriverWait wait = new WebDriverWait(driver,10);
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			//Verify title
+			String title = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+			softly.assertThat(title).as("test data").contains("Step 4 - Level of Importance Attribution For Root Causes & Contributing Factors");
+			//Hashmap for storing HML for root cause and contributing factors
+			HashMap<String,String> hml= new HashMap<String,String>();
+			//No Level 3 selected then return
+			if(apparentCausesAnswersNew.size()==0)
+			{
+				System.out.println("No root causes or contributing factors");
+				return hml;
+			}
+			//Get number of Root causes in Level 3 answers
+			int count = options.get("Root causes");
+			System.out.println("No of root causes:"+count);
+			//Gets number of contributing factors
+			int count1 = apparentCausesAnswersNew.size()-count;
+			System.out.println("No of contributing factors:"+count1);		
+			//tr starts at 2 and each root cause has 4 four rows
+			int i=2;
+			//Verify if any root causes are appearing
+			while(i<=((count*3)+1))
+			{
+				//Get name of level 3 answer
+				String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
+				//Remove the 1st : from level 3
+				//Remove first appearing : and store in list
+    			int m = level3.indexOf(":");
+    			String s2 = level3.substring(0, m)+level3.substring(m+1, level3.length());
+				//Verify if this level 3 answer was selected
+				if(apparentCausesAnswersNew.contains(s2)==false)
+				{
+					softly.fail("Apparent Cause Answer is not suppose to be here: "+level3);
+				}
+				//Check if it has 4 boxes ticked
+				if(options.get(level3)!=4)
+				{
+					softly.fail("Not all four boxes are ticked, only some are: "+ options.get(level3));
+				}
+				//Check if Apparent Cause answer is root cause
+				String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div/input"))).getAttribute("checked");
+				softly.assertThat(lop1).as("test data").isEqualTo("true");
+				//Check if Apparent Cause answer is not a contributing factor
+				String lop4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("disabled");
+				softly.assertThat(lop4).as("test data").isEqualTo("true");
+				//HML random select
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
+				//Scroll down to HML row
+	    		Point p = ele.getLocation();
+	    		int yaxis= p.getY()-250;
+	    		Thread.sleep(1000);
+	    		jse.executeScript("scroll(0,"+yaxis+")");
+	    		Thread.sleep(1000);
+				//Select a number between 0 to 3 for H,M,L
+				Random random =new Random();
+				int y=random.nextInt(4);
+				if(y==1)
+				{
+				  //Click on H
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+				  String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+				  softly.assertThat(lop2).as("test data").isEqualTo("H");
+				  //Insert in hashmap answer and hml
+				  hml.put(s2, "High");
+				}
+				if(y==2)
+				{
+				  //Click on M
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+				  String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+				  softly.assertThat(lop2).as("test data").isEqualTo("M");
+				  //Insert in hashmap answer and hml
+				  hml.put(s2, "Medium");
+				}
+				if(y==3)
+				{
+				  //Click on L
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+				  String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+				  softly.assertThat(lop2).as("test data").isEqualTo("L");
+				  //Insert in hashmap answer and hml
+				  hml.put(s2, "Low");
+				}
+				if(y==0)
+				{
+					//Insert in hashmap answer and hml
+					hml.put(s2, "");
+				}
+				//Increase i for extra root cause text boxes
+				i=i+1;
+				//Increase i for changing corrective actions
+				i=i+1;
+				//Increase i for next root cause
+				i=i+1;
+			}
+			//Verifies if any contributing factors
+			//tr starts at 2 and each root cause has 4 four rows
+			System.out.println("Starting row of contributing factors:"+i);
+			int start =i-1;
+			//Verify if any contributing factors are appearing
+			while(i<=((count1*2)+start))
+			{
+				//Get name of level 3 answer
+				String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
+				//Remove the 1st : from level 3
+				//Remove first appearing : and store in list
+    			int m = level3.indexOf(":");
+    			String s2 = level3.substring(0, m)+level3.substring(m+1, level3.length());
+    			//Verify if this level 3 answer was selected
+				if(apparentCausesAnswersNew.contains(s2)==false)
+				{
+					softly.fail("Level 3 is not suppose to be here: "+s2);
+				}
+				//Check if it has 4 boxes ticked
+				if(options.get(level3)>3)
+				{
+					softly.fail("All four boxes are ticked"+ options.get(level3));
+				}
+				//Check if Level 3 is contributing factors
+				String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
+				softly.assertThat(lop1).as("test data").isEqualTo("true");
+				//Check if Level 3 is not a root cause
+				String lop4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div/input"))).getAttribute("disabled");
+				softly.assertThat(lop4).as("test data").isEqualTo("true");
+				//HML random select
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
+				//Scroll down to HML row
+	    		Point p = ele.getLocation();
+	    		int yaxis= p.getY()-250;
+	    		Thread.sleep(1000);
+	    		jse.executeScript("scroll(0,"+yaxis+")");
+	    		Thread.sleep(1000);
+				//Select a number between 0 to 3 for H,M,L
+				Random random =new Random();
+				int y=random.nextInt(4);
+				if(y==1)
+				{
+				  //Click on H
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+				  String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+				  softly.assertThat(lop2).as("test data").isEqualTo("H");
+				  //Insert in hashmap answer and hml
+				  hml.put(s2, "High");
+				}
+				if(y==2)
+				{
+				  //Click on M
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+				  String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+				  softly.assertThat(lop2).as("test data").isEqualTo("M");
+				  //Insert in hashmap answer and hml
+				  hml.put(s2, "Medium");
+				}
+				if(y==3)
+				{
+				  //Click on L
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+				  String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+				  softly.assertThat(lop2).as("test data").isEqualTo("L");
+				  //Insert in hashmap answer and hml
+				  hml.put(s2, "Low");
+				}
+				if(y==0)
+				{
+					//Insert in hashmap answer and hml
+					hml.put(s2, "");
+				}
+				//Increase i for changing corrective actions
+				i=i+1;
+				//Increase i for next contributing factor
+				i=i+1;
+			}
+			//Scroll up
+			jse.executeScript("scroll(0,0)");
+			Thread.sleep(2000);
+			jse.executeScript("scroll(0,0)");
+			Thread.sleep(2000);
+			return hml;
+		}	    
 	    
 	    public void pathOPiRCA(WebDriver driver, String username) throws Exception{
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+			//Scroll down
+	    	Thread.sleep(1000);
+	    	jse.executeScript("scroll(0,1500)");	 
+	    	Thread.sleep(1000);
 	    	//Click next
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButtonAtBottomOfInfoTab)).click();
+	    	//Scroll top
+	    	Thread.sleep(1000);
+	    	jse.executeScript("scroll(0,0)");	 
+	    	Thread.sleep(1000);
 	    	//Click on dropdown field
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-step1-select-button"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuButton)).click();
 	    	//Select HiRCA options for level 3
 	    	List<String> hircaL3 = selectHiRCALevel3(driver);
 	    	//Store selected apparent causes in List
@@ -836,17 +1477,17 @@ public class OPiRCA {
 	    	if(hircaL3.isEmpty())
 	    	{
 	    		//Click on skip if no selections made
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-skip"))).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASkipButton)).click();
 	    	}
 	    	else
 	    	{
 	    		//Click on next
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-next"))).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
 	    	}
 	    	if(apparentCauses.isEmpty()==true)
 	    	{
 	    		//Click on skip if no selections made
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-skip"))).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASkipButton)).click();
 	    	}
 	    	//If any apparent causes selected then click on them and store in a list
     		List<String> apparentCausesAnswers = selectApparentCausesAnswers(driver,apparentCauses);
@@ -854,7 +1495,7 @@ public class OPiRCA {
 	    	for (int i=0;i<12;i++)
 	    	{
 	    		//Click on skip
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-skip"))).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASkipButton)).click();
 	    	}
 	    	//Verify apparent causes selections
 	    	verifyApparentCauses(driver,apparentCausesAnswers);
@@ -864,12 +1505,24 @@ public class OPiRCA {
 	    	List<String> apparentCausesNew = storeApparentCauses(driver);
 	    	//Verify that apparent cause of only the selected HiRCA level 3 options are visible
 	    	verifyCorrespondingApparentCauses(driver,hircaNewList,apparentCausesNew);
+	    	//Scroll top
+	    	Thread.sleep(1000);
+	    	jse.executeScript("scroll(0,0)");	 
+	    	Thread.sleep(1000);
 	    	//Click on Step 3
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-3"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3Tab)).click();
 	    	/*Verify the new apparent causes answers
 	    	 * And
 	    	Get new apparent causes answers: remove unselected ones*/
 	    	List<String> apparentCausesAnswersNew = verifyModifiedStep3(driver,apparentCausesNew);	
+	    	//Select some checkboxes in Step 3 SURE
+	    	HashMap<String,Integer> options = markSUREStep3(driver,apparentCausesAnswersNew);
+	    	//Click skip or next
+	    	clickNextSkip(driver);
+	    	//Mark HML for all apparent causes answers
+	    	HashMap<String,String> hml = markHML(driver,options,apparentCausesAnswersNew);
+	    	//Click skip or next
+	    	clickNextSkip(driver);
 	    	//Scroll to top
 			Thread.sleep(2000);
     		jse.executeScript("scroll(0,0)");
@@ -878,13 +1531,13 @@ public class OPiRCA {
 			jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
 			//Clicks on save report
 			WebDriverWait wait1 = new WebDriverWait(driver,20);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-title")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle));
 			jse.executeScript("return document.getElementById('pii-opa-dialog-confirmed').click();");
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
 			//Clicks on Info tab
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-0"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoTab)).click();
 			//Creates the expected name of record
-			String creationDate = driver.findElement(By.id("pii-opa-event-repdatetime")).getAttribute("value");
+			String creationDate = driver.findElement(OPiRCAReportCreationDateTimeField).getAttribute("value");
 			String name = creationDate +"_"+ username + "_" + event_title;
 			System.out.println("Expected name of record: " + name);			  
 			//Click on saved activities
@@ -892,7 +1545,7 @@ public class OPiRCA {
 			Thread.sleep(3000);
 			//Clicks on O&P IRCA side panel
 			jse.executeScript("return document.getElementById('pii-user-home-panel-btn-opa').click();");
-			WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
+			WebElement record = driver.findElement(OPiRCAFirstRecord);
 			String recordName = record.getText();
 			if (record.isDisplayed())
 			{
@@ -902,15 +1555,15 @@ public class OPiRCA {
 			  System.out.println ("Record not found.");
 			softly.assertThat(name).as("test data").isEqualTo(recordName);
 			//Verify Apparent Causes in HTML
-			verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+			verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 			//Open report
 			openReport(driver);
 			//Download report
-			downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+			downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 			Thread.sleep(2000);
 	    }
 	    
-	    public void downloadSelectFunction (WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew) throws Exception {
+	    public void downloadSelectFunction (WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
 	    	
 	    	//deletes files in reports folder before starting to download
 	    	File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -924,15 +1577,15 @@ public class OPiRCA {
 		    System.out.println(v);
 		    //Download report to check pdf
 		    if (browserName.equals("chrome"))
-		    	downloadRecordChrome(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+		    	downloadRecordChrome(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		    if (browserName.equals("firefox"))
-		    	downloadRecordFirefox(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+		    	downloadRecordFirefox(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		    if (browserName.equals("internet explorer"))
 		    {
 		    	if (v.startsWith("10"))
-		    		downloadRecordIE10(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+		    		downloadRecordIE10(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		    	if (v.startsWith("11"))
-		    		downloadRecordIE11(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew);
+		    		downloadRecordIE11(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		    }
 	    }
 	    
@@ -942,47 +1595,47 @@ public class OPiRCA {
 	    	  //Clicks on O&P IRCA
 			  jse.executeScript("return document.getElementById('pii-a-menu-opirca').click();");
 			  //Fills the mandatory fields
-			  driver.findElement(By.id("pii-opa-event-title")).sendKeys(event_title);
-			  driver.findElement(By.id("pii-opa-event-location")).sendKeys("San Diego");
-			  driver.findElement(By.id("pii-opa-event-pbstatement")).sendKeys("Sanity Test");
-			  driver.findElement(By.id("pii-opa-event-events")).sendKeys("Sanity Test");
-			  driver.findElement(By.id("pii-opa-event-bginfos")).sendKeys("Sanity Test");
-			  driver.findElement(By.id("pii-opa-event-investigators")).sendKeys("Sanity Test");
-			  String ev1 = driver.findElement(By.id("pii-opa-event-title")).getAttribute("value");
-			  String ev2 = driver.findElement(By.id("pii-opa-event-location")).getAttribute("value");
-			  String ev3 = driver.findElement(By.id("pii-opa-event-pbstatement")).getAttribute("value");
-			  String ev4 = driver.findElement(By.id("pii-opa-event-events")).getAttribute("value");
-			  String ev5 = driver.findElement(By.id("pii-opa-event-bginfos")).getAttribute("value");
-			  String ev6 = driver.findElement(By.id("pii-opa-event-investigators")).getAttribute("value");
+			  driver.findElement(OPiRCAEventTitleField).sendKeys(event_title);
+			  driver.findElement(OPiRCAEventLocationField).sendKeys("San Diego");
+			  driver.findElement(OPiRCAProblemStatementField).sendKeys("Sanity Test");
+			  driver.findElement(OPiRCATimelineOfEventField).sendKeys("Sanity Test");
+			  driver.findElement(OPiRCABackgroundInfoField).sendKeys("Sanity Test");
+			  driver.findElement(OPiRCAInvestigatorsField).sendKeys("Sanity Test");
+			  String ev1 = driver.findElement(OPiRCAEventTitleField).getAttribute("value");
+			  String ev2 = driver.findElement(OPiRCAEventLocationField).getAttribute("value");
+			  String ev3 = driver.findElement(OPiRCAProblemStatementField).getAttribute("value");
+			  String ev4 = driver.findElement(OPiRCATimelineOfEventField).getAttribute("value");
+			  String ev5 = driver.findElement(OPiRCABackgroundInfoField).getAttribute("value");
+			  String ev6 = driver.findElement(OPiRCAInvestigatorsField).getAttribute("value");
 			  if ((ev1.equals(event_title)==false))
 			  {
-				  driver.findElement(By.id("pii-opa-event-title")).clear();
-				  driver.findElement(By.id("pii-opa-event-title")).sendKeys(event_title);
+				  driver.findElement(OPiRCAEventTitleField).clear();
+				  driver.findElement(OPiRCAEventTitleField).sendKeys(event_title);
 			  }
 			  if ((ev2.equals("San Diego")==false))
 			  {
-				  driver.findElement(By.id("pii-opa-event-location")).clear();
-				  driver.findElement(By.id("pii-opa-event-location")).sendKeys("San Diego");
+				  driver.findElement(OPiRCAEventLocationField).clear();
+				  driver.findElement(OPiRCAEventLocationField).sendKeys("San Diego");
 			  }
 			  if ((ev3.equals("Sanity Test")==false))
 			  {
-				  driver.findElement(By.id("pii-opa-event-pbstatement")).clear();
-				  driver.findElement(By.id("pii-opa-event-pbstatement")).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCAProblemStatementField).clear();
+				  driver.findElement(OPiRCAProblemStatementField).sendKeys("Sanity Test");
 			  }
 			  if ((ev4.equals("Sanity Test")==false))
 			  {
-				  driver.findElement(By.id("pii-opa-event-events")).clear();
-				  driver.findElement(By.id("pii-opa-event-events")).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCATimelineOfEventField).clear();
+				  driver.findElement(OPiRCATimelineOfEventField).sendKeys("Sanity Test");
 			  }
 			  if ((ev5.equals("Sanity Test")==false))
 			  {
-				  driver.findElement(By.id("pii-opa-event-bginfos")).clear();
-				  driver.findElement(By.id("pii-opa-event-bginfos")).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCABackgroundInfoField).clear();
+				  driver.findElement(OPiRCABackgroundInfoField).sendKeys("Sanity Test");
 			  }
 			  if ((ev6.equals("Sanity Test")==false))
 			  {
-				  driver.findElement(By.id("pii-opa-event-investigators")).clear();
-				  driver.findElement(By.id("pii-opa-event-investigators")).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCAInvestigatorsField).clear();
+				  driver.findElement(OPiRCAInvestigatorsField).sendKeys("Sanity Test");
 			  }
 			  //Step1 and KALE-1838
 			  pathOPiRCA(driver,username);			  

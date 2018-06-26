@@ -33,22 +33,48 @@ import com.google.common.collect.Iterables;
 public class EiRCA {
 	
 	SoftAssertions softly = new SoftAssertions();
+	private By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	private By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	private By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	private By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
+	private By ShareTextBox = By.id("pii-uhshare-search-input");
+	private By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
+	private By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
+	private By SharerAdded = By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a");
+	private By ShareSaveButton = By.id("pii-uhshare-save");
+	private By EiRCASidePanel = By.id("pii-user-home-panel-btn-mirca");
+	private By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
+	private By EiRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='mirca-rpt']/div/table/thead/tr/th/strong");
+	private By NextButtonBottomOfInfoPage = By.id("pii-ircam-tab-1-form-submit");
+	private By EiRCASaveButton = By.id("pii-ircam-save");
+	private By EiRCASavePopupTitle = By.id("pii-ircam-dialog-title");
+	private By EiRCASaveConfirmButton = By.id("pii-ircam-dialog-confirmed");
+	private By EiRCASavedActivitiesButton = By.id("pii-ircam-savedactivities");
+	private By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
+	private By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
+	private By EiRCAFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a");
+	private By StickyNote = By.className("sticky-note");
+	private By StickySuccess = By.className("sticky-success");
+	private By SequenceOfEventPageTitle = By.xpath(".//*[@id='mirca-rpt']/div[5]/div");
+	private By SequenceOfEventPageDateTimeTitle = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[1]");
+	private By SequenceOfEventPageWhatHappenedTitle = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[2]");
+	private By SequenceOfEventPageWhatShouldHappenTitle = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[3]");
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 		  
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Clicks on delete button
-		  driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
+		  driver.findElement(DeleteButton).click();
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle));
 		  //Clicks on delete report
 		  jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
 		  Thread.sleep(2000);
 		  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-mirca').click();");
 		  //Verify record deleted
 		  //Click on 1st record
-		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a")).getText();
+		  String name = driver.findElement(EiRCAFirstRecord).getText();
 		  System.out.println(name);
 		  if (name!=recordName)
 			  System.out.println("Record deleted");
@@ -65,17 +91,17 @@ public class EiRCA {
     	
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  //Clicks on first newly created record
-	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 	      ShareCheck obj1 = new ShareCheck();
 	      obj1.loadingServer(driver);
 	      //Verify Sequence of Events title
-	      String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/div"))).getText();
+	      String s = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageTitle)).getText();
 	      softly.assertThat(s).as("test data").isEqualTo("Sequence of Events");
-	      String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[1]"))).getText();
+	      String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageDateTimeTitle)).getText();
 	      softly.assertThat(s1).as("test data").isEqualTo(hm.get("date")+", "+hm.get("time"));
-	      String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[2]"))).getText();
+	      String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageWhatHappenedTitle)).getText();
 	      softly.assertThat(s2).as("test data").isEqualTo(hm.get("what happened"));
-	      String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr/td[3]"))).getText();
+	      String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageWhatShouldHappenTitle)).getText();
 	      softly.assertThat(s3).as("test data").isEqualTo(hm.get("what is supposed to happen"));	      
 	  }
 	  
@@ -110,25 +136,27 @@ public class EiRCA {
 		    softly.assertThat(newData1).as("test data").contains(hm.get("date")+", "+hm.get("time"));
 		    softly.assertThat(newData1).as("test data").contains(hm.get("what happened"));
 		    softly.assertThat(newData1).as("test data").contains(hm.get("what is supposed to happen"));
+		    //Close pdf
+		    pddoc.close();
 		}
 
 	   public void openReport(WebDriver driver) throws Exception{
 
 		  WebDriverWait wait1 = new WebDriverWait(driver,30);
 		  //Clicks on Open button
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 	      //Clicks on open report
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	      //Clicks on Save
-	      wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-save"))).click();
+	      wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveButton)).click();
 		  //Clicks on Save report
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-title"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-confirmed"))).click();
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavePopupTitle)).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveConfirmButton)).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(StickySuccess));
 		  Thread.sleep(1000);
 	      //Clicks on Saved activities
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-savedactivities"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();
 		  Thread.sleep(2000);
 	    }
 	   
@@ -140,16 +168,16 @@ public class EiRCA {
 	    	obj1.deleteFiles(file);
 		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 			String window = driver.getWindowHandle();
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(8000);
 	    	pdfCheck(hm);
 	    	for(String winHandle : driver.getWindowHandles()){
@@ -168,16 +196,16 @@ public class EiRCA {
 	    	obj1.deleteFiles(file);
 		    WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(8000);
 	    	for(String winHandle : driver.getWindowHandles()){
 	    	    driver.switchTo().window(winHandle);
@@ -208,16 +236,16 @@ public class EiRCA {
 	    	obj1.deleteFiles(file);
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(3000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
@@ -245,16 +273,16 @@ public class EiRCA {
 	    	obj1.deleteFiles(file);
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 			//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 			String window = driver.getWindowHandle();
 			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	    	Thread.sleep(3000);
 	    	try {
 				  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
@@ -285,53 +313,53 @@ public class EiRCA {
 			//Switches to the iframe
 			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	    	//Clicks on share button
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareButton)).click();
 			//Enters username
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareTextBox)).sendKeys(sharer);
 			Thread.sleep(2000);
 	    	//Selects from dropdown
-			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-			dropdown.findElement(By.cssSelector(".ui-first-child")).click();
+			WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareDropdown));
+			dropdown.findElement(FirstSelectionUnderDropdown).click();
 			//Clicks on add user
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 			//Verifies user added
-			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
+			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(SharerAdded)).getText();
 			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 			ShareCheck obj1 = new ShareCheck();
 			obj1.shareTwice (driver);
 			//Clicks on save
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
 			//Calls the Share check function
 			obj1.receiptReport(driver, sharer, username, password1);
 			//Clicks on EiRCA side panel
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-mirca"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASidePanel)).click();
 			//Wait for loading message to disappear
 			obj1.loadingServer(driver);
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 	    }
 	    
 	    public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 	    	
 	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
 	    	//Clicks on mark critical
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 	    	//Clicks on confirm change
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 			//Checks if marked critical
-			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div/table/thead/tr/th/strong"))).getText();
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAMarkCriticalIndicatorText)).getText();
 			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(By.xpath(".//*[@id='mirca-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
+			if(driver.findElement(EiRCAMarkCriticalIndicatorText).isDisplayed())
 				System.out.println("Marked critical");
 			//Clicks on mark critical again
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 	    	//Clicks on confirm change
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 			Thread.sleep(2000);
-			if(driver.findElement(By.xpath(".//*[@id='mirca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
+			if(driver.findElement(EiRCAMarkCriticalIndicatorText).isDisplayed()==false)
 			{
 				System.out.println("Unmarked critical");
 			}
@@ -341,11 +369,11 @@ public class EiRCA {
 			ShareCheck obj1 = new ShareCheck();
 			obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 			//Clicks on EiRCA side panel
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-mirca"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASidePanel)).click();
 			//Wait for loading message to disappear
 			obj1.loadingServer(driver);
 	    	//Clicks on first newly created record
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
+	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 	    }
 	    
 	    public void verifyProbStatementPlaceHolder(WebDriver driver) throws Exception {
@@ -639,17 +667,26 @@ public class EiRCA {
 	    	//Click on cross symbol of 2nd event row
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[2]/td[6]/a"))).click();
 	    	//Click delete button
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-confirmed"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveConfirmButton)).click();
 	    }
 	    
 	    public HashMap<String,String> pathEiRCASequenceOfEvents(WebDriver driver) throws Exception {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	//Scroll to the bottom
+	    	Thread.sleep(2000);
+    		jse.executeScript("scroll(0,1200)");
+    		Thread.sleep(2000);
 	    	//Click next
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-form-submit"))).click();
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(NextButtonBottomOfInfoPage)).click();
 	    	Thread.sleep(2000);
 	    	//Waits for the page to load
 		    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		    //Scroll to the top
+	    	Thread.sleep(2000);
+    		jse.executeScript("scroll(0,0)");
+    		Thread.sleep(2000);
 		    //Verify text in Sequence of Events
 		    verifySequenceOfEvents(driver);
 		    //Get list of text
@@ -776,10 +813,10 @@ public class EiRCA {
 			  jse.executeScript("return document.getElementById('pii-ircam-save').click();");
 			  //Clicks on Save Report button
 			  WebDriverWait wait1 = new WebDriverWait(driver,10);
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-dialog-title"))).click();
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavePopupTitle)).click();
 			  jse.executeScript("return document.getElementById('pii-ircam-dialog-confirmed').click();");
 			  //Waits for the green popup on the right top corner
-			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  wait1.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
 			  //Clicks on info tab
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam-tab-1-a"))).click();
 			  //Gets the value from the text field report creation date
@@ -793,7 +830,7 @@ public class EiRCA {
 			  jse.executeScript("return document.getElementById('pii-user-home-panel-btn-mirca').click();");
 			  Thread.sleep(2000);
 			  //Gets the name of the record created
-			  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
+			  WebElement record = driver.findElement(EiRCAFirstRecord);
 			  String recordName = record.getText();
 			  if (record.isDisplayed())
 			  {

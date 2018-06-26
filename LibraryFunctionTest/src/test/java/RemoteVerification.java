@@ -811,6 +811,8 @@ public class RemoteVerification {
 	      //Checks verification details
 	      details=details.replace("  ", " ");
 	      softly.assertThat(details).as("test data").isSubstringOf(newData);
+	      //Close pdf
+		  pddoc.close();
 	  }
 	 
 	 public List<RenderedImage> getImagesFromPDF(PDDocument document) throws IOException {

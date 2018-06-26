@@ -101,6 +101,7 @@ public class IETest {
 		obj1.logoutLogin(driver, obj, obj1.company_id2DevAsia, password);
 		//Get the list of all modules under PII group
 		String [] op = obj1.allModuleList();
+		login = 0;
 		//Check access to all modules
 		obj1.checkAccess(driver, login, op);
 		//Logout as new user of company 2, login as Admin

@@ -71,7 +71,12 @@ public class UserManagement {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on admin user name on top right corner
+		try{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		}catch(org.openqa.selenium.UnhandledAlertException t)
+		{
+			driver.switchTo().alert().dismiss();
+		}
 		//Click on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
 		if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
@@ -1985,9 +1990,7 @@ public class UserManagement {
 				WebDriverWait wait2 = new WebDriverWait(driver,20);
 				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
-		}catch (NoSuchElementException r){
-			throw r;
-		}catch (org.openqa.selenium.TimeoutException r){
+		}catch (NoSuchElementException|org.openqa.selenium.TimeoutException r){
 			throw r;
 		}
 		List<String>f = Arrays.asList(op);
