@@ -607,7 +607,12 @@ public class IETest {
 			  }
 			  
 			  String img = "pii-irca-event-file-img-"+j;
+			  try{
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+			}catch(org.openqa.selenium.TimeoutException b)
+			{
+
+			}
 			  if(driver.findElement(By.id(img)).isDisplayed())
 			  {
 				  System.out.println("Picture uploaded "+(j+1));
