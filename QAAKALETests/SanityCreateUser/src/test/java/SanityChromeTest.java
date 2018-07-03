@@ -630,6 +630,8 @@ public class SanityChromeTest {
 		{
 						  
 		}
+		//Mark all messages in inbox as read
+		  emailMarkRead();		
 		//Clicks on reset password send email
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-resend-button"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();

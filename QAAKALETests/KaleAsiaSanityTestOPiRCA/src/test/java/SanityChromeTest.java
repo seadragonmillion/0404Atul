@@ -60,6 +60,7 @@ public class SanityChromeTest {
 		  Thread.sleep(5000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	      Thread.sleep(6000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
