@@ -982,11 +982,14 @@ public class SanityIETest {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		  //Enters company id in ID field 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
+		  Thread.sleep(1000);
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
-		  Thread.sleep(2000);
+		  Thread.sleep(1000);
 		  //Clicks on newly created company id
 		  driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		  Thread.sleep(2000);
 		  //Checks if company address has been edited
 		  String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
 		  softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");
