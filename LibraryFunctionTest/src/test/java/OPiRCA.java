@@ -36,57 +36,61 @@ public class OPiRCA {
 	SoftAssertions softly = new SoftAssertions();
 	String event_title = "Sanity Test";
 	
-	private By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
-	private By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
-	private By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
-	private By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
-	private By ShareTextBox = By.id("pii-uhshare-search-input");
-	private By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
-	private By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
-	private By SharerAdded = By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a");
-	private By UserNameDisplayInReport = By.xpath(".//*[@id='opa-rpt']/div/table/tbody/tr[6]/td[2]");
-	private By ShareSaveButton = By.id("pii-uhshare-save");
-	private By OPiRCASidePanel = By.id("pii-user-home-panel-btn-opa");
-	private By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
-	private By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
-	private By OPiRCASaveButton = By.id("efi-opa-button-save");
-	private By OPiRCASavePopupTitle = By.id("pii-opa-dialog-title");
-	private By OPiRCASaveConfirmButton = By.id("pii-opa-dialog-confirmed");
-	private By OPiRCASavedActivitiesButton = By.id("efi-opa-btn-savedactivities");
-	private By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
-	private By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
-	private By OPiRCAFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a");
-	private By StickyNote = By.className("sticky-note");
-	private By StickySuccess = By.className("sticky-success");
+	By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
+	By ShareTextBox = By.id("pii-uhshare-search-input");
+	By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
+	By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
+	By SharerAdded = By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a");
+	By UserNameDisplayInReport = By.xpath(".//*[@id='opa-rpt']/div/table/tbody/tr[6]/td[2]");
+	By ShareSaveButton = By.id("pii-uhshare-save");
+	By OPiRCASidePanel = By.id("pii-user-home-panel-btn-opa");
+	By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
+	By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
+	By OPiRCASaveButton = By.id("efi-opa-button-save");
+	By OPiRCASavePopupTitle = By.id("pii-opa-dialog-title");
+	By OPiRCASaveConfirmButton = By.id("pii-opa-dialog-confirmed");
+	By OPiRCASavedActivitiesButton = By.id("efi-opa-btn-savedactivities");
+	By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
+	By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
+	By OPiRCAFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a");
+	By StickyNote = By.className("sticky-note");
+	By StickySuccess = By.className("sticky-success");
 	
-	private By HiRCADropdownMenuPopup = By.id("pii-opa-step1-select-menu");
-	private By HiRCADropdownMenuButton = By.id("pii-opa-step1-select-button");
-	private By HiRCADropdownMenuCloseButton = By.xpath(".//*[@id='pii-opa-step1-select-dialog']/div/div[1]/a");
+	By HiRCADropdownMenuPopup = By.id("pii-opa-step1-select-menu");
+	By HiRCADropdownMenuButton = By.id("pii-opa-step1-select-button");
+	By HiRCADropdownMenuCloseButton = By.xpath(".//*[@id='pii-opa-step1-select-dialog']/div/div[1]/a");
 	
-	private By OPiRCANextButton = By.id("efi-opa-button-next");
-	private By OPiRCASkipButton = By.id("efi-opa-button-skip");
-	private By OPiRCAInfoTab = By.id("efi-opa-tab-0");
-	private By OPiRCAStep1Tab = By.id("efi-opa-tab-1");
-	private By OPiRCAStep3Tab = By.id("efi-opa-tab-3");
-	private By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button");
+	By OPiRCANextButton = By.id("efi-opa-button-next");
+	By OPiRCASkipButton = By.id("efi-opa-button-skip");
+	By OPiRCAInfoTab = By.id("efi-opa-tab-0");
+	By OPiRCAStep1Tab = By.id("efi-opa-tab-1");
+	By OPiRCAStep3Tab = By.id("efi-opa-tab-3");
+	By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button");
 	
-	private By OPiRCAReportCreationDateTimeField = By.id("pii-opa-event-repdatetime");
-	private By OPiRCAEventTitleField = By.id("pii-opa-event-title");
-	private By OPiRCAEventLocationField = By.id("pii-opa-event-location");
-	private By OPiRCAProblemStatementField = By.id("pii-opa-event-pbstatement");
-	private By OPiRCATimelineOfEventField = By.id("pii-opa-event-events");
-	private By OPiRCABackgroundInfoField = By.id("pii-opa-event-bginfos");
-	private By OPiRCAInvestigatorsField = By.id("pii-opa-event-investigators");
+	By OPiRCAReportCreationDateTimeField = By.id("pii-opa-event-repdatetime");
+	By OPiRCAEventTitleField = By.id("pii-opa-event-title");
+	By OPiRCAEventLocationField = By.id("pii-opa-event-location");
+	By OPiRCAProblemStatementField = By.id("pii-opa-event-pbstatement");
+	By OPiRCATimelineOfEventField = By.id("pii-opa-event-events");
+	By OPiRCABackgroundInfoField = By.id("pii-opa-event-bginfos");
+	By OPiRCAInvestigatorsField = By.id("pii-opa-event-investigators");
 	
-	private By PageTitle = By.id("efi-opa-question");
-	private By SField = By.xpath(".//*[@id='efi-opa-answers']/div[1]");
-	private By UField = By.xpath(".//*[@id='efi-opa-answers']/div[2]");
-	private By RField = By.xpath(".//*[@id='efi-opa-answers']/div[3]");
-	private By EField = By.xpath(".//*[@id='efi-opa-answers']/div[4]");
+	By PageTitle = By.id("efi-opa-question");
+	By SField = By.xpath(".//*[@id='efi-opa-answers']/div[1]");
+	By UField = By.xpath(".//*[@id='efi-opa-answers']/div[2]");
+	By RField = By.xpath(".//*[@id='efi-opa-answers']/div[3]");
+	By EField = By.xpath(".//*[@id='efi-opa-answers']/div[4]");
 	
-	private By OPiRCANoRCField1 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[1]");
-	private By OPiRCANoRCField2 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[2]");
-	private By OPiRCANoRCField3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[3]");
+	By OPiRCANoRCField1 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[1]");
+	By OPiRCANoRCField2 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[2]");
+	By OPiRCANoRCField3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[3]");
+	
+	//Step1
+	By Step1DescriptionPlusSign = By.xpath(".//*[@id='efi-opa-description']/h4/a");
+	By Step1DescriptionText = By.id("efi-opa-description-text");
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 		  		
@@ -637,6 +641,8 @@ public class OPiRCA {
 	    	List<String> ac = new ArrayList<String>();
 	    	for(int i=0;i<apparentCauses.size();i++)
 	    	{
+	    		//Check the description collapsible 
+		    	collapsibleCheckDescription(driver);
 	    		int count =0;
 	    		int k=1;
 	    		//Identify number of answers for an apparent cause
@@ -690,6 +696,8 @@ public class OPiRCA {
 	    		//Get answer name and store in list
 	    		String s1 = l.getText();
 	    		ac.add(s1);
+	    		//Check if Evidence entry and Possible corrective action are in collapsible form
+	    		checkCollapsibleEvidenceEntryPossibleCorrectiveAction(driver,y);
 	    		}
 	    		//Scroll to top
 	    		Thread.sleep(2000);
@@ -699,6 +707,60 @@ public class OPiRCA {
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
 	    	}	    	
 	    	return ac;
+	    }
+	    
+	    public void checkCollapsibleEvidenceEntryPossibleCorrectiveAction(WebDriver driver,int y) throws Exception{
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.id("efi-opa-evidence-text-"+(y-1)));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No Evidence Entry visible as the + sign for Evidence Entry has not been clicked");
+	    	}
+	    	//Click on Evidence Entry
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-evidence-text-div-"+(y-1)+"']/h4/a"))).click();
+	    	//Verify Evidence Entry text
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-evidence-text-"+(y-1))));
+	    	//Click on Evidence Entry again
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-evidence-text-div-"+(y-1)+"']/h4/a"))).click();
+	    	//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.id("efi-opa-evidence-text-"+(y-1)));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
+	    	
+	    	//Verify Possible Corrective Action text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div"));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Possible Corrective Action text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No Possible Corrective Action text visible as the + sign for Possible Corrective Action has not been clicked");
+	    	}
+	    	//Click on Possible Corrective Action 
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+	    	//Verify Possible Corrective Action text
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div")));
+	    	//Click on Possible Corrective Action again
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+	    	//Verify Possible Corrective Action text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div"));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Possible Corrective Action text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No Possible Corrective Action text visible as the + sign for Possible Corrective Action has not been clicked");
+	    	}
 	    }
 	    
 	    public List<String> modifyList(List<String> apparentCausesAnswers)  throws Exception{
@@ -1450,7 +1512,44 @@ public class OPiRCA {
 			jse.executeScript("scroll(0,0)");
 			Thread.sleep(2000);
 			return hml;
-		}	    
+		}
+		
+	    public void collapsibleCheckDescription(WebDriver driver) throws Exception{
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	//Verify the presence of description
+	    	try{
+	    		driver.findElement(Step1DescriptionPlusSign);	    		
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No description text on this page");
+	    		return;
+	    	}
+	    	//Verify description text not visible
+	    	try{
+	    		WebElement l = driver.findElement(Step1DescriptionText);
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Description text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No description text visible as the + sign for description has not been clicked");
+	    	}
+	    	//Click on Description
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step1DescriptionPlusSign)).click();
+	    	//Verify description text
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step1DescriptionText));
+	    	//Click on Description again
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step1DescriptionPlusSign)).click();
+	    	//Verify description text not visible
+	    	try{
+	    		WebElement l = driver.findElement(Step1DescriptionText);
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Description text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No description text visible as the + sign for description has not been clicked");
+	    	}
+	    }
 	    
 	    public void pathOPiRCA(WebDriver driver, String username) throws Exception{
 	    	
@@ -1470,6 +1569,8 @@ public class OPiRCA {
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuButton)).click();
 	    	//Select HiRCA options for level 3
 	    	List<String> hircaL3 = selectHiRCALevel3(driver);
+	    	//Check the description collapsible 
+	    	collapsibleCheckDescription(driver);
 	    	//Store selected apparent causes in List
 	    	List<String> apparentCauses = storeApparentCauses(driver);
 	    	//Verify the apparent causes appearing

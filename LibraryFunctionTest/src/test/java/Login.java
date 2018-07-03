@@ -15,15 +15,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login {
 
 	SoftAssertions softly = new SoftAssertions();
-	private By LoginButton = By.id("pii-login-button");
-	private By UserName = By.id("pii-un");
-	private By Password = By.id("pii-pw");
-	private By SignInButton = By.id("pii-signin-button");
-	private By SignInMessage = By.id("pii-signin-message");
-	private By StickyNote = By.className("sticky-note");
-	private By StickyClose = By.className("sticky-close");
-	private By LoginNameOnTopRight = By.id("pii-user-loginname");
-	private By LogOutButton = By.id("pii-signout-button");
+	By LoginButton = By.id("pii-login-button");
+	By UserName = By.id("pii-un");
+	By Password = By.id("pii-pw");
+	By SignInButton = By.id("pii-signin-button");
+	By SignInMessage = By.id("pii-signin-message");
+	By StickyNote = By.className("sticky-note");
+	By StickyClose = By.className("sticky-close");
+	By LoginNameOnTopRight = By.id("pii-user-loginname");
+	By LogOutButton = By.id("pii-signout-button");
 	
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 		

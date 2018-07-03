@@ -166,6 +166,30 @@ public class HiRCAChinese2 {
 		  		  System.out.println ("No unexpected alert");
 		  		  }
     	Thread.sleep(7000);
+    	//If no pdf repeat
+    	// specify your directory
+    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+    	// here we get the stream with full directory listing
+    	// exclude subdirectories from listing
+    	// finally get the last file using simple comparator by lastModified field
+    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+    	try{
+    		System.out.println(lastFilePath.get());
+    	}catch(java.util.NoSuchElementException r)
+    	{
+    		obj1.deleteFiles(file);
+    		try {
+  			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+  			  q.waitFor();
+  			  }catch (UnhandledAlertException f){	
+  				  System.out.println("Unexpected alert");
+  				  driver.switchTo().alert().accept();
+  				  
+  		  	  }catch (NoAlertPresentException f){
+  		  		  System.out.println ("No unexpected alert");
+  		  		  }
+    		Thread.sleep(7000);
+    	}
     	//pdf verification
     	pdfCheck(driver,softly,verifyChinese);
 	    Thread.sleep(4000);

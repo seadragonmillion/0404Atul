@@ -941,6 +941,39 @@ public class HiRCAChinese {
 	public void changeToChinese (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		Login obj = new Login();
+		while(true)
+		  {
+			  try{
+			  if (driver.findElement(obj.StickyNote).isDisplayed())
+			  {
+				  Thread.sleep(1000);
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+				  
+			  }}catch (NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.JavascriptException t)
+			  {
+				  Thread.sleep(2000);
+				  break;
+			  }
+			 
+		  }
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -971,8 +1004,8 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Waits for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		ShareCheck obj1 = new ShareCheck();
+		obj1.loadingServer(driver);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 	}

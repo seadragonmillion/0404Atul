@@ -447,6 +447,15 @@ public class EiRCA {
 	    	//Verify title
 	    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAInfoPageTitle)).getText();
 	    	softly.assertThat(s).as("test data").isEqualTo("Sequence of Events");
+	    	//Verify description text not visible
+	    	try{
+	    		WebElement l = driver.findElement(DescriptionText);
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Description text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No description text visible as the + sign for description has not been clicked");
+	    	}
 	    	//Click on Description
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign)).click();
 	    	//Verify description text
@@ -461,6 +470,15 @@ public class EiRCA {
 	    	softly.assertThat(s1).as("test data").isEqualTo(desc);
 	    	//Click on Description again
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign)).click();
+	    	//Verify description text not visible
+	    	try{
+	    		WebElement l = driver.findElement(DescriptionText);
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Description text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	{
+	    		System.out.println("No description text visible as the + sign for description has not been clicked");
+	    	}
 	    	//Verify date box header
 	    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(DateHeader)).getText();
 	    	softly.assertThat(s2).as("test data").isEqualTo("Date:");

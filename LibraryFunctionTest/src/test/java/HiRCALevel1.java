@@ -1436,6 +1436,15 @@ public class HiRCALevel1 {
 			}			
 			//Increase i+1 for evidence entry
 			i=i+1;
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Get text from Evidence Entry and verify if equal to text
@@ -1443,6 +1452,15 @@ public class HiRCALevel1 {
 			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Increase i+1 for next option
 			i=i+1;
 		}
@@ -1979,6 +1997,15 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l1.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -1987,6 +2014,15 @@ public class HiRCALevel1 {
 			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l1.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Increase i for extra root cause text boxes
 			i=i+1;
 			//Fill the text boxes
@@ -2084,6 +2120,15 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l1.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -2092,6 +2137,15 @@ public class HiRCALevel1 {
 			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l1.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Increase i for changing corrective actions
 			i=i+1;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).clear();
@@ -2250,6 +2304,15 @@ public class HiRCALevel1 {
 			}			
 			//Increase i+1 for evidence entry
 			i=i+1;
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div")).isDisplayed()==false)
@@ -2261,6 +2324,15 @@ public class HiRCALevel1 {
 			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			//Verify Evidence Entry text not visible
+	    	try{
+	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
+	    		if(l.isDisplayed()==true)
+	    			softly.fail("Evidence Entry text visible");
+	    	}catch (org.openqa.selenium.NoSuchElementException q)
+	    	{
+	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+	    	}
 			//Increase i+1 for next option
 			i=i+1;
 		}
@@ -2428,7 +2500,10 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		HiRCALOPBug obj = new HiRCALOPBug();
 		List<String>  lopOptions1=new ArrayList<String>();
+		//Verify collapsible of description
+		obj.collapsibleCheckDescription(driver);
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Verify Description text
@@ -2487,11 +2562,92 @@ public class HiRCALevel1 {
 		  //remove the [ from Level 3.17 options
 		  s=s.replace("[", "");
 		  lopOptions1.add(s);
+		  //Check if Evidence Entry, Further Investigation and Possible corrective action are in collapsible form
+  		  checkCollapsibleEEFIPCA(driver,y);
 		}
 		jse.executeScript("scroll(0,0)");	
 		System.out.println(lopOptions1);
 		return lopOptions1;
 	}
+	
+    public void checkCollapsibleEEFIPCA(WebDriver driver,int y) throws Exception{
+    	
+    	WebDriverWait wait = new WebDriverWait(driver,10);
+    	//Verify Evidence Entry text not visible
+    	try{
+    		WebElement l = driver.findElement(By.id("efi-opa-evidence-text-"+(y-1)));
+    		if(l.isDisplayed()==true)
+    			softly.fail("Evidence Entry text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No Evidence Entry visible as the + sign for Evidence Entry has not been clicked");
+    	}
+    	//Click on Evidence Entry
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-"+(y-2)+"']/h4/a"))).click();
+    	//Verify Evidence Entry text
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-"+(y-2))));
+    	//Click on Evidence Entry again
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-"+(y-2)+"']/h4/a"))).click();
+    	//Verify Evidence Entry text not visible
+    	try{
+    		WebElement l = driver.findElement(By.id("efi-irca-evidence-text-"+(y-2)));
+    		if(l.isDisplayed()==true)
+    			softly.fail("Evidence Entry text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
+    	}
+    	
+    	//Verify Further Investigation text not visible
+    	try{
+    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div"));
+    		if(l.isDisplayed()==true)
+    			softly.fail("Further Investigation text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No Further Investigation text visible as the + sign for Further Investigation has not been clicked");
+    	}
+    	//Click on Possible Corrective Action 
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+    	//Verify Possible Corrective Action text
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div")));
+    	//Click on Possible Corrective Action again
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+    	//Verify Possible Corrective Action text not visible
+    	try{
+    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div"));
+    		if(l.isDisplayed()==true)
+    			softly.fail("Further Investigation text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No Further Investigation text visible as the + sign for Further Investigation has not been clicked");
+    	}
+    	
+    	//Verify Possible Corrective Action text not visible
+    	try{
+    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[3]/div"));
+    		if(l.isDisplayed()==true)
+    			softly.fail("Possible Corrective Action text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No Possible Corrective Action text visible as the + sign for Possible Corrective Action has not been clicked");
+    	}
+    	//Click on Possible Corrective Action 
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+    	//Verify Possible Corrective Action text
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[3]/div")));
+    	//Click on Possible Corrective Action again
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+    	//Verify Possible Corrective Action text not visible
+    	try{
+    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div[3]/div"));
+    		if(l.isDisplayed()==true)
+    			softly.fail("Possible Corrective Action text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No Possible Corrective Action text visible as the + sign for Possible Corrective Action has not been clicked");
+    	}
+    }
 	
 	public void softAssert() throws Exception {
 		softly.assertAll();

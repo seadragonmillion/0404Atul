@@ -20,13 +20,16 @@ public class HiRCALOPBug {
 	String reason3 = "reason entry 3";
 	SoftAssertions softly = new SoftAssertions();
 	
-	private By AnalysisLink = By.id("pii-main-menu-button-a");
-	private By HiRCALink = By.id("pii-a-menu-hirca");
+	By AnalysisLink = By.id("pii-main-menu-button-a");
+	By HiRCALink = By.id("pii-a-menu-hirca");
 	
-	private By HiRCAEventTitleField = By.id("pii-irca-event-title");
-	private By HiRCAEventLocationField = By.id("pii-irca-event-location");
+	//Info Page
+	By HiRCAEventTitleField = By.id("pii-irca-event-title");
+	By HiRCAEventLocationField = By.id("pii-irca-event-location");
+	By HiRCANewReportButton = By.id("efi-irca-button-new");
 	
-	private By HiRCANewReportButton = By.id("efi-irca-button-new");
+	By DescriptionPlusSign = By.xpath(".//*[@id='efi-irca-description']/h4/a");
+	By DescriptionText = By.id("efi-irca-description-text");
 
 	public void fillUpHiRCAEventInfo(WebDriver driver) throws Exception {
 		
@@ -398,15 +401,54 @@ public class HiRCALOPBug {
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(s).as("test data").contains("[2.22] Was HiRCA");
 		softly.assertThat(s).as("test data").contains(" adequate in leading this investigation?");
+		//Verify collapsible of description
+		collapsibleCheckDescription(driver);
 		//Click on Description
-		if(driver.findElement(By.id("efi-irca-description-text")).isDisplayed()==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
+		if(driver.findElement(DescriptionText).isDisplayed()==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionText)).getText();
 		softly.assertThat(s1).as("test data").contains("This question looks into how HiRCA");
 		softly.assertThat(s1).as("test data").contains(" has provided support in the investigation.");
 		//Close description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign)).click();		
 	}
+	
+    public void collapsibleCheckDescription(WebDriver driver) throws Exception{
+    	
+    	WebDriverWait wait = new WebDriverWait(driver,10);
+    	//Verify the presence of description
+    	try{
+    		driver.findElement(DescriptionPlusSign);	    		
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No description text on this page");
+    		return;
+    	}
+    	//Verify description text not visible
+    	try{
+    		WebElement l = driver.findElement(DescriptionText);
+    		if(l.isDisplayed()==true)
+    			softly.fail("Description text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No description text visible as the + sign for description has not been clicked");
+    	}
+    	//Click on Description
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign)).click();
+    	//Verify description text
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionText));
+    	//Click on Description again
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign)).click();
+    	//Verify description text not visible
+    	try{
+    		WebElement l = driver.findElement(DescriptionText);
+    		if(l.isDisplayed()==true)
+    			softly.fail("Description text visible");
+    	}catch (org.openqa.selenium.NoSuchElementException r)
+    	{
+    		System.out.println("No description text visible as the + sign for description has not been clicked");
+    	}
+    }
 	
 	public void bugPathWith2LopsKALE1926(WebDriver driver) throws Exception {
 		

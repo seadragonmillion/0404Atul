@@ -19,6 +19,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -39,6 +40,7 @@ public class EiRCAChinese {
 	By EiRCALink = By.id("pii-a-menu-eirca");
 	By AnalysisLink = By.id("pii-main-menu-button-a");
 	By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
+	By KALEHomePage = By.className("pii-logo-div-element-kale");
 	
 	//Info page
 	By EiRCAInfoPageTitle = By.id("pii-ircam-tab-1-pagetitle");
@@ -128,11 +130,12 @@ public class EiRCAChinese {
 	//Pop up inside report
 	By PopUpTitle = By.id("pii-ircam-dialog-header");
 	By PopUpMessageTitle = By.id("pii-ircam-dialog-title");
-	By PopUpMessage =  By.id("pii-ircam-dialog-note");
+	By PopUpMessage = By.id("pii-ircam-dialog-note");
 	By PopupConfirmButton = By.id("pii-ircam-dialog-confirmed");
 	By PopupCancelButton = By.id("pii-ircam-dialog-cancel");
 	
 	//Step 3
+	By Step3Tab = By.id("pii-ircam-tab-4-a");
 	By Step3Title = By.xpath(".//*[@id='pii-ircam-tab-4']/div[1]");
 	By Step3TextUnderTitle = By.xpath(".//*[@id='pii-ircam-tab-4']/div[2]");
 	By Step3FailureCollapsible = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]");
@@ -150,6 +153,18 @@ public class EiRCAChinese {
 	By Step3TableOption34 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[4]/td[1]");
 	By Step3TableOption35 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[5]/td[1]");
 	By Step3TableOption36 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[6]/td[1]");
+	By Step3TableOption31CheckBox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[1]/td[2]/div/input");
+	By Step3TableOption32CheckBox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[2]/td[2]/div/input");
+	By Step3TableOption33CheckBox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[3]/td[2]/div/input");
+	By Step3TableOption34CheckBox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[4]/td[2]/div/input");
+	By Step3TableOption35CheckBox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[5]/td[2]/div/input");
+	By Step3TableOption36CheckBox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[6]/td[2]/div/input");
+	By Step3TableOption31Column3 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[1]/td[3]/strong");
+	By Step3TableOption32Column3 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[2]/td[3]/strong");
+	By Step3TableOption33Column3 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[3]/td[3]/strong");
+	By Step3TableOption34Column3 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[4]/td[3]/strong");
+	By Step3TableOption35Column3 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[5]/td[3]/strong");
+	By Step3TableOption36Column3 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[6]/td[3]/strong");
 	
 	//Step 4
 	By Step4Title = By.xpath(".//*[@id='pii-ircam-tab-5']/div[1]");
@@ -163,6 +178,7 @@ public class EiRCAChinese {
 	By Step4TableColumn3TitlePart2 = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/thead/tr/th[3]/div");
 	By Step4TableOption44Part1 = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[1]/td[1]");
 	By Step4TableOption44Part2 = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[1]/td[1]/div");
+	By Step4TableOption44CheckBox = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[1]/td[2]/div/input");
 	
 	//Step 5
 	By Step5Title = By.xpath(".//*[@id='pii-ircam-tab-6']/div[1]");
@@ -202,6 +218,8 @@ public class EiRCAChinese {
 	By Step5Table9Option55Part2 = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[1]/td[1]/div");
 	By Step5Table9Option56Part1 = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[2]/td[1]");
 	By Step5Table9Option56Part2 = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[2]/td[1]/div");
+	By Step5TableOption55CheckBox = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[1]/td[2]/div/input");
+	By Step5TableOption56CheckBox = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[2]/td[2]/div/input");
 	
 	//Step 6
 	By Step6Title = By.xpath(".//*[@id='pii-ircam-tab-7']/div[1]");
@@ -221,6 +239,13 @@ public class EiRCAChinese {
 	By Step6TableOption66 = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[6]/td[1]");
 	By Step6TableOption67 = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[7]/td[1]");
 	By Step6TableOption68 = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[8]/td[1]");
+	By Step6TableOption65CheckBox = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[5]/td[2]/div/input");
+	By Step6TableOption66CheckBox = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[6]/td[2]/div/input");
+	By Step6TableOption67CheckBox = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[7]/td[2]/div/input");
+	By Step6TableOption68CheckBox = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[8]/td[2]/div/input");
+	By Step6TableOption66MessageColumn3 = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[6]/td[3]");
+	By Step6TableOption67MessageColumn3 = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[7]/td[3]");
+	By Step6TableOption68MessageColumn3 = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[8]/td[3]");
 	
 	//Step 7 - SUEP
 	By Step7Title = By.xpath(".//*[@id='pii-ircam-tab-8']/div[1]");
@@ -230,6 +255,17 @@ public class EiRCAChinese {
 	By Step7SUEP_E = By.xpath(".//*[@id='pii-ircam-tab-8']/div[5]");
 	By Step7SUEP_P = By.xpath(".//*[@id='pii-ircam-tab-8']/div[6]");
 	By Step7TextAboveTable = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/div");
+	By Step7SUEPTableColumn1Heading = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/thead/tr/th[1]");
+	By Step7SUEPTableColumn6Heading = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/thead/tr/th[6]");
+	By Step7SUEPTableRow1 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[1]/td[1]/strong");
+	By Step7SUEPTableRow2 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[1]");
+	By Step7SUEPTableRow3 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[1]");
+	By Step7SUEPTableRow4 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[1]");
+	By Step7SUEPTableRow5 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[1]");
+	By Step7SUEPTableRow2Chk1 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[2]/div/input");
+	By Step7SUEPTableRow2Chk2 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[3]/div/input");
+	By Step7SUEPTableRow2Chk3 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[4]/div/input");
+	By Step7SUEPTableRow2Chk4 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[5]/div/input");
 	
 	//Report Tab
 	By ReportTabTable1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/thead/tr/th");
@@ -252,16 +288,41 @@ public class EiRCAChinese {
 	By ReportTabTable2Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[3]/table/thead/tr/th[2]");
 	By ReportTabTable2Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[3]/table/tbody/tr[1]/td[1]");
 	By ReportTabTable2Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[3]/table/tbody/tr[1]/td[2]");
+	By ReportTabTable2Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[3]/table/tbody/tr[2]/td[1]");
 	
 	By ReportTabTable3Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/thead/tr/th[1]");
 	By ReportTabTable3Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/thead/tr/th[2]");
 	By ReportTabTable3Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/tbody/tr[1]/td[1]");
 	By ReportTabTable3Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/tbody/tr[1]/td[2]");
+	By ReportTabTable3Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/tbody/tr[2]/td[1]");
+	By ReportTabTable3Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/tbody/tr[3]/td[1]");
+	By ReportTabTable3Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[4]/table/tbody/tr[4]/td[1]");
 	
 	By ReportTabTable4Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/div");
 	By ReportTabTable4Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/thead/tr/th[1]");
 	By ReportTabTable4Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/thead/tr/th[2]");
 	By ReportTabTable4Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/thead/tr/th[3]");
+	By ReportTabTable4Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[1]/td[1]");
+	By ReportTabTable4Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[1]/td[2]");
+	By ReportTabTable4Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[2]/td[1]");
+	By ReportTabTable4Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[2]/td[2]");
+	By ReportTabTable4Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[3]/td[1]");
+	By ReportTabTable4Row3Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[3]/td[2]");
+	By ReportTabTable4Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[4]/td[1]");
+	By ReportTabTable4Row5Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[5]/td[1]");
+	By ReportTabTable4Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[6]/td[1]");
+	By Path3ReportTabTable4Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/div");
+	By Path3ReportTabTable4Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/thead/tr/th[1]");
+	By Path3ReportTabTable4Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/thead/tr/th[2]");
+	By Path3ReportTabTable4Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[1]/td[1]");
+	By Path3ReportTabTable4Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[1]/td[2]");
+	By Path3ReportTabTable4Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[2]/td[1]");
+	By Path3ReportTabTable4Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[2]/td[2]");
+	By Path3ReportTabTable4Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[3]/td[1]");
+	By Path3ReportTabTable4Row3Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[3]/td[2]");
+	By Path3ReportTabTable4Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[4]/td[1]");
+	By Path3ReportTabTable4Row5Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[5]/td[1]");
+	By Path3ReportTabTable4Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[5]/table/tbody/tr[6]/td[1]");
 	
 	By ReportTabTable5Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div");
 	By ReportTabTable5Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/table/thead/tr/th[1]");
@@ -275,11 +336,58 @@ public class EiRCAChinese {
 	By ReportTabTable5Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/table/tbody/tr[4]/td[1]");
 	By ReportTabTable5Row5Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/table/tbody/tr[5]/td[1]");
 	By ReportTabTable5Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/table/tbody/tr[6]/td[1]");
+	By Path2ReportTabTable5Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[2]/table/thead/tr/th[1]");
+	By Path2ReportTabTable5Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[2]/table/thead/tr/th[2]");
+	By Path2ReportTabTable5Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[2]/table/tbody/tr/td[1]/strong");
+	By Path3ReportTabTable5Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[1]");
+	By Path3ReportTabTable5Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[2]/table/thead/tr/th[1]");
+	By Path3ReportTabTable5Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[2]/table/thead/tr/th[2]");
+	By Path3ReportTabTable5Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[2]/table/tbody/tr/td[2]");
 	
+	By Path2ReportTabTable6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[1]");
+	By Path2ReportTabTable6SubTitle1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div/span[1]");
+	By Path2ReportTabTable6SubTitle1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div/span[2]");
+	By Path2ReportTabTable6SubTitle2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[2]/span[1]");
 	By ReportTabTable6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[1]");
 	By ReportTabTable6Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/table/thead/tr/th[1]");
 	By ReportTabTable6Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/table/thead/tr/th[2]");
 	By ReportTabTable6Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/table/tbody/tr/td[2]");
+	By Path2ReportTabTable6Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[1]");
+	By Path2ReportTabTable6Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[2]");
+	By Path2ReportTabTable6Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[3]");
+	By Path2ReportTabTable6Column4Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[4]");
+	By Path2ReportTabTable6Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[1]");
+	By Path2ReportTabTable6Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[2]");
+	By Path2ReportTabTable6Row1Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[3]");
+	By Path2ReportTabTable6Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[1]");
+	By Path2ReportTabTable6Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[2]");
+	By Path2ReportTabTable6Row2Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[3]");
+	By Path2ReportTabTable6Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[1]");
+	By Path2ReportTabTable6Row3Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[2]");
+	By Path2ReportTabTable6Row3Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[3]");
+	By Path2ReportTabTable6Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
+	By Path2ReportTabTable6Row4Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[2]");
+	By Path2ReportTabTable6Row4Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[3]");
+	By Path2ReportTabTable6Row5Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	By Path2ReportTabTable6Row5Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[2]");
+	By Path2ReportTabTable6Row5Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[3]");
+	By Path2ReportTabTable6Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	By Path2ReportTabTable6Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
+	By Path2ReportTabTable6Row6Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[3]");
+	By Path3ReportTabTable6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[1]");
+	By Path3ReportTabTable6SubTitle1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[1]/span[1]");
+	By Path3ReportTabTable6SubTitle2Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[2]/span[1]");
+	By Path3ReportTabTable6SubTitle2Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[2]/span[2]");
+	By Path3ReportTabTable6Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[1]");
+	By Path3ReportTabTable6Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[2]");
+	By Path3ReportTabTable6Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[3]");
+	By Path3ReportTabTable6Column4Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/thead/tr/th[4]");
+	By Path3ReportTabTable6Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[1]");
+	By Path3ReportTabTable6Row2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[1]");
+	By Path3ReportTabTable6Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[1]");
+	By Path3ReportTabTable6Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
+	By Path3ReportTabTable6Row5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	By Path3ReportTabTable6Row6 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
 	
 	By ReportTabTable7Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[1]");
 	By ReportTabTable7SubTitle1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/div[1]/span[1]");
@@ -295,41 +403,142 @@ public class EiRCAChinese {
 	By ReportTabTable7Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
 	By ReportTabTable7Row5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
 	By ReportTabTable7Row6 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	By Path3ReportTabTable7Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[1]");
+	By Path3ReportTabTable7SubTitle1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[2]");
+	By Path3ReportTabTable7SubTitle2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/div[1]/span[1]");
+	By Path3ReportTabTable7SubTitle3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/div[2]/span[1]");
+	By Path3ReportTabTable7SubTitle3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/div[2]/span[2]");
+	By Path3ReportTabTable7Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/thead/tr/th[1]");
+	By Path3ReportTabTable7Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/thead/tr/th[2]");
+	By Path3ReportTabTable7Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/thead/tr/th[3]");
+	By Path3ReportTabTable7Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[1]/td[1]");
+	By Path3ReportTabTable7Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[1]/td[2]");
+	By Path3ReportTabTable7Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[2]/td[1]");
+	By Path3ReportTabTable7Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
+	By Path3ReportTabTable7Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[3]/td[1]");
+	By Path3ReportTabTable7Row3Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
+	By Path3ReportTabTable7Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[4]/td[1]");
+	By Path3ReportTabTable7Row4Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
+	By Path3ReportTabTable7Row5Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[5]/td[1]");
+	By Path3ReportTabTable7Row5Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
+	By Path3ReportTabTable7Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[6]/td[1]");
+	By Path3ReportTabTable7Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
+	By Path3ReportTabTable7Row7Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
+	By Path3ReportTabTable7Row7Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
 	
-	By ReportTabTable8Title =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[1]");
-	By ReportTabTable8SubTitle1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[2]");
-	By ReportTabTable8SubTitle2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/div[1]/span[1]");
-	By ReportTabTable8SubTitle3Part1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/div[2]/span[1]");
-	By ReportTabTable8SubTitle3Part2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/div[2]/span[2]");
-	By ReportTabTable8Column1Title =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/thead/tr/th[1]");
-	By ReportTabTable8Column2Title =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/thead/tr/th[2]");
-	By ReportTabTable8Column3Title =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/thead/tr/th[3]");
-	By ReportTabTable8Row1Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[1]");
-	By ReportTabTable8Row1Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[2]");
-	By ReportTabTable8Row2Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[1]");
-	By ReportTabTable8Row2Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
-	By ReportTabTable8Row3Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[1]");
-	By ReportTabTable8Row3Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
-	By ReportTabTable8Row4Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[1]");
-	By ReportTabTable8Row4Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
-	By ReportTabTable8Row5Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[1]");
-	By ReportTabTable8Row5Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
-	By ReportTabTable8Row6Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[1]");
-	By ReportTabTable8Row6Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
-	By ReportTabTable8Row7Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
-	By ReportTabTable8Row7Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
+	By ReportTabTable8Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[1]");
+	By ReportTabTable8SubTitle1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[2]");
+	By ReportTabTable8SubTitle2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/div[1]/span[1]");
+	By ReportTabTable8SubTitle3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/div[2]/span[1]");
+	By ReportTabTable8SubTitle3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/div[2]/span[2]");
+	By ReportTabTable8Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/thead/tr/th[1]");
+	By ReportTabTable8Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/thead/tr/th[2]");
+	By ReportTabTable8Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/thead/tr/th[3]");
+	By ReportTabTable8Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[1]");
+	By ReportTabTable8Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[2]");
+	By ReportTabTable8Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[1]");
+	By ReportTabTable8Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
+	By ReportTabTable8Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[1]");
+	By ReportTabTable8Row3Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
+	By ReportTabTable8Row4Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[1]");
+	By ReportTabTable8Row4Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
+	By ReportTabTable8Row5Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[1]");
+	By ReportTabTable8Row5Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
+	By ReportTabTable8Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[1]");
+	By ReportTabTable8Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
+	By ReportTabTable8Row7Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
+	By ReportTabTable8Row7Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
+	By Path3ReportTabTable8Title1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[1]");
+	By Path3ReportTabTable8Title2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[1]/span[1]");
+	By Path3ReportTabTable8Title3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[2]/span[1]");
+	By Path3ReportTabTable8Title3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[2]/span[2]");
+	By Path3ReportTabTable8Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[1]");
+	By Path3ReportTabTable8Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[2]");
+	By Path3ReportTabTable8Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[3]/table/tbody[1]/tr/td");
 	
-	By ReportTabSkippedStep5Message =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[5]");
-	By ReportTabSkippedStep6Message =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[6]");
-	By ReportTabSkippedStep7Message =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[7]");
+	By Path3ReportTabTable9Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[1]");
+	By Path3ReportTabTable9Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[2]");
+	By Path3ReportTabTable9Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[4]/table/tbody[1]/tr/td");
 	
-	By ReportTabTable9Heading =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/div");
-	By ReportTabTable9Row1Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[1]/td[1]");
-	By ReportTabTable9Row1Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[1]/td[2]");
-	By ReportTabTable9Row2Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[2]/td[1]");
-	By ReportTabTable9Row2Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[2]/td[2]");
-	By ReportTabTable9Row3Column1 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[3]/td[1]");
-	By ReportTabTable9Row3Column2 =  By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[3]/td[2]");
+	By Path3ReportTabTable10Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[1]");
+	By Path3ReportTabTable10Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[2]");
+	By Path3ReportTabTable10Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[5]/table/tbody[1]/tr/td");
+	
+	By Path3ReportTabTable11Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[1]");
+	By Path3ReportTabTable11Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[2]");
+	By Path3ReportTabTable11Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[6]/table/tbody[1]/tr/td");
+	
+	By Path3ReportTabTable12Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[1]");
+	By Path3ReportTabTable12Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[2]");
+	By Path3ReportTabTable12Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[3]");
+	By Path3ReportTabTable12Row1Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]");
+	By Path3ReportTabTable12Row1Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]/div");
+	By Path3ReportTabTable12Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[2]/strong");
+	
+	By Path3ReportTabTable13Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[1]");
+	By Path3ReportTabTable13Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[2]");
+	By Path3ReportTabTable13Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[3]");
+	By Path3ReportTabTable13Row1Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]");
+	By Path3ReportTabTable13Row1Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]/div");
+	By Path3ReportTabTable13Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[2]/strong");
+	
+	By Path3ReportTabTable14Title1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[1]");
+	By Path3ReportTabTable14Title2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/div[1]/span[1]");
+	By Path3ReportTabTable14Title3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/div[2]/span[1]");
+	By Path3ReportTabTable14Title3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/div[2]/span[2]");
+	By Path3ReportTabTable14Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[1]");
+	By Path3ReportTabTable14Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[2]");
+	By Path3ReportTabTable14Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[3]");
+	By Path3ReportTabTable14Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[1]/td");
+	By Path3ReportTabTable14Row2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[2]/td");
+	By Path3ReportTabTable14Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[3]/td");
+	By Path3ReportTabTable14Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[4]/td");
+	By Path3ReportTabTable14Row5Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	By Path3ReportTabTable14Row5Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]/div");
+	By Path3ReportTabTable14Row5Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
+	By Path3ReportTabTable14Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	By Path3ReportTabTable14Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
+	By Path3ReportTabTable14Row6Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[3]/strong");
+	By Path3ReportTabTable14Row7Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[1]");
+	By Path3ReportTabTable14Row7Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
+	By Path3ReportTabTable14Row7Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[3]/strong");
+	By Path3ReportTabTable14Row8Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[1]");
+	By Path3ReportTabTable14Row8Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
+	By Path3ReportTabTable14Row8Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[3]/strong");
+	
+	By Path3ReportTabTable15SUEPTitle = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[1]");
+	By Path3ReportTabTable15SUEP_S = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[2]/span[2]");
+	By Path3ReportTabTable15SUEP_U = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[3]/span[2]");
+	By Path3ReportTabTable15SUEP_E = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[4]/span[2]");
+	By Path3ReportTabTable15SUEP_P = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[5]/span[2]");
+	By Path3ReportTabTable15Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[1]");
+	By Path3ReportTabTable15Column6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[6]");
+	By Path3ReportTabTable15Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[1]/td/strong");
+	By Path3ReportTabTable15Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[1]");
+	By Path3ReportTabTable15Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]/strong");
+	By Path3ReportTabTable15Row2Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[3]/strong");
+	By Path3ReportTabTable15Row2Column4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[4]/strong");
+	By Path3ReportTabTable15Row2Column5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[5]/strong");
+	By Path3ReportTabTable15Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[3]/td[1]");
+	By Path3ReportTabTable15Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[4]/td[1]");
+	By Path3ReportTabTable15Row5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[5]/td[1]");
+	
+	By ReportTabSkippedStep5Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[5]");
+	By ReportTabSkippedStep6Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[6]");
+	By ReportTabSkippedStep7Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[7]");
+	By Path2ReportTabSkippedStep4MessagePart1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[1]");
+	By Path2ReportTabSkippedStep4MessagePart2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[2]");
+	By Path2ReportTabSkippedStep5Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]");
+	By Path2ReportTabSkippedStep6Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[6]");
+	By Path2ReportTabSkippedStep7Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[7]");
+	
+	By ReportTabTable9Heading = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/div");
+	By ReportTabTable9Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[1]/td[1]");
+	By ReportTabTable9Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[1]/td[2]");
+	By ReportTabTable9Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[2]/td[1]");
+	By ReportTabTable9Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[2]/td[2]");
+	By ReportTabTable9Row3Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[3]/td[1]");
+	By ReportTabTable9Row3Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[3]/td[2]");
 	
 	//HTML
 	By HTMLTable1Title = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/thead/tr/th");
@@ -352,16 +561,41 @@ public class EiRCAChinese {
 	By HTMLTable2Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[3]/table/thead/tr/th[2]");
 	By HTMLTable2Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr[1]/td[1]");
 	By HTMLTable2Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr[1]/td[2]");
+	By HTMLTable2Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr[2]/td[1]");
 	
 	By HTMLTable3Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/thead/tr/th[1]");
 	By HTMLTable3Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/thead/tr/th[2]");
 	By HTMLTable3Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr[1]/td[1]");
 	By HTMLTable3Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr[1]/td[2]");
+	By HTMLTable3Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr[2]/td[1]");
+	By HTMLTable3Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr[3]/td[1]");
+	By HTMLTable3Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr[4]/td[1]");
 	
 	By HTMLTable4Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/div");
 	By HTMLTable4Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/thead/tr/th[1]");
 	By HTMLTable4Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/thead/tr/th[2]");
 	By HTMLTable4Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/thead/tr/th[3]");
+	By HTMLTable4Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[1]");
+	By HTMLTable4Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[2]");
+	By HTMLTable4Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[1]");
+	By HTMLTable4Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[2]");
+	By HTMLTable4Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[3]/td[1]");
+	By HTMLTable4Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[3]/td[2]");
+	By HTMLTable4Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[4]/td[1]");
+	By HTMLTable4Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[5]/td[1]");
+	By HTMLTable4Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[6]/td[1]");
+	By Path3HTMLTable4Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/div");
+	By Path3HTMLTable4Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/thead/tr/th[1]");
+	By Path3HTMLTable4Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/thead/tr/th[2]");
+	By Path3HTMLTable4Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[1]");
+	By Path3HTMLTable4Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[2]");
+	By Path3HTMLTable4Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[1]");
+	By Path3HTMLTable4Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[2]");
+	By Path3HTMLTable4Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[3]/td[1]");
+	By Path3HTMLTable4Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[3]/td[2]");
+	By Path3HTMLTable4Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[4]/td[1]");
+	By Path3HTMLTable4Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[5]/td[1]");
+	By Path3HTMLTable4Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[6]/td[1]");
 	
 	By HTMLTable5Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div");
 	By HTMLTable5Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/table/thead/tr/th[1]");
@@ -375,11 +609,58 @@ public class EiRCAChinese {
 	By HTMLTable5Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/table/tbody/tr[4]/td[1]");
 	By HTMLTable5Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/table/tbody/tr[5]/td[1]");
 	By HTMLTable5Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/table/tbody/tr[6]/td[1]");
+	By Path2HTMLTable5Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[2]/table/thead/tr/th[1]");
+	By Path2HTMLTable5Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[2]/table/thead/tr/th[2]");
+	By Path2HTMLTable5Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[2]/table/tbody/tr/td[1]/strong");
+	By Path3HTMLTable5Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[1]");
+	By Path3HTMLTable5Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[2]/table/thead/tr/th[1]");
+	By Path3HTMLTable5Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[2]/table/thead/tr/th[2]");
+	By Path3HTMLTable5Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[2]/table/tbody/tr/td[2]");
 	
+	By Path2HTMLTable6Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[1]");
+	By Path2HTMLTable6SubTitle1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div/span[1]");
+	By Path2HTMLTable6SubTitle1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div/span[2]");
+	By Path2HTMLTable6SubTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[2]/span[1]");
 	By HTMLTable6Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[1]");
 	By HTMLTable6Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/table/thead/tr/th[1]");
 	By HTMLTable6Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/table/thead/tr/th[2]");
 	By HTMLTable6Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/table/tbody/tr/td[2]");
+	By Path2HTMLTable6Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[1]");
+	By Path2HTMLTable6Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[2]");
+	By Path2HTMLTable6Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[3]");
+	By Path2HTMLTable6Column4Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[4]");
+	By Path2HTMLTable6Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[1]");
+	By Path2HTMLTable6Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[2]");
+	By Path2HTMLTable6Row1Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[3]");
+	By Path2HTMLTable6Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[1]");
+	By Path2HTMLTable6Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[2]");
+	By Path2HTMLTable6Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[3]");
+	By Path2HTMLTable6Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[1]");
+	By Path2HTMLTable6Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[2]");
+	By Path2HTMLTable6Row3Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[3]");
+	By Path2HTMLTable6Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
+	By Path2HTMLTable6Row4Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[2]");
+	By Path2HTMLTable6Row4Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[3]");
+	By Path2HTMLTable6Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	By Path2HTMLTable6Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[2]");
+	By Path2HTMLTable6Row5Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[3]");
+	By Path2HTMLTable6Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	By Path2HTMLTable6Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
+	By Path2HTMLTable6Row6Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[3]");
+	By Path3HTMLTable6Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[1]");
+	By Path3HTMLTable6SubTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[1]/span[1]");
+	By Path3HTMLTable6SubTitle2Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[2]/span[1]");
+	By Path3HTMLTable6SubTitle2Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[2]/span[2]");
+	By Path3HTMLTable6Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[1]");
+	By Path3HTMLTable6Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[2]");
+	By Path3HTMLTable6Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[3]");
+	By Path3HTMLTable6Column4Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/thead/tr/th[4]");
+	By Path3HTMLTable6Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[1]/td[1]");
+	By Path3HTMLTable6Row2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[2]/td[1]");
+	By Path3HTMLTable6Row3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[1]");
+	By Path3HTMLTable6Row4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
+	By Path3HTMLTable6Row5 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	By Path3HTMLTable6Row6 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
 	
 	By HTMLTable7Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[1]");
 	By HTMLTable7SubTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/div[1]/span[1]");
@@ -395,47 +676,149 @@ public class EiRCAChinese {
 	By HTMLTable7Row4 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
 	By HTMLTable7Row5 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
 	By HTMLTable7Row6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	By Path3HTMLTable7Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[1]");
+	By Path3HTMLTable7SubTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[2]");
+	By Path3HTMLTable7SubTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/div[1]/span[1]");
+	By Path3HTMLTable7SubTitle3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/div[2]/span[1]");
+	By Path3HTMLTable7SubTitle3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/div[2]/span[2]");
+	By Path3HTMLTable7Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/thead/tr/th[1]");
+	By Path3HTMLTable7Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/thead/tr/th[2]");
+	By Path3HTMLTable7Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/thead/tr/th[3]");
+	By Path3HTMLTable7Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[1]/td[1]");
+	By Path3HTMLTable7Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[1]/td[2]");
+	By Path3HTMLTable7Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[2]/td[1]");
+	By Path3HTMLTable7Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
+	By Path3HTMLTable7Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[3]/td[1]");
+	By Path3HTMLTable7Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
+	By Path3HTMLTable7Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[4]/td[1]");
+	By Path3HTMLTable7Row4Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
+	By Path3HTMLTable7Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[5]/td[1]");
+	By Path3HTMLTable7Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
+	By Path3HTMLTable7Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[6]/td[1]");
+	By Path3HTMLTable7Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
+	By Path3HTMLTable7Row7Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
+	By Path3HTMLTable7Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
 	
-	By HTMLTable8Title =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[1]");
-	By HTMLTable8SubTitle1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[2]");
-	By HTMLTable8SubTitle2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/div[1]/span[1]");
-	By HTMLTable8SubTitle3Part1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/div[2]/span[1]");
-	By HTMLTable8SubTitle3Part2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/div[2]/span[2]");
-	By HTMLTable8Column1Title =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/thead/tr/th[1]");
-	By HTMLTable8Column2Title =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/thead/tr/th[2]");
-	By HTMLTable8Column3Title =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/thead/tr/th[3]");
-	By HTMLTable8Row1Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[1]");
-	By HTMLTable8Row1Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[2]");
-	By HTMLTable8Row2Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[1]");
-	By HTMLTable8Row2Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
-	By HTMLTable8Row3Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[1]");
-	By HTMLTable8Row3Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
-	By HTMLTable8Row4Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[1]");
-	By HTMLTable8Row4Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
-	By HTMLTable8Row5Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[1]");
-	By HTMLTable8Row5Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
-	By HTMLTable8Row6Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[1]");
-	By HTMLTable8Row6Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
-	By HTMLTable8Row7Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
-	By HTMLTable8Row7Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
+	By HTMLTable8Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[1]");
+	By HTMLTable8SubTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[2]");
+	By HTMLTable8SubTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/div[1]/span[1]");
+	By HTMLTable8SubTitle3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/div[2]/span[1]");
+	By HTMLTable8SubTitle3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/div[2]/span[2]");
+	By HTMLTable8Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/thead/tr/th[1]");
+	By HTMLTable8Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/thead/tr/th[2]");
+	By HTMLTable8Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/thead/tr/th[3]");
+	By HTMLTable8Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[1]");
+	By HTMLTable8Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[1]/td[2]");
+	By HTMLTable8Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[1]");
+	By HTMLTable8Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
+	By HTMLTable8Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[1]");
+	By HTMLTable8Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
+	By HTMLTable8Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[1]");
+	By HTMLTable8Row4Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
+	By HTMLTable8Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[1]");
+	By HTMLTable8Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
+	By HTMLTable8Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[1]");
+	By HTMLTable8Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
+	By HTMLTable8Row7Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
+	By HTMLTable8Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
+	By Path3HTMLTable8Title1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[1]");
+	By Path3HTMLTable8Title2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[1]/span[1]");
+	By Path3HTMLTable8Title3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[2]/span[1]");
+	By Path3HTMLTable8Title3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[2]/span[2]");
+	By Path3HTMLTable8Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[1]");
+	By Path3HTMLTable8Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[2]");
+	By Path3HTMLTable8Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[3]/table/tbody[1]/tr/td");
 	
-	By HTMLSkippedStep5Message =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]");
-	By HTMLSkippedStep6Message =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[6]");
-	By HTMLSkippedStep7Message =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]");
+	By Path3HTMLTable9Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[1]");
+	By Path3HTMLTable9Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[2]");
+	By Path3HTMLTable9Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[4]/table/tbody[1]/tr/td");
 	
-	By HTMLTable9Heading =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/div");
-	By HTMLTable9Row1Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[1]/td[1]");
-	By HTMLTable9Row1Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[1]/td[2]");
-	By HTMLTable9Row2Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[2]/td[1]");
-	By HTMLTable9Row2Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[2]/td[2]");
-	By HTMLTable9Row3Column1 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[3]/td[1]");
-	By HTMLTable9Row3Column2 =  By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[3]/td[2]");
+	By Path3HTMLTable10Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[1]");
+	By Path3HTMLTable10Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[2]");
+	By Path3HTMLTable10Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[5]/table/tbody[1]/tr/td");
+	
+	By Path3HTMLTable11Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[1]");
+	By Path3HTMLTable11Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[2]");
+	By Path3HTMLTable11Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[6]/table/tbody[1]/tr/td");
+	
+	By Path3HTMLTable12Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[1]");
+	By Path3HTMLTable12Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[2]");
+	By Path3HTMLTable12Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[3]");
+	By Path3HTMLTable12Row1Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]");
+	By Path3HTMLTable12Row1Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]/div");
+	By Path3HTMLTable12Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[2]/strong");
+	
+	By Path3HTMLTable13Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[1]");
+	By Path3HTMLTable13Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[2]");
+	By Path3HTMLTable13Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[3]");
+	By Path3HTMLTable13Row1Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]");
+	By Path3HTMLTable13Row1Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]/div");
+	By Path3HTMLTable13Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[2]/strong");
+	
+	By Path3HTMLTable14Title1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[1]");
+	By Path3HTMLTable14Title2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/div[1]/span[1]");
+	By Path3HTMLTable14Title3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/div[2]/span[1]");
+	By Path3HTMLTable14Title3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/div[2]/span[2]");
+	By Path3HTMLTable14Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[1]");
+	By Path3HTMLTable14Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[2]");
+	By Path3HTMLTable14Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[3]");
+	By Path3HTMLTable14Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[1]/td");
+	By Path3HTMLTable14Row2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[2]/td");
+	By Path3HTMLTable14Row3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[3]/td");
+	By Path3HTMLTable14Row4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[4]/td");
+	By Path3HTMLTable14Row5Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	By Path3HTMLTable14Row5Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]/div");
+	By Path3HTMLTable14Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
+	By Path3HTMLTable14Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	By Path3HTMLTable14Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
+	By Path3HTMLTable14Row6Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[3]/strong");
+	By Path3HTMLTable14Row7Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[1]");
+	By Path3HTMLTable14Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
+	By Path3HTMLTable14Row7Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[3]/strong");
+	By Path3HTMLTable14Row8Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[1]");
+	By Path3HTMLTable14Row8Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
+	By Path3HTMLTable14Row8Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[3]/strong");
+	
+	By Path3HTMLTable15SUEPTitle = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[1]");
+	By Path3HTMLTable15SUEP_S = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[2]/span[2]");
+	By Path3HTMLTable15SUEP_U = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[3]/span[2]");
+	By Path3HTMLTable15SUEP_E = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[4]/span[2]");
+	By Path3HTMLTable15SUEP_P = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[5]/span[2]");
+	By Path3HTMLTable15Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[1]");
+	By Path3HTMLTable15Column6Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[6]");
+	By Path3HTMLTable15Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[1]/td/strong");
+	By Path3HTMLTable15Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[1]");
+	By Path3HTMLTable15Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]/strong");
+	By Path3HTMLTable15Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[3]/strong");
+	By Path3HTMLTable15Row2Column4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[4]/strong");
+	By Path3HTMLTable15Row2Column5 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[5]/strong");
+	By Path3HTMLTable15Row3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[3]/td[1]");
+	By Path3HTMLTable15Row4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[4]/td[1]");
+	By Path3HTMLTable15Row5 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[5]/td[1]");
+	
+	By HTMLSkippedStep5Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]");
+	By HTMLSkippedStep6Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[6]");
+	By HTMLSkippedStep7Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]");
+	By Path2HTMLSkippedStep4MessagePart1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[1]");
+	By Path2HTMLSkippedStep4MessagePart2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[2]");
+	By Path2HTMLSkippedStep5Message = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]");
+	By Path2HTMLSkippedStep6Message = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[6]");
+	By Path2HTMLSkippedStep7Message = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[7]");
+	
+	By HTMLTable9Heading = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/div");
+	By HTMLTable9Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[1]/td[1]");
+	By HTMLTable9Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[1]/td[2]");
+	By HTMLTable9Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[2]/td[1]");
+	By HTMLTable9Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[2]/td[2]");
+	By HTMLTable9Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[3]/td[1]");
+	By HTMLTable9Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[3]/td[2]");
 	
 	public void EiRCApath (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA();
 		ShareCheck obj1 = new ShareCheck();
+		HiRCALevel1 obj2 = new HiRCALevel1();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	    //Click on Analysis
@@ -509,7 +892,298 @@ public class EiRCAChinese {
 	  	List<String> chineseData = chineseHTML(driver);
 	  	//Download pdf and verify pdf
 	  	downloadSelectFunction(driver,chineseData);
+	  	//Delete 1st report
+	  	obj2.deleteReport(driver);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(KALEHomePage)).click();
+	  	//Path 2
+	  	EiRCApath2(driver);
+	  	//Path 3
+	  	EiRCApath3(driver);
 	}
+	
+	public void EiRCApath3 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		EiRCA obj = new EiRCA();
+		ShareCheck obj1 = new ShareCheck();
+		//Create a new EiRCA report 
+	  	chineseEventInfoFill(driver);
+	    //Sequence of events
+	  	chineseSequenceOfEvents(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 1
+	  	chineseStep1(driver);
+	  	//Select some answers in Step1 to move forward
+	  	selectAnswersStep1(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 2
+	  	chineseStep2(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 3
+	  	chineseStep3(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	    //Step 4
+	  	chineseStep4(driver);
+	  	//Select yes for 4.4
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(Step4TableOption44CheckBox)).click();
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	    //Verify popup text
+	  	chinesePopupAfterStep4(driver);
+	  	//Click on confirm 
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(PopupConfirmButton)).click();
+	  	//Step 5
+	  	chineseStep5(driver);
+	  	//Scroll to element 5.5 checkbox
+	  	WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55CheckBox));
+	  	Point p = l.getLocation();
+		int yaxis= p.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
+	  	//Select yes for 5.5
+	  	l.click();
+	    //Scroll to element 5.6 checkbox
+	  	l = wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56CheckBox));
+	  	p = l.getLocation();
+		yaxis= p.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
+	  	//Select yes for 5.6	  	
+	  	l.click();
+	  	//Scroll to top
+	  	Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
+		//Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 6
+	  	chineseStep6(driver);
+	  	//Select yes for 6.5 to 6.8 and verify chinese on 3rd column
+	  	selectStep6(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 7
+	  	chineseStep7SUEP(driver);
+	  	//Verify additional chinese translation in SUEP table and click on checkboxes for root cause and contributing factor
+	  	chineseStep7SUEPTable(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Verify Report Tab
+	  	chineseReportTabPath3(driver);
+	  	//Save report
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCASaveButton)).click();
+	  	//Save popup
+	  	chineseSavePopup(driver);
+	  	//Click on save
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(PopupConfirmButton)).click();
+	  	//Wait for loading message 
+	  	obj1.loadingServer(driver);
+	  	//Click on saved activities
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCASavedActivitiesButton)).click();
+	    //Wait for loading message 
+	  	obj1.loadingServer(driver);
+	    //Click on first newly created record
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAFirstRecord)).click();
+    	//Wait for loading message 
+	  	obj1.loadingServer(driver);
+	  	//Verify HTML report
+	  	List<String> chineseData = chineseHTMLPath3(driver);
+	  	//Download pdf and verify pdf
+	  	downloadSelectFunction(driver,chineseData);
+	}
+	
+	public void chineseStep7SUEPTable (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//SUEP Table
+		//Column 1 heading
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableColumn1Heading)).getText();
+    	softly.assertThat(s1).as("test data").isEqualTo("促成因素");
+		//Column 6 heading
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableColumn6Heading)).getText();
+    	softly.assertThat(s2).as("test data").isEqualTo("纠正行动");
+    	//Row 1
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow1)).getText();
+    	softly.assertThat(s3).as("test data").isEqualTo("失效模式");
+    	//Row 2
+    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow2)).getText();
+    	softly.assertThat(s4).as("test data").isEqualTo("导致故障的工作活动");
+    	//Row 3
+    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow3)).getText();
+    	softly.assertThat(s5).as("test data").isEqualTo("不当的预防性维修计划");
+    	//Row 4
+    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow4)).getText();
+    	softly.assertThat(s6).as("test data").isEqualTo("维修失误");
+    	//Row 5
+    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow5)).getText();
+    	softly.assertThat(s7).as("test data").isEqualTo("运行失误");
+    	//Click all 4 checkboxes for Row 2: first line of SUEP boxes
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow2Chk1)).click();
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow2Chk2)).click();
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow2Chk3)).click();
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(Step7SUEPTableRow2Chk4)).click();
+	}
+	
+	public void selectStep6 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Select yes for 6.5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption65CheckBox)).click();
+		//Select yes for 6.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption66CheckBox)).click();
+		//Select yes for 6.7
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption67CheckBox)).click();
+		//Select yes for 6.8
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption68CheckBox)).click();
+		//Verify message in 3rd column for 6.6
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption66MessageColumn3)).getText();
+    	softly.assertThat(s1).as("test data").isEqualTo("不当的预防性维修计划为促成因素");
+		//Verify message in 3rd column for 6.7
+    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption67MessageColumn3)).getText();
+    	softly.assertThat(s2).as("test data").isEqualTo("维修失误为促成因素");
+		//Verify message in 3rd column for 6.8
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption68MessageColumn3)).getText();
+    	softly.assertThat(s3).as("test data").isEqualTo("运行失误为促成因素");
+	}
+	
+	public void EiRCApath2 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		EiRCA obj = new EiRCA();
+		ShareCheck obj1 = new ShareCheck();
+		HiRCALevel1 obj2 = new HiRCALevel1();
+		//Create a new EiRCA report 
+	  	chineseEventInfoFill(driver);
+	    //Sequence of events
+	  	chineseSequenceOfEvents(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	    //Step 1
+	  	chineseStep1(driver);
+	  	//Select some answers in Step1 to move forward
+	  	selectAnswersStep1(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 2
+	  	chineseStep2(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	//Step 3
+	  	chineseStep3(driver);
+	  	//Select all boxes of Step 3 
+	  	selectAllCheckboxesStep3(driver);
+	  	//Verify all yes in third column of Step3
+	  	chineseYesStep3Column3(driver);
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	Thread.sleep(1000);
+	  	//Verify pop up at Step 3
+	  	chinesePopupAfterStep3(driver);
+	  	//Click on green button, Preview report
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(PopupCancelButton)).click();
+	  	//to accomodate bug
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(Step3Tab)).click();
+	    //Click next
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
+	  	Thread.sleep(1000);
+	    //Click on green button, Preview report
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(PopupCancelButton)).click();
+	  	//Verify Report Tab
+	  	chineseReportTabPath2(driver);
+	  	//Save report
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCASaveButton)).click();
+	  	//Save popup
+	  	chineseSavePopup(driver);
+	  	//Click on save
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(PopupConfirmButton)).click();
+	  	//Wait for loading message 
+	  	obj1.loadingServer(driver);
+	  	//Click on saved activities
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCASavedActivitiesButton)).click();
+	    //Wait for loading message 
+	  	obj1.loadingServer(driver);
+	    //Click on first newly created record
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAFirstRecord)).click();
+    	//Wait for loading message 
+	  	obj1.loadingServer(driver);
+	  	//Verify HTML report
+	  	List<String> chineseData = chineseHTMLPath2(driver);
+	  	//Download pdf and verify pdf
+	  	downloadSelectFunction(driver,chineseData);
+	  	//Delete 1st report
+	  	obj2.deleteReport(driver);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(KALEHomePage)).click();
+	}
+	
+	public void chinesePopupAfterStep3 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+    	//Title of popup
+    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(PopUpTitle)).getText();
+    	softly.assertThat(s1).as("test data").isEqualTo("完成排除");
+    	//Popup message title
+    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(PopUpMessageTitle)).getText();
+    	softly.assertThat(s2).as("test data").isEqualTo("所有可能的失效模式已排除，需要继续新增失效模式或预览报告？");
+    	//Popup message
+    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(PopUpMessage)).getText();
+    	softly.assertThat(s5).as("test data").isEqualTo("编辑失效模式：新增失效模式或审核排除证明。");
+    	//Confirm button
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(PopupConfirmButton)).getText();
+    	softly.assertThat(s3).as("test data").isEqualTo("编辑失效模式");
+    	//Cancel button
+    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(PopupCancelButton)).getText();
+    	softly.assertThat(s4).as("test data").isEqualTo("预览报告");
+	}
+	
+	public void chineseYesStep3Column3 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//3.1 
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31Column3)).getText();
+	    softly.assertThat(s).as("test data").contains("是");
+		//3.2
+	    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption32Column3)).getText();
+	    softly.assertThat(s1).as("test data").contains("是");
+		//3.3
+	    String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33Column3)).getText();
+	    softly.assertThat(s2).as("test data").contains("是");
+		//3.4
+	    String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34Column3)).getText();
+	    softly.assertThat(s3).as("test data").contains("是");
+		//3.5
+	    String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35Column3)).getText();
+	    softly.assertThat(s4).as("test data").contains("是");
+		//3.6
+	    String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36Column3)).getText();
+	    softly.assertThat(s5).as("test data").contains("是");
+	}
+	
+	public void selectAllCheckboxesStep3 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click on check box for 3.1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31CheckBox)).click();
+		//Click on check box for 3.2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption32CheckBox)).click();
+		//Click on check box for 3.3
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33CheckBox)).click();
+		//Click on check box for 3.4
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34CheckBox)).click();
+		//Click on check box for 3.5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35CheckBox)).click();
+		//Click on check box for 3.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36CheckBox)).click();
+	}
+	
 	
     public void downloadSelectFunction (WebDriver driver, List<String> chineseData) throws Exception {
     	
@@ -581,7 +1255,7 @@ public class EiRCAChinese {
     	for(String winHandle : driver.getWindowHandles()){
     	    driver.switchTo().window(winHandle);
     	}
-    	Thread.sleep(2000);
+    	Thread.sleep(4000);
     	Robot robot = new Robot();
     	// press Ctrl+S the Robot's way
     	robot.keyPress(KeyEvent.VK_CONTROL);
@@ -590,6 +1264,26 @@ public class EiRCAChinese {
     	robot.keyRelease(KeyEvent.VK_S);
     	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
     	p.waitFor();
+    	Thread.sleep(3000);
+    	//If no pdf repeat
+    	// specify your directory
+    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+    	// here we get the stream with full directory listing
+    	// exclude subdirectories from listing
+    	// finally get the last file using simple comparator by lastModified field
+    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+    	try{
+    		System.out.println(lastFilePath.get());
+    	}catch(java.util.NoSuchElementException r)
+    	{
+    		//deletes files in reports folder before starting to download
+        	File file = new File("C://Users//IEUser//Downloads//reports//");
+        	HiRCAEvent obj2 = new HiRCAEvent();
+        	obj2.deleteFiles(file);
+    		Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+  			q.waitFor();
+  			Thread.sleep(7000);
+    	}
     	//pdf check
     	pdfCheck(driver,verifyChinese);
     	Thread.sleep(4000);
@@ -706,6 +1400,489 @@ public class EiRCAChinese {
 	    }
 	    //Close pdf
 	    pddoc.close();
+	}
+	
+	public List<String> chineseHTMLPath3 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> c = new ArrayList<String>();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    //Verify the buttons
+	    HiRCAChinese obj2 = new HiRCAChinese();
+	    obj2.chineseReportButtons(driver);
+	    List<String> c1 = chineseHTMLTable1 (driver);
+	    c.addAll(c1);
+	    //Heading before Table 2
+	    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Title)).getText();
+	    c.add(s1);
+    	softly.assertThat(s1).as("test data").contains("事件原因");
+    	//Table 2
+    	//Column 1 title
+    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Column1Title)).getText();
+    	c.add(s2);
+    	softly.assertThat(s2).as("test data").contains("根本原因");
+    	//Column 2 title
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Column2Title)).getText();
+    	c.add(s3);
+    	softly.assertThat(s3).as("test data").contains("纠正行动");
+    	//Row 1 
+    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Row1Column1)).getText();
+    	c.add(s4);
+    	softly.assertThat(s4).as("test data").contains("失效模式");
+    	//Row 2
+    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Row2Column1)).getText();
+    	c.add(s5);
+    	softly.assertThat(s5).as("test data").contains("导致故障的工作活动");
+    	//Table 3
+    	//Column 1 title
+    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Column1Title)).getText();
+    	c.add(s6);
+    	softly.assertThat(s6).as("test data").contains("促成因素");
+    	//Column 2 title
+    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Column2Title)).getText();
+    	softly.assertThat(s7).as("test data").contains("纠正行动");
+    	c.add(s7);
+    	//Row 1 
+    	String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Row1Column1)).getText();
+    	softly.assertThat(s8).as("test data").contains("失效模式");
+    	c.add(s8);
+    	//Row 2
+    	String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Row2Column1)).getText();
+    	softly.assertThat(s11).as("test data").contains("不当的预防性维修计划");
+    	c.add(s11);
+    	//Row 3 
+    	String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Row3Column1)).getText();
+    	softly.assertThat(s9).as("test data").contains("维修失误");
+    	c.add(s9);
+    	//Row 4 
+    	String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Row4Column1)).getText();
+    	softly.assertThat(s12).as("test data").contains("运行失误");
+    	c.add(s12);
+    	//Heading before Table 5
+    	String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Title)).getText();
+    	softly.assertThat(s14).as("test data").contains("第一步 - 失效设备与失效症状");
+    	c.add(s14);
+    	//Table 4
+    	//Column 1 title
+    	String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Column1Title)).getText();
+    	softly.assertThat(s15).as("test data").contains("问题");
+    	c.add(s15);
+    	//Column 2 title
+    	String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Column2Title)).getText();
+    	softly.assertThat(s16).as("test data").contains("答案");
+    	c.add(s16);
+    	//Row 1
+    	String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row1Column1)).getText();
+    	softly.assertThat(s17).as("test data").contains("1.1: 这是故障排查还是根本原因分析？");
+    	c.add(s17);
+    	String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row1Column2)).getText();
+    	softly.assertThat(s18).as("test data").contains("故障排查");
+    	c.add(s18);
+    	//Row 2
+    	String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row2Column1)).getText();
+    	softly.assertThat(s19).as("test data").contains("1.2: 故障部件是什么？");
+    	c.add(s19);
+    	String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row2Column2)).getText();
+    	softly.assertThat(s20).as("test data").contains("---- 其他机械相关部件 ----");
+    	c.add(s20);
+    	//Row 3
+    	String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row3Column1)).getText();
+    	softly.assertThat(s21).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
+    	c.add(s21);
+    	String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row3Column2)).getText();
+    	softly.assertThat(s22).as("test data").contains("---- 其他机械相关失效症状 ----");
+    	c.add(s22);
+    	//Row 4
+    	String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row4Column1)).getText();
+    	softly.assertThat(s23).as("test data").contains("1.4: 除了主要故障症状外，还观察到了哪些降级？（非必选）");
+    	c.add(s23);
+    	//Row 5
+    	String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row5Column1)).getText();
+    	softly.assertThat(s24).as("test data").contains("1.5: 与主要故障症状巧合的异常现象有哪些？（非必选）");
+    	c.add(s24);
+    	//Row 6
+    	String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable4Row6Column1)).getText();
+    	softly.assertThat(s25).as("test data").contains("1.6: 与主要故障症状巧合的操作有哪些？（非必选）");
+    	c.add(s25);
+    	//Heading before Table 5
+    	String s26 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable5Title)).getText();
+    	softly.assertThat(s26).as("test data").contains("第二步 - 可能的失效模式");
+    	c.add(s26);
+    	//Table 5
+    	//Column 1 title
+    	String s27 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable5Column1Title)).getText();
+    	softly.assertThat(s27).as("test data").contains("失效模式");
+    	c.add(s27);
+    	//Column 2 title
+    	String s28 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable5Column2Title)).getText();
+    	softly.assertThat(s28).as("test data").contains("描述");
+    	c.add(s28);
+    	//Row 1
+    	String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable5Row1Column2)).getText();
+    	softly.assertThat(s29).as("test data").contains("不适用");
+    	c.add(s29);
+    	//Heading before Table 6
+    	String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Title)).getText();
+    	softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
+    	c.add(s30);
+    	//Subtitle before Table 6
+    	String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6SubTitle1)).getText();
+    	softly.assertThat(s31).as("test data").contains("1. 失效模式:");
+    	c.add(s31);
+    	String s32 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6SubTitle2Part1)).getText();
+    	softly.assertThat(s32).as("test data").contains("失效模式描述:");
+    	c.add(s32);
+    	String s33 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6SubTitle2Part2)).getText();
+    	softly.assertThat(s33).as("test data").contains("不适用");
+    	//Table 6
+    	//Column 1 title
+    	String s34 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Column1Title)).getText();
+    	softly.assertThat(s34).as("test data").contains("排除问题");
+    	c.add(s34);
+    	//Column 2 title
+    	String s35 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Column2Title)).getText();
+    	softly.assertThat(s35).as("test data").contains("答案");
+    	c.add(s35);
+    	//Column 3 title
+    	String s36 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Column3Title)).getText();
+    	softly.assertThat(s36).as("test data").contains("排除");
+    	c.add(s36);
+    	//Column 4 title
+    	String s37 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Column4Title)).getText();
+    	softly.assertThat(s37).as("test data").contains("原因");
+    	c.add(s37);
+    	//Row 1
+    	String s38 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Row1)).getText();
+    	softly.assertThat(s38).as("test data").contains("3.1: 该故障模式与观察到的症状无关");
+    	c.add(s38);
+    	//Row 2
+    	String s39 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Row2)).getText();
+    	softly.assertThat(s39).as("test data").contains("3.2: 该故障模式没有导致观察到的主要症状");
+    	c.add(s39);
+    	//Row 3
+    	String s40 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Row3)).getText();
+    	softly.assertThat(s40).as("test data").contains("3.3: 该故障模式没有导致任何所述降级且异常情况纯属巧合");
+    	c.add(s40);
+    	//Row 4
+    	String s41 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Row4)).getText();
+    	softly.assertThat(s41).as("test data").contains("3.4: 该故障模式可以因为缺乏某一必要的故障触发因素而被排除");
+    	c.add(s41);
+    	//Row 5
+    	String s42 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Row5)).getText();
+    	softly.assertThat(s42).as("test data").contains("3.5: 该故障模式可以因为缺乏必要的环境来影响故障机理而被排除");
+    	c.add(s42);
+    	//Row 6
+    	String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable6Row6)).getText();
+    	softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
+    	c.add(s43);
+    	//Heading before Table 7
+    	String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Title)).getText();
+    	softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");
+    	c.add(s44);
+    	//Subtitle before Table 7
+    	String s45 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7SubTitle1)).getText();
+    	softly.assertThat(s45).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
+    	c.add(s45);
+    	String s46 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7SubTitle2)).getText();
+    	softly.assertThat(s46).as("test data").contains("失效模式:");
+    	c.add(s46);
+    	String s47 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7SubTitle3Part1)).getText();
+    	softly.assertThat(s47).as("test data").contains("失效模式描述:");
+    	c.add(s47);
+    	String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7SubTitle3Part2)).getText();
+    	softly.assertThat(s48).as("test data").contains("不适用");
+    	//Column 1 title
+    	String s49 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Column1Title)).getText();
+    	softly.assertThat(s49).as("test data").contains("问题");
+    	c.add(s49);
+    	//Column 2 title
+    	String s50 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Column2Title)).getText();
+    	softly.assertThat(s50).as("test data").contains("答案");
+    	c.add(s50);
+    	//Column 3 title
+    	String s51 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Column3Title)).getText();
+    	softly.assertThat(s51).as("test data").contains("信息");
+    	c.add(s51);
+    	//Row 1
+    	String s52 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row1Column1)).getText();
+    	softly.assertThat(s52).as("test data").contains("4.1: 该故障模式是否曾在故障部件或其类似部件上发生过？");
+    	c.add(s52);
+    	String s53 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row1Column2)).getText();
+    	softly.assertThat(s53).as("test data").contains("不适用");
+    	//Row 2
+    	String s54 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row2Column1)).getText();
+    	softly.assertThat(s54).as("test data").contains("4.2: 该故障模式是否与（1）松动螺栓，（2）泄漏 ，（3）腐蚀，（4）异物有关?");
+    	c.add(s54);
+    	String s55 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row2Column2)).getText();
+    	softly.assertThat(s55).as("test data").contains("不适用");
+    	//Row 3
+    	String s56 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row3Column1)).getText();
+    	softly.assertThat(s56).as("test data").contains("4.3: 该故障模式是否存在支持性证据？");
+    	c.add(s56);
+    	String s57 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row3Column2)).getText();
+    	softly.assertThat(s57).as("test data").contains("不适用");
+    	//Row 4
+    	String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row4Column1)).getText();
+    	softly.assertThat(s58).as("test data").contains("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
+    	c.add(s58);
+    	String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row4Column2)).getText();
+    	softly.assertThat(s59).as("test data").contains("不适用");
+    	//Row 5
+    	String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row5Column1)).getText();
+    	softly.assertThat(s60).as("test data").contains("4.5: 该故障模式是否与老化有关且与老化超出预期寿命的故障子部件有关？");
+    	c.add(s60);
+    	String s61 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row5Column2)).getText();
+    	softly.assertThat(s61).as("test data").contains("不适用");
+    	//Row 6
+    	String s62 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row6Column1)).getText();
+    	softly.assertThat(s62).as("test data").contains("4.6: 若子部件替换了是否可以修正失效模式？");
+    	c.add(s62);
+    	String s63 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row6Column2)).getText();
+    	softly.assertThat(s63).as("test data").contains("不适用");
+    	//Row 6
+    	String s64 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row7Column1)).getText();
+    	softly.assertThat(s64).as("test data").contains("4.7: 能否获得更多的数据来排除该故障模式？");
+    	c.add(s64);
+    	String s67 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row7Column2)).getText();
+    	softly.assertThat(s67).as("test data").contains("不适用");
+    	//Title before Table 8
+    	String s68 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Title1)).getText();
+    	softly.assertThat(s68).as("test data").contains("第五步 - 识别可能的促成因素");
+    	c.add(s68);
+    	String s69 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Title2)).getText();
+    	softly.assertThat(s69).as("test data").contains("失效模式:");
+    	c.add(s69);
+    	String s70 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Title3Part1)).getText();
+    	softly.assertThat(s70).as("test data").contains("失效模式描述:");
+    	c.add(s70);
+    	String s71 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Title3Part2)).getText();
+    	softly.assertThat(s71).as("test data").contains("不适用");
+    	//Table 8 for 5.1
+    	//Column 1 title
+    	String s72 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Column1Title)).getText();
+    	softly.assertThat(s72).as("test data").contains("设计变更");
+    	c.add(s72);
+    	//Column 2 title
+    	String s73 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Column2Title)).getText();
+    	softly.assertThat(s73).as("test data").contains("描述");
+    	c.add(s73);
+    	//Row 1
+    	String s86 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable8Row1)).getText();
+    	softly.assertThat(s86).as("test data").contains("5.1: 故障发生前的设计变更有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	c.add(s86);
+    	//Table 9 for 5.2
+    	//Column 1 title
+    	String s74 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable9Column1Title)).getText();
+    	softly.assertThat(s74).as("test data").contains("维护实践变更");
+    	c.add(s74);
+    	//Column 2 title
+    	String s75 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable9Column2Title)).getText();
+    	softly.assertThat(s75).as("test data").contains("描述");
+    	c.add(s75);
+    	//Row 1
+    	String s87 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable9Row1)).getText();
+    	softly.assertThat(s87).as("test data").contains("5.2: 故障发生前的维修实践变更有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	c.add(s87);
+    	//Table 10 for 5.3
+    	//Column 1 title
+    	String s76 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable10Column1Title)).getText();
+    	softly.assertThat(s76).as("test data").contains("运行实践变更");
+    	c.add(s76);
+    	//Column 2 title
+    	String s77 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable10Column2Title)).getText();
+    	softly.assertThat(s77).as("test data").contains("描述");
+    	//Row 1
+    	String s88 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable10Row1)).getText();
+    	softly.assertThat(s88).as("test data").contains("5.3: 故障发生前的运行实践变更有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	c.add(s88);
+    	//Table 11 for 5.4
+    	//Column 1 title
+    	String s78 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable11Column1Title)).getText();
+    	softly.assertThat(s78).as("test data").contains("新子部件安装");
+    	c.add(s78);
+    	//Column 2 title
+    	String s79 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable11Column2Title)).getText();
+    	softly.assertThat(s79).as("test data").contains("描述");
+    	//Row 1
+    	String s89 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable11Row1)).getText();
+    	softly.assertThat(s89).as("test data").contains("5.4: 故障发生之前故障部件上安装的新子部件有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	c.add(s89);
+    	//Table 12 for 5.5
+    	//Column 1 title
+    	String s80 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable12Column1Title)).getText();
+    	softly.assertThat(s80).as("test data").contains("问题");
+    	c.add(s80);
+    	//Column 2 title
+    	String s81 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable12Column2Title)).getText();
+    	softly.assertThat(s81).as("test data").contains("答案");
+    	c.add(s81);
+    	//Column 3 title
+    	String s82 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable12Column3Title)).getText();
+    	softly.assertThat(s82).as("test data").contains("描述");
+    	c.add(s82);
+    	//Row 1
+    	String s90 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable12Row1Column1Part1)).getText();
+    	softly.assertThat(s90).as("test data").contains("5.5: 故障部件在操作运行上有没有超出供应商建议的运行限值？");
+    	String forPDF1 = s90.replace("\n", "");
+    	c.add(forPDF1);
+    	String s91 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable12Row1Column1Part2)).getText();
+    	softly.assertThat(s91).as("test data").contains("(如为“是”，请描述运行条件，为期时间与厂家限值)");
+    	c.add(s91);
+    	String s92 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable12Row1Column2)).getText();
+    	softly.assertThat(s92).as("test data").contains("是");
+    	c.add(s92);
+    	//Table 13 for 5.6 	
+    	//Column 1 title
+    	String s83 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable13Column1Title)).getText();
+    	softly.assertThat(s83).as("test data").contains("问题");
+    	c.add(s83);
+    	//Column 2 title
+    	String s84 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable13Column2Title)).getText();
+    	softly.assertThat(s84).as("test data").contains("答案");
+    	c.add(s84);
+    	//Column 3 title
+    	String s85 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable13Column3Title)).getText();
+    	softly.assertThat(s85).as("test data").contains("描述");
+    	c.add(s85);
+    	//Row 1
+    	String s93 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable13Row1Column1Part1)).getText();
+    	softly.assertThat(s93).as("test data").contains("5.6: 故障部件（或子部件）的使用年限有没有超过MTBF（平均故障间隔时间）寿命的两倍？");
+    	String forPDF2 = s93.replace("\n", "");
+    	c.add(forPDF2);
+    	String s94 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable13Row1Column1Part2)).getText();
+    	softly.assertThat(s94).as("test data").contains("(如为“是”，请描述故障部件和可疑子部件的预期寿命（MTBF）和实际使用年限)");
+    	c.add(s94);
+    	String s95 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable13Row1Column2)).getText();
+    	softly.assertThat(s95).as("test data").contains("是");
+    	//Heading before Table 14
+    	String s96 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Title1)).getText();
+    	softly.assertThat(s96).as("test data").contains("第六步 - 确定促成因素");
+    	c.add(s96);
+    	String s97 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Title2)).getText();
+    	softly.assertThat(s97).as("test data").contains("失效模式:");
+    	c.add(s97);
+    	String s98 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Title3Part1)).getText();
+    	softly.assertThat(s98).as("test data").contains("失效模式描述:");
+    	c.add(s98);
+    	String s99 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Title3Part2)).getText();
+    	softly.assertThat(s99).as("test data").contains("不适用");
+    	//Column 1 title
+    	String s100 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Column1Title)).getText();
+    	softly.assertThat(s100).as("test data").contains("问题");
+    	c.add(s100);
+    	//Column 2 title
+    	String s101 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Column2Title)).getText();
+    	softly.assertThat(s101).as("test data").contains("答案");
+    	c.add(s101);
+    	//Column 3 title
+    	String s102 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Column3Title)).getText();
+    	softly.assertThat(s102).as("test data").contains("促成因素");
+    	c.add(s102);
+    	//Row 1
+    	String s103 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row1)).getText();
+    	softly.assertThat(s103).as("test data").contains("6.1: 任何所述的设计变更（如有）是否可能导致该未被排除的故障模式？");
+    	c.add(s103);
+    	//Row 2
+    	String s104 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row2)).getText();
+    	softly.assertThat(s104).as("test data").contains("6.2: 任何所述的维修实践变更（如有）是否可能导致该未被排除的故障模式？");
+    	c.add(s104);
+    	//Row 3
+    	String s105 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row3)).getText();
+    	softly.assertThat(s105).as("test data").contains("6.3: 任何所述的运行实践变更（如有）是否可能导致该未被排除的故障模式？");
+    	c.add(s105);
+    	//Row 4
+    	String s106 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row4)).getText();
+    	softly.assertThat(s106).as("test data").contains("6.4: 任何所述的新安装子部件是否可能导致该未被排除的故障模式？");
+    	c.add(s106);
+    	//Row 5
+    	String s107 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row5Column1Part1)).getText();
+    	softly.assertThat(s107).as("test data").contains("6.5: 故障部件附近是否有任何工作活动（如有）可能导致该未被排除的故障模式？");
+    	String forPDF3 = s107.replace("\n", "");
+    	c.add(forPDF3);
+    	String s108 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row5Column1Part2)).getText();
+    	softly.assertThat(s108).as("test data").contains("(如为“是”，请描述导致故障的工作活动)");
+    	c.add(s108);
+    	String s109 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row5Column2)).getText();
+    	softly.assertThat(s109).as("test data").contains("是");
+    	//Row 6
+    	String s110 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row6Column1)).getText();
+    	softly.assertThat(s110).as("test data").contains("6.6: 不当的预防性维修计划是否可能导致该未被排除的故障模式？");
+    	c.add(s110);
+    	String s111 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row6Column2)).getText();
+    	softly.assertThat(s111).as("test data").contains("是");
+    	String s112 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row6Column3)).getText();
+    	softly.assertThat(s112).as("test data").contains("不当的预防性维修计划为促成因素");
+    	c.add(s112);
+    	//Row 7
+    	String s113 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row7Column1)).getText();
+    	softly.assertThat(s113).as("test data").contains("6.7: 新安装子部件的安装失误是否可能导致未被排除的故障模式？");
+    	c.add(s113);
+    	String s114 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row7Column2)).getText();
+    	softly.assertThat(s114).as("test data").contains("是");
+    	String s115 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row7Column3)).getText();
+    	softly.assertThat(s115).as("test data").contains("维修失误为促成因素");
+    	c.add(s115);
+    	//Row 8
+    	String s116 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row8Column1)).getText();
+    	softly.assertThat(s116).as("test data").contains("6.8: 运行失误是否可能导致该未被排除的故障模式？");
+    	c.add(s116);
+    	String s117 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row8Column2)).getText();
+    	softly.assertThat(s117).as("test data").contains("是");
+    	String s118 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable14Row8Column3)).getText();
+    	softly.assertThat(s118).as("test data").contains("运行失误为促成因素");
+    	c.add(s118);
+    	//SUEP title before table 15
+    	String s119 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15SUEPTitle)).getText();
+    	softly.assertThat(s119).as("test data").contains("第七步 - 识别根本原因和制定纠正行动 (");
+    	c.add(s119);
+    	String s120 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15SUEP_S)).getText();
+    	softly.assertThat(s120).as("test data").contains("是否存在不合标准的实践");
+    	c.add(s120);
+    	String s121 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15SUEP_U)).getText();
+    	softly.assertThat(s121).as("test data").contains("是否在管理层控制下");
+    	c.add(s121);
+    	String s122 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15SUEP_E)).getText();
+    	softly.assertThat(s122).as("test data").contains("是否在事件时序早期");
+    	c.add(s122);
+    	String s123 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15SUEP_P)).getText();
+    	softly.assertThat(s123).as("test data").contains("是否防止再次发生");
+    	c.add(s123);
+    	String s124 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Column1Title)).getText();
+    	softly.assertThat(s124).as("test data").contains("促成因素");
+    	c.add(s124);
+    	String s125 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Column6Title)).getText();
+    	softly.assertThat(s125).as("test data").contains("纠正行动");
+    	c.add(s125);
+    	//Row 1
+    	String s126 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row1)).getText();
+    	softly.assertThat(s126).as("test data").contains("失效模式");
+    	c.add(s126);
+    	//Row 2
+    	String s127 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row2Column1)).getText();
+    	softly.assertThat(s127).as("test data").contains("导致故障的工作活动");
+    	c.add(s127);
+    	String s128 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row2Column2)).getText();
+    	softly.assertThat(s128).as("test data").contains("是");
+    	String s129 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row2Column3)).getText();
+    	softly.assertThat(s129).as("test data").contains("是");
+    	String s130 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row2Column4)).getText();
+    	softly.assertThat(s130).as("test data").contains("是");
+    	String s131 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row2Column5)).getText();
+    	softly.assertThat(s131).as("test data").contains("是");
+    	//Row 3
+    	String s132 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row3)).getText();
+    	softly.assertThat(s132).as("test data").contains("不当的预防性维修计划");
+    	c.add(s132);
+    	//Row 4
+    	String s133 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row4)).getText();
+    	softly.assertThat(s133).as("test data").contains("维修失误");
+    	c.add(s133);
+    	//Row 5   	
+    	String s134 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable15Row5)).getText();
+    	softly.assertThat(s134).as("test data").contains("运行失误");
+    	c.add(s134);
+	    return c;
 	}
 	
 	public List<String> chineseHTML (WebDriver driver) throws Exception {
@@ -1095,6 +2272,742 @@ public class EiRCAChinese {
     	//Cancel button
     	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(PopupCancelButton)).getText();
     	softly.assertThat(s4).as("test data").isEqualTo("取消");
+	}
+	
+	public List<String> chineseHTMLPath2 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> c = new ArrayList<String>();
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    //Table 1
+	    List<String> c1 = chineseHTMLTable1 (driver);
+	    c.addAll(c1);
+	    //Heading before Table 2
+	    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Title)).getText();
+    	softly.assertThat(s1).as("test data").contains("事件原因");
+    	c.add(s1);
+    	//Table 2
+    	//Column 1 title
+    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Column1Title)).getText();
+    	softly.assertThat(s2).as("test data").contains("根本原因");
+    	c.add(s2);
+    	//Column 2 title
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Column2Title)).getText();
+    	softly.assertThat(s3).as("test data").contains("纠正行动");
+    	c.add(s3);
+    	//Row 1 
+    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Row1Column1)).getText();
+    	softly.assertThat(s4).as("test data").contains("不适用");
+    	c.add(s4);
+    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Row1Column2)).getText();
+    	softly.assertThat(s5).as("test data").contains("不适用");
+    	//Table 3
+    	//Column 1 title
+    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Column1Title)).getText();
+    	softly.assertThat(s6).as("test data").contains("促成因素");
+    	c.add(s6);
+    	//Column 2 title
+    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Column2Title)).getText();
+    	softly.assertThat(s7).as("test data").contains("纠正行动");
+    	c.add(s7);
+    	//Row 1 
+    	String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Row1Column1)).getText();
+    	softly.assertThat(s8).as("test data").contains("不适用");
+    	String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable3Row1Column2)).getText();
+    	softly.assertThat(s9).as("test data").contains("不适用");
+    	//Heading before Table 4
+    	String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Title)).getText();
+    	softly.assertThat(s10).as("test data").contains("第一步 - 失效设备与失效症状");
+    	c.add(s10);
+    	//Table 4
+    	//Column 1 title
+    	String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Column1Title)).getText();
+    	softly.assertThat(s11).as("test data").contains("问题");
+    	c.add(s11);
+    	//Column 2 title
+    	String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Column2Title)).getText();
+    	softly.assertThat(s12).as("test data").contains("答案");
+    	c.add(s12);
+    	//Row 1
+    	String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row1Column1)).getText();
+    	softly.assertThat(s13).as("test data").contains("1.1: 这是故障排查还是根本原因分析？");
+    	c.add(s13);
+    	String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row1Column2)).getText();
+    	softly.assertThat(s14).as("test data").contains("故障排查");
+    	c.add(s14);
+    	//Row 2
+    	String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row2Column1)).getText();
+    	softly.assertThat(s15).as("test data").contains("1.2: 故障部件是什么？");
+    	c.add(s15);
+    	String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row2Column2)).getText();
+    	softly.assertThat(s16).as("test data").contains("---- 其他机械相关部件 ----");
+    	c.add(s16);
+    	//Row 3
+    	String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row3Column1)).getText();
+    	softly.assertThat(s17).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
+    	c.add(s17);
+    	String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row3Column2)).getText();
+    	softly.assertThat(s18).as("test data").contains("---- 其他机械相关失效症状 ----");
+    	c.add(s18);
+    	//Row 4
+    	String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row4Column1)).getText();
+    	softly.assertThat(s19).as("test data").contains("1.4: 除了主要故障症状外，还观察到了哪些降级？（非必选）");
+    	c.add(s19);
+    	//Row 5
+    	String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row5Column1)).getText();
+    	softly.assertThat(s20).as("test data").contains("1.5: 与主要故障症状巧合的异常现象有哪些？（非必选）");
+    	c.add(s20);
+    	//Row 6
+    	String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Row6Column1)).getText();
+    	softly.assertThat(s21).as("test data").contains("1.6: 与主要故障症状巧合的操作有哪些？（非必选）");
+    	c.add(s21);
+    	//Heading before Table 5
+    	String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable5Title)).getText();
+    	softly.assertThat(s22).as("test data").contains("第二步 - 可能的失效模式");
+    	c.add(s22);
+    	//Table 5
+    	//Column 1 title
+    	String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable5Column1Title)).getText();
+    	softly.assertThat(s23).as("test data").contains("失效模式");
+    	c.add(s23);
+    	//Column 2 title
+    	String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable5Column2Title)).getText();
+    	softly.assertThat(s24).as("test data").contains("描述");
+    	c.add(s24);
+    	//Row 1
+    	String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable5Row1)).getText();
+    	softly.assertThat(s25).as("test data").contains("[排除]");
+    	c.add(s25);
+    	//Heading before Table 6
+    	String s26 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Title)).getText();
+    	softly.assertThat(s26).as("test data").contains("第三步 - 排除失效模式");
+    	c.add(s26);
+    	//Text before Table 6
+    	String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6SubTitle1Part1)).getText();
+    	softly.assertThat(s31).as("test data").contains("1. 失效模式:");
+    	c.add(s31);
+    	String s32 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6SubTitle1Part2)).getText();
+    	softly.assertThat(s32).as("test data").contains("[排除]");
+    	c.add(s32);
+    	String s33 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6SubTitle2)).getText();
+    	softly.assertThat(s33).as("test data").contains("失效模式描述:");
+    	c.add(s33);
+    	//Table 6
+    	//Column 1 title
+    	String s34 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Column1Title)).getText();
+    	softly.assertThat(s34).as("test data").contains("排除问题");
+    	c.add(s34);
+    	//Column 2 title
+    	String s35 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Column2Title)).getText();
+    	softly.assertThat(s35).as("test data").contains("答案");
+    	c.add(s35);
+    	//Column 3 title
+    	String s36 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Column3Title)).getText();
+    	softly.assertThat(s36).as("test data").contains("排除");
+    	c.add(s36);
+    	//Column 4 title
+    	String s37 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Column4Title)).getText();
+    	softly.assertThat(s37).as("test data").contains("原因");
+    	c.add(s37);
+    	//Row 1
+    	String s38 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row1Column1)).getText();
+    	softly.assertThat(s38).as("test data").contains("3.1: 该故障模式与观察到的症状无关");
+    	c.add(s38);
+    	String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row1Column2)).getText();
+    	softly.assertThat(s44).as("test data").contains("是");
+    	c.add(s44);
+    	String s45 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row1Column3)).getText();
+    	softly.assertThat(s45).as("test data").contains("是");
+    	//Row 2
+    	String s39 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row2Column1)).getText();
+    	softly.assertThat(s39).as("test data").contains("3.2: 该故障模式没有导致观察到的主要症状");
+    	c.add(s39);
+    	String s46 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row2Column2)).getText();
+    	softly.assertThat(s46).as("test data").contains("是");
+    	String s47 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row2Column3)).getText();
+    	softly.assertThat(s47).as("test data").contains("是");
+    	//Row 3
+    	String s40 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row3Column1)).getText();
+    	softly.assertThat(s40).as("test data").contains("3.3: 该故障模式没有导致任何所述降级且异常情况纯属巧合");
+    	c.add(s40);
+    	String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row3Column2)).getText();
+    	softly.assertThat(s48).as("test data").contains("是");
+    	String s49 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row3Column3)).getText();
+    	softly.assertThat(s49).as("test data").contains("是");
+    	//Row 4
+    	String s41 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row4Column1)).getText();
+    	softly.assertThat(s41).as("test data").contains("3.4: 该故障模式可以因为缺乏某一必要的故障触发因素而被排除");
+    	c.add(s41);
+    	String s50 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row4Column2)).getText();
+    	softly.assertThat(s50).as("test data").contains("是");
+    	String s51 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row4Column3)).getText();
+    	softly.assertThat(s51).as("test data").contains("是");
+    	//Row 5
+    	String s42 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row5Column1)).getText();
+    	softly.assertThat(s42).as("test data").contains("3.5: 该故障模式可以因为缺乏必要的环境来影响故障机理而被排除");
+    	c.add(s42);
+    	String s52 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row5Column2)).getText();
+    	softly.assertThat(s52).as("test data").contains("是");
+    	String s53 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row5Column3)).getText();
+    	softly.assertThat(s53).as("test data").contains("是");
+    	//Row 6
+    	String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row6Column1)).getText();
+    	softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
+    	c.add(s43);
+    	String s54 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row6Column2)).getText();
+    	softly.assertThat(s54).as("test data").contains("是");
+    	String s55 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLTable6Row6Column3)).getText();
+    	softly.assertThat(s55).as("test data").contains("是");
+    	//Skipped Step 4 message
+    	String s56 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLSkippedStep4MessagePart1)).getText();
+    	softly.assertThat(s56).as("test data").contains("第四步 - 发生概率和行动");
+    	c.add(s56);
+    	String s57 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLSkippedStep4MessagePart2)).getText();
+    	softly.assertThat(s57).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
+    	c.add(s57);
+    	//Skipped Step 5 message
+    	String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLSkippedStep5Message)).getText();
+    	softly.assertThat(s58).as("test data").contains("第五步 - 识别可能的促成因素 (skipped)");
+    	c.add(s58);
+    	//Skipped Step 6 message
+    	String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLSkippedStep6Message)).getText();
+    	softly.assertThat(s59).as("test data").contains("第六步 - 确定促成因素 (skipped)");
+    	c.add(s59);
+    	//Skipped Step 7 message
+    	String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2HTMLSkippedStep7Message)).getText();
+    	softly.assertThat(s60).as("test data").contains("第七步 - 识别根本原因和制定纠正行动 (");
+    	c.add(s60);
+    	return c;
+	}
+	
+	public void chineseReportTabPath3 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    //Table 1
+	    chineseReportTabTable1(driver);
+	    //Heading before Table 2
+	    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Title)).getText();
+    	softly.assertThat(s1).as("test data").contains("事件原因");
+    	//Table 2
+    	//Column 1 title
+    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Column1Title)).getText();
+    	softly.assertThat(s2).as("test data").contains("根本原因");
+    	//Column 2 title
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Column2Title)).getText();
+    	softly.assertThat(s3).as("test data").contains("纠正行动");
+    	//Row 1 
+    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Row1Column1)).getText();
+    	softly.assertThat(s4).as("test data").contains("失效模式");
+    	//Row 2
+    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Row2Column1)).getText();
+    	softly.assertThat(s5).as("test data").contains("导致故障的工作活动");
+    	//Table 3
+    	//Column 1 title
+    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Column1Title)).getText();
+    	softly.assertThat(s6).as("test data").contains("促成因素");
+    	//Column 2 title
+    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Column2Title)).getText();
+    	softly.assertThat(s7).as("test data").contains("纠正行动");
+    	//Row 1 
+    	String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Row1Column1)).getText();
+    	softly.assertThat(s8).as("test data").contains("失效模式");
+    	//Row 2
+    	String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Row2Column1)).getText();
+    	softly.assertThat(s11).as("test data").contains("不当的预防性维修计划");
+    	//Row 3 
+    	String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Row3Column1)).getText();
+    	softly.assertThat(s9).as("test data").contains("维修失误");
+    	//Row 4 
+    	String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Row4Column1)).getText();
+    	softly.assertThat(s12).as("test data").contains("运行失误");
+    	//Heading before Table 5
+    	String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Title)).getText();
+    	softly.assertThat(s14).as("test data").contains("第一步 - 失效设备与失效症状");
+    	//Table 4
+    	//Column 1 title
+    	String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Column1Title)).getText();
+    	softly.assertThat(s15).as("test data").contains("问题");
+    	//Column 2 title
+    	String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Column2Title)).getText();
+    	softly.assertThat(s16).as("test data").contains("答案");
+    	//Row 1
+    	String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row1Column1)).getText();
+    	softly.assertThat(s17).as("test data").contains("1.1: 这是故障排查还是根本原因分析？");
+    	String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row1Column2)).getText();
+    	softly.assertThat(s18).as("test data").contains("故障排查");
+    	//Row 2
+    	String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row2Column1)).getText();
+    	softly.assertThat(s19).as("test data").contains("1.2: 故障部件是什么？");
+    	String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row2Column2)).getText();
+    	softly.assertThat(s20).as("test data").contains("---- 其他机械相关部件 ----");
+    	//Row 3
+    	String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row3Column1)).getText();
+    	softly.assertThat(s21).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
+    	String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row3Column2)).getText();
+    	softly.assertThat(s22).as("test data").contains("---- 其他机械相关失效症状 ----");
+    	//Row 4
+    	String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row4Column1)).getText();
+    	softly.assertThat(s23).as("test data").contains("1.4: 除了主要故障症状外，还观察到了哪些降级？（非必选）");
+    	//Row 5
+    	String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row5Column1)).getText();
+    	softly.assertThat(s24).as("test data").contains("1.5: 与主要故障症状巧合的异常现象有哪些？（非必选）");
+    	//Row 6
+    	String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable4Row6Column1)).getText();
+    	softly.assertThat(s25).as("test data").contains("1.6: 与主要故障症状巧合的操作有哪些？（非必选）");
+    	//Heading before Table 5
+    	String s26 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable5Title)).getText();
+    	softly.assertThat(s26).as("test data").contains("第二步 - 可能的失效模式");
+    	//Table 5
+    	//Column 1 title
+    	String s27 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable5Column1Title)).getText();
+    	softly.assertThat(s27).as("test data").contains("失效模式");
+    	//Column 2 title
+    	String s28 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable5Column2Title)).getText();
+    	softly.assertThat(s28).as("test data").contains("描述");
+    	//Row 1
+    	String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable5Row1Column2)).getText();
+    	softly.assertThat(s29).as("test data").contains("不适用");
+    	//Heading before Table 6
+    	String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Title)).getText();
+    	softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
+    	//Subtitle before Table 6
+    	String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6SubTitle1)).getText();
+    	softly.assertThat(s31).as("test data").contains("1. 失效模式:");
+    	String s32 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6SubTitle2Part1)).getText();
+    	softly.assertThat(s32).as("test data").contains("失效模式描述:");
+    	String s33 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6SubTitle2Part2)).getText();
+    	softly.assertThat(s33).as("test data").contains("不适用");
+    	//Table 6
+    	//Column 1 title
+    	String s34 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Column1Title)).getText();
+    	softly.assertThat(s34).as("test data").contains("排除问题");
+    	//Column 2 title
+    	String s35 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Column2Title)).getText();
+    	softly.assertThat(s35).as("test data").contains("答案");
+    	//Column 3 title
+    	String s36 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Column3Title)).getText();
+    	softly.assertThat(s36).as("test data").contains("排除");
+    	//Column 4 title
+    	String s37 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Column4Title)).getText();
+    	softly.assertThat(s37).as("test data").contains("原因");
+    	//Row 1
+    	String s38 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Row1)).getText();
+    	softly.assertThat(s38).as("test data").contains("3.1: 该故障模式与观察到的症状无关");
+    	//Row 2
+    	String s39 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Row2)).getText();
+    	softly.assertThat(s39).as("test data").contains("3.2: 该故障模式没有导致观察到的主要症状");
+    	//Row 3
+    	String s40 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Row3)).getText();
+    	softly.assertThat(s40).as("test data").contains("3.3: 该故障模式没有导致任何所述降级且异常情况纯属巧合");
+    	//Row 4
+    	String s41 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Row4)).getText();
+    	softly.assertThat(s41).as("test data").contains("3.4: 该故障模式可以因为缺乏某一必要的故障触发因素而被排除");
+    	//Row 5
+    	String s42 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Row5)).getText();
+    	softly.assertThat(s42).as("test data").contains("3.5: 该故障模式可以因为缺乏必要的环境来影响故障机理而被排除");
+    	//Row 6
+    	String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable6Row6)).getText();
+    	softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
+    	//Heading before Table 7
+    	String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Title)).getText();
+    	softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");
+    	//Subtitle before Table 7
+    	String s45 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7SubTitle1)).getText();
+    	softly.assertThat(s45).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
+    	String s46 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7SubTitle2)).getText();
+    	softly.assertThat(s46).as("test data").contains("失效模式:");
+    	String s47 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7SubTitle3Part1)).getText();
+    	softly.assertThat(s47).as("test data").contains("失效模式描述:");
+    	String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7SubTitle3Part2)).getText();
+    	softly.assertThat(s48).as("test data").contains("不适用");
+    	//Column 1 title
+    	String s49 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Column1Title)).getText();
+    	softly.assertThat(s49).as("test data").contains("问题");
+    	//Column 2 title
+    	String s50 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Column2Title)).getText();
+    	softly.assertThat(s50).as("test data").contains("答案");
+    	//Column 3 title
+    	String s51 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Column3Title)).getText();
+    	softly.assertThat(s51).as("test data").contains("信息");
+    	//Row 1
+    	String s52 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row1Column1)).getText();
+    	softly.assertThat(s52).as("test data").contains("4.1: 该故障模式是否曾在故障部件或其类似部件上发生过？");
+    	String s53 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row1Column2)).getText();
+    	softly.assertThat(s53).as("test data").contains("不适用");
+    	//Row 2
+    	String s54 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row2Column1)).getText();
+    	softly.assertThat(s54).as("test data").contains("4.2: 该故障模式是否与（1）松动螺栓，（2）泄漏 ，（3）腐蚀，（4）异物有关?");
+    	String s55 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row2Column2)).getText();
+    	softly.assertThat(s55).as("test data").contains("不适用");
+    	//Row 3
+    	String s56 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row3Column1)).getText();
+    	softly.assertThat(s56).as("test data").contains("4.3: 该故障模式是否存在支持性证据？");
+    	String s57 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row3Column2)).getText();
+    	softly.assertThat(s57).as("test data").contains("不适用");
+    	//Row 4
+    	String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row4Column1)).getText();
+    	softly.assertThat(s58).as("test data").contains("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
+    	String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row4Column2)).getText();
+    	softly.assertThat(s59).as("test data").contains("不适用");
+    	//Row 5
+    	String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row5Column1)).getText();
+    	softly.assertThat(s60).as("test data").contains("4.5: 该故障模式是否与老化有关且与老化超出预期寿命的故障子部件有关？");
+    	String s61 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row5Column2)).getText();
+    	softly.assertThat(s61).as("test data").contains("不适用");
+    	//Row 6
+    	String s62 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row6Column1)).getText();
+    	softly.assertThat(s62).as("test data").contains("4.6: 若子部件替换了是否可以修正失效模式？");
+    	String s63 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row6Column2)).getText();
+    	softly.assertThat(s63).as("test data").contains("不适用");
+    	//Row 6
+    	String s64 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row7Column1)).getText();
+    	softly.assertThat(s64).as("test data").contains("4.7: 能否获得更多的数据来排除该故障模式？");
+    	String s67 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row7Column2)).getText();
+    	softly.assertThat(s67).as("test data").contains("不适用");
+    	//Title before Table 8
+    	String s68 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Title1)).getText();
+    	softly.assertThat(s68).as("test data").contains("第五步 - 识别可能的促成因素");
+    	String s69 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Title2)).getText();
+    	softly.assertThat(s69).as("test data").contains("失效模式:");
+    	String s70 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Title3Part1)).getText();
+    	softly.assertThat(s70).as("test data").contains("失效模式描述:");
+    	String s71 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Title3Part2)).getText();
+    	softly.assertThat(s71).as("test data").contains("不适用");
+    	//Table 8 for 5.1
+    	//Column 1 title
+    	String s72 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Column1Title)).getText();
+    	softly.assertThat(s72).as("test data").contains("设计变更");
+    	//Column 2 title
+    	String s73 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Column2Title)).getText();
+    	softly.assertThat(s73).as("test data").contains("描述");
+    	//Row 1
+    	String s86 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable8Row1)).getText();
+    	softly.assertThat(s86).as("test data").contains("5.1: 故障发生前的设计变更有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	//Table 9 for 5.2
+    	//Column 1 title
+    	String s74 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable9Column1Title)).getText();
+    	softly.assertThat(s74).as("test data").contains("维护实践变更");
+    	//Column 2 title
+    	String s75 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable9Column2Title)).getText();
+    	softly.assertThat(s75).as("test data").contains("描述");
+    	//Row 1
+    	String s87 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable9Row1)).getText();
+    	softly.assertThat(s87).as("test data").contains("5.2: 故障发生前的维修实践变更有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	//Table 10 for 5.3
+    	//Column 1 title
+    	String s76 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable10Column1Title)).getText();
+    	softly.assertThat(s76).as("test data").contains("运行实践变更");
+    	//Column 2 title
+    	String s77 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable10Column2Title)).getText();
+    	softly.assertThat(s77).as("test data").contains("描述");
+    	//Row 1
+    	String s88 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable10Row1)).getText();
+    	softly.assertThat(s88).as("test data").contains("5.3: 故障发生前的运行实践变更有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	//Table 11 for 5.4
+    	//Column 1 title
+    	String s78 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable11Column1Title)).getText();
+    	softly.assertThat(s78).as("test data").contains("新子部件安装");
+    	//Column 2 title
+    	String s79 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable11Column2Title)).getText();
+    	softly.assertThat(s79).as("test data").contains("描述");
+    	//Row 1
+    	String s89 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable11Row1)).getText();
+    	softly.assertThat(s89).as("test data").contains("5.4: 故障发生之前故障部件上安装的新子部件有哪些（如有的话）？若有多起相同故障，可往前追溯。");
+    	//Table 12 for 5.5
+    	//Column 1 title
+    	String s80 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable12Column1Title)).getText();
+    	softly.assertThat(s80).as("test data").contains("问题");
+    	//Column 2 title
+    	String s81 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable12Column2Title)).getText();
+    	softly.assertThat(s81).as("test data").contains("答案");
+    	//Column 3 title
+    	String s82 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable12Column3Title)).getText();
+    	softly.assertThat(s82).as("test data").contains("描述");
+    	//Row 1
+    	String s90 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable12Row1Column1Part1)).getText();
+    	softly.assertThat(s90).as("test data").contains("5.5: 故障部件在操作运行上有没有超出供应商建议的运行限值？");
+    	String s91 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable12Row1Column1Part2)).getText();
+    	softly.assertThat(s91).as("test data").contains("(如为“是”，请描述运行条件，为期时间与厂家限值)");
+    	String s92 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable12Row1Column2)).getText();
+    	softly.assertThat(s92).as("test data").contains("是");
+    	//Table 13 for 5.6 	
+    	//Column 1 title
+    	String s83 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable13Column1Title)).getText();
+    	softly.assertThat(s83).as("test data").contains("问题");
+    	//Column 2 title
+    	String s84 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable13Column2Title)).getText();
+    	softly.assertThat(s84).as("test data").contains("答案");
+    	//Column 3 title
+    	String s85 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable13Column3Title)).getText();
+    	softly.assertThat(s85).as("test data").contains("描述");
+    	//Row 1
+    	String s93 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable13Row1Column1Part1)).getText();
+    	softly.assertThat(s93).as("test data").contains("5.6: 故障部件（或子部件）的使用年限有没有超过MTBF（平均故障间隔时间）寿命的两倍？");
+    	String s94 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable13Row1Column1Part2)).getText();
+    	softly.assertThat(s94).as("test data").contains("(如为“是”，请描述故障部件和可疑子部件的预期寿命（MTBF）和实际使用年限)");
+    	String s95 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable13Row1Column2)).getText();
+    	softly.assertThat(s95).as("test data").contains("是");
+    	//Heading before Table 14
+    	String s96 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Title1)).getText();
+    	softly.assertThat(s96).as("test data").contains("第六步 - 确定促成因素");
+    	String s97 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Title2)).getText();
+    	softly.assertThat(s97).as("test data").contains("失效模式:");
+    	String s98 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Title3Part1)).getText();
+    	softly.assertThat(s98).as("test data").contains("失效模式描述:");
+    	String s99 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Title3Part2)).getText();
+    	softly.assertThat(s99).as("test data").contains("不适用");
+    	//Column 1 title
+    	String s100 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Column1Title)).getText();
+    	softly.assertThat(s100).as("test data").contains("问题");
+    	//Column 2 title
+    	String s101 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Column2Title)).getText();
+    	softly.assertThat(s101).as("test data").contains("答案");
+    	//Column 3 title
+    	String s102 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Column3Title)).getText();
+    	softly.assertThat(s102).as("test data").contains("促成因素");
+    	//Row 1
+    	String s103 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row1)).getText();
+    	softly.assertThat(s103).as("test data").contains("6.1: 任何所述的设计变更（如有）是否可能导致该未被排除的故障模式？");
+    	//Row 2
+    	String s104 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row2)).getText();
+    	softly.assertThat(s104).as("test data").contains("6.2: 任何所述的维修实践变更（如有）是否可能导致该未被排除的故障模式？");
+    	//Row 3
+    	String s105 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row3)).getText();
+    	softly.assertThat(s105).as("test data").contains("6.3: 任何所述的运行实践变更（如有）是否可能导致该未被排除的故障模式？");
+    	//Row 4
+    	String s106 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row4)).getText();
+    	softly.assertThat(s106).as("test data").contains("6.4: 任何所述的新安装子部件是否可能导致该未被排除的故障模式？");
+    	//Row 5
+    	String s107 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row5Column1Part1)).getText();
+    	softly.assertThat(s107).as("test data").contains("6.5: 故障部件附近是否有任何工作活动（如有）可能导致该未被排除的故障模式？");
+    	String s108 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row5Column1Part2)).getText();
+    	softly.assertThat(s108).as("test data").contains("(如为“是”，请描述导致故障的工作活动)");
+    	String s109 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row5Column2)).getText();
+    	softly.assertThat(s109).as("test data").contains("是");
+    	//Row 6
+    	String s110 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row6Column1)).getText();
+    	softly.assertThat(s110).as("test data").contains("6.6: 不当的预防性维修计划是否可能导致该未被排除的故障模式？");
+    	String s111 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row6Column2)).getText();
+    	softly.assertThat(s111).as("test data").contains("是");
+    	String s112 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row6Column3)).getText();
+    	softly.assertThat(s112).as("test data").contains("不当的预防性维修计划为促成因素");
+    	//Row 7
+    	String s113 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row7Column1)).getText();
+    	softly.assertThat(s113).as("test data").contains("6.7: 新安装子部件的安装失误是否可能导致未被排除的故障模式？");
+    	String s114 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row7Column2)).getText();
+    	softly.assertThat(s114).as("test data").contains("是");
+    	String s115 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row7Column3)).getText();
+    	softly.assertThat(s115).as("test data").contains("维修失误为促成因素");
+    	//Row 8
+    	String s116 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row8Column1)).getText();
+    	softly.assertThat(s116).as("test data").contains("6.8: 运行失误是否可能导致该未被排除的故障模式？");
+    	String s117 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row8Column2)).getText();
+    	softly.assertThat(s117).as("test data").contains("是");
+    	String s118 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable14Row8Column3)).getText();
+    	softly.assertThat(s118).as("test data").contains("运行失误为促成因素");
+    	//SUEP title before table 15
+    	String s119 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15SUEPTitle)).getText();
+    	softly.assertThat(s119).as("test data").contains("第七步 - 识别根本原因和制定纠正行动 (");
+    	String s120 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15SUEP_S)).getText();
+    	softly.assertThat(s120).as("test data").contains("是否存在不合标准的实践");
+    	String s121 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15SUEP_U)).getText();
+    	softly.assertThat(s121).as("test data").contains("是否在管理层控制下");
+    	String s122 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15SUEP_E)).getText();
+    	softly.assertThat(s122).as("test data").contains("是否在事件时序早期");
+    	String s123 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15SUEP_P)).getText();
+    	softly.assertThat(s123).as("test data").contains("是否防止再次发生");
+    	String s124 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Column1Title)).getText();
+    	softly.assertThat(s124).as("test data").contains("促成因素");
+    	String s125 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Column6Title)).getText();
+    	softly.assertThat(s125).as("test data").contains("纠正行动");
+    	//Row 1
+    	String s126 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row1)).getText();
+    	softly.assertThat(s126).as("test data").contains("失效模式");
+    	//Row 2
+    	String s127 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row2Column1)).getText();
+    	softly.assertThat(s127).as("test data").contains("导致故障的工作活动");
+    	String s128 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row2Column2)).getText();
+    	softly.assertThat(s128).as("test data").contains("是");
+    	String s129 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row2Column3)).getText();
+    	softly.assertThat(s129).as("test data").contains("是");
+    	String s130 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row2Column4)).getText();
+    	softly.assertThat(s130).as("test data").contains("是");
+    	String s131 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row2Column5)).getText();
+    	softly.assertThat(s131).as("test data").contains("是");
+    	//Row 3
+    	String s132 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row3)).getText();
+    	softly.assertThat(s132).as("test data").contains("不当的预防性维修计划");
+    	//Row 4
+    	String s133 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row4)).getText();
+    	softly.assertThat(s133).as("test data").contains("维修失误");
+    	//Row 5   	
+    	String s134 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable15Row5)).getText();
+    	softly.assertThat(s134).as("test data").contains("运行失误");
+	}
+	
+	public void chineseReportTabPath2 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    //Table 1
+	    chineseReportTabTable1(driver);
+	    //Heading before Table 2
+	    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Title)).getText();
+    	softly.assertThat(s1).as("test data").contains("事件原因");
+    	//Table 2
+    	//Column 1 title
+    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Column1Title)).getText();
+    	softly.assertThat(s2).as("test data").contains("根本原因");
+    	//Column 2 title
+    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Column2Title)).getText();
+    	softly.assertThat(s3).as("test data").contains("纠正行动");
+    	//Row 1 
+    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Row1Column1)).getText();
+    	softly.assertThat(s4).as("test data").contains("不适用");
+    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable2Row1Column2)).getText();
+    	softly.assertThat(s5).as("test data").contains("不适用");
+    	//Table 3
+    	//Column 1 title
+    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Column1Title)).getText();
+    	softly.assertThat(s6).as("test data").contains("促成因素");
+    	//Column 2 title
+    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Column2Title)).getText();
+    	softly.assertThat(s7).as("test data").contains("纠正行动");
+    	//Row 1 
+    	String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Row1Column1)).getText();
+    	softly.assertThat(s8).as("test data").contains("不适用");
+    	String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable3Row1Column2)).getText();
+    	softly.assertThat(s9).as("test data").contains("不适用");
+    	//Heading before Table 4
+    	String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Title)).getText();
+    	softly.assertThat(s10).as("test data").contains("第一步 - 失效设备与失效症状");
+    	//Table 4
+    	//Column 1 title
+    	String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Column1Title)).getText();
+    	softly.assertThat(s11).as("test data").contains("问题");
+    	//Column 2 title
+    	String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Column2Title)).getText();
+    	softly.assertThat(s12).as("test data").contains("答案");
+    	//Row 1
+    	String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row1Column1)).getText();
+    	softly.assertThat(s13).as("test data").contains("1.1: 这是故障排查还是根本原因分析？");
+    	String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row1Column2)).getText();
+    	softly.assertThat(s14).as("test data").contains("故障排查");
+    	//Row 2
+    	String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row2Column1)).getText();
+    	softly.assertThat(s15).as("test data").contains("1.2: 故障部件是什么？");
+    	String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row2Column2)).getText();
+    	softly.assertThat(s16).as("test data").contains("---- 其他机械相关部件 ----");
+    	//Row 3
+    	String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row3Column1)).getText();
+    	softly.assertThat(s17).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
+    	String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row3Column2)).getText();
+    	softly.assertThat(s18).as("test data").contains("---- 其他机械相关失效症状 ----");
+    	//Row 4
+    	String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row4Column1)).getText();
+    	softly.assertThat(s19).as("test data").contains("1.4: 除了主要故障症状外，还观察到了哪些降级？（非必选）");
+    	//Row 5
+    	String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row5Column1)).getText();
+    	softly.assertThat(s20).as("test data").contains("1.5: 与主要故障症状巧合的异常现象有哪些？（非必选）");
+    	//Row 6
+    	String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable4Row6Column1)).getText();
+    	softly.assertThat(s21).as("test data").contains("1.6: 与主要故障症状巧合的操作有哪些？（非必选）");
+    	//Heading before Table 5
+    	String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable5Title)).getText();
+    	softly.assertThat(s22).as("test data").contains("第二步 - 可能的失效模式");
+    	//Table 5
+    	//Column 1 title
+    	String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable5Column1Title)).getText();
+    	softly.assertThat(s23).as("test data").contains("失效模式");
+    	//Column 2 title
+    	String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable5Column2Title)).getText();
+    	softly.assertThat(s24).as("test data").contains("描述");
+    	//Row 1
+    	String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable5Row1)).getText();
+    	softly.assertThat(s25).as("test data").contains("[排除]");
+    	//Heading before Table 6
+    	String s26 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Title)).getText();
+    	softly.assertThat(s26).as("test data").contains("第三步 - 排除失效模式");
+    	//Text before Table 6
+    	String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6SubTitle1Part1)).getText();
+    	softly.assertThat(s31).as("test data").contains("1. 失效模式:");
+    	String s32 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6SubTitle1Part2)).getText();
+    	softly.assertThat(s32).as("test data").contains("[排除]");
+    	String s33 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6SubTitle2)).getText();
+    	softly.assertThat(s33).as("test data").contains("失效模式描述:");
+    	//Table 6
+    	//Column 1 title
+    	String s34 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Column1Title)).getText();
+    	softly.assertThat(s34).as("test data").contains("排除问题");
+    	//Column 2 title
+    	String s35 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Column2Title)).getText();
+    	softly.assertThat(s35).as("test data").contains("答案");
+    	//Column 3 title
+    	String s36 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Column3Title)).getText();
+    	softly.assertThat(s36).as("test data").contains("排除");
+    	//Column 4 title
+    	String s37 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Column4Title)).getText();
+    	softly.assertThat(s37).as("test data").contains("原因");
+    	//Row 1
+    	String s38 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row1Column1)).getText();
+    	softly.assertThat(s38).as("test data").contains("3.1: 该故障模式与观察到的症状无关");
+    	String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row1Column2)).getText();
+    	softly.assertThat(s44).as("test data").contains("是");
+    	String s45 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row1Column3)).getText();
+    	softly.assertThat(s45).as("test data").contains("是");
+    	//Row 2
+    	String s39 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row2Column1)).getText();
+    	softly.assertThat(s39).as("test data").contains("3.2: 该故障模式没有导致观察到的主要症状");
+    	String s46 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row2Column2)).getText();
+    	softly.assertThat(s46).as("test data").contains("是");
+    	String s47 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row2Column3)).getText();
+    	softly.assertThat(s47).as("test data").contains("是");
+    	//Row 3
+    	String s40 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row3Column1)).getText();
+    	softly.assertThat(s40).as("test data").contains("3.3: 该故障模式没有导致任何所述降级且异常情况纯属巧合");
+    	String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row3Column2)).getText();
+    	softly.assertThat(s48).as("test data").contains("是");
+    	String s49 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row3Column3)).getText();
+    	softly.assertThat(s49).as("test data").contains("是");
+    	//Row 4
+    	String s41 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row4Column1)).getText();
+    	softly.assertThat(s41).as("test data").contains("3.4: 该故障模式可以因为缺乏某一必要的故障触发因素而被排除");
+    	String s50 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row4Column2)).getText();
+    	softly.assertThat(s50).as("test data").contains("是");
+    	String s51 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row4Column3)).getText();
+    	softly.assertThat(s51).as("test data").contains("是");
+    	//Row 5
+    	String s42 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row5Column1)).getText();
+    	softly.assertThat(s42).as("test data").contains("3.5: 该故障模式可以因为缺乏必要的环境来影响故障机理而被排除");
+    	String s52 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row5Column2)).getText();
+    	softly.assertThat(s52).as("test data").contains("是");
+    	String s53 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row5Column3)).getText();
+    	softly.assertThat(s53).as("test data").contains("是");
+    	//Row 6
+    	String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row6Column1)).getText();
+    	softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
+    	String s54 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row6Column2)).getText();
+    	softly.assertThat(s54).as("test data").contains("是");
+    	String s55 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabTable6Row6Column3)).getText();
+    	softly.assertThat(s55).as("test data").contains("是");
+    	//Skipped Step 4 message
+    	String s56 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabSkippedStep4MessagePart1)).getText();
+    	softly.assertThat(s56).as("test data").contains("第四步 - 发生概率和行动");
+    	String s57 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabSkippedStep4MessagePart2)).getText();
+    	softly.assertThat(s57).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
+    	//Skipped Step 5 message
+    	String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabSkippedStep5Message)).getText();
+    	softly.assertThat(s58).as("test data").contains("第五步 - 识别可能的促成因素 (skipped)");
+    	//Skipped Step 6 message
+    	String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabSkippedStep6Message)).getText();
+    	softly.assertThat(s59).as("test data").contains("第六步 - 确定促成因素 (skipped)");
+    	//Skipped Step 7 message
+    	String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path2ReportTabSkippedStep7Message)).getText();
+    	softly.assertThat(s60).as("test data").contains("第七步 - 识别根本原因和制定纠正行动 (");
 	}
 	
 	public void chineseReportTab (WebDriver driver) throws Exception {
@@ -2003,14 +3916,10 @@ public class EiRCAChinese {
     	softly.assertThat(s7).as("test data").isEqualTo("描述应该发生的情形。");
 	}
 	
-	public void bugKALE1963 (WebDriver driver) throws Exception {
+	public void closeStickyPopup (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA();
-		//Clicks on EiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCALink)).click();
-		//Verifies the info page in English
-		verifyEnglish(driver);
 		Thread.sleep(1000);
 		//Close any pop up on right top corner
 		while(true)
@@ -2045,9 +3954,50 @@ public class EiRCAChinese {
 			  }
 			 
 		  }
+	}
+	
+	
+	public void bugKALE1963 (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Clicks on EiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCALink)).click();
+		//Verifies the info page in English
+		verifyEnglish(driver);
+		Thread.sleep(2000);
 		//Change language to Chinese
 		HiRCAChinese obj1 = new HiRCAChinese();
 		obj1.changeToChinese(driver);
+		//Clicks on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLink)).click();
+		//Clicks on EiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCALink)).click();
+		//Verifies the info page in Chinese
+		verifyChinese(driver);
+		Thread.sleep(2000);
+		//Change language to English
+		obj1.changeToEnglish(driver);
+		//Clicks on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLink)).click();
+		//Clicks on EiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCALink)).click();
+		//Verifies the info page in English
+		verifyEnglish(driver);
+		Thread.sleep(2000);
+		//Change language to Chinese
+		obj1.changeToChinese(driver);
+	}
+	
+	public void verifyChinese (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Check if title contains english EiRCA
+		String eirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAInfoPageTitle)).getText();
+		System.out.println(eirca_title);
+		softly.assertThat(eirca_title).as("test data").contains(" - 启动调查与基本问题");
 	}
 	
 	public void verifyEnglish (WebDriver driver) throws Exception {
