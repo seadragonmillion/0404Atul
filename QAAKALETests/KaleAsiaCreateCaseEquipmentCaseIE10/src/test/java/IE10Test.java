@@ -398,6 +398,11 @@ public class IE10Test {
 		  //Clicks on create case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
+		  if(count == 1)
+		  {
+		  	//Waits for black loading message to disappear
+		    obj1.loadingServer(driver);
+		  }
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  //Waits for the green popup on the right top corner
