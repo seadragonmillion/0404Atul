@@ -62,53 +62,103 @@ public class CaseBrowse {
 	String keywordEquipDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
 	String[] s= {"@","!","#","$","%","&"," ","/","?",",","."};
 	
+	
+	By ErrorFreeBankLink = By.id("pii-main-menu-button-e");
+	By HumanPerformanceLink = By.linkText("Human Performance");
+	By EquipmentPerformanceLink = By.linkText("Equipment Performance");
+	By EquipmentDatabankOnlyLink = By.linkText("Equipment Data Bank (Instructor Only)");
+	By ElectricalFailureModeLink = By.linkText("Electrical Failure Modes");
+	By MechanicalFailureModeLink = By.linkText("Mechanical Failure Modes");
+	By FailureModeLink = By.linkText("Failure Modes");
+	By EquipmentDatabankOnlyLink1 = By.id("pii-e-menu-equipPII");
+	
+	//Error-free Bank Module page
+	By HumanPerformancePosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[1]/a");
+	By EngineeringFundamentalPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[2]/a");
+	By EquipmentPerformancePosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[3]/a");
+	By FailureModesPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a");
+	
+	//Equipment Case
+	By EquipmentAddKeywordField = By.id("pii-admin-efse-keyword-search-input");
+	By EquipmentAddKeywordButton = By.id("pii-admin-efse-keyword-new");
+	By EquipmentSearchKeywordField = By.id("pii-efse-searchbykw-input");
+	By EquipmentSearchClearButton = By.id("pii-efse-clear");
+	By EquipmentSearchKeywordFieldSearchButton = By.id("pii-efse-searchbykw-btn");
+	By EquipmentDropDownList = By.xpath(".//*[@id='pii-efse-keyword-list']/li");
+	By EquipmentDropDownListTitle = By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]");
+	By EquipmentSearchCaseIDFieldClearButton = By.xpath(".//*[@id='pii-keyword-block-equip']/div[3]/div/div/a");
+	By EquipmentSearchCaseIdField = By.id("pii-efse-searchbyid-input");
+	By EquipmentModuleTitle = By.id("pii-efse-search-label");
+	By EquipmentSearchDropDown = By.id("pii-efse-keyword-list");
+	By EquipmentSearchKeywordFieldClearButton = By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a");
+	By EquipmentSearchCaseIDFieldSearchButton = By.id("pii-efse-searchbyid-btn");
+	
+	//Human Case
+	By HumanAddKeywordField = By.id("pii-admin-efsh-keyword-search-input");
+	By HumanAddKeywordButton = By.id("pii-admin-efsh-keyword-new");
+	By HumanSearchKeywordField = By.id("pii-efsh-searchbykw-input");
+	By HumanSearchClearButton = By.id("pii-efsh-clear");
+	By HumanSearchCaseIdField = By.id("pii-efsh-searchbyid-input");
+	By HumanSearchCaseIDFieldClearButton = By.xpath(".//*[@id='pii-keyword-block']/div[3]/div/div/a");
+	By HumanSearchCaseIDFieldSearchButton = By.id("pii-efsh-searchbyid-btn");
+	By HumanSearchDropDown = By.id("pii-efsh-keyword-list");
+	By HumanSearchKeywordFieldSearchButton = By.id("pii-efsh-searchbykw-btn");
+	By HumanDropDownList = By.xpath(".//*[@id='pii-efsh-keyword-list']/li");
+	By HumanDropDownListTitle = By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]");
+	By HumanSearchKeywordFieldClearButton = By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a");
+	By HumanSearchDropdownListLoaded = By.xpath(".//*[@id='pii-question-list']/div/h4/a/div");
+	
+	//Slides
+	By SlideNextButton = By.linkText("Next");
+	By SlidePreviousButton = By.linkText("Previous");
+	
 	public void getHumanPerformanceLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on ErrorFree Bank
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
 	     * admin = 0
 	     * nonadmin = 1
 	    */
 	    verifyOrderOfModules(driver, y);
 		//Clicks on Human Performance
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanPerformanceLink)).click();
 	}
 	
 	public void getEquipPerformanceLink(WebDriver driver, int y) throws Exception {
 	
 		WebDriverWait wait = new WebDriverWait(driver,20);
 	    //Clicks on ErrorFree Bank
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
 	     * admin = 0
 	     * nonadmin = 1
 	    */
 	    verifyOrderOfModules(driver, y);
 	    //Clicks on Equipment Performance
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentPerformanceLink)).click();
 	}
 	
 	public void getEquipPerformancePIILink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 	    //Clicks on ErrorFree Bank
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
 	     * admin = 0
 	     * nonadmin = 1
 	    */
 	    verifyOrderOfModules(driver, y);
 	    //Clicks on Equipment Performance PII
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Data Bank (Instructor Only)"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDatabankOnlyLink)).click();
 	}
 	
 	public void getElecFailureModeLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 	    //Clicks on ErrorFree Bank
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
 	     * admin = 0
 	     * nonadmin = 1
@@ -116,10 +166,10 @@ public class CaseBrowse {
 	    verifyOrderOfModules(driver, y);
 	    //Clicks on Electrical Failure Mode
         try{
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(ElectricalFailureModeLink)).click();
         }catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
         {
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Failure Modes"))).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
         }
 	}
 	
@@ -127,7 +177,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 	    //Clicks on ErrorFree Bank
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
 	     * admin = 0
 	     * nonadmin = 1
@@ -135,10 +185,10 @@ public class CaseBrowse {
 	    verifyOrderOfModules(driver, y);
 	    //Clicks on Mechanical Failure Mode
         try{
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(MechanicalFailureModeLink)).click();
         }catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
         {
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Failure Modes"))).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
         }	    
 	}
 	
@@ -147,19 +197,19 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify order
 		//Human Performance
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[1]/a"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanPerformancePosition)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Human Performance");
 		//Engineering Fundamentals
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[2]/a"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(EngineeringFundamentalPosition)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Engineering Fundamentals");
 		//Equipment Performance
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[3]/a"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentPerformancePosition)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Equipment Performance");
 		String url = driver.getCurrentUrl();
 		if(url.contains("kaledev"))
 		{
 			//Failure Modes
-			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a"))).getText();
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModesPosition)).getText();
 			softly.assertThat(s3).as("test data").isEqualTo("Failure Modes");
 			//Prevention of Design Deficiencies
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a"))).getText();
@@ -173,10 +223,10 @@ public class CaseBrowse {
 		}
 		else
 		{
-			//Failure Modes
-			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a"))).getText();
+			//Electrical Failure Modes
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModesPosition)).getText();
 			softly.assertThat(s3).as("test data").isEqualTo("Electrical Failure Modes");
-			//Failure Modes
+			//Electrical Failure Modes
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a"))).getText();
 			softly.assertThat(s5).as("test data").isEqualTo("Mechanical Failure Modes");
 			//Prevention of Design Deficiencies
@@ -196,7 +246,7 @@ public class CaseBrowse {
 	public void verifyNoEquipPII(WebDriver driver) throws Exception {
 		
 		//Checks for equipment search pii
-		if(driver.findElement(By.id("pii-e-menu-equipPII")).isDisplayed()==false)
+		if(driver.findElement(EquipmentDatabankOnlyLink1).isDisplayed()==false)
 		{
 		  System.out.println("Non admin user cannot see Equipment Search PII");
 	    }
@@ -214,36 +264,36 @@ public class CaseBrowse {
 	    System.out.println(v);
 	    String url = driver.getCurrentUrl();
 	    //Clear keyword field
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField)).clear();
 	    //Assigns keyword as per browser and url
 	    if(url.contains("kaledev"))
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipDevAllSpecial_ie11);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField)).sendKeys(keywordEquipDevAllSpecial_ie11);
 	    	}
 	    	else
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipDevAllSpecial);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField)).sendKeys(keywordEquipDevAllSpecial);
 	    	}
 	    }
 	    else
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipProdAllSpecial_ie11);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField)).sendKeys(keywordEquipProdAllSpecial_ie11);
 	    	}
 	    	else
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keywordEquipProdAllSpecial);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField)).sendKeys(keywordEquipProdAllSpecial);
 	    	}
 	    }
 	    Thread.sleep(2000);
 	    jse.executeScript("scroll(0,2000)");	
 	    Thread.sleep(2000);
 	    //Click on add keyword
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();	
-	    WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input")));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordButton)).click();	
+	    WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField));
 	    for (int i=0; i<s.length;i++)
 		{
 			//clear keyword field
@@ -258,7 +308,7 @@ public class CaseBrowse {
 			jse.executeScript("scroll(0,2000)");	
 		    Thread.sleep(2000);
 			//Click on add keyword
-		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();	
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordButton)).click();	
 		}
 	    jse.executeScript("scroll(0,2000)");	
 	    Thread.sleep(2000);
@@ -275,35 +325,35 @@ public class CaseBrowse {
 	    System.out.println(v);
 	    String url = driver.getCurrentUrl();
 	    //Clear keyword field
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField)).clear();
 	    Thread.sleep(1000);
 	    //Assigns keyword as per browser and url
 	    if(url.contains("kaledev"))
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanDevAllSpecial_ie11);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField)).sendKeys(keywordHumanDevAllSpecial_ie11);
 	    	}
 	    	else
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanDevAllSpecial);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField)).sendKeys(keywordHumanDevAllSpecial);
 	    	}
 	    }
 	    else
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanProdAllSpecial_ie11);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField)).sendKeys(keywordHumanProdAllSpecial_ie11);
 	    	}
 	    	else
 	    	{
-	    		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keywordHumanProdAllSpecial);
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField)).sendKeys(keywordHumanProdAllSpecial);
 	    	}
 	    }
 	    Thread.sleep(2000);
-	    WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input")));
+	    WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField));
 	    //Click on add keyword
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();	
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordButton)).click();	
 	    for (int i=0; i<s.length;i++)
 		{
 			//clear keyword field
@@ -316,7 +366,7 @@ public class CaseBrowse {
 				ele.sendKeys("qaafoo"+s[i]+"qaafoo");
 			Thread.sleep(1500);
 			//Click on add keyword
-		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();	
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordButton)).click();	
 		}
 	    jse.executeScript("scroll(0,2000)");	
 	    Thread.sleep(2000);
@@ -328,10 +378,10 @@ public class CaseBrowse {
 		WebElement ele=null;
 		//Search for either Human or Equipment search element for Term field
 		try{
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input")));
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField));
 		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
 		{
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input")));
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField));
 		}
 		//clear term field
 		ele.clear();
@@ -379,10 +429,10 @@ public class CaseBrowse {
 		}		
 		//Clear
 		try{
-			driver.findElement(By.id("pii-efse-clear")).click();
+			driver.findElement(EquipmentSearchClearButton).click();
 		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException e)
 		{
-			driver.findElement(By.id("pii-efsh-clear")).click();
+			driver.findElement(HumanSearchClearButton).click();
 		}
 	}
 
@@ -394,10 +444,10 @@ public class CaseBrowse {
 		WebElement ele=null;
 		//Search for either Human or Equipment search element for Term field
 		try{
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input")));
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField));
 		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
 		{
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input")));
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField));
 		}
 		//Array of special characters
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -415,11 +465,11 @@ public class CaseBrowse {
 			WebElement dropdown;
 			//Look for dynamic dropdown
 			try{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-keyword-list")));
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchDropDown));
 			}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
 			{
 				try{
-					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-keyword-list")));
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchDropDown));
 				}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e1)
 				{
 					System.out.println("Dropdown not visible as no case exists with keyword: " +"qaafoo"+s[i]+"qaafoo");
@@ -432,10 +482,10 @@ public class CaseBrowse {
 			obj.loadingServer(driver);
 			//Verify dropdown has disappeared
 			try{
-				dropdown = driver.findElement(By.id("pii-efse-keyword-list"));
+				dropdown = driver.findElement(EquipmentSearchDropDown);
 			}catch (NoSuchElementException u)
 			{
-				dropdown = driver.findElement(By.id("pii-efsh-keyword-list"));
+				dropdown = driver.findElement(HumanSearchDropDown);
 			}
 			if(dropdown.isDisplayed()==true)
 			{
@@ -443,10 +493,10 @@ public class CaseBrowse {
 			}
 			//Clear
 			try{
-				driver.findElement(By.id("pii-efse-clear")).click();
+				driver.findElement(EquipmentSearchClearButton).click();
 			}catch (NoSuchElementException | org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException e)
 			{
-				driver.findElement(By.id("pii-efsh-clear")).click();
+				driver.findElement(HumanSearchClearButton).click();
 			}
 		}	
 	}	
@@ -456,17 +506,17 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(3000);
 		//Checks with new keyword with %
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keypercent);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keypercent);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		Thread.sleep(2000);		  
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 	}
 	
 	public void searchWithSpclEquip(WebDriver driver, String keyspcl, String identifier) throws Exception {
@@ -474,17 +524,17 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(3000);
 		//Checks with new keyword with %
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyspcl);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyspcl);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		Thread.sleep(2000);		  
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 	}
 	
 	public void verifySearchOptionsEquip (WebDriver driver, String keyword, String identifier) throws Exception {
@@ -492,60 +542,60 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clears Everything
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Checks if clear feature works on term field
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		Thread.sleep(1000);
 		Actions act1 = new Actions(driver);
-		WebElement act= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a")));
+		WebElement act= wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldClearButton));
 		act1.click(act).build().perform();
 		//Checks for search method with magnifying glass
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Enters the term and check the search by enter
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Checks for search method with dropdown
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		Thread.sleep(2000);
 		clickDropdownEquip(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 	}
 	
 	public void clickDropdownEquip(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		WebElement match=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-keyword-list']/li")));
+		WebElement match=wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDropDownList));
 		String text = match.getText();
 		System.out.println(text);
 		if(text.equals("Exact Match Keywords"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]"))).click();				  
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDropDownListTitle)).click();				  
 		}
 		else if(text.equals("Similar Match Keywords"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDropDownListTitle)).click();
 		}
 		else if(text.equals("Other Match Keywords"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDropDownListTitle)).click();
 		}
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
@@ -565,31 +615,31 @@ public class CaseBrowse {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 	}
 	
 	public void browseCaseIDEquip (WebDriver driver, String identifier, String title) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Checks if clear feature works on case id field
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(identifier);
 		Thread.sleep(1000);
-		WebElement ele= driver.findElement(By.xpath(".//*[@id='pii-keyword-block-equip']/div[3]/div/div/a"));
+		WebElement ele= driver.findElement(EquipmentSearchCaseIDFieldClearButton);
 		Actions act = new Actions (driver);
 		act.click(ele).build().perform();
 		//Checks for search method with magnifying glass
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(identifier);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIDFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Enters case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(identifier);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbyid-input"))).sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Clicks on case
@@ -624,7 +674,7 @@ public class CaseBrowse {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 	}
 	
 	public void browseTermHuman (WebDriver driver, String keyword, String identifier, String title) throws Exception {
@@ -640,7 +690,7 @@ public class CaseBrowse {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+identifier+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 	}
 	
 	public void browseCaseNonAdminHuman(WebDriver driver, String keyword, String identifier, String title) throws Exception{
@@ -656,7 +706,7 @@ public class CaseBrowse {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+identifier+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 		//verify no case id box
 		verifyNoCaseIDSearchHuman (driver);
 	}
@@ -665,24 +715,24 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Checks if clear feature works on case id field
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbyid-input"))).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(identifier);
 		Thread.sleep(1000);
-		WebElement ele= driver.findElement(By.xpath(".//*[@id='pii-keyword-block']/div[3]/div/div/a"));
+		WebElement ele= driver.findElement(HumanSearchCaseIDFieldClearButton);
 		Actions act = new Actions (driver);
 		act.click(ele).build().perform();
 		//Checks for search method with magnifying glass
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbyid-input"))).sendKeys(identifier);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbyid-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIDFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Enters case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbyid-input"))).sendKeys(identifier);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbyid-input"))).sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(identifier);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Clicks on case
@@ -717,14 +767,14 @@ public class CaseBrowse {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+identifier+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 	}
 	
 	public void verifyNoCaseIDSearchEquip (WebDriver driver) throws Exception {
 		
 		//Searches for case id box
 		  try{
-		  	WebElement caseSearch= driver.findElement(By.id("pii-efse-searchbyid-input"));
+		  	WebElement caseSearch= driver.findElement(EquipmentSearchCaseIdField);
 		  	if (caseSearch.isDisplayed()==true)
 		  		softly.fail("Case id search displayed");
 		  	if(caseSearch.isDisplayed()==false)
@@ -740,7 +790,7 @@ public class CaseBrowse {
 		
 		//Searches for case id box
 		  try{
-		  	WebElement caseSearch= driver.findElement(By.id("pii-efsh-searchbyid-input"));
+		  	WebElement caseSearch= driver.findElement(HumanSearchCaseIdField);
 		  	if (caseSearch.isDisplayed()==true)
 		  		softly.fail("Case id search displayed");
 		  	if(caseSearch.isDisplayed()==false)
@@ -756,10 +806,10 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Types in the keyword to get slide
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).clear();
 		Thread.sleep(4000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
@@ -793,45 +843,45 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Types in the keyword to get slide
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
 		Thread.sleep(4000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		//Get name of current module
-		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-search-label"))).getText();
+		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentModuleTitle)).getText();
 		if(str.contains("equipment performance cases (PII)"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		}
 		else{
 		//Look for case by clicking on dropdown
 		Thread.sleep(4000);
 		WebElement match = null;
 		try{
-			match=driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li"));
+			match=driver.findElement(EquipmentDropDownList);
 		}catch(NoSuchElementException r)
 		{
 			//Wait for a few seconds and then try again
 			Thread.sleep(3000);
 			//Types in the keyword to get slide
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
 			Thread.sleep(4000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 			Thread.sleep(3000);
-			match=driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li"));
+			match=driver.findElement(EquipmentDropDownList);
 		}
 		String text = match.getText();
 		System.out.println(text);
 		if(text.equals("Exact Match Keywords"))
 		{
-		  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();				  
+		  driver.findElement(EquipmentDropDownListTitle).click();				  
 		}
 		else if(text.equals("Similar Match Keywords"))
 		{
-		  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
+		  driver.findElement(EquipmentDropDownListTitle).click();
 		}
 		else if(text.equals("Other Match Keywords"))
 		{
-		  driver.findElement(By.xpath(".//*[@id='pii-efse-keyword-list']/li[2]")).click();
+		  driver.findElement(EquipmentDropDownListTitle).click();
 		}
 		}
 		//Wait for loading message to disappear
@@ -876,7 +926,7 @@ public class CaseBrowse {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
 		//verify no case id box
 		verifyNoCaseIDSearchEquip (driver);
 	}
@@ -885,7 +935,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Click Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		for(int i=2;i<=n;i++)
 		{
 			System.out.println("Slide "+(i-1));
@@ -922,7 +972,7 @@ public class CaseBrowse {
 			  if(i==4)
 			  {
 				  Actions act2 = new Actions(driver);
-				  Point coordinates = driver.findElement(By.linkText("Next")).getLocation();
+				  Point coordinates = driver.findElement(SlideNextButton).getLocation();
 				  Robot robot = new Robot();
 				  robot.mouseMove(coordinates.getX()+100,coordinates.getY());
 				  Thread.sleep(2000);
@@ -934,7 +984,7 @@ public class CaseBrowse {
 			  Thread.sleep(3000);
 			  //Show slides
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-equip-show-F"+identifier))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		}
 	}
 	
@@ -942,7 +992,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Click Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		for(int i=2;i<=n;i++)
 		{
 			System.out.println("Slide "+(i-1));
@@ -979,7 +1029,7 @@ public class CaseBrowse {
 			  if(i==4)
 			  {
 				  Actions act2 = new Actions(driver);
-				  Point coordinates = driver.findElement(By.linkText("Next")).getLocation();
+				  Point coordinates = driver.findElement(SlideNextButton).getLocation();
 				  Robot robot = new Robot();
 				  robot.mouseMove(coordinates.getX()+100,coordinates.getY());
 				  Thread.sleep(2000);
@@ -991,7 +1041,7 @@ public class CaseBrowse {
 			  Thread.sleep(3000);
 			  //Show slides
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q"+identifier))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		}
 	}
 	
@@ -999,7 +1049,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Click Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		for(int i=2;i<=n;i++)
 		{
 			System.out.println("Slide "+(i-1));
@@ -1024,7 +1074,7 @@ public class CaseBrowse {
 			String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		}
 	}
 	
@@ -1032,7 +1082,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Click on previous
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Previous"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SlidePreviousButton)).click();
 		//Checks if there are slides present
 		for (int i=n;i>=2;i--)
 		{
@@ -1059,7 +1109,7 @@ public class CaseBrowse {
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 		    //Click on previous
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Previous"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SlidePreviousButton)).click();
 		}
 	}
 	
@@ -1067,7 +1117,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Click Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		for(int i=2;i<=n;i++)
 		{
 			System.out.println("Slide "+(i-1));
@@ -1092,7 +1142,7 @@ public class CaseBrowse {
 			String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Next"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SlideNextButton)).click();
 		}
 	}
 	
@@ -1100,7 +1150,7 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Click on previous
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Previous"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(SlidePreviousButton)).click();
 		//Checks if there are slides present
 		for (int i=n;i>=2;i--)
 		{
@@ -1127,7 +1177,7 @@ public class CaseBrowse {
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 		    //Click on previous
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Previous"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SlidePreviousButton)).click();
 		}
 	}
 	
@@ -1136,17 +1186,17 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(3000);
 		//Checks with new keyword with %
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).clear();
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keypercent);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keypercent);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		Thread.sleep(2000);		  
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 	}
 	
 	public void searchWithSpclHuman(WebDriver driver, String keyspcl, String identifier) throws Exception {
@@ -1154,17 +1204,17 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(3000);
 		//Checks with new keyword with %
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).clear();
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyspcl);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyspcl);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		Thread.sleep(2000);		  
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 	}
 	
 	public void verifySearchOptionsHuman (WebDriver driver, String keyword, String identifier) throws Exception {
@@ -1172,60 +1222,60 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clears Everything
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Checks if clear feature works on term field
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
 		Thread.sleep(1000);
 		Actions act1 = new Actions(driver);
-		WebElement act= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a")));
+		WebElement act= wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldClearButton));
 		act1.click(act).build().perform();
 		//Checks for search method with magnifying glass
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-btn"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Enters the term and check the search by enter
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Checks for search method with dropdown
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
 		Thread.sleep(2000);
 		clickDropdownHuman(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 	}
 	
 	public void clickDropdownHuman(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		WebElement match=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efsh-keyword-list']/li")));
+		WebElement match=wait.until(ExpectedConditions.visibilityOfElementLocated(HumanDropDownList));
 		String text = match.getText();
 		System.out.println(text);
 		if(text.equals("Exact Match Keywords"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]"))).click();				  
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanDropDownListTitle)).click();				  
 		}
 		else if(text.equals("Similar Match Keywords"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanDropDownListTitle)).click();
 		}
 		else if(text.equals("Other Match Keywords"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanDropDownListTitle)).click();
 		}
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();

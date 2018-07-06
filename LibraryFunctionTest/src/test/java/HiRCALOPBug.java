@@ -85,30 +85,9 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
-		//Select 2 LOPs randomly
-		//Choose a number between 2 and 13 for LOPs
-		Random random = new Random();
-		int y;
-		for(int i=0;i<2;i++)
-		{
-			while(true)
-			{
-				y=random.nextInt(9);
-			    System.out.println("Chose a no"+y);
-			    if(y==0||y==1)
-			    	continue;
-			    String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
-			    if(e.contains("ui-checkbox-on"))
-				    continue;
-			    break;
-			}
-			System.out.println("Picked a no");
-			System.out.println("Option no: "+y);
-			Thread.sleep(500);
-			//Click on LOP
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
-		}
+		Thread.sleep(1000);//Select number of LOPs and LOPs randomly
+		int y = selectNumberOfLOPs(driver);
+		System.out.println(y);
 		//Scroll to the top
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
@@ -117,7 +96,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Select Yes for 2.1 and answers for 3.17 for both LOPs
-		for(int i=1;i<=2;i++)
+		for(int i=1;i<=y;i++)
 		{
 			//Click Yes for 2.1
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
@@ -418,8 +397,8 @@ public class HiRCALOPBug {
     	WebDriverWait wait = new WebDriverWait(driver,10);
     	//Verify the presence of description
     	try{
-    		driver.findElement(DescriptionPlusSign);	    		
-    	}catch (org.openqa.selenium.NoSuchElementException r)
+    		wait.until(ExpectedConditions.visibilityOfElementLocated(DescriptionPlusSign));	    		
+    	}catch (org.openqa.selenium.NoSuchElementException|org.openqa.selenium.TimeoutException r)
     	{
     		System.out.println("No description text on this page");
     		return;
@@ -840,6 +819,51 @@ public class HiRCALOPBug {
 		verify220(driver);
 	}
 	
+	public int selectNumberOfLOPs(WebDriver driver)throws Exception{
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Scroll down
+		jse.executeScript("scroll(0,1200)");
+		Thread.sleep(1000);
+		//Select no of LOPs randomly 1 to 3
+		Random random = new Random();
+		int y;
+		while(true)
+		{
+			y=random.nextInt(4);
+		    if(y==0)
+		    	continue;
+		    break;
+		}
+		System.out.println("Number of LOPs: "+y);
+		int x;
+		for(int i=1;i<=y;i++)
+		{
+		//Select LOP randomly
+		//Choose a number between 2 and 13 for LOPs		
+		while(true)
+		{
+			x=random.nextInt(9);
+		    if(x==0||x==1)
+		    	continue;
+		    String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+x+"]/fieldset/div/div/label"))).getAttribute("class");
+		    if(e.contains("ui-checkbox-on"))
+			    continue;
+		    break;
+		}
+		System.out.println("Option no: "+x);
+		Thread.sleep(500);
+		//Click on LOP
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+x+"]/fieldset/div/div/label"))).click();
+		}
+		//Scroll to the top
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(2000);
+		return y;
+	}
+	
 	public void bugKALE1852(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -873,53 +897,56 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
 		//Click on Yes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
-		//Select one LOP randomly
-		int y = selectOneLOP(driver);
+		//Select number of LOPs and LOPs randomly
+		int y = selectNumberOfLOPs(driver);
 		System.out.println(y);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
-		//Verify 2.1 for LOP 1/1
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
-		softly.assertThat(s).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 1/1");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
-		softly.assertThat(s1).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
-		//Select No 2.1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(2000);		
-		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		Thread.sleep(2000);
-		//Select No 2.2.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		Thread.sleep(2000);		
-		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		Thread.sleep(2000);
-		//Select No 2.9.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(2000);		
-		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		Thread.sleep(2000);
-		//Select No 2.10.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(2000);		
-		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		Thread.sleep(2000);
-		//Select No 2.11.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(2000);		
-		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		Thread.sleep(2000);
-		//Select No 2.12.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(2000);		
-		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		Thread.sleep(2000);
+		for(int i=1;i<=y;i++)
+		{
+			//Verify 2.1 for LOP 1/1
+		    String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
+		    softly.assertThat(s).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP");
+		    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
+		    softly.assertThat(s1).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
+		    //Select No 2.1.2
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		    Thread.sleep(2000);		
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		    Thread.sleep(2000);
+		    //Select No 2.2.3
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		    Thread.sleep(2000);		
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		    Thread.sleep(2000);
+		    //Select No 2.9.2
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		    Thread.sleep(2000);		
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		    Thread.sleep(2000);
+		    //Select No 2.10.2
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		    Thread.sleep(2000);		
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		    Thread.sleep(2000);
+		    //Select No 2.11.2
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		    Thread.sleep(2000);		
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		    Thread.sleep(2000);
+		    //Select No 2.12.2
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
+		    Thread.sleep(2000);		
+		    //Click next
+		    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		    Thread.sleep(2000);
+		}
 		//Skip 2.20
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		Thread.sleep(1000);

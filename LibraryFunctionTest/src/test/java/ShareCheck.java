@@ -18,27 +18,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ShareCheck {
 	
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	private By ShareTextBox = By.id("pii-uhshare-search-input");
-	private By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
-	private By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
-	private By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
-	private By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
-	private By LoadingMessage = By.className("ui-icon-loading");
-	private By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
-	private By StickyPopUp = By.cssSelector(".sticky.border-top-right.sticky-error");
-	private By StickyNote = By.className("sticky-note");
-	private By StickyClose = By.className("sticky-close");
-	private By NotificationBell = By.id("pii-notification-button");
-	private By NotificationFirstRecord = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]");
-	private By NotificationOpenButton = By.id("pii-notif-report-btn");
-	private By NotificationCount = By.id("pii-notification-count");
-	private By NotificationFirstRecordDescriptionText = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]/td[6]");
-	private By NotificationReadButton = By.id("pii-notif-ack-btn");
-	private By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
-	private By LoginNameOnTopRight = By.id("pii-user-loginname");
-	private By ActivityOnTopRight = By.id("pii-user-activity");
-	private By ModuleTitle = By.id("pii-user-home-title");
-	private By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	
+	By ShareTextBox = By.id("pii-uhshare-search-input");
+	By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
+	By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
+	By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
+	By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
+	By LoadingMessage = By.className("ui-icon-loading");
+	By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
+	By StickyPopUp = By.cssSelector(".sticky.border-top-right.sticky-error");
+	By StickyNote = By.className("sticky-note");
+	By StickyClose = By.className("sticky-close");
+	By NotificationBell = By.id("pii-notification-button");
+	By NotificationFirstRecord = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]");
+	By NotificationOpenButton = By.id("pii-notif-report-btn");
+	By NotificationCount = By.id("pii-notification-count");
+	By NotificationFirstRecordDescriptionText = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]/td[6]");
+	By NotificationReadButton = By.id("pii-notif-ack-btn");
+	By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
+	By LoginNameOnTopRight = By.id("pii-user-loginname");
+	By ActivityOnTopRight = By.id("pii-user-activity");
+	By ModuleTitle = By.id("pii-user-home-title");
+	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
 	
 	public void shareTwice (WebDriver driver) throws Exception {
 		

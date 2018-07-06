@@ -1519,8 +1519,8 @@ public class OPiRCA {
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	//Verify the presence of description
 	    	try{
-	    		driver.findElement(Step1DescriptionPlusSign);	    		
-	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(Step1DescriptionPlusSign));	    		
+	    	}catch (org.openqa.selenium.NoSuchElementException|org.openqa.selenium.TimeoutException r)
 	    	{
 	    		System.out.println("No description text on this page");
 	    		return;
