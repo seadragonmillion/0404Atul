@@ -68,7 +68,7 @@ public class IETest {
       }		  
 		  int m=obj1.deletePreviousCase(driver, obj1.title);
 		  //Create case
-		  List<String> caseID = obj1.createCaseHumanIE10(driver, m);
+		  List<String> caseID = obj1.createCaseHumanIE10(driver, m, obj1.title, obj1.keyword_same, obj1.key1, obj1.key2, obj1.key3);
 		  Thread.sleep(2000);
 		  //Browse through a slide
 		  obj1.compareSlide(driver, caseID, obj1.title);

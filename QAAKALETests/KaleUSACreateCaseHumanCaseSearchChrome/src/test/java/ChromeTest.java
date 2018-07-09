@@ -67,7 +67,7 @@ public class ChromeTest {
           }		  
 		  int m=obj1.deletePreviousCase(driver, obj1.titleUS);
 		  //Create case
-		  List<String> caseID = obj1.createCaseHumanChrome(driver, m);
+		  List<String> caseID = obj1.createCaseHumanChrome(driver, m, obj1.titleUS, obj1.keyword_sameUS, obj1.key1US, obj1.key2US, obj1.key3US);
 		  Thread.sleep(2000);
 		  //Browse through a slide
 		  obj1.compareSlide(driver, caseID, obj1.titleUS);
