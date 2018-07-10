@@ -114,6 +114,8 @@ public class IETest {
 		obj2.searchCaseInEquipSearchByKeyword(driver, obj2.keywordEF, caseEF);
 		//Search for case in Equipment non pii by case id
 		obj2.searchCaseInEquipSearchByCaseID(driver, caseEF);
+		//Search for PDD and EF case in Failure Modes
+		obj2.searchCaseInFailureModes(driver, caseEF, casePDD);
 	    //Delete Prevention of Design Deficiencies case
 	    obj1.deleteCase(driver, casePDD);
 	    //Delete Engineering Fundamentals case
