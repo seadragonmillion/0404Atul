@@ -182,7 +182,7 @@ public class CreateHumanCase {
 		  }
 	}
 	
-	public List<String> createCaseHumanChrome (WebDriver driver, int m) throws Exception {
+	public List<String> createCaseHumanChrome (WebDriver driver, int m, String title, String keyword_same, String key1, String key2, String key3) throws Exception {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,40);  
 		  List<String> caseID = new ArrayList<String>();
@@ -338,11 +338,12 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
+		  obj1.loadingServer(driver);
 		  }
 		  return caseID;
 	}
 	
-	public List<String> createCaseHumanFirefox (WebDriver driver, int m) throws Exception {
+	public List<String> createCaseHumanFirefox (WebDriver driver, int m, String title, String keyword_same, String key1, String key2, String key3) throws Exception {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,40);  
 		  List<String> caseID = new ArrayList<String>();
@@ -518,6 +519,7 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
+		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -525,7 +527,7 @@ public class CreateHumanCase {
 		  return caseID;
 	}
 	
-	public List<String> createCaseHumanIE10 (WebDriver driver, int m) throws Exception {
+	public List<String> createCaseHumanIE10 (WebDriver driver, int m, String title, String keyword_same, String key1, String key2, String key3) throws Exception {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,40);  
 		  List<String> caseID = new ArrayList<String>();
@@ -558,6 +560,8 @@ public class CreateHumanCase {
 		  String caseId="";
 		  for(int count=1;count<=5;count++)
 		  {
+			  //Waits for black loading message to disappear
+			  obj1.loadingServer(driver);
 			  //Clicks on Human cases
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 			  //Waits for black loading message to disappear
@@ -704,6 +708,7 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
+		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -711,7 +716,7 @@ public class CreateHumanCase {
 		  return caseID;
 	}
 	
-	public List<String> createCaseHumanIE11 (WebDriver driver, int m) throws Exception {
+	public List<String> createCaseHumanIE11 (WebDriver driver, int m, String title, String keyword_same, String key1, String key2, String key3) throws Exception {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,40);  
 		  List<String> caseID = new ArrayList<String>();
@@ -888,6 +893,7 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
+		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -1005,11 +1011,14 @@ public class CreateHumanCase {
 		
 		  WebDriverWait wait = new WebDriverWait(driver,40);
 		  CaseBrowse obj = new CaseBrowse();
+		  ShareCheck obj1 = new ShareCheck();
 		  //Enters the term and check the search by enter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HumanSearchClearButton)).click();
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HumanSearchKeywordField)).sendKeys(keyword_same);
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HumanSearchKeywordField)).sendKeys(Keys.ENTER);
+		  obj1.loadingServer(driver);
 		  //Checks for the five cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseID.get(0))));
 		  Thread.sleep(1000);

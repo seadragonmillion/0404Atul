@@ -87,6 +87,8 @@ public class EquipmentFirefoxTest {
 		  obj1.browseTermEquip(driver, obj1.keywordEquipProd, obj1.caseEquipProd, obj1.titleEquipProd);
 		  //Case id search
 		  obj1.browseCaseIDEquip(driver, obj1.caseEquipProd, obj1.titleEquipProd);
+		  //Search with keyword color oil
+		  obj1.searchColorCasesEquip(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);

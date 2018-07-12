@@ -900,7 +900,8 @@ public class OPiRCA {
 	    	List<String> hircaNewList = new ArrayList<String>(hircaL3);
 	    	//Click on Step 1 tab
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep1Tab)).click();
-	    	if(hircaL3.size()<0)
+	    	System.out.println(hircaL3.size());
+	    	if(hircaL3.size()<=0)
 	    	{
 	    		return hircaNewList;
 	    	}

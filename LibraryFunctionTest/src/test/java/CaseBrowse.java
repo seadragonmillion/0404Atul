@@ -1,4 +1,5 @@
 import java.awt.Robot;
+import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -19,6 +20,8 @@ public class CaseBrowse {
 	
 	SoftAssertions softly = new SoftAssertions();
 	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
+	String caseHumanColor = "Q1516";
+	String caseEquipColor = "F1516";
 	String caseHumanDev = "1459";
 	String caseEquipDev = "1459";
 	String caseElecDev = "1678";
@@ -77,6 +80,8 @@ public class CaseBrowse {
 	By EngineeringFundamentalPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[2]/a");
 	By EquipmentPerformancePosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[3]/a");
 	By FailureModesPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a");
+	By PreventionOfDesignDeficienciesPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a");
+	By EquipmentDatabankOnlyPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a");
 	
 	//Equipment Case
 	By EquipmentAddKeywordField = By.id("pii-admin-efse-keyword-search-input");
@@ -92,6 +97,8 @@ public class CaseBrowse {
 	By EquipmentSearchDropDown = By.id("pii-efse-keyword-list");
 	By EquipmentSearchKeywordFieldClearButton = By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/div/div/a");
 	By EquipmentSearchCaseIDFieldSearchButton = By.id("pii-efse-searchbyid-btn");
+	By EquipSearch1stCollapsibleCases = By.xpath(".//*[@id='pii-question-list-equip']/div[1]/h4/a");
+	By EquipSearch2ndCollapsibleCases = By.xpath(".//*[@id='pii-question-list-equip']/div[2]/h4/a");
 	
 	//Human Case
 	By HumanAddKeywordField = By.id("pii-admin-efsh-keyword-search-input");
@@ -107,6 +114,8 @@ public class CaseBrowse {
 	By HumanDropDownListTitle = By.xpath(".//*[@id='pii-efsh-keyword-list']/li[2]");
 	By HumanSearchKeywordFieldClearButton = By.xpath(".//*[@id='pii-keyword-block']/div[4]/div/div/a");
 	By HumanSearchDropdownListLoaded = By.xpath(".//*[@id='pii-question-list']/div/h4/a/div");
+	By HumanSearch1stCollapsibleCases = By.xpath(".//*[@id='pii-question-list']/div[1]/h4/a");
+	By HumanSearch2ndCollapsibleCases = By.xpath(".//*[@id='pii-question-list']/div[2]/h4/a");
 	
 	//Slides
 	By SlideNextButton = By.linkText("Next");
@@ -191,6 +200,268 @@ public class CaseBrowse {
         	wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
         }	    
 	}
+	 
+	public void searchColorKeywordEquip(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateHumanCase obj = new CreateHumanCase();
+		//Click on top Error-free bank link
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		//Click on Equipment Data Bank only
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDatabankOnlyLink1)).click();
+		//Enter keyword oil color
+		searchColorCasesEquip(driver);
+		//Click on top Error-free bank link
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		//Click on Equipment Data Bank only
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentPerformanceLink)).click();
+		//Enter keyword oil color
+		searchColorCasesEquip(driver);
+	}
+	
+	public void searchColorKeywordHuman(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateHumanCase obj = new CreateHumanCase();
+		//Click on top Error-free bank link
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		//Click on Human Performance only
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanPerformanceLink)).click();
+		//Enter keyword oil color
+		searchColorCasesHuman(driver);
+	}
+	
+	public void searchColorCasesHuman(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		//Search for keyword oil
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys("oil color");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
+		//Wait for loading message
+		obj.loadingServer(driver);
+		int i=1;
+		//Check for titles for 1st set of cases (Similar results)
+		while(true)
+		{
+			try
+			{
+				//Get title
+				String title = driver.findElement(By.xpath(".//*[@id='pii-question-list']/div[1]/div[1]/div["+i+"]/h4/a")).getText();
+				softly.assertThat(title).as("test data").doesNotContain("color:blue");
+				i=i+1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+		//Get URL
+		String url = driver.getCurrentUrl();
+		if(url.contains("kaledev"))
+		{
+			browseCaseForColorKeywordHuman(driver,caseHumanColor);
+		}
+		//Choose any one random case from the list of Similar Results cases
+		Random random = new Random();
+		int num;
+		while(true)
+		{
+			num = random.nextInt(i);
+			if(num == 0)
+				continue;
+			break;
+		}
+		if(url.contains("kaleasia")||url.contains("kale."))
+		{
+			//Get case id
+			String caseID = driver.findElement(By.xpath(".//*[@id='pii-question-list']/div[1]/div[1]/div["+num+"]")).getAttribute("qid");
+			browseCaseForColorKeywordHuman(driver,caseID);
+		}
+		//Close 1st collapsible and open 2nd collapsible for cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearch1stCollapsibleCases)).click();
+		//open 2nd collapsible
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearch2ndCollapsibleCases)).click();
+		}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			
+		}
+		int j=1;
+		//Check for titles for 2nd set of cases (Other results)
+		while(true)
+		{
+			try
+			{
+				//Get title
+				String title = driver.findElement(By.xpath(".//*[@id='pii-question-list']/div[2]/div[1]/div["+j+"]/h4/a")).getText();
+				softly.assertThat(title).as("test data").doesNotContain("color:blue");
+				j=j+1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+
+	}
+	
+	public void browseCaseForColorKeywordHuman(WebDriver driver, String caseID) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Scroll to case
+		WebElement l = driver.findElement(By.id("pii-collapsible-"+caseID));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
+		//Click on case collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+caseID))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Check in description of case inside collapsible if it has color:blue
+		String desc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-collapsible-"+caseID+"']/div/p[1]"))).getText();
+		softly.assertThat(desc1).as("test data").doesNotContain("color:blue");
+		String desc2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-collapsible-"+caseID+"']/div/p[2]"))).getText();
+		softly.assertThat(desc2).as("test data").doesNotContain("color:blue");
+		//Show Slides
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-"+caseID)));
+		WebElement element =  driver.findElement(By.id("pii-slideshow-button-"+caseID));
+		String slide = element.getText();
+		System.out.println(slide);
+		while (slide.contains("Show Slides(")==false)
+		{
+			Thread.sleep(1000);
+			System.out.println(slide);
+			slide = element.getText();
+		}
+		//Click on Show Slides
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-"+caseID))).sendKeys(Keys.TAB);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-"+caseID))).sendKeys(Keys.ENTER);
+		//Get title of case and verify if it has color:white
+		String titleCase = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-"+caseID+"']/ul/li[1]/div"))).getAttribute("textContent");
+		softly.assertThat(titleCase).as("test data").doesNotContain("color:white");
+		//Close case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-"+caseID+"']/a"))).click();
+	}
+	
+	public void searchColorCasesEquip(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		//Search for keyword oil
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys("oil color");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		//Wait for loading message
+		obj.loadingServer(driver);
+		int i=1;
+		//Check for titles for 1st set of cases (Similar results)
+		while(true)
+		{
+			try
+			{
+				//Get title
+				String title = driver.findElement(By.xpath(".//*[@id='pii-question-list-equip']/div[1]/div[1]/div["+i+"]/h4/a")).getText();
+				softly.assertThat(title).as("test data").doesNotContain("color:blue");
+				i=i+1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+		//Get URL
+		String url = driver.getCurrentUrl();
+		if(url.contains("kaledev"))
+		{
+			browseCaseForColorKeywordEquip(driver,caseEquipColor);
+		}
+		//Choose any one random case from the list of Similar Results cases
+		Random random = new Random();
+		int num;
+		while(true)
+		{
+			num = random.nextInt(i);
+			if(num == 0)
+				continue;
+			break;
+		}
+		if(url.contains("kaleasia")||url.contains("kale."))
+		{
+			//Get case id
+			String caseID = driver.findElement(By.xpath(".//*[@id='pii-question-list-equip']/div[1]/div[1]/div["+num+"]")).getAttribute("qid");
+			browseCaseForColorKeywordEquip(driver,caseID);
+		}
+		//Close 1st collapsible and open 2nd collapsible for cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipSearch1stCollapsibleCases)).click();
+		//open 2nd collapsible
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipSearch2ndCollapsibleCases)).click();
+		}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			
+		}
+		int j=1;
+		//Check for titles for 2nd set of cases (Other results)
+		while(true)
+		{
+			try
+			{
+				//Get title
+				String title = driver.findElement(By.xpath(".//*[@id='pii-question-list-equip']/div[2]/div[1]/div["+j+"]/h4/a")).getText();
+				softly.assertThat(title).as("test data").doesNotContain("color:blue");
+				j=j+1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+
+	}
+	
+	public void browseCaseForColorKeywordEquip(WebDriver driver, String caseID) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Scroll to case
+		WebElement l = driver.findElement(By.id("pii-collapsible-equip-"+caseID));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
+		//Click on case collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Check in description of case inside collapsible if it has color:blue
+		String desc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-collapsible-equip-"+caseID+"']/div/p[1]"))).getText();
+		softly.assertThat(desc1).as("test data").doesNotContain("color:blue");
+		String desc2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-collapsible-equip-"+caseID+"']/div/p[2]"))).getText();
+		softly.assertThat(desc2).as("test data").doesNotContain("color:blue");
+		//Show Slides
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-"+caseID)));
+		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-"+caseID));
+		String slide = element.getText();
+		System.out.println(slide);
+		while (slide.contains("Show Slides(")==false)
+		{
+			Thread.sleep(1000);
+			System.out.println(slide);
+			slide = element.getText();
+		}
+		//Click on Show Slides
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-"+caseID))).sendKeys(Keys.TAB);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-"+caseID))).sendKeys(Keys.ENTER);
+		//Get title of case and verify if it has color:white
+		String titleCase = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-"+caseID+"']/ul/li[1]/div"))).getAttribute("textContent");
+		softly.assertThat(titleCase).as("test data").doesNotContain("color:white");
+		//Close case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-"+caseID+"']/a"))).click();
+	}
 	
 	public void verifyOrderOfModules(WebDriver driver, int y) throws Exception {
 		
@@ -205,39 +476,17 @@ public class CaseBrowse {
 		//Equipment Performance
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentPerformancePosition)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Equipment Performance");
-		String url = driver.getCurrentUrl();
-		if(url.contains("kaledev"))
+		//Failure Modes
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModesPosition)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Failure Modes");
+		//Prevention of Design Deficiencies
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(PreventionOfDesignDeficienciesPosition)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
+		if(y==0)
 		{
-			//Failure Modes
-			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModesPosition)).getText();
-			softly.assertThat(s3).as("test data").isEqualTo("Failure Modes");
-			//Prevention of Design Deficiencies
-			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a"))).getText();
-			softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
-			if(y==0)
-			{
-				//Equipment Data Bank (Instructor Only)
-				String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a"))).getText();
-				softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
-			}
-		}
-		else
-		{
-			//Electrical Failure Modes
-			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModesPosition)).getText();
-			softly.assertThat(s3).as("test data").isEqualTo("Electrical Failure Modes");
-			//Electrical Failure Modes
-			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a"))).getText();
-			softly.assertThat(s5).as("test data").isEqualTo("Mechanical Failure Modes");
-			//Prevention of Design Deficiencies
-			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a"))).getText();
-			softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
-			if(y==0)
-			{
-				//Equipment Data Bank (Instructor Only)
-				String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[7]/a"))).getText();
-				softly.assertThat(s6).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
-			}
+			//Equipment Data Bank (Instructor Only)
+			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDatabankOnlyPosition)).getText();
+			softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
 		}
 		if(y==1)
 			verifyNoEquipPII(driver);

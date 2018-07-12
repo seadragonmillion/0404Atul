@@ -77,7 +77,6 @@ public class HiRCAChinese2 {
     	    driver.switchTo().window(winHandle);
     	}
     	Thread.sleep(2000);
-    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
     	Robot robot = new Robot();
     	// press Ctrl+S the Robot's way
     	robot.keyPress(KeyEvent.VK_CONTROL);
@@ -86,6 +85,31 @@ public class HiRCAChinese2 {
     	robot.keyRelease(KeyEvent.VK_S);
     	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
     	p.waitFor();
+    	Thread.sleep(2000);
+    	//If no pdf repeat
+    	// specify your directory
+    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+    	// here we get the stream with full directory listing
+    	// exclude subdirectories from listing
+    	// finally get the last file using simple comparator by lastModified field
+    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+    	try{
+    		System.out.println(lastFilePath.get());
+    	}catch(java.util.NoSuchElementException r)
+    	{
+    		//deletes files in reports folder before starting to download
+        	HiRCAEvent obj2 = new HiRCAEvent();
+        	obj2.deleteFiles(file);
+        	// press Ctrl+S the Robot's way
+        	robot.keyPress(KeyEvent.VK_CONTROL);
+        	robot.keyPress(KeyEvent.VK_S);
+        	robot.keyRelease(KeyEvent.VK_CONTROL);
+        	robot.keyRelease(KeyEvent.VK_S);
+        	Thread.sleep(2000);
+    		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+  			q.waitFor();
+  			Thread.sleep(7000);
+    	}
     	//pdf check
     	pdfCheck(driver,softly,verifyChinese);
     	Thread.sleep(4000);

@@ -1,18 +1,22 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -94,7 +98,7 @@ public class CreateEquipmentCase {
 	By EquipCasePopupConfirmButton = By.id("pii-admin-efse-dialog-confirmed");
 	By EquipCaseIDField = By.id("pii-admin-efse-id");
 	By EquipCaseIDFieldError = By.id("pii-admin-efse-id-error");
-	By EquipCaseCategory = By.id("pii-admin-efse-level");
+	By EquipCaseTypes = By.id("pii-admin-efse-type-button");
 	By EquipCaseQuestion = By.id("pii-admin-efse-question");
 	By EquipCaseAnswer = By.id("pii-admin-efse-answer");
 	By EquipCaseNewKeywordField = By.id("pii-admin-efse-keyword-search-input");
@@ -110,6 +114,35 @@ public class CreateEquipmentCase {
 	By EquipCaseEditButton = By.id("pii-admin-efse-button-edit");
 	By EquipCaseExistingKeywordOnlyOne = By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li/a");
 	By EquipImageCollapsibleExpanded = By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div");
+	By EquipCaseFields = By.id("pii-admin-efse-field-button");
+	By EquipCaseDiscipline = By.id("pii-admin-efse-discipline-button");
+	By EquipListBoxTypes = By.id("pii-admin-efse-type-listbox");
+	By ListCrossSymbol = By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete");
+	By EquipListBoxTypesCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-type-listbox']/div/a");
+	By EquipListBoxDisciplineCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-discipline-listbox']/div/a");
+	By EquipListBoxDiscipline = By.id("pii-admin-efse-discipline-listbox");
+	By EquipListBoxFields = By.id("pii-admin-efse-field-listbox");
+	By EquipListBoxFieldsCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-field-listbox']/div/a");
+	
+	By EquipListTypesAdvancedLearning = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[1]/a");
+	By EquipListTypesCaseStudies = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[2]/a");
+	By EquipListTypesDesign = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[3]/a");
+	By EquipListTypesFailureModes = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[4]/a");
+	By EquipListTypesFundamentals = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[5]/a");
+	By EquipListTypesGeneral = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[6]/a");
+	
+	By EquipListDisciplineElectrical = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[1]/a");
+	By EquipListDisciplineGeneral = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[2]/a");
+	By EquipListDisciplineIC = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[3]/a");
+	By EquipListDisciplineMechanical = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[4]/a");
+	By EquipListDisciplineSoftware = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[5]/a");
+	By EquipListDisciplineStructural = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[6]/a");
+	
+	By EquipListFieldsAuto = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[1]/a");
+	By EquipListFieldsNuclear = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[2]/a");
+	By EquipListFieldsOther = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[3]/a");
+	By EquipListFieldsPharmaceutical = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[4]/a");
+	By EquipListFieldsWelding = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[5]/a");
 
 	public void deletePreviousCase(WebDriver driver, String title) throws Exception{
 		
@@ -252,124 +285,246 @@ public class CreateEquipmentCase {
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseID.get(1))));
 	}
 	
-	public List<String> selectCategories (WebDriver driver) throws Exception {
+	public void clickTypesDisciplineIE(WebDriver driver, By element) throws Exception {
 		
-		//Category
-		WebElement dropdown = driver.findElement(EquipCaseCategory);
-		Select s = new Select (dropdown);
-		//Choose a number between 1 and 11 for number of categories
-		Random random = new Random ();
-		List<String> categories = new ArrayList<String> ();
-		int y;
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Get checkbox clicked or not value
 		while(true)
 		{
-			y = random.nextInt(12);
+			Thread.sleep(1000);
+			String cl = wait.until(ExpectedConditions.visibilityOfElementLocated(element)).getAttribute("class");
+			if(cl.contains("ui-checkbox-on")==true)
+				break;
+	    	Actions act = new Actions(driver);
+	    	act.click(wait.until(ExpectedConditions.visibilityOfElementLocated(element))).build().perform();
+		}
+	}
+	
+	public void verifyTypesList(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verifies that list contains the required options
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesAdvancedLearning)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Advanced Learning");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesCaseStudies)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Case Studies");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesDesign)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Design");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesFailureModes)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Failure Modes");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesFundamentals)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Fundamentals");
+	    String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesGeneral)).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("General");
+	}
+	
+		
+	public List<String> selectTypes (WebDriver driver, int count, String title) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> categories = new ArrayList<String> ();
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Type
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseTypes)).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseTypes)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Type
+				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseTypes)).click();
+			}
+	    }
+	    else{
+		//Type
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseTypes)).click();
+	    }
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxTypes));
+	    //Verify types list
+	    verifyTypesList(driver);
+		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11)||title.equals(ee_titleie11))
+		  {
+			    if (browserName.contains("internet")==true)
+			    {
+			    	clickTypesDisciplineIE(driver, EquipListTypesFailureModes);			    	
+			    }
+			    else
+			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesFailureModes)).click();
+		  }
+		if(count<5){
+		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		{
+		  if(count==1)
+		  {
+			    if (browserName.contains("internet"))
+			    {
+			    	clickTypesDisciplineIE(driver, EquipListTypesAdvancedLearning);			    	
+			    }
+			    else
+			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesAdvancedLearning)).click();
+		  }
+		  if(count==2)
+		  {
+			    if (browserName.contains("internet"))
+			    {
+			    	clickTypesDisciplineIE(driver, EquipListTypesCaseStudies);
+			    }
+			    else
+			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesCaseStudies)).click();
+		  }
+		  if(count>2)
+		  {
+			    if (browserName.contains("internet"))
+			    {
+			    	clickTypesDisciplineIE(driver, EquipListTypesGeneral);
+			    }
+			    else
+			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesGeneral)).click();
+		  }
+		}
+		}		
+	    //Choose a number between 1 and 6 for number of types
+		Random random = new Random ();
+		int y;
+		if(count == 5){
+			if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11)){
+		while(true)
+		{
+			y = random.nextInt(7);
 			if(y==0)
 				continue;
 			break;
 		}
-		//Select the categories
+		//Select the types
 		for(int i=1;i<=y;i++)
 		{
 			int x;
-			//Choose a number between 1 and 11
+			//Choose a number between 1 and 6
 			while(true)
 			{
-				x = random.nextInt(12);
+				x = random.nextInt(7);
 				if(x==0)
 					continue;
 				break;
 			}
 			if(x==1)
 			{
-				if(categories.contains("General")==false)
+				if(categories.contains("Advanced Learning")==false)
 				{
-					s.selectByVisibleText("General");
-					categories.add("General");
+				    if (browserName.contains("internet"))
+				    {
+				    	clickTypesDisciplineIE(driver, EquipListTypesAdvancedLearning);
+				    }
+				    else
+				    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesAdvancedLearning)).click();
+					categories.add("Advanced Learning");
 				}
 			}
 			if(x==2)
 			{
-				if(categories.contains("Failure Mode")==false)
+				if(categories.contains("Case Studies")==false)
 				{
-					s.selectByVisibleText("Failure Mode");
-					categories.add("Failure Mode");
+				    if (browserName.contains("internet"))
+				    {
+				    	clickTypesDisciplineIE(driver, EquipListTypesCaseStudies);
+				    }
+				    else
+				    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesCaseStudies)).click();
+					categories.add("Case Studies");
 				}
 			}
 			if(x==3)
 			{
-				if(categories.contains("I&C Case Study")==false)
+				if(categories.contains("Design")==false)
 				{
-					s.selectByVisibleText("I&C Case Study");
-					categories.add("I&C Case Study");
+				    if (browserName.contains("internet"))
+				    {
+				    	clickTypesDisciplineIE(driver, EquipListTypesDesign);
+				    }
+				    else
+				    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesDesign)).click();
+					categories.add("Design");
 				}
 			}
 			if(x==4)
 			{
-				if(categories.contains("Electrical Case Study")==false)
+				if(categories.contains("Failure Modes")==false)
 				{
-					s.selectByVisibleText("Electrical Case Study");
-					categories.add("Electrical Case Study");
+				    if (browserName.contains("internet"))
+				    {
+				    	clickTypesDisciplineIE(driver, EquipListTypesFailureModes);
+				    }
+				    else
+				    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesFailureModes)).click();
+					categories.add("Failure Modes");
 				}
 			}
 			if(x==5)
 			{
-				if(categories.contains("Software Case Study")==false)
+				if(categories.contains("Fundamentals")==false)
 				{
-					s.selectByVisibleText("Software Case Study");
-					categories.add("Software Case Study");
+				    if (browserName.contains("internet"))
+				    {
+				    	clickTypesDisciplineIE(driver, EquipListTypesFundamentals);
+				    }
+				    else
+				    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesFundamentals)).click();
+					categories.add("Fundamentals");
 				}
 			}
-			if(x==6)
-			{
-				if(categories.contains("Structural Case Study")==false)
+			if(categories.contains("General")==false)
 				{
-					s.selectByVisibleText("Structural Case Study");
-					categories.add("Structural Case Study");
+			    if (browserName.contains("internet"))
+			    {
+			    	clickTypesDisciplineIE(driver, EquipListTypesGeneral);
+			    }
+			    else
+			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesGeneral)).click();
+				categories.add("General");
 				}
 			}
-			if(x==7)
-			{
-				if(categories.contains("Mechanical Case Study")==false)
-				{
-					s.selectByVisibleText("Mechanical Case Study");
-					categories.add("Mechanical Case Study");
-				}
-			}
-			if(x==8)
-			{
-				if(categories.contains("Electrical Failure Mode")==false)
-				{
-					s.selectByVisibleText("Electrical Failure Mode");
-					categories.add("Electrical Failure Mode");
-				}
-			}
-			if(x==9)
-			{
-				if(categories.contains("Mechanical Failure Mode")==false)
-				{
-					s.selectByVisibleText("Mechanical Failure Mode");
-					categories.add("Mechanical Failure Mode");
-				}
-			}
-			if(x==10)
-			{
-				if(categories.contains("Prevention of Design Deficiencies")==false)
-				{
-					s.selectByVisibleText("Prevention of Design Deficiencies");
-					categories.add("Prevention of Design Deficiencies");
-				}
-			}
-			if(x==11)
-			{
-				if(categories.contains("Engineering Fundamentals")==false)
-				{
-					s.selectByVisibleText("Engineering Fundamentals");
-					categories.add("Engineering Fundamentals");
-				}
-			}
-		}
+		}}
+	    try{
+	    	driver.findElement(ListCrossSymbol).click();
+	    }catch (NoSuchElementException | ElementNotInteractableException e)
+		  {
+		     driver.findElement(EquipListBoxTypesCrossSymbol).click();
+		  }
 		return categories;
+	}
+	
+	public void searchFailurModeCaseWith2Discipline(WebDriver driver, String keyword, String caseId) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		CaseBrowse obj1 = new CaseBrowse();
+		ShareCheck obj = new ShareCheck();
+		CreateHumanCase obj2 = new CreateHumanCase ();
+		//Clicks on Error free bank
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+		Actions act = new Actions(driver);
+		act.click(element1).build().perform();
+		//Go to  FM
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
+		Thread.sleep(1000);
+		//Check for case
+		//Enters case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Clicks on case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 	}
 	
 	public void searchCaseWithMultipleCategories(WebDriver driver, List<String> categories, String caseId) throws Exception {
@@ -379,7 +534,7 @@ public class CreateEquipmentCase {
 		ShareCheck obj = new ShareCheck();
 		CreateHumanCase obj2 = new CreateHumanCase ();
 		Thread.sleep(1000);
-		if (categories.contains("Failure Mode")||categories.contains("General")||categories.contains("I&C Case Study")||categories.contains("Electrical Case Study")||categories.contains("Software Case Study")||categories.contains("Structural Case Study")||categories.contains("Mechanical Case Study"))
+		if (categories.contains("Case Studies")||categories.contains("Advanced Learning")||categories.contains("General"))
 		{
 			//Clicks on Error free bank
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
@@ -397,14 +552,14 @@ public class CreateEquipmentCase {
 			//Clicks on case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 		}
-		if (categories.contains("Electrical Failure Mode"))
+		if (categories.contains("Failure Mode"))
 		{
 			//Clicks on Error free bank
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 			Actions act = new Actions(driver);
 			act.click(element1).build().perform();
-			//Go to Electrical FM
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ElectricalFailureModeLink)).click();
+			//Go to  FM
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 			Thread.sleep(1000);
 			//Check for case
 			//Enters case id
@@ -415,25 +570,7 @@ public class CreateEquipmentCase {
 			//Clicks on case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 		}
-		if (categories.contains("Mechanical Failure Mode"))
-		{
-			//Clicks on Error free bank
-			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
-			Actions act = new Actions(driver);
-			act.click(element1).build().perform();
-			//Go to Mechanical FM
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.MechanicalFailureModeLink)).click();
-			Thread.sleep(1000);
-			//Check for case
-			//Enters case id
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchCaseIdField)).sendKeys(caseId);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchCaseIdField)).sendKeys(Keys.ENTER);
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-			//Clicks on case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
-		}
-		if (categories.contains("Prevention of Design Deficiencies"))
+		if (categories.contains("Design"))
 		{
 			//Clicks on Error free bank
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
@@ -451,7 +588,7 @@ public class CreateEquipmentCase {
 			//Clicks on case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 		}
-		if (categories.contains("Engineering Fundamentals"))
+		if (categories.contains("Fundamentals"))
 		{
 			//Clicks on Error free bank
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
@@ -469,6 +606,254 @@ public class CreateEquipmentCase {
 			//Clicks on case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 		}
+	}
+	
+	public void verifyFieldsList(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verifies that list contains the required options
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsAuto)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Auto");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsNuclear)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Nuclear");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsOther)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Other");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsPharmaceutical)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Pharmaceutical");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsWelding)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Welding");
+	}
+	
+	public void selectFields(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    String v = cap.getVersion().toString();
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Fields
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseFields)).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseFields)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Fields
+				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseFields)).click();
+			}
+	    }
+	    else{
+		//Fields
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseFields)).click();
+	    }
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxFields));	
+	    //Verify fields list
+	    verifyFieldsList(driver);
+		//Choose a number between 1 and 5 for number of Fields
+		Random random = new Random ();
+		int x;
+		//Choose a number between 1 and 5
+		while(true)
+		{
+			x = random.nextInt(6);
+			if(x==0)
+				continue;
+			break;
+		}
+		if(x==1)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsAuto)).click();			
+		}
+		if(x==2)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsNuclear)).click();				
+		}
+		if(x==3)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsOther)).click();			
+		}
+		if(x==4)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsPharmaceutical)).click();			
+		}
+		if(x==5)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsWelding)).click();			
+		}
+	    try{
+	    	driver.findElement(ListCrossSymbol).click();
+	    }catch (NoSuchElementException | ElementNotInteractableException e)
+		  {
+		     driver.findElement(EquipListBoxFieldsCrossSymbol).click();
+		  }
+	}
+	
+	public void verifyDisciplineList(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verifies that list contains the required options
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineElectrical)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Electrical");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineGeneral)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("General");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineIC)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("I&C");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineMechanical)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Mechanical");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineSoftware)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Software");
+	    String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineStructural)).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("Structural");
+	}
+	
+	public void selectRandomDiscipline(WebDriver driver, String browserName, String title) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Choose a number between 1 and 6 for number of Discipline
+		Random random = new Random ();
+		int x;
+		//Choose a number between 1 and 6
+		while(true)
+		{
+			x = random.nextInt(7);
+			if(x==0)
+				continue;
+			//if title is ee or me then don't select ee or me
+			if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11)))
+			{
+				if((x==1)||(x==4))
+					continue;
+			}
+			break;
+		}
+		if(x==1)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineElectrical);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineElectrical)).click();			
+		}
+		if(x==2)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineGeneral);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineGeneral)).click();				
+		}
+		if(x==3)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineIC);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineIC)).click();			
+		}
+		if(x==4)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineMechanical);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineMechanical)).click();		
+		}
+		if(x==5)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineSoftware);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineSoftware)).click();			
+		}
+		if(x==6)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineStructural);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineStructural)).click();		
+		}
+	}
+	
+	public void selectDiscipline(WebDriver driver, String title, int count) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    String v = cap.getVersion().toString();
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Discipline
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDiscipline)).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDiscipline)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Discipline
+				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDiscipline)).click();
+			}
+	    }
+	    else{
+	    //Discipline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDiscipline)).click();
+	    }
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxDiscipline));	 
+	    //Verify Discipline list
+	    verifyDisciplineList(driver);
+		if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineElectrical);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineElectrical)).click();		
+		}
+		if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	clickTypesDisciplineIE(driver, EquipListDisciplineMechanical);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListDisciplineMechanical)).click();	
+		}
+		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		{
+			selectRandomDiscipline(driver, browserName, title);
+		}
+	    if(count == 5)
+	    {
+			if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			{
+			    selectRandomDiscipline(driver, browserName, title);
+			}
+	    }
+	    try{
+	    	driver.findElement(ListCrossSymbol).click();
+	    }catch (NoSuchElementException | ElementNotInteractableException e)
+		  {
+		     driver.findElement(EquipListBoxDisciplineCrossSymbol).click();
+		  }
 	}
 	
 	public List<String> createCaseChrome(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title)throws Exception{
@@ -537,43 +922,12 @@ public class CreateEquipmentCase {
 		  System.out.println("Case id: "+ caseId);
 		  //Add Case is to list
 		  caseID.add(caseId);
-		  //Selects Category
-		  if (count ==5)
-		  {
-			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-			  {
-				  //Select multiple categories randomly
-				  categories.addAll(selectCategories(driver));
-			  }
-		  }
-		  if(count<5){
-		  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  if(count==1)
-				  s.selectByVisibleText("General");
-			  if(count==2)
-				  s.selectByVisibleText("Mechanical Case Study");
-			  if(count==3)
-				  s.selectByVisibleText("I&C Case Study");
-			  if(count==4)
-				  s.selectByVisibleText("Electrical Case Study");
-			  if(count==5)
-				  s.selectByVisibleText("Software Case Study");
-		  }}
-		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Electrical Failure Mode");
-		  }
-		  if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Mechanical Failure Mode");
-		  }
+		  //Selects types
+		  categories.addAll(selectTypes(driver, count, title));
+		  //Select Discipline
+		  selectDiscipline(driver, title, count);
+		  //Select Fields
+		  selectFields(driver);
 		  //Enters Question
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).sendKeys(title);
 		  //Enters Answer
@@ -613,11 +967,23 @@ public class CreateEquipmentCase {
 			  WebElement element = driver.findElement(EquipCaseKeywordExistingList);
 			  element.findElement(obj2.FirstAndLastChildInList).click();
 		  }
-		 
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		 if(count == 5)
+		 {
+			 if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			  {
+				 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+				 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
+				 Thread.sleep(2000);
+				 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
+			  }
+		 }
 		  //Uploads 5 slides
+		  WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+		  Point p1 = l.getLocation();
+		  int yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageUploadField)).click();
 		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
 		  p.waitFor();
@@ -625,7 +991,13 @@ public class CreateEquipmentCase {
 		  //Checks if 5 images have been uploaded
 		  if(driver.findElement(EquipImageCollapsibleExpanded).isDisplayed()==false)
 		  {
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible)).click();
+			  l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+			  p1 = l.getLocation();
+			  yaxis= p1.getY()-250;
+			  Thread.sleep(2000);
+			  jse.executeScript("scroll(0,"+yaxis+")");
+			  Thread.sleep(2000);
+			  l.click();
 		  }
 		  Thread.sleep(2000);
 		  int i;
@@ -650,6 +1022,10 @@ public class CreateEquipmentCase {
 		  if(count==5){
 			  //Look for the multiple selected categories
 			  searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
+			  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			  {
+				  searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
+			  }
 		  }
 		  }			
 		return caseID;
@@ -729,43 +1105,12 @@ public class CreateEquipmentCase {
 		  System.out.println("Case id: "+ caseId);
 		  //Add Case is to list
 		  caseID.add(caseId);
-		  //Selects Category
-		  if (count ==5)
-		  {
-			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-			  {
-				  //Select multiple categories randomly
-				  categories.addAll(selectCategories(driver));
-			  }
-		  }
-		  if(count<5){
-		  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  if(count==1)
-				  s.selectByVisibleText("General");
-			  if(count==2)
-				  s.selectByVisibleText("Mechanical Case Study");
-			  if(count==3)
-				  s.selectByVisibleText("I&C Case Study");
-			  if(count==4)
-				  s.selectByVisibleText("Electrical Case Study");
-			  if(count==5)
-				  s.selectByVisibleText("Software Case Study");
-		  }}
-		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Electrical Failure Mode");
-		  }
-		  if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Mechanical Failure Mode");
-		  }
+		  //Selects types
+		  categories.addAll(selectTypes(driver, count, title));
+		  //Select Discipline
+		  selectDiscipline(driver,title,count);
+		  //Select Fields
+		  selectFields(driver);
 		  //Enters Question
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).sendKeys(title);
 		  //Enters Answer
@@ -805,20 +1150,37 @@ public class CreateEquipmentCase {
 			  WebElement element = driver.findElement(EquipCaseKeywordExistingList);
 			  element.findElement(obj2.FirstAndLastChildInList).click();
 		  }
-		 
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+			 if(count == 5)
+			 {
+				 if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				  {
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
+					 Thread.sleep(2000);
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
+				  }
+			 }
 		  //Uploads 5 slides
+		  WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+		  Point p1 = l.getLocation();
+		  int yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageUploadField)).click();
 		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 		  p.waitFor();
 		  Thread.sleep(3000);
 		  //Checks if 5 images have been uploaded
-		  //Checks if 5 images have been uploaded
 		  if(driver.findElement(EquipImageCollapsibleExpanded).isDisplayed()==false)
 		  {
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible)).click();
+			  l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+			  p1 = l.getLocation();
+			  yaxis= p1.getY()-250;
+			  Thread.sleep(2000);
+			  jse.executeScript("scroll(0,"+yaxis+")");
+			  Thread.sleep(2000);
+			  l.click();
 		  }
 		  Thread.sleep(2000);
 		  int i;
@@ -847,6 +1209,10 @@ public class CreateEquipmentCase {
 		  if(count==5){
 			  //Look for the multiple selected categories
 			  searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
+			  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			  {
+				  searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
+			  }
 		  }
 		  }	
 		return caseID;
@@ -929,43 +1295,12 @@ public class CreateEquipmentCase {
 		  System.out.println("Case id: "+ caseId);
 		  //Add Case is to list
 		  caseID.add(caseId);
-		  //Selects Category
-		  if (count ==5)
-		  {
-			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-			  {
-				  //Select multiple categories randomly
-				  categories.addAll(selectCategories(driver));
-			  }
-		  }
-		  if(count<5){
-		  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  if(count==1)
-				  s.selectByVisibleText("General");
-			  if(count==2)
-				  s.selectByVisibleText("Mechanical Case Study");
-			  if(count==3)
-				  s.selectByVisibleText("I&C Case Study");
-			  if(count==4)
-				  s.selectByVisibleText("Electrical Case Study");
-			  if(count==5)
-				  s.selectByVisibleText("Software Case Study");
-		  }}
-		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Electrical Failure Mode");
-		  }
-		  if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Mechanical Failure Mode");
-		  }
+		  //Selects types
+		  categories.addAll(selectTypes(driver, count, title));
+		  //Select Discipline
+		  selectDiscipline(driver,title,count);
+		  //Select Fields
+		  selectFields(driver);
 		  //Enters Question
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).sendKeys(title);
 		  //Enters Answer
@@ -1005,11 +1340,23 @@ public class CreateEquipmentCase {
 			  WebElement element = driver.findElement(EquipCaseKeywordExistingList);
 			  element.findElement(obj2.FirstAndLastChildInList).click();
 		  }
-		 
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+			 if(count == 5)
+			 {
+				 if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				  {
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
+					 Thread.sleep(2000);
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
+				  }
+			 }
 		  //Uploads 5 slides
+		  WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+		  Point p1 = l.getLocation();
+		  int yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
 		  ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageUploadField));
 		  act.doubleClick(ele).build().perform();
 		  Thread.sleep(3000);
@@ -1019,7 +1366,13 @@ public class CreateEquipmentCase {
 		  //Checks if 5 images have been uploaded
 		  if(driver.findElement(EquipImageCollapsibleExpanded).isDisplayed()==false)
 		  {
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible)).click();
+			  l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+			  p1 = l.getLocation();
+			  yaxis= p1.getY()-250;
+			  Thread.sleep(2000);
+			  jse.executeScript("scroll(0,"+yaxis+")");
+			  Thread.sleep(2000);
+			  l.click();
 		  }
 		  Thread.sleep(2000);
 		  int i;
@@ -1048,6 +1401,10 @@ public class CreateEquipmentCase {
 		  if(count==5){
 			  //Look for the multiple selected categories
 			  searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
+			  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			  {
+				  searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
+			  }
 		  }
 		  }	
 		return caseID;
@@ -1130,43 +1487,12 @@ public class CreateEquipmentCase {
 		  System.out.println("Case id: "+ caseId);
 		  //Add Case is to list
 		  caseID.add(caseId);
-		  //Selects Category
-		  if (count ==5)
-		  {
-			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-			  {
-				  //Select multiple categories randomly
-				  categories.addAll(selectCategories(driver));
-			  }
-		  }
-		  if(count<5){
-		  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  if(count==1)
-				  s.selectByVisibleText("General");
-			  if(count==2)
-				  s.selectByVisibleText("Mechanical Case Study");
-			  if(count==3)
-				  s.selectByVisibleText("I&C Case Study");
-			  if(count==4)
-				  s.selectByVisibleText("Electrical Case Study");
-			  if(count==5)
-				  s.selectByVisibleText("Software Case Study");
-		  }}
-		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Electrical Failure Mode");
-		  }
-		  if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US))
-		  {
-			  WebElement dropdown = driver.findElement(EquipCaseCategory);
-			  Select s = new Select (dropdown);
-			  s.selectByVisibleText("Mechanical Failure Mode");
-		  }
+		  //Selects types
+		  categories.addAll(selectTypes(driver, count, title));
+		  //Select Discipline
+		  selectDiscipline(driver,title,count);
+		  //Select Fields
+		  selectFields(driver);
 		  //Enters Question
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).sendKeys(title);
 		  //Enters Answer
@@ -1192,7 +1518,7 @@ public class CreateEquipmentCase {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(key3);
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
-			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
+			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
 			  {
 				  //Add keyword with all special characters
 				  obj1.addKeywordWithAllSpecialCharactersEquip(driver);
@@ -1206,11 +1532,23 @@ public class CreateEquipmentCase {
 			  WebElement element = driver.findElement(EquipCaseKeywordExistingList);
 			  element.findElement(obj2.FirstAndLastChildInList).click();
 		  }
-		 
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+			 if(count == 5)
+			 {
+				 if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				  {
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
+					 Thread.sleep(2000);
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
+				  }
+			 }
 		  //Uploads 5 slides
+		  WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+		  Point p1 = l.getLocation();
+		  int yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageUploadField)).click();
 		  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		  p.waitFor();
@@ -1218,7 +1556,13 @@ public class CreateEquipmentCase {
 		  //Checks if 5 images have been uploaded
 		  if(driver.findElement(EquipImageCollapsibleExpanded).isDisplayed()==false)
 		  {
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible)).click();
+			  l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+			  p1 = l.getLocation();
+			  yaxis= p1.getY()-250;
+			  Thread.sleep(2000);
+			  jse.executeScript("scroll(0,"+yaxis+")");
+			  Thread.sleep(2000);
+			  l.click();
 		  }
 		  Thread.sleep(2000);
 		  int i;
@@ -1247,6 +1591,10 @@ public class CreateEquipmentCase {
 		  if(count==5){
 			  //Look for the multiple selected categories
 			  searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
+			  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			  {
+				  searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
+			  }
 		  }
 		  }	
 		return caseID;
@@ -1262,9 +1610,9 @@ public class CreateEquipmentCase {
 		  WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankTopLink));
 		  Actions act = new Actions(driver);
 		  act.click(element1).build().perform();
-		  Thread.sleep(1000);
+		  Thread.sleep(2000);
 		  if(y==0){
-		  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
+		  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
 		  {
 			//Clicks on Equipment Performance Search
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentPerformanceLink)).click();
@@ -1274,15 +1622,15 @@ public class CreateEquipmentCase {
 			//Clicks on Equipment Performance Search (PII)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentDatabankOnlyLink1)).click();
 		  }
-		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US))
+		  if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
 		  {
-			//Clicks on Electrical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ElectricalFailureModeLink)).click();
+			//Clicks on Failure Mode Search
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.FailureModeLink)).click();
 		  }
-		  if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US))
+		  if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
 		  {
-			//Clicks on Mechanical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.MechanicalFailureModeLink)).click();
+			//Clicks on Failure Mode Search
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.FailureModeLink)).click();
 		  }
 		  obj.browseCaseIDEquip(driver,caseId,title); 
 	}
@@ -1301,7 +1649,7 @@ public class CreateEquipmentCase {
 			  driver.switchTo().alert().dismiss();
 		  }
 		  if(y==0){
-		  if(keyword_same.equals(keyword_same_eq)||keyword_same.equals(keyword_same_eqUS)||keyword_same.equals(keyword_same_eqie11US))
+		  if(keyword_same.equals(keyword_same_eq)||keyword_same.equals(keyword_same_eqUS)||keyword_same.equals(keyword_same_eqie11US)||keyword_same.equals(keyword_same_eqie11))
 		  {
 			//Clicks on Equipment Performance Search
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentPerformanceLink)).click();
@@ -1311,15 +1659,15 @@ public class CreateEquipmentCase {
 			//Clicks on Equipment Performance Search (PII)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentDatabankOnlyLink1)).click();
 		  }
-		  if(keyword_same.equals(keyword_same_ee)||keyword_same.equals(keywordUS_same_ee)||keyword_same.equals(keyword_same_eeie11US))
+		  if(keyword_same.equals(keyword_same_ee)||keyword_same.equals(keywordUS_same_ee)||keyword_same.equals(keyword_same_eeie11US)||keyword_same.equals(keyword_same_eeie11))
 		  {
-			//Clicks on Electrical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ElectricalFailureModeLink)).click();
+			//Clicks on  Failure Mode Search
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 		  }
-		  if(keyword_same.equals(keyword_same_me)||keyword_same.equals(keywordUS_same_me)||keyword_same.equals(keyword_same_meie11US))
+		  if(keyword_same.equals(keyword_same_me)||keyword_same.equals(keywordUS_same_me)||keyword_same.equals(keyword_same_meie11US)||keyword_same.equals(keyword_same_meie11))
 		  {
-			//Clicks on Mechanical Failure Mode Search
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.MechanicalFailureModeLink)).click();
+			//Clicks on  Failure Mode Search
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 		  }
 		  //Enters the term and check the search by enter
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
@@ -1437,7 +1785,7 @@ public class CreateEquipmentCase {
 		  obj.loadingServer(driver);
 		  //Checks for electrical case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+ee_caseId)));
-		  System.out.println("Electrical case found in Equipment Performance Search (PII)");
+		  System.out.println("Electrical case found in Equipment Databank only");
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
 		  //Enters Mechanical Case id to see if it exists
@@ -1447,7 +1795,7 @@ public class CreateEquipmentCase {
 		  obj.loadingServer(driver);
 		  //Checks for mechanical case
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+me_caseId)));
-		  System.out.println("Mechanical case found in Equipment Performance Search (PII)");
+		  System.out.println("Mechanical case found in Equipment Databank only");
 		  //Clicks on Error free bank
 		  try
 		  {
@@ -1455,8 +1803,8 @@ public class CreateEquipmentCase {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  //Clicks on Electrical Failure Mode Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ElectricalFailureModeLink)).click();
+		  //Clicks on Failure Mode Search
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
 		  //Enters Equipment Case id to see if it exists
@@ -1476,8 +1824,8 @@ public class CreateEquipmentCase {
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
-		  //Clicks on Mechanical Failure Mode Search
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.MechanicalFailureModeLink)).click();
+		  //Clicks on Failure Mode Search
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
 		  //Enters Equipment Case id to see if it exists
@@ -1488,6 +1836,70 @@ public class CreateEquipmentCase {
 		  //Checks for the error message
 		  if (driver.findElement(EquipSearchMessage).isDisplayed())
 			  System.out.println("Equipment case not found in Mechanical Search");
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Verify that Failure mode cases do not appear in Engineering Fundamentals
+		  //Clicks on Error free bank
+		  try
+		  {
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+		  }catch (UnhandledAlertException f){			  
+			  driver.switchTo().alert().dismiss();
+		  }
+		  //Clicks on Engineering Fundametals
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(EngineeringFundamentalsLink)).click();
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters Equipment Case id to see if it exists
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(ee_caseId);
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
+		  //Checks for the error message
+		  if (driver.findElement(EquipSearchMessage).isDisplayed())
+			  System.out.println("Electrical failure mode case not found in Engineering Fundamentals");
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters Equipment Case id to see if it exists
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(me_caseId);
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
+		  //Checks for the error message
+		  if (driver.findElement(EquipSearchMessage).isDisplayed())
+			  System.out.println("Mechanical failure mode case not found in Engineering Fundamentals");
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Verify that Failure mode cases do not appear in Prevention of Design Deficiencies
+		  //Clicks on Error free bank
+		  try
+		  {
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+		  }catch (UnhandledAlertException f){			  
+			  driver.switchTo().alert().dismiss();
+		  }
+		  //Clicks on Prevention of Design Deficiencies
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(PreventionOfDesignDeficienciesLink)).click();
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters Equipment Case id to see if it exists
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(ee_caseId);
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
+		  //Checks for the error message
+		  if (driver.findElement(EquipSearchMessage).isDisplayed())
+			  System.out.println("Electrical failure mode case not found in Prevention of Design Deficiencies");
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters Equipment Case id to see if it exists
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(me_caseId);
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
+		  //Checks for the error message
+		  if (driver.findElement(EquipSearchMessage).isDisplayed())
+			  System.out.println("Mechanical failure mode case not found in Prevention of Design Deficiencies");
 		  //Clicks on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
 	}

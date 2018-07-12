@@ -1910,6 +1910,7 @@ public class UserManagement {
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dept-input"))).sendKeys("QAA sample department");
 	Thread.sleep(1000);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dept-input"))).sendKeys(Keys.ENTER);
+	Thread.sleep(1000);
 	//Click on add
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
@@ -1987,10 +1988,9 @@ public class UserManagement {
 			if (login==1)
 			{
 				Thread.sleep(2000);
-				WebDriverWait wait2 = new WebDriverWait(driver,20);
-				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
-		}catch (NoSuchElementException|org.openqa.selenium.TimeoutException r){
+		}catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException r){
 			throw r;
 		}
 		List<String>f = Arrays.asList(op);

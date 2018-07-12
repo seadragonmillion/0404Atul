@@ -61,6 +61,7 @@ public class MechanicalChromeTest {
 		     * nonadmin = 1
 		    */
 		  obj1.getMechFailureModeLink(driver,1);
+		  Thread.sleep(1000);
 		  //Verify all search options
 		  obj1.verifySearchOptionsEquip(driver, obj1.keywordMechProd, obj1.caseMechProd);
 		  Thread.sleep(1000);

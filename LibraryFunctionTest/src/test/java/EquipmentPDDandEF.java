@@ -4,14 +4,17 @@ import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -48,6 +51,47 @@ public class EquipmentPDDandEF {
 	String titlePDDDev = "Sanity: QAA Test (DO NOT DELETE)";
 	String titleEFProd = "What is Faraday’s Law and Ampere’s Law?"+"\n";
 	String titlePDDProd = "How do you reduce valve packing friction force?";
+	
+	public void searchCaseInFailureModes(WebDriver driver, String identifierEF, String identifierPDD) throws Exception {
+		
+		  WebDriverWait wait = new WebDriverWait(driver,20);
+		  ShareCheck obj = new ShareCheck();
+		  CaseBrowse obj1 = new CaseBrowse();
+		  CreateHumanCase obj2 = new CreateHumanCase ();
+		  CreateEquipmentCase obj3 = new CreateEquipmentCase();
+		  //Verify that Failure mode cases do not appear in Engineering Fundamentals
+		  //Clicks on Error free bank
+		  try
+		  {
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+		  }catch (UnhandledAlertException f){			  
+			  driver.switchTo().alert().dismiss();
+		  }
+		  //Clicks on Failure Modes
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters Equipment Case id to see if it exists
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(identifierEF);
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
+		  //Checks for the error message
+		  if (driver.findElement(obj3.EquipSearchMessage).isDisplayed())
+			  System.out.println("Engineering Fundamentals case not found in Failure Modes");
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters Equipment Case id to see if it exists
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(identifierPDD);
+		  driver.findElement(obj1.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
+		  //Checks for the error message
+		  if (driver.findElement(obj3.EquipSearchMessage).isDisplayed())
+			  System.out.println("Prevention of Design Deficiencies case not found in Failure Modes");
+		  //Clicks on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+	}
 	
 	public void searchWithPercent(WebDriver driver, String keypercent, String identifier) throws Exception {
 		
@@ -94,7 +138,7 @@ public class EquipmentPDDandEF {
 		Thread.sleep(2000);		  
 		//Verifies warning message
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-search-message']/div"))).getText();
-		softly.assertThat(s).as("test data").contains("Error: No equipment case found.");
+		softly.assertThat(s).as("test data").contains("Warning: No Equipment Performance case found");
 		//Clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-clear"))).click();
 	}
@@ -225,10 +269,8 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 		//Look for Equipment Data Bank (Instructor Only)
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Data Bank (Instructor Only)")));
-		//Look for Electrical Failure modes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Electrical Failure Modes")));
-		//Look for Mechanical failure modes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Mechanical Failure Modes")));
+		//Look for Failure modes
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Failure Modes")));
 		//Look for Equipment Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Equipment Performance")));
 		//Look for Engineering Fundamentals
@@ -652,10 +694,114 @@ public class EquipmentPDDandEF {
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Engineering Fundamentals"))).click();
 	}
 	
+	public void selectTypeEFPDD(WebDriver driver, String keyword) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		CreateEquipmentCase obj1 = new CreateEquipmentCase();
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Type
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseTypes)).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseTypes)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Type
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseTypes)).click();
+			}
+	    }
+	    else{
+		//Type
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseTypes)).click();
+	    }
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListBoxTypes));
+	    if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11))
+	    {
+	    	if (browserName.contains("internet")==true)
+		    {
+		    	obj1.clickTypesDisciplineIE(driver, obj1.EquipListTypesFundamentals);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListTypesFundamentals)).click();
+	    }
+	    if(keyword.equals(keywordPDD)||keyword.equals(keywordPDDie11))
+	    {
+	    	if (browserName.contains("internet")==true)
+		    {
+		    	obj1.clickTypesDisciplineIE(driver, obj1.EquipListTypesDesign);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListTypesDesign)).click();
+	    }
+	    try{
+	    	driver.findElement(obj1.ListCrossSymbol).click();
+	    }catch (NoSuchElementException | ElementNotInteractableException e)
+		  {
+		     driver.findElement(obj1.EquipListBoxTypesCrossSymbol).click();
+		  }
+	}
+	
+	public void selectDisciplineEFPDD(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		CreateEquipmentCase obj1 = new CreateEquipmentCase();
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    String v = cap.getVersion().toString();
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Discipline
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseDiscipline)).click();
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseDiscipline)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Discipline
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseDiscipline)).click();
+			}
+	    }
+	    else{
+	    //Discipline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseDiscipline)).click();
+	    }
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListBoxDiscipline));
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    	if (browserName.contains("internet")==true)
+	    {
+	    	obj1.clickTypesDisciplineIE(driver, obj1.EquipListDisciplineGeneral);
+	    }
+	    else
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListDisciplineGeneral)).click();
+	    try{
+	    	driver.findElement(obj1.ListCrossSymbol).click();
+	    }catch (NoSuchElementException | ElementNotInteractableException e)
+		  {
+		     driver.findElement(obj1.EquipListBoxDisciplineCrossSymbol).click();
+		  }
+	}
+	
 	public String createCaseChrome(WebDriver driver, String keyword, String title) throws Exception{
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		CreateEquipmentCase obj1 = new CreateEquipmentCase();
+		ShareCheck obj = new ShareCheck();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -668,7 +814,6 @@ public class EquipmentPDDandEF {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
@@ -705,27 +850,12 @@ public class EquipmentPDDandEF {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
 		}
 	    System.out.println("Case id: "+ caseId);
-	    //Select Category
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-button"))).click();
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-listbox")));
-	    if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11))
-	    {
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Engineering Fundamentals"))).click();
-	    }
-	    if(keyword.equals(keywordPDD)||keyword.equals(keywordPDDie11))
-	    {
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Prevention of Design Deficiencies"))).click();
-	    }
-	    try{
-	    	driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
-	    }catch (NoSuchElementException e)
-		  {
-		     driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
-		  }
-	    catch (ElementNotInteractableException e1)
-	    {
-	    	driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
-	    }
+	    //Select Type
+	    selectTypeEFPDD(driver,keyword);
+	    //Select Discipline
+	    selectDisciplineEFPDD(driver);
+     	//Select Fields
+     	obj1.selectFields(driver);
 	    //Enters Question
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
@@ -743,15 +873,27 @@ public class EquipmentPDDandEF {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Uploads 5 slides
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
 		p.waitFor();
 		Thread.sleep(3000);
 		//Checks if 5 images have been uploaded
-		WebElement collapsible=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a")));
-		Actions act1 = new Actions(driver);
-		act1.click(collapsible).build().perform();
-		Thread.sleep(6000);
+		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
+		{
+		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		  p1 = l.getLocation();
+		  yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
+		  l.click();
+		}
 		int i;
 		for (i=0; i<5;i++)
 		{
@@ -780,6 +922,7 @@ public class EquipmentPDDandEF {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -832,31 +975,12 @@ public class EquipmentPDDandEF {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
 		}
 	    System.out.println("Case id: "+ caseId);
-	    //Select Category
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-button"))).click();
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-listbox")));
-	    Thread.sleep(2000);
-	    //Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    WebElement box = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-menu")));
-	    if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11))
-	    {
-	    	box.findElement(By.linkText("Engineering Fundamentals")).click();
-	    }
-	    if(keyword.equals(keywordPDD)||keyword.equals(keywordPDDie11))
-	    {
-	    	box.findElement(By.linkText("Prevention of Design Deficiencies")).click();
-	    }
-	    try{
-	    	driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
-	    }catch (NoSuchElementException e)
-		  {
-		     driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
-		  }
-	    catch (ElementNotInteractableException e1)
-	    {
-	    	driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
-	    }
+	    //Select Type
+	    selectTypeEFPDD(driver,keyword);
+	    //Select Discipline
+	    selectDisciplineEFPDD(driver);
+     	//Select Fields
+     	obj1.selectFields(driver);
 	    //Enters Question
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
@@ -874,15 +998,28 @@ public class EquipmentPDDandEF {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Uploads 5 slides
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 		p.waitFor();
 		Thread.sleep(3000);
 		//Checks if 5 images have been uploaded
-		WebElement collapsible=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a")));
-		Actions act1 = new Actions(driver);
-		act1.click(collapsible).build().perform();
-		Thread.sleep(6000);
+		//Checks if 5 images have been uploaded
+		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
+		{
+		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		  p1 = l.getLocation();
+		  yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
+		  l.click();
+		}
 		int i;
 		for (i=0; i<5;i++)
 		{
@@ -911,6 +1048,7 @@ public class EquipmentPDDandEF {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -963,37 +1101,12 @@ public class EquipmentPDDandEF {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
 		}
 	    System.out.println("Case id: "+ caseId);
-	    //Select Category
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-button"))).click();
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-listbox")));
-	    if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11))
-	    {
-	    	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Engineering Fundamentals")));
-	    	Actions act = new Actions (driver);
-	    	act.click(ele).build().perform();
-	    }
-	    if(keyword.equals(keywordPDD)||keyword.equals(keywordPDDie11))
-	    {
-	    	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Prevention of Design Deficiencies")));
-	    	Actions act = new Actions (driver);
-	    	act.click(ele).build().perform();
-	    }
-	    try{
-	    	WebElement ele = driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete"));
-	    	Actions act = new Actions (driver);
-	    	act.click(ele).build().perform();
-	    }catch (NoSuchElementException e)
-		  {
-	    	WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a"));
-		     Actions act = new Actions (driver);
-		     act.click(ele).build().perform();
-		  }
-	    catch (ElementNotInteractableException e1)
-	    {
-	    	WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a"));
-	    	Actions act = new Actions (driver);
-	    	act.click(ele).build().perform();
-	    }
+	    //Select Type
+	    selectTypeEFPDD(driver,keyword);
+	    //Select Discipline
+	    selectDisciplineEFPDD(driver);
+     	//Select Fields
+     	obj1.selectFields(driver);
 	    //Enters Question
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
@@ -1012,6 +1125,12 @@ public class EquipmentPDDandEF {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Uploads 5 slides
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input")));
 		Actions act1 = new Actions(driver);
 		act1.doubleClick(ele).build().perform();
@@ -1019,9 +1138,16 @@ public class EquipmentPDDandEF {
 		p.waitFor();
 		Thread.sleep(4000);
 		//Checks if 5 images have been uploaded
-		WebElement collapsible=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a")));
-		act1.click(collapsible).build().perform();
-		Thread.sleep(6000);
+		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
+		{
+		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		  p1 = l.getLocation();
+		  yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
+		  l.click();
+		}
 		int i;
 		for (i=0; i<5;i++)
 		{
@@ -1049,6 +1175,7 @@ public class EquipmentPDDandEF {
 	public String createCaseIE11(WebDriver driver, String keyword, String title) throws Exception{
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
@@ -1102,27 +1229,12 @@ public class EquipmentPDDandEF {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-id"))).clear();
 		}
 	    System.out.println("Case id: "+ caseId);
-	    //Select Category
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-button"))).click();
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-level-listbox")));
-	    if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11))
-	    {
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Engineering Fundamentals"))).click();
-	    }
-	    if(keyword.equals(keywordPDD)||keyword.equals(keywordPDDie11))
-	    {
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Prevention of Design Deficiencies"))).click();
-	    }
-	    try{
-	    	driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
-	    }catch (NoSuchElementException e)
-		  {
-		     driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
-		  }
-	    catch (ElementNotInteractableException e1)
-	    {
-	    	driver.findElement(By.xpath(".//*[@id='pii-admin-efse-level-listbox']/div/a")).click();
-	    }
+	    //Select Type
+	    selectTypeEFPDD(driver,keyword);
+	    //Select Discipline
+	    selectDisciplineEFPDD(driver);
+     	//Select Fields
+     	obj1.selectFields(driver);
 	    //Enters Question
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
@@ -1140,15 +1252,27 @@ public class EquipmentPDDandEF {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Uploads 5 slides
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		p.waitFor();
 		Thread.sleep(4000);
 		//Checks if 5 images have been uploaded
-		WebElement collapsible=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a")));
-		Actions act1 = new Actions(driver);
-		act1.click(collapsible).build().perform();
-		Thread.sleep(6000);
+		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
+		{
+		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
+		  p1 = l.getLocation();
+		  yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
+		  l.click();
+		}
 		int i;
 		for (i=0; i<5;i++)
 		{

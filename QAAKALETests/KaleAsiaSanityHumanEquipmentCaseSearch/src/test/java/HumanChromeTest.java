@@ -66,6 +66,8 @@ public class HumanChromeTest {
 		  obj1.browseTermHuman(driver, obj1.keywordHumanProd, obj1.caseHumanProd, obj1.titleHumanProd);
 		  //Case id search
 		  obj1.browseCaseIDHuman(driver, obj1.caseHumanProd, obj1.titleHumanProd);
+		  //Search for cases with keyword color
+		  obj1.searchColorCasesHuman(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);

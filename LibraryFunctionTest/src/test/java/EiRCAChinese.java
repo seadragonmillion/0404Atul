@@ -1170,6 +1170,7 @@ public class EiRCAChinese {
 	public void selectAllCheckboxesStep3 (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on check box for 3.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31CheckBox)).click();
 		//Click on check box for 3.2
@@ -1178,10 +1179,18 @@ public class EiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33CheckBox)).click();
 		//Click on check box for 3.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34CheckBox)).click();
+		//Scroll to the bottom
+		Thread.sleep(500);
+		jse.executeScript("scroll(0,1200)");
+		Thread.sleep(500);
 		//Click on check box for 3.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35CheckBox)).click();
 		//Click on check box for 3.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36CheckBox)).click();
+		//Scroll to the top
+		Thread.sleep(500);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(500);
 	}
 	
 	
@@ -1280,7 +1289,13 @@ public class EiRCAChinese {
         	File file = new File("C://Users//IEUser//Downloads//reports//");
         	HiRCAEvent obj2 = new HiRCAEvent();
         	obj2.deleteFiles(file);
-    		Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+        	// press Ctrl+S the Robot's way
+        	robot.keyPress(KeyEvent.VK_CONTROL);
+        	robot.keyPress(KeyEvent.VK_S);
+        	robot.keyRelease(KeyEvent.VK_CONTROL);
+        	robot.keyRelease(KeyEvent.VK_S);
+        	Thread.sleep(2000);
+    		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
   			q.waitFor();
   			Thread.sleep(7000);
     	}

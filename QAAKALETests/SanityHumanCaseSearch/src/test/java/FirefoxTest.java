@@ -89,6 +89,8 @@ public class FirefoxTest {
 		  obj1.browseTermHuman(driver, obj1.keywordHumanDev, obj1.caseHumanDev, obj1.titleDev);
 		  //Case id search
 		  obj1.browseCaseIDHuman(driver, obj1.caseHumanDev, obj1.titleDev);
+		  //Search for cases with keyword color
+		  obj1.searchColorCasesHuman(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);
