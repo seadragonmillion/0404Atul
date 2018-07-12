@@ -569,9 +569,16 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-	    	//Choose a number between 0 to 31 for number of selections
+	    	//Choose a number between 1 to 31 for number of selections
 	    	Random random = new Random();
-	    	int n = random.nextInt(32);
+	    	int n;
+	    	while(true)
+	    	{
+	    		n = random.nextInt(32);
+	    		if(n==0)
+	    			continue;
+	    		break;
+	    	}	    	
 	    	//Create a List to store HiRCA selections
 	    	List<String> hircaL3 = new ArrayList<String>();
 	    	for(int i=1;i<=n;i++)
@@ -742,7 +749,7 @@ public class OPiRCA {
 	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div"));
 	    		if(l.isDisplayed()==true)
 	    			softly.fail("Possible Corrective Action text visible");
-	    	}catch (org.openqa.selenium.NoSuchElementException r)
+	    	}catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException r)
 	    	{
 	    		System.out.println("No Possible Corrective Action text visible as the + sign for Possible Corrective Action has not been clicked");
 	    	}
@@ -1552,6 +1559,39 @@ public class OPiRCA {
 	    	}
 	    }
 	    
+	    public List<String> changeApparentCausesListWithoutSerialNumber (List<String> apparentCausesNew) throws Exception{
+	    	
+	    	List<String> ac = new ArrayList<String>();
+	    	for(int i=0;i<apparentCausesNew.size();i++)
+	    	{
+	    		int m = apparentCausesNew.get(i).indexOf(":");
+	    		String s = apparentCausesNew.get(i).substring(m+2, apparentCausesNew.get(i).length());
+	    		ac.add(s);
+	    	}
+	    	System.out.println(ac);
+	    	return ac;
+	    }
+	    
+	    public void verifyApparentCausesAnswers(WebDriver driver,List<String> apparentCausesNew) throws Exception{
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	//Create a list to store only title of apparent cause answer
+	    	List<String> ac = changeApparentCausesListWithoutSerialNumber(apparentCausesNew);
+	    	for(int i=0;i<apparentCausesNew.size();i++)
+	    	{
+	    		//Get title of page
+		    	String title = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+		    	softly.assertThat(ac).contains(title.trim());
+	    		//Scroll to top
+	    		Thread.sleep(2000);
+	    		jse.executeScript("scroll(0,0)");
+	    		Thread.sleep(2000);
+	    		//Click on next
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
+	    	}	    	
+	    }
+	    
 	    public void pathOPiRCA(WebDriver driver, String username) throws Exception{
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
@@ -1611,6 +1651,10 @@ public class OPiRCA {
 	    	Thread.sleep(1000);
 	    	jse.executeScript("scroll(0,0)");	 
 	    	Thread.sleep(1000);
+	    	//Click on next
+    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
+	    	//Verify that apparent cause answers correspond to new HiRCA level 3 list
+	    	verifyApparentCausesAnswers(driver,apparentCausesNew);
 	    	//Click on Step 3
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3Tab)).click();
 	    	/*Verify the new apparent causes answers

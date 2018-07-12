@@ -49,7 +49,7 @@ public class CaseBrowse {
 	String keywordEquipProd = "Static electrification failure mechanism";
 	String keywordEquipProdPercent = "20%";
 	String keywordElecProd = "pneumatic controller";
-	String keywordMechProd = "benefits and failure modes of U-cup";
+	String keywordMechProd = "Failure modes of U-cup Seals";
 	String titleDev = "Sanity Test: DO NOT DELETE: QAA";
 	String titleHumanProd = "How is an Error-Free® work day achieved for power plant workers?";	
 	String titleEquipProd = "What are the controlling parameters affecting static electrification in a transformer?";
