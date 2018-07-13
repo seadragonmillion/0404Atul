@@ -77,6 +77,8 @@ public class IETest {
 		  obj1.browseTermEquip(driver, obj1.keywordElecDev, obj1.caseElecDev, obj1.titleDev);
 		  //Case id search
 		  obj1.browseCaseIDEquip(driver, obj1.caseElecDev, obj1.titleDev);
+		  //Select discipline and verify change in number of cases displayed
+		  obj1.chooseDisciplineFailureModeSearch(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);

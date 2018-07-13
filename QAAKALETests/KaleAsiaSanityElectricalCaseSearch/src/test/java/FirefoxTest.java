@@ -85,6 +85,8 @@ public class FirefoxTest {
 		  obj1.browseTermEquip(driver, obj1.keywordElecProd, obj1.caseElecProd, obj1.titleElecProd);
 		  //Case id search
 		  obj1.browseCaseIDEquip(driver, obj1.caseElecProd, obj1.titleElecProd);
+		  //Select discipline and verify change in number of cases displayed
+		  obj1.chooseDisciplineFailureModeSearch(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);
