@@ -126,6 +126,8 @@ public class IE10Test {
 		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), meCases.get(1));
 		System.out.println("Cases checked in each module");
 		Thread.sleep(2000);
+		//Look for equipment cases with Type Advanced Learning
+		obj1.searchEquipmentDatabankOnly(driver,obj1.keyword_same_eqUS,eqCases,username,password);
 		//Change keyword and search for it
 		obj1.changeKeywordKALE1969(driver,eqCases,obj1.keyword_same_eqUS);
 		Thread.sleep(2000);

@@ -1,5 +1,6 @@
 import java.awt.Robot;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -99,6 +100,20 @@ public class CaseBrowse {
 	By EquipmentSearchCaseIDFieldSearchButton = By.id("pii-efse-searchbyid-btn");
 	By EquipSearch1stCollapsibleCases = By.xpath(".//*[@id='pii-question-list-equip']/div[1]/h4/a");
 	By EquipSearch2ndCollapsibleCases = By.xpath(".//*[@id='pii-question-list-equip']/div[2]/h4/a");
+	By CaseSearchDisciplineBoxText = By.xpath(".//*[@id='pii-efse-filter-discipline-button']/span[1]");
+	By CaseSearchDisciplineBox = By.id("pii-efse-filter-discipline-button");
+	By CaseSearchDisciplineList = By.id("pii-efse-filter-discipline-listbox");
+	By CaseSearchDisciplinePopupClose = By.xpath(".//*[@id='pii-efse-filter-discipline-listbox']/div/a");
+	By EquipCaseSearchListDisciplineElectrical = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[1]/a");
+	By EquipCaseSearchListDisciplineGeneral = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[2]/a");
+	By EquipCaseSearchListDisciplineIC = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[3]/a");
+	By EquipCaseSearchListDisciplineMechanical = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[4]/a");
+	By EquipCaseSearchListDisciplineSoftware = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[5]/a");
+	By EquipCaseSearchListDisciplineStructural = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[6]/a");
+	By CaseSearchTypeBox = By.id("pii-efse-filter-type-button");
+	By CaseSearchTypeList = By.id("pii-efse-filter-type-listbox");
+	By CaseSearchTypesPopupClose = By.xpath(".//*[@id='pii-efse-filter-type-listbox']/div/a");
+	By EquipCaseSearchListTypesAdvancedLearning = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[1]/a");
 	
 	//Human Case
 	By HumanAddKeywordField = By.id("pii-admin-efsh-keyword-search-input");
@@ -199,6 +214,171 @@ public class CaseBrowse {
         {
         	wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
         }	    
+	}
+	
+	public void chooseDisciplineFailureModeSearch(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateHumanCase obj = new CreateHumanCase();
+		ShareCheck obj1 = new ShareCheck();
+		//Click on top Error-free bank link
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		//Click on Failure Modes
+		wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
+		//Search for keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys("failure");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		//Wait for loading message
+		obj1.loadingServer(driver);
+		//Get number of cases displayed when no discipline is selected
+		int i = getNumberOfCasesIn1stCollapsibleListEquip(driver);
+		System.out.println("Number of cases without any discipline chosen: "+(i));
+		//Select random discipline in Failure mode search
+		selectRandomDisciplineInSearchCase(driver);
+		Thread.sleep(1000);
+		//Click on search button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
+		//Wait for loading message
+		obj1.loadingServer(driver);
+		//Get number of cases displayed when no discipline is selected
+		int j = getNumberOfCasesIn1stCollapsibleListEquip(driver);
+		//Get text of Discipline box
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBoxText)).getText();
+		System.out.println("Number of cases with one random discipline ("+s+") chosen: "+(j));
+	}
+	
+	public void selectRandomDisciplineInSearchCase(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateEquipmentCase obj = new CreateEquipmentCase();
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    String v = cap.getVersion().toString();
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Discipline
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBox));
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBox)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Discipline
+				wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBox)).click();
+			}
+	    }
+	    else{
+	    //Discipline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBox)).click();
+	    }
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineList));
+		//Choose a number between 1 and 6 for number of Discipline
+		Random random = new Random ();
+		int y;
+		//Choose a number between 1 and 6
+		while(true)
+		{
+			y = random.nextInt(7);
+			if(y==0)
+				continue;
+			break;
+		}
+		for(int i=1;i<y;i++)
+		{
+			int x;
+			//Choose a number between 1 and 6
+			while(true)
+			{
+				x = random.nextInt(7);
+				if(x==0)
+					continue;
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li["+x+"]/a"))).getAttribute("class");
+				if(s.contains("ui-checkbox-on"))
+					continue;
+				break;
+			}
+		if(x==1)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineElectrical);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineElectrical)).click();			
+		}
+		if(x==2)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineGeneral);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineGeneral)).click();				
+		}
+		if(x==3)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineIC);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineIC)).click();			
+		}
+		if(x==4)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineMechanical);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineMechanical)).click();		
+		}
+		if(x==5)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineSoftware);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineSoftware)).click();			
+		}
+		if(x==6)
+		{
+		    if (browserName.contains("internet")==true)
+		    {
+		    	obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineStructural);
+		    }
+		    else
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineStructural)).click();		
+		}
+		}
+		//Close Discipline pop up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplinePopupClose)).click();
+	}
+	
+	public int getNumberOfCasesIn1stCollapsibleListEquip(WebDriver driver) throws Exception {
+		
+		//Get number of cases displayed when no discipline is selected
+		int i=1;
+		while(true)
+		{
+			try
+			{
+				//Look for case collapsibles
+				driver.findElement(By.xpath(".//*[@id='pii-question-list-equip']/div[1]/div[1]/div["+i+"]"));				
+				i=i+1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+		return (i-1);
 	}
 	 
 	public void searchColorKeywordEquip(WebDriver driver) throws Exception {

@@ -365,33 +365,12 @@ public class CreateEquipmentCase {
 		if(count<5){
 		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
 		{
-		  if(count==1)
-		  {
-			    if (browserName.contains("internet"))
+		  if (browserName.contains("internet"))
 			    {
 			    	clickTypesDisciplineIE(driver, EquipListTypesAdvancedLearning);			    	
 			    }
 			    else
-			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesAdvancedLearning)).click();
-		  }
-		  if(count==2)
-		  {
-			    if (browserName.contains("internet"))
-			    {
-			    	clickTypesDisciplineIE(driver, EquipListTypesCaseStudies);
-			    }
-			    else
-			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesCaseStudies)).click();
-		  }
-		  if(count>2)
-		  {
-			    if (browserName.contains("internet"))
-			    {
-			    	clickTypesDisciplineIE(driver, EquipListTypesGeneral);
-			    }
-			    else
-			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesGeneral)).click();
-		  }
+			    	wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListTypesAdvancedLearning)).click();		 
 		}
 		}		
 	    //Choose a number between 1 and 6 for number of types
@@ -856,6 +835,118 @@ public class CreateEquipmentCase {
 		  }
 	}
 	
+	public void searchEquipmentDatabankOnly(WebDriver driver, String keyword_same, List<String> caseId, String username, String password)throws Exception{
+		
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  Login obj = new Login();
+		  ShareCheck obj1 = new ShareCheck();
+		  CaseBrowse obj2 = new CaseBrowse();
+		  //Logout as admin/new user
+		  obj.logout(driver);
+		  //If browser is firefox then switch to default content
+		  //Get browser name
+		  Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		  String browserName = cap.getBrowserName().toLowerCase();
+		  if(browserName.equals("firefox"))
+		  {
+			driver.switchTo().defaultContent();
+		  }
+		  Thread.sleep(2000);
+		  //Login as new user/admin
+		  int login = obj.LoginUser(driver, username, password);
+		  System.out.println("Title after login: "+driver.getTitle());
+		  Thread.sleep(5000);
+		  //Waits for the page to load
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  //Switches to the iframe
+		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		  try{
+		          if (login==1)
+		          {
+		                WebDriverWait wait2 = new WebDriverWait(driver,20);
+		                wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+		          }
+		     }catch (NoSuchElementException e){
+		           throw e;
+		     }
+		  Thread.sleep(5000);
+		  //Click on top Error-free bank link
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankLink)).click();
+		  //Click on Databank Only
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentDatabankOnlyLink1)).click();
+		  //Clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchClearButton)).click();
+		  //Select randomly type
+		  selectTypeGeneralInSearchCase(driver);
+		  //Search for keyword
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchKeywordField)).clear();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchKeywordField)).sendKeys(keyword_same);
+		  //Click 1st keyword in dropdown
+		  obj2.clickDropdownEquip(driver);
+		  //Wait for loading message
+		  obj1.loadingServer(driver);
+		  //Look for cases with keyword and type
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(0))));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(1))));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(2))));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(3))));
+		  //Click on search button
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchKeywordFieldSearchButton)).click();
+		  //Wait for loading message
+		  obj1.loadingServer(driver);
+		  //Look for cases with keyword and type
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(0))));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(1))));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(2))));
+		  Thread.sleep(1000);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(3))));
+	}
+	
+	public void selectTypeGeneralInSearchCase(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CaseBrowse obj = new CaseBrowse();
+    	//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    String v = cap.getVersion().toString();
+	    if (browserName.contains("internet")==true)
+	    {
+	    	if (v.startsWith("10")==true)
+	    	{
+	    		//Types
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeBox));
+	    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeBox)).sendKeys(Keys.ENTER);
+	    	}
+	    	if (v.startsWith("11")==true)
+		    {
+				//Types
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeBox)).click();
+			}
+	    }
+	    else{
+	    //Types
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeBox)).click();
+	    }
+		Thread.sleep(1000);
+		//Waits for the page to load
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeList));
+	    if (browserName.contains("internet"))
+	    {
+	    	clickTypesDisciplineIE(driver, obj.EquipCaseSearchListTypesAdvancedLearning);
+	    }
+	    else
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseSearchListTypesAdvancedLearning)).click();
+		//Close Types pop up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypesPopupClose)).click();
+	}
+	
 	public List<String> createCaseChrome(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title)throws Exception{
 		
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -953,7 +1044,7 @@ public class CreateEquipmentCase {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(key3);
 			  Thread.sleep(2000);
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
-			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
+			  if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
 			  {
 				  //Add keyword with all special characters
 				  obj1.addKeywordWithAllSpecialCharactersEquip(driver);
@@ -1027,7 +1118,7 @@ public class CreateEquipmentCase {
 				  searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
 			  }
 		  }
-		  }			
+		  }	
 		return caseID;
 	}
 	

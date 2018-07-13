@@ -69,6 +69,9 @@ public class OPiRCA {
 	By OPiRCAStep1Tab = By.id("efi-opa-tab-1");
 	By OPiRCAStep3Tab = By.id("efi-opa-tab-3");
 	By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button");
+	By OPiRCAAddContributingFactorButton = By.id("pii-opa-addnewcf-button");
+	By OPiRCANewContributingFactorField = By.id("pii-opa-addnewcf-cf");
+	By OPiRCAAddContributingFactorSaveButton = By.id("pii-opa-addnewcf-save");
 	
 	By OPiRCAReportCreationDateTimeField = By.id("pii-opa-event-repdatetime");
 	By OPiRCAEventTitleField = By.id("pii-opa-event-title");
@@ -706,6 +709,9 @@ public class OPiRCA {
 	    		//Check if Evidence entry and Possible corrective action are in collapsible form
 	    		checkCollapsibleEvidenceEntryPossibleCorrectiveAction(driver,y);
 	    		}
+	    		//Add contributing factor
+	    		String s = addContributingFactor(driver, count+1);
+	    		ac.add(s);
 	    		//Scroll to top
 	    		Thread.sleep(2000);
 	    		jse.executeScript("scroll(0,0)");
@@ -714,6 +720,35 @@ public class OPiRCA {
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
 	    	}	    	
 	    	return ac;
+	    }
+	    
+	    public String addContributingFactor(WebDriver driver, int y) throws Exception{
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
+    		//Scroll to add cf button
+    		//Click on answer
+    		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAAddContributingFactorButton));
+    		//Scroll to element
+    		Point p = l.getLocation();
+    		int yaxis= p.getY()-250;
+    		Thread.sleep(1000);
+    		jse.executeScript("scroll(0,"+yaxis+")");
+    		Thread.sleep(1000);
+    		//Click on add new contributing factor
+    		l.click();
+    		//Get title of page
+    		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+    		//Enter contributing factor
+    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANewContributingFactorField)).sendKeys(s.trim()+" "+"contributing factor");
+    		//Click on save
+    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAAddContributingFactorSaveButton)).click();
+    		//Wait for loading message
+    		obj.loadingServer(driver);
+    		//Get text of new contributing factor
+    		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div/label")));
+    		return l.getText();
 	    }
 	    
 	    public void checkCollapsibleEvidenceEntryPossibleCorrectiveAction(WebDriver driver,int y) throws Exception{
