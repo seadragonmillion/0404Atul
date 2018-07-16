@@ -142,6 +142,8 @@ public class FirefoxTest {
 		Thread.sleep(2000);
 		//Look for equipment cases with Type Advanced Learning
 		obj1.searchEquipmentDatabankOnly(driver,obj1.keyword_same_eq,eqCases,username,password);
+		//Look for equipment cases with all filters
+		obj1.searchEquipmentPerformanceAllFilters(driver, obj1.keyword_same_eq, eqCases.get(5), username, password);
 		//Change keyword and search for it
 		obj1.changeKeywordKALE1969(driver,eqCases,obj1.keyword_same_eq);
 		Thread.sleep(2000);
