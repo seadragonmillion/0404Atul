@@ -246,6 +246,7 @@ public class CaseBrowse {
 		//Get text of Discipline box
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBoxText)).getText();
 		System.out.println("Number of cases with one random discipline ("+s+") chosen: "+(j));
+		softly.assertThat(j).as("test data").isLessThanOrEqualTo(i);
 	}
 	
 	public void selectRandomDisciplineInSearchCase(WebDriver driver) throws Exception {

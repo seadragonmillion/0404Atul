@@ -1456,7 +1456,7 @@ public class HiRCALevel1 {
 	    	try{
 	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
 	    		if(l.isDisplayed()==true)
-	    			softly.fail("Evidence Entry text visible");
+	    			softly.fail("Evidence Entry text visible: "+l.getText());
 	    	}catch (org.openqa.selenium.NoSuchElementException q)
 	    	{
 	    		System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");

@@ -605,10 +605,10 @@ public class ShareCheck {
 		while (true)
 		  {
 			  try{
-				  Thread.sleep(2000);
+				  Thread.sleep(3000);
 				  if(driver.findElement(LoadingMessage).isDisplayed())
 				  {
-					  Thread.sleep(3000);
+					  Thread.sleep(4000);
 				  }
 				  else
 					  break;

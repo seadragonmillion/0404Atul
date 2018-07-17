@@ -147,6 +147,8 @@ public class FirefoxTest {
 		//Change keyword and search for it
 		obj1.changeKeywordKALE1969(driver,eqCases,obj1.keyword_same_eq);
 		Thread.sleep(2000);
+		//Add keyword to equipment case and search for case
+		obj1.addKeywordKALE2168(driver, eqCases, obj1.keyword_same_eq);
 		//Deletes Equipment cases
 		obj1.deleteCase(driver, eqCases);
 		System.out.println("Slides deleted for equipment");
