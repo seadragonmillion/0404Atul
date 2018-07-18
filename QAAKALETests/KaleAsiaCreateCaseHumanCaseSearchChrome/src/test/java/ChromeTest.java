@@ -79,6 +79,8 @@ public class ChromeTest {
 		  obj.searchWithKeywordKALE1964(driver,softly);
 		  //Change keyword and search for it
 		  obj1.changeKeywordKALE1969(driver,caseID,obj1.keyword_same);
+		  //Youtube link test
+		  obj1.searchCaseWithLinks(driver, obj1.keyword_same, caseID);
 		  Thread.sleep(2000);
 		  //Delete case
 		  obj1.deleteCase(driver, caseID);

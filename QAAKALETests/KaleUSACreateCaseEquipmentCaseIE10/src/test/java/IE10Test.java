@@ -135,6 +135,8 @@ public class IE10Test {
 		Thread.sleep(2000);
 		//Add keyword to equipment case and search for case
 		obj1.addKeywordKALE2168(driver, eqCases, obj1.keyword_same_eqUS);
+		//Youtube link test
+		obj1.searchCaseWithLinks(driver, obj1.keywordUS_same_ee, eeCases);
 		//Deletes Equipment cases
 		obj1.deleteCase(driver, eqCases);
 		System.out.println("Slides deleted for equipment");
