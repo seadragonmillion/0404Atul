@@ -123,7 +123,7 @@ public class IE10Test {
 		System.out.println("Keyword checked for mechanical");
 		Thread.sleep(2000);
 		//Check for presence of Equipment cases in Mechanical or Electrical modules
-		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), meCases.get(1));
+		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), meCases.get(1), obj1.keyword_same_eq, obj1.keyword_same_ee);
 		System.out.println("Cases checked in each module");
 		Thread.sleep(2000);
 		//Look for equipment cases with Type Advanced Learning

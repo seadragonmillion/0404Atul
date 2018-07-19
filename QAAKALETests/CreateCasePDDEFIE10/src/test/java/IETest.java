@@ -104,7 +104,9 @@ public class IETest {
 		//Search for case in Equipment performance by case id
 		obj2.searchCaseInEquipSearchByCaseID(driver, caseEF.get(0));
 		//Search for PDD and EF case in Failure Modes
-		obj2.searchCaseInFailureModes(driver, caseEF.get(0), casePDD.get(0));
+		obj2.searchCaseInFailureModes(driver, caseEF.get(0), casePDD.get(0), obj2.keywordEF, obj2.keywordPDD);
+		//Search for PDD and EF case in each other
+		obj2.searchCasesInPDDAndEFModules(driver, caseEF.get(0), casePDD.get(0), obj2.keywordEF, obj2.keywordPDD);
 		//Check keyword and cases in EF
 		obj1.checkkeyword(driver, caseEF, obj2.keywordEF, obj2.key1EF, obj2.key2EF, obj2.key3EF, 2, obj2.titleEF);
 		//Check keyword and cases in PDD

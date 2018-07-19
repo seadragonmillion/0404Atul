@@ -118,7 +118,9 @@ public class FirefoxTest {
 		//Search for case in Equipment performance by case id
 		obj2.searchCaseInEquipSearchByCaseID(driver, caseEF.get(0));
 		//Search for PDD and EF case in Failure Modes
-		obj2.searchCaseInFailureModes(driver, caseEF.get(0), casePDD.get(0));
+		obj2.searchCaseInFailureModes(driver, caseEF.get(0), casePDD.get(0), obj2.keywordEFUS, obj2.keywordPDDUS);
+		//Search for PDD and EF case in each other
+		obj2.searchCasesInPDDAndEFModules(driver, caseEF.get(0), casePDD.get(0), obj2.keywordEFUS, obj2.keywordPDDUS);
 		//Check keyword and cases in EF
 		obj1.checkkeyword(driver, caseEF, obj2.keywordEFUS, obj2.key1EFUS, obj2.key2EFUS, obj2.key3EFUS, 2, obj2.titleEFUS);
 		//Check keyword and cases in PDD
