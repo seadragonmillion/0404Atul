@@ -82,6 +82,8 @@ public class IETest {
 		  obj1.changeKeywordKALE1969(driver,caseID,obj1.keyword_same);
 		  //Youtube link test
 		  obj1.searchCaseWithLinks(driver, obj1.keyword_same, caseID);
+		  //View case with links and then a case without links
+		  obj1.viewCaseInAdmin(driver, caseID, obj1.keyword_same);
 		  Thread.sleep(2000);
 		  //Delete case
 		  obj1.deleteCase(driver, caseID);

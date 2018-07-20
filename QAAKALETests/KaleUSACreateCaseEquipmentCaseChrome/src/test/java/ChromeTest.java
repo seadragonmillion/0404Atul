@@ -135,6 +135,8 @@ public class ChromeTest {
 		obj1.addKeywordKALE2168(driver, eqCases, obj1.keyword_same_eqUS);
 		//Youtube link test
 		obj1.searchCaseWithLinks(driver, obj1.keywordUS_same_ee, eeCases);
+		//View case with links and then a case without links
+		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eqUS);
 		//Deletes Equipment cases
 		obj1.deleteCase(driver, eqCases);
 		System.out.println("Slides deleted for equipment");
