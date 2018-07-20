@@ -84,6 +84,10 @@ public class IETest {
 		  obj1.searchCaseWithLinks(driver, obj1.keyword_sameUS, caseID);
 		  //View case with links and then a case without links
 		  obj1.viewCaseInAdmin(driver, caseID, obj1.keyword_sameUS);
+		  //Edit links
+		  obj1.editLinks(driver, caseID);
+		  //Delete links
+		  obj1.deleteLinks(driver, caseID);
 		  Thread.sleep(2000);
 		  //Delete case
 		  obj1.deleteCase(driver, caseID);

@@ -742,8 +742,10 @@ public class OPiRCA {
     		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
     		//Enter contributing factor
     		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANewContributingFactorField)).sendKeys(s.trim()+" "+"contributing factor");
+    		Thread.sleep(1000);
     		//Click on save
     		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAAddContributingFactorSaveButton)).click();
+    		Thread.sleep(1000);
     		//Wait for loading message
     		obj.loadingServer(driver);
     		//Get text of new contributing factor

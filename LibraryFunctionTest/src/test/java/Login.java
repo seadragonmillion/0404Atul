@@ -159,7 +159,7 @@ public class Login {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
 			}
 			}
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 		}
 		else
 		{

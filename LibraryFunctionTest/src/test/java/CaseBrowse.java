@@ -87,6 +87,8 @@ public class CaseBrowse {
 	//Equipment Case
 	By EquipmentAddKeywordField = By.id("pii-admin-efse-keyword-search-input");
 	By EquipmentAddKeywordButton = By.id("pii-admin-efse-keyword-new");
+	
+	//Equipment Search
 	By EquipmentSearchKeywordField = By.id("pii-efse-searchbykw-input");
 	By EquipmentSearchClearButton = By.id("pii-efse-clear");
 	By EquipmentSearchKeywordFieldSearchButton = By.id("pii-efse-searchbykw-btn");
@@ -118,6 +120,8 @@ public class CaseBrowse {
 	//Human Case
 	By HumanAddKeywordField = By.id("pii-admin-efsh-keyword-search-input");
 	By HumanAddKeywordButton = By.id("pii-admin-efsh-keyword-new");
+	
+	//Human Search
 	By HumanSearchKeywordField = By.id("pii-efsh-searchbykw-input");
 	By HumanSearchClearButton = By.id("pii-efsh-clear");
 	By HumanSearchCaseIdField = By.id("pii-efsh-searchbyid-input");

@@ -153,6 +153,10 @@ public class FirefoxTest {
 		obj1.searchCaseWithLinks(driver, obj1.keyword_same_ee, eeCases);
 		//View case with links and then a case without links
 		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eq);
+		//Edit links
+		obj1.editLinks(driver, eeCases);
+		//Delete links
+		obj1.deleteLinks(driver, eeCases);
 		//Deletes Equipment cases
 		obj1.deleteCase(driver, eqCases);
 		System.out.println("Slides deleted for equipment");
