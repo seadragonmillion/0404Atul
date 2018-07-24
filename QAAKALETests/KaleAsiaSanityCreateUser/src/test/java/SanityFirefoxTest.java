@@ -616,6 +616,7 @@ public void LoginDummyUser() throws Exception{
 			  
 			 
 		  }
+		  Thread.sleep(2000);
 	    //Clicks on Account
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
