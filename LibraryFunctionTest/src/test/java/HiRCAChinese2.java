@@ -151,6 +151,42 @@ public class HiRCAChinese2 {
 		  		  System.out.println ("No unexpected alert");
 		  		  }
     	Thread.sleep(7000);
+    	//If no pdf repeat
+    	// specify your directory
+    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+    	// here we get the stream with full directory listing
+    	// exclude subdirectories from listing
+    	// finally get the last file using simple comparator by lastModified field
+    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+    	try{
+    		System.out.println(lastFilePath.get());
+    		if(lastFilePath.get().endsWith(".pdf")==false)
+    			throw new NullPointerException("No pdf in ie10");
+    	}catch(java.util.NoSuchElementException | NullPointerException r)
+    	{
+    		//deletes files in reports folder before starting to download
+        	obj1.deleteFiles(file);
+        	//Clicks on download button
+    		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+    		Thread.sleep(3000);
+    		//Wait for loading message to disappear
+    		obj.loadingServer(driver);
+    		//Clicks on open pdf report
+    		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+        	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+    		Thread.sleep(3000);
+        	try {
+    			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+    			  q.waitFor();
+    			  }catch (UnhandledAlertException f){	
+    				  System.out.println("Unexpected alert");
+    				  driver.switchTo().alert().accept();
+    				  
+    		  	  }catch (NoAlertPresentException f){
+    		  		  System.out.println ("No unexpected alert");
+    		  		  }
+        	Thread.sleep(7000);
+    	}
     	//pdf verification
     	pdfCheck(driver,softly,verifyChinese);
 	    Thread.sleep(4000);

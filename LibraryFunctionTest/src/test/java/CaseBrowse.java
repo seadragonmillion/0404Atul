@@ -112,6 +112,14 @@ public class CaseBrowse {
 	By EquipCaseSearchListDisciplineMechanical = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[4]/a");
 	By EquipCaseSearchListDisciplineSoftware = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[5]/a");
 	By EquipCaseSearchListDisciplineStructural = By.xpath(".//*[@id='pii-efse-filter-discipline-menu']/li[6]/a");
+	By CaseSearchFieldBox = By.id("pii-efse-filter-field-button");
+	By CaseSearchFieldList = By.id("pii-efse-filter-field-listbox");
+	By CaseSearchFieldPopupClose = By.xpath(".//*[@id='pii-efse-filter-field-listbox']/div/a");
+	By EquipCaseSearchListFieldAuto = By.xpath(".//*[@id='pii-efse-filter-field-menu']/li[1]/a");
+	By EquipCaseSearchListFieldNuclear = By.xpath(".//*[@id='pii-efse-filter-field-menu']/li[2]/a");
+	By EquipCaseSearchListFieldOther = By.xpath(".//*[@id='pii-efse-filter-field-menu']/li[3]/a");
+	By EquipCaseSearchListFieldPharmaceutical = By.xpath(".//*[@id='pii-efse-filter-field-menu']/li[4]/a");
+	By EquipCaseSearchListFieldWelding = By.xpath(".//*[@id='pii-efse-filter-field-menu']/li[5]/a");
 	By CaseSearchTypeBox = By.id("pii-efse-filter-type-button");
 	By CaseSearchTypeList = By.id("pii-efse-filter-type-listbox");
 	By CaseSearchTypesPopupClose = By.xpath(".//*[@id='pii-efse-filter-type-listbox']/div/a");
