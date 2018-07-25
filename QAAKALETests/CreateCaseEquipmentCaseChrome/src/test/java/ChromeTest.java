@@ -137,6 +137,8 @@ public class ChromeTest {
 		obj1.searchCaseWithLinks(driver, obj1.keyword_same_ee, eeCases);
 		//View case with links and then a case without links
 		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eq);
+		//Verify cases with and without links with same keyword in Equipment Databank only
+		obj1.searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(driver, obj1.keyword_same_ee, eeCases);
 		//Edit links
 		obj1.editLinks(driver, eeCases);
 		//Delete links
