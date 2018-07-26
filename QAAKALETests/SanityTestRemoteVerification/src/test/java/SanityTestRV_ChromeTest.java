@@ -1,16 +1,13 @@
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
@@ -24,7 +21,6 @@ public class SanityTestRV_ChromeTest {
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";
-	SoftAssertions softly = new SoftAssertions();
 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -58,9 +54,8 @@ public class SanityTestRV_ChromeTest {
 		  //Logs in
 		  int login = obj.LoginUser(driver,username,password);
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(5000);
-		  
-		  //Waits for the page to load
+		  Thread.sleep(8000);		  
+		  //Assigns wait time to driver element
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
@@ -74,74 +69,10 @@ public class SanityTestRV_ChromeTest {
                        throw e;
                 }
 		  Thread.sleep(2000);
-		  //Clicks on Analysis 
-		  try
-		  {
-			  driver.findElement(By.id("pii-main-menu-button-a")).click();
-		  }catch (UnhandledAlertException f){			  
-			  driver.switchTo().alert().dismiss();
-		  }
-		  //Clicks on Remote Verification
-		  driver.findElement(By.id("pii-a-menu-rv")).click();
-		  //Fills the mandatory fields
-		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(obj1.event_title);
-		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(obj1.details);
-		  String ev1 = driver.findElement(By.id("pii-rv-tab-1-title")).getAttribute("value");
-		  String ev2 = driver.findElement(By.id("pii-rv-tab-1-details")).getAttribute("value");
-		  if ((ev1.equals(obj1.event_title)==false))
-		  {
-			  driver.findElement(By.id("pii-rv-tab-1-title")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(obj1.event_title);
-		  }
-		  if((ev2.equals(obj1.details))==false)
-		  {
-			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(obj1.details);
-		  }
-		  
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //Select verifier
-		  obj1.verifierSelect(driver);
-		  Thread.sleep(1000);
-		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
-		  //Uploads picture 2
-		  obj1.upload2ndpictureChrome(driver);
-		  //*
-		  jse.executeScript("scroll(0, 250)");
-		  Thread.sleep(3000);
-		  //Uploads picture 1
-		  obj1.upload1stpictureChrome(driver);
-		  //*
-		  Thread.sleep(3000);
-		  jse.executeScript("scroll(0, 0)");
-		  //Verifies Date and time
-		  obj1.verifyDateTime(driver);
-		  //Verifies location of office
-		  obj1.verifyLongitudeLatitude(driver);
-		  //Verify status 
-		  obj1.checkStatusReport(driver);
-		  Thread.sleep(3000);
-		  //Creates the expected name of record
-		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
-		  creation_date= creation_date.substring(22, creation_date.length());
-		  String name = creation_date +"_"+ username + "_" + obj1.event_title;
-		  System.out.println("Expected name of record: " + name);
-		  //Clicks on Remote Verification
-		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
-		  Thread.sleep(3000);
-		  //Gets the name of the record created
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"));
-		  String recordName = record.getText();
-		  if (record.isDisplayed())
-		  {
-			  System.out.println("Record found: "+ recordName);
-		  }
-		  else
-			  System.out.println ("Record not found.");
-		  //Checks if the name displayed on record is same as expected
-		  softly.assertThat(recordName).as("test data").isEqualTo(name);
+		  //create report
+		  List<String> b = obj1.createReport(driver, username);
 		  //Downloads record
-		  obj1.downloadRecordChrome(driver,verifier,username);
+		  obj1.downloadRecordChrome(driver,b.get(0),username);
 		  //Shares report
 		  /* Dev/Asia
 		 * 0=admin
@@ -154,25 +85,24 @@ public class SanityTestRV_ChromeTest {
 		 * 6=admin ie11
 		 * 7=non admin ie11
 		 */
-		  obj1.shareReport(driver,verifier,username,password,0);
+		  obj1.shareReport(driver,b.get(0),username,password,0);
 		  //Mark critical integer same as shareReport
 		  obj1.markCritical(driver,username, password,0);
 		  //Deletes the newly created record, integer same as shareReport
-		  obj1.deleteNewRecord(driver, recordName,0);
+		  obj1.deleteNewRecord(driver, b.get(1),0);
 		  //Logs out
 		  obj.logout(driver);
-		  afterTest();
-		  
+		  afterTest(obj1);		  
 	  }
 	  
 	  
-	  public void afterTest() {
+	  public void afterTest(RemoteVerification obj) throws Exception {
 		 //Waits for the login button
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		  //Browser is closed
 		  driver.quit();
-		  softly.assertAll();
+		  obj.softAssert();
 	  }
 	  
 }
