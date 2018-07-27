@@ -150,7 +150,7 @@ public class FirefoxTest {
 		//Add keyword to equipment case and search for case
 		obj1.addKeywordKALE2168(driver, eqCases, obj1.keyword_same_eq);
 		//Youtube link test
-		obj1.searchCaseWithLinks(driver, obj1.keyword_same_ee, eeCases);
+		obj1.searchCaseWithLinks(driver, obj1.keyword_same_ee, eeCases,obj1.ee_title);
 		//View case with links and then a case without links
 		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eq);
 		//Verify cases with and without links with same keyword in Equipment Databank only

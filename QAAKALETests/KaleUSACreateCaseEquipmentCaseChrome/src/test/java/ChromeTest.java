@@ -134,7 +134,7 @@ public class ChromeTest {
 		//Add keyword to equipment case and search for case
 		obj1.addKeywordKALE2168(driver, eqCases, obj1.keyword_same_eqUS);
 		//Youtube link test
-		obj1.searchCaseWithLinks(driver, obj1.keywordUS_same_ee, eeCases);
+		obj1.searchCaseWithLinks(driver, obj1.keywordUS_same_ee, eeCases,obj1.ee_titleUS);
 		//View case with links and then a case without links
 		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eqUS);
 		//Verify cases with and without links with same keyword in Equipment Databank only
