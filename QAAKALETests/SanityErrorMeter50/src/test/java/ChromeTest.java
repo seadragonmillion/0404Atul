@@ -28,8 +28,6 @@ public class ChromeTest {
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaledev.error-free.com/";
-	private String title = "Sanity Test";
-	SoftAssertions softly = new SoftAssertions();
 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
@@ -61,6 +59,7 @@ public class ChromeTest {
 	  public void SanityTest() throws Exception{
 		   Login obj = new Login();
 		  ErrorMeter obj1 = new ErrorMeter();
+		  EiRCA obj2 = new EiRCA();
 		  //Logs in
 		  int login = obj.LoginUser(driver,username,password);
 		  System.out.println("Title after login: "+driver.getTitle());
@@ -101,48 +100,17 @@ public class ChromeTest {
 		  s1.selectByVisibleText("Analysis");
 		  Thread.sleep(2000);
 		  //Fills Job title
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(obj2.textCreate(driver));
 		  String ev1= driver.findElement(By.id("pii-epm-job-title")).getAttribute("value");
-		  if(ev1.equals(title)==false)
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(title);
+		  if(ev1.equals(obj2.textCreate(driver))==false)
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(obj2.textCreate(driver));
 		  Thread.sleep(2000);
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
 		  Thread.sleep(2000);
 		  obj1.papeError50(driver);
-		  Thread.sleep(2000);
-		  //Click on finalize
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
-		  Thread.sleep(2000);
-		  //Click on finalize and save
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
-		  //Waits for the green popup on the right top corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		  //Creates expected record name
-		  String date= driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]")).getText();
-		  date = date.substring(14);
-		  String time = driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td[2]")).getText();
-		  time = time.substring(14);
-		  String time2 = time.substring(0, 8);
-		  String time1=time.substring(9);
-		  String purpose = driver.findElement(By.xpath(".//*[@id='epm-rpt']/div/div/span/abbr")).getText();
-		  String name = date + "_" + time2+"_"+time1 + "_" + username +"_" + purpose + "_" + title;
-		  System.out.println ("Expected name of record: " +name);
-		  //Clicks on side panel
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
-		  //Gets the name of the record created
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"));
-		  String recordName = record.getText();
-		  if (record.isDisplayed())
-		  {
-			  System.out.println("Record found: "+ recordName);
-		  }
-		  else
-			  System.out.println ("Record not found.");
-		  	
-		  //Checks if the record name is correct
-		  assertEquals(name,recordName);
+		  //Save report
+		  String recordName = obj1.saveReport(driver, username);
 		  Thread.sleep(2000);
 		  obj1.reportCheck50(driver);
 		  //Downloads record, the integer indicates error meter tests based on error %= 0,50,100
@@ -167,46 +135,19 @@ public class ChromeTest {
 		  //Deletes the newly created record, integer same as shareReport
 		  obj1.deleteNewRecord(driver, recordName,0);
 		   Thread.sleep(2000);
-		  while(true)
-			  {
-				  Thread.sleep(1000);
-				  try{
-				  if (driver.findElement(By.className("sticky-note")).isDisplayed())
-				  {
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-					  
-				  }}catch (NoSuchElementException e)
-				  {
-					  break;
-				  }
-				  catch( StaleElementReferenceException f)
-				  {
-					  
-					 break;
-				  }
-				  catch (org.openqa.selenium.TimeoutException u)
-				  {
-					  break;
-				  }
-				 
-			  }
-		  
 		  //Logs out
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
+		  obj.logout(driver);
 		  Thread.sleep(2000);
-		  afterTest();
-		   	 
-		  
+		  afterTest(obj1);		  
 	}
 	
 	
-	public void afterTest(){
+	public void afterTest(ErrorMeter obj) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
 		driver.quit();
-		softly.assertAll();
+		obj.softAssert();
 	}
 }
