@@ -2110,6 +2110,8 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(2))));
 		  Thread.sleep(1000);
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(3))));
+		  //Clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchClearButton)).click();
 	}
 	
 	public void selectTypeGeneralInSearchCase(WebDriver driver) throws Exception {
@@ -2244,6 +2246,201 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseEditButton)).click();
 	}
 	
+	public void searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(WebDriver driver, String keyword, List<String>ee_cases)throws Exception{
+		
+		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  CaseBrowse obj1 = new CaseBrowse();
+		  ShareCheck obj = new ShareCheck();
+		  CreateHumanCase obj2 = new CreateHumanCase ();
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  //Clicks on Error free bank
+		  WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+		  Actions act = new Actions(driver);
+		  act.click(element1).build().perform();
+		  //Go to Equipment Databank Only
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentDatabankOnlyLink1)).click();
+		  Thread.sleep(1000);
+		  //Click on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Check for case
+		  //Enters keyword and search with ENTER
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		  //Wait for loading message to disappear
+		  obj.loadingServer(driver);		  
+		  //Verify cases with links and without links with same keyword
+		  for(int i=0;i<ee_cases.size();i++)
+		  {
+			  //Verify case with links for i=2
+			  if(i==2)
+				  verifyCaseWithLinks(driver, ee_cases);
+			  else{
+				  //Verify all cases without links
+				  verifyCasesWithoutLinks(driver, ee_cases.get(i));
+			  }			  
+		  }
+		  //Scroll up
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
+		  //Click on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		  //Enters keyword and search with dropdown
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
+		  Thread.sleep(2000);
+		  obj1.clickDropdownEquip(driver);	  
+		  //Verify cases with links and without links with same keyword
+		  for(int i=0;i<ee_cases.size();i++)
+		  {
+			  //Verify case with links for i=2
+			  if(i==2)
+				  verifyCaseWithLinks(driver, ee_cases);
+			  else{
+				  //Verify all cases without links
+				  verifyCasesWithoutLinks(driver, ee_cases.get(i));
+			  }			  
+		  }
+		  //Scroll up
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
+		  //Click on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+	}
+	
+	public void verifyCasesWithoutLinks (WebDriver driver, String caseId) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		CaseBrowse obj1 = new CaseBrowse();  
+		ShareCheck obj = new ShareCheck();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Move to case collapsible
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
+		//Click on collapsible 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Move to show slides button
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+caseId)));
+		p1 = l.getLocation();
+		yaxis= p1.getY()-250;
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(1000);
+		//Clicks on Show Slides
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+caseId)));
+		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+caseId));
+		String slide = element.getText();
+		System.out.println(slide);
+		while (slide.contains("Show Slides(")==false)
+		{
+		  Thread.sleep(1000);
+		  System.out.println(slide);
+		  slide = element.getText();
+		}		
+		System.out.println(slide);
+		System.out.println(slide.indexOf("(") + "  "+ slide.indexOf(")"));
+		String number= slide.substring(slide.indexOf("(")+1, slide.indexOf(")"));
+		element.sendKeys(Keys.TAB);
+		element.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-equip-F"+caseId+"-popup")));
+		System.out.println(number);
+		Thread.sleep(1000);
+		//Wait for pop up
+		//Click on previous
+		try{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.SlidePreviousButton)).click();
+		}catch(org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException r)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a[2]"))).click();
+		}
+		//Verify title of Related Links slide doesnt exist
+		try{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RelatedLinksSlideTitle));
+		softly.fail("Related Links slide present even though no links were added: "+caseId);
+		}catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException r)
+		{
+			System.out.println("Related links slide not present");
+		}
+		//Closes the slideshow
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a"))).click();
+		//Click on collapsible to close 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();
+	}
+	
+	public void verifyCaseWithLinks (WebDriver driver, List<String>cases) throws Exception {
+		
+		  WebDriverWait wait = new WebDriverWait(driver,5);
+		  CaseBrowse obj1 = new CaseBrowse();  
+		  ShareCheck obj = new ShareCheck();
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  //Wait for loading message to disappear
+		  obj.loadingServer(driver);
+		  //Move to case collapsible
+		  WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2))));
+		  Point p1 = l.getLocation();
+		  int yaxis= p1.getY()-250;
+		  Thread.sleep(2000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(2000);
+		  //Click on collapsible 
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();
+		  //Wait for loading message to disappear
+		  obj.loadingServer(driver);
+		  //Move to show slides button
+		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+cases.get(2))));
+		  p1 = l.getLocation();
+		  yaxis= p1.getY()-250;
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,"+yaxis+")");
+		  Thread.sleep(1000);
+		  //Clicks on Show Slides
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+cases.get(2))));
+		  WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+cases.get(2)));
+		  String slide = element.getText();
+		  System.out.println(slide);
+		  while (slide.contains("Show Slides(")==false)
+		  {
+			  Thread.sleep(1000);
+			  System.out.println(slide);
+			  slide = element.getText();
+		  }		
+		  System.out.println(slide);
+		  System.out.println(slide.indexOf("(") + "  "+ slide.indexOf(")"));
+		  String number= slide.substring(slide.indexOf("(")+1, slide.indexOf(")"));
+		  element.sendKeys(Keys.TAB);
+		  element.sendKeys(Keys.ENTER);
+		  driver.findElement(By.id("pii-slideshow-equip-F"+cases.get(2)+"-popup"));
+		  System.out.println(number);
+			//Click on previous
+			try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.SlidePreviousButton)).click();
+			}catch(org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException r)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a[2]"))).click();
+			}
+		  //Verify title of Related Links slide
+		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(RelatedLinksSlideTitle)).getText();
+		  softly.assertThat(s).as("test data").isEqualTo("Related Links");
+		  //Verify title of 1st link
+		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(RelatedLinksSlideLink1Title)).getText();
+		  softly.assertThat(s1).as("test data").contains("1. ");
+		  softly.assertThat(s1).as("test data").contains(noVideoLinkTitle);
+		  //Verify title of 2nd link with video
+		  String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(RelatedLinksSlideLink2Title)).getText();
+		  softly.assertThat(s2).as("test data").contains("2. Video: ");
+		  softly.assertThat(s2).as("test data").contains(videoLinkTitle);
+		  //Closes the slideshow
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))).click();
+	}
+	
 	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases)throws Exception{
 		
 		  WebDriverWait wait = new WebDriverWait(driver,10);
@@ -2330,7 +2527,13 @@ public class CreateEquipmentCase {
 		driver.close();
     	driver.switchTo().window(window);
     	Thread.sleep(2000);
-    	driver.switchTo().defaultContent();      
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    //Chrome or Firefox
+	    if(browserName.equals("firefox"))
+	    	driver.switchTo().defaultContent();      
 		Thread.sleep(2000);
 		//Switch to iframe
 		driver.switchTo().frame(driver.findElement(obj.IFrame));

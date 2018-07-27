@@ -68,7 +68,9 @@ public class PassReview {
 	
 	public String createReport (WebDriver driver) throws Exception{
 		
-		WebDriverWait wait = new WebDriverWait(driver,10);  
+		WebDriverWait wait = new WebDriverWait(driver,10); 
+		ShareCheck obj = new ShareCheck();EiRCA obj1 = new EiRCA ();
+		String text = obj1.textCreate(driver);
 		//Clicks on Analysis 
 		try
 		{
@@ -80,26 +82,26 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr"))).click();
 		Thread.sleep(2000);
 		//Fills in mandatory details
-		driver.findElement(By.id("pii-3pr-tab-1-reviewer")).sendKeys("Sanity Test");
-		driver.findElement(By.id("pii-3pr-tab-1-title")).sendKeys("Sanity Test");
-		driver.findElement(By.id("pii-3pr-tab-1-org")).sendKeys("Sanity Test");
+		driver.findElement(By.id("pii-3pr-tab-1-reviewer")).sendKeys(text);
+		driver.findElement(By.id("pii-3pr-tab-1-title")).sendKeys(text);
+		driver.findElement(By.id("pii-3pr-tab-1-org")).sendKeys(text);
 		String ev1 = driver.findElement(By.id("pii-3pr-tab-1-reviewer")).getAttribute("value");
 		String ev2 = driver.findElement(By.id("pii-3pr-tab-1-title")).getAttribute("value");
 		String ev3 = driver.findElement(By.id("pii-3pr-tab-1-org")).getAttribute("value");
-		if ((ev1.equals("Sanity Test")==false))
+		if ((ev1.equals(text)==false))
 		{
 		  driver.findElement(By.id("pii-3pr-tab-1-reviewer")).clear();
-		  driver.findElement(By.id("pii-3pr-tab-1-reviewer")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-3pr-tab-1-reviewer")).sendKeys(text);
 		}
-		if ((ev2.equals("Sanity Test")==false))
+		if ((ev2.equals(text)==false))
 		{
 		  driver.findElement(By.id("pii-3pr-tab-1-title")).clear();
-		  driver.findElement(By.id("pii-3pr-tab-1-title")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-3pr-tab-1-title")).sendKeys(text);
 		}
-		if ((ev3.equals("Sanity Test")==false))
+		if ((ev3.equals(text)==false))
 		{
 		  driver.findElement(By.id("pii-3pr-tab-1-org")).clear();
-		  driver.findElement(By.id("pii-3pr-tab-1-org")).sendKeys("Sanity Test");
+		  driver.findElement(By.id("pii-3pr-tab-1-org")).sendKeys(text);
 		}
 		//Select Purpose from dropdown
 		WebElement element = driver.findElement(By.id("pii-3pr-tab-1-doctype"));
@@ -115,7 +117,6 @@ public class PassReview {
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		//Wait for loading message
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-3pr-savedactivities"))).click();

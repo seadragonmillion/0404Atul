@@ -381,11 +381,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
-		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(1000);
+		//Click on Edit
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		//Scroll to 1st Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Tile));
 		Point p1 = l.getLocation();
@@ -569,6 +569,9 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
 		//Enter case id without links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
@@ -577,11 +580,16 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same+"changed");
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
 		//Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
 	    //Clicks on create case

@@ -72,7 +72,7 @@ public class ChromeTest {
         }	
 		Thread.sleep(4000);
 		//Check path
-		obj1.HiRCAPathCheck(driver);
+		obj1.HiRCAPathCheck(driver, username);
 		//Delete report
 		obj1.deleteReport(driver);
 		//Logout

@@ -1,5 +1,6 @@
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -8,6 +9,7 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,8 +17,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class JobObservation {
 
 	SoftAssertions softly = new SoftAssertions();
-	String text = "I think I will buy the red car, or I will lease the blue one.";
-	String text1 = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
+	
+	public String text(WebDriver driver) throws Exception {
+		
+		if(driver.getCurrentUrl().contains("kaledev"))
+			return ("I think I will <div> buy the red car, or I will lease the blue one.");
+		else return ("I think I will buy the red car, or I will lease the blue one.");
+	}
+	
+	public String text1(WebDriver driver) throws Exception {
+		
+		if(driver.getCurrentUrl().contains("kaledev"))
+			return ("As it currently <div> stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.");
+		else return ("As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.");
+	}
 	
 	public void path(WebDriver driver) throws Exception {
 		
@@ -36,7 +50,7 @@ public class JobObservation {
 		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-1")));
 		  act.moveToElement(element).click().build().perform();
 		  //Enters text 
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step5"))).sendKeys(text);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step5"))).sendKeys(text(driver));
 		  //Clicks on Next
 		  driver.findElement(By.id("pii-joa-tab-5-button")).click();
 		  //Clicks on both answers in step 6
@@ -46,7 +60,7 @@ public class JobObservation {
 		  element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-1")));
 		  act.moveToElement(element).click().build().perform();
 		  //Enters text
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step6"))).sendKeys(text1);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step6"))).sendKeys(text1(driver));
 		  //Clicks on build report
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-report"))).click();
 		  //Clicks on build report
@@ -54,9 +68,9 @@ public class JobObservation {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
 		  //Verifies the text entered before
 		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
-		  softly.assertThat(s).as("test data").contains(text);
+		  softly.assertThat(s).as("test data").contains(text(driver));
 		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
-		  softly.assertThat(s1).as("test data").contains(text1);
+		  softly.assertThat(s1).as("test data").contains(text1(driver));
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
 		  //Clicks on save report
@@ -374,8 +388,7 @@ public class JobObservation {
 	      ErrorMeter obj = new ErrorMeter();
 		  String sharer = obj.decideSharer (y);
 		  ShareCheck obj1 = new ShareCheck();
-		  obj1.checkNoReportAfterDelete(driver, sharer, softly);
-		  			  
+		  obj1.checkNoReportAfterDelete(driver, sharer, softly);	  			  
 	  }
 	
 	public void verifyTextReport(WebDriver driver) throws Exception {
@@ -383,9 +396,11 @@ public class JobObservation {
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Verifies the text entered before
 		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
-		  softly.assertThat(s).as("test data").contains(text);
+		  String r = s.replaceAll("\u00AD", "");
+		  softly.assertThat(r).as("test data").contains(text(driver));
 		  String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
-		  softly.assertThat(s1).as("test data").contains(text1);
+		  String r1 = s1.replaceAll("\u00AD", "");
+		  softly.assertThat(r1).as("test data").contains(text1(driver));
 	}
 
 	  public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
@@ -459,6 +474,112 @@ public class JobObservation {
 			obj1.loadingServer(driver);
 	    	//Clicks on first newly created record
 	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();	
+	    }
+	    
+	    public void imageUpload(WebDriver driver) throws Exception {
+	    	
+	    	//Get browser name and version
+			Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		    String browserName = cap.getBrowserName().toLowerCase();
+		    System.out.println(browserName);
+		    String v = cap.getVersion().toString();
+		    System.out.println(v);
+		    if(browserName.equals("chrome"))
+		    	imageUploadChrome(driver);
+		    if(browserName.equals("firefox"))
+		    	imageUploadFirefox(driver);
+		    if(browserName.equals("internet explorer"))
+		    {
+		    	if(v.startsWith("10"))
+		    		imageUploadIE(driver);
+		    	if(v.startsWith("11"))
+		    		imageUploadIE11(driver);
+		    }
+	    }
+	    
+	    public void dateTimeModify(WebDriver driver) throws Exception {
+	    	
+	    	//Get browser name and version
+			Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		    String browserName = cap.getBrowserName().toLowerCase();
+		    System.out.println(browserName);
+		    String v = cap.getVersion().toString();
+		    System.out.println(v);
+		    if(browserName.equals("chrome"))
+		    	dateTimeModifyChrome(driver);
+		    if(browserName.equals("firefox"))
+		    	dateTimeModifyFirefox(driver);
+		    if(browserName.equals("internet explorer"))
+		    	dateTimeModifyIE(driver);
+	    }
+	    
+	    public String reportCreate(WebDriver driver) throws Exception {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver,20);
+	    	EiRCA obj = new EiRCA ();
+	    	String text = obj.textCreate(driver);
+	    	//Clicks on Analysis 
+			try
+			{
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+			}catch (UnhandledAlertException f){			  
+			  driver.switchTo().alert().dismiss();
+			}
+			//Clicks on Job Observation Analysis
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
+			//Clicks on new
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-new"))).click();
+			//Click on new report
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+			//Fills mandatory details in step1
+			driver.findElement(By.id("pii-joa-tab-1-observer")).sendKeys(text);
+			driver.findElement(By.id("pii-joa-tab-1-location")).sendKeys(text);
+			driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
+			String ev1 = driver.findElement(By.id("pii-joa-tab-1-observer")).getAttribute("value");
+			String ev2 = driver.findElement(By.id("pii-joa-tab-1-location")).getAttribute("value");
+			String ev3 = driver.findElement(By.id("pii-joa-tab-1-job")).getAttribute("value");
+			if ((ev1.equals(text)==false))
+			{
+			  driver.findElement(By.id("pii-joa-tab-1-observer")).clear();
+			  driver.findElement(By.id("pii-joa-tab-1-observer")).sendKeys(text);
+		    }
+			  if ((ev2.equals(text)==false))
+			  {
+				  driver.findElement(By.id("pii-joa-tab-1-location")).clear();
+				  driver.findElement(By.id("pii-joa-tab-1-location")).sendKeys(text);
+			  }
+			  if ((ev3.equals(text)==false))
+			  {
+				  driver.findElement(By.id("pii-joa-tab-1-job")).clear();
+				  driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
+			  }
+			  //Clicks on next
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button"))).click();
+			  //Uploads image, clears it, rotates it
+			  imageUpload(driver);
+			  //Modify date time
+			  dateTimeModify(driver);
+			  //Continues on 
+			  path(driver);
+			  //Waits for the green popup on the right top corner
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  //Clicks on saved activities
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-btn-savedactivities"))).click();
+			  //Clicks on side panel option for job observation
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+			  //Gets the name of the record created
+			  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"));
+			  String recordName = record.getText();
+			  String r = recordName.replaceAll("\u00AD", "");
+			  if (record.isDisplayed())
+			  {
+				  System.out.println("Record found: "+ r);
+			  }
+			  else
+				  System.out.println ("Record not found.");
+			  
+			return(r);
 	    }
 	    
 	    public void softAssert() throws Exception {

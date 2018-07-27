@@ -56,8 +56,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class RemoteVerification {
 	
 	SoftAssertions softly = new SoftAssertions();	
-	String event_title="I think I will buy the red car, or I will lease the blue one.";
-	String details ="There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890";
+	
+	public String eventTitle(WebDriver driver) throws Exception {
+		
+		if(driver.getCurrentUrl().contains("kaledev"))
+			return ("I think I will <div> buy the red car, or I will lease the blue one.");
+		else return ("I think I will buy the red car, or I will lease the blue one.");
+	}
+	
+	public String details(WebDriver driver) throws Exception {
+		
+		if(driver.getCurrentUrl().contains("kaledev"))
+			return ("There was no <div> ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
+		else return ("There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
+	}
 	
 	public void checkStatusReport (WebDriver driver) throws Exception {
 		
@@ -628,7 +640,7 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
     	Thread.sleep(7000);
-    	pdfCheck(verifier,username);
+    	pdfCheck(driver,verifier,username);
         for(String winHandle : driver.getWindowHandles()){
 	    driver.switchTo().window(winHandle);
 	    }
@@ -669,7 +681,7 @@ public class RemoteVerification {
     	robot.keyRelease(KeyEvent.VK_S);
     	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
     	p.waitFor();
-    	pdfCheck(verifier,username);
+    	pdfCheck(driver,verifier,username);
     	Thread.sleep(4000);
     	driver.close();
     	Thread.sleep(4000);
@@ -708,7 +720,7 @@ public class RemoteVerification {
 		  		  }
     	Thread.sleep(10000);
     	//pdf verification
-    	pdfCheck(verifier,username);
+    	pdfCheck(driver,verifier,username);
     	Thread.sleep(4000);
     	driver.switchTo().window(window);
     		    	
@@ -745,7 +757,7 @@ public class RemoteVerification {
 		  		  }
     	Thread.sleep(10000);
     	//pdf verification
-    	pdfCheck(verifier,username);
+    	pdfCheck(driver,verifier,username);
     	Thread.sleep(4000);
     	driver.switchTo().window(window);
     		    	
@@ -764,7 +776,7 @@ public class RemoteVerification {
             }
         }
 	
-	public void pdfCheck(String verifier, String username) throws Exception {
+	public void pdfCheck(WebDriver driver, String verifier, String username) throws Exception {
 		  List<String> results = new ArrayList<String>();
 	      //Gets the file name which has been downloaded
 	      File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
@@ -799,18 +811,17 @@ public class RemoteVerification {
 	        		newData = newData+" "+ans.get(i);
 	        	
 	      }
-	      newData=newData.replace("  ", " ");
-	      System.out.println(newData);
+	      String newData2=newData.replace("  ", " ");
+	      String newData1 = newData2.replace("$ ", "$");
+	      System.out.println(newData1);
 	      //Checks verifier
-	      softly.assertThat(verifier).as("test data").isSubstringOf(newData);
+	      softly.assertThat(verifier).as("test data").isSubstringOf(newData1);
 	      //Checks username
-	      softly.assertThat(username).as("test data").isSubstringOf(newData);
+	      softly.assertThat(username).as("test data").isSubstringOf(newData1);
 	      //Checks event title
-	      event_title=event_title.replace("  ", " ");
-	      softly.assertThat(event_title).as("test data").isSubstringOf(newData);
+	      softly.assertThat(eventTitle(driver)).as("test data").isSubstringOf(newData1);
 	      //Checks verification details
-	      details=details.replace("  ", " ");
-	      softly.assertThat(details).as("test data").isSubstringOf(newData);
+	      softly.assertThat(details(driver)).as("test data").isSubstringOf(newData1);
 	      //Close pdf
 		  pddoc.close();
 	  }
@@ -840,9 +851,24 @@ public class RemoteVerification {
 	    return images;
 	}
 	
+	public void verifyTextInHTML(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verify report title
+		String title=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr[2]/td/strong"))).getText();
+		String r = title.replaceAll("\u00AD", "");
+		softly.assertThat(r).as("test data").contains(eventTitle(driver));
+		//Verify event details
+		String details=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[2]/td/span"))).getText();
+		String r1 = details.replaceAll("\u00AD", "");
+		softly.assertThat(r1).as("test data").contains(details(driver));
+	}
+	
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
     	
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	//Verify text in HTML
+    	verifyTextInHTML(driver);
     	//Clicks on mark critical
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
     	//Clicks on confirm change
@@ -893,7 +919,7 @@ public class RemoteVerification {
 		  ShareCheck obj2 = new ShareCheck();
 			obj2.loadingServer(driver);
 		  //Verify record deleted
-		  //Click on 1st record
+		  //Get name of 1st record
 		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).getText();
 		  System.out.println(name);
 		  if (name!=recordName)
@@ -934,6 +960,120 @@ public class RemoteVerification {
 		  obj1.checkNoReportAfterDelete(driver, sharer, softly);
 		  			  
 	  }
+	
+	public void upload2ndPicture(WebDriver driver) throws Exception{
+		
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    if(browserName.equals("chrome"))
+	    	upload2ndpictureChrome(driver);
+	    if(browserName.equals("firefox"))
+	    	upload2ndpictureFirefox(driver);
+	    if(browserName.equals("internet explorer"))
+	    {
+	    	if(v.startsWith("10"))
+	    		upload2ndpictureIE10(driver);
+	    	if(v.startsWith("11"))
+	    		upload2ndpictureIE11(driver);
+	    }
+	}
+	
+	public void upload1stPicture(WebDriver driver) throws Exception{
+		
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    String v = cap.getVersion().toString();
+	    System.out.println(v);
+	    if(browserName.equals("chrome"))
+	    	upload1stpictureChrome(driver);
+	    if(browserName.equals("firefox"))
+	    	upload1stpictureFirefox(driver);
+	    if(browserName.equals("internet explorer"))
+	    {
+	    	if(v.startsWith("10"))
+	    		upload1stpictureIE10(driver);
+	    	if(v.startsWith("11"))
+	    		upload1stpictureIE11(driver);
+	    }
+	}
+	
+	public List<String> createReport(WebDriver driver, String username) throws Exception{
+		
+		  //Clicks on Analysis 
+		  try
+		  {
+			  driver.findElement(By.id("pii-main-menu-button-a")).click();
+		  }catch (UnhandledAlertException f){			  
+			  driver.switchTo().alert().dismiss();
+		  }
+		  //Clicks on Remote Verification
+		  driver.findElement(By.id("pii-a-menu-rv")).click();
+		  //Fills the mandatory fields
+		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(eventTitle(driver));
+		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details(driver));
+		  String ev1 = driver.findElement(By.id("pii-rv-tab-1-title")).getAttribute("value");
+		  String ev2 = driver.findElement(By.id("pii-rv-tab-1-details")).getAttribute("value");
+		  if ((ev1.equals(eventTitle(driver))==false))
+		  {
+			  driver.findElement(By.id("pii-rv-tab-1-title")).clear();
+			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(eventTitle(driver));
+		  }
+		  if((ev2.equals(details(driver)))==false)
+		  {
+			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
+			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details(driver));
+		  }
+		  
+		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  //Select verifier
+		  verifierSelect(driver);
+		  Thread.sleep(1000);
+		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
+		  //Uploads picture 2
+		  upload2ndPicture(driver);
+		  //*
+		  jse.executeScript("scroll(0, 250)");
+		  Thread.sleep(3000);
+		  //Uploads picture 1
+		  upload1stPicture(driver);
+		  //*
+		  Thread.sleep(3000);
+		  jse.executeScript("scroll(0, 0)");
+		  //Verifies Date and time
+		  verifyDateTime(driver);
+		  //Verifies location of office
+		  verifyLongitudeLatitude(driver);
+		  //Verify status 
+		  checkStatusReport(driver);
+		  Thread.sleep(3000);
+		  //Creates the expected name of record
+		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
+		  creation_date= creation_date.substring(22, creation_date.length());
+		  String name = creation_date +"_"+ username + "_" + eventTitle(driver);
+		  System.out.println("Expected name of record: " + name);
+		  //Clicks on Remote Verification
+		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
+		  Thread.sleep(3000);
+		  //Gets the name of the record created
+		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"));
+		  String recordName = record.getText();
+		  String r = recordName.replaceAll("\u00AD", "");
+		  if (record.isDisplayed())
+		  {
+			  System.out.println("Record found: "+ recordName);
+		  }
+		  else
+			  System.out.println ("Record not found.");
+		  //Checks if the name displayed on record is same as expected
+		  softly.assertThat(r).as("test data").isEqualTo(name);
+		  return Arrays.asList(verifier,r);
+	}
 	
 	public void softAssert() throws Exception {
 		softly.assertAll();

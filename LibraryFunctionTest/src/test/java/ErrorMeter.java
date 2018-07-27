@@ -28,13 +28,89 @@ public class ErrorMeter {
 
 	SoftAssertions softly = new SoftAssertions();
 	
-	public String error0Data()throws Exception{
+	//HTML
+	By ErrorMeterEnvironmentSupportingReason1 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[2]/td[3]");
+	By ErrorMeterEnvironmentSupportingReason2 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[3]/td[3]");
+	By ErrorMeterEnvironmentSupportingReason3 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[4]/td[3]");
+	By ErrorMeterEnvironmentSupportingReason4 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[5]/td[3]");
+	By ErrorMeterEnvironmentCorrectiveAction1 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[2]/td[4]");
+	By ErrorMeterEnvironmentCorrectiveAction2 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[3]/td[4]");
+	By ErrorMeterEnvironmentCorrectiveAction3 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[4]/td[4]");
+	By ErrorMeterEnvironmentCorrectiveAction4 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[5]/td[4]");
+	By ErrorMeterPeopleSupportingReason1 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[2]/td[3]");
+	By ErrorMeterPeopleSupportingReason2 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[3]/td[3]");
+	By ErrorMeterPeopleSupportingReason3 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[4]/td[3]");
+	By ErrorMeterPeopleSupportingReason4 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[5]/td[3]");
+	By ErrorMeterPeopleCorrectiveAction1 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[2]/td[4]");
+	By ErrorMeterPeopleCorrectiveAction2 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[3]/td[4]");
+	By ErrorMeterPeopleCorrectiveAction3 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[4]/td[4]");
+	By ErrorMeterPeopleCorrectiveAction4 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[5]/td[4]");
+	By ErrorMeterActivitySupportingReason1 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[2]/td[3]");
+	By ErrorMeterActivitySupportingReason2 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[3]/td[3]");
+	By ErrorMeterActivitySupportingReason3 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[4]/td[3]");
+	By ErrorMeterActivitySupportingReason4 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[5]/td[3]");
+	By ErrorMeterActivityCorrectiveAction1 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[2]/td[4]");
+	By ErrorMeterActivityCorrectiveAction2 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[3]/td[4]");
+	By ErrorMeterActivityCorrectiveAction3 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[4]/td[4]");
+	By ErrorMeterActivityCorrectiveAction4 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[5]/td[4]");
+	By ErrorMeterProcedureSupportingReason1 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[2]/td[3]");
+	By ErrorMeterProcedureSupportingReason2 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[3]/td[3]");
+	By ErrorMeterProcedureSupportingReason3 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[4]/td[3]");
+	By ErrorMeterProcedureSupportingReason4 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[5]/td[3]");
+	By ErrorMeterProcedureCorrectiveAction1 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[2]/td[4]");
+	By ErrorMeterProcedureCorrectiveAction2 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[3]/td[4]");
+	By ErrorMeterProcedureCorrectiveAction3 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[4]/td[4]");
+	By ErrorMeterProcedureCorrectiveAction4 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[5]/td[4]");
+
+	By ErrorMeterProcedureSPVNonIssue1 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[2]/td[1]");
+	By ErrorMeterProcedureSPVNonIssue2 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[3]/td[1]");
+	By ErrorMeterProcedureSPVNonIssue3 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[4]/td[1]");
+	By ErrorMeterProcedureSPVNonIssue4 = By.xpath(".//*[@id='epm-rpt']/div/div[4]/table/tbody/tr[5]/td[1]");
+	By ErrorMeterActivitySPVNonIssue1 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[2]/td[1]");
+	By ErrorMeterActivitySPVNonIssue2 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[3]/td[1]");
+	By ErrorMeterActivitySPVNonIssue3 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[4]/td[1]");
+	By ErrorMeterActivitySPVNonIssue4 = By.xpath(".//*[@id='epm-rpt']/div/div[5]/table/tbody/tr[5]/td[1]");
+	By ErrorMeterPeopleSPVNonIssue1 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[2]/td[1]");
+	By ErrorMeterPeopleSPVNonIssue2 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[3]/td[1]");
+	By ErrorMeterPeopleSPVNonIssue3 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[4]/td[1]");
+	By ErrorMeterPeopleSPVNonIssue4 = By.xpath(".//*[@id='epm-rpt']/div/div[6]/table/tbody/tr[5]/td[1]");
+	By ErrorMeterEnvironmentSPVNonIssue1 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[2]/td[1]");
+	By ErrorMeterEnvironmentSPVNonIssue2 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[3]/td[1]");
+	By ErrorMeterEnvironmentSPVNonIssue3 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[4]/td[1]");
+	By ErrorMeterEnvironmentSPVNonIssue4 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[5]/td[1]");
+	
+	
+	public String error0Data(WebDriver driver)throws Exception{
 		
-		return ("Morbi ut massa elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
+		if(driver.getCurrentUrl().contains("kaledev"))
+		{
+			return ("Morbi ut massa <div> elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
+		}
+		else return ("Morbi ut massa elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
 	}
 	
-	public List<String> error50Data()throws Exception {
+	public List<String> error50Data(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
+		if(driver.getCurrentUrl().contains("kaledev"))
+		{
+			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
+			text.add("Pellentesque nec <div> nulla vel neque tincidunt rutrum.");
+			text.add("Donec dictum enim <div> nec mi pulvinar, nec consequat eros tristique.");
+			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
+			text.add("In non leo et <div> nibh porttitor lobortis.");
+			text.add("Donec hendrerit <div> lacus semper justo bibendum fermentum.");
+			text.add("Sed tempus nunc <div> interdum neque sodales, at mollis magna convallis.");
+			text.add("Aliquam efficitur <div> sem quis facilisis aliquam.");
+			text.add("Proin blandit ante <div> at molestie finibus.");
+			text.add("Etiam quis <div> lorem laoreet, malesuada lorem in, tristique sem.");
+			text.add("Maecenas vitae <div> orci non dui ultrices posuere vulputate at elit.");
+			text.add("Mauris blandit elit <div> sit amet tellus dignissim, eget maximus sem dignissim.");
+			text.add("Morbi in dui semper, <div> sagittis augue in, elementum lorem.");
+			text.add("Vivamus ut lacus finibus, <div> dictum neque interdum, tincidunt eros.");
+			text.add("Duis vestibulum <div> ipsum at dui tincidunt, semper eleifend est congue.");
+			text.add("Lorem ipsum dolor sit <div> amet, consectetur adipiscing elit.");
+		}
+		else{
 		text.add("Quisque at justo elementum, finibus elit ut, ultrices nibh.");
 		text.add("Pellentesque nec nulla vel neque tincidunt rutrum.");
 		text.add("Donec dictum enim nec mi pulvinar, nec consequat eros tristique.");
@@ -51,12 +127,49 @@ public class ErrorMeter {
 		text.add("Vivamus ut lacus finibus, dictum neque interdum, tincidunt eros.");
 		text.add("Duis vestibulum ipsum at dui tincidunt, semper eleifend est congue.");
 		text.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		}
 		return text;
 	}
     
 
-	public List<String> error100Data() throws Exception{
+	public List<String> error100Data(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
+		if(driver.getCurrentUrl().contains("kaledev"))
+		{
+			text.add("Curabitur lacinia <div> odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus. Inside a bond catalog suspects the pink cycle. The stopping midnight flips the fundamentalist countryside. The drama discards the monarch galaxy.");
+			text.add("Vestibulum eget lectus <div> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks! The capitalist shies away without the grief! Should the normal standpoint overflow without the planet? The wretched earth reverts. The insufficient banner distances the simplified firework.");
+			text.add("Integer ac enim <div> eget nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia. The forgotten python hopes. The bush league bushes the fellow. Can a citizen edit a stimulating composite? The fame trails without another load. A wisest rhythm misguides a modern thick. Above its communist nests the accountant. Your counterpart talks over the rubber ham. A tree pants beside a net gas.");
+			text.add("Donec in massa pulvinar, <div> mattis turpis ut, aliquam ligula. The countryside plays with the fashionable documentary underneath the trifle. The museum cycles a doctor over the hack postscript. A wallet listens on top of the attempt! The fit praise dictates beneath the longest comparison. A genius ducks past an excess. The distress advances with the distress! When can the overlap multiply a break? Should the routine steel skip against a clone? The equipped anarchy budgets an imbalance. The amateur relaxes after the verse! The batch flies behind a pigeon. How can our poison curtain an otherwise child? The reflecting discovery allies the designate wealth. A separator kids past the speaker. The arc overtone rots.");
+			text.add("Morbi dictum mi et nisl <div> interdum, vel iaculis lacus suscipit. The stroke pushes the coach beneath any wood outcome. The photocopy prevails below the feat volunteer. The counsel decays beneath the burned disorder. The flute butters a postage after a misrepresented schedule. How can the dreamed baby walk? The speaking misfortune bites an override. A politician rattles against the emerging purple. A sod dries the crush into the packed burden. The warmed eye notices the alphabetical grammar. The smashing scenery chambers the sounding dominant. Why does a rattled height exit? A subsidized physicist rocks an enthusiastic keeper.The outcome noses against the departure. Why won't a temper dish an appalled visit? With a safeguard responds the biggest junk. When will the noisy stress grind against the idiosyncratic blame? How does a desire mend throughout any ripped tooth?");
+			text.add("Ut eu quam non orci <div> consectetur vestibulum et scelerisque sapien. The debt destroys every refined boy behind an ethic. Whatever compound sweeps into the concealed noun. The tomato posts a helmet. The gate flowers throughout a satire. The united plague restores this sympathetic likelihood. A simulate commentator perceives a laughter against the tame metaphor. The flood composes in the startled fuse. Can a taxpayer lecture her container? The circular chooses past her typewriter.");
+			text.add("Morbi accumsan leo <div> non ex tempor, congue ullamcorper urna viverra. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.");
+			text.add("In quis enim a odio venenatis scelerisque dignissim sed mauris. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).");
+			text.add("Maecenas ultrices <div> nulla nec malesuada ullamcorper.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
+			text.add("Mauris mattis nisi quis <div> rhoncus mollis. In addition to generating an entire comedy routine, the software provides additional means to make existing content funnier. One of those ways is through the Article Part menu that can insert a short, funny paragraph into an existing routine or article. Also available is the One-Liner Jokes option on the right-click menu, which presents a list of relevant one-liners in the Phrase Box for later use.First Draft 5.0 costs $149.99 and can be purchased online from http://www.justoutsourcing.com/.");
+			text.add("In auctor lorem quis eros <div> fermentum ultricies a at nibh. The tray boils under a deprived alcoholic. How can a beaten populace fork the climbing developer? The rounded imbalance expenses the spy. Your inexperienced scene showers the mystic. The scrap determines a blanket behind the wanted whole. Why does the horrified rat bell a talented swallow? The dragging alphabet noses. Next to the sophisticate tries the fascist cell. A tale catalogs the adventure. A parallel force exercises opposite an exponential soldier. The motto sleeps inside the road. A uninteresting helmet dictates near the glass. The unhappy dealer hopes. A pregnant mailbox grabs the garden next to a precious classic. The creature demands the blob.");
+			text.add("Curabitur quis <div> mauris ullamcorper, ultricies orci non, porttitor diam. A chord degenerates into the based fairy. This wretched sin gasps outside the analogy. Each prerequisite waters a conscience. The superfluous hospital surnames every meal. The clique rails behind a gas! Should the highlight proclaim the restaurant? An indent flips! The gospel dresses the penny author. On top of a debate waves an incomplete stake. A screaming rainbow authorizes the farmer over a sweeping devil. The follower cruises on top of the landlord! Should the policeman frown above the guest stereotype? The biochemistry modifies a numeric tube. The unset stair ditches the prominent editorial. A prototype crawls. The alert finances the charged comfort. The guaranteed terrorist senses the hell throughout the owed attitude. The static responds opposite every sunrise. A scroll entitles our scenery beside a lifted decay. The plant wishes a barrier with the adult bomb. The ink pats the egg across your offending volume. The defect gifts the devoid vein.");
+			text.add("Fusce aliquet <div> libero vel risus luctus ullamcorper.");
+			text.add("Vestibulum non <div> risus sit amet lorem blandit tempus.");
+			text.add("Fusce gravida <div> libero a neque cursus gravida.");
+			text.add("Proin eget urna <div> tempor, ullamcorper lectus eget, elementum massa. The assumed plotter rushs toward the anatomy. Beneath the physiology despairs the table. A waiting musician leaks above the pole. The chicken patient gins the frustrated container. The ready craft farms the impractical reactionary. Can my flood host the operator? Each charge bumps against the march. The analogy enters?The static mutters? The rabbit conveys the bastard after a correct resemblance. The blade prefers the compelled straw. The specified postscript tries beside the fancy mount. Underneath the reform reigns an organic supernatural. An official buttons the theater. The pleasant toe misses the alternative. The smallish tongue charges the barrister in a confused artist. When will a frowning electron outweigh the dress company? The cheese results with a coke. Why won't the attending throat imprison the paranoid sea? Beneath the lust foams each ecology. How does the commissioned contempt protect the mate?");
+			text.add("Quisque at <div> justo elementum, finibus elit ut, ultrices nibh.");
+			text.add("Pellentesque <div> nec nulla vel neque tincidunt rutrum.");
+			text.add("Donec dictum <div> enim nec mi pulvinar, nec consequat eros tristique. A sky deletes a curtain over the bearded parameter. A handicap escapes near the constant! The vicar dances a threshold opposite a rough limb. The architecture outcries the pat jack after the reflex. An article cruises in the wartime. How will the detailed barrel die without the bench? The heat attends behind the imperative! The steel sleeps over the shame! The smelly exponential hopes a huge anatomy. Against the jack participates a motor. The corporate tour chars an illustrated theology. The confining knowledge ices the desirable bubble. Why can't an invitation volume tailor the irate bandwagon? The brother closet pipes the indent. The fined group trails around a homosexual.");
+			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
+			text.add("In non leo <div> et nibh porttitor lobortis. A pan disturbs the barrister. Its password invalidates the gospel. A silver bath rests. When will the tempting fossil escape a shade? The unsafe collective lands a populace. When will our digital threshold moan? The ice grabs this carpet. The network functions as the pro prose. The independence pressures his appointed country. How can the biting trouble hunt? Why can't an asset rail? A number meets the colleague throughout an adventurous biography. The invitation mountain solos throughout a syndicate. The orienting analogue publicizes the implied finger. The parochial alcoholic warms to another sugar. Against each worn hero towers your unsuccessful holy. A wonderful numeral caves the child. A gateway catalogs the comic throughout the akin cycle. The terror fringes an injury. When can the photo scratch the logo? My track tasks the paste. A prisoner colors. The tone elects the monochrome suspicion. The herd jams without the absent developer. Her banana enhances the competing talent next to the warm. An alcoholic pumps outside the artist! The justified poison strays next to the inhibiting ruler. A divine fools the experienced address above the singer. The shutdown swims throughout the bankrupt. The tried poison excites the ace. The pedestrian persists throughout a packed warm. Should the elephant's wealth appear throughout a tactic? Under every storm degenerates the perpetual bankrupt.");
+			text.add("Donec hendrerit <div> lacus semper justo bibendum fermentum. The lousy lung stirs across the pedestrian homosexual. A vocal distresses the tile. How does an ineffective disease refresh the imperial rage? The complicate potato edges the derived nostalgia.");
+			text.add("Sed tempus nunc <div> interdum neque sodales, at mollis magna convallis.");
+			text.add("Aliquam efficitur sem quis facilisis aliquam. <div> Why won't the horizon progress above a crash friendship? How will the fine muck break outside the boy? The page enters the graffito. The coal shortens the bump into a demolished article. A chemical thinks opposite a vegetable! How does a pace withdraw? The pill leaks across the secretary. Whatever ward twins every passionate weapon. An orientated moderate bringings a strict wine. Why won't the toy solo? Your diagonal mistake strains against a diagonal. Can the pan tutorial coast? The delicate physics degenerates against the platform. How does the lane studio document the unchanged hierarchy? When can an illiterate violin supervise a blind resource? The grouped gun walks against our screen. The executive juice scratches outside every wed bean. Why does a some guard prepare a stamped hash? The salesman faints over the rending uncle. A perfect thumb turns an average. The holder aids the spectacular throughout my cancelled weekday. Below the manual sigh stares the plastered deed. Why can't the numerous workshop thirst? The removed norm loves a charter. Why won't the proof file an opera? An overwhelmed limb doses a tailor. How does the foreigner puzzle inside the deciding coal? Will the cozy coach thirst throughout a principal? Next to the darling tooth sleeps the neighbor highway. When can the comparable prince flower? Should a decimal racket change against the cuckoo? The privileged earth punts near the buyer. An appeal holds a stare. The starved burst serves as the scotch. How does the creative blackmail rule near the altogether? Why does his praise revert? The beginner determines the mumble.");
+			text.add("Proin <div> blandit ante at molestie finibus.");
+			text.add("Etiam quis lorem <div> laoreet, malesuada lorem in, tristique sem.");
+			text.add("Maecenas vitae orci <div> non dui ultrices posuere vulputate at elit. Why can't a south toe the line? A borderline beams beside the scheme. Can the duplicate rebuild the coincidence? The tooth destroys a raw powder into the tribe. How will the uncommon article stretch after the theology? The tolerant blessed slashes an ass.");
+			text.add("Mauris blandit <div> elit sit amet tellus dignissim, eget maximus sem dignissim.");
+			text.add("Morbi in dui semper, <div> sagittis augue in, elementum lorem.");
+			text.add("Vivamus ut lacus <div> finibus, dictum neque interdum, tincidunt eros. Why does the axiom aim a cathedral purpose? An archive opens my orbital below the dangerous misprint. The sixty filter prices her metric lesbian. A world appears in the enemy listener. When will a mailed system interrupt the attendant? The milk detail frightens the improving warehouse.");
+			text.add("Duis vestibulum ipsum <div> at dui tincidunt, semper eleifend est congue.");
+			text.add("Lorem ipsum dolor sit <div> amet, consectetur adipiscing elit.");
+		}
+		else{
 		text.add("Curabitur lacinia odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus. Inside a bond catalog suspects the pink cycle. The stopping midnight flips the fundamentalist countryside. The drama discards the monarch galaxy.");
 		text.add("Vestibulum eget lectus ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks! The capitalist shies away without the grief! Should the normal standpoint overflow without the planet? The wretched earth reverts. The insufficient banner distances the simplified firework.");
 		text.add("Integer ac enim eget nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia. The forgotten python hopes. The bush league bushes the fellow. Can a citizen edit a stimulating composite? The fame trails without another load. A wisest rhythm misguides a modern thick. Above its communist nests the accountant. Your counterpart talks over the rubber ham. A tree pants beside a net gas.");
@@ -89,12 +202,13 @@ public class ErrorMeter {
 		text.add("Vivamus ut lacus finibus, dictum neque interdum, tincidunt eros. Why does the axiom aim a cathedral purpose? An archive opens my orbital below the dangerous misprint. The sixty filter prices her metric lesbian. A world appears in the enemy listener. When will a mailed system interrupt the attendant? The milk detail frightens the improving warehouse.");
 		text.add("Duis vestibulum ipsum at dui tincidunt, semper eleifend est congue.");
 		text.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		}
 		return text;
 	}
 	
 	public void papeError100(WebDriver driver) throws Exception{
 		
-		List<String> text=error100Data();
+		List<String> text=error100Data(driver);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		int i;
 		int j=text.size()-1;
@@ -596,7 +710,7 @@ public class ErrorMeter {
 
 	public void papeError50(WebDriver driver) throws Exception{
 			
-		    List<String> text = error50Data();
+		    List<String> text = error50Data(driver);
 			WebDriverWait wait1 = new WebDriverWait(driver,30);
 			int i;
 			int j=text.size()-1;
@@ -917,7 +1031,7 @@ public class ErrorMeter {
 	
 		public void papeError0(WebDriver driver) throws Exception{
 			
-			String text = error0Data();
+			String text = error0Data(driver);
 			WebDriverWait wait1 = new WebDriverWait(driver,30);
 			//Closes any warning from server
 		    try{
@@ -1344,11 +1458,11 @@ public class ErrorMeter {
     	Thread.sleep(15000);
     	//pdf verification
     	if (y==0)
-    		pdfCheckError0();
+    		pdfCheckError0(driver);
     	if(y==50)
-    		pdfCheckError50();
+    		pdfCheckError50(driver);
     	if(y==100)
-    		pdfCheckError100();
+    		pdfCheckError100(driver);
     	Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);
@@ -1388,11 +1502,11 @@ public class ErrorMeter {
     	Thread.sleep(15000);
     	//pdf verification
     	if (y==0)
-    		pdfCheckError0();
+    		pdfCheckError0(driver);
     	if(y==50)
-    		pdfCheckError50();
+    		pdfCheckError50(driver);
     	if(y==100)
-    		pdfCheckError100();
+    		pdfCheckError100(driver);
     	Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);
@@ -1432,11 +1546,11 @@ public class ErrorMeter {
 	    	p.waitFor();
 	    	Thread.sleep(4000);
 	    	if (y==0)
-	    		pdfCheckError0();
+	    		pdfCheckError0(driver);
 	    	if(y==50)
-	    		pdfCheckError50();
+	    		pdfCheckError50(driver);
 	    	if(y==100)
-	    		pdfCheckError100();
+	    		pdfCheckError100(driver);
 	    	Thread.sleep(4000);
 	    	driver.close();
 	    	Thread.sleep(4000);
@@ -1463,11 +1577,11 @@ public class ErrorMeter {
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
     	Thread.sleep(3000);
     	if (y==0)
-    		pdfCheckError0();
+    		pdfCheckError0(driver);
     	if(y==50)
-    		pdfCheckError50();
+    		pdfCheckError50(driver);
     	if(y==100)
-    		pdfCheckError100();
+    		pdfCheckError100(driver);
     	for(String winHandle : driver.getWindowHandles())
     	{
 	        driver.switchTo().window(winHandle);
@@ -1505,9 +1619,9 @@ public class ErrorMeter {
 			System.out.println("Edit data button not displayed for non admin user");
 	}
 
-	public void pdfCheckError0() throws Exception{
+	public void pdfCheckError0(WebDriver driver) throws Exception{
 		
-		String text = error0Data();
+		String text = error0Data(driver);
 		// specify your directory
     	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
     	// here we get the stream with full directory listing
@@ -1549,9 +1663,9 @@ public class ErrorMeter {
 	    pddoc.close();
   }
 	
-	public void pdfCheckError50() throws Exception{
+	public void pdfCheckError50(WebDriver driver) throws Exception{
     	
-		List<String> text = error50Data();
+		List<String> text = error50Data(driver);
        // specify your directory
        Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
        // here we get the stream with full directory listing
@@ -1598,9 +1712,9 @@ public class ErrorMeter {
        pddoc.close();
   }
 	
-	public void pdfCheckError100() throws Exception{
+	public void pdfCheckError100(WebDriver driver) throws Exception{
     
-	   List<String> text = error100Data();
+	   List<String> text = error100Data(driver);
 	   // specify your directory
 	   Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
 	   // here we get the stream with full directory listing
@@ -1653,6 +1767,133 @@ public class ErrorMeter {
 	      return count;
 	  }
 	
+	public void reportCheck0Dev (WebDriver driver) throws Exception{
+    	
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Compare Environment data
+		//Supporting reasons
+    	String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason1)).getText();
+    	softly.assertThat(text1E).as("test data").isEqualTo("");
+    	String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason2)).getText();
+    	softly.assertThat(text2E).as("test data").isEqualTo("");
+    	String text3E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason3)).getText();
+    	softly.assertThat(text3E).as("test data").isEqualTo("");
+    	String text4E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason4)).getText();
+    	softly.assertThat(text4E).as("test data").isEqualTo("");
+    	//Corrective actions
+    	String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction1)).getText();
+    	softly.assertThat(text5E).as("test data").isEqualTo("");    	
+    	String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction2)).getText();
+    	softly.assertThat(text6E).as("test data").isEqualTo("");    	
+    	String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction3)).getText();
+    	softly.assertThat(text7E).as("test data").isEqualTo("");    	
+    	String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction4)).getText();
+    	softly.assertThat(text8E).as("test data").isEqualTo("");
+    	
+    	
+    	//Compare People data
+    	//Supporting reasons
+    	String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason1)).getText();
+    	softly.assertThat(text9E).as("test data").isEqualTo("");    	
+    	String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason2)).getText();
+    	softly.assertThat(text10E).as("test data").isEqualTo("");    	
+    	String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason3)).getText();
+    	softly.assertThat(text11E).as("test data").isEqualTo("");    	
+    	String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason4)).getText();
+    	softly.assertThat(text12E).as("test data").isEqualTo("");    	
+    	//Corrective actions
+    	String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction1)).getText();
+    	softly.assertThat(text13E).as("test data").isEqualTo("");    	
+    	String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction2)).getText();
+    	softly.assertThat(text14E).as("test data").isEqualTo("");    	
+    	String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction3)).getText();
+    	softly.assertThat(text15E).as("test data").isEqualTo("");    	
+    	String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction4)).getText();
+    	softly.assertThat(text16E).as("test data").isEqualTo("");
+    	
+    	
+    	//Compare Activity data
+    	//Supporting reasons
+    	String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason1)).getText();
+    	softly.assertThat(text17E).as("test data").isEqualTo("");    	
+    	String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason2)).getText();
+    	softly.assertThat(text18E).as("test data").isEqualTo("");    	
+    	String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason3)).getText();
+    	softly.assertThat(text19E).as("test data").isEqualTo("");    	
+    	String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason4)).getText();
+    	softly.assertThat(text20E).as("test data").isEqualTo("");    	
+    	//Corrective actions
+    	String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction1)).getText();
+    	softly.assertThat(text21E).as("test data").isEqualTo("");    	
+    	String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction2)).getText();
+    	softly.assertThat(text22E).as("test data").isEqualTo("");    	
+    	String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction3)).getText();
+    	softly.assertThat(text23E).as("test data").isEqualTo("");    	
+    	String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction4)).getText();
+    	softly.assertThat(text24E).as("test data").isEqualTo("");    	
+    	
+    	//Compare Procedure data
+    	//Supporting reasons
+    	String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason1)).getText();
+    	softly.assertThat(text25E).as("test data").isEqualTo("");    	
+    	String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason2)).getText();
+    	softly.assertThat(text26E).as("test data").isEqualTo("");    	
+    	String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason3)).getText();
+    	softly.assertThat(text27E).as("test data").isEqualTo("");    	
+    	String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason4)).getText();
+    	softly.assertThat(text28E).as("test data").isEqualTo("");    	
+    	//Corrective actions
+    	String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction1)).getText();
+    	softly.assertThat(text29E).as("test data").isEqualTo("");    	
+    	String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction2)).getText();
+    	softly.assertThat(text30E).as("test data").isEqualTo("");    	
+    	String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction3)).getText();
+    	softly.assertThat(text31E).as("test data").isEqualTo("");    	
+    	String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction4)).getText();
+    	softly.assertThat(text32E).as("test data").isEqualTo("");
+    	
+    	//Checks for Non issue
+    	//Procedure
+    	String textsp1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue1)).getText();
+    	softly.assertThat(textsp1).as("test data").isEqualTo("Non-Issue");
+    	String textnon1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue2)).getText();
+    	softly.assertThat(textnon1).as("test data").isEqualTo("Non-Issue");
+    	String textsp2=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue3)).getText();
+    	softly.assertThat(textsp2).as("test data").isEqualTo("Non-Issue");
+    	String textnon2=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue4)).getText();
+    	softly.assertThat(textnon2).as("test data").isEqualTo("Non-Issue");
+    	
+    	//Activity
+    	String textnon3=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue1)).getText();
+    	softly.assertThat(textnon3).as("test data").isEqualTo("Non-Issue");
+    	String textsp3=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue2)).getText();
+    	softly.assertThat(textsp3).as("test data").isEqualTo("Non-Issue");
+    	String textnon4=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue3)).getText();
+    	softly.assertThat(textnon4).as("test data").isEqualTo("Non-Issue");
+    	String textsp4=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue4)).getText();
+    	softly.assertThat(textsp4).as("test data").isEqualTo("Non-Issue");
+    	
+    	//People
+    	String textnon5=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue1)).getText();
+    	softly.assertThat(textnon5).as("test data").isEqualTo("Non-Issue");
+    	String textsp5=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue2)).getText();
+    	softly.assertThat(textsp5).as("test data").isEqualTo("Non-Issue");
+    	String textsp6=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue3)).getText();
+    	softly.assertThat(textsp6).as("test data").isEqualTo("Non-Issue");
+    	String textnon6=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue4)).getText();
+    	softly.assertThat(textnon6).as("test data").isEqualTo("Non-Issue");
+    	
+    	//Environment
+    	String textsp7=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue1)).getText();
+    	softly.assertThat(textsp7).as("test data").isEqualTo("Non-Issue");
+    	String textnon7=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue2)).getText();
+    	softly.assertThat(textnon7).as("test data").isEqualTo("Non-Issue");
+    	String textnon8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue3)).getText();
+    	softly.assertThat(textnon8).as("test data").isEqualTo("Non-Issue");
+    	String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue4)).getText();
+    	softly.assertThat(textsp8).as("test data").isEqualTo("Non-Issue");
+    }
+	
 	public void reportCheck0(WebDriver driver) throws Exception{
     	
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -1661,8 +1902,11 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaledev"))
+			reportCheck0Dev(driver);
+		else{
 		//Compare Environment data
-    	//Supporting reasons
+		//Supporting reasons
     	String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]"))).getText();
     	softly.assertThat(text1E).as("test data").isEqualTo("");
     	String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[3]"))).getText();
@@ -1783,17 +2027,162 @@ public class ErrorMeter {
     	softly.assertThat(textnon8).as("test data").isEqualTo("Non-Issue");
     	String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]"))).getText();
     	softly.assertThat(textsp8).as("test data").isEqualTo("Non-Issue");
-    	
+		}
     	//Error probability
     	WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText();
 		System.out.println(probabilityText);
-		softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);
+		softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);		
+    }
+	
+	public void reportCheck50Dev (WebDriver driver) throws Exception{
+    	
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		List<String> text = error50Data(driver);
+		int j=text.size()-1;
+		//Compare Environment data
+		//Supporting reasons
+    	String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason1)).getText();
+    	String r = text1E.replaceAll("\u00AD", "");
+    	softly.assertThat(r).as("test data").isEqualTo(text.get(j--));
+    	String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason2)).getText();
+    	softly.assertThat(text2E).as("test data").isEqualTo("");
+    	String text3E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason3)).getText();
+    	softly.assertThat(text3E).as("test data").isEqualTo("");
+    	String text4E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason4)).getText();
+    	String r1 = text4E.replaceAll("\u00AD", "");
+    	softly.assertThat(r1).as("test data").isEqualTo(text.get(j--));
+    	//Corrective actions
+    	String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction1)).getText();
+    	String r2 = text5E.replaceAll("\u00AD", "");
+    	softly.assertThat(r2).as("test data").isEqualTo(text.get(j--));    	
+    	String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction2)).getText();
+    	softly.assertThat(text6E).as("test data").isEqualTo("");    	
+    	String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction3)).getText();
+    	softly.assertThat(text7E).as("test data").isEqualTo("");    	
+    	String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction4)).getText();
+    	String r3 = text8E.replaceAll("\u00AD", "");
+    	softly.assertThat(r3).as("test data").isEqualTo(text.get(j--));
+    	
+    	
+    	//Compare People data
+    	//Supporting reasons
+    	String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason1)).getText();
+    	softly.assertThat(text9E).as("test data").isEqualTo("");    	
+    	String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason2)).getText();
+    	String r4 = text10E.replaceAll("\u00AD", "");
+    	softly.assertThat(r4).as("test data").isEqualTo(text.get(j--));    	
+    	String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason3)).getText();
+    	String r5 = text11E.replaceAll("\u00AD", "");
+    	softly.assertThat(r5).as("test data").isEqualTo(text.get(j--));    	
+    	String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason4)).getText();
+    	softly.assertThat(text12E).as("test data").isEqualTo("");    	
+    	//Corrective actions
+    	String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction1)).getText();
+    	softly.assertThat(text13E).as("test data").isEqualTo("");    	
+    	String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction2)).getText();
+    	String r6 = text14E.replaceAll("\u00AD", "");
+    	softly.assertThat(r6).as("test data").isEqualTo(text.get(j--));    	
+    	String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction3)).getText();
+    	String r7 = text15E.replaceAll("\u00AD", "");
+    	softly.assertThat(r7).as("test data").isEqualTo(text.get(j--));    	
+    	String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction4)).getText();
+    	softly.assertThat(text16E).as("test data").isEqualTo("");
+    	
+    	
+    	//Compare Activity data
+    	//Supporting reasons
+    	String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason1)).getText();
+    	softly.assertThat(text17E).as("test data").isEqualTo("");    	
+    	String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason2)).getText();
+    	String r8 = text18E.replaceAll("\u00AD", "");
+    	softly.assertThat(r8).as("test data").isEqualTo(text.get(j--));    	
+    	String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason3)).getText();
+    	softly.assertThat(text19E).as("test data").isEqualTo("");    	
+    	String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason4)).getText();
+    	String r9 = text20E.replaceAll("\u00AD", "");
+    	softly.assertThat(r9).as("test data").isEqualTo(text.get(j--));    	
+    	//Corrective actions
+    	String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction1)).getText();
+    	softly.assertThat(text21E).as("test data").isEqualTo("");    	
+    	String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction2)).getText();
+    	String r10 = text22E.replaceAll("\u00AD", "");
+    	softly.assertThat(r10).as("test data").isEqualTo(text.get(j--));    	
+    	String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction3)).getText();
+    	softly.assertThat(text23E).as("test data").isEqualTo("");    	
+    	String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction4)).getText();
+    	String r11 = text24E.replaceAll("\u00AD", "");
+    	softly.assertThat(r11).as("test data").isEqualTo(text.get(j--));    	
+    	
+    	//Compare Procedure data
+    	//Supporting reasons
+    	String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason1)).getText();
+    	String r12 = text25E.replaceAll("\u00AD", "");
+    	softly.assertThat(r12).as("test data").isEqualTo(text.get(j--));    	
+    	String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason2)).getText();
+    	softly.assertThat(text26E).as("test data").isEqualTo("");    	
+    	String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason3)).getText();
+    	String r13 = text27E.replaceAll("\u00AD", "");
+    	softly.assertThat(r13).as("test data").isEqualTo(text.get(j--));    	
+    	String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason4)).getText();
+    	softly.assertThat(text28E).as("test data").isEqualTo("");    	
+    	//Corrective actions
+    	String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction1)).getText();
+    	String r14 = text29E.replaceAll("\u00AD", "");
+    	softly.assertThat(r14).as("test data").isEqualTo(text.get(j--));    	
+    	String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction2)).getText();
+    	softly.assertThat(text30E).as("test data").isEqualTo("");    	
+    	String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction3)).getText();
+    	String r15 = text31E.replaceAll("\u00AD", "");
+    	softly.assertThat(r15).as("test data").isEqualTo(text.get(j--));    	
+    	String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction4)).getText();
+    	softly.assertThat(text32E).as("test data").isEqualTo("");
+    	
+    	//Checks for Non issue
+    	//Procedure
+    	String textsp1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue1)).getText();
+    	softly.assertThat(textsp1).as("test data").isEqualTo("SPV");
+    	String textnon1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue2)).getText();
+    	softly.assertThat(textnon1).as("test data").isEqualTo("Non-Issue");
+    	String textsp2=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue3)).getText();
+    	softly.assertThat(textsp2).as("test data").isEqualTo("SPV");
+    	String textnon2=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue4)).getText();
+    	softly.assertThat(textnon2).as("test data").isEqualTo("Non-Issue");
+    	
+    	//Activity
+    	String textnon3=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue1)).getText();
+    	softly.assertThat(textnon3).as("test data").isEqualTo("Non-Issue");
+    	String textsp3=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue2)).getText();
+    	softly.assertThat(textsp3).as("test data").isEqualTo("SPV");
+    	String textnon4=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue3)).getText();
+    	softly.assertThat(textnon4).as("test data").isEqualTo("Non-Issue");
+    	String textsp4=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue4)).getText();
+    	softly.assertThat(textsp4).as("test data").isEqualTo("SPV");
+    	
+    	//People
+    	String textnon5=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue1)).getText();
+    	softly.assertThat(textnon5).as("test data").isEqualTo("Non-Issue");
+    	String textsp5=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue2)).getText();
+    	softly.assertThat(textsp5).as("test data").isEqualTo("SPV");
+    	String textsp6=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue3)).getText();
+    	softly.assertThat(textsp6).as("test data").isEqualTo("SPV");
+    	String textnon6=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue4)).getText();
+    	softly.assertThat(textnon6).as("test data").isEqualTo("Non-Issue");
+    	
+    	//Environment
+    	String textsp7=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue1)).getText();
+    	softly.assertThat(textsp7).as("test data").isEqualTo("SPV");
+    	String textnon7=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue2)).getText();
+    	softly.assertThat(textnon7).as("test data").isEqualTo("Non-Issue");
+    	String textnon8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue3)).getText();
+    	softly.assertThat(textnon8).as("test data").isEqualTo("Non-Issue");
+    	String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue4)).getText();
+    	softly.assertThat(textsp8).as("test data").isEqualTo("SPV");
     }
 	
 	public void reportCheck50(WebDriver driver) throws Exception{
     	
-		List<String> text = error50Data();
+		List<String> text = error50Data(driver);
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		int j=text.size()-1;
     	//Clicks on first newly created record
@@ -1801,6 +2190,9 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaledev"))
+			reportCheck50Dev(driver);
+		else{
     	//Compare Environment data
     	//Supporting reasons
     	String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]"))).getText();
@@ -1921,11 +2313,178 @@ public class ErrorMeter {
     	softly.assertThat(textnon8).as("test data").isEqualTo("Non-Issue");
     	String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]"))).getText();
     	softly.assertThat(textsp8).as("test data").isEqualTo("SPV");
+		}
+    	//Error probability
+    	WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
+		String probabilityText = probability.getText();
+		System.out.println(probabilityText);
+		softly.assertThat("50.00%").as("test data").isEqualTo(probabilityText);		
+    }
+	
+	public void reportCheck100Dev (WebDriver driver) throws Exception{
+    	
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		List<String> text = error100Data(driver);
+		int j=text.size()-1;
+		//Compare Environment data
+		//Supporting reasons
+    	String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason1)).getText();
+    	String r = text1E.replaceAll("\u00AD", "");
+    	softly.assertThat(r).as("test data").isEqualTo(text.get(j--));
+    	String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason2)).getText();
+    	String r18 = text2E.replaceAll("\u00AD", "");
+    	softly.assertThat(r18).as("test data").isEqualTo(text.get(j--));
+    	String text3E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason3)).getText();
+    	String r19 = text3E.replaceAll("\u00AD", "");
+    	softly.assertThat(r19).as("test data").isEqualTo(text.get(j--));
+    	String text4E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSupportingReason4)).getText();
+    	String r1 = text4E.replaceAll("\u00AD", "");
+    	softly.assertThat(r1).as("test data").isEqualTo(text.get(j--));
+    	//Corrective actions
+    	String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction1)).getText();
+    	String r2 = text5E.replaceAll("\u00AD", "");
+    	softly.assertThat(r2).as("test data").isEqualTo(text.get(j--));    	
+    	String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction2)).getText();
+    	String r20 = text6E.replaceAll("\u00AD", "");
+    	softly.assertThat(r20).as("test data").isEqualTo(text.get(j--));    	
+    	String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction3)).getText();
+    	String r21 = text7E.replaceAll("\u00AD", "");
+    	softly.assertThat(r21).as("test data").isEqualTo(text.get(j--));    	
+    	String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentCorrectiveAction4)).getText();
+    	String r3 = text8E.replaceAll("\u00AD", "");
+    	softly.assertThat(r3).as("test data").isEqualTo(text.get(j--));
+    	
+    	
+    	//Compare People data
+    	//Supporting reasons
+    	String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason1)).getText();
+    	String r22 = text9E.replaceAll("\u00AD", "");
+    	softly.assertThat(r22).as("test data").isEqualTo(text.get(j--));    	
+    	String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason2)).getText();
+    	String r4 = text10E.replaceAll("\u00AD", "");
+    	softly.assertThat(r4).as("test data").isEqualTo(text.get(j--));    	
+    	String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason3)).getText();
+    	String r5 = text11E.replaceAll("\u00AD", "");
+    	softly.assertThat(r5).as("test data").isEqualTo(text.get(j--));    	
+    	String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSupportingReason4)).getText();
+    	String r23 = text12E.replaceAll("\u00AD", "");
+    	softly.assertThat(r23).as("test data").isEqualTo(text.get(j--));    	
+    	//Corrective actions
+    	String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction1)).getText();
+    	String r24 = text13E.replaceAll("\u00AD", "");
+    	softly.assertThat(r24).as("test data").isEqualTo(text.get(j--));    	
+    	String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction2)).getText();
+    	String r6 = text14E.replaceAll("\u00AD", "");
+    	softly.assertThat(r6).as("test data").isEqualTo(text.get(j--));    	
+    	String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction3)).getText();
+    	String r7 = text15E.replaceAll("\u00AD", "");
+    	softly.assertThat(r7).as("test data").isEqualTo(text.get(j--));    	
+    	String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleCorrectiveAction4)).getText();
+    	String r25 = text16E.replaceAll("\u00AD", "");
+    	softly.assertThat(r25).as("test data").isEqualTo(text.get(j--));
+    	
+    	
+    	//Compare Activity data
+    	//Supporting reasons
+    	String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason1)).getText();
+    	String r26 = text17E.replaceAll("\u00AD", "");
+    	softly.assertThat(r26).as("test data").isEqualTo(text.get(j--));    	
+    	String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason2)).getText();
+    	String r8 = text18E.replaceAll("\u00AD", "");
+    	softly.assertThat(r8).as("test data").isEqualTo(text.get(j--));    	
+    	String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason3)).getText();
+    	String r27 = text19E.replaceAll("\u00AD", "");
+    	softly.assertThat(r27).as("test data").isEqualTo(text.get(j--));    	
+    	String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySupportingReason4)).getText();
+    	String r9 = text20E.replaceAll("\u00AD", "");
+    	softly.assertThat(r9).as("test data").isEqualTo(text.get(j--));    	
+    	//Corrective actions
+    	String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction1)).getText();
+    	String r28 = text21E.replaceAll("\u00AD", "");
+    	softly.assertThat(r28).as("test data").isEqualTo(text.get(j--));    	
+    	String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction2)).getText();
+    	String r10 = text22E.replaceAll("\u00AD", "");
+    	softly.assertThat(r10).as("test data").isEqualTo(text.get(j--));    	
+    	String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction3)).getText();
+    	String r29 = text23E.replaceAll("\u00AD", "");
+    	softly.assertThat(r29).as("test data").isEqualTo(text.get(j--));    	
+    	String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivityCorrectiveAction4)).getText();
+    	String r11 = text24E.replaceAll("\u00AD", "");
+    	softly.assertThat(r11).as("test data").isEqualTo(text.get(j--));    	
+    	
+    	//Compare Procedure data
+    	//Supporting reasons
+    	String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason1)).getText();
+    	String r12 = text25E.replaceAll("\u00AD", "");
+    	softly.assertThat(r12).as("test data").isEqualTo(text.get(j--));    	
+    	String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason2)).getText();
+    	String r30 = text26E.replaceAll("\u00AD", "");
+    	softly.assertThat(r30).as("test data").isEqualTo(text.get(j--));    	
+    	String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason3)).getText();
+    	String r13 = text27E.replaceAll("\u00AD", "");
+    	softly.assertThat(r13).as("test data").isEqualTo(text.get(j--));    	
+    	String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSupportingReason4)).getText();
+    	String r31 = text28E.replaceAll("\u00AD", "");
+    	softly.assertThat(r31).as("test data").isEqualTo(text.get(j--));    	
+    	//Corrective actions
+    	String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction1)).getText();
+    	String r14 = text29E.replaceAll("\u00AD", "");
+    	softly.assertThat(r14).as("test data").isEqualTo(text.get(j--));    	
+    	String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction2)).getText();
+    	String r17 = text30E.replaceAll("\u00AD", "");
+    	softly.assertThat(r17).as("test data").isEqualTo(text.get(j--));    	
+    	String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction3)).getText();
+    	String r15 = text31E.replaceAll("\u00AD", "");
+    	softly.assertThat(r15).as("test data").isEqualTo(text.get(j--));    	
+    	String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureCorrectiveAction4)).getText();
+    	String r16 = text32E.replaceAll("\u00AD", "");
+    	softly.assertThat(r16).as("test data").isEqualTo(text.get(j--));
+    	
+    	//Checks for Non issue
+    	//Procedure
+    	String textsp1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue1)).getText();
+    	softly.assertThat(textsp1).as("test data").isEqualTo("SPV");
+    	String textnon1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue2)).getText();
+    	softly.assertThat(textnon1).as("test data").isEqualTo("SPV");
+    	String textsp2=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue3)).getText();
+    	softly.assertThat(textsp2).as("test data").isEqualTo("SPV");
+    	String textnon2=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterProcedureSPVNonIssue4)).getText();
+    	softly.assertThat(textnon2).as("test data").isEqualTo("SPV");
+    	
+    	//Activity
+    	String textnon3=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue1)).getText();
+    	softly.assertThat(textnon3).as("test data").isEqualTo("SPV");
+    	String textsp3=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue2)).getText();
+    	softly.assertThat(textsp3).as("test data").isEqualTo("SPV");
+    	String textnon4=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue3)).getText();
+    	softly.assertThat(textnon4).as("test data").isEqualTo("SPV");
+    	String textsp4=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterActivitySPVNonIssue4)).getText();
+    	softly.assertThat(textsp4).as("test data").isEqualTo("SPV");
+    	
+    	//People
+    	String textnon5=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue1)).getText();
+    	softly.assertThat(textnon5).as("test data").isEqualTo("SPV");
+    	String textsp5=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue2)).getText();
+    	softly.assertThat(textsp5).as("test data").isEqualTo("SPV");
+    	String textsp6=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue3)).getText();
+    	softly.assertThat(textsp6).as("test data").isEqualTo("SPV");
+    	String textnon6=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPeopleSPVNonIssue4)).getText();
+    	softly.assertThat(textnon6).as("test data").isEqualTo("SPV");
+    	
+    	//Environment
+    	String textsp7=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue1)).getText();
+    	softly.assertThat(textsp7).as("test data").isEqualTo("SPV");
+    	String textnon7=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue2)).getText();
+    	softly.assertThat(textnon7).as("test data").isEqualTo("SPV");
+    	String textnon8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue3)).getText();
+    	softly.assertThat(textnon8).as("test data").isEqualTo("SPV");
+    	String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue4)).getText();
+    	softly.assertThat(textsp8).as("test data").isEqualTo("SPV");
     }
 	
 	public void reportCheck100(WebDriver driver) throws Exception{
     	
-		List<String> text = error100Data();
+		List<String> text = error100Data(driver);
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		int j=text.size()-1;
 		//Clicks on first newly created record
@@ -1933,6 +2492,9 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaledev"))
+			reportCheck100Dev(driver);
+		else{
 		//Compare Environment data
     	//Supporting reasons
     	String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]"))).getText();
@@ -2056,6 +2618,12 @@ public class ErrorMeter {
     	softly.assertThat(textnon8).as("test data").isEqualTo("SPV");
     	String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]"))).getText();
     	softly.assertThat(textsp8).as("test data").isEqualTo("SPV");
+		}
+    	//Error probability
+    	WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
+		String probabilityText = probability.getText();
+		System.out.println(probabilityText);
+		softly.assertThat("100.00%").as("test data").isEqualTo(probabilityText);		
     }
 	
 	public String decideSharer (int y) throws Exception{
@@ -2280,6 +2848,48 @@ public class ErrorMeter {
 		  ShareCheck obj1 = new ShareCheck();
 		  obj1.checkNoReportAfterDelete(driver, sharer, softly);	  
 	  }  
+    
+    public String saveReport(WebDriver driver, String username) throws Exception {
+    	
+    	WebDriverWait wait = new WebDriverWait(driver,10);
+    	EiRCA obj = new EiRCA ();
+    	String text = obj.textCreate(driver);
+    	Thread.sleep(2000);
+		//Click on finalize
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
+		Thread.sleep(2000);
+		//Click on finalize and save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
+		//Waits for the green popup on the right top corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		//Creates expected record name
+		String date= driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]")).getText();
+		date = date.substring(14);
+		String time = driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td[2]")).getText();
+		time = time.substring(14);
+		String time2 = time.substring(0, 8);
+		String time1=time.substring(9);
+		String purpose = driver.findElement(By.xpath(".//*[@id='epm-rpt']/div/div/span/abbr")).getText();
+		String name = date + "_" + time2+"_"+time1 + "_" + username +"_" + purpose + "_" + text;
+		System.out.println ("Expected name of record: " +name);
+		//Clicks on side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
+		//Gets the name of the record created
+		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"));
+		String recordName = record.getText();
+		String r = recordName.replaceAll("\u00AD", "");
+		if (record.isDisplayed())
+		{
+		  System.out.println("Record found: "+ r);
+		}
+		else
+		  System.out.println ("Record not found.");
+		//Checks if the record name is correct
+		softly.assertThat(r).as("test data").isEqualTo(name);
+		return r;
+    }
+    
     public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

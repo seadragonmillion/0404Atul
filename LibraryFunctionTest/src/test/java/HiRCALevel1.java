@@ -39,12 +39,61 @@ import com.google.common.collect.Iterables;
 public class HiRCALevel1 {
 	
 	SoftAssertions softly = new SoftAssertions();
-	String text = "HiRCA Level 1 test";
-	String text1 = "HiRCA Level 1 changed";
-	String textEvidence = "HiRCA evidence entry text to be counted";
 	
-	public List<String> variableText() throws Exception{
+	public String text(WebDriver driver) throws Exception{
+		
+		if(driver.getCurrentUrl().contains("kaledev"))
+    		return ("HiRCA Level 1 <div> test");
+    	else
+    		return("HiRCA Level 1 test");
+	}
+	
+	public String textEvidence(WebDriver driver) throws Exception{
+		
+		if(driver.getCurrentUrl().contains("kaledev"))
+    		return ("HiRCA evidence <div> entry text to be counted");
+    	else
+    		return("HiRCA evidence entry text to be counted");
+	}
+	
+	public List<String> variableText(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
+		if(driver.getCurrentUrl().contains("kaledev"))
+		{
+			text.add("Curabitur lacinia odio sit <div> amet tellus vestibulum condimentum. The resting sundry overcomes above the focus.");
+			text.add("Vestibulum eget lectus <div> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks!");
+			text.add("Integer ac enim eget <div> nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia.");
+			text.add("Donec in massa pulvinar, mattis <div> turpis ut, aliquam ligula.");
+			text.add("Morbi dictum mi et <div> nisl interdum, vel iaculis lacus suscipit. The stroke pushes the coach beneath any wood outcome?");
+			text.add("Ut eu quam non orci <div> consectetur vestibulum et scelerisque sapien. The debt destroys every refined boy behind an ethic. Whatever compound sweeps into the concealed noun. The tomato posts a helmet.");
+			text.add("Morbi accumsan leo <div> non ex tempor, congue ullamcorper urna viverra. Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+			text.add("In quis enim a odio <div> venenatis scelerisque dignissim sed mauris.");
+			text.add("Maecenas ultrices <div> nulla nec malesuada ullamcorper.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.");
+			text.add("Mauris mattis nisi quis <div> rhoncus mollis. In addition to generating an entire comedy routine, the software provides additional means to make existing content funnier.");
+			text.add("In auctor lorem quis <div> eros fermentum ultricies a at nibh. The tray boils under a deprived alcoholic. How can a beaten populace fork the climbing developer?");
+			text.add("Curabitur quis mauris <div> ullamcorper, ultricies orci non, porttitor diam. A chord degenerates into the based fairy.");
+			text.add("Fusce aliquet libero <div> vel risus luctus ullamcorper.");
+			text.add("Vestibulum non risus <div> sit amet lorem blandit tempus.");
+			text.add("Fusce gravida libero <div> a neque cursus gravida.");
+			text.add("Proin eget urna <div> tempor, ullamcorper lectus eget, elementum massa. The assumed plotter rushs toward the anatomy.");
+			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
+			text.add("Pellentesque nec nulla <div> vel neque tincidunt rutrum.");
+			text.add("Donec dictum enim nec <div> mi pulvinar, nec consequat eros tristique. A sky deletes a curtain over the bearded parameter. A handicap escapes near the constant! The vicar dances a threshold opposite a rough limb. The architecture outcries the pat jack after the reflex. An article cruises in the wartime.");
+			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
+			text.add("In non leo et nibh porttitor <div> lobortis. A pan disturbs the barrister. Its password invalidates the gospel. A silver bath rests. When will the tempting fossil escape a shade? The unsafe collective lands a populace. When will our digital threshold moan? The ice grabs this carpet.");
+			text.add("Donec hendrerit lacus semper <div> justo bibendum fermentum. The lousy lung stirs across the pedestrian homosexual. A vocal distresses the tile. How does an ineffective disease refresh the imperial rage? The complicate potato edges the derived nostalgia.");
+			text.add("Sed tempus nunc interdum <div> neque sodales, at mollis magna convallis.");
+			text.add("Aliquam efficitur sem quis <div> facilisis aliquam. Why won't the horizon progress above a crash friendship? How will the fine muck break outside the boy?");
+			text.add("Proin blandit ante <div> at molestie finibus.");
+			text.add("Etiam quis lorem laoreet, <div> malesuada lorem in, tristique sem.");
+			text.add("Maecenas vitae orci non <div> dui ultrices posuere vulputate at elit. Why can't a south toe the line? A borderline beams beside the scheme. Can the duplicate rebuild the coincidence? The tooth destroys a raw powder into the tribe. How will the uncommon article stretch after the theology? The tolerant blessed slashes an ass.");
+			text.add("Mauris blandit elit sit <div> amet tellus dignissim, eget maximus sem dignissim.");
+			text.add("Morbi in dui semper, sagittis <div> augue in, elementum lorem.");
+			text.add("Vivamus ut lacus finibus, dictum <div> neque interdum, tincidunt eros. Why does the axiom aim a cathedral purpose? An archive opens my orbital below the dangerous misprint. The sixty filter prices her metric lesbian. A world appears in the enemy listener. When will a mailed system interrupt the attendant? The milk detail frightens the improving warehouse.");
+			text.add("Duis vestibulum ipsum at dui <div> tincidunt, semper eleifend est congue.");
+			text.add("Lorem ipsum dolor <div> sit amet, consectetur adipiscing elit.");
+		}
+		else{
 		text.add("Curabitur lacinia odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus.");
 		text.add("Vestibulum eget lectus ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks!");
 		text.add("Integer ac enim eget nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia.");
@@ -77,11 +126,32 @@ public class HiRCALevel1 {
 		text.add("Vivamus ut lacus finibus, dictum neque interdum, tincidunt eros. Why does the axiom aim a cathedral purpose? An archive opens my orbital below the dangerous misprint. The sixty filter prices her metric lesbian. A world appears in the enemy listener. When will a mailed system interrupt the attendant? The milk detail frightens the improving warehouse.");
 		text.add("Duis vestibulum ipsum at dui tincidunt, semper eleifend est congue.");
 		text.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		}
 		return text;
 	}
 	
-	public List<String> modifyText() throws Exception{
+	public List<String> modifyText(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
+		if(driver.getCurrentUrl().contains("kaledev"))
+		{
+			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
+			text.add("Pellentesque nec <div> nulla vel neque tincidunt rutrum.");
+			text.add("Donec dictum enim <div> nec mi pulvinar, nec consequat eros tristique.");
+			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
+			text.add("In non leo et nibh <div> porttitor lobortis.");
+			text.add("Donec hendrerit <div> lacus semper justo bibendum fermentum.");
+			text.add("Sed tempus nunc <div> interdum neque sodales, at mollis magna convallis.");
+			text.add("Aliquam efficitur <div> sem quis facilisis aliquam.");
+			text.add("Proin blandit ante <div> at molestie finibus.");
+			text.add("Etiam quis lorem <div> laoreet, malesuada lorem in, tristique sem.");
+			text.add("Maecenas vitae orci <div> non dui ultrices posuere vulputate at elit.");
+			text.add("Mauris blandit elit <div> sit amet tellus dignissim, eget maximus sem dignissim.");
+			text.add("Morbi in dui semper, sagittis <div> augue in, elementum lorem.");
+			text.add("Vivamus ut lacus <div> finibus, dictum neque interdum, tincidunt eros.");
+			text.add("Duis vestibulum <div> ipsum at dui tincidunt, semper eleifend est congue.");
+			text.add("Lorem ipsum dolor <div> sit amet, consectetur adipiscing elit.");
+		}
+		else{
 		text.add("Quisque at justo elementum, finibus elit ut, ultrices nibh.");
 		text.add("Pellentesque nec nulla vel neque tincidunt rutrum.");
 		text.add("Donec dictum enim nec mi pulvinar, nec consequat eros tristique.");
@@ -98,6 +168,7 @@ public class HiRCALevel1 {
 		text.add("Vivamus ut lacus finibus, dictum neque interdum, tincidunt eros.");
 		text.add("Duis vestibulum ipsum at dui tincidunt, semper eleifend est congue.");
 		text.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+		}
 		return text;
 	}
 	
@@ -107,8 +178,33 @@ public class HiRCALevel1 {
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Get List to compare
-		List<String> varText = variableText();
-		List<String> modText = modifyText();
+		List<String> varText = variableText(driver);
+		List<String> modText = modifyText(driver);
+		//Verify first table
+		//Checks for Event title data
+		String eve_title =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]"))).getText();
+		String r = eve_title.replaceAll("\u00AD", "");
+		softly.assertThat(r).as("test data").isEqualTo(text(driver));
+		//Checks for Location of event data
+		String eve_loc =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]"))).getText();
+		String r1 = eve_loc.replaceAll("\u00AD", "");
+		softly.assertThat(r1).as("test data").isEqualTo(text(driver));
+		//Checks for Investigators data
+		String eve_inv =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]"))).getText();
+		String r2 = eve_inv.replaceAll("\u00AD", "");
+		softly.assertThat(r2).as("test data").isEqualTo(text(driver));
+		//Checks for Problem statement data
+		String eve_prob =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]"))).getText();
+		String r3 = eve_prob.replaceAll("\u00AD", "");
+		softly.assertThat(r3).as("test data").isEqualTo(text(driver));
+		//Checks for Timeline of event data
+		String eve_timeline =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]"))).getText();
+		String r4 = eve_timeline.replaceAll("\u00AD", "");
+		softly.assertThat(r4).as("test data").isEqualTo(text(driver));
+		//Checks for Background information data
+		String eve_back =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]"))).getText();
+		String r5 = eve_back.replaceAll("\u00AD", "");
+		softly.assertThat(r5).as("test data").isEqualTo(text(driver));
 		//List to help compare
 		List<String>lopOptions1 = new ArrayList<String>();
 		//Remove the ] from Level 3 answers
@@ -167,62 +263,63 @@ public class HiRCALevel1 {
 			softly.assertThat(s1).as("test data").isEqualTo(s2);
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr/td[3]"))).getText();
+			String re4 = s3.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re4)==false)
+					softly.fail("Text wrong: "+re4);
 				//softly.assertThat(s3).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re4)==false)
+					softly.fail("Text wrong: "+re4);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(textEvidence);
+			String re3 = s4.replaceAll("\u00AD", "");
+			softly.assertThat(re3).as("test data").contains(textEvidence(driver));
 			//Verify Extent of condition
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table[2]/tbody/tr[2]/td[2]"))).getText();
+			String re2 = s5.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s5)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re2)==false)
+					softly.fail("Text wrong: "+re2);
 				//softly.assertThat(s5).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s5)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re2)==false)
+					softly.fail("Text wrong: "+re2);
 				//softly.assertThat(s5).as("test data").isEqualTo(text1);
 			}
 			//Verify Operating Experience
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table[2]/tbody/tr[3]/td[2]"))).getText();
+			String re1 = s6.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s6)==false)
-					softly.fail("Text wrong: "+s3);
-				//softly.assertThat(s6).as("test data").isEqualTo(text);
+				if(varText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s6)==false)
-					softly.fail("Text wrong: "+s3);
-				//softly.assertThat(s6).as("test data").isEqualTo(text1);
+				if(modText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 			}
 			//Verify Safety Culture
 			String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table[2]/tbody/tr[4]/td[2]"))).getText();
+			String re = s7.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s7)==false)
-					softly.fail("Text wrong: "+s3);
-				//softly.assertThat(s7).as("test data").isEqualTo(text);
+				if(varText.contains(re)==false)
+					softly.fail("Text wrong: "+re);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s7)==false)
-					softly.fail("Text wrong: "+s3);
-				//softly.assertThat(s7).as("test data").isEqualTo(text1);
+				if(modText.contains(re)==false)
+					softly.fail("Text wrong: "+re);
 			}
 		}
 		if(rc==0)
@@ -268,23 +365,25 @@ public class HiRCALevel1 {
 			softly.assertThat(s1).as("test data").isEqualTo(s2);
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			String re = s3.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re)==false)
+					softly.fail("Text wrong: "+re);
 				//softly.assertThat(s3).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re)==false)
+					softly.fail("Text wrong: "+re);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			//Increase i for supporting evidence
 			i=i+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(textEvidence);
+			String re5 = s4.replaceAll("\u00AD", "");
+			softly.assertThat(re5).as("test data").contains(textEvidence(driver));
 			//Increase i for next cf
 			i=i+1;
 		}
@@ -314,23 +413,25 @@ public class HiRCALevel1 {
 			softly.assertThat(s1).as("test data").isEqualTo(s2);
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			String re1 = s3.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 				//softly.assertThat(s3).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			//Increase i for supporting evidence
 			i=i+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(textEvidence);
+			String re = s4.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").contains(textEvidence(driver));
 			//Increase i for next cf
 			i=i+1;
 		}
@@ -349,7 +450,8 @@ public class HiRCALevel1 {
 				softly.fail("Level 3 is not suppose to be here: "+lop1);
 			  }
 			  String lop2=driver.findElement(By.xpath(".//*[@id='irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[2]")).getText();
-			  softly.assertThat(lop2).as("test data").isEqualTo(textEvidence);
+			  String re = lop2.replaceAll("\u00AD", "");
+			  softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 		  }catch(org.openqa.selenium.NoSuchElementException u)
 		  {
 			  break;
@@ -414,7 +516,7 @@ public class HiRCALevel1 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
     	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
     	Thread.sleep(8000);
-    	pdfCheck(lopOptions,hml,options,checklist);
+    	pdfCheck(driver,lopOptions,hml,options,checklist);
     	for(String winHandle : driver.getWindowHandles()){
 	    driver.switchTo().window(winHandle);
 	    }
@@ -457,7 +559,7 @@ public class HiRCALevel1 {
     	robot.keyRelease(KeyEvent.VK_S);
     	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
     	p.waitFor();
-    	pdfCheck(lopOptions,hml,options,checklist);
+    	pdfCheck(driver,lopOptions,hml,options,checklist);
     	Thread.sleep(4000);
     	driver.close();
     	Thread.sleep(4000);
@@ -498,7 +600,7 @@ public class HiRCALevel1 {
 		  		  }
     	Thread.sleep(7000);
     	//pdf verification
-	    pdfCheck(lopOptions,hml,options,checklist);
+	    pdfCheck(driver,lopOptions,hml,options,checklist);
 	    Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);				    		    	
@@ -538,13 +640,13 @@ public class HiRCALevel1 {
 		  		  }
     	Thread.sleep(7000);
     	//pdf verification
-	    pdfCheck(lopOptions,hml,options,checklist);
+	    pdfCheck(driver,lopOptions,hml,options,checklist);
 	    Thread.sleep(4000);
     	//Switch to window    	
     	driver.switchTo().window(window);				    		    	
     }
 	
-	public void pdfCheck(List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options, List<String>checklist) throws Exception{
+	public void pdfCheck(WebDriver driver, List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options, List<String>checklist) throws Exception{
     	
 		// specify your directory
     	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
@@ -588,8 +690,8 @@ public class HiRCALevel1 {
        }
        //Verify RC and CF text in pdf
 	   //Get List to compare
-	   List<String> varText = variableText();
-	   List<String> modText = modifyText();
+	   List<String> varText = variableText(driver);
+	   List<String> modText = modifyText(driver);
 	   int c1=0;
 	   int c2=0;
 	   for (int i=0;i<varText.size();i++)
@@ -629,7 +731,7 @@ public class HiRCALevel1 {
        }
        //Counts number of times evidence entry was entered
        int n= lopOptions.size();
-       Pattern p = Pattern.compile(textEvidence);
+       Pattern p = Pattern.compile(textEvidence(driver));
        Matcher m = p.matcher(newData1);
        int count = 0;
        while (m.find()){
@@ -1129,7 +1231,7 @@ public class HiRCALevel1 {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Get text list
-		List<String> modText = modifyText();
+		List<String> modText = modifyText(driver);
 		//Hashmap for storing HML for root cause and contributing factors
 		HashMap<String,String> hml= new HashMap<String,String>();
 		//No Level 3 selected then return
@@ -1232,7 +1334,8 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
+			String re = lop3.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for extra root cause text boxes
@@ -1350,7 +1453,8 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
+			String re = lop3.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Increase i for changing corrective actions
@@ -1449,7 +1553,8 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Get text from Evidence Entry and verify if equal to text
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
-			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
+			String re = s6.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify Evidence Entry text not visible
@@ -1473,7 +1578,7 @@ public class HiRCALevel1 {
 		return options;
 	}
 
-	public void HiRCAPathCheck(WebDriver driver) throws Exception {
+	public void HiRCAPathCheck(WebDriver driver, String username) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -1483,21 +1588,21 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		Thread.sleep(2000);
 		//Event title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(text(driver));
 		//Location of event
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).sendKeys(text(driver));
 		//Department
 		WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
 		Select s = new Select (dropdown);
 		s.selectByVisibleText("Construction");
 		//Problem Statement
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text(driver));
 		//Timeline of event
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text(driver));
 		//Background info
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text(driver));
 		//Investigators
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text(driver));
 		//Gets value of date
 		String get_date = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-date"))).getAttribute("value");
 		System.out.println(get_date);
@@ -1610,8 +1715,26 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		 //Clicks on Info tab
+	      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+	  //Create an expected name
+	  String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
+	  String name = creationDate + "_"+username+"_"+ text(driver) ;
+	  System.out.println(name);	  
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		//Gets newly created record name
+		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"));
+		  String recordName = record.getText();
+		  String r1 = recordName.replaceAll("\u00AD", "");
+		  if (record.isDisplayed())
+		  {
+			  System.out.println("Record found: "+ r1);
+		  }
+		  else
+			  System.out.println ("Record not found.");
+		  //Checks if expected name and actual name is correct
+		  softly.assertThat(r1).as("test data").isEqualTo(name);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Get browser name
@@ -1653,8 +1776,34 @@ public class HiRCALevel1 {
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Get List to compare
-		List<String> varText = variableText();
-		List<String> modText = modifyText();
+		List<String> varText = variableText(driver);
+		List<String> modText = modifyText(driver);
+		//Verify first table
+		//Checks for Event title data
+		String eve_title =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div/table/tbody/tr/td[2]"))).getText();
+		String r = eve_title.replaceAll("\u00AD", "");
+		softly.assertThat(r).as("test data").isEqualTo(text(driver));
+		//Checks for Location of event data
+		String eve_loc =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div/table/tbody/tr[4]/td[2]"))).getText();
+		String r1 = eve_loc.replaceAll("\u00AD", "");
+		softly.assertThat(r1).as("test data").isEqualTo(text(driver));
+		//Checks for Investigators data
+		String eve_inv =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div/table/tbody/tr[7]/td[2]"))).getText();
+		String r2 = eve_inv.replaceAll("\u00AD", "");
+		softly.assertThat(r2).as("test data").isEqualTo(text(driver));
+		//Checks for Problem statement data
+		String eve_prob =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[2]/table/tbody/tr[2]/td[2]"))).getText();
+		String r3 = eve_prob.replaceAll("\u00AD", "");
+		softly.assertThat(r3).as("test data").isEqualTo(text(driver));
+		//Checks for Timeline of event data
+		String eve_timeline =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[2]/table/tbody/tr[3]/td[2]"))).getText();
+		String r4 = eve_timeline.replaceAll("\u00AD", "");
+		softly.assertThat(r4).as("test data").isEqualTo(text(driver));
+		//Checks for Background information data
+		String eve_back =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[2]/table/tbody/tr[4]/td[2]"))).getText();
+		String r5 = eve_back.replaceAll("\u00AD", "");
+		softly.assertThat(r5).as("test data").isEqualTo(text(driver));
+		//Verify the n/a in LOPs
 		//List to help compare
 		List<String>lopOptions1 = new ArrayList<String>();
 		//Remove the ] from Level 3 answers
@@ -1713,61 +1862,66 @@ public class HiRCALevel1 {
 			softly.assertThat(s1).as("test data").isEqualTo(s2);
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr/td[3]"))).getText();
+			String re4 = s3.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re4)==false)
+					softly.fail("Text wrong: "+re4);
 				//softly.assertThat(s3).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re4)==false)
+					softly.fail("Text wrong: "+re4);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(textEvidence);
+			String re3 = s4.replaceAll("\u00AD", "");
+			softly.assertThat(re3).as("test data").contains(textEvidence(driver));
 			//Verify Extent of condition
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[2]/td[2]"))).getText();
+			String re2 = s5.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s5)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re2)==false)
+					softly.fail("Text wrong: "+re2);
 				//softly.assertThat(s5).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s5)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re2)==false)
+					softly.fail("Text wrong: "+re2);
 				//softly.assertThat(s5).as("test data").isEqualTo(text1);
 			}
 			//Verify Operating Experience
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[3]/td[2]"))).getText();
+			String re1 = s6.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s6)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 				//softly.assertThat(s6).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s6)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 				//softly.assertThat(s6).as("test data").isEqualTo(text1);
 			}
 			//Verify Safety Culture
 			String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table[2]/tbody/tr[4]/td[2]"))).getText();
+			String re = s7.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s7)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re)==false)
+					softly.fail("Text wrong: "+re);
 				//softly.assertThat(s7).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s7)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re)==false)
+					softly.fail("Text wrong: "+re);
 				//softly.assertThat(s7).as("test data").isEqualTo(text1);
 			}
 		}
@@ -1812,23 +1966,25 @@ public class HiRCALevel1 {
 			softly.assertThat(s1).as("test data").isEqualTo(s2);
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			String re1 = s3.replaceAll("\u00AD", "");
 			if(d==0)
 			{
-				if(varText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(varText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 				//softly.assertThat(s3).as("test data").isEqualTo(text);
 			}
 			if(d==1)
 			{
-				if(modText.contains(s3)==false)
-					softly.fail("Text wrong: "+s3);
+				if(modText.contains(re1)==false)
+					softly.fail("Text wrong: "+re1);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			//Increase i for supporting evidence
 			i=i+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
-			softly.assertThat(s4).as("test data").contains(textEvidence);
+			String re = s4.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").contains(textEvidence(driver));
 			//Increase i for next cf
 			i=i+1;
 		}
@@ -1846,7 +2002,8 @@ public class HiRCALevel1 {
 				softly.fail("Level 3 is not suppose to be here: "+lop1);
 			  }
 			  String lop2=driver.findElement(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[2]")).getText();
-			  softly.assertThat(lop2).as("test data").isEqualTo(textEvidence);
+			  String re = lop2.replaceAll("\u00AD", "");
+			  softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 		  }catch(org.openqa.selenium.NoSuchElementException u)
 		  {
 			  break;
@@ -1897,7 +2054,7 @@ public class HiRCALevel1 {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Get text of varying length
-		List<String> varText = variableText();
+		List<String> varText = variableText(driver);
 		//Verify title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(title).as("test data").contains("Step 4 - Level of Importance Attribution For Root Causes & Contributing Factors");
@@ -2011,7 +2168,8 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
+			String r = lop3.replaceAll("\u00AD", "");
+			softly.assertThat(r).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify Evidence Entry text not visible
@@ -2134,7 +2292,8 @@ public class HiRCALevel1 {
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
 			System.out.println(lop3);
-			softly.assertThat(lop3).as("test data").isEqualTo(textEvidence);
+			String re = lop3.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify Evidence Entry text not visible
@@ -2321,7 +2480,8 @@ public class HiRCALevel1 {
 			}
 			//Get text from Evidence Entry and verify if equal to text
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText();
-			softly.assertThat(s6).as("test data").isEqualTo(textEvidence);
+			String re = s6.replaceAll("\u00AD", "");
+			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify Evidence Entry text not visible
@@ -2555,7 +2715,7 @@ public class HiRCALevel1 {
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();  
 		  }
 		  //Fill in evidence entry text
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(textEvidence);
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(textEvidence(driver));
 		  //Click on Evidence Entry
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
 		  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText();

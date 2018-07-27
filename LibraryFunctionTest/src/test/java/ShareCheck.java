@@ -116,7 +116,7 @@ public class ShareCheck {
 		//Check in sticky pop up that the report is deleted
 		try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(StickyNote)).getText();
-			softly.assertThat(s).as("test data").contains("Data not found ");
+			softly.assertThat(s).as("test data").contains("not found ");
 			softly.assertThat(s).as("test data").contains("It could have been deleted.");
 		}catch (org.openqa.selenium.TimeoutException e)
 		  {

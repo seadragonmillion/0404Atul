@@ -34,7 +34,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OPiRCA {
 	
 	SoftAssertions softly = new SoftAssertions();
-	String event_title = "Sanity Test";
 	
 	By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
 	By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
@@ -94,6 +93,16 @@ public class OPiRCA {
 	//Step1
 	By Step1DescriptionPlusSign = By.xpath(".//*[@id='efi-opa-description']/h4/a");
 	By Step1DescriptionText = By.id("efi-opa-description-text");
+	
+	//HTML
+	//Table 1
+	By HTMLTable1EventTitle = By.xpath(".//*[@id='opa-rpt']/div[1]/table/tbody/tr[1]/td[2]");
+	By HTMLTable1LocationOfEvent = By.xpath(".//*[@id='opa-rpt']/div[1]/table/tbody/tr[4]/td[2]");
+	By HTMLTable1Investigators = By.xpath(".//*[@id='opa-rpt']/div[1]/table/tbody/tr[5]/td[2]");
+	//Table2
+	By HTMLTable2ProblemStatment = By.xpath(".//*[@id='opa-rpt']/div[2]/table/tbody/tr[2]/td[2]");
+	By HTMLTable2Timeline = By.xpath(".//*[@id='opa-rpt']/div[2]/table/tbody/tr[3]/td[2]");
+	By HTMLTable2Background = By.xpath(".//*[@id='opa-rpt']/div[2]/table/tbody/tr[4]/td[2]");
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 		  		
@@ -116,7 +125,8 @@ public class OPiRCA {
 		  //Click on 1st record
 		  String name = driver.findElement(OPiRCAFirstRecord).getText();
 		  System.out.println(name);
-		  if (name!=recordName)
+		  String r = recordName.replaceAll("\u00AD", "");
+		  if (name!=r)
 			  System.out.println("Record deleted");
 		  else
 			  System.out.println("Record could not be deleted");
@@ -1026,6 +1036,7 @@ public class OPiRCA {
 	    public void verifyHTML(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception{
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
+	    	EiRCA obj1 = new EiRCA();
 	    	//Wait for loading message to disappear
 			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
@@ -1033,6 +1044,33 @@ public class OPiRCA {
 		    wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();	
 			//Wait for loading message to disappear
 			obj.loadingServer(driver);
+			//Verify all text in 1st table in HTML
+			String text = obj1.textCreate(driver);
+			//Event title
+		    String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1EventTitle)).getText();
+		    String r3 = s4.replace("\u00AD", "");
+		    softly.assertThat(r3).as("test data").isEqualTo(text);
+		    //Location of event
+		    String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1LocationOfEvent)).getText();
+		    String r4 = s5.replace("\u00AD", "");
+		    softly.assertThat(r4).as("test data").isEqualTo(text);
+		    //Investigators
+		    String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1Investigators)).getText();
+		    String r5 = s6.replace("\u00AD", "");
+		    softly.assertThat(r5).as("test data").isEqualTo(text);
+		    //Table 2
+		    //Problem Statment
+		    String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2ProblemStatment)).getText();
+		    String r6 = s7.replace("\u00AD", "");
+		    softly.assertThat(r6).as("test data").isEqualTo(text);
+		    //Timeline of event
+		    String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Timeline)).getText();
+		    String r7 = s8.replace("\u00AD", "");
+		    softly.assertThat(r7).as("test data").isEqualTo(text);
+		    //Background info
+		    String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable2Background)).getText();
+		    String r8 = s9.replace("\u00AD", "");
+		    softly.assertThat(r8).as("test data").isEqualTo(text);
 			//Number of root cause and contributing factors
 			int rc,cf;
 			if(apparentCausesAnswersNew.size()>0)
@@ -1633,6 +1671,8 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	EiRCA obj = new EiRCA ();
+	    	String text = obj.textCreate(driver);
 			//Scroll down
 	    	Thread.sleep(1000);
 	    	jse.executeScript("scroll(0,1500)");	 
@@ -1721,7 +1761,7 @@ public class OPiRCA {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoTab)).click();
 			//Creates the expected name of record
 			String creationDate = driver.findElement(OPiRCAReportCreationDateTimeField).getAttribute("value");
-			String name = creationDate +"_"+ username + "_" + event_title;
+			String name = creationDate +"_"+ username + "_" + text;
 			System.out.println("Expected name of record: " + name);			  
 			//Click on saved activities
 			jse.executeScript("return document.getElementById('efi-opa-btn-savedactivities').click();");
@@ -1772,53 +1812,56 @@ public class OPiRCA {
 		    }
 	    }
 	    
+	    
 	    public void reportCreate(WebDriver driver, String username) throws Exception {
 	    	
 	    	  JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	  EiRCA obj = new EiRCA ();
+		      String text = obj.textCreate(driver);
 	    	  //Clicks on O&P IRCA
 			  jse.executeScript("return document.getElementById('pii-a-menu-opirca').click();");
 			  //Fills the mandatory fields
-			  driver.findElement(OPiRCAEventTitleField).sendKeys(event_title);
-			  driver.findElement(OPiRCAEventLocationField).sendKeys("San Diego");
-			  driver.findElement(OPiRCAProblemStatementField).sendKeys("Sanity Test");
-			  driver.findElement(OPiRCATimelineOfEventField).sendKeys("Sanity Test");
-			  driver.findElement(OPiRCABackgroundInfoField).sendKeys("Sanity Test");
-			  driver.findElement(OPiRCAInvestigatorsField).sendKeys("Sanity Test");
+			  driver.findElement(OPiRCAEventTitleField).sendKeys(text);
+			  driver.findElement(OPiRCAEventLocationField).sendKeys(text);
+			  driver.findElement(OPiRCAProblemStatementField).sendKeys(text);
+			  driver.findElement(OPiRCATimelineOfEventField).sendKeys(text);
+			  driver.findElement(OPiRCABackgroundInfoField).sendKeys(text);
+			  driver.findElement(OPiRCAInvestigatorsField).sendKeys(text);
 			  String ev1 = driver.findElement(OPiRCAEventTitleField).getAttribute("value");
 			  String ev2 = driver.findElement(OPiRCAEventLocationField).getAttribute("value");
 			  String ev3 = driver.findElement(OPiRCAProblemStatementField).getAttribute("value");
 			  String ev4 = driver.findElement(OPiRCATimelineOfEventField).getAttribute("value");
 			  String ev5 = driver.findElement(OPiRCABackgroundInfoField).getAttribute("value");
 			  String ev6 = driver.findElement(OPiRCAInvestigatorsField).getAttribute("value");
-			  if ((ev1.equals(event_title)==false))
+			  if ((ev1.equals(text)==false))
 			  {
 				  driver.findElement(OPiRCAEventTitleField).clear();
-				  driver.findElement(OPiRCAEventTitleField).sendKeys(event_title);
+				  driver.findElement(OPiRCAEventTitleField).sendKeys(text);
 			  }
-			  if ((ev2.equals("San Diego")==false))
+			  if ((ev2.equals(text)==false))
 			  {
 				  driver.findElement(OPiRCAEventLocationField).clear();
-				  driver.findElement(OPiRCAEventLocationField).sendKeys("San Diego");
+				  driver.findElement(OPiRCAEventLocationField).sendKeys(text);
 			  }
-			  if ((ev3.equals("Sanity Test")==false))
+			  if ((ev3.equals(text)==false))
 			  {
 				  driver.findElement(OPiRCAProblemStatementField).clear();
-				  driver.findElement(OPiRCAProblemStatementField).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCAProblemStatementField).sendKeys(text);
 			  }
-			  if ((ev4.equals("Sanity Test")==false))
+			  if ((ev4.equals(text)==false))
 			  {
 				  driver.findElement(OPiRCATimelineOfEventField).clear();
-				  driver.findElement(OPiRCATimelineOfEventField).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCATimelineOfEventField).sendKeys(text);
 			  }
-			  if ((ev5.equals("Sanity Test")==false))
+			  if ((ev5.equals(text)==false))
 			  {
 				  driver.findElement(OPiRCABackgroundInfoField).clear();
-				  driver.findElement(OPiRCABackgroundInfoField).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCABackgroundInfoField).sendKeys(text);
 			  }
-			  if ((ev6.equals("Sanity Test")==false))
+			  if ((ev6.equals(text)==false))
 			  {
 				  driver.findElement(OPiRCAInvestigatorsField).clear();
-				  driver.findElement(OPiRCAInvestigatorsField).sendKeys("Sanity Test");
+				  driver.findElement(OPiRCAInvestigatorsField).sendKeys(text);
 			  }
 			  //Step1 and KALE-1838
 			  pathOPiRCA(driver,username);			  

@@ -113,6 +113,17 @@ public class EiRCA {
 	By TableWhatIsSupposedToHappenHeader = By.xpath(".//*[@id='pii-ircam-events-table']/thead/tr[1]/th[5]");
 	
 	By EiRCANextButton = By.id("pii-ircam-next");
+	
+	//HTML
+	//Table 1
+	By HTMLTable1EventTitle = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[1]/td[2]");
+	By HTMLTable1LocationOfEvent = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[3]/td[2]");
+	By HTMLTable1WhoDiscovered = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[5]/td[2]");
+	By HTMLTable1Investigators = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[8]/td[2]");
+	By HTMLTable1Reviewers = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[9]/td[2]");
+	By HTMLTable1ManagementSponsors = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[10]/td[2]");
+	By HTMLTable1ProblemStatement = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[11]/td[2]");
+	By HTMLTable1SuspectedFailedComponent = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[12]/td[2]");
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 		  
@@ -141,7 +152,7 @@ public class EiRCA {
 		  obj1.checkNoReportAfterDelete(driver, sharer, softly);		  			  
 	  }
 	
-	  public void verifyHTML(WebDriver driver,HashMap<String,String>hm)throws Exception {
+	  public void verifyHTML(WebDriver driver,HashMap<String,String>hm, String text)throws Exception {
     	
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  //Clicks on first newly created record
@@ -154,9 +165,45 @@ public class EiRCA {
 	      String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageDateTimeTitle)).getText();
 	      softly.assertThat(s1).as("test data").isEqualTo(hm.get("date")+", "+hm.get("time"));
 	      String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageWhatHappenedTitle)).getText();
-	      softly.assertThat(s2).as("test data").isEqualTo(hm.get("what happened"));
+	      String r1 = s2.replace("\u00AD", "");
+	      softly.assertThat(r1).as("test data").isEqualTo(hm.get("what happened"));
 	      String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(SequenceOfEventPageWhatShouldHappenTitle)).getText();
-	      softly.assertThat(s3).as("test data").isEqualTo(hm.get("what is supposed to happen"));	      
+	      String r2 = s3.replace("\u00AD", "");
+	      softly.assertThat(r2).as("test data").isEqualTo(hm.get("what is supposed to happen"));	    
+	      System.out.println("\n \n"+r1 + "\n" +r2);
+	      //Verify text filled in first table
+	      //Event title
+	      String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1EventTitle)).getText();
+	      String r3 = s4.replace("\u00AD", "");
+	      softly.assertThat(r3).as("test data").isEqualTo(text);
+	      //Location of event
+	      String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1LocationOfEvent)).getText();
+	      String r4 = s5.replace("\u00AD", "");
+	      softly.assertThat(r4).as("test data").isEqualTo(text);
+	      //Who discovered
+	      String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1WhoDiscovered)).getText();
+	      String r5 = s6.replace("\u00AD", "");
+	      softly.assertThat(r5).as("test data").isEqualTo(text);
+	      //Investigators
+	      String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1Investigators)).getText();
+	      String r6 = s7.replace("\u00AD", "");
+	      softly.assertThat(r6).as("test data").isEqualTo(text);
+	      //Reviewers
+	      String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1Reviewers)).getText();
+	      String r7 = s8.replace("\u00AD", "");
+	      softly.assertThat(r7).as("test data").isEqualTo(text);
+	      //Management sponsors
+	      String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1ManagementSponsors)).getText();
+	      String r8 = s9.replace("\u00AD", "");
+	      softly.assertThat(r8).as("test data").isEqualTo(text);
+	      //Problem Statement
+	      String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1ProblemStatement)).getText();
+	      String r9 = s10.replace("\u00AD", "");
+	      softly.assertThat(r9).as("test data").isEqualTo(text);
+	      //Suspected failed component
+	      String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1SuspectedFailedComponent)).getText();
+	      String r10 = s11.replace("\u00AD", "");
+	      softly.assertThat(r10).as("test data").isEqualTo(text);
 	  }
 	  
 		public void pdfCheck(HashMap<String,String>hm) throws Exception{
@@ -176,15 +223,16 @@ public class EiRCA {
 		    String data = new PDFTextStripper().getText(pddoc);
 		    List<String> ans= Arrays.asList(data.split("\r\n"));
 		    System.out.println(ans);
-		    String newData1="";
+		    String newData2="";
 		    for (int i = 0; i < ans.size(); i++)
 		        {	        	
 		        	int n=ans.get(i).length()-1;
 		        	if (ans.get(i).charAt(n)==' ')
-		        		newData1 = newData1+ans.get(i);
+		        		newData2 = newData2+ans.get(i);
 		        	if (ans.get(i).charAt(n)!=' ')
-		        		newData1 = newData1+" "+ans.get(i);	        	
+		        		newData2 = newData2+" "+ans.get(i);	        	
 		        }
+		    String newData1 = newData2.replace("  ", " ");
 		    //Verify Sequence of Events in pdf
 		    softly.assertThat(newData1).as("test data").contains("Sequence of Events");
 		    softly.assertThat(newData1).as("test data").contains(hm.get("date")+", "+hm.get("time"));
@@ -594,10 +642,11 @@ public class EiRCA {
 	    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(WhatIsSupposedToHappen1stEvent)).getAttribute("value");
 	    	//Store in HashMap
 	    	HashMap <String,String> hm = new HashMap<String,String>();
-	    	hm.put("date", s);
-	    	hm.put("time", s1);
-	    	hm.put("what happened", s2);
-	    	hm.put("what is supposed to happen", s3);
+	    	hm.put("date", s.replace("\u00AD", ""));
+	    	hm.put("time", s1.replace("\u00AD", ""));
+	    	hm.put("what happened", s2.replace("\u00AD", ""));
+	    	hm.put("what is supposed to happen", s3.replace("\u00AD", ""));
+	    	
 	    	return hm;
 	    }
 	    
@@ -765,7 +814,7 @@ public class EiRCA {
 		    verifySequenceOfEvents(driver);
 		    //Get list of text
 		    ErrorMeter obj = new ErrorMeter();
-	    	List <String> list1=obj.error50Data();
+	    	List <String> list1=obj.error50Data(driver);
 	    	Iterator<String> iter = Iterables.cycle(list1).iterator();
 		    //Create a new event
 		    createNewEvent(driver, iter.next());
@@ -815,25 +864,34 @@ public class EiRCA {
 		    wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCANextButton)).click();		
 		    return hm3;
 	    }
+	    
+	    public String textCreate(WebDriver driver) throws Exception {
+	    	
+	    	if(driver.getCurrentUrl().contains("kaledev"))
+	    		return ("Sanity <div> Test");
+	    	else
+	    		return("Sanity Test");
+	    }
 	    	       
 	    public HashMap<String,String> reportCreate(WebDriver driver,String username) throws Exception {
 	    	
 	    	  JavascriptExecutor jse = (JavascriptExecutor)driver;
 	    	  EiRCAChinese obj = new EiRCAChinese();
+	    	  String text = textCreate(driver);
 	    	  //Clicks on EiRCA
 			  jse.executeScript("return document.getElementById('pii-a-menu-eirca').click();");
 			  Thread.sleep(1000);
 			  //Verify placeholder of problem statement
 			  verifyProbStatementPlaceHolder(driver);
 			  //Fills all mandatory fields
-			  driver.findElement(obj.EiRCAEventTitleField).sendKeys("Sanity Test");
-			  driver.findElement(obj.EiRCAEventLocationField).sendKeys("San Diego");
-			  driver.findElement(obj.EiRCAEventReporterField).sendKeys("Sanity Test"); 
-			  driver.findElement(obj.EiRCAEventInvestigatorField).sendKeys("Sanity Test");
-			  driver.findElement(obj.EiRCAEventReviewerField).sendKeys("Sanity Test");
-			  driver.findElement(obj.EiRCAEventSponsorField).sendKeys("Sanity Test");
-			  driver.findElement(obj.EiRCAEventProblemStatementField).sendKeys("Sanity Test");
-			  driver.findElement(obj.EiRCAEventComponentField).sendKeys("Sanity Test");
+			  driver.findElement(obj.EiRCAEventTitleField).sendKeys(text);
+			  driver.findElement(obj.EiRCAEventLocationField).sendKeys(text);
+			  driver.findElement(obj.EiRCAEventReporterField).sendKeys(text); 
+			  driver.findElement(obj.EiRCAEventInvestigatorField).sendKeys(text);
+			  driver.findElement(obj.EiRCAEventReviewerField).sendKeys(text);
+			  driver.findElement(obj.EiRCAEventSponsorField).sendKeys(text);
+			  driver.findElement(obj.EiRCAEventProblemStatementField).sendKeys(text);
+			  driver.findElement(obj.EiRCAEventComponentField).sendKeys(text);
 			  String ev1 = driver.findElement(obj.EiRCAEventTitleField).getAttribute("value");
 			  String ev2 = driver.findElement(obj.EiRCAEventLocationField).getAttribute("value");
 			  String ev3 = driver.findElement(obj.EiRCAEventReporterField).getAttribute("value");
@@ -842,45 +900,45 @@ public class EiRCA {
 			  String ev6 = driver.findElement(obj.EiRCAEventSponsorField).getAttribute("value");
 			  String ev7= driver.findElement(obj.EiRCAEventProblemStatementField).getAttribute("value");
 			  String ev8= driver.findElement(obj.EiRCAEventComponentField).getAttribute("value");
-			  if ((ev1.equals("Sanity Test")==false))
+			  if ((ev1.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventTitleField).clear();
-				  driver.findElement(obj.EiRCAEventTitleField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventTitleField).sendKeys(text);
 			  }
-			  if ((ev2.equals("San Diego")==false))
+			  if ((ev2.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventLocationField).clear();
-				  driver.findElement(obj.EiRCAEventLocationField).sendKeys("San Diego");
+				  driver.findElement(obj.EiRCAEventLocationField).sendKeys(text);
 			  }
-			  if ((ev3.equals("Sanity Test")==false))
+			  if ((ev3.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventReporterField).clear();
-				  driver.findElement(obj.EiRCAEventReporterField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventReporterField).sendKeys(text);
 			  }
-			  if ((ev4.equals("Sanity Test")==false))
+			  if ((ev4.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventInvestigatorField).clear();
-				  driver.findElement(obj.EiRCAEventInvestigatorField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventInvestigatorField).sendKeys(text);
 			  }
-			  if ((ev5.equals("Sanity Test")==false))
+			  if ((ev5.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventReviewerField).clear();
-				  driver.findElement(obj.EiRCAEventReviewerField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventReviewerField).sendKeys(text);
 			  }
-			  if ((ev6.equals("Sanity Test")==false))
+			  if ((ev6.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventSponsorField).clear();
-				  driver.findElement(obj.EiRCAEventSponsorField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventSponsorField).sendKeys(text);
 			  }
-			  if ((ev7.equals("Sanity Test")==false))
+			  if ((ev7.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventProblemStatementField).clear();
-				  driver.findElement(obj.EiRCAEventProblemStatementField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventProblemStatementField).sendKeys(text);
 			  }
-			  if ((ev8.equals("Sanity Test")==false))
+			  if ((ev8.equals(text)==false))
 			  {
 				  driver.findElement(obj.EiRCAEventComponentField).clear();
-				  driver.findElement(obj.EiRCAEventComponentField).sendKeys("Sanity Test");
+				  driver.findElement(obj.EiRCAEventComponentField).sendKeys(text);
 			  }
 			  //Sequence of Events
 			  HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver);
@@ -896,7 +954,7 @@ public class EiRCA {
 			  wait1.until(ExpectedConditions.visibilityOfElementLocated(InfoTab)).click();
 			  //Gets the value from the text field report creation date
 			  String creationDate = driver.findElement(ReportCreationDateField).getAttribute("value");
-			  String name = creationDate + "_"+username+"_Sanity Test" ;
+			  String name = creationDate + "_"+username+"_"+text ;
 			  System.out.println(name);
 			  //Clicks on Saved activities button
 			  jse.executeScript("return document.getElementById('pii-ircam-savedactivities').click();");
@@ -907,16 +965,18 @@ public class EiRCA {
 			  //Gets the name of the record created
 			  WebElement record = driver.findElement(EiRCAFirstRecord);
 			  String recordName = record.getText();
+			  //Replace the shy character in chrome
+			  String r1 = recordName.replaceAll("\u00AD", "");
 			  if (record.isDisplayed())
 			  {
-				  System.out.println("Record found: "+ recordName);
+				  System.out.println("Record found: "+ r1);
 			  }
 			  else
 				  System.out.println ("Record not found.");
 			  //Checks if the name displayed on record is same as expected
-			  softly.assertThat(recordName).as("test data").isEqualTo(name);
+			  softly.assertThat(r1).as("test data").isEqualTo(name);
 			  //Open HTML and verify Sequence of Events
-			  verifyHTML(driver,hm);
+			  verifyHTML(driver,hm, text);
 			  return hm;
 	    }
 	    
