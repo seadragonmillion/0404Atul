@@ -34,7 +34,7 @@ public class IETest {
 	 private WebDriver driver;
 	 private int login =0;
 	 private String username = "lili";
-	 private String password = "VGVzdEA0NjI=";
+	 private String password = "S2FsZTY2NDIzMDAyQA==";
 	 private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
      private String url = "https://kaleasia.error-free.com/";
 	 SoftAssertions softly = new SoftAssertions();

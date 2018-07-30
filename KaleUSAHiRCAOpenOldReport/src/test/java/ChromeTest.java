@@ -33,7 +33,7 @@ public class ChromeTest {
 	 private WebDriver driver;
 	 private int login =0;
 	 private String username = "lili";
-	 private String password = "VGVzdEA0NjI=";
+	 private String password = "S2FsZTY2NDIzMDAyQA==";
 	 SoftAssertions softly = new SoftAssertions();
 	 @Rule
 	    public ErrorCollector collector = new ErrorCollector();
