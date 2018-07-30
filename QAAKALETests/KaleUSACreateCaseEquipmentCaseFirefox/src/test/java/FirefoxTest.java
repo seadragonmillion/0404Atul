@@ -155,6 +155,8 @@ public class FirefoxTest {
 		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eqUS);
 		//Verify cases with and without links with same keyword in Equipment Databank only
 		obj1.searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(driver, obj1.keywordUS_same_ee, eeCases);
+		//Add an existing keyword to case with links and search for case
+		obj1.addKeywordToLinkCaseAndSearchInEquipmentDatabank(driver, eeCases, obj.keywordEquipProd);
 		//Edit links
 		obj1.editLinks(driver, eeCases);
 		//Delete links
