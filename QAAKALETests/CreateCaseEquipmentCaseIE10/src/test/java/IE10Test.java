@@ -143,6 +143,8 @@ public class IE10Test {
 		obj1.searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(driver, obj1.keyword_same_ee, eeCases);
 		//Add an existing keyword to case with links and search for case
 		obj1.addKeywordToLinkCaseAndSearchInEquipmentDatabank(driver, eeCases, obj.keywordEquipDev);
+		//Turn slide security on and click on links in Related links slide
+		obj1.slideSecurityOnTest(driver, obj1.keyword_same_ee, eeCases, obj1.ee_title, username);
 		//Edit links
 		obj1.editLinks(driver, eeCases);
 		//Delete links
