@@ -21,7 +21,7 @@ public class ChromeTest {
 		//Browser is maximized
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
-		driver.navigate().to(obj.urlDev);
+		driver.navigate().to(System.getProperty("qaurl"));
 		Thread.sleep(3000);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }

@@ -43,7 +43,7 @@ public class SanityFirefoxTest {
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String company_id="aatestqaa";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = "https://kaledev.error-free.com/";
+	private String url = System.getProperty("qaurl");
 	private int login =0;
 	SoftAssertions softly = new SoftAssertions();
 	private String[]op=new String [25];

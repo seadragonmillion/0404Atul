@@ -20,7 +20,7 @@ public class FirefoxTest {
 	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = "https://kaledev.error-free.com/";
+	private String url = System.getProperty("qaurl");
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Before

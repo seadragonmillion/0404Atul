@@ -20,7 +20,7 @@ public class IE10Test {
 	private String username ="virtualcfinonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
-	private String url = "https://kaledev.error-free.com/";
+	private String url = System.getProperty("qaurl");
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Before

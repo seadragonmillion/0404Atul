@@ -36,7 +36,7 @@ public class IETest {
 	 private String username = "lili";
 	 private String password = "S2FsZTY2NDIzMDAyQA==";
 	 private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
-     private String url = "https://kaledev.error-free.com/";
+     private String url = "https://kaletest.error-free.com/";
 	 SoftAssertions softly = new SoftAssertions();
 	 @Rule
 	    public ErrorCollector collector = new ErrorCollector();

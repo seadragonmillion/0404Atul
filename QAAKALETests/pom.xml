@@ -121,6 +121,7 @@
     <version>2.14</version>
     <configuration>
         <argLine>
+            -Dqaurl=https://kaletest.error-free.com/ -Dasiaurl=https://kaleasia.error-free.com/ -Dusurl=https://kale.error-free.com/
             -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
         </argLine>
         <properties>

@@ -62,7 +62,7 @@ public class ChromeTest {
 			  //Browser is maximized
 			  driver.manage().window().maximize();
 			  //Browser navigates to the KALE url
-			  driver.navigate().to("https://kaledev.error-free.com/");
+			  driver.navigate().to("https://kaletest.error-free.com/");
 			  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		  }
 		

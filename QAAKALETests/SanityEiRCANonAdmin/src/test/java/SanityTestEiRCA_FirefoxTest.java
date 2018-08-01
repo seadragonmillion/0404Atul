@@ -46,7 +46,7 @@ public class SanityTestEiRCA_FirefoxTest {
 		  Dimension finalSize=driver.manage().window().getSize();
 		  System.out.println(finalSize);
 		  //Browser navigates to the KALE url
-		  driver.navigate().to("https://kaledev.error-free.com/");
+		  driver.navigate().to(System.getProperty("qaurl"));
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
 	  

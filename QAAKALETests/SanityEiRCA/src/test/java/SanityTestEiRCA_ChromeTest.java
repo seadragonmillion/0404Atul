@@ -42,7 +42,7 @@ public class SanityTestEiRCA_ChromeTest {
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
-		  driver.navigate().to("https://kaledev.error-free.com/");
+		  driver.navigate().to(System.getProperty("qaurl"));
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
 	  

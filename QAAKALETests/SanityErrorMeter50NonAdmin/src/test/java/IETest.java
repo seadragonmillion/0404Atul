@@ -23,7 +23,7 @@ public class IETest {
 	private String username ="jenkinsvmnonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
-	private String url = "https://kaledev.error-free.com/";
+	private String url = System.getProperty("qaurl");
 	
 	
 	@Before
