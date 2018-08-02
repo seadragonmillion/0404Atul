@@ -152,3 +152,4 @@ public class ChromeTest {
 		driver.quit();
 		obj.softAssert();
 	}
+}

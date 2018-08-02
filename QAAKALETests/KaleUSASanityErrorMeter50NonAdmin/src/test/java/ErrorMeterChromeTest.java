@@ -152,3 +152,4 @@ public class ErrorMeterChromeTest {
 		driver.quit();
 		obj.softAssert();
 	}
+}
