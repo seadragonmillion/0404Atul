@@ -20,14 +20,14 @@ public class JobObservation {
 	
 	public String text(WebDriver driver) throws Exception {
 		
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 			return ("I think I will <div> buy the red car, or I will lease the blue one.");
 		else return ("I think I will buy the red car, or I will lease the blue one.");
 	}
 	
 	public String text1(WebDriver driver) throws Exception {
 		
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 			return ("As it currently <div> stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.");
 		else return ("As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.");
 	}

@@ -15,12 +15,14 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -82,7 +84,7 @@ public class ErrorMeter {
 	
 	public String error0Data(WebDriver driver)throws Exception{
 		
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 		{
 			return ("Morbi ut massa <div> elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
 		}
@@ -91,7 +93,7 @@ public class ErrorMeter {
 	
 	public List<String> error50Data(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 		{
 			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
 			text.add("Pellentesque nec <div> nulla vel neque tincidunt rutrum.");
@@ -134,7 +136,7 @@ public class ErrorMeter {
 
 	public List<String> error100Data(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 		{
 			text.add("Curabitur lacinia <div> odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus. Inside a bond catalog suspects the pink cycle. The stopping midnight flips the fundamentalist countryside. The drama discards the monarch galaxy.");
 			text.add("Vestibulum eget lectus <div> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks! The capitalist shies away without the grief! Should the normal standpoint overflow without the planet? The wretched earth reverts. The insufficient banner distances the simplified firework.");
@@ -333,7 +335,10 @@ public class ErrorMeter {
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		String meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("0%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("0%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("25%").as("test data").isEqualTo(meterText);
 
 
 
@@ -347,13 +352,19 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("13%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("15%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("31%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("25%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("30%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("38%").as("test data").isEqualTo(meterText);
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
@@ -362,13 +373,19 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("38%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("45%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("44%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q4"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("50%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("60%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("50%").as("test data").isEqualTo(meterText);
 		
 		//Fill in texts in Supporting reasons 
 		jse.executeScript("scroll(0, 0)");
@@ -471,13 +488,19 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("58%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("65%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("56%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("67%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("70%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("63%").as("test data").isEqualTo(meterText);
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
@@ -486,13 +509,19 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("75%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("75%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("69%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("83%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("80%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("75%").as("test data").isEqualTo(meterText);
 		
 		//Fill in texts in Supporting reasons 
 		jse.executeScript("scroll(0, 0)");
@@ -594,13 +623,19 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("88%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("85%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("81%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q2"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("92%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("90%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("88%").as("test data").isEqualTo(meterText);
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
@@ -609,7 +644,10 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		softly.assertThat("96%").as("test data").isEqualTo(meterText);
+		if(driver.getCurrentUrl().contains("kaletest"))
+			softly.assertThat("95%").as("test data").isEqualTo(meterText);
+		else
+			softly.assertThat("94%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q4"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
@@ -707,6 +745,16 @@ public class ErrorMeter {
 		jse.executeScript("scroll(0, 0)");
 		jse.executeScript("scroll(0, 0)");
 	}
+	
+	public String getBrowser(WebDriver driver) throws Exception {
+		
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    System.out.println(browserName);
+	    return browserName;
+	}
+	
 
 	public void papeError50(WebDriver driver) throws Exception{
 			
@@ -793,7 +841,10 @@ public class ErrorMeter {
 			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			String meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("0%").as("test data").isEqualTo(meterText);
+			if(driver.getCurrentUrl().contains("kaletest"))
+				softly.assertThat("0%").as("test data").isEqualTo(meterText);
+			else
+				softly.assertThat("13%").as("test data").isEqualTo(meterText);
 
 
 
@@ -807,7 +858,10 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("13%").as("test data").isEqualTo(meterText);
+			if(driver.getCurrentUrl().contains("kaletest"))
+				softly.assertThat("15%").as("test data").isEqualTo(meterText);
+			else
+				softly.assertThat("19%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -816,7 +870,10 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("25%").as("test data").isEqualTo(meterText);
+			if(driver.getCurrentUrl().contains("kaletest"))
+				softly.assertThat("30%").as("test data").isEqualTo(meterText);
+			else
+				softly.assertThat("25%").as("test data").isEqualTo(meterText);
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
@@ -886,8 +943,11 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("33%").as("test data").isEqualTo(meterText);
-			
+			if(driver.getCurrentUrl().contains("kaletest"))
+				softly.assertThat("35%").as("test data").isEqualTo(meterText);
+			else
+				softly.assertThat("31%").as("test data").isEqualTo(meterText);
+				
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
@@ -895,7 +955,10 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("42%").as("test data").isEqualTo(meterText);
+			if(driver.getCurrentUrl().contains("kaletest"))
+				softly.assertThat("40%").as("test data").isEqualTo(meterText);
+			else
+				softly.assertThat("38%").as("test data").isEqualTo(meterText);
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
@@ -961,7 +1024,10 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			softly.assertThat("46%").as("test data").isEqualTo(meterText);
+			if(driver.getCurrentUrl().contains("kaletest"))
+				softly.assertThat("45%").as("test data").isEqualTo(meterText);
+			else
+				softly.assertThat("44%").as("test data").isEqualTo(meterText);
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
@@ -1704,7 +1770,7 @@ public class ErrorMeter {
        softly.assertThat("SPV").as("test data").isSubstringOf(newData1);
        int countx = countMatches(newData1, "SPV");
        System.out.println("SPV: "+countx);
-       softly.assertThat(countx).as("test data").isEqualTo(9);
+       softly.assertThat(countx).as("test data").isEqualTo(10);
        //Verify all data entered
        for (int i=0;i<text.size();i++)
     	   softly.assertThat(text.get(i)).as("test data").isSubstringOf(newData1);
@@ -1747,7 +1813,7 @@ public class ErrorMeter {
        //Verify SPV
        softly.assertThat("SPV").as("test data").isSubstringOf(newData1);
        int countx = countMatches(newData1, "SPV");
-       softly.assertThat(countx).as("test data").isEqualTo(17);
+       softly.assertThat(countx).as("test data").isEqualTo(18);
        System.out.println("SPV: "+countx);
        //Verify all data entered
        for (int i=0;i<text.size();i++)
@@ -1902,7 +1968,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 			reportCheck0Dev(driver);
 		else{
 		//Compare Environment data
@@ -2190,7 +2256,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 			reportCheck50Dev(driver);
 		else{
     	//Compare Environment data
@@ -2492,7 +2558,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 			reportCheck100Dev(driver);
 		else{
 		//Compare Environment data

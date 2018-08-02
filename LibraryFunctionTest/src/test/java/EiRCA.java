@@ -867,7 +867,7 @@ public class EiRCA {
 	    
 	    public String textCreate(WebDriver driver) throws Exception {
 	    	
-	    	if(driver.getCurrentUrl().contains("kaledev"))
+	    	if(driver.getCurrentUrl().contains("kaletest"))
 	    		return ("Sanity <div> Test");
 	    	else
 	    		return("Sanity Test");

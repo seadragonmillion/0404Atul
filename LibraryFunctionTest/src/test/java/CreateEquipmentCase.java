@@ -1201,7 +1201,7 @@ public class CreateEquipmentCase {
 		//Add new keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"added");
-		Thread.sleep(1500);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 		Thread.sleep(1000);
 	    jse.executeScript("scroll(0,0)");
@@ -2056,7 +2056,7 @@ public class CreateEquipmentCase {
 		  {
 			driver.switchTo().defaultContent();
 		  }
-		  Thread.sleep(2000);
+		  Thread.sleep(4000);
 		  //Login as new user/admin
 		  int login = obj.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
@@ -2244,6 +2244,103 @@ public class CreateEquipmentCase {
 		  obj.loadingServer(driver);
 		  //Click on edi button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseEditButton)).click();
+	}
+	
+	public void addKeywordToLinkCaseAndSearchInEquipmentDatabank(WebDriver driver, List<String> caseID, String existingKeyword) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
+		Login obj1 = new Login();
+		CaseBrowse obj2 = new CaseBrowse();
+		CreateHumanCase obj3 = new CreateHumanCase();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
+		Thread.sleep(1000);
+		//Clicks on Errorfree bank option
+		if (driver.findElement(EquipCasesLink).isDisplayed()==false)
+		{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankLink)).click();
+		}
+		//Clicks on Equipment cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
+		//CLick on enter case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDAdmin)).sendKeys(caseID.get(2));
+		Thread.sleep(2000);
+		//Clicks on case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDDropdownAdmin)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
+		//Click on Edit
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseEditButton)).click();
+		Thread.sleep(2000);
+		//Scroll down
+		jse.executeScript("scroll(0,2000)");
+		Thread.sleep(1000);
+		//Add existing keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(existingKeyword);
+		Thread.sleep(1500);
+		//Scroll down
+		jse.executeScript("scroll(0,2000)");
+		Thread.sleep(1000);
+		WebElement element = driver.findElement(EquipCaseKeywordExistingList);
+		element.findElement(obj3.FirstAndLastChildInList).click();
+		Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+	    //Clicks on save
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSaveButton)).click();
+	    //Clicks on create case
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle)).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
+	    //Waits for black loading message to disappear
+	    obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+	    //Clicks on Error free bank
+		try
+		{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankTopLink)).click();
+		}catch (UnhandledAlertException f){			  
+		  driver.switchTo().alert().dismiss();
+		}
+		//Clicks on Equipment Databank
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentDatabankOnlyLink1)).click();
+		//Waits for black loading message to disappear
+	    obj.loadingServer(driver);
+	    //Click on clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchClearButton)).click();
+	    //Checks for search method with magnifying glass
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchKeywordField)).sendKeys(existingKeyword);
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+	  	//Wait for loading message to disappear
+	  	obj.loadingServer(driver);
+	  	//Waits for case
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseID.get(2))));
+	  	verifyCaseWithLinks(driver, caseID);
+	    //Click on clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchClearButton)).click();
+	    //Enters keyword and search with dropdown
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentSearchKeywordField)).sendKeys(existingKeyword);
+		Thread.sleep(2000);
+		obj2.clickDropdownEquip(driver);	  
+		//Wait for loading message to disappear
+	  	obj.loadingServer(driver);
+	  	//Waits for case
+	  	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseID.get(2))));
+	  	verifyCaseWithLinks(driver, caseID);
 	}
 	
 	public void searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(WebDriver driver, String keyword, List<String>ee_cases)throws Exception{
@@ -2441,7 +2538,67 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))).click();
 	}
 	
-	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases)throws Exception{
+	public void slideSecurityOnTest(WebDriver driver, String keyword, List<String>cases, String title, String username)throws Exception{
+		
+		//change slide security off to on
+		changeSlideSecurity(driver,username, 1);
+		//Search for case and click on link
+		searchCaseWithLinks(driver,keyword,cases,title);
+		//change slide security on to off
+		changeSlideSecurity(driver,username, 0);
+	}
+	
+	public void changeSlideSecurity(WebDriver driver, String username, int x)throws Exception{
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		Login obj1 = new Login();
+		CreateHumanCase obj2 = new CreateHumanCase();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+		Thread.sleep(1000);
+		if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
+		{
+		  //Click on Accounts
+		  driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
+		}
+		//Clicks on Edit user
+		driver.findElement(By.id("pii-admin-user-edit")).click();
+		//Wait for loading message
+		obj.loadingServer(driver);
+		//Searches for newly created user
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(username);
+		driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
+		//Wait for loading message
+		obj.loadingServer(driver);
+		//Selects the newly created user
+		WebElement select = driver.findElement(By.id("pii-admin-user-list"));
+		WebElement option = select.findElement(By.cssSelector(".ui-first-child"));
+		option.click();
+		//Wait for loading message
+		obj.loadingServer(driver);
+		if(x==1)
+		{
+		//Turn slide security on
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-on']"))).click();
+		}
+		if(x==0)
+		{
+			//Turn slide security off
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-off']"))).click();
+		}
+		//Click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+	}
+	
+	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases, String title)throws Exception{
 		
 		  WebDriverWait wait = new WebDriverWait(driver,10);
 		  CaseBrowse obj1 = new CaseBrowse();
@@ -2454,6 +2611,8 @@ public class CreateEquipmentCase {
 		  //Go to  FM
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 		  Thread.sleep(1000);
+		  //Click on clear
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
 		  //Check for case
 		  //Enters case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
@@ -2497,6 +2656,27 @@ public class CreateEquipmentCase {
 		  String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(RelatedLinksSlideLink2Title)).getText();
 		  softly.assertThat(s2).as("test data").contains("2. Video: ");
 		  softly.assertThat(s2).as("test data").contains(videoLinkTitle);
+		  //Verify title of slide
+		  String expected_title = "F"+cases.get(2)+": "+title;
+		  String title_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[1]";
+		  String actual_title = driver.findElement(By.xpath(title_xpath)).getAttribute("textContent");
+		  softly.assertThat(actual_title).as("test data").isEqualTo(expected_title);
+		  //Checking if copyright is correct
+		  String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/span/span[1]";
+		  String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
+		  softly.assertThat(actual_copyright).as("test data").isEqualTo(obj1.expected_copyright);
+		  //Checking if footer image appears
+		  String image_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/span/img";
+		  if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
+			 System.out.println("Logo is displayed");
+		  //Checking if slide number appears and is correct
+		  String slide_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/span/span[2]";
+		  String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
+		  String expected_slide = Integer.parseInt(number)+"/"+Integer.parseInt(number);
+		  softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
+		  //Verify Height of slide
+		  String slideHeight = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]")).getAttribute("style");
+		  softly.assertThat(slideHeight).as("test data").contains("height: 715px");
 		  //Click on 1st link
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(RelatedLinksSlideLink1URL)).click();
 		  Thread.sleep(2000);
@@ -3429,7 +3609,7 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageUploadField)).click();
 		  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		  p.waitFor();
-		  Thread.sleep(3000);
+		  Thread.sleep(4000);
 		  //Checks if 5 images have been uploaded
 		  if(driver.findElement(EquipImageCollapsibleExpanded).isDisplayed()==false)
 		  {

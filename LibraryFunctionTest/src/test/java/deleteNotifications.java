@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class deleteNotifications {
 
-	String urlDev= "https://kaledev.error-free.com/";
+	String urlDev= "https://kaletest.error-free.com/";
 	String urlUS= "https://kale.error-free.com/";
 	
 	private By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");

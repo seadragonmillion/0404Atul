@@ -42,7 +42,7 @@ public class HiRCALevel1 {
 	
 	public String text(WebDriver driver) throws Exception{
 		
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
     		return ("HiRCA Level 1 <div> test");
     	else
     		return("HiRCA Level 1 test");
@@ -50,7 +50,7 @@ public class HiRCALevel1 {
 	
 	public String textEvidence(WebDriver driver) throws Exception{
 		
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
     		return ("HiRCA evidence <div> entry text to be counted");
     	else
     		return("HiRCA evidence entry text to be counted");
@@ -58,7 +58,7 @@ public class HiRCALevel1 {
 	
 	public List<String> variableText(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 		{
 			text.add("Curabitur lacinia odio sit <div> amet tellus vestibulum condimentum. The resting sundry overcomes above the focus.");
 			text.add("Vestibulum eget lectus <div> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks!");
@@ -132,7 +132,7 @@ public class HiRCALevel1 {
 	
 	public List<String> modifyText(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaledev"))
+		if(driver.getCurrentUrl().contains("kaletest"))
 		{
 			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
 			text.add("Pellentesque nec <div> nulla vel neque tincidunt rutrum.");

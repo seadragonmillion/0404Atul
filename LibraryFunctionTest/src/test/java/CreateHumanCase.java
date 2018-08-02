@@ -227,6 +227,9 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
@@ -265,6 +268,9 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
