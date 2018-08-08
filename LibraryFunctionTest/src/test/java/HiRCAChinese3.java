@@ -3064,7 +3064,7 @@ public class HiRCAChinese3 {
 		String r300 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/tbody/tr[15]/td[2]"))).getText();
 		softly.assertThat(r300).as("test data").contains("不适用");
 		String r301 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/tbody/tr[15]/td[3]/ul/li"))).getText();
-		softly.assertThat(r301).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量(<10)？");
+		softly.assertThat(r301).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量");
 		String r302 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/tbody/tr[15]/td[4]/ul/li[1]"))).getText();
 		softly.assertThat(r302).as("test data").contains("在问题报告政策中要求包含一切问题和及时性");
 		String r303 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/tbody/tr[15]/td[4]/ul/li[2]"))).getText();
@@ -3208,7 +3208,7 @@ public class HiRCAChinese3 {
 		String r365 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/tbody/tr[10]/td[2]"))).getText();
 		softly.assertThat(r365).as("test data").contains("不适用");
 		String r366 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/tbody/tr[10]/td[3]/ul/li"))).getText();
-		softly.assertThat(r366).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量(<10)？");
+		softly.assertThat(r366).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量");
 		String r367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/tbody/tr[10]/td[4]/ul/li[1]"))).getText();
 		softly.assertThat(r367).as("test data").contains("在问题报告政策中要求包含一切问题和及时性");
 		String r368 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/tbody/tr[10]/td[4]/ul/li[2]"))).getText();

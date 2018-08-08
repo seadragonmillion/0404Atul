@@ -451,7 +451,7 @@ public class CaseBrowse {
 		}
 		//Get URL
 		String url = driver.getCurrentUrl();
-		if(url.contains("kaletest"))
+		if(url.contains("kaleqa"))
 		{
 			browseCaseForColorKeywordHuman(driver,caseHumanColor);
 		}
@@ -567,7 +567,7 @@ public class CaseBrowse {
 		}
 		//Get URL
 		String url = driver.getCurrentUrl();
-		if(url.contains("kaletest"))
+		if(url.contains("kaleqa"))
 		{
 			browseCaseForColorKeywordEquip(driver,caseEquipColor);
 		}
@@ -708,7 +708,7 @@ public class CaseBrowse {
 	    //Clear keyword field
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordField)).clear();
 	    //Assigns keyword as per browser and url
-	    if(url.contains("kaletest"))
+	    if(url.contains("kaleqa"))
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{
@@ -770,7 +770,7 @@ public class CaseBrowse {
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanAddKeywordField)).clear();
 	    Thread.sleep(1000);
 	    //Assigns keyword as per browser and url
-	    if(url.contains("kaletest"))
+	    if(url.contains("kaleqa"))
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{
@@ -834,7 +834,7 @@ public class CaseBrowse {
 	    System.out.println(v);
 	    String url = driver.getCurrentUrl();
 		//Assigns keyword as per browser and url
-	    if(url.contains("kaletest"))
+	    if(url.contains("kaleqa"))
 	    {
 	    	if ((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 	    	{

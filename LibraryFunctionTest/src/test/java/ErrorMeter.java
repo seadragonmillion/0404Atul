@@ -84,33 +84,33 @@ public class ErrorMeter {
 	
 	public String error0Data(WebDriver driver)throws Exception{
 		
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			return ("Morbi ut massa <div> elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
+			return ("Morbi ut massa <strong> elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
 		}
 		else return ("Morbi ut massa elementum, faucibus lorem vitae, imperdiet lectus. Sed pellentesque mauris sit metus.");
 	}
 	
 	public List<String> error50Data(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
-			text.add("Pellentesque nec <div> nulla vel neque tincidunt rutrum.");
-			text.add("Donec dictum enim <div> nec mi pulvinar, nec consequat eros tristique.");
-			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
-			text.add("In non leo et <div> nibh porttitor lobortis.");
-			text.add("Donec hendrerit <div> lacus semper justo bibendum fermentum.");
-			text.add("Sed tempus nunc <div> interdum neque sodales, at mollis magna convallis.");
-			text.add("Aliquam efficitur <div> sem quis facilisis aliquam.");
-			text.add("Proin blandit ante <div> at molestie finibus.");
-			text.add("Etiam quis <div> lorem laoreet, malesuada lorem in, tristique sem.");
-			text.add("Maecenas vitae <div> orci non dui ultrices posuere vulputate at elit.");
-			text.add("Mauris blandit elit <div> sit amet tellus dignissim, eget maximus sem dignissim.");
-			text.add("Morbi in dui semper, <div> sagittis augue in, elementum lorem.");
-			text.add("Vivamus ut lacus finibus, <div> dictum neque interdum, tincidunt eros.");
-			text.add("Duis vestibulum <div> ipsum at dui tincidunt, semper eleifend est congue.");
-			text.add("Lorem ipsum dolor sit <div> amet, consectetur adipiscing elit.");
+			text.add("Pellentesque nec <title> nulla vel neque tincidunt rutrum.");
+			text.add("Donec dictum enim <tbody> nec mi pulvinar, nec consequat eros tristique.");
+			text.add("Vestibulum lobortis <tr> diam vel erat congue pulvinar sed a tortor.");
+			text.add("In non leo et <td> nibh porttitor lobortis.");
+			text.add("Donec hendrerit <table> lacus semper justo bibendum fermentum.");
+			text.add("Sed tempus nunc <th> interdum neque sodales, at mollis magna convallis.");
+			text.add("Aliquam efficitur <thead> sem quis facilisis aliquam.");
+			text.add("Proin blandit ante <input> at molestie finibus.");
+			text.add("Etiam quis <section> lorem laoreet, malesuada lorem in, tristique sem.");
+			text.add("Maecenas vitae <body> orci non dui ultrices posuere vulputate at elit.");
+			text.add("Mauris blandit elit <article> sit amet tellus dignissim, eget maximus sem dignissim.");
+			text.add("Morbi in dui semper, <label> sagittis augue in, elementum lorem.");
+			text.add("Vivamus ut lacus finibus, <script> dictum neque interdum, tincidunt eros.");
+			text.add("Duis vestibulum <form> ipsum at dui tincidunt, semper eleifend est congue.");
+			text.add("Lorem ipsum dolor sit <br> amet, consectetur adipiscing elit.");
 		}
 		else{
 		text.add("Quisque at justo elementum, finibus elit ut, ultrices nibh.");
@@ -136,11 +136,11 @@ public class ErrorMeter {
 
 	public List<String> error100Data(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			text.add("Curabitur lacinia <div> odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus. Inside a bond catalog suspects the pink cycle. The stopping midnight flips the fundamentalist countryside. The drama discards the monarch galaxy.");
-			text.add("Vestibulum eget lectus <div> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks! The capitalist shies away without the grief! Should the normal standpoint overflow without the planet? The wretched earth reverts. The insufficient banner distances the simplified firework.");
-			text.add("Integer ac enim <div> eget nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia. The forgotten python hopes. The bush league bushes the fellow. Can a citizen edit a stimulating composite? The fame trails without another load. A wisest rhythm misguides a modern thick. Above its communist nests the accountant. Your counterpart talks over the rubber ham. A tree pants beside a net gas.");
+			text.add("Curabitur lacinia <center> odio sit amet tellus vestibulum condimentum. The resting sundry overcomes above the focus. Inside a bond catalog suspects the pink cycle. The stopping midnight flips the fundamentalist countryside. The drama discards the monarch galaxy.");
+			text.add("Vestibulum eget lectus <span> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks! The capitalist shies away without the grief! Should the normal standpoint overflow without the planet? The wretched earth reverts. The insufficient banner distances the simplified firework.");
+			text.add("Integer ac enim <string> eget nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia. The forgotten python hopes. The bush league bushes the fellow. Can a citizen edit a stimulating composite? The fame trails without another load. A wisest rhythm misguides a modern thick. Above its communist nests the accountant. Your counterpart talks over the rubber ham. A tree pants beside a net gas.");
 			text.add("Donec in massa pulvinar, <div> mattis turpis ut, aliquam ligula. The countryside plays with the fashionable documentary underneath the trifle. The museum cycles a doctor over the hack postscript. A wallet listens on top of the attempt! The fit praise dictates beneath the longest comparison. A genius ducks past an excess. The distress advances with the distress! When can the overlap multiply a break? Should the routine steel skip against a clone? The equipped anarchy budgets an imbalance. The amateur relaxes after the verse! The batch flies behind a pigeon. How can our poison curtain an otherwise child? The reflecting discovery allies the designate wealth. A separator kids past the speaker. The arc overtone rots.");
 			text.add("Morbi dictum mi et nisl <div> interdum, vel iaculis lacus suscipit. The stroke pushes the coach beneath any wood outcome. The photocopy prevails below the feat volunteer. The counsel decays beneath the burned disorder. The flute butters a postage after a misrepresented schedule. How can the dreamed baby walk? The speaking misfortune bites an override. A politician rattles against the emerging purple. A sod dries the crush into the packed burden. The warmed eye notices the alphabetical grammar. The smashing scenery chambers the sounding dominant. Why does a rattled height exit? A subsidized physicist rocks an enthusiastic keeper.The outcome noses against the departure. Why won't a temper dish an appalled visit? With a safeguard responds the biggest junk. When will the noisy stress grind against the idiosyncratic blame? How does a desire mend throughout any ripped tooth?");
 			text.add("Ut eu quam non orci <div> consectetur vestibulum et scelerisque sapien. The debt destroys every refined boy behind an ethic. Whatever compound sweeps into the concealed noun. The tomato posts a helmet. The gate flowers throughout a satire. The united plague restores this sympathetic likelihood. A simulate commentator perceives a laughter against the tame metaphor. The flood composes in the startled fuse. Can a taxpayer lecture her container? The circular chooses past her typewriter.");
@@ -335,7 +335,7 @@ public class ErrorMeter {
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		String meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("0%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("25%").as("test data").isEqualTo(meterText);
@@ -352,7 +352,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("15%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("31%").as("test data").isEqualTo(meterText);
@@ -361,7 +361,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("30%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("38%").as("test data").isEqualTo(meterText);
@@ -373,7 +373,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("45%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("44%").as("test data").isEqualTo(meterText);
@@ -382,7 +382,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("60%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("50%").as("test data").isEqualTo(meterText);
@@ -488,7 +488,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("65%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("56%").as("test data").isEqualTo(meterText);
@@ -497,7 +497,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("70%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("63%").as("test data").isEqualTo(meterText);
@@ -509,7 +509,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("75%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("69%").as("test data").isEqualTo(meterText);
@@ -518,7 +518,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("80%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("75%").as("test data").isEqualTo(meterText);
@@ -623,7 +623,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("85%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("81%").as("test data").isEqualTo(meterText);
@@ -632,7 +632,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("90%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("88%").as("test data").isEqualTo(meterText);
@@ -644,7 +644,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 		meterText = meter.getText();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("95%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("94%").as("test data").isEqualTo(meterText);
@@ -841,7 +841,7 @@ public class ErrorMeter {
 			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			String meterText = meter.getText();
 			System.out.println(meterText);
-			if(driver.getCurrentUrl().contains("kaletest"))
+			if(driver.getCurrentUrl().contains("kaleqa"))
 				softly.assertThat("0%").as("test data").isEqualTo(meterText);
 			else
 				softly.assertThat("13%").as("test data").isEqualTo(meterText);
@@ -858,7 +858,7 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			if(driver.getCurrentUrl().contains("kaletest"))
+			if(driver.getCurrentUrl().contains("kaleqa"))
 				softly.assertThat("15%").as("test data").isEqualTo(meterText);
 			else
 				softly.assertThat("19%").as("test data").isEqualTo(meterText);
@@ -870,7 +870,7 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			if(driver.getCurrentUrl().contains("kaletest"))
+			if(driver.getCurrentUrl().contains("kaleqa"))
 				softly.assertThat("30%").as("test data").isEqualTo(meterText);
 			else
 				softly.assertThat("25%").as("test data").isEqualTo(meterText);
@@ -943,7 +943,7 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			if(driver.getCurrentUrl().contains("kaletest"))
+			if(driver.getCurrentUrl().contains("kaleqa"))
 				softly.assertThat("35%").as("test data").isEqualTo(meterText);
 			else
 				softly.assertThat("31%").as("test data").isEqualTo(meterText);
@@ -955,7 +955,7 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			if(driver.getCurrentUrl().contains("kaletest"))
+			if(driver.getCurrentUrl().contains("kaleqa"))
 				softly.assertThat("40%").as("test data").isEqualTo(meterText);
 			else
 				softly.assertThat("38%").as("test data").isEqualTo(meterText);
@@ -1024,7 +1024,7 @@ public class ErrorMeter {
 			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
 			meterText = meter.getText();
 			System.out.println(meterText);
-			if(driver.getCurrentUrl().contains("kaletest"))
+			if(driver.getCurrentUrl().contains("kaleqa"))
 				softly.assertThat("45%").as("test data").isEqualTo(meterText);
 			else
 				softly.assertThat("44%").as("test data").isEqualTo(meterText);
@@ -1968,7 +1968,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			reportCheck0Dev(driver);
 		else{
 		//Compare Environment data
@@ -2256,7 +2256,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			reportCheck50Dev(driver);
 		else{
     	//Compare Environment data
@@ -2558,7 +2558,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
     	ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 			reportCheck100Dev(driver);
 		else{
 		//Compare Environment data

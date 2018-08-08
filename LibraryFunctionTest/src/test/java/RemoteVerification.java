@@ -59,15 +59,15 @@ public class RemoteVerification {
 	
 	public String eventTitle(WebDriver driver) throws Exception {
 		
-		if(driver.getCurrentUrl().contains("kaletest"))
-			return ("I think I will <div> buy the red car, or I will lease the blue one.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			return ("I think I will <strong> buy the red car, or I will lease the blue one.");
 		else return ("I think I will buy the red car, or I will lease the blue one.");
 	}
 	
 	public String details(WebDriver driver) throws Exception {
 		
-		if(driver.getCurrentUrl().contains("kaletest"))
-			return ("There was no <div> ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			return ("There was no <input> ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
 		else return ("There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
 	}
 	
@@ -470,7 +470,7 @@ public class RemoteVerification {
 	    String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-location"))).getText();
 	    System.out.println(location); 
 	    String url = driver.getCurrentUrl();
-	    if(url.contains("kaletest"))
+	    if(url.contains("kaleqa"))
 	    {
 	    	//Store in excel
 		    excelStore(location,browserName);

@@ -608,6 +608,66 @@ public class CreateHumanCase {
 	    Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same+"changed");
+		//Verify new case form after viewing case with links
+		verifyNewCaseForm(driver, caseID.get(2));
+	}
+	
+	public void verifyNewCaseForm(WebDriver driver, String caseID) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		Thread.sleep(1000);
+		//Clicks on Errorfree bank option
+		if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+		{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
+		}
+		//Clicks on Human cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
+		//Waits for black loading message to disappear
+	    obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+		//Enter case id with links
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID);
+		Thread.sleep(2000);
+		//Clicks on case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+	    //Clicks on new case button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+		//Clicks on new case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		//Verify Link title is empty
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Tile)).getAttribute("textContent");
+		softly.assertThat(s).as("test data").isEmpty();
+		//Verify Link url is empty
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).getAttribute("textContent");
+		softly.assertThat(s1).as("test data").isEmpty();
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+		//Clicks on Human cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 	}
 	
 	public void verifyCaseFieldsInAdmin(WebDriver driver, String keyword_same) throws Exception {
@@ -628,6 +688,9 @@ public class CreateHumanCase {
 		//Verify condition
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingConditionOnlyOne)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo(keyword_same);
+		//Verify keyword
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingKeywordOnlyOne)).getText();
+		softly.assertThat(s5).as("test data").isEqualTo(keyword_same);
 	}
 	
 	public void addLinks(WebDriver driver, String title, String caseID) throws Exception {
@@ -1111,6 +1174,7 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
+		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
 		  Thread.sleep(1000);
@@ -1132,6 +1196,7 @@ public class CreateHumanCase {
 		  {
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
+			  obj1.loadingServer(driver);
 			  //Clicks on Human cases
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 			  //Waits for black loading message to disappear
@@ -1150,6 +1215,7 @@ public class CreateHumanCase {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			  //Waits for black loading message to disappear
+			  obj1.loadingServer(driver);
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");
@@ -1342,6 +1408,7 @@ public class CreateHumanCase {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			  //Waits for black loading message to disappear
+			  obj1.loadingServer(driver);
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");

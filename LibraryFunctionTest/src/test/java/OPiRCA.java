@@ -48,6 +48,7 @@ public class OPiRCA {
 	By OPiRCASidePanel = By.id("pii-user-home-panel-btn-opa");
 	By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
 	By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
+	By OPIRCAMarkCriticalIndicatorText1 = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th");
 	By OPiRCASaveButton = By.id("efi-opa-button-save");
 	By OPiRCASavePopupTitle = By.id("pii-opa-dialog-title");
 	By OPiRCASaveConfirmButton = By.id("pii-opa-dialog-confirmed");

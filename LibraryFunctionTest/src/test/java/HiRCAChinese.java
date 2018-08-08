@@ -6166,9 +6166,8 @@ public class HiRCAChinese {
 		//Click on 2nd collapsible for 3.11.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-		
-		softly.assertThat(c14).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量(<10)？");
+		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();		
+		softly.assertThat(c14).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量");
 		//Click on 2nd collapsible for 3.11.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//3rd collapsible 3.11.4

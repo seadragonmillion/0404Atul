@@ -149,6 +149,7 @@ public class CreateEquipmentCase {
 	By EquipCasesLink2TitleCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-linkdiv-1']/div[1]/div/a");
 	By EquipCasesLink2URLCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-linkdiv-1']/div[2]/table/tbody/tr[1]/td[2]/div/a");
 	
+	By EquipCasesTypeList = By.xpath(".//*[@id='pii-admin-efse-data-form']/div[2]/div/a/span[2]");
 	By EquipListTypesAdvancedLearning = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[1]/a");
 	By EquipListTypesCaseStudies = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[2]/a");
 	By EquipListTypesDesign = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[3]/a");
@@ -156,6 +157,7 @@ public class CreateEquipmentCase {
 	By EquipListTypesFundamentals = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[5]/a");
 	By EquipListTypesGeneral = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[6]/a");
 	
+	By EquipCasesDisciplineList = By.xpath(".//*[@id='pii-admin-efse-data-form']/div[3]/div/a/span[2]");
 	By EquipListDisciplineElectrical = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[1]/a");
 	By EquipListDisciplineGeneral = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[2]/a");
 	By EquipListDisciplineIC = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[3]/a");
@@ -163,6 +165,7 @@ public class CreateEquipmentCase {
 	By EquipListDisciplineSoftware = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[5]/a");
 	By EquipListDisciplineStructural = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[6]/a");
 	
+	By EquipCasesFieldList = By.xpath(".//*[@id='pii-admin-efse-data-form']/div[4]/div/a/span[2]");
 	By EquipListFieldsAuto = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[1]/a");
 	By EquipListFieldsNuclear = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[2]/a");
 	By EquipListFieldsOther = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[3]/a");
@@ -1141,6 +1144,94 @@ public class CreateEquipmentCase {
 	    Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same_eq);
+		//Verify new case form after viewing case with links
+		verifyNewCaseForm(driver, ee_case.get(2));
+	}
+	
+	public void verifyNewCaseForm(WebDriver driver, String caseID) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
+		CreateHumanCase obj1 = new CreateHumanCase();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AdminOption)).click();
+		Thread.sleep(1000);
+		//Clicks on Errorfree bank option
+		if (driver.findElement(EquipCasesLink).isDisplayed()==false)
+		{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankLink)).click();
+		}
+		//Clicks on Equip cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
+		//Waits for black loading message to disappear
+	    obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+		//Enter case id with links
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
+		Thread.sleep(2000);
+		//Clicks on case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDDropdownAdmin)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+	    //Clicks on new case button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewButton)).click();
+		//Clicks on new case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
+		//Verify Link title is empty
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1Tile)).getAttribute("textContent");
+		softly.assertThat(s).as("test data").isEmpty();
+		//Verify Link url is empty
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1URL)).getAttribute("textContent");
+		softly.assertThat(s1).as("test data").isEmpty();
+		//Verify case id is empty
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseIDField)).getAttribute("textContent");
+		softly.assertThat(s2).as("test data").isEmpty();
+		//Verify questions is empty
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).getAttribute("textContent");
+		softly.assertThat(s3).as("test data").isEmpty();
+		//Verify answer is empty
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseAnswer)).getAttribute("textContent");
+		softly.assertThat(s4).as("test data").isEmpty();
+		//Verify type is empty
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesTypeList)).getAttribute("textContent");
+		softly.assertThat(s5).as("test data").isEqualTo("0");
+		//Verify discipline is empty
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesDisciplineList)).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("0");
+		//Verify field is empty
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesFieldList)).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("0");
+		//Verify no keywords present
+		try{
+			WebDriverWait wait1 = new WebDriverWait(driver,4);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseExistingKeywordOnlyOne));
+			softly.fail("keyword present in new form");
+		}catch (org.openqa.selenium.TimeoutException r)
+		{
+			
+		}
+	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+		//Clicks on Equip cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 	}
 	
 	public void verifyCaseFieldsInAdmin(WebDriver driver, String keyword_same) throws Exception {
@@ -1197,11 +1288,12 @@ public class CreateEquipmentCase {
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		//Add new keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"added");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 		Thread.sleep(1000);
 	    jse.executeScript("scroll(0,0)");
@@ -2554,6 +2646,7 @@ public class CreateEquipmentCase {
 		ShareCheck obj = new ShareCheck();
 		Login obj1 = new Login();
 		CreateHumanCase obj2 = new CreateHumanCase();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -2591,11 +2684,19 @@ public class CreateEquipmentCase {
 			//Turn slide security off
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-off']"))).click();
 		}
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
 	}
 	
 	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases, String title)throws Exception{
@@ -2706,7 +2807,7 @@ public class CreateEquipmentCase {
 		Thread.sleep(3000);
 		driver.close();
     	driver.switchTo().window(window);
-    	Thread.sleep(2000);
+    	Thread.sleep(4000);
 		//Get browser name and version
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 	    String browserName = cap.getBrowserName().toLowerCase();
@@ -2714,7 +2815,7 @@ public class CreateEquipmentCase {
 	    //Chrome or Firefox
 	    if(browserName.equals("firefox"))
 	    	driver.switchTo().defaultContent();      
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		//Switch to iframe
 		driver.switchTo().frame(driver.findElement(obj.IFrame));
 		Thread.sleep(2000);
@@ -3253,6 +3354,7 @@ public class CreateEquipmentCase {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink)).click();	
 			  //Waits for black loading message to disappear
 			  obj.loadingServer(driver);
+			  obj.loadingServer(driver);
 			  //Scroll to top
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");
@@ -3265,6 +3367,7 @@ public class CreateEquipmentCase {
 			  ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton));
 			  act.click(ele).build().perform();
 			  //Waits for black loading message to disappear
+			  obj.loadingServer(driver);
 			  obj.loadingServer(driver);
 			  //Scroll to top
 			  Thread.sleep(1000);
@@ -3425,6 +3528,7 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
 		  obj.loadingServer(driver);
+		  obj.loadingServer(driver);
 		  //Scroll to top
 		  Thread.sleep(1000);
 		  jse.executeScript("scroll(0,0)");
@@ -3477,6 +3581,7 @@ public class CreateEquipmentCase {
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink)).click();	
 			  //Waits for black loading message to disappear
 			  obj.loadingServer(driver);
+			  obj.loadingServer(driver);
 			  //Scroll to top
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");
@@ -3489,6 +3594,7 @@ public class CreateEquipmentCase {
 			  ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton));
 			  act.click(ele).build().perform();
 			  //Waits for black loading message to disappear
+			  obj.loadingServer(driver);
 			  obj.loadingServer(driver);
 			  //Scroll to top
 			  Thread.sleep(1000);
@@ -3646,6 +3752,7 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle)).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
 		  obj.loadingServer(driver);
 		  //Scroll to top
 		  Thread.sleep(1000);

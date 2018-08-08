@@ -42,42 +42,42 @@ public class HiRCALevel1 {
 	
 	public String text(WebDriver driver) throws Exception{
 		
-		if(driver.getCurrentUrl().contains("kaletest"))
-    		return ("HiRCA Level 1 <div> test");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+    		return ("HiRCA Level 1 <iframe> test");
     	else
     		return("HiRCA Level 1 test");
 	}
 	
 	public String textEvidence(WebDriver driver) throws Exception{
 		
-		if(driver.getCurrentUrl().contains("kaletest"))
-    		return ("HiRCA evidence <div> entry text to be counted");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+    		return ("HiRCA evidence <script> entry text to be counted");
     	else
     		return("HiRCA evidence entry text to be counted");
 	}
 	
 	public List<String> variableText(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			text.add("Curabitur lacinia odio sit <div> amet tellus vestibulum condimentum. The resting sundry overcomes above the focus.");
-			text.add("Vestibulum eget lectus <div> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks!");
-			text.add("Integer ac enim eget <div> nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia.");
-			text.add("Donec in massa pulvinar, mattis <div> turpis ut, aliquam ligula.");
-			text.add("Morbi dictum mi et <div> nisl interdum, vel iaculis lacus suscipit. The stroke pushes the coach beneath any wood outcome?");
-			text.add("Ut eu quam non orci <div> consectetur vestibulum et scelerisque sapien. The debt destroys every refined boy behind an ethic. Whatever compound sweeps into the concealed noun. The tomato posts a helmet.");
-			text.add("Morbi accumsan leo <div> non ex tempor, congue ullamcorper urna viverra. Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
-			text.add("In quis enim a odio <div> venenatis scelerisque dignissim sed mauris.");
-			text.add("Maecenas ultrices <div> nulla nec malesuada ullamcorper.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.");
-			text.add("Mauris mattis nisi quis <div> rhoncus mollis. In addition to generating an entire comedy routine, the software provides additional means to make existing content funnier.");
-			text.add("In auctor lorem quis <div> eros fermentum ultricies a at nibh. The tray boils under a deprived alcoholic. How can a beaten populace fork the climbing developer?");
-			text.add("Curabitur quis mauris <div> ullamcorper, ultricies orci non, porttitor diam. A chord degenerates into the based fairy.");
-			text.add("Fusce aliquet libero <div> vel risus luctus ullamcorper.");
-			text.add("Vestibulum non risus <div> sit amet lorem blandit tempus.");
-			text.add("Fusce gravida libero <div> a neque cursus gravida.");
-			text.add("Proin eget urna <div> tempor, ullamcorper lectus eget, elementum massa. The assumed plotter rushs toward the anatomy.");
-			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
-			text.add("Pellentesque nec nulla <div> vel neque tincidunt rutrum.");
+			text.add("Vestibulum eget lectus <table> ut ligula tempus ultrices ac rhoncus libero. When can the incentive breakfast strike? Every arithmetic walks!");
+			text.add("Integer ac enim eget <script> nisl malesuada tempor nec eu turpis. Our coordinate yard sauces the machine beneath an esoteric temple. The teapot sweeps beside the nostalgia.");
+			text.add("Donec in massa pulvinar, mattis <section> turpis ut, aliquam ligula.");
+			text.add("Morbi dictum mi et <article> nisl interdum, vel iaculis lacus suscipit. The stroke pushes the coach beneath any wood outcome?");
+			text.add("Ut eu quam non orci <input> consectetur vestibulum et scelerisque sapien. The debt destroys every refined boy behind an ethic. Whatever compound sweeps into the concealed noun. The tomato posts a helmet.");
+			text.add("Morbi accumsan leo <br> non ex tempor, congue ullamcorper urna viverra. Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+			text.add("In quis enim a odio <string> venenatis scelerisque dignissim sed mauris.");
+			text.add("Maecenas ultrices <title> nulla nec malesuada ullamcorper.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.");
+			text.add("Mauris mattis nisi quis <span> rhoncus mollis. In addition to generating an entire comedy routine, the software provides additional means to make existing content funnier.");
+			text.add("In auctor lorem quis <thead> eros fermentum ultricies a at nibh. The tray boils under a deprived alcoholic. How can a beaten populace fork the climbing developer?");
+			text.add("Curabitur quis mauris <tbody> ullamcorper, ultricies orci non, porttitor diam. A chord degenerates into the based fairy.");
+			text.add("Fusce aliquet libero <td> vel risus luctus ullamcorper.");
+			text.add("Vestibulum non risus <tr> sit amet lorem blandit tempus.");
+			text.add("Fusce gravida libero <th> a neque cursus gravida.");
+			text.add("Proin eget urna <a> tempor, ullamcorper lectus eget, elementum massa. The assumed plotter rushs toward the anatomy.");
+			text.add("Quisque at justo <strong> elementum, finibus elit ut, ultrices nibh.");
+			text.add("Pellentesque nec nulla <iframe> vel neque tincidunt rutrum.");
 			text.add("Donec dictum enim nec <div> mi pulvinar, nec consequat eros tristique. A sky deletes a curtain over the bearded parameter. A handicap escapes near the constant! The vicar dances a threshold opposite a rough limb. The architecture outcries the pat jack after the reflex. An article cruises in the wartime.");
 			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
 			text.add("In non leo et nibh porttitor <div> lobortis. A pan disturbs the barrister. Its password invalidates the gospel. A silver bath rests. When will the tempting fossil escape a shade? The unsafe collective lands a populace. When will our digital threshold moan? The ice grabs this carpet.");
@@ -132,22 +132,22 @@ public class HiRCALevel1 {
 	
 	public List<String> modifyText(WebDriver driver) throws Exception{
 		List<String> text = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaletest"))
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			text.add("Quisque at justo <div> elementum, finibus elit ut, ultrices nibh.");
-			text.add("Pellentesque nec <div> nulla vel neque tincidunt rutrum.");
-			text.add("Donec dictum enim <div> nec mi pulvinar, nec consequat eros tristique.");
-			text.add("Vestibulum lobortis <div> diam vel erat congue pulvinar sed a tortor.");
-			text.add("In non leo et nibh <div> porttitor lobortis.");
-			text.add("Donec hendrerit <div> lacus semper justo bibendum fermentum.");
-			text.add("Sed tempus nunc <div> interdum neque sodales, at mollis magna convallis.");
-			text.add("Aliquam efficitur <div> sem quis facilisis aliquam.");
-			text.add("Proin blandit ante <div> at molestie finibus.");
-			text.add("Etiam quis lorem <div> laoreet, malesuada lorem in, tristique sem.");
-			text.add("Maecenas vitae orci <div> non dui ultrices posuere vulputate at elit.");
-			text.add("Mauris blandit elit <div> sit amet tellus dignissim, eget maximus sem dignissim.");
-			text.add("Morbi in dui semper, sagittis <div> augue in, elementum lorem.");
-			text.add("Vivamus ut lacus <div> finibus, dictum neque interdum, tincidunt eros.");
+			text.add("Pellentesque nec <input> nulla vel neque tincidunt rutrum.");
+			text.add("Donec dictum enim <strong> nec mi pulvinar, nec consequat eros tristique.");
+			text.add("Vestibulum lobortis <html> diam vel erat congue pulvinar sed a tortor.");
+			text.add("In non leo et nibh <span> porttitor lobortis.");
+			text.add("Donec hendrerit <article> lacus semper justo bibendum fermentum.");
+			text.add("Sed tempus nunc <table> interdum neque sodales, at mollis magna convallis.");
+			text.add("Aliquam efficitur <tbody> sem quis facilisis aliquam.");
+			text.add("Proin blandit ante <thead> at molestie finibus.");
+			text.add("Etiam quis lorem <td> laoreet, malesuada lorem in, tristique sem.");
+			text.add("Maecenas vitae orci <tr> non dui ultrices posuere vulputate at elit.");
+			text.add("Mauris blandit elit <section> sit amet tellus dignissim, eget maximus sem dignissim.");
+			text.add("Morbi in dui semper, sagittis <a> augue in, elementum lorem.");
+			text.add("Vivamus ut lacus <iframe> finibus, dictum neque interdum, tincidunt eros.");
 			text.add("Duis vestibulum <div> ipsum at dui tincidunt, semper eleifend est congue.");
 			text.add("Lorem ipsum dolor <div> sit amet, consectetur adipiscing elit.");
 		}
