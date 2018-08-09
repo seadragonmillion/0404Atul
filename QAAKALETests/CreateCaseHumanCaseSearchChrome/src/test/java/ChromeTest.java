@@ -44,7 +44,7 @@ public class ChromeTest {
 		  Login obj2 = new Login();
 		  int login = obj2.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(5000);
+		  Thread.sleep(8000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
