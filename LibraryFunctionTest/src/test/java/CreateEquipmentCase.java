@@ -1208,14 +1208,14 @@ public class CreateEquipmentCase {
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseAnswer)).getAttribute("textContent");
 		softly.assertThat(s4).as("test data").isEmpty();
 		//Verify type is empty
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesTypeList)).getAttribute("textContent");
-		softly.assertThat(s5).as("test data").isEqualTo("0");
+		String s5 = driver.findElement(EquipCasesTypeList).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("");
 		//Verify discipline is empty
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesDisciplineList)).getText();
-		softly.assertThat(s6).as("test data").isEqualTo("0");
+		String s6 = driver.findElement(EquipCasesDisciplineList).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("");
 		//Verify field is empty
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesFieldList)).getText();
-		softly.assertThat(s7).as("test data").isEqualTo("0");
+		String s7 = driver.findElement(EquipCasesFieldList).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("");
 		//Verify no keywords present
 		try{
 			WebDriverWait wait1 = new WebDriverWait(driver,4);

@@ -435,7 +435,7 @@ public class RemoteVerification {
 		Calendar cal = Calendar.getInstance();
 		System.out.println(dateFormat.format(cal.getTime()));
 		int minute = cal.get(Calendar.MINUTE);
-		int hour = cal.get(Calendar.HOUR);
+		int hour = cal.get(Calendar.HOUR_OF_DAY);
 		//Verify if hour is correct
 		softly.assertThat(timeDate).as("test data").contains(Integer.toString(hour));
 		//Verify if minute is within 20 minutes of present time + or -
