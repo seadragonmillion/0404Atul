@@ -69,8 +69,24 @@ public class SanityTestRV_ChromeTest {
                        throw e;
                 }
 		  Thread.sleep(2000);
+		  /*
+		 * 1=admin dev
+		 * 2= nonadmin dev
+		 * 3= admin ie11 dev
+		 * 4= nonadmin ie11 dev
+		 * ASIA
+		 * 5= admin asia
+		 * 6= nonadmin asia
+		 * 7= admin ie11 asia
+		 * 8= nonadmin ie11 asia
+		 * US
+		 * 9=admin us
+		 * 10=non admin us
+		 * 11=admin ie11 us
+		 * 12=non admin ie11 us
+		   */
 		  //create report
-		  List<String> b = obj1.createReport(driver, username);
+		  List<String> b = obj1.createReport(driver, username,2);
 		  //Downloads record
 		  obj1.downloadRecordChrome(driver,b.get(0),username);
 		  //Shares report
