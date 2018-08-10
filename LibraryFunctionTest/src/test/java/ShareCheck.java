@@ -613,13 +613,13 @@ public class ShareCheck {
 				  }
 				  else
 					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException e)
+				  }catch (org.openqa.selenium.NoSuchElementException |org.openqa.selenium.StaleElementReferenceException e)
 				  {
 					  break;
 				  }
-			  catch (org.openqa.selenium.StaleElementReferenceException e)
+			  catch (org.openqa.selenium.ScriptTimeoutException e)
 			  {
-				  break;
+				  Thread.sleep(6000);
 			  }
 		  }
 	}
