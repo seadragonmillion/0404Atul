@@ -602,13 +602,14 @@ public class ShareCheck {
 	
 	public void loadingServer(WebDriver driver) throws Exception {
 		
+		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 		while (true)
 		  {
 			  try{
-				  Thread.sleep(3000);
+				  Thread.sleep(4000);
 				  if(driver.findElement(LoadingMessage).isDisplayed())
 				  {
-					  Thread.sleep(4000);
+					  Thread.sleep(5000);
 				  }
 				  else
 					  break;

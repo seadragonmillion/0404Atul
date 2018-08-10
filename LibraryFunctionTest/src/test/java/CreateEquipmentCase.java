@@ -25,10 +25,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreateEquipmentCase {
 	
 	SoftAssertions softly = new SoftAssertions();
-	String titleCombo = "QAA Failure Mode Combo Test";
-	String titleComboUS = "QAA US Failure Mode Combo Test";
-	String titleComboie11 = "QAA IE11 Failure Mode Combo Test";
-	String titleComboUSie11 = "QAA US IE11 Failure Mode Combo Test";
+	String titleCombo = "QAA Type Discipline Field Filters Combo Test";
+	String titleComboUS = "QAA US Type Discipline Field Filters Combo Test";
+	String titleComboie11 = "QAA IE11 Type Discipline Field Filters Combo Test";
+	String titleComboUSie11 = "QAA US IE11 Type Discipline Field Filters Combo Test";
 	String keywordCombo = "QAADiscFieldCombo";
 	String keywordComboUS = "QAAUSDiscFieldCombo";
 	String keywordComboie11 = "QAAie11DiscFieldCombo";
@@ -185,6 +185,7 @@ public class CreateEquipmentCase {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		CreateHumanCase obj2 = new CreateHumanCase ();
+		CreateEquipmentCase2 obj4 = new CreateEquipmentCase2();
 		Login obj3 = new Login();
 		Actions act= new Actions(driver);
 		//Create list with discipline By elements
@@ -204,6 +205,7 @@ public class CreateEquipmentCase {
 	    System.out.println(browserName);
 	    String v = cap.getVersion().toString();
 	    System.out.println(v);
+	    int x=obj4.selectNumberForType(driver);
 	    //Chrome or Firefox
 	    if(browserName.equals("chrome")||browserName.equals("firefox"))
 	    {
@@ -270,8 +272,8 @@ public class CreateEquipmentCase {
 				Thread.sleep(1000);
 				//Add Case is to list
 				caseID.add(chooseCaseId(driver));
-				//Selects types
-				selectFMTypes(driver, browserName, v);
+				//Selects types and returns assigned numeric value of type
+				obj4.selectTypeRandom(driver, x, browserName, v);
 				//Select Discipline
 				selectDisciplineForComboTest(driver, disc_list.get(i), browserName, v);
 				//Select Fields
@@ -400,8 +402,10 @@ public class CreateEquipmentCase {
 				System.out.println("Discipline : Structural ="+structural);
 			}
 		}
-		//Search for cases in failure mode
-		caseSearchWithDisciplineFieldCombo(driver, keyword, electrical, general, ic, mechanical, software, structural);
+		//Search for cases in any filter type
+		caseSearchWithDisciplineFieldCombo(driver, x, keyword, electrical, general, ic, mechanical, software, structural);
+		//Search for cases in Equipment Databank (Instructor Only)
+		obj4.caseSearchWithDisciplineFieldComboEquipmentDatabank(driver, x, keyword, electrical, general, ic, mechanical, software, structural);
 		//Delete cases
 		deleteCase(driver, electrical);
 		System.out.println("Deleted cases for Discipline : Electrical");
@@ -417,12 +421,13 @@ public class CreateEquipmentCase {
 		System.out.println("Deleted cases for Discipline : Structural");
 	}
 	
-	public void caseSearchWithDisciplineFieldCombo(WebDriver driver, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
+	public void caseSearchWithDisciplineFieldCombo(WebDriver driver, int x, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
 	    
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		CaseBrowse obj1 = new CaseBrowse();
 		CreateHumanCase obj2 = new CreateHumanCase ();
+		CreateEquipmentCase2 obj3 = new CreateEquipmentCase2();
 		//Go to Failure mode
 		//Clicks on Error free bank
 		try
@@ -431,10 +436,8 @@ public class CreateEquipmentCase {
 		}catch (UnhandledAlertException f){			  
 		  driver.switchTo().alert().dismiss();
 		}
-		//Clicks on Failure Modes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
-		//Clicks on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+		//Clicks on Equipment module as per x value
+		obj3.decideEquipmentModule(driver,x);
 		//Search for keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
@@ -458,6 +461,12 @@ public class CreateEquipmentCase {
 		{
 			//Clicks on clear
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+			//Select filter for Equipment Performance
+			if((x == 1)||(x==2)||(x==6))
+			{
+				//Select Type
+				obj3.selectTypeAsPerX(driver,x);
+			}
 			//Click on discipline box
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.CaseSearchDisciplineBox)).click();
 			//Wait for popup
@@ -475,19 +484,26 @@ public class CreateEquipmentCase {
 			//Verify cases with only discipline filter
 			verifyCasesWithOnlyDisciplineFilter(driver, i, electrical, general, ic, mechanical, software, structural);
 			//Select field filter and disc filter
-			selectFieldFilter (driver, i, discList, fieldList, keyword, electrical, general, ic, mechanical, software, structural);
+			selectFieldDiscFilter (driver, x, i, discList, fieldList, keyword, electrical, general, ic, mechanical, software, structural);
 		}
 	}
 	
-	public void selectFieldFilter (WebDriver driver, int i, List<By> discList, List<By> fieldList, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
+	public void selectFieldDiscFilter (WebDriver driver, int x,int i, List<By> discList, List<By> fieldList, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		CaseBrowse obj1 = new CaseBrowse();
+		CreateEquipmentCase2 obj2 = new CreateEquipmentCase2();
 		for(int j=0;j<fieldList.size();j++)
 		{
 			//Clicks on clear
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
+			//Select filter for Equipment Performance
+			if((x == 1)||(x==2)||(x==6))
+			{
+				//Select Type
+				obj2.selectTypeAsPerX(driver,x);
+			}
 			//Click on discipline box
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.CaseSearchDisciplineBox)).click();
 			//Wait for popup
@@ -876,6 +892,18 @@ public class CreateEquipmentCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
+	    jse.executeScript("scroll(0,0)");
+	    Thread.sleep(1000);
+		//Clicks on Errorfree bank option
+		if (driver.findElement(EquipCasesLink).isDisplayed()==false)
+		{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankLink)).click();
+		}
+		//Clicks on Equipment cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
 	    jse.executeScript("scroll(0,0)");
 	    Thread.sleep(1000);
 		//Enter FM case id with links
@@ -1686,13 +1714,23 @@ public class CreateEquipmentCase {
 		CaseBrowse obj1 = new CaseBrowse();
 		ShareCheck obj = new ShareCheck();
 		CreateHumanCase obj2 = new CreateHumanCase ();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
+		Thread.sleep(1000);
 		//Clicks on Error free bank
 		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 		Actions act = new Actions(driver);
 		act.click(element1).build().perform();
+		Thread.sleep(1000);
+		try{
 		//Go to  FM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
-		Thread.sleep(1000);
+		}catch(org.openqa.selenium.TimeoutException r)
+		{
+			element1.click();
+		}
+		Thread.sleep(2000);
 		//Check for case
 		//Enters case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
@@ -1711,6 +1749,9 @@ public class CreateEquipmentCase {
 		CaseBrowse obj1 = new CaseBrowse();
 		ShareCheck obj = new ShareCheck();
 		CreateHumanCase obj2 = new CreateHumanCase ();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,0)");
 		Thread.sleep(1000);
 		if (categories.contains("Case Studies")||categories.contains("Advanced Learning")||categories.contains("General"))
 		{
@@ -1718,6 +1759,7 @@ public class CreateEquipmentCase {
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 			Actions act = new Actions(driver);
 			act.click(element1).build().perform();
+			Thread.sleep(1000);
 			//Go to Equipment Performance
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentPerformanceLink)).click();
 			Thread.sleep(1000);
@@ -1736,6 +1778,7 @@ public class CreateEquipmentCase {
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 			Actions act = new Actions(driver);
 			act.click(element1).build().perform();
+			Thread.sleep(1000);
 			//Go to  FM
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
 			Thread.sleep(1000);
@@ -1754,6 +1797,7 @@ public class CreateEquipmentCase {
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 			Actions act = new Actions(driver);
 			act.click(element1).build().perform();
+			Thread.sleep(1000);
 			//Go to Prevention of Design Deficiencies
 			wait.until(ExpectedConditions.visibilityOfElementLocated(PreventionOfDesignDeficienciesLink)).click();
 			Thread.sleep(1000);
@@ -1772,6 +1816,7 @@ public class CreateEquipmentCase {
 			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 			Actions act = new Actions(driver);
 			act.click(element1).build().perform();
+			Thread.sleep(1000);
 			//Go to Engineering Fundamentals
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EngineeringFundamentalsLink)).click();
 			Thread.sleep(1000);
@@ -2674,6 +2719,12 @@ public class CreateEquipmentCase {
 		option.click();
 		//Wait for loading message
 		obj.loadingServer(driver);
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-on']")));
+		Point p1 = l.getLocation();
+		int yaxis= p1.getY()-250;
+		Thread.sleep(2000);
+		jse.executeScript("scroll(0,"+yaxis+")");
+		Thread.sleep(2000);
 		if(x==1)
 		{
 		//Turn slide security on
@@ -2705,12 +2756,25 @@ public class CreateEquipmentCase {
 		  CaseBrowse obj1 = new CaseBrowse();
 		  ShareCheck obj = new ShareCheck();
 		  CreateHumanCase obj2 = new CreateHumanCase ();
+		  JavascriptExecutor jse = (JavascriptExecutor) driver;
+		  Thread.sleep(1000);
+		  jse.executeScript("scroll(0,0)");
+		  Thread.sleep(1000);
 		  //Clicks on Error free bank
 		  WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
 		  Actions act = new Actions(driver);
 		  act.click(element1).build().perform();
+		  Thread.sleep(1000);
+		  try{
 		  //Go to  FM
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.FailureModeLink)).click();
+		  }catch(org.openqa.selenium.TimeoutException r)
+		  {
+			  Thread.sleep(1000);
+			  jse.executeScript("scroll(0,0)");
+			  Thread.sleep(1000);
+			  element1.click();
+		  }
 		  Thread.sleep(1000);
 		  //Click on clear
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchClearButton)).click();
@@ -2815,7 +2879,7 @@ public class CreateEquipmentCase {
 	    //Chrome or Firefox
 	    if(browserName.equals("firefox"))
 	    	driver.switchTo().defaultContent();      
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 		//Switch to iframe
 		driver.switchTo().frame(driver.findElement(obj.IFrame));
 		Thread.sleep(2000);
@@ -3092,6 +3156,7 @@ public class CreateEquipmentCase {
 			  }
 			  //Waits for black loading message to disappear
 			  obj.loadingServer(driver);
+			  obj.loadingServer(driver);
 			  //Scroll to top
 			  Thread.sleep(1000);
 			  jse.executeScript("scroll(0,0)");
@@ -3259,6 +3324,7 @@ public class CreateEquipmentCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle)).click();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
 		  obj.loadingServer(driver);
 		  //Scroll to top
 		  Thread.sleep(1000);
@@ -3717,6 +3783,18 @@ public class CreateEquipmentCase {
 		  p.waitFor();
 		  Thread.sleep(4000);
 		  //Checks if 5 images have been uploaded
+		  try{
+			  driver.findElement(EquipImageCollapsibleExpanded);
+		  }catch(org.openqa.selenium.NoSuchElementException e)
+		  {
+			  l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
+			  p1 = l.getLocation();
+			  yaxis= p1.getY()-250;
+			  Thread.sleep(2000);
+			  jse.executeScript("scroll(0,"+yaxis+")");
+			  Thread.sleep(2000);
+			  l.click();
+		  }
 		  if(driver.findElement(EquipImageCollapsibleExpanded).isDisplayed()==false)
 		  {
 			  l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipImageCollapsible));
@@ -4070,7 +4148,8 @@ public class CreateEquipmentCase {
 		  Thread.sleep(1000);
 		  if(driver.findElement(EquipCaseSearchCaseIDDropdownAdmin).isDisplayed()==false)
 			  System.out.println("Case deleted: "+caseId1.get(i));
-		  }
+		  else softly.fail("Case did not get deleted: "+caseId1.get(i) );
+		  }		 
 		  //Clicks on Errorfree bank option to close the collapsible menu
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankLink)).click();
 	}

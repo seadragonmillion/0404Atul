@@ -193,6 +193,7 @@ public class CreateHumanCase {
 		  Thread.sleep(1000);
 		  if(driver.findElement(HumanCaseSearchCaseIDDropdownAdmin).isDisplayed()==false)
 			  System.out.println("Case deleted");		
+		  else softly.fail("Case did not get deleted: "+caseID.get(i) );
 		  }
 	}
 	public void deleteLinks (WebDriver driver, List<String> cases) throws Exception {
@@ -590,7 +591,7 @@ public class CreateHumanCase {
 	    jse.executeScript("scroll(0,0)");
 	    Thread.sleep(1000);
 		//Verify all fields
-		verifyCaseFieldsInAdmin(driver, keyword_same+"changed");
+		verifyCaseFieldsInAdmin(driver, keyword_same);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
@@ -607,7 +608,7 @@ public class CreateHumanCase {
 	    jse.executeScript("scroll(0,0)");
 	    Thread.sleep(1000);
 		//Verify all fields
-		verifyCaseFieldsInAdmin(driver, keyword_same+"changed");
+		verifyCaseFieldsInAdmin(driver, keyword_same);
 		//Verify new case form after viewing case with links
 		verifyNewCaseForm(driver, caseID.get(2));
 	}
@@ -681,13 +682,13 @@ public class CreateHumanCase {
 		softly.assertThat(s1).as("test data").isEmpty();
 		//Verify task
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingTaskOnlyOne)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo(keyword_same);
+		softly.assertThat(s2).as("test data").isEqualTo(keyword_same+"changed");
 		//Verify purpose
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingPurposeOnlyOne)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo(keyword_same);
+		softly.assertThat(s3).as("test data").isEqualTo(keyword_same+"changed");
 		//Verify condition
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingConditionOnlyOne)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo(keyword_same);
+		softly.assertThat(s4).as("test data").isEqualTo(keyword_same+"changed");
 		//Verify keyword
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingKeywordOnlyOne)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo(keyword_same);

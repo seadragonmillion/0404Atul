@@ -517,6 +517,7 @@ public class JobObservation {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,20);
 	    	EiRCA obj = new EiRCA ();
+	    	ShareCheck obj1 = new ShareCheck();
 	    	String text = obj.textCreate(driver);
 	    	//Clicks on Analysis 
 			try
@@ -564,10 +565,13 @@ public class JobObservation {
 			  path(driver);
 			  //Waits for the green popup on the right top corner
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			  obj1.loadingServer(driver);
 			  //Clicks on saved activities
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-btn-savedactivities"))).click();
+			  obj1.loadingServer(driver);
 			  //Clicks on side panel option for job observation
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+			  obj1.loadingServer(driver);
 			  //Gets the name of the record created
 			  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"));
 			  String recordName = record.getText();

@@ -21,6 +21,13 @@ public class CaseBrowse {
 	
 	SoftAssertions softly = new SoftAssertions();
 	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
+	String caseEquipALProd = "1545";
+	String caseEquipGProd = "1636";
+	String caseEquipCSDev = "1985";
+	String keywordEquipALDev = "QAA oil color";
+	String keywordEquipCSDev = "QAACaseStudiesEquipment";
+	String keywordEquipALProd = "bolted flange";
+	String keywordEquipGProd = "positive sequence";
 	String caseHumanColor = "Q1516";
 	String caseEquipColor = "F1516";
 	String caseHumanDev = "1459";
@@ -124,6 +131,11 @@ public class CaseBrowse {
 	By CaseSearchTypeList = By.id("pii-efse-filter-type-listbox");
 	By CaseSearchTypesPopupClose = By.xpath(".//*[@id='pii-efse-filter-type-listbox']/div/a");
 	By EquipCaseSearchListTypesAdvancedLearning = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[1]/a");
+	By EquipCaseSearchListTypesCaseStudies = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[2]/a");
+	By EquipCaseSearchListTypesDesign = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[3]/a");
+	By EquipCaseSearchListTypesFailureMode = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[4]/a");
+	By EquipCaseSearchListTypesFundamentals = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[5]/a");
+	By EquipCaseSearchListTypesGeneral = By.xpath(".//*[@id='pii-efse-filter-type-menu']/li[6]/a");
 	
 	//Human Case
 	By HumanAddKeywordField = By.id("pii-admin-efsh-keyword-search-input");
@@ -147,6 +159,79 @@ public class CaseBrowse {
 	//Slides
 	By SlideNextButton = By.linkText("Next");
 	By SlidePreviousButton = By.linkText("Previous");
+	
+	public void caseSearchEquipmentDatabank(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		EquipmentPDDandEF obj = new EquipmentPDDandEF();
+		String caseEquipColor1 = caseEquipColor.replace("F", "");
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		if(driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))
+		{
+			searchWithTypeFilter(driver, keywordEquipALProd, keywordEquipProd, keywordEquipGProd, obj.keywordPDDProd, obj.keywordEFProd, keywordElecProd, obj.caseEFProd, obj.casePDDProd, caseEquipALProd, caseEquipProd, caseEquipGProd, caseElecProd);
+		}
+		else
+		{
+			searchWithTypeFilter(driver, keywordEquipALDev, keywordEquipCSDev, keywordEquipDev, obj.keywordPDDDev, obj.keywordEFDev, keywordElecDev, obj.caseEFDev, obj.casePDDDev, caseEquipColor1, caseEquipCSDev, caseEquipDev, caseElecDev);
+		}
+	}
+
+	public void searchWithTypeFilter(WebDriver driver, String keywordAL, String keywordCS, String keywordG, String keywordPDD, String keywordEF, String keywordFM, String caseEF, String casePDD, String caseAL, String caseCS, String caseG, String caseFM) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		CreateEquipmentCase2 obj = new CreateEquipmentCase2 ();
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		//Select Type Advanced Learning
+		obj.selectTypeAdvancedLearning(driver);
+		//Put in keyword and look for case
+		lookForCaseWithTypeFilter(driver, keywordAL, caseAL);
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		//Select Type Case Studies
+		obj.selectTypeCaseStudies(driver);
+		//Put in keyword and look for case
+		lookForCaseWithTypeFilter(driver, keywordCS, caseCS);
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		//Select Type General
+		obj.selectTypeGeneral(driver);
+		//Put in keyword and look for case
+		lookForCaseWithTypeFilter(driver, keywordG, caseG);
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		//Select Type Engineering Fundamentals
+		obj.selectTypeFundamentals(driver);
+		//Put in keyword and look for case
+		lookForCaseWithTypeFilter(driver, keywordEF, caseEF);
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		//Select Type Design
+		obj.selectTypeDesign(driver);
+		//Put in keyword and look for case
+		lookForCaseWithTypeFilter(driver, keywordPDD, casePDD);
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		//Select Type Failure modes
+		obj.selectTypeFailureMode(driver);
+		//Put in keyword and look for case
+		lookForCaseWithTypeFilter(driver, keywordFM, caseFM);
+	}
+	
+	public void lookForCaseWithTypeFilter(WebDriver driver, String keyword, String caseId) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		ShareCheck obj = new ShareCheck();
+		//Search for keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		//Wait for loading message
+		obj.loadingServer(driver);
+		//Look for case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
+	}
 	
 	public void getHumanPerformanceLink(WebDriver driver, int y) throws Exception {
 		

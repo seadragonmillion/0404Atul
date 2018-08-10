@@ -15,10 +15,17 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.w3c.dom.Document;
 
+import javax.mail.Flags;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.search.FlagTerm;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -71,14 +78,18 @@ public class RemoteVerification {
 		else return ("There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
 	}
 	
-	public void checkStatusReport (WebDriver driver) throws Exception {
+	public void checkStatusReport (WebDriver driver, String username, int k) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		UserManagement obj1 = new UserManagement();
+		ShareCheck obj = new ShareCheck();
+		//Mark read verifier email		
+		String email = selectEmail(k);
+		obj1.emailMarkRead(email, driver);
 		//Clicks on Save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
-		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
+		//Wait for loading message to disappear		
 		obj.loadingServer(driver);
 		//Click on Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-savedactivities"))).click();
@@ -107,6 +118,154 @@ public class RemoteVerification {
 		//Verify status
 		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/span"))).getText();
 		softly.assertThat(status1).as("test data").contains("Sent, waiting upon verification");
+		//Creates the expected name of record
+		String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
+		creation_date= creation_date.substring(22, creation_date.length());
+		String reportName = creation_date +"_"+ username + "_" + eventTitle(driver);
+		//Verify email
+		verifyEmailForVerifier (driver,username,reportName,k);
+	}
+	
+	public String selectEmail(int k) throws Exception{
+		
+		UserManagement obj = new UserManagement();
+		//dev admin
+		if(k==1)
+		{
+			return obj.emailDev;
+		}
+		//dev nonadmin
+		if(k==2)
+		{
+			return obj.emailDev;
+		}
+		//dev admin ie11
+		if(k==3)
+		{
+			return obj.emailDevie11;
+		}
+		//dev nonadmin ie11
+		if(k==4)
+		{
+			return obj.emailDevie11;
+		}
+		//asia admin
+		if(k==5)
+		{
+			return obj.emailAsia;
+		}
+		//asia nonadmin
+		if(k==6)
+		{
+			return obj.emailAsia;
+		}
+		//asia admin ie11
+		if(k==7)
+		{
+			return obj.emailAsiaie11;
+		}
+		//asia nonadmin ie11
+		if(k==8)
+		{
+			return obj.emailAsiaie11;
+		}
+		//us admin
+		if(k==9)
+		{
+			return obj.emailUS;
+		}
+		//us nonadmin
+		if(k==10)
+		{
+			return obj.emailUS;
+		}
+		//us admin ie11
+		if(k==11)
+		{
+			return obj.emailUSie11;
+		}
+		//us nonadmin ie11
+		else
+		{
+			return obj.emailUSie11;
+		}
+	}
+	
+	public void verifyEmailForVerifier (WebDriver driver,String username, String reportName, int k) throws Exception {
+		
+		UserManagement obj = new UserManagement();
+		//Get current Time
+        long currentTime = System.currentTimeMillis();
+        //Add 15 minutes to it
+        long time15 = currentTime + (15*60*1000);
+		String SMTP_HOST = "smtp.gmail.com";
+	    String EMAIL_ADDRESS = selectEmail(k);
+	    String PASSWORD = "5sepkale";
+	    String INBOX_FOLDER = "INBOX";	    
+	    Properties props = new Properties();
+	    //Get browser name
+	  	Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	  	String browserName = cap.getBrowserName().toLowerCase();
+	  	System.out.println(browserName);
+	  	String v = cap.getVersion().toString();
+	  	System.out.println(v);
+	  	if (browserName.equals("internet explorer"))
+	  	{
+	  	   	if (v.startsWith("11"))
+	  	   		props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+	  	   	else
+	  	   		props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	  	}
+	  	else
+	  	   	props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+	    Session session = Session.getDefaultInstance(props, null);
+	    Store store = session.getStore("imaps");
+	    store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
+	    Folder inbox = store.getFolder(INBOX_FOLDER);
+	    inbox.open(Folder.READ_ONLY);
+	    int messageCount = inbox.getMessageCount(); 
+	    System.out.println("Total Messages:- " + messageCount);
+        Flags seen = new Flags(Flags.Flag.SEEN);
+        FlagTerm unseenFlagTerm = new FlagTerm(seen, false);
+        Message[] messages1 = inbox.search(unseenFlagTerm);
+        int messageCount1 = messages1.length;
+        while(true)
+        {
+        	Thread.sleep(2000);
+        	if(currentTime>time15)
+        	{
+        		System.out.println("Time elapsed for email: More than 15 minutes");
+        		obj.excelStore();
+        		break;
+        	}
+        	if (messageCount1>0)
+        		break;
+        	messages1 = inbox.getMessages();
+        	Thread.sleep(1000);
+        	messages1 = inbox.search(unseenFlagTerm);
+        	messageCount1 = messages1.length;
+        }
+        System.out.println("Unread messages: "+messageCount1);
+        StringBuffer sb=new StringBuffer();
+        for (int i = 0; i < messageCount1; i++) {
+        	Message message1 = messages1[i];
+        	System.out.println(i);
+            System.out.println("Mail Subject:- " + messages1[i].getSubject());
+            System.out.println("From: " + message1.getFrom());
+            System.out.println("Text: " + message1.getContent().toString());
+            sb = new StringBuffer( message1.getContent().toString());
+        }
+        String emailText=sb.toString();
+        System.out.println("\n ******** \n"+emailText+"\n ******** \n");
+		//Verify content of email
+        softly.assertThat(emailText).as("test data").contains(username);        
+        //Modify reportname
+        String s = emailText.replace((char)173,'*');
+        System.out.println(s);
+        String s1 = s.replace((char)60, '<');
+        String s2 = s1.replace("<*", "<");
+        System.out.println(s2);
+        softly.assertThat(emailText).as("test data").contains(s2);
 	}
 	
 	public void upload1stpictureChrome(WebDriver driver) throws Exception {
@@ -449,11 +608,70 @@ public class RemoteVerification {
 		
 	}
 	
-	public void verifierSelect(WebDriver driver) throws Exception {
+	public void verifierSelect(WebDriver driver, int k) throws Exception {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-	    //Selects the remote verifier
-		driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifier");
+		//dev admin
+		if(k==1)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifier");
+		}
+		//dev nonadmin
+		if(k==2)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifiernonadmin");
+		}
+		//dev admin ie11
+		if(k==3)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifier");
+		}
+		//dev nonadmin ie11
+		if(k==4)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifiernonadmin");
+		}
+		//asia admin
+		if(k==5)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifier");
+		}
+		//asia nonadmin
+		if(k==6)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifiernonadmin");
+		}
+		//asia admin ie11
+		if(k==7)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifier");
+		}
+		//asia nonadmin ie11
+		if(k==8)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifiernonadmin");
+		}
+		//us admin
+		if(k==9)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausrvverifier");
+		}
+		//us nonadmin
+		if(k==10)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausrvverifiernonadmin");
+		}
+		//us admin ie11
+		if(k==11)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausie11rvverifier");
+		}
+		//us nonadmin ie11
+		if(k==12)
+		{
+			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausie11rvverifiernonadmin");
+		}
+	    //Selects the remote verifier		
 		jse.executeScript("scroll(0, 1500)");
 		WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
 		WebElement option=select.findElement(By.cssSelector(".ui-first-child"));
@@ -1003,7 +1221,7 @@ public class RemoteVerification {
 	    }
 	}
 	
-	public List<String> createReport(WebDriver driver, String username) throws Exception{
+	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 		
 		  //Clicks on Analysis 
 		  try
@@ -1032,7 +1250,7 @@ public class RemoteVerification {
 		  
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Select verifier
-		  verifierSelect(driver);
+		  verifierSelect(driver,k);
 		  Thread.sleep(1000);
 		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
 		  //Uploads picture 2
@@ -1050,7 +1268,7 @@ public class RemoteVerification {
 		  //Verifies location of office
 		  verifyLongitudeLatitude(driver);
 		  //Verify status 
-		  checkStatusReport(driver);
+		  checkStatusReport(driver,username,k);
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
 		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();

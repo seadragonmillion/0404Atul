@@ -1647,6 +1647,8 @@ public class EquipmentPDDandEF {
 		List<String> caseID = new ArrayList<String>();
 		for(int count=1;count<=5;count++)
 		{
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.LoginNameOnTopRight)).click();
 		//Clicks on admin option

@@ -77,6 +77,8 @@ public class EquipmentIETest {
 		  obj1.browseCaseIDEquip(driver, obj1.caseEquipProd, obj1.titleEquipProd);
 		  //Search with keyword color oil
 		  obj1.searchColorCasesEquip(driver);
+		  //Case search with filter
+		  obj1.caseSearchEquipmentDatabank(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);

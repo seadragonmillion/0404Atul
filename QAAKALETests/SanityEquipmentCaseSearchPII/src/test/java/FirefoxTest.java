@@ -89,6 +89,8 @@ public class FirefoxTest {
 		  obj1.browseTermEquip(driver, obj1.keywordEquipDev, obj1.caseEquipDev, obj1.titleDev);
 		  //Case id search
 		  obj1.browseCaseIDEquip(driver, obj1.caseEquipDev, obj1.titleDev);
+		  //Case search with filter
+		  obj1.caseSearchEquipmentDatabank(driver);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);
