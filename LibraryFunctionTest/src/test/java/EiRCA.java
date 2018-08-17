@@ -230,7 +230,7 @@ public class EiRCA {
 		  obj1.checkNoReportAfterDelete(driver, sharer, softly);		  			  
 	  }
 	
-	  public void verifyHTML(WebDriver driver,HashMap<String,String>hm, String text, int n,int x, int y, int z, String ans1, String ans2, String ans3, List<Integer> c)throws Exception {
+	  public void verifyHTML(WebDriver driver,HashMap<String,String>hm, String text, int n,int x, int y, int z, String ans1, String ans2, String ans3, HashMap<String,Integer> c)throws Exception {
     	
 		  WebDriverWait wait = new WebDriverWait(driver,30);
 		  //Clicks on first newly created record
@@ -282,6 +282,11 @@ public class EiRCA {
 	      String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1SuspectedFailedComponent)).getText();
 	      String r10 = s11.replace("\u00AD", "");
 	      softly.assertThat(r10).as("test data").isEqualTo(text);
+	      //Convert Value of hashmap to list
+	      List<Integer> c1 = returnListFromHMValue(c);
+	      //Root cause and contributing factor
+	      if(z!=0)
+	    	  HTMLRCTable(driver,z,c,c1);
 	      //Step 1 Table
 	      HTMLStep1Table(driver,ans1,ans2,ans3);
 	      //Step 2 Table
@@ -322,7 +327,7 @@ public class EiRCA {
 		      }
 		      else
 		      {
-		    	  HTMLStep7RC(driver,z,c);
+		    	  HTMLStep7RCTr(driver,z,c1);
 		      }
 	      }	      
 	      //Verify step 4 skipped
@@ -361,115 +366,100 @@ public class EiRCA {
 		      }
 		      else
 		      {
-		    	  HTMLStep7Tr(driver,z,c);
+		    	  HTMLStep7RCTr(driver,z,c1);
 		      }
 	      }
 	  }
 	  
-	  public void HTMLStep7RC(WebDriver driver, int z,List<Integer> c) throws Exception {
+	  public List<Integer> returnListFromHMValue(HashMap<String,Integer> c) throws Exception {
 		  
-		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  for(int i=1;i<=z;i++)
+		  List<Integer>c1 = new ArrayList<Integer>();
+		  if(c.isEmpty()==false)
 		  {
-			  int f = c.get(i-1);
-			  if(i==1)
-			  {
-				  if(f>=1)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column2RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=2)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column3RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=3)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column4RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f==4)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column5RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-			  }
-			  if(i==2)
-			  {
-				  if(f>=1)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column2RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=2)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column3RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=3)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column4RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f==4)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column5RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-			  }
-			  if(i==3)
-			  {
-				  if(f>=1)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column2RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=2)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column3RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=3)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column4RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f==4)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column5RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-			  }
-			  if(i==4)
-			  {
-				  if(f>=1)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column2RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=2)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column3RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f>=3)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column4RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-				  if(f==4)
-				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column5RC)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
-				  }
-			  }
+			 if(c.get("Culprit work activities")!=null)
+				 c1.add(c.get("Culprit work activities"));
+			 if(c.get("Inadequate preventive maintenance schedule")!=null)
+				 c1.add(c.get("Inadequate preventive maintenance schedule"));
+			 if(c.get("Sub-standard practice: maintenance error")!=null)
+				 c1.add(c.get("Sub-standard practice: maintenance error"));
+			 if(c.get("Sub-standard practice: operating errors")!=null)
+				 c1.add(c.get("Sub-standard practice: operating errors"));
 		  }
+		  return c1;
 	  }
 	  
-	  public void HTMLStep7Tr(WebDriver driver, int z,List<Integer> c) throws Exception {
+	  public void HTMLRCTable(WebDriver driver, int z, HashMap<String,Integer> c, List<Integer> c1) throws Exception {
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,10);
+		  int i=1;
+		  int j=1;
+		  if(c.get("Culprit work activities")!=null)
+		  {
+			  if(c.get("Culprit work activities")==4)
+			  {
+				  i=i+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr["+i+"]/td[1]"))).getText();
+				  System.out.println(s);
+				  softly.assertThat(s).as("test data").isEqualTo("Culprit work activities");
+			  }
+			  else
+			  {
+				  j=j+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr["+j+"]/td[1]"))).getText();
+				  System.out.println(s);
+				  softly.assertThat(s).as("test data").isEqualTo("Culprit work activities");
+			  }
+		  }
+		  if(c.get("Inadequate preventive maintenance schedule")!=null)
+		  {
+			  if(c.get("Inadequate preventive maintenance schedule")==4)
+			  {
+				  i=i+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr["+i+"]/td[1]"))).getText();
+				  softly.assertThat(s).as("test data").isEqualTo("Inadequate preventive maintenance schedule");
+			  }
+			  else
+			  {
+				  j=j+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr["+j+"]/td[1]"))).getText();
+				  softly.assertThat(s).as("test data").isEqualTo("Inadequate preventive maintenance schedule");
+			  }
+		  }
+		  if(c.get("Sub-standard practice: maintenance error")!=null)
+		  {
+			  if(c.get("Sub-standard practice: maintenance error")==4)
+			  {
+				  i=i+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr["+i+"]/td[1]"))).getText();
+				  softly.assertThat(s).as("test data").isEqualTo("Sub-standard practice: maintenance error");
+			  }
+			  else
+			  {
+				  j=j+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr["+j+"]/td[1]"))).getText();
+				  softly.assertThat(s).as("test data").isEqualTo("Sub-standard practice: maintenance error");
+			  }
+		  }
+		  if(c.get("Sub-standard practice: operating errors")!=null)
+		  {
+			  if(c.get("Sub-standard practice: operating errors")==4)
+			  {
+				  i=i+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr["+i+"]/td[1]"))).getText();
+				  softly.assertThat(s).as("test data").isEqualTo("Sub-standard practice: operating errors");
+			  }
+			  else
+			  {
+				  j=j+1;
+				  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr["+j+"]/td[1]"))).getText();
+				  softly.assertThat(s).as("test data").isEqualTo("Sub-standard practice: operating errors");
+			  }
+		  }		  
+	  }
+	  
+	  public void HTMLStep7RCTr(WebDriver driver, int z, List<Integer> c) throws Exception {
+		  
+		  WebDriverWait wait = new WebDriverWait(driver,2);
 		  for(int i=1;i<=z;i++)
 		  {
 			  int f = c.get(i-1);
@@ -477,96 +467,193 @@ public class EiRCA {
 			  {
 				  if(f>=1)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column2)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column2RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column2)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
+					  
 				  }
 				  if(f>=2)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column3)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column3RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column3)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=3)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column4)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column4RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column4)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f==4)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column5)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column5RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row2Column5)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 			  }
 			  if(i==2)
 			  {
 				  if(f>=1)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column2)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column2RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column2)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=2)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column3)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column3RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column3)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=3)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column4)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column4RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column4)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f==4)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column5)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column5RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row3Column5)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 			  }
 			  if(i==3)
 			  {
 				  if(f>=1)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column2)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column2RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column2)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=2)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column3)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column3RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column3)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=3)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column4)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column4RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column4)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f==4)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column5)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column5RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row4Column5)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 			  }
 			  if(i==4)
 			  {
 				  if(f>=1)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column2)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column2RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column2)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=2)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column3)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column3RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column3)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f>=3)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column4)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column4RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column4)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 				  if(f==4)
 				  {
-					  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column5)).getText();
-					  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  try{
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column5RC)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }catch(org.openqa.selenium.TimeoutException r)
+					  {
+						  String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Row5Column5)).getText();
+						  softly.assertThat(s).as("test data").isEqualTo("Yes");
+					  }
 				  }
 			  }
 		  }
-	  }
+	  }	 
 	  
 	  public void HTMLStep6(WebDriver driver, int y) throws Exception {
 		  
@@ -1449,12 +1536,12 @@ public class EiRCA {
 	    	ShareCheck obj1 = new ShareCheck();
 	    	Thread.sleep(1000);
 	    	//Click on collapsible
-	    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3FailureCollapsible)).click();/*
+	    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3FailureCollapsible)).click();
 	    	//Choose a number between 0 to 6
 	    	Random random = new Random();
-	    	int n = random.nextInt(7);*/
+	    	int n = random.nextInt(7);
+	    	//int n = 0;
 	    	Thread.sleep(1000);
-	    	int n=0;
 	    	if(n==0)
 	    	{
 	    		System.out.println("No failure modes are refuted.");
@@ -1638,17 +1725,18 @@ public class EiRCA {
 	    	return random.nextInt(5);
 	    }
 	    
-	    public List<Integer> EiRCAStep7OneFailureMode(WebDriver driver, int n) throws Exception {
+	    public HashMap<String,Integer> EiRCAStep7OneFailureMode(WebDriver driver, int n) throws Exception {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	EiRCAChinese obj = new EiRCAChinese();
-	    	List<Integer> c = new ArrayList<Integer>();
+	    	HashMap<String,Integer> c = new HashMap<String,Integer>();
 	    	for(int i=1;i<=n;i++)
 	    	{
 		    	int k = chooseNumberOfSUEPBoxes();
-		    	c.add(k);
 	    		if(i==1)
 		    	{
+	    			String key = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow2)).getText();
+	    			c.put(key, k);
 			    	if(k==1)
 			    	{
 			    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow2Chk1)).click();
@@ -1674,7 +1762,9 @@ public class EiRCA {
 		    	}
 		    	if(i==2)
 		    	{
-			    	if(k==1)
+		    		String key = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow3)).getText();
+	    			c.put(key, k);
+		    		if(k==1)
 			    	{
 			    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow3Chk1)).click();
 			    	}
@@ -1699,7 +1789,9 @@ public class EiRCA {
 		    	}
 		    	if(i==3)
 		    	{
-			    	if(k==1)
+		    		String key = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow4)).getText();
+	    			c.put(key, k);
+		    		if(k==1)
 			    	{
 			    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow4Chk1)).click();
 			    	}
@@ -1724,7 +1816,9 @@ public class EiRCA {
 		    	}
 		    	if(i==4)
 		    	{
-			    	if(k==1)
+		    		String key = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow5)).getText();
+	    			c.put(key, k);
+		    		if(k==1)
 			    	{
 			    		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step7SUEPTableRow5Chk1)).click();
 			    	}
@@ -1859,7 +1953,7 @@ public class EiRCA {
 				  z = EIRCAStep6OneFailureMode(driver);
 			  }
 			  //Step 7
-			  List<Integer> c = EiRCAStep7OneFailureMode(driver,z);
+			  HashMap<String,Integer> c = EiRCAStep7OneFailureMode(driver,z);
 			  Thread.sleep(2000);
 			  //Clicks on Save button
 			  jse.executeScript("return document.getElementById('pii-ircam-save').click();");
