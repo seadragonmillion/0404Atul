@@ -40,6 +40,7 @@ public class IE10Test {
 	public void test() throws Exception {
 		Login obj = new Login ();
 		EquipmentPDDandEF obj1 = new EquipmentPDDandEF ();
+		CreateEquipmentCase2 obj2 = new CreateEquipmentCase2();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(2000);
@@ -82,6 +83,8 @@ public class IE10Test {
 		obj1.searchCaseInEquipSearchByKeyword(driver, obj1.keywordPDDDev, obj1.casePDDDev);
 		//Search for case in Equipment non pii by case id
 		obj1.searchCaseInEquipSearchByCaseID(driver, obj1.casePDDDev);
+		//Add new keyword to old case
+		obj2.addNewKeywordToOldCase(driver, obj1.casePDDDev);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);		

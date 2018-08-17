@@ -53,6 +53,7 @@ public class FirefoxTest {
 	  public void SanityTest() throws Exception{
 		  Login obj = new Login();
 		  CaseBrowse obj1 = new CaseBrowse();
+		  CreateEquipmentCase2 obj2 = new CreateEquipmentCase2();
 		  //Logs in
 		  int login = obj.LoginUser(driver, username, password);
 		  System.out.println("Title after login: "+driver.getTitle());
@@ -89,6 +90,8 @@ public class FirefoxTest {
 		  obj1.browseTermEquip(driver, obj1.keywordMechDev, obj1.caseMechDev, obj1.titleDev);
 		  //Case id search
 		  obj1.browseCaseIDEquip(driver, obj1.caseMechDev, obj1.titleDev);
+		  //Add new keyword to old case
+		  obj2.addNewKeywordToOldCase(driver, obj1.caseMechDev);
 		  //Logs out
 		  obj.logout(driver);
 		  Thread.sleep(2000);

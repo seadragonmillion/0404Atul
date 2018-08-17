@@ -126,6 +126,7 @@ public class CreateEquipmentCase {
 	By EquipCaseDeleteButton = By.id("pii-admin-efse-button-delete");
 	By EquipCaseEditButton = By.id("pii-admin-efse-button-edit");
 	By EquipCaseExistingKeywordOnlyOne = By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li/a");
+	By EquipCaseKeywordList = By.id("pii-admin-efse-keyword-list");
 	By EquipImageCollapsibleExpanded = By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div");
 	By EquipCaseFields = By.id("pii-admin-efse-field-button");
 	By EquipCaseDiscipline = By.id("pii-admin-efse-discipline-button");
@@ -1286,13 +1287,12 @@ public class CreateEquipmentCase {
 		softly.assertThat(s2).as("test data").isEqualTo(keyword_same);
 	}
 	
-	public void addKeywordKALE2168(WebDriver driver, List<String> caseID, String keyword_same) throws Exception {
+	public void addKeywordEquip(WebDriver driver, String caseID, String keyword_same)throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		Login obj1 = new Login();
-		CaseBrowse obj2 = new CaseBrowse();
 		CreateHumanCase obj3 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
@@ -1312,7 +1312,7 @@ public class CreateEquipmentCase {
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDAdmin)).sendKeys(caseID.get(2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
 		Thread.sleep(2000);
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDDropdownAdmin)).click();
@@ -1336,7 +1336,7 @@ public class CreateEquipmentCase {
 		//Add new keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same+"added");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same);
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 		Thread.sleep(1000);
@@ -1359,6 +1359,15 @@ public class CreateEquipmentCase {
 		}catch (UnhandledAlertException f){			  
 		  driver.switchTo().alert().dismiss();
 		}
+	}
+	
+	public void addKeywordKALE2168(WebDriver driver, List<String> caseID, String keyword_same) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		CaseBrowse obj2 = new CaseBrowse();
+		//Add keyword
+		addKeywordEquip(driver,caseID.get(2),keyword_same+"added");
 		//Clicks on Equipment Performance Search
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EquipmentPerformanceLink)).click();
 		//Waits for black loading message to disappear

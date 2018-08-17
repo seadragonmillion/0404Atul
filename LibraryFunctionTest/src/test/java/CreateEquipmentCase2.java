@@ -3,16 +3,178 @@ import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class CreateEquipmentCase2 {
+	
+	String keyword = "KeywordQAAadded";
+	String keywordUS = "KeywordUSQAAadded";
+	String keywordie11 = "Keywordie11QAAadded";
+	String keywordUSie11 = "KeywordUSie11QAAadded";
+	
+	public String keywordDecide(WebDriver driver) throws Exception {
+		
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+	    String browserName = cap.getBrowserName().toLowerCase();
+	    String v = cap.getVersion().toString();
+		//Get url
+		if(driver.getCurrentUrl().contains("kale."))
+		{
+			if(browserName.equals("internet explorer")&&(v.startsWith("11")))
+			{
+				return keywordUSie11;
+			}
+			else
+				return keywordUS;
+		}
+		else{
+			if(browserName.equals("internet explorer")&&(v.startsWith("11")))
+			{
+				return keywordie11;
+			}
+			else
+				return keyword;
+		}
+	}
+	
+	public void addNewKeywordToOldCase (WebDriver driver, String caseID) throws Exception {
+		
+		CaseBrowse obj = new CaseBrowse();
+		EquipmentPDDandEF obj1 = new EquipmentPDDandEF();
+		CreateEquipmentCase obj2 = new CreateEquipmentCase();
+		ShareCheck obj3 = new ShareCheck();
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		if((caseID.equals(obj.caseElecDev))||(caseID.equals(obj.caseMechDev))||(caseID.equals(obj.caseEquipDev))||(caseID.equals(obj1.caseEFDev))||(caseID.equals(obj1.casePDDDev)))
+		{
+			//Add keyword
+			obj2.addKeywordEquip(driver,caseID,keywordDecide(driver));
+		}
+		if((caseID.equals(obj.caseElecDev))||(caseID.equals(obj.caseMechDev)))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.FailureModeLink)).click(); 
+		}
+		if(caseID.equals(obj.caseEquipDev))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentPerformanceLink)).click();
+		}
+		if(caseID.equals(obj1.caseEFDev))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EngineeringFundamentalsLink)).click();
+		}
+		if(caseID.equals(obj1.casePDDDev))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.PreventionOfDesignDeficienciesLink)).click();
+		}
+		//Clears Everything
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchClearButton)).click();
+		Thread.sleep(2000);
+		//Checks for search method with magnifying glass
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchKeywordField)).sendKeys(keywordDecide(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchKeywordFieldSearchButton)).click();
+		//Wait for loading message to disappear
+		obj3.loadingServer(driver);
+		//Waits for case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseID)));
+		//Clear
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchClearButton)).click();
+		//Remove added keyword
+		removeAddedKeyword(driver,caseID);
+	}
+	
+	public void removeAddedKeyword(WebDriver driver, String caseID) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
+		Login obj1 = new Login();
+		CreateHumanCase obj3 = new CreateHumanCase();
+		CreateEquipmentCase obj4 = new CreateEquipmentCase();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
+		Thread.sleep(1000);
+		//Clicks on Errorfree bank option
+		if (driver.findElement(obj4.EquipCasesLink).isDisplayed()==false)
+		{
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankLink)).click();
+		}
+		//Clicks on Equipment cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasesLink)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		obj.scrollToTop(driver);
+		Thread.sleep(1000);
+		//CLick on enter case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
+		Thread.sleep(2000);
+		//Clicks on case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseSearchCaseIDDropdownAdmin)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(1000);
+		obj.scrollToTop(driver);
+		Thread.sleep(1000);
+		//Click on Edit
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseEditButton)).click();
+		Thread.sleep(2000);
+		//Scroll down
+		try{
+		jse.executeScript("scroll(0,2000)");
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,2000)");
+		}
+		Thread.sleep(1000);
+		//Click on added new keyword
+		int i=0;
+		while(true)
+		{
+			i=i+1;
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li["+i+"]/a"))).getText();
+			System.out.println(s);
+			if(s.contains(keywordDecide(driver)))
+			{
+				//click on it
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li["+i+"]/a"))).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+		//Clicks on remove keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupConfirmButton)).click();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
+		Thread.sleep(2000);
+		//Scroll to top
+		obj.scrollToTop(driver);
+	    Thread.sleep(1000);
+	    //Clicks on save
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseSaveButton)).click();
+	    //Clicks on create case
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupTitle)).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupConfirmButton)).click();
+	    //Waits for black loading message to disappear
+	    obj.loadingServer(driver);
+	    Thread.sleep(1000);
+	    obj.scrollToTop(driver);
+	    Thread.sleep(1000);
+	}
 	
 	public void decideEquipmentModule(WebDriver driver, int x) throws Exception {
 	    

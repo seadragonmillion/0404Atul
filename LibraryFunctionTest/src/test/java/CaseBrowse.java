@@ -298,12 +298,7 @@ public class CaseBrowse {
 	    */
 	    verifyOrderOfModules(driver, y);
 	    //Clicks on Electrical Failure Mode
-        try{
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(ElectricalFailureModeLink)).click();
-        }catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
-        {
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
 	}
 	
 	public void getMechFailureModeLink(WebDriver driver, int y) throws Exception {
@@ -320,12 +315,7 @@ public class CaseBrowse {
 	    */
 	    verifyOrderOfModules(driver, y);
 	    //Clicks on Mechanical Failure Mode
-        try{
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(MechanicalFailureModeLink)).click();
-        }catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
-        {
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();
-        }	    
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FailureModeLink)).click();    
 	}
 	
 	public void chooseDisciplineFailureModeSearch(WebDriver driver) throws Exception {
