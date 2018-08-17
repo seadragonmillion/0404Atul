@@ -64,6 +64,8 @@ public class HiRCAChinese {
 	public void pathHiRCA(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);  
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Go to hirca and fill mandatory details on event info
@@ -276,6 +278,7 @@ public class HiRCAChinese {
 		chineseLOPRC(driver);
 		//Save 1st path
 		saveReport1st(driver);
+		obj.loadingServer(driver); 
 		//2nd path
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -299,6 +302,7 @@ public class HiRCAChinese {
 		//Save 2nd path
 		saveReport2nd(driver);	
 		//3rd path
+		obj.loadingServer(driver); 
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();		
 		//Go to hirca and fill mandatory details on event info
@@ -316,6 +320,7 @@ public class HiRCAChinese {
 		//Save 3rd path
 		saveReport3rd(driver);
 		//4th path
+		obj.loadingServer(driver); 
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
@@ -406,6 +411,7 @@ public class HiRCAChinese {
 		//Save 4th path
 		saveReport4th(driver);		
 		//5th path
+		obj.loadingServer(driver); 
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
@@ -455,6 +461,7 @@ public class HiRCAChinese {
 		//Save 5th path
 		saveReport5th(driver);
 		//6th path
+		obj.loadingServer(driver); 
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
@@ -902,6 +909,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Scroll down
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,1300)");
@@ -934,7 +942,7 @@ public class HiRCAChinese {
 		softly.assertThat(save).as("test data").contains("保存");
 		//Scroll up
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -1351,6 +1359,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -1535,7 +1544,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -1543,6 +1552,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -1770,7 +1780,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -1778,6 +1788,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -2017,7 +2028,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -2025,6 +2036,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -2354,7 +2366,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -2857,6 +2869,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -3188,7 +3201,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -3228,6 +3241,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -3781,7 +3795,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -3859,6 +3873,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -4369,7 +4384,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -4377,6 +4392,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -4798,7 +4814,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -4806,6 +4822,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -5309,7 +5326,7 @@ public class HiRCAChinese {
 		chineseAddContributingFactor(driver);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -5569,6 +5586,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -5901,7 +5919,7 @@ public class HiRCAChinese {
 		//Verify Add Contributing factor
 		chineseAddContributingFactor(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -6527,6 +6545,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -6868,7 +6887,7 @@ public class HiRCAChinese {
 		//Verify Add Contributing factor
 		chineseAddContributingFactor(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -6919,6 +6938,7 @@ public class HiRCAChinese {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
@@ -7247,7 +7267,7 @@ public class HiRCAChinese {
 		//Verify Add Contributing factor
 		chineseAddContributingFactor(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	

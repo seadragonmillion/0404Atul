@@ -116,6 +116,7 @@ public class HiRCAEvent {
 		  
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  ShareCheck obj1 = new ShareCheck();
 		 /* while(true)
 		  {
 			  try{
@@ -157,6 +158,8 @@ public class HiRCAEvent {
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  Thread.sleep(5000);
+			//Wait for loading message to disappear		  
+			obj1.loadingServer(driver);
 		  //Clicks on Analysis 
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		  //Click on HiRCA
@@ -165,8 +168,7 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		  //Click on newly created record
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			//Wait for loading message to disappear
-		  ShareCheck obj1 = new ShareCheck();
+			//Wait for loading message to disappear		  
 			obj1.loadingServer(driver);
 		  //Click on Open button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
@@ -222,6 +224,7 @@ public class HiRCAEvent {
 			  
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
+			  ShareCheck obj1 = new ShareCheck();
 			  /*while(true)
 			  {
 				  try{
@@ -263,6 +266,8 @@ public class HiRCAEvent {
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  Thread.sleep(5000);
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 			  //Clicks on Analysis 
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 			  //Click on HiRCA
@@ -272,7 +277,6 @@ public class HiRCAEvent {
 			  //Click on newly created record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 				//Wait for loading message to disappear
-			  ShareCheck obj1 = new ShareCheck();
 				obj1.loadingServer(driver);
 			  //Click on Open button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
@@ -330,6 +334,7 @@ public class HiRCAEvent {
 		    	
 			  WebDriverWait wait = new WebDriverWait(driver,20);
 			  JavascriptExecutor jse = (JavascriptExecutor)driver;
+			  ShareCheck obj1 = new ShareCheck();
 			 /* while(true)
 			  {
 				  try{
@@ -371,6 +376,8 @@ public class HiRCAEvent {
 			  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 			  Thread.sleep(5000);
+				//Wait for loading message to disappear
+				obj1.loadingServer(driver);
 			  //Clicks on Analysis 
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 			  //Click on HiRCA
@@ -380,7 +387,6 @@ public class HiRCAEvent {
 			  //Click on newly created record
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 				//Wait for loading message to disappear
-			  ShareCheck obj1 = new ShareCheck();
 				obj1.loadingServer(driver);
 			    //Clicks on Open button
 		    	WebDriverWait wait1 = new WebDriverWait(driver,30);
@@ -1239,6 +1245,7 @@ public class HiRCAEvent {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  ShareCheck obj = new ShareCheck();
 		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
 		  int n=500;
 		  for (int j=0; j<5; j++)
@@ -1303,7 +1310,7 @@ public class HiRCAEvent {
 				  Thread.sleep(2000);
 				  //Debug
 				  //Clicks on save without images
-				  jse.executeScript("scroll(0,0)");
+				  obj.scrollToTop(driver);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  Thread.sleep(2000);
@@ -1315,7 +1322,6 @@ public class HiRCAEvent {
 				 // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
 					//Wait for loading message to disappear
-				  ShareCheck obj = new ShareCheck();
 					obj.loadingServer(driver); 
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
@@ -1345,7 +1351,7 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
 		  Thread.sleep(2000);
 		  //Clicks on save without images
-		  jse.executeScript("scroll(0,0)");
+		  obj.scrollToTop(driver);
 		  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		  Thread.sleep(2000);
@@ -1356,7 +1362,6 @@ public class HiRCAEvent {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		  Thread.sleep(500);
 			//Wait for loading message to disappear
-		  ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 		  jse.executeScript("scroll(0, 2000)");
 	}
@@ -1365,6 +1370,7 @@ public class HiRCAEvent {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  ShareCheck obj = new ShareCheck();
 		int n=500;
 		  for (int j=0; j<5; j++)
 		  {
@@ -1435,7 +1441,7 @@ public class HiRCAEvent {
 				  }
 				  //Debug
 				  //Clicks on save without images
-				  jse.executeScript("scroll(0,0)");
+				  obj.scrollToTop(driver);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				  //Clicks on Save
@@ -1446,7 +1452,6 @@ public class HiRCAEvent {
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
 					//Wait for loading message to disappear
-				  ShareCheck obj = new ShareCheck();
 					obj.loadingServer(driver);  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
@@ -1482,7 +1487,7 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
 		Thread.sleep(2000);
 		//Clicks on save without images
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -1493,7 +1498,6 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		Thread.sleep(2000);
 		//Clicks on Save
@@ -1514,20 +1518,21 @@ public class HiRCAEvent {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		int n=450;
 		 for (int j=0; j<5; j++)
 		  {
-			  
+			 Actions act = new Actions(driver);
 			  //Click on Supporting file details
 			  Thread.sleep(1500);
 			  String id = "pii-irca-event-filecollapsible-"+j;
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			  //Uploads file
-			  String file = "pii-irca-event-file-"+j;
+			  String file = "pii-irca-event-file-"+j;/*
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
-			  WebElement element =  driver.findElement(By.id(file));
-			  Actions act = new Actions(driver);
-			  act.doubleClick(element).build().perform();
+			  WebElement element =  driver.findElement(By.id(file));			  
+			  act.doubleClick(element).build().perform();*/
+			  jse.executeScript("return document.getElementById('"+file+"').click();");
 			  Thread.sleep(8000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
@@ -1565,10 +1570,11 @@ public class HiRCAEvent {
 				  String desc = "pii-irca-event-file-description-"+j;
 				  driver.findElement(By.id(desc)).sendKeys("Description0"+j);
 				  //re-upload file
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
+				/*  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(file))).click();
 				  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
-				  act1.doubleClick(element1).build().perform();
+				  act1.doubleClick(element1).build().perform();*/
+				  jse.executeScript("return document.getElementById('"+file+"').click();");
 				  Thread.sleep(8000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
@@ -1597,7 +1603,7 @@ public class HiRCAEvent {
 				  }
 				  //Debug
 				  //Clicks on save without images
-				  jse.executeScript("scroll(0,0)");
+				  obj.scrollToTop(driver);
 				  Thread.sleep(3000);
 				  //Clicks on Save
 				  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
@@ -1617,7 +1623,6 @@ public class HiRCAEvent {
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
 					//Wait for loading message to disappear
-				  ShareCheck obj = new ShareCheck();
 					obj.loadingServer(driver); 		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
@@ -1654,7 +1659,7 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
 		Thread.sleep(2000);
 		//Clicks on save without images
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -1665,7 +1670,6 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		jse.executeScript("scroll(0, 2000)");
 		
@@ -1676,6 +1680,7 @@ public class HiRCAEvent {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		  ShareCheck obj = new ShareCheck();
 		int n=500;
 		  int x=1800;
 		  for (int j=0; j<5; j++)
@@ -1689,10 +1694,11 @@ public class HiRCAEvent {
 			  String scroll1 = "scroll(0,"+x+")";
 		      jse.executeScript(scroll1);
 			  //Uploads file
-			  String file = "pii-irca-event-file-"+j;
+			  String file = "pii-irca-event-file-"+j;/*
 			  WebElement element =  driver.findElement(By.id(file));
 			  Actions act = new Actions(driver);
-			  act.click(element).build().perform();
+			  act.click(element).build().perform();*/
+			  jse.executeScript("return document.getElementById('"+file+"').click();");
 			  Thread.sleep(2000);
 			  try {
 					  Process p = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
@@ -1738,9 +1744,10 @@ public class HiRCAEvent {
 				  String desc = "pii-irca-event-file-description-"+j;
 				  driver.findElement(By.id(desc)).sendKeys("Description0"+j);
 				  //re-upload file
-				  WebElement element1 =  driver.findElement(By.id(file));
+				  /*  WebElement element1 =  driver.findElement(By.id(file));
 				  Actions act1 = new Actions(driver);
-				  act1.click(element1).build().perform();
+				  act1.click(element1).build().perform();*/
+				  jse.executeScript("return document.getElementById('"+file+"').click();");
 				  Thread.sleep(2000);
 				   try {
 						  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
@@ -1769,7 +1776,7 @@ public class HiRCAEvent {
 				  }
 				  //Debug
 				  //Clicks on save without images
-				  jse.executeScript("scroll(0,0)");
+				  obj.scrollToTop(driver);
 				  Thread.sleep(2000);
 				  //Clicks on Save
 				  driver.findElement(By.id("efi-irca-button-save")).click();
@@ -1779,7 +1786,6 @@ public class HiRCAEvent {
 				  //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 				  Thread.sleep(1500);
 					//Wait for loading message to disappear
-				  ShareCheck obj = new ShareCheck();
 					obj.loadingServer(driver);		  
 				  jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				  Thread.sleep(1000);
@@ -1822,7 +1828,7 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
 		Thread.sleep(2000);
 		//Clicks on save without images
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -1833,7 +1839,6 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(4000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0, 2000)");

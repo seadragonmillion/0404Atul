@@ -1230,6 +1230,7 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Get text list
 		List<String> modText = modifyText(driver);
 		//Hashmap for storing HML for root cause and contributing factors
@@ -1471,9 +1472,9 @@ public class HiRCALevel1 {
 			jse.executeScript("scroll(0,"+scroll+")");
 		}
 		//Scroll up
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return hml;
 	}
@@ -1482,6 +1483,7 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Remove [] from lopOptions
 		List<String> lopOptions1 = new ArrayList<String>();
 		for(int k=0;k<lopOptions.size();k++)
@@ -1556,7 +1558,14 @@ public class HiRCALevel1 {
 			String re = s6.replaceAll("\u00AD", "");
 			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry collapsible
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			while(true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+				if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div")).isDisplayed()==false)
+				{
+					break;
+				}				
+			}			
 			//Verify Evidence Entry text not visible
 	    	try{
 	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -1573,7 +1582,7 @@ public class HiRCALevel1 {
 		options.put("Root causes",r);
 		System.out.println(options);
 		//Scroll up
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return options;
 	}
@@ -1582,6 +1591,9 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj  = new ShareCheck();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Clicks on HiRCA
@@ -1643,7 +1655,6 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -2053,6 +2064,7 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Get text of varying length
 		List<String> varText = variableText(driver);
 		//Verify title
@@ -2319,9 +2331,9 @@ public class HiRCALevel1 {
 			jse.executeScript("scroll(0,"+scroll+")");
 		}
 		//Scroll up
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return hml;
 	}
@@ -2406,6 +2418,7 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Verify SUEP title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(title).as("test data").contains("Step 3 - Root Causes Determination Checklist (SUEP");
@@ -2483,7 +2496,14 @@ public class HiRCALevel1 {
 			String re = s6.replaceAll("\u00AD", "");
 			softly.assertThat(re).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry collapsible
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			while(true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+				if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div")).isDisplayed()==false)
+				{
+					break;
+				}				
+			}
 			//Verify Evidence Entry text not visible
 	    	try{
 	    		WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -2500,7 +2520,7 @@ public class HiRCALevel1 {
 		options.put("Root causes",r);
 		System.out.println(options);
 		//Scroll up
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return options;
 	}
@@ -2591,6 +2611,7 @@ public class HiRCALevel1 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Scroll to the bottom
 		jse.executeScript("scroll(0,1200)");
 		Thread.sleep(2000);
@@ -2627,7 +2648,7 @@ public class HiRCALevel1 {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		}
 		//Scroll to the top
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -2661,6 +2682,7 @@ public class HiRCALevel1 {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCALOPBug obj = new HiRCALOPBug();
+		ShareCheck obj1 = new ShareCheck();
 		List<String>  lopOptions1=new ArrayList<String>();
 		//Verify collapsible of description
 		obj.collapsibleCheckDescription(driver);
@@ -2701,7 +2723,7 @@ public class HiRCALevel1 {
 		  if(y>5)
 			  jse.executeScript("scroll(0,1200)");
 		  if(y<=5)
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Click on a lop inquiry in 3.17
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
@@ -2725,7 +2747,7 @@ public class HiRCALevel1 {
 		  //Check if Evidence Entry, Further Investigation and Possible corrective action are in collapsible form
   		  checkCollapsibleEEFIPCA(driver,y);
 		}
-		jse.executeScript("scroll(0,0)");	
+		obj1.scrollToTop(driver);	
 		System.out.println(lopOptions1);
 		return lopOptions1;
 	}

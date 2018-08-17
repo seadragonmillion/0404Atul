@@ -35,6 +35,9 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLink)).click();
 		//Clicks on HiRCA
@@ -66,6 +69,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -90,7 +94,7 @@ public class HiRCALOPBug {
 		System.out.println(y);
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -181,6 +185,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -235,7 +240,7 @@ public class HiRCALOPBug {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -292,6 +297,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -343,7 +349,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -433,6 +439,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -487,7 +494,7 @@ public class HiRCALOPBug {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -823,6 +830,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Scroll down
 		jse.executeScript("scroll(0,1200)");
 		Thread.sleep(1000);
@@ -859,7 +867,7 @@ public class HiRCALOPBug {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return y;
 	}
@@ -976,6 +984,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		Random random = new Random();
 		int y;
 		//Choose a number between 0 and 11
@@ -991,7 +1000,7 @@ public class HiRCALOPBug {
 		//Click on a lop
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+y+"']"))).click();		
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return y;
 	}
@@ -1174,7 +1183,7 @@ public class HiRCALOPBug {
 	public void select34Random(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		Random random = new Random();
 		//Choose a number between 1 and 5 for number of selections
 		int n;
@@ -1209,7 +1218,7 @@ public class HiRCALOPBug {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		}
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -1217,6 +1226,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		Random random = new Random();
 		//Choose a number between 1 and 7 for number of selections
 		int n;
@@ -1250,13 +1260,13 @@ public class HiRCALOPBug {
 		  if(y>5)
 			  jse.executeScript("scroll(0,1200)");
 		  if(y<=5)
-			  jse.executeScript("scroll(0,0)");
+			  obj.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Click on a lop inquiry in 3.17
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		}
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -1264,6 +1274,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Scroll down
 		jse.executeScript("scroll(0,1200)");
 		Thread.sleep(1000);
@@ -1289,7 +1300,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		return y;
 	}
@@ -1298,6 +1309,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -1333,7 +1345,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Make selections from 2.1, 2.2 , 2.9-2.12
 		makeSelections(driver);
@@ -1513,7 +1525,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Make selections from 2.1, 2.2 , 2.9-2.12
 		makeSelections(driver);
@@ -1527,6 +1539,7 @@ public class HiRCALOPBug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
@@ -1558,7 +1571,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();

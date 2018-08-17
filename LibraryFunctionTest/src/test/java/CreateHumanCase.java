@@ -7,11 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -96,6 +94,8 @@ public class CreateHumanCase {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj1 = new CaseBrowse();
 		ShareCheck obj = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankLink)).click();
 		//Clicks on Human Performance Search
@@ -144,7 +144,6 @@ public class CreateHumanCase {
 	public void deleteCase(WebDriver driver, List<String> caseID) throws Exception{
 		
 		  WebDriverWait wait = new WebDriverWait(driver,40);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  ShareCheck obj = new ShareCheck();
 		  for(int i=0;i<caseID.size();i++)
 		  {
@@ -162,9 +161,7 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		  //Waits for black loading message to disappear
 		  obj.loadingServer(driver);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  obj.scrollToTop(driver);
 		  //CLick on enter case id
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
 		  Thread.sleep(2000);
@@ -173,7 +170,7 @@ public class CreateHumanCase {
 		  //Waits for black loading message to disappear
 		  obj.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on delete button
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseDeleteButton)).click();
@@ -182,9 +179,7 @@ public class CreateHumanCase {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		  //Waits for black loading message to disappear
 		  obj.loadingServer(driver);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
+		  obj.scrollToTop(driver);
 		  //Checks if case deleted
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
@@ -199,7 +194,6 @@ public class CreateHumanCase {
 	public void deleteLinks (WebDriver driver, List<String> cases) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		CaseBrowse obj2 = new CaseBrowse();
@@ -218,7 +212,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -229,27 +223,23 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to 2nd Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2Tile));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click on delete link 2 cross symbol of Title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2TitleCrossSymbol)).click();
 		//Click on delete link 2 cross symbol of URL
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2URLCrossSymbol)).click();
 		//Save case
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -259,7 +249,7 @@ public class CreateHumanCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Enter FM case id with links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -270,27 +260,23 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to 1st Link title
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Tile));
-		p1 = l.getLocation();
-		yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click on delete link 1 cross symbol of Title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1TitleCrossSymbol)).click();
 		//Click on delete link 1 cross symbol of URL
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URLCrossSymbol)).click();
 		//Save case
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -300,13 +286,12 @@ public class CreateHumanCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 	    //Go back to case browse and verify that no Related Links slide
 		//Clicks on Error free bank
 		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
-		Actions act = new Actions(driver);
-		act.click(element1).build().perform();
+		element1.click();
 		//Go to Human Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanPerformanceLink)).click();
 		Thread.sleep(1000);
@@ -359,7 +344,6 @@ public class CreateHumanCase {
 	public void editLinks (WebDriver driver, List<String> cases) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		CaseBrowse obj2 = new CaseBrowse();
@@ -378,7 +362,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -389,23 +373,19 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		//Scroll to 1st Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Tile));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Edit link title
 		l.clear();
 		l.sendKeys("Edited: "+obj1.noVideoLinkTitle);
 		//Save case
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -415,12 +395,11 @@ public class CreateHumanCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Clicks on Error free bank
 		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
-		Actions act = new Actions(driver);
-		act.click(element1).build().perform();
+		element1.click();
 		//Go to  Human Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanPerformanceLink)).click();
 		Thread.sleep(1000);
@@ -488,7 +467,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
@@ -498,7 +477,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
@@ -538,9 +517,12 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewField)).sendKeys(keyword_same+"changed");
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewAddButton)).click();
+		//Scroll down
+		jse.executeScript("scroll(0,2000)");
+		Thread.sleep(1000);
 		//Remove old condition
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingConditionOnlyOne)).click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		//Clicks on remove keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
@@ -556,7 +538,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewAddButton)).click();
 	    //Scroll up
 		Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -566,7 +548,7 @@ public class CreateHumanCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Enter case id with links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -577,7 +559,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Enter case id without links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -588,14 +570,14 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
 		Thread.sleep(2000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -605,7 +587,7 @@ public class CreateHumanCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same);
@@ -616,7 +598,6 @@ public class CreateHumanCase {
 	public void verifyNewCaseForm(WebDriver driver, String caseID) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
@@ -633,12 +614,12 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Enter case id with links
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -649,7 +630,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 	    //Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
@@ -663,7 +644,7 @@ public class CreateHumanCase {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).getAttribute("textContent");
 		softly.assertThat(s1).as("test data").isEmpty();
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
@@ -696,23 +677,19 @@ public class CreateHumanCase {
 	
 	public void addLinks(WebDriver driver, String title, String caseID) throws Exception {
 		
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CreateEquipmentCase obj = new CreateEquipmentCase();
+		ShareCheck obj1 = new ShareCheck();
 		//Scroll to Link element
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Tile));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj1.scrollToElement(driver, l);
 		//Enter title for link 1
 		l.sendKeys(obj.noVideoLinkTitle);
 		//Enter url 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).sendKeys(obj.noVideoLink);	
 		//To make url form appear click on title for link 1
 		l.click();
-		jse.executeScript("scroll(0,0)");
+		obj1.scrollToTop(driver);
 		Thread.sleep(1000);/*
 		//For firefox 
 		//Get browser name
@@ -739,8 +716,7 @@ public class CreateHumanCase {
 		  CreateEquipmentCase obj2 = new CreateEquipmentCase();
 		  //Clicks on Error free bank
 		  WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
-		  Actions act = new Actions(driver);
-		  act.click(element1).build().perform();
+		  element1.click();
 		  //Go to  FM
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HumanPerformanceLink)).click();
 		  Thread.sleep(1000);
@@ -833,7 +809,7 @@ public class CreateHumanCase {
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
@@ -927,7 +903,7 @@ public class CreateHumanCase {
 			  element.findElement(FirstAndLastChildInList).click();	
 		  }
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Uploads 5 slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
@@ -958,7 +934,7 @@ public class CreateHumanCase {
 		  {
 			  addLinks(driver,title,caseId);
 		  }
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -987,7 +963,7 @@ public class CreateHumanCase {
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on Errorfree bank option
 		  if(m==0)
@@ -995,14 +971,14 @@ public class CreateHumanCase {
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on Human cases
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Creates 5 cases
 		  //Enters mandatory data
@@ -1014,7 +990,7 @@ public class CreateHumanCase {
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
@@ -1024,7 +1000,7 @@ public class CreateHumanCase {
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  while (true)
 		      {
@@ -1113,7 +1089,7 @@ public class CreateHumanCase {
 			  element.findElement(FirstAndLastChildInList).click();	
 		  }
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Uploads 5 slides
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
@@ -1144,7 +1120,7 @@ public class CreateHumanCase {
 		  {
 			  addLinks(driver,title,caseId);
 		  }
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -1155,7 +1131,7 @@ public class CreateHumanCase {
 		  obj1.loadingServer(driver);
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  }
 		  return caseID;
@@ -1177,7 +1153,7 @@ public class CreateHumanCase {
 		  obj1.loadingServer(driver);
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on Errorfree bank option
 		  if(m==0)
@@ -1185,7 +1161,7 @@ public class CreateHumanCase {
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  
 		  //Creates 5 cases
@@ -1203,12 +1179,12 @@ public class CreateHumanCase {
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
@@ -1219,7 +1195,7 @@ public class CreateHumanCase {
 			  obj1.loadingServer(driver);
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  while (true)
 		      {
@@ -1308,12 +1284,13 @@ public class CreateHumanCase {
 			  element.findElement(FirstAndLastChildInList).click();	
 		  }
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Uploads 5 slides
-		  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField));
+		/*  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField));
 		  Actions act= new Actions(driver);
-		  act.doubleClick(ele).build().perform();
+		  act.doubleClick(ele).build().perform();*/
+		  jse.executeScript("return document.getElementById('pii-admin-efsh-upload-file-input').click();");
 		  Thread.sleep(3000);
 		  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		  p.waitFor();
@@ -1341,7 +1318,7 @@ public class CreateHumanCase {
 		  {
 			  addLinks(driver,title,caseId);
 		  }
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -1352,7 +1329,7 @@ public class CreateHumanCase {
 		  obj1.loadingServer(driver);
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  }
 		  return caseID;
@@ -1373,7 +1350,7 @@ public class CreateHumanCase {
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on Errorfree bank option
 		  if(m==0)
@@ -1381,7 +1358,7 @@ public class CreateHumanCase {
 		  //Waits for black loading message to disappear
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  
 		  //Creates 5 cases
@@ -1396,12 +1373,12 @@ public class CreateHumanCase {
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  //Waits for black loading message to disappear
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  //Clicks on new case button
 			  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
@@ -1412,7 +1389,7 @@ public class CreateHumanCase {
 			  obj1.loadingServer(driver);
 			  obj1.loadingServer(driver);
 			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
+			  obj1.scrollToTop(driver);
 			  Thread.sleep(1000);
 			  while (true)
 		      {
@@ -1501,10 +1478,11 @@ public class CreateHumanCase {
 			  element.findElement(FirstAndLastChildInList).click();	
 		  }
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Uploads 5 slides
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
+		  //wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
+		  jse.executeScript("return document.getElementById('pii-admin-efsh-upload-file-input').click();");
 		  Thread.sleep(3000);
 		  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		  p.waitFor();
@@ -1532,7 +1510,7 @@ public class CreateHumanCase {
 		  {
 			  addLinks(driver,title,caseId);
 		  }
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  //Clicks on save
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -1543,7 +1521,7 @@ public class CreateHumanCase {
 		  obj1.loadingServer(driver);
 		  obj1.loadingServer(driver);
 		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
+		  obj1.scrollToTop(driver);
 		  Thread.sleep(1000);
 		  }
 		  return caseID;
@@ -1571,7 +1549,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(1));
@@ -1581,7 +1559,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
@@ -1606,7 +1584,7 @@ public class CreateHumanCase {
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
 		Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 	    //Clicks on save
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
@@ -1616,7 +1594,7 @@ public class CreateHumanCase {
 	    //Waits for black loading message to disappear
 	    obj.loadingServer(driver);
 	    Thread.sleep(1000);
-	    jse.executeScript("scroll(0,0)");
+	    obj.scrollToTop(driver);
 	    Thread.sleep(1000);
 	    //Clicks on Error free bank
 		try

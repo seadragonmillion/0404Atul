@@ -236,6 +236,9 @@ public class CaseBrowse {
 	public void getHumanPerformanceLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		ShareCheck obj = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on ErrorFree Bank
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
@@ -250,6 +253,9 @@ public class CaseBrowse {
 	public void getEquipPerformanceLink(WebDriver driver, int y) throws Exception {
 	
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		ShareCheck obj = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
@@ -264,6 +270,9 @@ public class CaseBrowse {
 	public void getEquipPerformancePIILink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		ShareCheck obj = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
@@ -278,6 +287,9 @@ public class CaseBrowse {
 	public void getElecFailureModeLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
@@ -297,6 +309,9 @@ public class CaseBrowse {
 	public void getMechFailureModeLink(WebDriver driver, int y) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj.loadingServer(driver);
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 	    /*Verify order or modules
@@ -587,14 +602,9 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll to case
 		WebElement l = driver.findElement(By.id("pii-collapsible-"+caseID));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click on case collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+caseID))).click();
 		//Wait for loading message to disappear
@@ -703,14 +713,9 @@ public class CaseBrowse {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll to case
 		WebElement l = driver.findElement(By.id("pii-collapsible-equip-"+caseID));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click on case collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))).click();
 		//Wait for loading message to disappear
@@ -837,7 +842,14 @@ public class CaseBrowse {
 			//Click on add keyword
 		    wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentAddKeywordButton)).click();	
 		}
+	    Thread.sleep(2000);
+	    try{
 	    jse.executeScript("scroll(0,2000)");	
+	    }catch (org.openqa.selenium.ScriptTimeoutException e)
+	    {
+	    	Thread.sleep(2000);
+	    	jse.executeScript("scroll(0,2000)");	
+	    }
 	    Thread.sleep(2000);
 	}
 	
@@ -1067,6 +1079,7 @@ public class CaseBrowse {
 	public void verifySearchOptionsEquip (WebDriver driver, String keyword, String identifier) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		//Clears Everything
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
@@ -1085,13 +1098,32 @@ public class CaseBrowse {
 		obj.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Look for dynamic dropdown
+		try{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchDropDown));
+			softly.fail("Dynamic dropdown visible after click on search button for keyword search");
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			System.out.println("Dropdown not visible");				
+		}
+		//Waits for case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
-		Thread.sleep(2000);
 		//Enters the term and check the search by enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		//Look for dynamic dropdown
+		try{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchDropDown));
+			softly.fail("Dynamic dropdown visible after click on search button for keyword search");
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			System.out.println("Dropdown not visible");				
+		}
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
@@ -1747,6 +1779,7 @@ public class CaseBrowse {
 	public void verifySearchOptionsHuman (WebDriver driver, String keyword, String identifier) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		//Clears Everything
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
@@ -1767,11 +1800,27 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
 		Thread.sleep(2000);
+		//Look for dynamic dropdown
+		try{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchDropDown));
+			softly.fail("Dynamic dropdown visible after click on search button for keyword search");
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			System.out.println("Dropdown not visible");				
+		}
 		//Enters the term and check the search by enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		//Look for dynamic dropdown
+		try{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchDropDown));
+			softly.fail("Dynamic dropdown visible after click on search button for keyword search");
+		}catch (NoSuchElementException | org.openqa.selenium.TimeoutException e)
+		{
+			System.out.println("Dropdown not visible");				
+		}
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();

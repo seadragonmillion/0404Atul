@@ -111,7 +111,7 @@ public class UserManagement {
 		l.click();
 		//Scroll up
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
@@ -139,7 +139,7 @@ public class UserManagement {
 		l.click();
 		//Scroll up
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
@@ -168,7 +168,7 @@ public class UserManagement {
 		l.click();
 		//Scroll up
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
@@ -202,6 +202,7 @@ public class UserManagement {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Clicks on create user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-create"))).click();
 		Thread.sleep(2000);
@@ -236,7 +237,7 @@ public class UserManagement {
 		Select dd = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd.selectByVisibleText(company_id1);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on Select group dropdown
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
@@ -288,7 +289,7 @@ public class UserManagement {
 		//Change to company 2
 		dd.selectByVisibleText(company_id2);
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on Select group dropdown
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
@@ -338,7 +339,7 @@ public class UserManagement {
 		//Close group moderator pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 	
@@ -516,7 +517,6 @@ public class UserManagement {
 	public void changeGroupCompany (WebDriver driver, String company_id, String groupChange, String companyChange) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -541,7 +541,7 @@ public class UserManagement {
 		//Select pii group
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(3000);
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		ele1.findElement(By.linkText(groupChange)).click();
@@ -681,6 +681,7 @@ public class UserManagement {
 	public String[] chooseModule(WebDriver driver, List<Integer> num, int n, WebElement ele) throws Exception{
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		String[]op=new String [30];
 		//Checks for the option selected and checks it
 		for (int m=0;m<n;m++)
@@ -782,7 +783,7 @@ public class UserManagement {
 			if(at.contains("ui-checkbox-on")==false)
 				op[m]=op[m]+"**";				
 		}
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		return op;
 	}
 	
@@ -1361,7 +1362,7 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		  //Scroll top
 		  Thread.sleep(2000);
-		  jse.executeScript("scroll(0,0)");
+		  obj.scrollToTop(driver);
 		  Thread.sleep(2000);
 		  */
 		  //Clicks on save
@@ -1610,6 +1611,7 @@ public class UserManagement {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse =(JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on edit company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on departments collapsible
@@ -1649,13 +1651,12 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Scroll top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-cust-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 	}
 	
@@ -1842,6 +1843,7 @@ public class UserManagement {
 	
 	 WebDriverWait wait = new WebDriverWait(driver,20);
 	 JavascriptExecutor jse = (JavascriptExecutor)driver;
+	 ShareCheck obj = new ShareCheck();
 	 //Clicks on admin user name on top right corner
 	 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 	 //Clicks on admin option
@@ -1915,12 +1917,11 @@ public class UserManagement {
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 	dept1.add("QAA sample department");
-	jse.executeScript("scroll(0,0)");
+	obj.scrollToTop(driver);
 	//Save company
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 	//Wait for loading message to disappear
-	ShareCheck obj = new ShareCheck();
 	obj.loadingServer(driver);
 	}
 	

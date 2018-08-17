@@ -12,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -113,6 +114,7 @@ public class EquipmentPDDandEF {
 		CaseBrowse obj1 = new CaseBrowse();
 		CreateHumanCase obj2 = new CreateHumanCase ();
 		CreateEquipmentCase obj3 = new CreateEquipmentCase();
+		obj.loadingServer(driver);
 		//Clicks on Error free bank
 		try
 		{
@@ -158,6 +160,8 @@ public class EquipmentPDDandEF {
 		  CaseBrowse obj1 = new CaseBrowse();
 		  CreateHumanCase obj2 = new CreateHumanCase ();
 		  CreateEquipmentCase obj3 = new CreateEquipmentCase();
+			//Waits for black loading message to disappear
+			obj.loadingServer(driver);
 		  //Clicks on Error free bank
 		  try
 		  {
@@ -204,6 +208,8 @@ public class EquipmentPDDandEF {
 		CaseBrowse obj1 = new CaseBrowse();
 		CreateHumanCase obj2 = new CreateHumanCase ();
 		CreateEquipmentCase obj3 = new CreateEquipmentCase();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Error free bank
 		try
 		{
@@ -558,9 +564,8 @@ public class EquipmentPDDandEF {
 		//Checks if clear feature works on term field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
 		Thread.sleep(1000);
-		Actions act1 = new Actions(driver);
 		WebElement act= wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordFieldClearButton));
-		act1.click(act).build().perform();
+		act.click();
 		//Checks for search method with magnifying glass
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordFieldSearchButton)).click();
@@ -646,8 +651,7 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchCaseIdField)).sendKeys(identifier);
 		Thread.sleep(1000);
 		WebElement ele= driver.findElement(obj1.EquipmentSearchCaseIDFieldClearButton);
-		Actions act = new Actions (driver);
-		act.click(ele).build().perform();
+		ele.click();
 		//Checks for search method with magnifying glass
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchCaseIdField)).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchCaseIDFieldSearchButton)).click();
@@ -1034,6 +1038,9 @@ public class EquipmentPDDandEF {
 		CreateHumanCase obj = new CreateHumanCase();
 		CaseBrowse obj1 = new CaseBrowse();
 		CaseBrowse obj2 = new CaseBrowse ();
+		ShareCheck obj3 = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj3.loadingServer(driver);
 		try{
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
@@ -1051,6 +1058,9 @@ public class EquipmentPDDandEF {
 		CreateHumanCase obj = new CreateHumanCase();
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		CaseBrowse obj2 = new CaseBrowse ();
+		ShareCheck obj3 = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj3.loadingServer(driver);
 		try{
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
@@ -1068,6 +1078,9 @@ public class EquipmentPDDandEF {
 		CreateHumanCase obj = new CreateHumanCase();
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		CaseBrowse obj2 = new CaseBrowse ();
+		ShareCheck obj3 = new ShareCheck();
+		//Waits for black loading message to disappear
+		obj3.loadingServer(driver);
 		try{
 	    //Clicks on ErrorFree Bank
         wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
@@ -1287,11 +1300,7 @@ public class EquipmentPDDandEF {
 		Thread.sleep(2000);
 		//Uploads 5 slides
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageUploadField)).click();
 		Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
 		p.waitFor();
@@ -1300,11 +1309,7 @@ public class EquipmentPDDandEF {
 		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
 		{
 		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		  p1 = l.getLocation();
-		  yaxis= p1.getY()-250;
-		  Thread.sleep(2000);
-		  jse.executeScript("scroll(0,"+yaxis+")");
-		  Thread.sleep(2000);
+		  obj.scrollToElement(driver, l);
 		  l.click();
 		}
 		int i;
@@ -1319,7 +1324,7 @@ public class EquipmentPDDandEF {
 			  
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible)).click();
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseSaveButton)).click();
@@ -1354,7 +1359,7 @@ public class EquipmentPDDandEF {
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		Random random = new Random();
 		String caseId="";
@@ -1439,11 +1444,7 @@ public class EquipmentPDDandEF {
 		Thread.sleep(2000);
 		//Uploads 5 slides
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageUploadField)).click();
 		Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 		p.waitFor();
@@ -1452,11 +1453,7 @@ public class EquipmentPDDandEF {
 		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
 		{
 		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		  p1 = l.getLocation();
-		  yaxis= p1.getY()-250;
-		  Thread.sleep(2000);
-		  jse.executeScript("scroll(0,"+yaxis+")");
-		  Thread.sleep(2000);
+		  obj.scrollToElement(driver, l);
 		  l.click();
 		}
 		int i;
@@ -1470,7 +1467,7 @@ public class EquipmentPDDandEF {
 			  
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible)).click();
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseSaveButton)).click();
@@ -1508,7 +1505,7 @@ public class EquipmentPDDandEF {
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewButton)).click();
@@ -1590,14 +1587,9 @@ public class EquipmentPDDandEF {
 		Thread.sleep(2000);
 		//Uploads 5 slides
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
-		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageUploadField));
-		Actions act1 = new Actions(driver);
-		act1.doubleClick(ele).build().perform();
+		obj.scrollToElement(driver, l);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageUploadField));
+		jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
 		Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		p.waitFor();
 		Thread.sleep(4000);
@@ -1605,11 +1597,7 @@ public class EquipmentPDDandEF {
 		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
 		{
 		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		  p1 = l.getLocation();
-		  yaxis= p1.getY()-250;
-		  Thread.sleep(2000);
-		  jse.executeScript("scroll(0,"+yaxis+")");
-		  Thread.sleep(2000);
+		  obj.scrollToElement(driver, l);
 		  l.click();
 		}
 		int i;
@@ -1623,7 +1611,7 @@ public class EquipmentPDDandEF {
 			  
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible)).click();
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseSaveButton)).click();
@@ -1649,6 +1637,38 @@ public class EquipmentPDDandEF {
 		{
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		while(true)
+		  {
+			  try{
+			  if (driver.findElement(obj3.StickyNote).isDisplayed())
+			  {
+				  Thread.sleep(1000);
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.StickyClose)).click();
+				  
+			  }}catch (NoSuchElementException e)
+			  {
+				  break;
+			  }
+			  catch( StaleElementReferenceException f)
+			  {
+				  
+				 break;
+			  }
+			  catch (org.openqa.selenium.TimeoutException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.ElementNotInteractableException u)
+			  {
+				  break;
+			  }
+			  catch (org.openqa.selenium.JavascriptException t)
+			  {
+				  Thread.sleep(2000);
+				  break;
+			  }
+			 
+		  }
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -1663,7 +1683,7 @@ public class EquipmentPDDandEF {
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewButton)).click();
@@ -1745,12 +1765,8 @@ public class EquipmentPDDandEF {
 		Thread.sleep(2000);
 		//Uploads 5 slides
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		Point p1 = l.getLocation();
-		int yaxis= p1.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageUploadField)).click();
+		obj.scrollToElement(driver, l);
+		jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
 		Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 		p.waitFor();
 		Thread.sleep(4000);
@@ -1758,11 +1774,7 @@ public class EquipmentPDDandEF {
 		if(driver.findElement(obj1.EquipImageCollapsibleExpanded).isDisplayed()==false)
 		{
 		  l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible));
-		  p1 = l.getLocation();
-		  yaxis= p1.getY()-250;
-		  Thread.sleep(2000);
-		  jse.executeScript("scroll(0,"+yaxis+")");
-		  Thread.sleep(2000);
+		  obj.scrollToElement(driver, l);
 		  l.click();
 		}
 		int i;
@@ -1777,7 +1789,7 @@ public class EquipmentPDDandEF {
 			  
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipImageCollapsible)).click();
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseSaveButton)).click();

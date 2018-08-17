@@ -81,6 +81,63 @@ public class ErrorMeter {
 	By ErrorMeterEnvironmentSPVNonIssue3 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[4]/td[1]");
 	By ErrorMeterEnvironmentSPVNonIssue4 = By.xpath(".//*[@id='epm-rpt']/div/div[7]/table/tbody/tr[5]/td[1]");
 	
+	//Inside report
+	By ErrorMeterPercentageBar = By.xpath(".//*[@id='pii-epm-progbar']/div/div/a");
+	By ErrorMeterPAPEEnvironmentTab = By.id("pii-epm-taba-e");
+	By ErrorMeterPAPEEnvironmentCheckBox1 = By.id("pii-epm-tab-e-q1");
+	By ErrorMeterPAPEEnvironmentCheckBox2 = By.id("pii-epm-tab-e-q2");
+	By ErrorMeterPAPEEnvironmentCheckBox3 = By.id("pii-epm-tab-e-q3");
+	By ErrorMeterPAPEEnvironmentCheckBox4 = By.id("pii-epm-tab-e-q4");
+	By ErrorMeterPAPEEnvironmentSupportingReason1 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea");
+	By ErrorMeterPAPEEnvironmentSupportingReason2 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea");
+	By ErrorMeterPAPEEnvironmentSupportingReason3 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea");
+	By ErrorMeterPAPEEnvironmentSupportingReason4 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea");
+	By ErrorMeterPAPEEnvironmentCorrectiveAction1 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea");
+	By ErrorMeterPAPEEnvironmentCorrectiveAction2 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea");
+	By ErrorMeterPAPEEnvironmentCorrectiveAction3 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea");
+	By ErrorMeterPAPEEnvironmentCorrectiveAction4 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea");
+	
+	By ErrorMeterPAPEPeopleTab = By.id("pii-epm-taba-p");
+	By ErrorMeterPAPEPeopleCheckBox1 = By.id("pii-epm-tab-p-q1");
+	By ErrorMeterPAPEPeopleCheckBox2 = By.id("pii-epm-tab-p-q2");
+	By ErrorMeterPAPEPeopleCheckBox3 = By.id("pii-epm-tab-p-q3");
+	By ErrorMeterPAPEPeopleCheckBox4 = By.id("pii-epm-tab-p-q4");
+	By ErrorMeterPAPEPeopleSupportingReason1 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea");
+	By ErrorMeterPAPEPeopleSupportingReason2 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea");
+	By ErrorMeterPAPEPeopleSupportingReason3 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea");
+	By ErrorMeterPAPEPeopleSupportingReason4 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea");
+	By ErrorMeterPAPEPeopleCorrectiveAction1 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea");
+	By ErrorMeterPAPEPeopleCorrectiveAction2 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea");
+	By ErrorMeterPAPEPeopleCorrectiveAction3 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[4]/textarea");
+	By ErrorMeterPAPEPeopleCorrectiveAction4 = By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[4]/textarea");
+	
+	By ErrorMeterPAPEActivityTab = By.id("pii-epm-taba-a");
+	By ErrorMeterPAPEActivityCheckBox1 = By.id("pii-epm-tab-a-q1");
+	By ErrorMeterPAPEActivityCheckBox2 = By.id("pii-epm-tab-a-q2");
+	By ErrorMeterPAPEActivityCheckBox3 = By.id("pii-epm-tab-a-q3");
+	By ErrorMeterPAPEActivityCheckBox4 = By.id("pii-epm-tab-a-q4");
+	By ErrorMeterPAPEActivitySupportingReason1 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[3]/textarea");
+	By ErrorMeterPAPEActivitySupportingReason2 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[3]/textarea");
+	By ErrorMeterPAPEActivitySupportingReason3 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[4]/td[3]/textarea");
+	By ErrorMeterPAPEActivitySupportingReason4 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[3]/textarea");
+	By ErrorMeterPAPEActivityCorrectiveAction1 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[4]/textarea");
+	By ErrorMeterPAPEActivityCorrectiveAction2 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[4]/textarea");
+	By ErrorMeterPAPEActivityCorrectiveAction3 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[4]/td[4]/textarea");
+	By ErrorMeterPAPEActivityCorrectiveAction4 = By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[4]/textarea");
+	
+	By ErrorMeterPAPEProcedureTab = By.id("pii-epm-taba-t");
+	By ErrorMeterPAPEProcedureCheckBox1 = By.id("pii-epm-tab-t-q1");
+	By ErrorMeterPAPEProcedureCheckBox2 = By.id("pii-epm-tab-t-q2");
+	By ErrorMeterPAPEProcedureCheckBox3 = By.id("pii-epm-tab-t-q3");
+	By ErrorMeterPAPEProcedureCheckBox4 = By.id("pii-epm-tab-t-q4");
+	By ErrorMeterPAPEProcedureSupportingReason1 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[3]/textarea");
+	By ErrorMeterPAPEProcedureSupportingReason2 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[3]/textarea");
+	By ErrorMeterPAPEProcedureSupportingReason3 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[3]/textarea");
+	By ErrorMeterPAPEProcedureSupportingReason4 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[3]/textarea");
+	By ErrorMeterPAPEProcedureCorrectiveAction1 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[4]/textarea");
+	By ErrorMeterPAPEProcedureCorrectiveAction2 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[4]/textarea");
+	By ErrorMeterPAPEProcedureCorrectiveAction3 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[4]/textarea");
+	By ErrorMeterPAPEProcedureCorrectiveAction4 = By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[4]/textarea");
 	
 	public String error0Data(WebDriver driver)throws Exception{
 		
@@ -229,110 +286,110 @@ public class ErrorMeter {
 		//Click on Environment of PAPE
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-e"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q1"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q2"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox2)).click();
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q3"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q4"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox3)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		
 		//Fill in texts in Supporting reasons 
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 		
 		
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j));
 		
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j));
 		
 		
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j));
 		
 		
 		//Fill in texts in Corrective Actions
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j));
 		
 		
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
 		
 
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j));	
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));	
 		
 		
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j));
 		
 
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
 		//Checks error meter as 0%
-		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		String meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -345,20 +402,20 @@ public class ErrorMeter {
 		//Click on People of PAPE
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-p"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q1"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox1)).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("15%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("31%").as("test data").isEqualTo(meterText);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox2)).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -368,18 +425,18 @@ public class ErrorMeter {
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q3"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("45%").as("test data").isEqualTo(meterText);
 		else
 			softly.assertThat("44%").as("test data").isEqualTo(meterText);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q4"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox4)).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -391,57 +448,57 @@ public class ErrorMeter {
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j));
 		
 		
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j));
 		
 		
 		jse.executeScript("scroll(0, 800)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j));
 		
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text.get(j));
 		
 		
 		//Fill in texts in Corrective Actions
 		jse.executeScript("scroll(0, 0)");
 		Thread.sleep(2000);
 		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j--));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j));
 		
 		
 		
@@ -485,7 +542,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Activity Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q1"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -494,7 +551,7 @@ public class ErrorMeter {
 			softly.assertThat("56%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -506,7 +563,7 @@ public class ErrorMeter {
 		Thread.sleep(2000);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q3"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -515,7 +572,7 @@ public class ErrorMeter {
 			softly.assertThat("69%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -620,7 +677,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Procedure Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -629,7 +686,7 @@ public class ErrorMeter {
 			softly.assertThat("81%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q2"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -641,7 +698,7 @@ public class ErrorMeter {
 		Thread.sleep(2000);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -650,7 +707,7 @@ public class ErrorMeter {
 			softly.assertThat("94%").as("test data").isEqualTo(meterText);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q4"))).click();
 		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();
 		System.out.println(meterText);
 		softly.assertThat("100%").as("test data").isEqualTo(meterText);
@@ -777,68 +834,68 @@ public class ErrorMeter {
 			//Click on Environment of PAPE
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-e"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentTab)).click();
 			//Clicks on checkboxes in Environment Tab
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q1"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
 						
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(1000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q4"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).clear();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 			
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j--));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j--));
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).clear();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j));
 			//Leave in text in empty boxes
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j));
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j));
 			
 
 			//Fill in texts in Corrective Actions
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j--));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).clear();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j));
 			
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text.get(j--));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j--));
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).clear();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j));
 			//Leave text in corrective actions
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j));
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
 			
 
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
 			//Checks error meter as 0%
-			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			String meterText = meter.getText();
 			System.out.println(meterText);
 			if(driver.getCurrentUrl().contains("kaleqa"))
@@ -851,11 +908,11 @@ public class ErrorMeter {
 			//Click on People of PAPE
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-p"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleTab)).click();
 			//Clicks on checkboxes in People Tab
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox2)).click();
 			Thread.sleep(1000);
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			if(driver.getCurrentUrl().contains("kaleqa"))
@@ -865,9 +922,9 @@ public class ErrorMeter {
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q3"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 			Thread.sleep(1000);
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			if(driver.getCurrentUrl().contains("kaleqa"))
@@ -879,29 +936,29 @@ public class ErrorMeter {
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j--));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).clear();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j));
 			//leave in text
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j));
 			
 
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j--));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).clear();
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j));
 			//leave in text
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text.get(j));
 			
 
 			//Fill in texts in Corrective Actions
@@ -916,7 +973,7 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea"))).clear();
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j));
 			//leave in text
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j));
 			
 
 			jse.executeScript("scroll(0, 800)");
@@ -940,7 +997,7 @@ public class ErrorMeter {
 			//Clicks on checkboxes in Activity Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
 			Thread.sleep(1000);
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			if(driver.getCurrentUrl().contains("kaleqa"))
@@ -952,7 +1009,7 @@ public class ErrorMeter {
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
 			Thread.sleep(1000);
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			if(driver.getCurrentUrl().contains("kaleqa"))
@@ -1021,7 +1078,7 @@ public class ErrorMeter {
 			//Clicks on checkboxes in Procedure Tab
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
 			Thread.sleep(1000);
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			if(driver.getCurrentUrl().contains("kaleqa"))
@@ -1033,7 +1090,7 @@ public class ErrorMeter {
 			Thread.sleep(2000);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
 			Thread.sleep(1000);
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			softly.assertThat("50%").as("test data").isEqualTo(meterText);
@@ -1197,7 +1254,7 @@ public class ErrorMeter {
 			}
 			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[4]/textarea"))).clear();
 			//Checks error meter as 0%
-			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			String meterText = meter.getText();
 			System.out.println(meterText);
 			softly.assertThat("0%").as("test data").isEqualTo(meterText);
@@ -1291,7 +1348,7 @@ public class ErrorMeter {
 			}
 			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[4]/textarea"))).clear();
 			//Checks error meter as 0%
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			softly.assertThat("0%").as("test data").isEqualTo(meterText);
@@ -1299,68 +1356,68 @@ public class ErrorMeter {
 			//Click on People of PAPE
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-p"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleTab)).click();
 			//Clicks on checkboxes in People Tab
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q1"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox1)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q1"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox1)).click();
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox2)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q2"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox2)).click();
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q3"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q3"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q4"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox4)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-p-q4"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox4)).click();
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(Keys.BACK_SPACE);
 			}
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[3]/textarea"))).clear();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).clear();
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).clear();
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).clear();
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).clear();
 			
 			//Fill in texts in Corrective Actions
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[2]/td[4]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).clear();
 			
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text);
 			for (i=0;i<10;i++)
@@ -1385,7 +1442,7 @@ public class ErrorMeter {
 			}
 			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[5]/td[4]/textarea"))).clear();
 			//Checks error meter as 0%
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			softly.assertThat("0%").as("test data").isEqualTo(meterText);
@@ -1393,100 +1450,100 @@ public class ErrorMeter {
 			//Click on Environment of PAPE
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-e"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentTab)).click();
 			//Clicks on checkboxes in Environment Tab
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q1"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q1"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q2"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox2)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q2"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox2)).click();
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q3"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox3)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q3"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox3)).click();
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q4"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 			Thread.sleep(500);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-e-q4"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 			
 			//Fill in texts in Supporting reasons 
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
 			
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).clear();
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).clear();
 			
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[3]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
 			
 			
 			//Fill in texts in Corrective Actions
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[2]/td[4]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
 			
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).clear();
 			
 			jse.executeScript("scroll(0, 800)");
 			Thread.sleep(2000);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).clear();
 						
 			
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text);
 			for (i=0;i<10;i++)
 			{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(Keys.BACK_SPACE);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 			}
-			//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea"))).clear();
+			//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
 			jse.executeScript("scroll(0, 0)");
 			Thread.sleep(2000);
 			//Checks error meter as 0%
-			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-progbar']/div/div/a")));
+			meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 			meterText = meter.getText();
 			System.out.println(meterText);
 			softly.assertThat("0%").as("test data").isEqualTo(meterText);

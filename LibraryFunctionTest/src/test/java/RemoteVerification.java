@@ -62,7 +62,50 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RemoteVerification {
 	
-	SoftAssertions softly = new SoftAssertions();	
+	SoftAssertions softly = new SoftAssertions();
+	
+	By AnalysisLink = By.id("pii-main-menu-button-a");
+	By RVLink = By.id("pii-a-menu-rv");
+	
+	//Inside Module
+	By RVSaveAndSendButton = By.xpath(".//*[@id='pii-rv-tabs']/div[2]/div/a[2]");
+	By RVSaveButton = By.id("pii-rv-save");
+	By RVSavePopupTitle = By.id("pii-rv-dialog-title");
+	By RVSavePopupComfirmButton = By.id("pii-rv-dialog-confirmed");
+	By RVSavedAcivitiesButton = By.id("pii-rv-savedactivities");
+	By RV1stImageField = By.id("pii-rv-imgwork-photo-input");
+	By RV1stImageClearButton = By.id("pii-rv-imgwork-clear");
+	By RV1stImageRotateButton = By.id("pii-rv-imgwork-rotate");
+	By RV2ndImageField = By.id("pii-rv-imgperson-photo-input");
+	By RV2ndImageClearButton = By.id("pii-rv-imgperson-clear");
+	By RV2ndImageRotateButton = By.id("pii-rv-imgperson-rotate");
+	By RVDateTimeAboveLocationImage = By.id("pii-rv-tab-1-repdatetime");
+	By RVVerifierField = By.id("pii-rv-verifier-list-input");
+	By RVVerifierDropdown = By.id("pii-rv-verifier-list-ul");
+	By RVLatitudeLongitudeAboveLocationImage = By.id("pii-rv-imgwork-location");
+	By RVLocationImage = By.id("pii-rv-imgwork-googlemap");
+	By RVEventTitle = By.id("pii-rv-tab-1-title");
+	By RVEventDetails = By.id("pii-rv-tab-1-details");
+	By RVVerifierValue = By.id("pii-rv-verifier-name");
+		
+	By RVNewlyCreatedFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a");
+	By RVSidePanel = By.id("pii-user-home-panel-btn-rv");
+	
+	//HTML
+	By RVReportNotSentStatusMessage = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span");
+	By RVReportSentStatusMessage = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/span");
+	By RVCreationDate = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]");
+	By RVShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	By RVReportCreatorUsername = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div");
+	By RVReportVerifierUsername = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[2]");
+	By RVDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	By RVReportTitle = By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr[2]/td/strong");
+	By RVReportEventDetails = By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[2]/td/span");
+	By RVMarkedCriticalText = By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong");
+	By RVDeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	
+	//Share Page
+	By RVSharePageVerifierBlock = By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul");
 	
 	public String eventTitle(WebDriver driver) throws Exception {
 		
@@ -83,43 +126,44 @@ public class RemoteVerification {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		UserManagement obj1 = new UserManagement();
 		ShareCheck obj = new ShareCheck();
+		EiRCA obj2 = new EiRCA();
 		//Mark read verifier email		
 		String email = selectEmail(k);
 		obj1.emailMarkRead(email, driver);
 		//Clicks on Save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVSavePopupComfirmButton)).click();
 		//Wait for loading message to disappear		
 		obj.loadingServer(driver);
 		//Click on Saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-savedactivities"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVSavedAcivitiesButton)).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Clicks on newly created record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Verify status
-		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span"))).getText();
+		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportNotSentStatusMessage)).getText();
 		softly.assertThat(status).as("test data").contains("Not yet sent to verifier");
 		//Click on Open
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Clicks on Save and Send
-		driver.findElement(By.xpath(".//*[@id='pii-rv-tabs']/div[2]/div/a[2]")).click();
+		driver.findElement(RVSaveAndSendButton).click();
 		//Clicks on save and send report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-title"))).click();
-		driver.findElement(By.id("pii-rv-dialog-confirmed")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVSavePopupTitle)).click();
+		driver.findElement(RVSavePopupComfirmButton).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Verify status
-		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/span"))).getText();
+		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportSentStatusMessage)).getText();
 		softly.assertThat(status1).as("test data").contains("Sent, waiting upon verification");
 		//Creates the expected name of record
-		String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
+		String creation_date = driver.findElement(RVCreationDate).getText();
 		creation_date= creation_date.substring(22, creation_date.length());
 		String reportName = creation_date +"_"+ username + "_" + eventTitle(driver);
 		//Verify email
@@ -273,51 +317,51 @@ public class RemoteVerification {
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//Uploads picture 1
 		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
-		driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		driver.findElement(RV1stImageField).sendKeys(filepath);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Re-uploads same picture 1
-		driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys(filepath);
+		driver.findElement(RV1stImageField).sendKeys(filepath);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Re-uploads different picture 1
-		driver.findElement(By.id("pii-rv-imgwork-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");
+		driver.findElement(RV1stImageField).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");
 		//Rotates image 1 twice
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 	}
 	
 	public void upload1stpictureFirefox(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//Clicks on browse button of 1st picture
-		driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		driver.findElement(RV1stImageField).click();
 		Thread.sleep(2000);
 		//Uploads picture 1
 		Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		p.waitFor();
 		Thread.sleep(4000);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Re-uploads same picture 1
-		driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		driver.findElement(RV1stImageField).click();
 		Thread.sleep(2000);
 		Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		p1.waitFor();
 		Thread.sleep(4000);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Re-uploads different picture 1
-		driver.findElement(By.id("pii-rv-imgwork-photo-input")).click();
+		driver.findElement(RV1stImageField).click();
 		Thread.sleep(2000);
 		Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		p2.waitFor();
 		Thread.sleep(4000);
 		//Rotates image 1 twice
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 	}
 	
 	public void upload1stpictureIE10(WebDriver driver) throws Exception {
@@ -325,7 +369,7 @@ public class RemoteVerification {
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		Actions act = new Actions(driver);
 		//Clicks twice on browse button of 1st picture
-		WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
+		WebElement element2 =  driver.findElement(RV1stImageField);
 		act.doubleClick(element2).build().perform();
 		Thread.sleep(3000);
 		try{
@@ -342,7 +386,7 @@ public class RemoteVerification {
 		     }			 
 		 Thread.sleep(4000);
 		//*Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Re-uploads picture 1
 		act.doubleClick(element2).build().perform();
 		Thread.sleep(3000);
@@ -360,16 +404,16 @@ public class RemoteVerification {
 		    }			 
 		Thread.sleep(4000);
 		//Rotates image 1 twice
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 	}
 	
 	public void upload1stpictureIE11(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//Clicks twice on browse button of 1st picture
-		WebElement element2 =  driver.findElement(By.id("pii-rv-imgwork-photo-input"));
+		WebElement element2 =  driver.findElement(RV1stImageField);
 		Actions act = new Actions(driver);
 		act.doubleClick(element2).build().perform();
 		Thread.sleep(3000);
@@ -387,7 +431,7 @@ public class RemoteVerification {
 		    }			 
 		Thread.sleep(4000);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Same image
 		act.doubleClick(element2).build().perform();
 		Thread.sleep(3000);
@@ -405,7 +449,7 @@ public class RemoteVerification {
 		    }			 
 		Thread.sleep(4000);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageClearButton)).click();
 		//Re-uploads different picture 1
 		act.doubleClick(element2).build().perform();
 		Thread.sleep(3000);
@@ -423,9 +467,9 @@ public class RemoteVerification {
 		}			 
 		Thread.sleep(4000);
 		//Rotates image 1 twice
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV1stImageRotateButton)).click();
 	}
 		
     public void upload2ndpictureChrome(WebDriver driver) throws Exception {
@@ -433,53 +477,53 @@ public class RemoteVerification {
     	WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//Uploads picture 2
 		String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
-		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		driver.findElement(RV2ndImageField).sendKeys(file2);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		//Re-uploads same picture 2
-		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(file2);
+		driver.findElement(RV2ndImageField).sendKeys(file2);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		//Re-uploads different picture 2
-		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		driver.findElement(RV2ndImageField).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
 		//Rotates image 2 once
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageRotateButton)).click();
 	}
 	
 	public void upload2ndpictureFirefox(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//Clicks on browse button of 2nd picture
-		driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
+		driver.findElement(RV2ndImageField).click();
 		Thread.sleep(2000);
 		//Uploads picture 2
 		Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		p3.waitFor();
 		Thread.sleep(8000);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		//Re-uploads same picture 2
-		driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
+		driver.findElement(RV2ndImageField).click();
 		Thread.sleep(2000);
 		Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		p2.waitFor();
 		Thread.sleep(8000);
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		//Re-uploads different picture 2
-		driver.findElement(By.id("pii-rv-imgperson-photo-input")).click();
+		driver.findElement(RV2ndImageField).click();
 		Thread.sleep(2000);
 		Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		p1.waitFor();
 		Thread.sleep(8000);
 		//Rotates image 2 once
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageRotateButton)).click();
 	}
 	
 	public void upload2ndpictureIE10(WebDriver driver) throws Exception {
 		
 		//Clicks twice on browse button of 2nd picture
-		WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
+		WebElement element =  driver.findElement(RV2ndImageField);
 		Actions act = new Actions(driver);
 		act.doubleClick(element).build().perform();
 		Thread.sleep(3000);
@@ -498,7 +542,7 @@ public class RemoteVerification {
 		 Thread.sleep(4000);
 		 //Clears image
 		 WebDriverWait wait1 = new WebDriverWait(driver,20);
-		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		 //Re-uploads picture 2
 		 act.doubleClick(element).build().perform();
 		 Thread.sleep(3000);
@@ -517,13 +561,13 @@ public class RemoteVerification {
 		 }
 		 Thread.sleep(4000);
 		 //Rotates image 2 once
-		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageRotateButton)).click();
 	}
 	
 	public void upload2ndpictureIE11(WebDriver driver) throws Exception {
 		
 		  //Clicks twice on browse button of 2nd picture
-		  WebElement element =  driver.findElement(By.id("pii-rv-imgperson-photo-input"));
+		  WebElement element =  driver.findElement(RV2ndImageField);
 		  Actions act = new Actions(driver);
 		  act.doubleClick(element).build().perform();
 		  Thread.sleep(3000);
@@ -543,7 +587,7 @@ public class RemoteVerification {
 		  Thread.sleep(4000);
 		  //Clears image
 		  WebDriverWait wait1 = new WebDriverWait(driver,20);
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		  //Re-uploads same picture 2
 		  act.doubleClick(element).build().perform();
 		  Thread.sleep(3000);
@@ -562,7 +606,7 @@ public class RemoteVerification {
 		  }
 		  Thread.sleep(4000);
 		  //Clears image
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-clear"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageClearButton)).click();
 		  //Re-uploads same picture 2
 		  act.doubleClick(element).build().perform();
 		  Thread.sleep(3000);
@@ -581,14 +625,14 @@ public class RemoteVerification {
 		  }
 		  Thread.sleep(4000);
 		  //Rotates image 2 once
-		  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-rotate"))).click();
+		  wait1.until(ExpectedConditions.visibilityOfElementLocated(RV2ndImageRotateButton)).click();
 	}
 	
 	public void verifyDateTime(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Get time and date from RV location map
-		String timeDate = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-repdatetime"))).getText();
+		String timeDate = wait1.until(ExpectedConditions.visibilityOfElementLocated(RVDateTimeAboveLocationImage)).getText();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
@@ -611,70 +655,71 @@ public class RemoteVerification {
 	public void verifierSelect(WebDriver driver, int k) throws Exception {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		EiRCA obj = new EiRCA ();
 		//dev admin
 		if(k==1)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaarvverifier");
 		}
 		//dev nonadmin
 		if(k==2)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifiernonadmin");
+			driver.findElement(RVVerifierField).sendKeys("qaarvverifiernonadmin");
 		}
 		//dev admin ie11
 		if(k==3)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaaie11rvverifier");
 		}
 		//dev nonadmin ie11
 		if(k==4)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifiernonadmin");
+			driver.findElement(RVVerifierField).sendKeys("qaaie11rvverifiernonadmin");
 		}
 		//asia admin
 		if(k==5)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaarvverifier");
 		}
 		//asia nonadmin
 		if(k==6)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaarvverifiernonadmin");
+			driver.findElement(RVVerifierField).sendKeys("qaarvverifiernonadmin");
 		}
 		//asia admin ie11
 		if(k==7)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaaie11rvverifier");
 		}
 		//asia nonadmin ie11
 		if(k==8)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaaie11rvverifiernonadmin");
+			driver.findElement(RVVerifierField).sendKeys("qaaie11rvverifiernonadmin");
 		}
 		//us admin
 		if(k==9)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausrvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaausrvverifier");
 		}
 		//us nonadmin
 		if(k==10)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausrvverifiernonadmin");
+			driver.findElement(RVVerifierField).sendKeys("qaausrvverifiernonadmin");
 		}
 		//us admin ie11
 		if(k==11)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausie11rvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaausie11rvverifier");
 		}
 		//us nonadmin ie11
 		if(k==12)
 		{
-			driver.findElement(By.id("pii-rv-verifier-list-input")).sendKeys("qaausie11rvverifiernonadmin");
+			driver.findElement(RVVerifierField).sendKeys("qaausie11rvverifiernonadmin");
 		}
 	    //Selects the remote verifier		
 		jse.executeScript("scroll(0, 1500)");
-		WebElement select = driver.findElement(By.id("pii-rv-verifier-list-ul"));
-		WebElement option=select.findElement(By.cssSelector(".ui-first-child"));
+		WebElement select = driver.findElement(RVVerifierDropdown);
+		WebElement option=select.findElement(obj.FirstSelectionUnderDropdown);
 		option.click();
 	}
 	
@@ -685,7 +730,7 @@ public class RemoteVerification {
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 	    String browserName = cap.getBrowserName().toLowerCase();
 	    //Get longitude latitude from rv location image
-	    String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-location"))).getText();
+	    String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(RVLatitudeLongitudeAboveLocationImage)).getText();
 	    System.out.println(location); 
 	    String url = driver.getCurrentUrl();
 	    if(url.contains("kaleqa"))
@@ -700,7 +745,7 @@ public class RemoteVerification {
 		{
 	    System.out.println("Latitude: "+latLongs[0]+" and Longitude: "+latLongs[1]);
 	    //Verify image appears
-	    wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-googlemap")));
+	    wait1.until(ExpectedConditions.visibilityOfElementLocated(RVLocationImage));
 	    //check if longitude matches upto first decimal point
 	    String longitude = latLongs[1].toString().substring(0, 5);
 	    softly.assertThat(location).as("test data").contains(longitude);
@@ -774,89 +819,90 @@ public class RemoteVerification {
     	
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
     	ErrorMeter obj = new ErrorMeter();
+    	ShareCheck obj1 = new ShareCheck();
+    	EiRCA obj2 = new EiRCA ();
     	String sharer = obj.decideSharer (y);
-    	String sharerAdded = obj.decideSharerAdded (y);
+    	String sharerAdded = obj.decideSharerAdded (y);    	
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
     	//Clicks on share button
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareButton)).click();
     	//Verifies if verifier displayed is disabled
-    	WebElement verify = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul")));
+    	WebElement verify = wait1.until(ExpectedConditions.visibilityOfElementLocated(RVSharePageVerifierBlock));
     	String s = verify.getAttribute("data-inset");
     	System.out.println(s);
     	if(s.equals("true")==false)
     		softly.fail("Verifier text box not suppose to be enabled");    	
     	//Enters verifier username and tries to add verifier
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(verifier);
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareTextBox)).sendKeys(verifier);
     	//Selects from dropdown
-    	WebElement dropdown1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-    	dropdown1.findElement(By.cssSelector(".ui-first-child")).click();
+    	WebElement dropdown1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareDropdown));
+    	dropdown1.findElement(obj2.FirstSelectionUnderDropdown).click();
     	//Gets text from error pop up and verifies text
-    	String error = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).getText();
+    	String error = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).getText();
     	softly.assertThat(error).as("test data").contains("Sorry, the current activity is already shared to user");
     	//Verifies cancel button not available
-    	WebElement cancel = driver.findElement(By.id("pii-user-home-dialog-cancel"));
+    	WebElement cancel = driver.findElement(obj2.ConfirmCancelButton);
     	if(cancel.isDisplayed()==true)
     		softly.fail("Cancel button not suppose to be displayed");
     	//Verifies if only ok button available and clicks on ok
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
     	//Adds sharer
 		//Enters sharer username
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).clear();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareTextBox)).clear();
     	Thread.sleep(1000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareTextBox)).sendKeys(sharer);
     	//Selects from dropdown
-		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
+		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareDropdown));
+		dropdown.findElement(obj2.FirstSelectionUnderDropdown).click();
 		//Clicks on add user
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
 		//Verifies user added
-		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
-		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		ShareCheck obj1 = new ShareCheck();
+		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.SharerAdded)).getText();
+		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);		
 		obj1.shareTwice (driver);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareSaveButton)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		 //Checks the username of creator and verifier
-		 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div")));
+		 WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(RVReportCreatorUsername));
 		 String creatorUsername= creator.getText();
 		 System.out.println(creatorUsername);
 		 softly.assertThat(username).as("test data").isSubstringOf(creatorUsername);
-		 WebElement verifier1=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[2]")));
+		 WebElement verifier1=wait1.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerifierUsername));
 		 String verifierUsername = verifier1.getText();
 		 System.out.println(verifierUsername);
 		 softly.assertThat(verifier).as("test data").isSubstringOf(verifierUsername);
 		 //Calls the Share check function
 		 obj1.receiptReport(driver, sharer, username, password1);
 		 //Clicks on Remote Verification side panel
-		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(RVSidePanel)).click();
 			//Wait for loading message to disappear
 			obj1.loadingServer(driver);
 		 //Clicks on first newly created record
-		 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();;
+		 wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();;
     }
 	
 	public void downloadRecordChrome(WebDriver driver, String verifier, String username) throws Exception {
     	
-	    //deletes files in reports folder before starting to download
+		ShareCheck obj = new ShareCheck();
+		EiRCA obj1 = new EiRCA();
+		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
     	deleteFiles(file);	    	
 	    WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on first newly created record
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
-		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVDownloadButton)).click();
+		//Wait for loading message to disappear		
+		obj.loadingServer(driver);		
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
     	Thread.sleep(7000);
     	pdfCheck(driver,verifier,username);
         for(String winHandle : driver.getWindowHandles()){
@@ -870,27 +916,27 @@ public class RemoteVerification {
     
 	public void downloadRecordFirefox(WebDriver driver, String verifier, String username) throws Exception {
     	
-	    //deletes files in reports folder before starting to download
+		EiRCA obj1 = new EiRCA();
+		ShareCheck obj = new ShareCheck();
+		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
     	deleteFiles(file);		  
 	    WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on first newly created record
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVDownloadButton)).click();
+		//Wait for loading message to disappear		
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
     	Thread.sleep(8000);
     	for(String winHandle : driver.getWindowHandles()){
     	    driver.switchTo().window(winHandle);
     	}
     	Thread.sleep(2000);
-    	//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
     	Robot robot = new Robot();
     	// press Ctrl+S the Robot's way
     	robot.keyPress(KeyEvent.VK_CONTROL);
@@ -910,21 +956,22 @@ public class RemoteVerification {
 	
 	public void downloadRecordIE(WebDriver driver, String verifier, String username) throws Exception {
     	
-	    //deletes files in reports folder before starting to download
+		ShareCheck obj = new ShareCheck();
+		EiRCA obj1 = new EiRCA();
+		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
     	deleteFiles(file);		  
 	    WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on first newly created record
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
-		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVDownloadButton)).click();
+		//Wait for loading message to disappear		
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
     	Thread.sleep(4000);
     	try {
 			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
@@ -947,21 +994,22 @@ public class RemoteVerification {
 	
 	public void downloadRecordIE11(WebDriver driver, String verifier, String username) throws Exception {
     	
-	    //deletes files in reports folder before starting to download
+		ShareCheck obj = new ShareCheck();
+		EiRCA obj1 = new EiRCA();
+		//deletes files in reports folder before starting to download
     	File file = new File("C://Users//IEUser//Downloads//reports//");
     	deleteFiles(file);		  
 	    WebDriverWait wait1 = new WebDriverWait(driver,60);
     	//Clicks on first newly created record
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVDownloadButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
     	Thread.sleep(4000);
     	try {
 			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
@@ -1073,11 +1121,11 @@ public class RemoteVerification {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify report title
-		String title=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr[2]/td/strong"))).getText();
+		String title=wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportTitle)).getText();
 		String r = title.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").contains(eventTitle(driver));
 		//Verify event details
-		String details=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[2]/td/span"))).getText();
+		String details=wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportEventDetails)).getText();
 		String r1 = details.replaceAll("\u00AD", "");
 		softly.assertThat(r1).as("test data").contains(details(driver));
 	}
@@ -1085,60 +1133,63 @@ public class RemoteVerification {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
     	
     	WebDriverWait wait1 = new WebDriverWait(driver,60);
+    	ErrorMeter obj = new ErrorMeter();
+    	ShareCheck obj1 = new ShareCheck();
+		EiRCA obj2 = new EiRCA();
     	//Verify text in HTML
     	verifyTextInHTML(driver);
     	//Clicks on mark critical
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.MarkCritical)).click();
     	//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong"))).getText();
+		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(RVMarkedCriticalText)).getText();
 		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong")).isDisplayed())
+		if(driver.findElement(RVMarkedCriticalText).isDisplayed())
 			System.out.println("Marked critical");
 		//Clicks on mark critical again
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.MarkCritical)).click();
     	//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong")).isDisplayed()==false)
+		if(driver.findElement(RVMarkedCriticalText).isDisplayed()==false)
 		{
 			System.out.println("Unmarked critical");
 		}
-		//Verify report not retrieved by shared to person
-	    ErrorMeter obj = new ErrorMeter();
+		//Verify report not retrieved by shared to person	    
 		String sharer = obj.decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on rv side panel
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVSidePanel)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
     	//Clicks on first newly created record
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();	
+    	wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();	
     }
 	
 	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{
 		  
 		  Thread.sleep(2000);
 		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  //Clicks on delete button
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		  
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
-		  //Clicks on delete report
-		  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		  Thread.sleep(2000);
-		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
-			//Wait for loading message to disappear
+		  ErrorMeter obj = new ErrorMeter();
+		  ShareCheck obj1 = new ShareCheck();
+		  EiRCA obj3 = new EiRCA ();
 		  ShareCheck obj2 = new ShareCheck();
+		  //Clicks on delete button
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(RVDeleteButton)).click();		 
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle));
+		  //Clicks on delete report
+		  driver.findElement(obj2.ConfirmPopupButton).click();
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.StickyNote));
+		  Thread.sleep(2000);
+		  driver.findElement(RVSidePanel).click();
+			//Wait for loading message to disappear		  
 			obj2.loadingServer(driver);
 		  //Verify record deleted
 		  //Get name of 1st record
-		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a")).getText();
+		  String name = driver.findElement(RVNewlyCreatedFirstRecord).getText();
 		  System.out.println(name);
 		  if (name!=recordName)
 			  System.out.println("Record deleted");
@@ -1149,9 +1200,9 @@ public class RemoteVerification {
 		  {
 			  Thread.sleep(1000);
 			  try{
-			  if (driver.findElement(By.className("sticky-note")).isDisplayed())
+			  if (driver.findElement(obj1.StickyNote).isDisplayed())
 			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+				  wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.StickyClose)).click();
 				  
 			  }}catch (NoSuchElementException e)
 			  {
@@ -1172,11 +1223,8 @@ public class RemoteVerification {
 		  }
 		  
 		  //Verify report not retrieved by shared to person
-	      ErrorMeter obj = new ErrorMeter();
-		  String sharer = obj.decideSharer (y);
-		  ShareCheck obj1 = new ShareCheck();
-		  obj1.checkNoReportAfterDelete(driver, sharer, softly);
-		  			  
+	      String sharer = obj.decideSharer (y);
+		  obj1.checkNoReportAfterDelete(driver, sharer, softly);	  			  
 	  }
 	
 	public void upload2ndPicture(WebDriver driver) throws Exception{
@@ -1223,36 +1271,39 @@ public class RemoteVerification {
 	
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 		
+		  ShareCheck obj = new ShareCheck();
+		  //Waits for black loading message to disappear
+		  obj.loadingServer(driver);
 		  //Clicks on Analysis 
 		  try
 		  {
-			  driver.findElement(By.id("pii-main-menu-button-a")).click();
+			  driver.findElement(AnalysisLink).click();
 		  }catch (UnhandledAlertException f){			  
 			  driver.switchTo().alert().dismiss();
 		  }
 		  //Clicks on Remote Verification
-		  driver.findElement(By.id("pii-a-menu-rv")).click();
+		  driver.findElement(RVLink).click();
 		  //Fills the mandatory fields
-		  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(eventTitle(driver));
-		  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details(driver));
-		  String ev1 = driver.findElement(By.id("pii-rv-tab-1-title")).getAttribute("value");
-		  String ev2 = driver.findElement(By.id("pii-rv-tab-1-details")).getAttribute("value");
+		  driver.findElement(RVEventTitle).sendKeys(eventTitle(driver));
+		  driver.findElement(RVEventDetails).sendKeys(details(driver));
+		  String ev1 = driver.findElement(RVEventTitle).getAttribute("value");
+		  String ev2 = driver.findElement(RVEventDetails).getAttribute("value");
 		  if ((ev1.equals(eventTitle(driver))==false))
 		  {
-			  driver.findElement(By.id("pii-rv-tab-1-title")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-title")).sendKeys(eventTitle(driver));
+			  driver.findElement(RVEventTitle).clear();
+			  driver.findElement(RVEventTitle).sendKeys(eventTitle(driver));
 		  }
 		  if((ev2.equals(details(driver)))==false)
 		  {
-			  driver.findElement(By.id("pii-rv-tab-1-details")).clear();
-			  driver.findElement(By.id("pii-rv-tab-1-details")).sendKeys(details(driver));
+			  driver.findElement(RVEventDetails).clear();
+			  driver.findElement(RVEventDetails).sendKeys(details(driver));
 		  }
 		  
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  //Select verifier
 		  verifierSelect(driver,k);
 		  Thread.sleep(1000);
-		  String verifier= driver.findElement(By.id("pii-rv-verifier-name")).getAttribute("piivalue");
+		  String verifier= driver.findElement(RVVerifierValue).getAttribute("piivalue");
 		  //Uploads picture 2
 		  upload2ndPicture(driver);
 		  //*
@@ -1271,15 +1322,15 @@ public class RemoteVerification {
 		  checkStatusReport(driver,username,k);
 		  Thread.sleep(3000);
 		  //Creates the expected name of record
-		  String creation_date = driver.findElement(By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]")).getText();
+		  String creation_date = driver.findElement(RVCreationDate).getText();
 		  creation_date= creation_date.substring(22, creation_date.length());
 		  String name = creation_date +"_"+ username + "_" + eventTitle(driver);
 		  System.out.println("Expected name of record: " + name);
 		  //Clicks on Remote Verification
-		  driver.findElement(By.id("pii-user-home-panel-btn-rv")).click();
+		  driver.findElement(RVSidePanel).click();
 		  Thread.sleep(3000);
 		  //Gets the name of the record created
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"));
+		  WebElement record = driver.findElement(RVNewlyCreatedFirstRecord);
 		  String recordName = record.getText();
 		  String r = recordName.replaceAll("\u00AD", "");
 		  if (record.isDisplayed())

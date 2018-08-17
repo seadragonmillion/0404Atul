@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +41,35 @@ public class ShareCheck {
 	By ActivityOnTopRight = By.id("pii-user-activity");
 	By ModuleTitle = By.id("pii-user-home-title");
 	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	
+    public void scrollToElement(WebDriver driver, WebElement l)throws Exception{
+    	
+    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+    	Point p = l.getLocation();
+		int yaxis= p.getY()-250;
+		Thread.sleep(1000);
+		try{
+		jse.executeScript("scroll(0,"+yaxis+")");
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}
+		Thread.sleep(1000);
+    }
+    
+    public void scrollToTop(WebDriver driver) throws Exception {
+    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+    	Thread.sleep(1000);
+    	try{
+			jse.executeScript("scroll(0,0)");
+			}catch (org.openqa.selenium.ScriptTimeoutException r)
+			{
+				Thread.sleep(3000);
+				jse.executeScript("scroll(0,0)");
+			}
+    	Thread.sleep(1000);
+    }
 	
 	public void shareTwice (WebDriver driver) throws Exception {
 		

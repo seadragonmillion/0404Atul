@@ -78,6 +78,7 @@ public class Login {
 			  Thread.sleep(1000);
 			  driver.findElement(UserName).clear();
 			  driver.findElement(Password).clear();
+			  Thread.sleep(2000);
 			  //Username text field is located and the username is entered
 			  driver.findElement(UserName).sendKeys(username);
 			  //Password field is located and the password is entered
@@ -106,7 +107,7 @@ public class Login {
 		return (decryptedPassword);
 	}
 	
-	public void logout (WebDriver driver) throws Exception {
+	public void closePopUpSticky(WebDriver driver) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		while(true)
@@ -141,6 +142,12 @@ public class Login {
 			  }
 			 
 		  }
+	}
+	
+	public void logout (WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		closePopUpSticky(driver);
 		Thread.sleep(4000);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();

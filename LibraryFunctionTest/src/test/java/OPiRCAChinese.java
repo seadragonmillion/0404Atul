@@ -289,6 +289,9 @@ public class OPiRCAChinese {
 		OPiRCAChinese2 obj2 = new OPiRCAChinese2(); 
 		OPiRCAChinese3 obj3 = new OPiRCAChinese3();
 		HiRCALevel1 obj4 = new HiRCALevel1();
+		ShareCheck obj5 = new ShareCheck();
+		//Wait for loading message to disappear
+		obj5.loadingServer(driver);
 	  	//Click on Analysis
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AnalysisLink)).click();
 		//Clicks on OPiRCA
@@ -301,7 +304,7 @@ public class OPiRCAChinese {
     	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButtonAtBottomOfInfoTab)).click();
     	//Scroll top
     	Thread.sleep(1000);
-    	jse.executeScript("scroll(0,0)");	 
+    	obj5.scrollToTop(driver);	 
     	Thread.sleep(1000);
 		//Verify everything on Event Information page is in 
 		chineseInfoPage(driver);
@@ -309,7 +312,7 @@ public class OPiRCAChinese {
     	chineseErrorsInfoPage(driver);
     	//Create a new OPiRCA report 
 	  	chineseEventInfoFill(driver);
-	  	Thread.sleep(1000);
+	  	Thread.sleep(2000);
 	  	//Verify step 1
 	  	chineseOPiRCAStep1(driver);
 	  	Thread.sleep(1000);
@@ -467,6 +470,10 @@ public class OPiRCAChinese {
     	chineseStep3SURE(driver);
     	//Mark checkboxes in Step 3 SURE table
     	markSUREcheckboxes(driver);
+    	//Scroll top
+    	Thread.sleep(1000);
+    	obj5.scrollToTop(driver);	 
+    	Thread.sleep(1000);
     	//Click on next
     	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();    
     	Thread.sleep(1000);
@@ -474,6 +481,10 @@ public class OPiRCAChinese {
     	obj2.chineseStep4(driver,softly);
     	//Check 3 HML boxes
     	obj2.checkStep4HMLBoxes(driver);
+    	//Scroll top
+    	Thread.sleep(1000);
+    	obj5.scrollToTop(driver);	 
+    	Thread.sleep(1000);
     	//Click on next
     	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();  
     	Thread.sleep(1000);
@@ -558,10 +569,10 @@ public class OPiRCAChinese {
     public void markSUREcheckboxes(WebDriver driver) throws Exception{
     	
     	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+    	ShareCheck obj = new ShareCheck();
     	//Scroll to top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on all 4 boxes for 1st Apparent cause
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3SURETableEntry1Checkbox1)).click();
@@ -569,7 +580,7 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3SURETableEntry1Checkbox3)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3SURETableEntry1Checkbox4)).click();
 		//Scroll up
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(2000);
     }
 	
@@ -3106,6 +3117,7 @@ public class OPiRCAChinese {
     	WebDriverWait wait = new WebDriverWait(driver,5);
     	JavascriptExecutor jse = (JavascriptExecutor)driver;
     	OPiRCA obj = new OPiRCA();
+    	ShareCheck obj1 = new ShareCheck();
     	int count =0;
     	int k=1;
     	//Identify number of answers for an apparent cause
@@ -3135,7 +3147,7 @@ public class OPiRCAChinese {
     	}
     	//Scroll to top
     	Thread.sleep(1000);
-    	jse.executeScript("scroll(0,0)");
+    	obj1.scrollToTop(driver);
     	Thread.sleep(1000);
     	//Click on next
     	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();    	  	
@@ -3282,6 +3294,7 @@ public class OPiRCAChinese {
     	WebDriverWait wait = new WebDriverWait(driver,10);
     	JavascriptExecutor jse = (JavascriptExecutor)driver;
     	OPiRCA obj = new OPiRCA();
+    	ShareCheck obj1 = new ShareCheck();
     	//Create a List to store HiRCA selections
     	List<String> hircaL3 = new ArrayList<String>();
     	//Click on HiRCA button
@@ -3304,7 +3317,7 @@ public class OPiRCAChinese {
     	}
     	//Scroll to the top
     	Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj1.scrollToTop(driver);
 		Thread.sleep(2000);
     	//Close the pop up
     	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuCloseButton)).click();	
@@ -3339,6 +3352,7 @@ public class OPiRCAChinese {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCAChinese obj = new EiRCAChinese();
 		OPiRCA obj1 = new OPiRCA ();
+		ShareCheck obj2 = new ShareCheck();
 		//Fills the mandatory fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAEventTitleField)).sendKeys(obj.text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAEventLocationField)).sendKeys(obj.text);
@@ -3352,7 +3366,7 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj2.scrollToTop(driver);
 		Thread.sleep(2000);		
 	}
 	

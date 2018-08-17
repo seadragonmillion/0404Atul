@@ -19,7 +19,6 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -123,8 +122,11 @@ public class EiRCAChinese {
 	By Step2Row11stTextBoxTitle = By.xpath(".//*[@id='pii-ircam-tab-3']/div[3]/div[1]/div");
 	By Step2Row12ndTextBoxTitle = By.xpath(".//*[@id='pii-ircam-tab-3']/div[3]/div[2]/div");
 	By Step2Row11stTextBoxField = By.xpath(".//*[@id='pii-ircam-tab-3']/div[3]/div[1]/textarea");
+	By Step2Row12ndTextBoxField = By.xpath(".//*[@id='pii-ircam-tab-3']/div[3]/div[2]/textarea");
 	By Step2Row21stTextBoxTitle = By.xpath(".//*[@id='pii-ircam-tab-3']/div[4]/div[1]/div");
 	By Step2Row22ndTextBoxTitle = By.xpath(".//*[@id='pii-ircam-tab-3']/div[4]/div[2]/div");
+	By Step2Row21stTextBoxField = By.xpath(".//*[@id='pii-ircam-tab-3']/div[4]/div[1]/textarea");
+
 	By Step2AddFailureButton = By.id("pii-ircam-addnewfmt");
 	
 	//Pop up inside report
@@ -266,6 +268,18 @@ public class EiRCAChinese {
 	By Step7SUEPTableRow2Chk2 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[3]/div/input");
 	By Step7SUEPTableRow2Chk3 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[4]/div/input");
 	By Step7SUEPTableRow2Chk4 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[5]/div/input");
+	By Step7SUEPTableRow3Chk1 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[2]/div/input");
+	By Step7SUEPTableRow3Chk2 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[3]/div/input");
+	By Step7SUEPTableRow3Chk3 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[4]/div/input");
+	By Step7SUEPTableRow3Chk4 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[5]/div/input");
+	By Step7SUEPTableRow4Chk1 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[2]/div/input");
+	By Step7SUEPTableRow4Chk2 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[3]/div/input");
+	By Step7SUEPTableRow4Chk3 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[4]/div/input");
+	By Step7SUEPTableRow4Chk4 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[5]/div/input");
+	By Step7SUEPTableRow5Chk1 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[2]/div/input");
+	By Step7SUEPTableRow5Chk2 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[3]/div/input");
+	By Step7SUEPTableRow5Chk3 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[4]/div/input");
+	By Step7SUEPTableRow5Chk4 = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[5]/div/input");
 	
 	//Report Tab
 	By ReportTabTable1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/thead/tr/th");
@@ -821,6 +835,8 @@ public class EiRCAChinese {
 		HiRCALevel1 obj2 = new HiRCALevel1();
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Wait for loading message to disappear
+		obj1.loadingServer(driver);
 	    //Click on Analysis
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLink)).click();
 	  	//Bug KALE-1963
@@ -905,7 +921,6 @@ public class EiRCAChinese {
 	public void EiRCApath3 (WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCA obj = new EiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		//Create a new EiRCA report 
@@ -942,25 +957,17 @@ public class EiRCAChinese {
 	  	chineseStep5(driver);
 	  	//Scroll to element 5.5 checkbox
 	  	WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55CheckBox));
-	  	Point p = l.getLocation();
-		int yaxis= p.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+	  	obj1.scrollToElement(driver, l);
 	  	//Select yes for 5.5
 	  	l.click();
 	    //Scroll to element 5.6 checkbox
 	  	l = wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56CheckBox));
-	  	p = l.getLocation();
-		yaxis= p.getY()-250;
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+	  	obj1.scrollToElement(driver, l);
 	  	//Select yes for 5.6	  	
 	  	l.click();
 	  	//Scroll to top
 	  	Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
+		obj1.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCANextButton)).click();
@@ -3671,12 +3678,10 @@ public class EiRCAChinese {
 		WebElement dropdown = driver.findElement(Step1Q11Answer);
 		Select s = new Select(dropdown);
 		s.selectByVisibleText("故障排查");
-		//s.selectByIndex(1);
 		//Select answer for q1.2 that brings up text box
 		WebElement dropdown1 = driver.findElement(Step1Q12Answer);
 		Select s1 = new Select(dropdown1);
 		s1.selectByVisibleText("---- 其他机械相关部件 ----");
-		//s1.selectByIndex(14);
 		//Verify placeholder of text box
 		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step1Q12AnswerTextBox)).getAttribute("placeholder");
     	softly.assertThat(r1).as("test data").isEqualTo("输入其他的选项（非必选）");
@@ -3684,7 +3689,6 @@ public class EiRCAChinese {
 		WebElement dropdown2 = driver.findElement(Step1Q13Answer);
 		Select s2 = new Select(dropdown2);
 		s2.selectByVisibleText("---- 其他机械相关失效症状 ----");
-		//s2.selectByIndex(17);
 		//Verify placeholder of text box
 		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step1Q13AnswerTextBox)).getAttribute("placeholder");
     	softly.assertThat(r2).as("test data").isEqualTo("输入其他的选项（非必选）");

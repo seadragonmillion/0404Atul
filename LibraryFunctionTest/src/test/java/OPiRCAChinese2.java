@@ -3,7 +3,9 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -3385,12 +3387,25 @@ public class OPiRCAChinese2 {
 	    public void checkStep4HMLBoxes(WebDriver driver) throws Exception{
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,5);
+	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
+	    	//Scroll down
+	    	WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4TableRow1HighBox));
+	    	obj.scrollToElement(driver,l);
 	    	//H on 1st root cause
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4TableRow1HighBox)).click();   
+	    	l = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4TableRow4MediumBox));
+	    	obj.scrollToElement(driver,l);
 	    	//M on 1st contributing factor
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4TableRow4MediumBox)).click();
+	    	l = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4TableRow6LowBox));
+	    	obj.scrollToElement(driver,l);
 	    	//L on 2nd contributing factor
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4TableRow6LowBox)).click();
+	    	//Scroll to top
+			Thread.sleep(1000);
+			jse.executeScript("scroll(0,0)");
+			Thread.sleep(1000);
 	    }
 		
 	    public void chineseStep4(WebDriver driver, SoftAssertions softly) throws Exception{

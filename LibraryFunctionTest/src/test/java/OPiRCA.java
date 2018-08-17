@@ -583,6 +583,7 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
 	    	//Choose a number between 1 to 31 for number of selections
 	    	Random random = new Random();
 	    	int n;
@@ -627,7 +628,7 @@ public class OPiRCA {
 	    	}
 	    	//Scroll to the top
 	    	Thread.sleep(2000);
-    		jse.executeScript("scroll(0,0)");
+    		obj.scrollToTop(driver);
     		Thread.sleep(2000);
 	    	//Close the pop up
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuCloseButton)).click();	    	
@@ -658,6 +659,7 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
 	    	//Create a list to store any apparent cause answer selected
 	    	List<String> ac = new ArrayList<String>();
 	    	for(int i=0;i<apparentCauses.size();i++)
@@ -725,7 +727,7 @@ public class OPiRCA {
 	    		ac.add(s);
 	    		//Scroll to top
 	    		Thread.sleep(2000);
-	    		jse.executeScript("scroll(0,0)");
+	    		obj.scrollToTop(driver);
 	    		Thread.sleep(2000);
 	    		//Click on next
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
@@ -951,6 +953,7 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
 	    	//create a new list without the unselected hirca level 3 option
 	    	List<String> hircaNewList = new ArrayList<String>(hircaL3);
 	    	//Click on Step 1 tab
@@ -976,7 +979,7 @@ public class OPiRCA {
 	    	l.click();
 	    	//Scroll to the top
 	    	Thread.sleep(2000);
-    		jse.executeScript("scroll(0,0)");
+    		obj.scrollToTop(driver);
     		Thread.sleep(2000);
 	    	//Close the pop up
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuCloseButton)).click();
@@ -1349,9 +1352,10 @@ public class OPiRCA {
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
 	    	//Scroll to top
 			Thread.sleep(2000);
-    		jse.executeScript("scroll(0,0)");
+    		obj.scrollToTop(driver);
     		Thread.sleep(2000);
     		//Verify SURE
     		verifySURE(driver);
@@ -1393,7 +1397,7 @@ public class OPiRCA {
     		options.put("Root causes",r);
     		System.out.println(options);
     		//Scroll up
-    		jse.executeScript("scroll(0,0)");
+    		obj.scrollToTop(driver);
     		Thread.sleep(2000);
     		return options;
 	    }
@@ -1419,6 +1423,7 @@ public class OPiRCA {
 			
 			WebDriverWait wait = new WebDriverWait(driver,10);
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			ShareCheck obj = new ShareCheck();
 			//Verify title
 			String title = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
 			softly.assertThat(title).as("test data").contains("Step 4 - Level of Importance Attribution For Root Causes & Contributing Factors");
@@ -1591,9 +1596,9 @@ public class OPiRCA {
 				i=i+1;
 			}
 			//Scroll up
-			jse.executeScript("scroll(0,0)");
+			obj.scrollToTop(driver);
 			Thread.sleep(2000);
-			jse.executeScript("scroll(0,0)");
+			obj.scrollToTop(driver);
 			Thread.sleep(2000);
 			return hml;
 		}
@@ -1651,7 +1656,7 @@ public class OPiRCA {
 	    public void verifyApparentCausesAnswers(WebDriver driver,List<String> apparentCausesNew) throws Exception{
 	    	
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
-	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	ShareCheck obj = new ShareCheck();
 	    	//Create a list to store only title of apparent cause answer
 	    	List<String> ac = changeApparentCausesListWithoutSerialNumber(apparentCausesNew);
 	    	for(int i=0;i<apparentCausesNew.size();i++)
@@ -1661,7 +1666,7 @@ public class OPiRCA {
 		    	softly.assertThat(ac).contains(title.trim());
 	    		//Scroll to top
 	    		Thread.sleep(2000);
-	    		jse.executeScript("scroll(0,0)");
+	    		obj.scrollToTop(driver);
 	    		Thread.sleep(2000);
 	    		//Click on next
 	    		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
@@ -1673,6 +1678,7 @@ public class OPiRCA {
 	    	WebDriverWait wait = new WebDriverWait(driver,10);
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
 	    	EiRCA obj = new EiRCA ();
+	    	ShareCheck obj1 = new ShareCheck();
 	    	String text = obj.textCreate(driver);
 			//Scroll down
 	    	Thread.sleep(1000);
@@ -1682,7 +1688,7 @@ public class OPiRCA {
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButtonAtBottomOfInfoTab)).click();
 	    	//Scroll top
 	    	Thread.sleep(1000);
-	    	jse.executeScript("scroll(0,0)");	 
+	    	obj1.scrollToTop(driver);	 
 	    	Thread.sleep(1000);
 	    	//Click on dropdown field
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuButton)).click();
@@ -1727,7 +1733,7 @@ public class OPiRCA {
 	    	verifyCorrespondingApparentCauses(driver,hircaNewList,apparentCausesNew);
 	    	//Scroll top
 	    	Thread.sleep(1000);
-	    	jse.executeScript("scroll(0,0)");	 
+	    	obj1.scrollToTop(driver);	 
 	    	Thread.sleep(1000);
 	    	//Click on next
     		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
@@ -1749,7 +1755,7 @@ public class OPiRCA {
 	    	clickNextSkip(driver);
 	    	//Scroll to top
 			Thread.sleep(2000);
-    		jse.executeScript("scroll(0,0)");
+    		obj1.scrollToTop(driver);
     		Thread.sleep(2000);
 	    	//Clicks on save button
 			jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
@@ -1777,7 +1783,8 @@ public class OPiRCA {
 			}
 			else
 			  System.out.println ("Record not found.");
-			softly.assertThat(name).as("test data").isEqualTo(recordName);
+			  String r1 = recordName.replaceAll("\u00AD", "");
+			softly.assertThat(name).as("test data").isEqualTo(r1);
 			//Verify Apparent Causes in HTML
 			verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 			//Open report

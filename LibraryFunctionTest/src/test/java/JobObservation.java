@@ -1,6 +1,7 @@
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -222,12 +223,14 @@ public class JobObservation {
 	public void imageUploadIE(WebDriver driver) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Uploads a picture on next page in step 2
-		Thread.sleep(1000);
+		Thread.sleep(1000);/*
 		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
 		WebElement element =  driver.findElement(By.id("pii-joa-tab-2-photo-input"));
 		Actions act = new Actions(driver);
-		act.doubleClick(element).build().perform();
+		act.doubleClick(element).build().perform();*/
+		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(3000);
 		//Uploads picture
 		try{
@@ -247,9 +250,10 @@ public class JobObservation {
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
 		//Re-upload photo
-		Thread.sleep(1000);
+		Thread.sleep(1000);/*
 		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
-		act.doubleClick(element).build().perform();
+		act.doubleClick(element).build().perform();*/
+		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(3000);
 		//Uploads picture
 		try{
@@ -273,11 +277,13 @@ public class JobObservation {
 	public void imageUploadIE11(WebDriver driver) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Uploads a picture on next page in step 2
-		Thread.sleep(1000);
+		Thread.sleep(1000);/*
 		WebElement element =  driver.findElement(By.id("pii-joa-tab-2-photo-input"));
 		Actions act = new Actions(driver);
-		act.click(element).build().perform();
+		act.click(element).build().perform();*/
+		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(2000);
 		//Uploads picture
 		  try{
@@ -297,7 +303,8 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
 		//Re-upload photo
 		Thread.sleep(1000);
-		act.click(element).build().perform();
+		//act.click(element).build().perform();
+		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(2000);
 		//Uploads picture
 		  try{
@@ -318,7 +325,8 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
 		//Re-upload photo
 		Thread.sleep(1000);
-		act.click(element).build().perform();
+		//act.click(element).build().perform();
+		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(2000);
 		//Uploads a different picture
 		  try{
@@ -519,6 +527,8 @@ public class JobObservation {
 	    	EiRCA obj = new EiRCA ();
 	    	ShareCheck obj1 = new ShareCheck();
 	    	String text = obj.textCreate(driver);
+			//Wait for loading message to disappear
+			obj1.loadingServer(driver);
 	    	//Clicks on Analysis 
 			try
 			{

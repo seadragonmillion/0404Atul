@@ -69,8 +69,11 @@ public class PassReview {
 	public String createReport (WebDriver driver) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,10); 
-		ShareCheck obj = new ShareCheck();EiRCA obj1 = new EiRCA ();
+		ShareCheck obj = new ShareCheck();
+		EiRCA obj1 = new EiRCA ();
 		String text = obj1.textCreate(driver);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
 		//Clicks on Analysis 
 		try
 		{
