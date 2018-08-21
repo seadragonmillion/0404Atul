@@ -586,6 +586,7 @@ public class JobObservation {
 			  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"));
 			  String recordName = record.getText();
 			  String r = recordName.replaceAll("\u00AD", "");
+			  softly.assertThat(r).as("test data").contains(text);
 			  if (record.isDisplayed())
 			  {
 				  System.out.println("Record found: "+ r);

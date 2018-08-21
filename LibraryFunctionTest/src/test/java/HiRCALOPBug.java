@@ -65,6 +65,74 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 	}
 	
+	public void bugKALE2219KALE2246(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
+		HiRCALevel1 obj1 = new HiRCALevel1();
+		//Click on new for new report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Event title
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAEventTitleField)).sendKeys(text+" \"title\" "+text);
+		//Location of event
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAEventLocationField)).sendKeys(text+" \"foo\" "+text);
+		//Department
+		WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
+		Select s = new Select (dropdown);
+		s.selectByVisibleText("Construction");
+		//Problem Statement
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text);
+		//Timeline of event
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
+		//Background info
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
+		//Investigators
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
+		//Scroll top
+		obj.scrollToTop(driver);
+		//Save report
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		//Wait for loading message to disappear		  
+		obj.loadingServer(driver);
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
+		softly.assertThat(s2).as("test data").contains(text+" \"title\" "+text);
+		//Click on newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		//Wait for loading message to disappear		  
+		obj.loadingServer(driver);
+		//Click on Open button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+	    //Clicks on open report
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+	    //Clicks on Info tab
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+	    String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAEventLocationField)).getAttribute("value");
+	    softly.assertThat(s1).as("test data").isEqualTo(text+" \"foo\" "+text);
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		//Wait for loading message to disappear		  
+		obj.loadingServer(driver);
+		//Click on newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		//Wait for loading message to disappear		  
+		obj.loadingServer(driver);
+		//Delete
+		obj1.deleteReport(driver);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+	}
+	
 	public void bugKALE1957(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);

@@ -1848,9 +1848,9 @@ public class EiRCA {
 	    public String textCreate(WebDriver driver) throws Exception {
 	    	
 	    	if(driver.getCurrentUrl().contains("kaleqa"))
-	    		return ("Sanity <table> Test");
+	    		return ("Sanity <section> Test \"title\" Sanity");
 	    	else
-	    		return("Sanity Test");
+	    		return("Sanity Test \"title\" Sanity");
 	    }
 	    	       
 	    public HashMap<String,String> reportCreate(WebDriver driver,String username) throws Exception {

@@ -1,3 +1,4 @@
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class PassReview {
+	SoftAssertions softly = new SoftAssertions();
 
 	public void deleteNewRecord(WebDriver driver, String recordName) throws Exception{
 		  
@@ -130,6 +132,7 @@ public class PassReview {
 		//Gets the name of the record created
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"));
 		String recordName = record.getText();
+		softly.assertThat(recordName).as("test data").contains(text);
 		if (record.isDisplayed())
 		{
 		  System.out.println("Record found: "+ recordName);

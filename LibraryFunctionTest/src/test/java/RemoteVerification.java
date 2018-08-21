@@ -110,8 +110,8 @@ public class RemoteVerification {
 	public String eventTitle(WebDriver driver) throws Exception {
 		
 		if(driver.getCurrentUrl().contains("kaleqa"))
-			return ("I think I will <strong> buy the red car, or I will lease the blue one.");
-		else return ("I think I will buy the red car, or I will lease the blue one.");
+			return ("I think I will <strong> buy the red car, or \"title\" I will lease the blue one.");
+		else return ("I think I will buy the red car, or \"title\" I will lease the blue one.");
 	}
 	
 	public String details(WebDriver driver) throws Exception {
