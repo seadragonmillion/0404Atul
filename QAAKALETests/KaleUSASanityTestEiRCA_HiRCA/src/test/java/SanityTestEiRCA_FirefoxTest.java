@@ -90,6 +90,8 @@ public class SanityTestEiRCA_FirefoxTest {
 		  obj1.openReport(driver);
 		  //Downloads record
 		  obj1.downloadRecordFirefox(driver,hm);
+		  //Add 2nd failure mode
+		  obj1.add2ndFailureMode(driver);
 		  //Shares report 
 		  /* Dev/Asia
 		 * 0=admin

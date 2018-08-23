@@ -76,6 +76,8 @@ public class SanityTestEiRCA_IETest {
 		  obj1.openReport(driver);
 		  //Downloads record
 		  obj1.downloadRecordIE10(driver,hm);
+		  //Add 2nd failure mode
+		  obj1.add2ndFailureMode(driver);
 		  //Shares report 0 for admin and 1 for non admin
 		  obj1.shareReport(driver, username, password, 1);
 		  //Mark critical, integer same as shareReport
