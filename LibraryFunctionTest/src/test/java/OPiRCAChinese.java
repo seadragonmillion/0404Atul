@@ -13,12 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class OPiRCAChinese {
-	
+
 	SoftAssertions softly = new SoftAssertions();
 
 	//Main module links
 	By OPiRCALink = By.id("pii-a-menu-opirca");
-	
+
 	//Event Info page
 	By OPiRCAEventTitleError = By.id("pii-opa-event-title-error");
 	By OPiRCAEventLocationError = By.id("pii-opa-event-location-error");
@@ -42,7 +42,7 @@ public class OPiRCAChinese {
 	By OPiRCAEventBackgroundInfoLabel = By.xpath(".//*[@for='pii-opa-event-bginfos']");
 	By OPiRCAEventInvestigatorLabel = By.xpath(".//*[@for='pii-opa-event-investigators']");
 	By OPiRCAReportCreationDateTimeLabel = By.xpath(".//*[@for='pii-opa-event-repdatetime']");
-	
+
 	//Step 1
 	By OPiRCAStep1TitleAboveDropdown = By.xpath(".//*[@id='efi-opa-answers']/div[1]/div[1]");
 	By OPiRCAStep1TitleBelowDropdown = By.xpath(".//*[@id='efi-opa-answers']/div[2]/div[1]");
@@ -93,7 +93,7 @@ public class OPiRCAChinese {
 	By OPiRCAApparentCauseP3 = By.xpath(".//*[@id='pii-opa-step1-causes']/ul/li[14]");
 	By OPiRCAApparentCauseP4 = By.xpath(".//*[@id='pii-opa-step1-causes']/ul/li[15]");
 	By OPiRCAApparentCauseP5 = By.xpath(".//*[@id='pii-opa-step1-causes']/ul/li[16]");
-	
+
 	//Apparent Causes in Step 1
 	By OPiRCAApparentCauseAnswer1 = By.xpath(".//*[@for='efi-opa-answer-0']");
 	By OPiRCAApparentCauseAnswer2 = By.xpath(".//*[@for='efi-opa-answer-1']");
@@ -160,11 +160,11 @@ public class OPiRCAChinese {
 	By OPiRCANewContributingFactorField1Label = By.xpath(".//*[@for='pii-opa-addnewcf-cf']");
 	By OPiRCANewContributingFactorField2Label = By.xpath(".//*[@for='pii-opa-addnewcf-ca']");
 	By OPiRCANewContributingFactorField2 = By.id("pii-opa-addnewcf-ca");
-	
+
 	//Step 2
 	By OPiRCAReasonEntryLabel = By.xpath(".//*[@for='pii-opa-reason-entry']");
 	By OPiRCAReasonEntryField = By.id("pii-opa-reason-entry");
-	
+
 	//Step 3
 	By OPiRCAStep3SURETableTitle = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[1]/th[1]");
 	By OPiRCAStep3SURETableEntry1 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[2]/td[1]");
@@ -274,14 +274,14 @@ public class OPiRCAChinese {
 	By OPiRCAStep3SURETableEntry101 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[102]/td[1]");
 	By OPiRCAStep3SURETableEntry102 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[103]/td[1]");
 	By OPiRCAStep3SURETableEntry103 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[104]/td[1]");
-	
+
 	//Save pop up
 	By OPiRCASavePopupTitle = By.id("pii-opa-dialog-header");
 	By OPiRCASaveCancelButton = By.id("pii-opa-dialog-cancel");
 
-	
+
 	public void OPiRCApath (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCA obj = new OPiRCA();
@@ -292,36 +292,36 @@ public class OPiRCAChinese {
 		ShareCheck obj5 = new ShareCheck();
 		//Wait for loading message to disappear
 		obj5.loadingServer(driver);
-	  	//Click on Analysis
-	  	wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AnalysisLink)).click();
+		//Click on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AnalysisLink)).click();
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCALink)).click();
-	  	//Scroll down
-    	Thread.sleep(1000);
-    	jse.executeScript("scroll(0,1500)");	 
-    	Thread.sleep(1000);
-    	//Click next
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButtonAtBottomOfInfoTab)).click();
-    	//Scroll top
-    	Thread.sleep(1000);
-    	obj5.scrollToTop(driver);	 
-    	Thread.sleep(1000);
+		//Scroll down
+		Thread.sleep(1000);
+		jse.executeScript("scroll(0,1500)");	 
+		Thread.sleep(1000);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		//Scroll top
+		Thread.sleep(1000);
+		obj5.scrollToTop(driver);	 
+		Thread.sleep(1000);
 		//Verify everything on Event Information page is in 
 		chineseInfoPage(driver);
-    	//Verify errors in Chinese
-    	chineseErrorsInfoPage(driver);
-    	//Create a new OPiRCA report 
-	  	chineseEventInfoFill(driver);
-	  	Thread.sleep(2000);
-	  	//Verify step 1
-	  	chineseOPiRCAStep1(driver);
-	  	Thread.sleep(1000);
-	  	//Select all HiRCA Level 3 Options
-	  	selectAllHiRCALevel3Options(driver);
-	  	Thread.sleep(1000);
-	  	//Verify chinese for all apparent causes selected
-	  	chineseApparentCauses(driver);
-	  	Thread.sleep(1000);
+		//Verify errors in Chinese
+		chineseErrorsInfoPage(driver);
+		//Create a new OPiRCA report 
+		chineseEventInfoFill(driver);
+		Thread.sleep(2000);
+		//Verify step 1
+		chineseOPiRCAStep1(driver);
+		Thread.sleep(1000);
+		//Select all HiRCA Level 3 Options
+		selectAllHiRCALevel3Options(driver);
+		Thread.sleep(1000);
+		//Verify chinese for all apparent causes selected
+		chineseApparentCauses(driver);
+		Thread.sleep(1000);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		Thread.sleep(1000);
@@ -409,115 +409,115 @@ public class OPiRCAChinese {
 		//Verify chinese D1
 		chineseStep2D1(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D2
 		chineseStep2D2(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D3
 		chineseStep2D3(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D4
 		chineseStep2D4(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D5
 		chineseStep2D5(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D6
 		chineseStep2D6(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D7
 		chineseStep2D7(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D8
 		chineseStep2D8(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D9
 		chineseStep2D9(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D10
 		chineseStep2D10(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D11
 		chineseStep2D11(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
 		//Verify chinese D12
 		chineseStep2D12(driver);
 		//Click skip
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-    	Thread.sleep(1000);
-    	//Verify chinese Step 3
-    	chineseStep3SURE(driver);
-    	//Mark checkboxes in Step 3 SURE table
-    	markSUREcheckboxes(driver);
-    	//Scroll top
-    	Thread.sleep(1000);
-    	obj5.scrollToTop(driver);	 
-    	Thread.sleep(1000);
-    	//Click on next
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();    
-    	Thread.sleep(1000);
-    	//Verify Step 4
-    	obj2.chineseStep4(driver,softly);
-    	//Check 3 HML boxes
-    	obj2.checkStep4HMLBoxes(driver);
-    	//Scroll top
-    	Thread.sleep(1000);
-    	obj5.scrollToTop(driver);	 
-    	Thread.sleep(1000);
-    	//Click on next
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();  
-    	Thread.sleep(1000);
-    	//Verify Step 5
-    	obj2.chineseStep5(driver,softly);
-    	//Select 1st checkbox in Step 5
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.OPiRCAStep5TableRow1Column3)).click();
-    	//Click on next
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
-    	Thread.sleep(1000);
-    	//Chinese verify report tab
-    	obj2.chineseReportTab(driver,softly);
-    	Thread.sleep(1000);
-    	//Mark critical
-    	markCritical(driver);
-    	//Chinese verify HTML report
-    	List <String> verifyChinese=obj3.chineseHTMLReport(driver,softly);
-    	Thread.sleep(1000);
-    	//Download report
-    	obj2.downloadReport(driver,verifyChinese, softly);
-    	//Delete report
-    	obj4.deleteReport(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		Thread.sleep(1000);
+		//Verify chinese Step 3
+		chineseStep3SURE(driver);
+		//Mark checkboxes in Step 3 SURE table
+		markSUREcheckboxes(driver);
+		//Scroll top
+		Thread.sleep(1000);
+		obj5.scrollToTop(driver);	 
+		Thread.sleep(1000);
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();    
+		Thread.sleep(1000);
+		//Verify Step 4
+		obj2.chineseStep4(driver,softly);
+		//Check 3 HML boxes
+		obj2.checkStep4HMLBoxes(driver);
+		//Scroll top
+		Thread.sleep(1000);
+		obj5.scrollToTop(driver);	 
+		Thread.sleep(1000);
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();  
+		Thread.sleep(1000);
+		//Verify Step 5
+		obj2.chineseStep5(driver,softly);
+		//Select 1st checkbox in Step 5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.OPiRCAStep5TableRow1Column3)).click();
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		Thread.sleep(1000);
+		//Chinese verify report tab
+		obj2.chineseReportTab(driver,softly);
+		Thread.sleep(1000);
+		//Mark critical
+		markCritical(driver);
+		//Chinese verify HTML report
+		List <String> verifyChinese=obj3.chineseHTMLReport(driver,softly);
+		Thread.sleep(1000);
+		//Download report
+		obj2.downloadReport(driver,verifyChinese, softly);
+		//Delete report
+		obj4.deleteReport(driver);
 	}
-	
-    public void markCritical(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	OPiRCA obj = new OPiRCA();
-    	ShareCheck obj1 = new ShareCheck();
-	    //Clicks on Save
-	    wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveButton)).click();
-	    //Verify chinese in save box
-	    chineseSavePopup(driver);
+
+	public void markCritical(WebDriver driver) throws Exception{
+
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		OPiRCA obj = new OPiRCA();
+		ShareCheck obj1 = new ShareCheck();
+		//Clicks on Save
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveButton)).click();
+		//Verify chinese in save box
+		chineseSavePopup(driver);
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveConfirmButton)).click();
@@ -525,7 +525,7 @@ public class OPiRCAChinese {
 		//Wait for loading message
 		obj1.loadingServer(driver);
 		Thread.sleep(1000);
-	    //Clicks on Saved activities
+		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavedActivitiesButton)).click();
 		Thread.sleep(2000);		  
 		//Wait for loading message
@@ -536,9 +536,9 @@ public class OPiRCAChinese {
 		obj1.loadingServer(driver);
 		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.MarkCritical)).getText();
 		softly.assertThat(s).as("test data").contains("重要");
-    	//Clicks on mark critical
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.MarkCritical)).click();
-    	//Clicks on confirm change
+		//Clicks on mark critical
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.MarkCritical)).click();
+		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).click();
 		//Checks if marked critical
@@ -546,31 +546,31 @@ public class OPiRCAChinese {
 		softly.assertThat(critical).as("test data").contains("重要");
 		String c1=wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPIRCAMarkCriticalIndicatorText1)).getText();
 		softly.assertThat(c1).as("test data").contains("事件信息");
-    }
-    
+	}
+
 	public void chineseSavePopup (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		OPiRCA obj = new OPiRCA ();
-    	//Title of popup
-    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle)).getText();
-    	softly.assertThat(s1).as("test data").isEqualTo("保存报告");
-    	//Popup message title
-    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).getText();
-    	softly.assertThat(s2).as("test data").isEqualTo("请确认你要存入现有报告进度?");
-    	//Confirm button
-    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveConfirmButton)).getText();
-    	softly.assertThat(s3).as("test data").isEqualTo("保存报告");
-    	//Cancel button
-    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveCancelButton)).getText();
-    	softly.assertThat(s4).as("test data").isEqualTo("取消");
+		//Title of popup
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("保存报告");
+		//Popup message title
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("请确认你要存入现有报告进度?");
+		//Confirm button
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveConfirmButton)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("保存报告");
+		//Cancel button
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveCancelButton)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("取消");
 	}
-		
-    public void markSUREcheckboxes(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	ShareCheck obj = new ShareCheck();
-    	//Scroll to top
+
+	public void markSUREcheckboxes(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		ShareCheck obj = new ShareCheck();
+		//Scroll to top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
 		Thread.sleep(2000);
@@ -582,12 +582,12 @@ public class OPiRCAChinese {
 		//Scroll up
 		obj.scrollToTop(driver);
 		Thread.sleep(2000);
-    }
-	
-    public void chineseStep3SURE(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseStep3SURE(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		OPiRCA obj = new OPiRCA();
 		//question
 		String opirca_desc = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(opirca_desc).as("test data").contains("第三步 - 判别根本原因");
@@ -917,11 +917,11 @@ public class OPiRCAChinese {
 		//103
 		String s103 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3SURETableEntry103)).getText();
 		softly.assertThat(s103).as("test data").contains("P5.9: 使用过时且繁重的技术或工具来执行工作");
-    }
-	
-    public void chineseStep2D12(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D12(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -946,11 +946,11 @@ public class OPiRCAChinese {
 		//Answer 4
 		String a4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(a4).as("test data").contains("否，制度（即工前会、班前会、交代会等）中缺少识别和缓解单项弱点的相关内容");
-    }
-	
-    public void chineseStep2D11(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D11(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -972,11 +972,11 @@ public class OPiRCAChinese {
 		//Answer 3
 		String a3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(a3).as("test data").contains("是，缺少主管人员行为标准或存在不足导致");
-    }
-	
-    public void chineseStep2D10(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D10(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -995,11 +995,11 @@ public class OPiRCAChinese {
 		//Answer 2
 		String a2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(a2).as("test data").contains("高（大于0.2）");
-    }
-	
-    public void chineseStep2D9(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D9(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1027,11 +1027,11 @@ public class OPiRCAChinese {
 		//Answer 5
 		String a5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(a5).as("test data").contains("否，共同目标/利益/问责机制存在不足");
-    }
-	
-    public void chineseStep2D8(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D8(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1050,11 +1050,11 @@ public class OPiRCAChinese {
 		//Answer 2
 		String a2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(a2).as("test data").contains("否");
-    }
-	
-    public void chineseStep2D7(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D7(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1079,11 +1079,11 @@ public class OPiRCAChinese {
 		//Answer 4
 		String a4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(a4).as("test data").contains("是，快速抢修制度存在不足");
-    }
-	
-    public void chineseStep2D6(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D6(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1108,11 +1108,11 @@ public class OPiRCAChinese {
 		//Answer 4
 		String a4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(a4).as("test data").contains("是， 根本原因分析制度存在不足");
-    }
-	
-    public void chineseStep2D5(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D5(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1137,11 +1137,11 @@ public class OPiRCAChinese {
 		//Answer 4
 		String a4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(a4).as("test data").contains("是， O-O接口存在不足导致");
-    }
-	
-    public void chineseStep2D4(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D4(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1169,11 +1169,11 @@ public class OPiRCAChinese {
 		//Answer 5
 		String a5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(a5).as("test data").contains("是，工作控制存在不足（工作流程效率不足）导致");
-    }
-	
-    public void chineseStep2D3(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D3(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1204,11 +1204,11 @@ public class OPiRCAChinese {
 		//Answer 6
 		String a6 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(a6).as("test data").contains("是，不当的培训授权问责影响工作管理所导致");
-    }
-	
-    public void chineseStep2D2(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D2(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1236,11 +1236,11 @@ public class OPiRCAChinese {
 		//Answer 5
 		String a5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(a5).as("test data").contains("是，由于制度要求过多");
-    }
-	
-    public void chineseStep2D1(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
+	}
+
+	public void chineseStep2D1(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第二步：组织与制度根本原因分析");
@@ -1265,13 +1265,13 @@ public class OPiRCAChinese {
 		//Answer 4
 		String a4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(a4).as("test data").contains("是，管理层对加班和惩罚性管理方式的负面影响认识不足导致");
-    }
-	
-    public void chineseApparentCauseP5(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseP5(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("要求过多");
@@ -1430,13 +1430,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseP4(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseP4(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("明确性不足或不正确");
@@ -1584,13 +1584,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseP3(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseP3(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("偏差控制存在不足");
@@ -1767,13 +1767,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction11)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseP2(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseP2(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("全面性不足");
@@ -1920,12 +1920,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseP1(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseP1(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("制度遗漏");
@@ -2016,12 +2016,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseOP4(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseOP4(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("主人翁意识、责任、角色和问责机制存在不足");
@@ -2088,13 +2088,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-    
-    public void chineseApparentCauseOP3(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseOP3(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("自我评价或评估存在不足");
@@ -2193,13 +2193,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseOP2(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseOP2(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("绩效监督跟踪和趋势分析存在不足");
@@ -2304,12 +2304,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseOP1(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseOP1(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("实施投入存在不足");
@@ -2389,12 +2389,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseOO3(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	//question
+	}
+
+	public void chineseApparentCauseOO3(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("两个接口组织之间的工作职能存在重叠或遗漏");
 		//OO3.1 question
@@ -2425,12 +2425,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseOO2(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseOO2(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("组织之间的接口存在不足");
@@ -2483,12 +2483,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseOO1(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseOO1(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("共同目标/利益/问责机制存在不足");
@@ -2567,13 +2567,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseO5(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseO5(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("个人技能、规则使用或知识方面存在不足");
@@ -2677,13 +2677,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseO4(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseO4(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("组织内沟通存在不足");
@@ -2793,13 +2793,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseO3(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseO3(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("流程设计和改进能力不足");
@@ -2908,13 +2908,13 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-	
-    public void chineseApparentCauseO1(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
+	}
+
+	public void chineseApparentCauseO1(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("组织职能或结构不足");
@@ -3082,16 +3082,16 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseAnswerCorrectiveAction11)).click();
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
-    }
-    
-    public void chineseOPiRCAContributingFactor(WebDriver driver) throws Exception {
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA ();
-    	//Scroll down
-    	WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAAddContributingFactorButton));
-    	Point p = l.getLocation();
+	}
+
+	public void chineseOPiRCAContributingFactor(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA ();
+		//Scroll down
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAAddContributingFactorButton));
+		Point p = l.getLocation();
 		int yaxis= p.getY()-250;
 		Thread.sleep(1000);
 		jse.executeScript("scroll(0,"+yaxis+")");
@@ -3110,88 +3110,88 @@ public class OPiRCAChinese {
 		softly.assertThat(s3).as("test data").contains("可能的纠正行动:");
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANewContributingFactorField2)).getAttribute("placeholder");
 		softly.assertThat(s4).as("test data").contains("输入 可能的纠正行动 (非必填)");
-    }
-	
-    public void selectAllApparentCausesAnswers(WebDriver driver) throws Exception{
-    	
-    	WebDriverWait wait = new WebDriverWait(driver,5);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
-    	ShareCheck obj1 = new ShareCheck();
-    	int count =0;
-    	int k=1;
-    	//Identify number of answers for an apparent cause
-    	while(true)
-    	{
-    		try{
-    			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+k+"]"))).getAttribute("class");
-    			k=k+1;
-    			if(s.equals("ui-contain"))
-    				count = count +1;
-    		}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
-    		{
-    			break;
-    		}
-    	}
-    	for(int j=1;j<=count;j++)
-    	{
-    		//Click on answer
-    		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
-    		//Scroll to element
-    		Point p = l.getLocation();
-    		int yaxis= p.getY()-250;
-    		Thread.sleep(500);
-    		jse.executeScript("scroll(0,"+yaxis+")");
-    		Thread.sleep(500);
-    		l.click();
-    	}
-    	//Scroll to top
-    	Thread.sleep(1000);
-    	obj1.scrollToTop(driver);
-    	Thread.sleep(1000);
-    	//Click on next
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();    	  	
-    }
-	
-	public void chineseApparentCauses (WebDriver driver) throws Exception {
-    	WebDriverWait wait = new WebDriverWait(driver,10);
-    	String s = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO1)).getText();
-    	softly.assertThat(s).isEqualTo("O1: 组织职能或结构不足");
-    	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO3)).getText();
-    	softly.assertThat(s1).isEqualTo("O3: 流程设计和改进能力不足");
-    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO4)).getText();
-    	softly.assertThat(s2).isEqualTo("O4: 组织内沟通存在不足");
-    	String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO5)).getText();
-    	softly.assertThat(s3).isEqualTo("O5: 个人技能、规则使用或知识方面存在不足");
-    	String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOO1)).getText();
-    	softly.assertThat(s4).isEqualTo("OO1: 共同目标/利益/问责机制存在不足");
-    	String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOO2)).getText();
-    	softly.assertThat(s5).isEqualTo("OO2: 组织之间的接口存在不足");
-    	String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOO3)).getText();
-    	softly.assertThat(s6).isEqualTo("OO3: 两个接口组织之间的工作职能存在重叠或遗漏");
-    	String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP1)).getText();
-    	softly.assertThat(s7).isEqualTo("OP1: 实施投入存在不足");
-    	String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP2)).getText();
-    	softly.assertThat(s8).isEqualTo("OP2: 绩效监督跟踪和趋势分析存在不足");
-    	String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP3)).getText();
-    	softly.assertThat(s9).isEqualTo("OP3: 自我评价或评估存在不足");
-    	String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP4)).getText();
-    	softly.assertThat(s10).isEqualTo("OP4: 主人翁意识、责任、角色和问责机制存在不足");
-    	String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP1)).getText();
-    	softly.assertThat(s11).isEqualTo("P1: 制度遗漏");
-    	String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP2)).getText();
-    	softly.assertThat(s12).isEqualTo("P2: 全面性不足");
-    	String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP3)).getText();
-    	softly.assertThat(s13).isEqualTo("P3: 偏差控制存在不足");
-    	String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP4)).getText();
-    	softly.assertThat(s14).isEqualTo("P4: 明确性不足或不正确");
-    	String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP5)).getText();
-    	softly.assertThat(s15).isEqualTo("P5: 要求过多");
 	}
-	
+
+	public void selectAllApparentCausesAnswers(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
+		ShareCheck obj1 = new ShareCheck();
+		int count =0;
+		int k=1;
+		//Identify number of answers for an apparent cause
+		while(true)
+		{
+			try{
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+k+"]"))).getAttribute("class");
+				k=k+1;
+				if(s.equals("ui-contain"))
+					count = count +1;
+			}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
+			{
+				break;
+			}
+		}
+		for(int j=1;j<=count;j++)
+		{
+			//Click on answer
+			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
+			//Scroll to element
+			Point p = l.getLocation();
+			int yaxis= p.getY()-250;
+			Thread.sleep(500);
+			jse.executeScript("scroll(0,"+yaxis+")");
+			Thread.sleep(500);
+			l.click();
+		}
+		//Scroll to top
+		Thread.sleep(1000);
+		obj1.scrollToTop(driver);
+		Thread.sleep(1000);
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();    	  	
+	}
+
+	public void chineseApparentCauses (WebDriver driver) throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO1)).getText();
+		softly.assertThat(s).isEqualTo("O1: 组织职能或结构不足");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO3)).getText();
+		softly.assertThat(s1).isEqualTo("O3: 流程设计和改进能力不足");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO4)).getText();
+		softly.assertThat(s2).isEqualTo("O4: 组织内沟通存在不足");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseO5)).getText();
+		softly.assertThat(s3).isEqualTo("O5: 个人技能、规则使用或知识方面存在不足");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOO1)).getText();
+		softly.assertThat(s4).isEqualTo("OO1: 共同目标/利益/问责机制存在不足");
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOO2)).getText();
+		softly.assertThat(s5).isEqualTo("OO2: 组织之间的接口存在不足");
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOO3)).getText();
+		softly.assertThat(s6).isEqualTo("OO3: 两个接口组织之间的工作职能存在重叠或遗漏");
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP1)).getText();
+		softly.assertThat(s7).isEqualTo("OP1: 实施投入存在不足");
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP2)).getText();
+		softly.assertThat(s8).isEqualTo("OP2: 绩效监督跟踪和趋势分析存在不足");
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP3)).getText();
+		softly.assertThat(s9).isEqualTo("OP3: 自我评价或评估存在不足");
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseOP4)).getText();
+		softly.assertThat(s10).isEqualTo("OP4: 主人翁意识、责任、角色和问责机制存在不足");
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP1)).getText();
+		softly.assertThat(s11).isEqualTo("P1: 制度遗漏");
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP2)).getText();
+		softly.assertThat(s12).isEqualTo("P2: 全面性不足");
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP3)).getText();
+		softly.assertThat(s13).isEqualTo("P3: 偏差控制存在不足");
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP4)).getText();
+		softly.assertThat(s14).isEqualTo("P4: 明确性不足或不正确");
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAApparentCauseP5)).getText();
+		softly.assertThat(s15).isEqualTo("P5: 要求过多");
+	}
+
 	public void chineseOPiRCAStep1 (WebDriver driver) throws Exception {
-    	WebDriverWait wait = new WebDriverWait(driver,10);
-    	OPiRCA obj = new OPiRCA();
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		OPiRCA obj = new OPiRCA();
 		//OPiRCA Page Title
 		String opirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoPageTitle)).getText();
 		softly.assertThat(opirca_title).as("test data").contains("第一步：直接原因");
@@ -3205,126 +3205,126 @@ public class OPiRCAChinese {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep1TitleBelowDropdown)).getText();
 		softly.assertThat(s1).as("test data").contains("组织与制度直接原因:");
 		//Click on Description
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
-    	//Verify description text
-    	String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionText)).getText();
-    	softly.assertThat(s2).as("test data").contains("用于调查人因事件。如果有迹象表明人因问题是由于重要的组织与制度（");
-    	softly.assertThat(s2).as("test data").contains("）问题引起的或问题十分普遍，则需要运用");
-    	softly.assertThat(s2).as("test data").contains("一旦人因事件的根本原因被录入");
-    	softly.assertThat(s2).as("test data").contains("，就需要对根本原因进行进一步调查，以确定问题是与不适当的制度或组织问题造成的。");
-    	softly.assertThat(s2).as("test data").contains("如果是这样，应通过");
-    	softly.assertThat(s2).as("test data").contains(" 调查O&P根本原因。由于多种");
-    	softly.assertThat(s2).as("test data").contains("结果可在同一时间处理同一组织的人因问题，应通过相同的");
-    	softly.assertThat(s2).as("test data").contains("考虑，以发现O&P问题的根本原因。");
-    	softly.assertThat(s2).as("test data").contains("如适用，选择");
-    	softly.assertThat(s2).as("test data").contains("报告中的根本原因。如果针对一起事件存在多种");
-    	softly.assertThat(s2).as("test data").contains("报告，应输入所有结果。");
-    	//Click on Description
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
-    	//Verify chinese for all HiRCA Level 3 options
-    	chineseHiRCALevel3(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		//Verify description text
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionText)).getText();
+		softly.assertThat(s2).as("test data").contains("用于调查人因事件。如果有迹象表明人因问题是由于重要的组织与制度（");
+		softly.assertThat(s2).as("test data").contains("）问题引起的或问题十分普遍，则需要运用");
+		softly.assertThat(s2).as("test data").contains("一旦人因事件的根本原因被录入");
+		softly.assertThat(s2).as("test data").contains("，就需要对根本原因进行进一步调查，以确定问题是与不适当的制度或组织问题造成的。");
+		softly.assertThat(s2).as("test data").contains("如果是这样，应通过");
+		softly.assertThat(s2).as("test data").contains(" 调查O&P根本原因。由于多种");
+		softly.assertThat(s2).as("test data").contains("结果可在同一时间处理同一组织的人因问题，应通过相同的");
+		softly.assertThat(s2).as("test data").contains("考虑，以发现O&P问题的根本原因。");
+		softly.assertThat(s2).as("test data").contains("如适用，选择");
+		softly.assertThat(s2).as("test data").contains("报告中的根本原因。如果针对一起事件存在多种");
+		softly.assertThat(s2).as("test data").contains("报告，应输入所有结果。");
+		//Click on Description
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		//Verify chinese for all HiRCA Level 3 options
+		chineseHiRCALevel3(driver);
 	}
-	
+
 	public void chineseHiRCALevel3(WebDriver driver) throws Exception {
-    	String s = driver.findElement(OPiRCAHiRCALevelOption31).getText();
-    	softly.assertThat(s).as("test data").isEqualTo("3.1 个人层面");
-    	String s1 = driver.findElement(OPiRCAHiRCALevelOption32).getText();
-    	softly.assertThat(s1).as("test data").isEqualTo("3.2 组长主管层面");
-    	String s2 = driver.findElement(OPiRCAHiRCALevelOption331).getText();
-    	softly.assertThat(s2).as("test data").isEqualTo("3.3.1 经理团队资源分配不到位");
-    	String s3 = driver.findElement(OPiRCAHiRCALevelOption332).getText();
-    	softly.assertThat(s3).as("test data").isEqualTo("3.3.2 经理团队所需培训开展不充分");
-    	String s4 = driver.findElement(OPiRCAHiRCALevelOption333).getText();
-    	softly.assertThat(s4).as("test data").isEqualTo("3.3.3 经理团队问责制不到位");
-    	String s5 = driver.findElement(OPiRCAHiRCALevelOption334).getText();
-    	softly.assertThat(s5).as("test data").isEqualTo("3.3.4 经理团队对确定工作优先级和计划方面不到位");
-    	String s6 = driver.findElement(OPiRCAHiRCALevelOption335).getText();
-    	softly.assertThat(s6).as("test data").isEqualTo("3.3.5 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障");
-    	String s7 = driver.findElement(OPiRCAHiRCALevelOption336).getText();
-    	softly.assertThat(s7).as("test data").isEqualTo("3.3.6 经理团队绩效跟踪与趋势分析不到位");
-    	String s8 = driver.findElement(OPiRCAHiRCALevelOption337).getText();
-    	softly.assertThat(s8).as("test data").isEqualTo("3.3.7 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任");
-    	String s9 = driver.findElement(OPiRCAHiRCALevelOption338).getText();
-    	softly.assertThat(s9).as("test data").isEqualTo("3.3.8 经理团队纠正行动不足");
-    	String s10 = driver.findElement(OPiRCAHiRCALevelOption339).getText();
-    	softly.assertThat(s10).as("test data").isEqualTo("3.3.9 经理团队垂直沟通体系不完善");
-    	String s11 = driver.findElement(OPiRCAHiRCALevelOption3310).getText();
-    	softly.assertThat(s11).as("test data").isEqualTo("3.3.10 经理团队横向沟通体系不完善");
-    	String s12 = driver.findElement(OPiRCAHiRCALevelOption34).getText();
-    	softly.assertThat(s12).as("test data").isEqualTo("3.4 关键思考和关键追问不充分");
-    	String s13 = driver.findElement(OPiRCAHiRCALevelOption35).getText();
-    	softly.assertThat(s13).as("test data").isEqualTo("3.5 情况警觉不充分");
-    	String s14 = driver.findElement(OPiRCAHiRCALevelOption36).getText();
-    	softly.assertThat(s14).as("test data").isEqualTo("3.6 全面性不足");
-    	String s15 = driver.findElement(OPiRCAHiRCALevelOption37).getText();
-    	softly.assertThat(s15).as("test data").isEqualTo("3.7 \"偏差控制\"不到位");
-    	String s16 = driver.findElement(OPiRCAHiRCALevelOption38).getText();
-    	softly.assertThat(s16).as("test data").isEqualTo("3.8 \"明确性\"欠缺");
-    	String s17 = driver.findElement(OPiRCAHiRCALevelOption39).getText();
-    	softly.assertThat(s17).as("test data").isEqualTo("3.9 \"培训\"不充分");
-    	String s18 = driver.findElement(OPiRCAHiRCALevelOption310).getText();
-    	softly.assertThat(s18).as("test data").isEqualTo("3.10 \"资格授权\"不充分");
-    	String s19 = driver.findElement(OPiRCAHiRCALevelOption311).getText();
-    	softly.assertThat(s19).as("test data").isEqualTo("3.11 \"工作问责\"不充分");
-    	String s20 = driver.findElement(OPiRCAHiRCALevelOption312).getText();
-    	softly.assertThat(s20).as("test data").isEqualTo("3.12 \"负担\"的促成因素");
-    	String s21 = driver.findElement(OPiRCAHiRCALevelOption313).getText();
-    	softly.assertThat(s21).as("test data").isEqualTo("3.13 \"不当动机\"的促成因素");
-    	String s22 = driver.findElement(OPiRCAHiRCALevelOption314).getText();
-    	softly.assertThat(s22).as("test data").isEqualTo("3.14 \"预期风险低\"的促成因素");
-    	String s23 = driver.findElement(OPiRCAHiRCALevelOption315).getText();
-    	softly.assertThat(s23).as("test data").isEqualTo("3.15 \"同事互助提醒（好文化）\"不充分的促成因素");
-    	String s24 = driver.findElement(OPiRCAHiRCALevelOption316).getText();
-    	softly.assertThat(s24).as("test data").isEqualTo("3.16 粗心犯错的促成因素");
-    	String s25 = driver.findElement(OPiRCAHiRCALevelOption317).getText();
-    	softly.assertThat(s25).as("test data").isEqualTo("3.17 设备的鉴定、试验和维修(QTM)");
-    	String s26 = driver.findElement(OPiRCAHiRCALevelOption318).getText();
-    	softly.assertThat(s26).as("test data").isEqualTo("3.18 知识型错误");
-    	String s27 = driver.findElement(OPiRCAHiRCALevelOption319).getText();
-    	softly.assertThat(s27).as("test data").isEqualTo("3.19 工前会、班前会、交底会参与不足");
-    	String s28 = driver.findElement(OPiRCAHiRCALevelOption320).getText();
-    	softly.assertThat(s28).as("test data").contains("技术");
-    	String s29 = driver.findElement(OPiRCAHiRCALevelOption321).getText();
-    	softly.assertThat(s29).as("test data").contains("3.21 高风险情况(TAPE");
-    	String s30 = driver.findElement(OPiRCAHiRCALevelOption322).getText();
-    	softly.assertThat(s30).as("test data").isEqualTo("3.22 规则不正确");
+		String s = driver.findElement(OPiRCAHiRCALevelOption31).getText();
+		softly.assertThat(s).as("test data").isEqualTo("3.1 个人层面");
+		String s1 = driver.findElement(OPiRCAHiRCALevelOption32).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("3.2 组长主管层面");
+		String s2 = driver.findElement(OPiRCAHiRCALevelOption331).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("3.3.1 经理团队资源分配不到位");
+		String s3 = driver.findElement(OPiRCAHiRCALevelOption332).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("3.3.2 经理团队所需培训开展不充分");
+		String s4 = driver.findElement(OPiRCAHiRCALevelOption333).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("3.3.3 经理团队问责制不到位");
+		String s5 = driver.findElement(OPiRCAHiRCALevelOption334).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("3.3.4 经理团队对确定工作优先级和计划方面不到位");
+		String s6 = driver.findElement(OPiRCAHiRCALevelOption335).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("3.3.5 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障");
+		String s7 = driver.findElement(OPiRCAHiRCALevelOption336).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("3.3.6 经理团队绩效跟踪与趋势分析不到位");
+		String s8 = driver.findElement(OPiRCAHiRCALevelOption337).getText();
+		softly.assertThat(s8).as("test data").isEqualTo("3.3.7 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任");
+		String s9 = driver.findElement(OPiRCAHiRCALevelOption338).getText();
+		softly.assertThat(s9).as("test data").isEqualTo("3.3.8 经理团队纠正行动不足");
+		String s10 = driver.findElement(OPiRCAHiRCALevelOption339).getText();
+		softly.assertThat(s10).as("test data").isEqualTo("3.3.9 经理团队垂直沟通体系不完善");
+		String s11 = driver.findElement(OPiRCAHiRCALevelOption3310).getText();
+		softly.assertThat(s11).as("test data").isEqualTo("3.3.10 经理团队横向沟通体系不完善");
+		String s12 = driver.findElement(OPiRCAHiRCALevelOption34).getText();
+		softly.assertThat(s12).as("test data").isEqualTo("3.4 关键思考和关键追问不充分");
+		String s13 = driver.findElement(OPiRCAHiRCALevelOption35).getText();
+		softly.assertThat(s13).as("test data").isEqualTo("3.5 情况警觉不充分");
+		String s14 = driver.findElement(OPiRCAHiRCALevelOption36).getText();
+		softly.assertThat(s14).as("test data").isEqualTo("3.6 全面性不足");
+		String s15 = driver.findElement(OPiRCAHiRCALevelOption37).getText();
+		softly.assertThat(s15).as("test data").isEqualTo("3.7 \"偏差控制\"不到位");
+		String s16 = driver.findElement(OPiRCAHiRCALevelOption38).getText();
+		softly.assertThat(s16).as("test data").isEqualTo("3.8 \"明确性\"欠缺");
+		String s17 = driver.findElement(OPiRCAHiRCALevelOption39).getText();
+		softly.assertThat(s17).as("test data").isEqualTo("3.9 \"培训\"不充分");
+		String s18 = driver.findElement(OPiRCAHiRCALevelOption310).getText();
+		softly.assertThat(s18).as("test data").isEqualTo("3.10 \"资格授权\"不充分");
+		String s19 = driver.findElement(OPiRCAHiRCALevelOption311).getText();
+		softly.assertThat(s19).as("test data").isEqualTo("3.11 \"工作问责\"不充分");
+		String s20 = driver.findElement(OPiRCAHiRCALevelOption312).getText();
+		softly.assertThat(s20).as("test data").isEqualTo("3.12 \"负担\"的促成因素");
+		String s21 = driver.findElement(OPiRCAHiRCALevelOption313).getText();
+		softly.assertThat(s21).as("test data").isEqualTo("3.13 \"不当动机\"的促成因素");
+		String s22 = driver.findElement(OPiRCAHiRCALevelOption314).getText();
+		softly.assertThat(s22).as("test data").isEqualTo("3.14 \"预期风险低\"的促成因素");
+		String s23 = driver.findElement(OPiRCAHiRCALevelOption315).getText();
+		softly.assertThat(s23).as("test data").isEqualTo("3.15 \"同事互助提醒（好文化）\"不充分的促成因素");
+		String s24 = driver.findElement(OPiRCAHiRCALevelOption316).getText();
+		softly.assertThat(s24).as("test data").isEqualTo("3.16 粗心犯错的促成因素");
+		String s25 = driver.findElement(OPiRCAHiRCALevelOption317).getText();
+		softly.assertThat(s25).as("test data").isEqualTo("3.17 设备的鉴定、试验和维修(QTM)");
+		String s26 = driver.findElement(OPiRCAHiRCALevelOption318).getText();
+		softly.assertThat(s26).as("test data").isEqualTo("3.18 知识型错误");
+		String s27 = driver.findElement(OPiRCAHiRCALevelOption319).getText();
+		softly.assertThat(s27).as("test data").isEqualTo("3.19 工前会、班前会、交底会参与不足");
+		String s28 = driver.findElement(OPiRCAHiRCALevelOption320).getText();
+		softly.assertThat(s28).as("test data").contains("技术");
+		String s29 = driver.findElement(OPiRCAHiRCALevelOption321).getText();
+		softly.assertThat(s29).as("test data").contains("3.21 高风险情况(TAPE");
+		String s30 = driver.findElement(OPiRCAHiRCALevelOption322).getText();
+		softly.assertThat(s30).as("test data").isEqualTo("3.22 规则不正确");
 	}
-	
+
 	public void selectAllHiRCALevel3Options (WebDriver driver) throws Exception {
-    	WebDriverWait wait = new WebDriverWait(driver,10);
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	OPiRCA obj = new OPiRCA();
-    	ShareCheck obj1 = new ShareCheck();
-    	//Create a List to store HiRCA selections
-    	List<String> hircaL3 = new ArrayList<String>();
-    	//Click on HiRCA button
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuButton)).click();
-    	for(int i=1;i<=31;i++)
-    	{
-    		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuPopup));
-    		WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a"));
-    		//Scroll to element
-    		Point p = l.getLocation();
-    		int yaxis= p.getY()-250;
-    		Thread.sleep(2000);
-    		jse.executeScript("scroll(0,"+yaxis+")");
-    		Thread.sleep(2000);
-    		//Click on option
-    		l.click();
-    		//Store selection name in list
-    		String s = l.getText();
-    		hircaL3.add(s);
-    	}
-    	//Scroll to the top
-    	Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		OPiRCA obj = new OPiRCA();
+		ShareCheck obj1 = new ShareCheck();
+		//Create a List to store HiRCA selections
+		List<String> hircaL3 = new ArrayList<String>();
+		//Click on HiRCA button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuButton)).click();
+		for(int i=1;i<=31;i++)
+		{
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuPopup));
+			WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a"));
+			//Scroll to element
+			Point p = l.getLocation();
+			int yaxis= p.getY()-250;
+			Thread.sleep(2000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+			Thread.sleep(2000);
+			//Click on option
+			l.click();
+			//Store selection name in list
+			String s = l.getText();
+			hircaL3.add(s);
+		}
+		//Scroll to the top
+		Thread.sleep(2000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(2000);
-    	//Close the pop up
-    	wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuCloseButton)).click();	
+		//Close the pop up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCADropdownMenuCloseButton)).click();	
 	}
-	
+
 	public void chineseErrorsInfoPage (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Title error
 		String opircaEventTitleError = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAEventTitleError)).getText();
@@ -3345,9 +3345,9 @@ public class OPiRCAChinese {
 		String opircaEventInvestigatorError = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAEventInvestigatorError)).getText();
 		softly.assertThat(opircaEventInvestigatorError).as("test data").contains("事件调查员 必填");
 	}
-		
+
 	public void chineseEventInfoFill (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCAChinese obj = new EiRCAChinese();
@@ -3369,9 +3369,9 @@ public class OPiRCAChinese {
 		obj2.scrollToTop(driver);
 		Thread.sleep(2000);		
 	}
-	
+
 	public void chineseInfoPage (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		OPiRCA obj = new OPiRCA ();
 		//OPiRCA Page Title
@@ -3438,8 +3438,8 @@ public class OPiRCAChinese {
 		String opircaEventRepDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportCreationDateTimeLabel)).getText();
 		softly.assertThat(opircaEventRepDateLabel).as("test data").contains("报告编写时间:");
 	}
-	
-    public void softAssert() throws Exception {
+
+	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
 	}

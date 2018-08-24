@@ -12,34 +12,34 @@ public class PassReview {
 	SoftAssertions softly = new SoftAssertions();
 
 	public void deleteNewRecord(WebDriver driver, String recordName) throws Exception{
-		  
-		  WebDriverWait wait = new WebDriverWait(driver,10);
-		  //Clicks on first newly created record
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
-		  ShareCheck obj = new ShareCheck();
-		  obj.loadingServer(driver);
-		  //Clicks on delete button
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
-		  //Clicks on delete report
-		  driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		  obj.loadingServer(driver);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
-		  obj.loadingServer(driver);
-		  //Verify record deleted
-		  //Click on 1st record
-		  Thread.sleep(2000);
-		  String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a")).getText();
-		  System.out.println(name);
-		  if (name!=recordName)
-			  System.out.println("Record deleted");
-		  else
-			  System.out.println("Record could not be deleted");			  
-	  }
-	
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Clicks on first newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		//Clicks on delete button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		//Clicks on delete report
+		driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		obj.loadingServer(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
+		obj.loadingServer(driver);
+		//Verify record deleted
+		//Click on 1st record
+		Thread.sleep(2000);
+		String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a")).getText();
+		System.out.println(name);
+		if (name!=recordName)
+			System.out.println("Record deleted");
+		else
+			System.out.println("Record could not be deleted");			  
+	}
+
 	public void openReport(WebDriver driver) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10); 
 		//Clicks on record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
@@ -67,9 +67,9 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
 		obj.loadingServer(driver);
 	}
-	
+
 	public String createReport (WebDriver driver) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10); 
 		ShareCheck obj = new ShareCheck();
 		EiRCA obj1 = new EiRCA ();
@@ -79,9 +79,9 @@ public class PassReview {
 		//Clicks on Analysis 
 		try
 		{
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		}catch (UnhandledAlertException f){			  
-		  driver.switchTo().alert().dismiss();
+			driver.switchTo().alert().dismiss();
 		}
 		//Clicks on 3 Pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr"))).click();
@@ -95,18 +95,18 @@ public class PassReview {
 		String ev3 = driver.findElement(By.id("pii-3pr-tab-1-org")).getAttribute("value");
 		if ((ev1.equals(text)==false))
 		{
-		  driver.findElement(By.id("pii-3pr-tab-1-reviewer")).clear();
-		  driver.findElement(By.id("pii-3pr-tab-1-reviewer")).sendKeys(text);
+			driver.findElement(By.id("pii-3pr-tab-1-reviewer")).clear();
+			driver.findElement(By.id("pii-3pr-tab-1-reviewer")).sendKeys(text);
 		}
 		if ((ev2.equals(text)==false))
 		{
-		  driver.findElement(By.id("pii-3pr-tab-1-title")).clear();
-		  driver.findElement(By.id("pii-3pr-tab-1-title")).sendKeys(text);
+			driver.findElement(By.id("pii-3pr-tab-1-title")).clear();
+			driver.findElement(By.id("pii-3pr-tab-1-title")).sendKeys(text);
 		}
 		if ((ev3.equals(text)==false))
 		{
-		  driver.findElement(By.id("pii-3pr-tab-1-org")).clear();
-		  driver.findElement(By.id("pii-3pr-tab-1-org")).sendKeys(text);
+			driver.findElement(By.id("pii-3pr-tab-1-org")).clear();
+			driver.findElement(By.id("pii-3pr-tab-1-org")).sendKeys(text);
 		}
 		//Select Purpose from dropdown
 		WebElement element = driver.findElement(By.id("pii-3pr-tab-1-doctype"));
@@ -135,11 +135,11 @@ public class PassReview {
 		softly.assertThat(recordName).as("test data").contains(text);
 		if (record.isDisplayed())
 		{
-		  System.out.println("Record found: "+ recordName);
+			System.out.println("Record found: "+ recordName);
 		}
 		else
-		  System.out.println ("Record not found.");
-		
+			System.out.println ("Record not found.");
+
 		return recordName;
 	}
 

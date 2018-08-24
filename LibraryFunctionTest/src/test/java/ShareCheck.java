@@ -17,9 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class ShareCheck {
-	
+
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	
+
 	By ShareTextBox = By.id("pii-uhshare-search-input");
 	By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
 	By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
@@ -41,44 +41,44 @@ public class ShareCheck {
 	By ActivityOnTopRight = By.id("pii-user-activity");
 	By ModuleTitle = By.id("pii-user-home-title");
 	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
-	
-    public void scrollToElement(WebDriver driver, WebElement l)throws Exception{
-    	
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	Point p = l.getLocation();
+
+	public void scrollToElement(WebDriver driver, WebElement l)throws Exception{
+
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Point p = l.getLocation();
 		int yaxis= p.getY()-250;
 		Thread.sleep(1000);
 		try{
-		jse.executeScript("scroll(0,"+yaxis+")");
+			jse.executeScript("scroll(0,"+yaxis+")");
 		}catch (org.openqa.selenium.ScriptTimeoutException r)
 		{
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0,"+yaxis+")");
 		}
 		Thread.sleep(1000);
-    }
-    
-    public void scrollToTop(WebDriver driver) throws Exception {
-    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-    	Thread.sleep(1000);
-    	try{
+	}
+
+	public void scrollToTop(WebDriver driver) throws Exception {
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(1000);
+		try{
 			jse.executeScript("scroll(0,0)");
-			}catch (org.openqa.selenium.ScriptTimeoutException r)
-			{
-				Thread.sleep(3000);
-				jse.executeScript("scroll(0,0)");
-			}
-    	Thread.sleep(1000);
-    }
-	
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,0)");
+		}
+		Thread.sleep(1000);
+	}
+
 	public void shareTwice (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		Thread.sleep(2000);
 		//Enters sharer username
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShareTextBox)).sendKeys("jenkins_1_nonadmin");
 		Thread.sleep(2000);
-    	//Selects from dropdown
+		//Selects from dropdown
 		WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(ShareDropdown));
 		dropdown.findElement(FirstSelectionUnderDropdown).click();
 		//Clicks on add user
@@ -91,7 +91,7 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 	}
-	
+
 	public void checkNoReportAfterDelete (WebDriver driver, String sharer, SoftAssertions softly) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -105,32 +105,32 @@ public class ShareCheck {
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("firefox"))
 		{
-		  	driver.switchTo().defaultContent();
+			driver.switchTo().defaultContent();
 		}
 		Thread.sleep(8000);
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
 		if (login==1)
 		{
-          
-          while(true)
-		  {
-         	 Thread.sleep(1000);
-			  if (driver.findElement(StickyPopUp).isDisplayed())
-			  {
-				  WebElement ele =driver.findElement(StickyPopUp);
-				  ele.findElement(StickyClose).click();
-				  break;
-			  }
-			  else break;
-		  }
-        }	
+
+			while(true)
+			{
+				Thread.sleep(1000);
+				if (driver.findElement(StickyPopUp).isDisplayed())
+				{
+					WebElement ele =driver.findElement(StickyPopUp);
+					ele.findElement(StickyClose).click();
+					break;
+				}
+				else break;
+			}
+		}	
 		Thread.sleep(4000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
@@ -149,13 +149,13 @@ public class ShareCheck {
 			softly.assertThat(s).as("test data").contains("not found ");
 			softly.assertThat(s).as("test data").contains("It could have been deleted.");
 		}catch (org.openqa.selenium.TimeoutException e)
-		  {
+		{
 			System.out.println("Report deleted and yellow pop up suggesting same has disappeared");  
-		  }	
+		}	
 		//Check if open report button is still present on page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationOpenButton));
 	}
-	
+
 	public void checkCriticalNotification (WebDriver driver, String sharer, String username, String password1, SoftAssertions softly) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -169,32 +169,32 @@ public class ShareCheck {
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("firefox"))
 		{
-		  	driver.switchTo().defaultContent();
+			driver.switchTo().defaultContent();
 		}
 		Thread.sleep(8000);
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
 		if (login==1)
 		{
-          
-          while(true)
-		  {
-         	 Thread.sleep(1000);
-			  if (driver.findElement(StickyPopUp).isDisplayed())
-			  {
-				  WebElement ele =driver.findElement(StickyPopUp);
-				  ele.findElement(StickyClose).click();
-				  break;
-			  }
-			  else break;
-		  }
-        }	
+
+			while(true)
+			{
+				Thread.sleep(1000);
+				if (driver.findElement(StickyPopUp).isDisplayed())
+				{
+					WebElement ele =driver.findElement(StickyPopUp);
+					ele.findElement(StickyClose).click();
+					break;
+				}
+				else break;
+			}
+		}	
 		Thread.sleep(4000);
 		//Get count from notification
 		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationCount)).getText();
@@ -218,40 +218,40 @@ public class ShareCheck {
 			Thread.sleep(2000);
 			for(int i=1;i<=n;i++)
 			{
-			Thread.sleep(2000);
-			//Click on 1st record/notification
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-			act.click(ele).build().perform();
-			Thread.sleep(4000);
-			//Click on read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-			act.click(ele).build().perform();
-			Thread.sleep(2000);
-			//Click on mark as read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-			act.click(ele).build().perform();
-			Thread.sleep(2000);
+				Thread.sleep(2000);
+				//Click on 1st record/notification
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				act.click(ele).build().perform();
+				Thread.sleep(4000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				act.click(ele).build().perform();
+				Thread.sleep(2000);
+				//Click on mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				act.click(ele).build().perform();
+				Thread.sleep(2000);
 			}
 		}
 		else{
 			Thread.sleep(2000);
 			for(int i=1;i<=n;i++)
 			{
-			Thread.sleep(2000);
-			//Click on 1st record/notification
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-			if(ele.isSelected()==false)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
-			Thread.sleep(2000);
-			//Click on read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-			if(ele.isEnabled()==false)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
-			ele.click();
-			Thread.sleep(2000);
-			//Click on mark as read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-			ele.click();
+				Thread.sleep(2000);
+				//Click on 1st record/notification
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				if(ele.isSelected()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				Thread.sleep(2000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				if(ele.isEnabled()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				ele.click();
+				Thread.sleep(2000);
+				//Click on mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				ele.click();
 			}
 		}		
 		//Wait for loading message to disappear
@@ -260,32 +260,32 @@ public class ShareCheck {
 		obj.logout(driver);
 		if(browserName.equals("firefox"))
 		{
-		  	driver.switchTo().defaultContent();
+			driver.switchTo().defaultContent();
 		}
 		Thread.sleep(6000);
 		int login1 = obj.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
 		if (login1==1)
 		{
-          
-          while(true)
-		  {
-         	 Thread.sleep(1000);
-			  if (driver.findElement(StickyPopUp).isDisplayed())
-			  {
-				  WebElement ele =driver.findElement(StickyPopUp);
-				  ele.findElement(StickyClose).click();
-				  break;
-			  }
-			  else break;
-		  }
-        }	
+
+			while(true)
+			{
+				Thread.sleep(1000);
+				if (driver.findElement(StickyPopUp).isDisplayed())
+				{
+					WebElement ele =driver.findElement(StickyPopUp);
+					ele.findElement(StickyClose).click();
+					break;
+				}
+				else break;
+			}
+		}	
 		Thread.sleep(3000);
 		Actions act = new Actions(driver);
 		if(browserName.equals("firefox"))
@@ -297,20 +297,20 @@ public class ShareCheck {
 		}
 		else
 		{
-		//Clicks on admin user name on top right corner
-		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
-		act.click(ele).build().perform();
-		Thread.sleep(3000);
-		//Clicks on Activity
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
-		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
-		act.click(ele1).build().perform();
-		Thread.sleep(4000);
+			//Clicks on admin user name on top right corner
+			WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
+			act.click(ele).build().perform();
+			Thread.sleep(3000);
+			//Clicks on Activity
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
+			WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
+			act.click(ele1).build().perform();
+			Thread.sleep(4000);
 		}
 	}
 
 	public void receiptReport(WebDriver driver, String sharer, String username, String password1) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//LogOut
@@ -323,32 +323,32 @@ public class ShareCheck {
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("firefox"))
 		{
-		  	driver.switchTo().defaultContent();
+			driver.switchTo().defaultContent();
 		}
 		Thread.sleep(8000);
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
 		if (login==1)
 		{
-          
-          while(true)
-		  {
-         	 Thread.sleep(1000);
-			  if (driver.findElement(StickyPopUp).isDisplayed())
-			  {
-				  WebElement ele =driver.findElement(StickyPopUp);
-				  ele.findElement(StickyClose).click();
-				  break;
-			  }
-			  else break;
-		  }
-        }	
+
+			while(true)
+			{
+				Thread.sleep(1000);
+				if (driver.findElement(StickyPopUp).isDisplayed())
+				{
+					WebElement ele =driver.findElement(StickyPopUp);
+					ele.findElement(StickyClose).click();
+					break;
+				}
+				else break;
+			}
+		}	
 		Thread.sleep(4000);
 		//Get count from notification
 		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationCount)).getText();
@@ -359,12 +359,12 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
 		Thread.sleep(1000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		if(browserName.equals("firefox")==false)
 		{
-		  	Thread.sleep(4000);
-		  	jse.executeScript("scroll(0,0)");
-		  	Thread.sleep(2000);
+			Thread.sleep(4000);
+			jse.executeScript("scroll(0,0)");
+			Thread.sleep(2000);
 		}
 		//Click on 1st record/notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
@@ -375,22 +375,22 @@ public class ShareCheck {
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(ModuleTitle)).getText();
 		if(s.contains("iRCA")||s.contains("SPV Error Meter")||s.contains("Remote Verification"))
 		{
-		//Click on Download report
-		//Get version
-		String v = cap.getVersion().toString();
-	    System.out.println(v);
-	    //Download report to check pdf
-	    if (browserName.equals("chrome"))
-	    	downloadReportChrome(driver);
-	    if (browserName.equals("firefox"))
-	    	downloadReportFirefox(driver);
-	    if (browserName.equals("internet explorer"))
-	    {
-	    	if (v.startsWith("10"))
-	    		downloadReportIE(driver);
-	    	if (v.startsWith("11"))
-	    		downloadReportIE11(driver);
-	    }}
+			//Click on Download report
+			//Get version
+			String v = cap.getVersion().toString();
+			System.out.println(v);
+			//Download report to check pdf
+			if (browserName.equals("chrome"))
+				downloadReportChrome(driver);
+			if (browserName.equals("firefox"))
+				downloadReportFirefox(driver);
+			if (browserName.equals("internet explorer"))
+			{
+				if (v.startsWith("10"))
+					downloadReportIE(driver);
+				if (v.startsWith("11"))
+					downloadReportIE11(driver);
+			}}
 		Thread.sleep(2000);
 		Thread.sleep(2000);
 		if(browserName.equals("internet explorer"))
@@ -402,19 +402,19 @@ public class ShareCheck {
 			Thread.sleep(4000);
 			for(int i=1;i<=n;i++)
 			{
-			Thread.sleep(2000);
-			//Click on 1st record/notification
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-			act.click(ele).build().perform();
-			Thread.sleep(4000);
-			//Click on read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-			act.click(ele).build().perform();
-			Thread.sleep(2000);
-			//Click on mark as read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-			act.click(ele).build().perform();
-			Thread.sleep(2000);
+				Thread.sleep(2000);
+				//Click on 1st record/notification
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				act.click(ele).build().perform();
+				Thread.sleep(4000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				act.click(ele).build().perform();
+				Thread.sleep(2000);
+				//Click on mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				act.click(ele).build().perform();
+				Thread.sleep(2000);
 			}
 		}
 		else{
@@ -423,22 +423,22 @@ public class ShareCheck {
 			Thread.sleep(2000);
 			for(int i=1;i<=n;i++)
 			{
-			Thread.sleep(2000);
-			//Click on 1st record/notification
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-			if(ele.isSelected()==false)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
-			Thread.sleep(4000);
-			//Click on read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-			if(ele.isEnabled()==false)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
-			ele.click();
-			Thread.sleep(2000);
-			//Click on mark as read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-			ele.click();
-			Thread.sleep(2000);
+				Thread.sleep(2000);
+				//Click on 1st record/notification
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				if(ele.isSelected()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				Thread.sleep(4000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				if(ele.isEnabled()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				ele.click();
+				Thread.sleep(2000);
+				//Click on mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				ele.click();
+				Thread.sleep(2000);
 			}
 		}		
 		//Wait for loading message to disappear
@@ -447,32 +447,32 @@ public class ShareCheck {
 		obj.logout(driver);
 		if(browserName.equals("firefox"))
 		{
-		  	driver.switchTo().defaultContent();
+			driver.switchTo().defaultContent();
 		}
 		Thread.sleep(6000);
 		int login1 = obj.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
 		if (login1==1)
 		{
-          
-          while(true)
-		  {
-         	 Thread.sleep(1000);
-			  if (driver.findElement(StickyPopUp).isDisplayed())
-			  {
-				  WebElement ele =driver.findElement(StickyPopUp);
-				  ele.findElement(StickyClose).click();
-				  break;
-			  }
-			  else break;
-		  }
-        }	
+
+			while(true)
+			{
+				Thread.sleep(1000);
+				if (driver.findElement(StickyPopUp).isDisplayed())
+				{
+					WebElement ele =driver.findElement(StickyPopUp);
+					ele.findElement(StickyClose).click();
+					break;
+				}
+				else break;
+			}
+		}	
 		Thread.sleep(3000);
 		Actions act = new Actions(driver);
 		if(browserName.equals("firefox"))
@@ -484,173 +484,173 @@ public class ShareCheck {
 		}
 		else
 		{
-		//Clicks on admin user name on top right corner
-		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
-		act.click(ele).build().perform();
-		Thread.sleep(3000);
-		//Clicks on Activity
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
-		WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
-		act.click(ele1).build().perform();
-		Thread.sleep(4000);
+			//Clicks on admin user name on top right corner
+			WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
+			act.click(ele).build().perform();
+			Thread.sleep(3000);
+			//Clicks on Activity
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
+			WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
+			act.click(ele1).build().perform();
+			Thread.sleep(4000);
 		}
 	}
-	
+
 	public void downloadReportChrome (WebDriver driver) throws Exception {
-		
+
 		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	String window = driver.getWindowHandle();
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
 		//Wait for loading message to disappear
 		loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
-    	Thread.sleep(8000);
-    	for(String winHandle : driver.getWindowHandles()){
-	    driver.switchTo().window(winHandle);
-	    }
-        driver.close();
-        Thread.sleep(2000);
-    	driver.switchTo().window(window);
-    	Thread.sleep(5000);
-    	//Switches to the iframe
-        wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	}
-	
-	public void downloadReportFirefox(WebDriver driver) throws Exception {
-		
-		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	//Clicks on download button		
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
-		//Wait for loading message to disappear
-		loadingServer(driver);
-		String window = driver.getWindowHandle();
-		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
-    	Thread.sleep(8000);
-    	for(String winHandle : driver.getWindowHandles()){
-    	    driver.switchTo().window(winHandle);
-    	}
-    	Thread.sleep(4000);
-    	driver.close();
-    	Thread.sleep(4000);
-    	driver.switchTo().window(window);
-    	driver.switchTo().defaultContent();    
-    	Thread.sleep(4000);
-    	//Switches to the iframe
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		driver.close();
+		Thread.sleep(2000);
+		driver.switchTo().window(window);
+		Thread.sleep(5000);
+		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-    }
-	
-	public void downloadReportIE(WebDriver driver) throws Exception {
-		
+	}
+
+	public void downloadReportFirefox(WebDriver driver) throws Exception {
+
 		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	//Clicks on download button		
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
 		//Wait for loading message to disappear
 		loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
-    	Thread.sleep(8000);
-    	try {
-			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
-			  q.waitFor();
-			  }catch (UnhandledAlertException f){	
-				  System.out.println("Unexpected alert");
-				  driver.switchTo().alert().accept();
-				  
-		  	  }catch (NoAlertPresentException f){
-		  		  System.out.println ("No unexpected alert");
-		  		  }
-    	Thread.sleep(10000);
-    	//Close pdf
-    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		Thread.sleep(4000);
+		driver.close();
+		Thread.sleep(4000);
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();    
+		Thread.sleep(4000);
+		//Switches to the iframe
+		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+	}
+
+	public void downloadReportIE(WebDriver driver) throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
+		//Wait for loading message to disappear
+		loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/OpenPdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(10000);
+		//Close pdf
+		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ClosePdf.exe");
 		q.waitFor();
 		Thread.sleep(4000);
 		//Switch to window    	
-    	driver.switchTo().window(window);
-    	driver.switchTo().defaultContent();
-    	Thread.sleep(4000);
-    	//Switches to the iframe
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();
+		Thread.sleep(4000);
+		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
 	public void downloadReportIE11(WebDriver driver) throws Exception {
-		
+
 		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	//Clicks on download button		
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(SharedReportDownloadButton)).click();
 		//Wait for loading message to disappear
 		loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
-    	Thread.sleep(8000);
-    	try {
-			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/OpenPdf.exe");
-			  q.waitFor();
-			  }catch (UnhandledAlertException f){	
-				  System.out.println("Unexpected alert");
-				  driver.switchTo().alert().accept();
-				  
-		  	  }catch (NoAlertPresentException f){
-		  		  System.out.println ("No unexpected alert");
-		  		  }
-    	Thread.sleep(10000);
-    	//Close pdf
-    	Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/ClosePdf.exe");
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/OpenPdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(10000);
+		//Close pdf
+		Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/ClosePdf.exe");
 		q.waitFor();
 		Thread.sleep(4000);
 		//Switch to window    	
-    	driver.switchTo().window(window);
-    	driver.switchTo().defaultContent();
-    	Thread.sleep(4000);
-    	//Switches to the iframe
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();
+		Thread.sleep(4000);
+		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
-	
+
 	public void loadingServer(WebDriver driver) throws Exception {
-		
+
 		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 		while (true)
-		  {
-			  try{
-				  Thread.sleep(4000);
-				  if(driver.findElement(LoadingMessage).isDisplayed())
-				  {
-					  Thread.sleep(5000);
-				  }
-				  else
-					  break;
-				  }catch (org.openqa.selenium.NoSuchElementException |org.openqa.selenium.StaleElementReferenceException e)
-				  {
-					  break;
-				  }
-			  catch (org.openqa.selenium.ScriptTimeoutException e)
-			  {
-				  Thread.sleep(6000);
-			  }
-		  }
+		{
+			try{
+				Thread.sleep(4000);
+				if(driver.findElement(LoadingMessage).isDisplayed())
+				{
+					Thread.sleep(5000);
+				}
+				else
+					break;
+			}catch (org.openqa.selenium.NoSuchElementException |org.openqa.selenium.StaleElementReferenceException e)
+			{
+				break;
+			}
+			catch (org.openqa.selenium.ScriptTimeoutException e)
+			{
+				Thread.sleep(6000);
+			}
+		}
 	}
 }

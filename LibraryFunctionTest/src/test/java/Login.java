@@ -24,9 +24,9 @@ public class Login {
 	By StickyClose = By.className("sticky-close");
 	By LoginNameOnTopRight = By.id("pii-user-loginname");
 	By LogOutButton = By.id("pii-signout-button");
-	
+
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Login button is located and clicked
 		wait.until(ExpectedConditions.elementToBeClickable(LoginButton)).click();
@@ -41,111 +41,111 @@ public class Login {
 		int login=0;
 		if (user.equals(username)==true)
 		{
-		  if(pw.equals(decodePassword(password))==true)
-		  {
-			  //Sign in button is located and clicked
-			  driver.findElement(SignInButton).click();  
-			  while(c>0)
-			  {
-				  Thread.sleep(2000);
-				  WebElement element = driver.findElement(SignInMessage);
-				  String text = element.getText();
-				  if (element.isDisplayed())
-				  {
-					  if(text.isEmpty())
-					  {
-						  System.out.println("Logged in");
-						  break;
-					  }
-					  else
-					  {
-						  driver.findElement(Password).sendKeys(decodePassword(password));
-						  //Sign in button is located and clicked
-						  driver.findElement(SignInButton).click();
-						  login =1;
-						  break;
-					  }
-							  			  
-				  }
-				  else break;
-			}
-	   }
-	   }
-	   if ((user.equals(username)==false)||(pw.equals(decodePassword(password))==false))
-	   {
-		  while(c>0)
+			if(pw.equals(decodePassword(password))==true)
 			{
-			  Thread.sleep(1000);
-			  driver.findElement(UserName).clear();
-			  driver.findElement(Password).clear();
-			  Thread.sleep(2000);
-			  //Username text field is located and the username is entered
-			  driver.findElement(UserName).sendKeys(username);
-			  //Password field is located and the password is entered
-			  driver.findElement(Password).sendKeys(decodePassword(password));
-			  Thread.sleep(2000);
-			  user = driver.findElement(UserName).getAttribute("value");
-			  pw = driver.findElement(Password).getAttribute("value");
-			  if (user.equals(username)==true)
-			  {
-			  if(pw.equals(decodePassword(password))==true)
-			  {
-				  //Sign in button is located and clicked
-				  driver.findElement(SignInButton).click();
-				  break;
-			  }
-			  }
+				//Sign in button is located and clicked
+				driver.findElement(SignInButton).click();  
+				while(c>0)
+				{
+					Thread.sleep(2000);
+					WebElement element = driver.findElement(SignInMessage);
+					String text = element.getText();
+					if (element.isDisplayed())
+					{
+						if(text.isEmpty())
+						{
+							System.out.println("Logged in");
+							break;
+						}
+						else
+						{
+							driver.findElement(Password).sendKeys(decodePassword(password));
+							//Sign in button is located and clicked
+							driver.findElement(SignInButton).click();
+							login =1;
+							break;
+						}
+
+					}
+					else break;
+				}
+			}
+		}
+		if ((user.equals(username)==false)||(pw.equals(decodePassword(password))==false))
+		{
+			while(c>0)
+			{
+				Thread.sleep(1000);
+				driver.findElement(UserName).clear();
+				driver.findElement(Password).clear();
+				Thread.sleep(2000);
+				//Username text field is located and the username is entered
+				driver.findElement(UserName).sendKeys(username);
+				//Password field is located and the password is entered
+				driver.findElement(Password).sendKeys(decodePassword(password));
+				Thread.sleep(2000);
+				user = driver.findElement(UserName).getAttribute("value");
+				pw = driver.findElement(Password).getAttribute("value");
+				if (user.equals(username)==true)
+				{
+					if(pw.equals(decodePassword(password))==true)
+					{
+						//Sign in button is located and clicked
+						driver.findElement(SignInButton).click();
+						break;
+					}
+				}
 			}		  
-      }
-	   return login;
+		}
+		return login;
 	}
-	
+
 	public String decodePassword(String pw){
-		
+
 		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
 		String decryptedPassword = new String(decryptedPasswordBytes);
 		return (decryptedPassword);
 	}
-	
+
 	public void closePopUpSticky(WebDriver driver) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		while(true)
-		  {
-			  try{
-			  if (driver.findElement(StickyNote).isDisplayed())
-			  {
-				  Thread.sleep(1000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(StickyClose)).click();
-				  
-			  }}catch (NoSuchElementException e)
-			  {
-				  break;
-			  }
-			  catch( StaleElementReferenceException f)
-			  {
-				  
-				 break;
-			  }
-			  catch (org.openqa.selenium.TimeoutException u)
-			  {
-				  break;
-			  }
-			  catch (org.openqa.selenium.ElementNotInteractableException u)
-			  {
-				  break;
-			  }
-			  catch (org.openqa.selenium.JavascriptException t)
-			  {
-				  Thread.sleep(2000);
-				  break;
-			  }
-			 
-		  }
+		{
+			try{
+				if (driver.findElement(StickyNote).isDisplayed())
+				{
+					Thread.sleep(1000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(StickyClose)).click();
+
+				}}catch (NoSuchElementException e)
+			{
+					break;
+			}
+			catch( StaleElementReferenceException f)
+			{
+
+				break;
+			}
+			catch (org.openqa.selenium.TimeoutException u)
+			{
+				break;
+			}
+			catch (org.openqa.selenium.ElementNotInteractableException u)
+			{
+				break;
+			}
+			catch (org.openqa.selenium.JavascriptException t)
+			{
+				Thread.sleep(2000);
+				break;
+			}
+
+		}
 	}
-	
+
 	public void logout (WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		closePopUpSticky(driver);
 		Thread.sleep(4000);
@@ -158,28 +158,29 @@ public class Login {
 			Thread.sleep(3000);
 			while(true)
 			{
-			try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton)).click();
-			break;
-			}catch(org.openqa.selenium.TimeoutException t)
-			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
-			}
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton)).click();
+					break;
+				}catch(org.openqa.selenium.TimeoutException t)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
+				}
 			}
 			Thread.sleep(5000);
 		}
 		else
 		{
-		Actions act = new Actions (driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
-		WebElement element = driver.findElement(LoginNameOnTopRight);
-		act.click(element).build().perform();
-		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton));
-		element = driver.findElement(LogOutButton);
-		act.click(element).build().perform();
-		Thread.sleep(2000);
+			Actions act = new Actions (driver);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
+			WebElement element = driver.findElement(LoginNameOnTopRight);
+			act.click(element).build().perform();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton));
+			element = driver.findElement(LogOutButton);
+			act.click(element).build().perform();
+			Thread.sleep(2000);
 		}
+		Thread.sleep(4000);
 	}
-		
+
 }

@@ -29,31 +29,31 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LanguageCheckOfReports {
 
 	SoftAssertions softly = new SoftAssertions();
-	
+
 	public boolean containsHanScript(String s) {
-	    return s.codePoints().anyMatch(
-	            codepoint ->
-	            Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN);
+		return s.codePoints().anyMatch(
+				codepoint ->
+				Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN);
 	}
-	
+
 	public void chineseCheck(String s) throws Exception{
-		
+
 		if (containsHanScript(s)==false)
 			softly.fail("Not in chinese");
 	}
-	
+
 	public void englishCheck(String s) {
 		if (containsHanScript(s)==true)
 			softly.fail("Not in english");
 	}
-	
+
 	public void downloadReportIE(WebDriver driver, int y, WebElement element) throws Exception {
-    	
-    	//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	Thread.sleep(2000);
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		Thread.sleep(2000);
 		//Clicks on download button
 		element.click();
 		Thread.sleep(3000);
@@ -63,29 +63,29 @@ public class LanguageCheckOfReports {
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(7000);
-    	Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
 		q.waitFor();
 		Thread.sleep(15000);
-    	//pdf verification
-    	pdfCheck(y);
-    	Thread.sleep(8000);
-    	//Switch to window    	
-    	driver.switchTo().window(window);
-    	Thread.sleep(4000);
-    	//Switches to the iframe
-        wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-			    		    	
-    }
-	
+		//pdf verification
+		pdfCheck(y);
+		Thread.sleep(8000);
+		//Switch to window    	
+		driver.switchTo().window(window);
+		Thread.sleep(4000);
+		//Switches to the iframe
+		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+
+	}
+
 	public void downloadReportIE11(WebDriver driver, int y, WebElement element) throws Exception {
-    	
-    	//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	Thread.sleep(2000);
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		Thread.sleep(2000);
 		//Clicks on download button
 		element.click();
 		Thread.sleep(3000);
@@ -95,95 +95,95 @@ public class LanguageCheckOfReports {
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(6000);
 		try{
-			 try {
-					  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
-					  q.waitFor();
-			 }catch (UnhandledAlertException g){
-		    	  System.out.println("Unexpected alert");
-				  driver.switchTo().alert().accept();
-		      }
-		    }catch (NoAlertPresentException g){			  
-		  System.out.println ("No unexpected alerts");
-		     }
+			try {
+				Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+				q.waitFor();
+			}catch (UnhandledAlertException g){
+				System.out.println("Unexpected alert");
+				driver.switchTo().alert().accept();
+			}
+		}catch (NoAlertPresentException g){			  
+			System.out.println ("No unexpected alerts");
+		}
 		Thread.sleep(15000);
-    	//pdf verification
-    	pdfCheck(y);
-    	Thread.sleep(8000);
-    	//Switch to window    	
-    	driver.switchTo().window(window);
-    	Thread.sleep(8000);
-    	//Switches to the iframe
-    	try{
-    	try{
-        wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-    	}catch (UnhandledAlertException g1){
-    		wait1.until(ExpectedConditions.alertIsPresent());
-            driver.switchTo().alert().dismiss();
-    	}
-    	}catch (NoAlertPresentException g){			  
-  		  System.out.println ("No unexpected alerts");
-	     }catch(org.openqa.selenium.TimeoutException t){
-	    	 System.out.println ("Timed out: No unexpected alerts");
-	     }
-    	try{
-    	driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-    	}catch (NoSuchElementException e)
-    	{
-    		
-    	}
-    }
-	
-	 public void downloadReportFirefox (WebDriver driver, int y, WebElement element) throws Exception {
-	    	
-	    	//deletes files in reports folder before starting to download
-	    	File file = new File("C://Users//IEUser//Downloads//reports//");
-	    	deleteFiles(file);
-	    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-	    	//Clicks on download button
-			element.click();
-			//Wait for loading message to disappear
-			ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
-			String window = driver.getWindowHandle();
-			//Clicks on open pdf report
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
-	    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-	    	Thread.sleep(12000);
-	    	for(String winHandle : driver.getWindowHandles()){
-	    	    driver.switchTo().window(winHandle);
-	    	}
-	    	Thread.sleep(14000);
-	    	Robot robot = new Robot();
-	    	// press Ctrl+S the Robot's way
-	    	robot.keyPress(KeyEvent.VK_CONTROL);
-	    	robot.keyPress(KeyEvent.VK_S);
-	    	robot.keyRelease(KeyEvent.VK_CONTROL);
-	    	robot.keyRelease(KeyEvent.VK_S);
-	    	Thread.sleep(8000);
-	    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-	    	p.waitFor();
-	    	Thread.sleep(4000);
-	    	pdfCheck(y);
-	    	Thread.sleep(4000);
-	    	driver.close();
-	    	Thread.sleep(4000);
-	    	driver.switchTo().window(window);
-	    	driver.switchTo().defaultContent();
-	    	Thread.sleep(4000);
-	    	//Switches to the iframe
-			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
-	       	    		    	
-	    }
-	
+		//pdf verification
+		pdfCheck(y);
+		Thread.sleep(8000);
+		//Switch to window    	
+		driver.switchTo().window(window);
+		Thread.sleep(8000);
+		//Switches to the iframe
+		try{
+			try{
+				wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+			}catch (UnhandledAlertException g1){
+				wait1.until(ExpectedConditions.alertIsPresent());
+				driver.switchTo().alert().dismiss();
+			}
+		}catch (NoAlertPresentException g){			  
+			System.out.println ("No unexpected alerts");
+		}catch(org.openqa.selenium.TimeoutException t){
+			System.out.println ("Timed out: No unexpected alerts");
+		}
+		try{
+			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		}catch (NoSuchElementException e)
+		{
+
+		}
+	}
+
+	public void downloadReportFirefox (WebDriver driver, int y, WebElement element) throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
+		element.click();
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(12000);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		Thread.sleep(14000);
+		Robot robot = new Robot();
+		// press Ctrl+S the Robot's way
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_S);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_S);
+		Thread.sleep(8000);
+		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+		p.waitFor();
+		Thread.sleep(4000);
+		pdfCheck(y);
+		Thread.sleep(4000);
+		driver.close();
+		Thread.sleep(4000);
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();
+		Thread.sleep(4000);
+		//Switches to the iframe
+		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+
+	}
+
 	public void downloadReportChrome (WebDriver driver, int y, WebElement element) throws Exception {
 		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports");
-    	deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	String window = driver.getWindowHandle();
+		File file = new File("C://Users//IEUser//Downloads//reports");
+		deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String window = driver.getWindowHandle();
 		//Clicks on download button
 		element.click();
 		//Wait for loading message to disappear
@@ -191,66 +191,66 @@ public class LanguageCheckOfReports {
 		obj.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-    	Thread.sleep(3000);
-    	pdfCheck(y);
-    	for(String winHandle : driver.getWindowHandles())
-    	{
-	        driver.switchTo().window(winHandle);
-	    }
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(3000);
+		pdfCheck(y);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			driver.switchTo().window(winHandle);
+		}
 		driver.close();
 		driver.switchTo().window(window);
 		Thread.sleep(4000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
-	
+
 	public void deleteFiles(File folder) throws IOException {
-        File[] files = folder.listFiles();
-         for(File file: files){
-                if(file.isFile()){
-                    String fileName = file.getName();
-                    boolean del= file.delete();
-                    System.out.println(fileName + " : got deleted ? " + del);
-                }else if(file.isDirectory()) {
-                    deleteFiles(file);
-                }
-            }
-        }
-	
+		File[] files = folder.listFiles();
+		for(File file: files){
+			if(file.isFile()){
+				String fileName = file.getName();
+				boolean del= file.delete();
+				System.out.println(fileName + " : got deleted ? " + del);
+			}else if(file.isDirectory()) {
+				deleteFiles(file);
+			}
+		}
+	}
+
 	public void pdfCheck(int y) throws Exception {
-		
+
 		// specify your directory
-    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
-    	// here we get the stream with full directory listing
-    	// exclude subdirectories from listing
-    	// finally get the last file using simple comparator by lastModified field
-    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-    	System.out.println(lastFilePath.get());
-    	//Loads the file to check if correct data is present
-	    String fileName=lastFilePath.get().toString();
-	    File oldfile = new File(fileName);
-	    PDDocument pddoc= PDDocument.load(oldfile);
-	    //Checks text in pdf
-	    String data = new PDFTextStripper().getText(pddoc);
-	    List<String> ans= Arrays.asList(data.split("\r\n"));
-	    String newData="";
-	    for (int i = 0; i < ans.size(); i++)
-	        {	        	
-	        	int n=ans.get(i).length()-1;
-	        	if (ans.get(i).charAt(n)==' ')
-	        		newData = newData+ans.get(i);
-	        	if (ans.get(i).charAt(n)!=' ')
-	        		newData = newData+" "+ans.get(i);	        	
-	        }
-	    if (y==0)
-	    	chineseCheck(newData);
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		System.out.println(lastFilePath.get());
+		//Loads the file to check if correct data is present
+		String fileName=lastFilePath.get().toString();
+		File oldfile = new File(fileName);
+		PDDocument pddoc= PDDocument.load(oldfile);
+		//Checks text in pdf
+		String data = new PDFTextStripper().getText(pddoc);
+		List<String> ans= Arrays.asList(data.split("\r\n"));
+		String newData="";
+		for (int i = 0; i < ans.size(); i++)
+		{	        	
+			int n=ans.get(i).length()-1;
+			if (ans.get(i).charAt(n)==' ')
+				newData = newData+ans.get(i);
+			if (ans.get(i).charAt(n)!=' ')
+				newData = newData+" "+ans.get(i);	        	
+		}
+		if (y==0)
+			chineseCheck(newData);
 		if (y==1)
 			englishCheck(newData);
-	    //Close pdf
+		//Close pdf
 		pddoc.close();
 	}
-	
+
 	public WebElement errorMeter(WebDriver driver, int y) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
@@ -334,10 +334,10 @@ public class LanguageCheckOfReports {
 		s.clear();
 		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))));
 	}
-	
-	
+
+
 	public void hpi(WebDriver driver, int y) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on hpi side panel
@@ -369,7 +369,7 @@ public class LanguageCheckOfReports {
 		//Clear the list s
 		s.clear();		
 	}
-	
+
 	public WebElement hirca(WebDriver driver, int y) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
@@ -411,16 +411,16 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[1]/table/tbody/tr[8]/td[1]"))).getText());
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[1]/table/tbody/tr[9]/td[1]"))).getText());
 		//Stores text of title of 2nd table
-	    s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/thead/tr/th"))).getText());
-	    //Stores the labels of all the rows in 2nd table
-	    s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[1]/td[1]"))).getText());
-	    s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[1]"))).getText());		
-	    s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText());
-	    s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[1]"))).getText());  
-	    //Randomly generated tables so think about it*****
-	    
-	    
-	    
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/thead/tr/th"))).getText());
+		//Stores the labels of all the rows in 2nd table
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[1]/td[1]"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[1]"))).getText());		
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[1]"))).getText());  
+		//Randomly generated tables so think about it*****
+
+
+
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -432,9 +432,9 @@ public class LanguageCheckOfReports {
 		//Clear the list s
 		s.clear();		
 		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
-		
+
 	}
-	
+
 	public WebElement eirca(WebDriver driver, int y) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
@@ -490,12 +490,12 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();		
-		
+
 		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
 	}
-	
+
 	public WebElement opirca(WebDriver driver, int y) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on opirca side panel
@@ -520,9 +520,9 @@ public class LanguageCheckOfReports {
 		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
 
 	}
-	
+
 	public void jobs(WebDriver driver, int y) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on job observation side panel
@@ -555,9 +555,9 @@ public class LanguageCheckOfReports {
 		s.clear();		
 
 	}
-	
+
 	public void passReview(WebDriver driver, int y) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on 3 pass review side panel
@@ -575,7 +575,7 @@ public class LanguageCheckOfReports {
 		//Stores text of back button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
 		//Stores text of open button
-        s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
 		//Stores text of delete button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
 		//Stores text of share button
@@ -592,9 +592,9 @@ public class LanguageCheckOfReports {
 		s.clear();		
 
 	}
-	
+
 	public WebElement rv(WebDriver driver, int y) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		List<String> s = new ArrayList<String>();
 		//Clicks on remote verification side panel
@@ -607,7 +607,7 @@ public class LanguageCheckOfReports {
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Stores text of Remote Verification title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
@@ -648,14 +648,14 @@ public class LanguageCheckOfReports {
 		//Clear the list s
 		s.clear();	
 		//Waits for the page to load
-	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		WebElement element=null;
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		System.out.println(browserName);
-	    String v = cap.getVersion().toString();
-	    System.out.println(v);
+		String v = cap.getVersion().toString();
+		System.out.println(v);
 		if((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 		{
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getAttribute("class");
@@ -669,23 +669,23 @@ public class LanguageCheckOfReports {
 			return (element);
 		}
 		else{
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText();
-		System.out.println(s1);
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
-		System.out.println(s2);
-		if (s1.contains("download") || (s1.contains("打印")) )
-			element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));	
-		else if (s2.contains("download")||(s1.contains("打印")))
-			element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
-		return (element);
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText();
+			System.out.println(s1);
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
+			System.out.println(s2);
+			if (s1.contains("download") || (s1.contains("打印")) )
+				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));	
+			else if (s2.contains("download")||(s1.contains("打印")))
+				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
+			return (element);
 		}
 
 	}
-	
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
 	}
-	
-	
+
+
 }

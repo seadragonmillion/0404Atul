@@ -24,16 +24,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HiRCAChinese2 {
-	
-	
+
+
 	public void downloadReportChrome (WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
-		
+
 		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	String window = driver.getWindowHandle();
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
@@ -41,261 +41,261 @@ public class HiRCAChinese2 {
 		obj.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-    	Thread.sleep(8000);
-    	//pdf check
-    	pdfCheck(driver,softly,verifyChinese);
-    	for(String winHandle : driver.getWindowHandles()){
-	    driver.switchTo().window(winHandle);
-	    }
-        driver.close();
-    	driver.switchTo().window(window);
-    	Thread.sleep(1000);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(8000);
+		//pdf check
+		pdfCheck(driver,softly,verifyChinese);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		driver.close();
+		driver.switchTo().window(window);
+		Thread.sleep(1000);
 		Thread.sleep(2000);
 		//Switch to iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 	}
-	
+
 	public void downloadReportFirefox(WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
-		
+
 		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	//Clicks on download button
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		//Wait for loading message to disappear
-    	ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
-		String window = driver.getWindowHandle();
-		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-    	Thread.sleep(8000);
-    	for(String winHandle : driver.getWindowHandles()){
-    	    driver.switchTo().window(winHandle);
-    	}
-    	Thread.sleep(2000);
-    	Robot robot = new Robot();
-    	// press Ctrl+S the Robot's way
-    	robot.keyPress(KeyEvent.VK_CONTROL);
-    	robot.keyPress(KeyEvent.VK_S);
-    	robot.keyRelease(KeyEvent.VK_CONTROL);
-    	robot.keyRelease(KeyEvent.VK_S);
-    	Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-    	p.waitFor();
-    	Thread.sleep(2000);
-    	//If no pdf repeat
-    	// specify your directory
-    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
-    	// here we get the stream with full directory listing
-    	// exclude subdirectories from listing
-    	// finally get the last file using simple comparator by lastModified field
-    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-    	try{
-    		System.out.println(lastFilePath.get());
-    	}catch(java.util.NoSuchElementException r)
-    	{
-    		//deletes files in reports folder before starting to download
-        	HiRCAEvent obj2 = new HiRCAEvent();
-        	obj2.deleteFiles(file);
-        	// press Ctrl+S the Robot's way
-        	robot.keyPress(KeyEvent.VK_CONTROL);
-        	robot.keyPress(KeyEvent.VK_S);
-        	robot.keyRelease(KeyEvent.VK_CONTROL);
-        	robot.keyRelease(KeyEvent.VK_S);
-        	Thread.sleep(2000);
-    		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-  			q.waitFor();
-  			Thread.sleep(7000);
-    	}
-    	//pdf check
-    	pdfCheck(driver,softly,verifyChinese);
-    	Thread.sleep(4000);
-    	driver.close();
-    	Thread.sleep(4000);
-    	driver.switchTo().window(window);
-    	driver.switchTo().defaultContent();      
-		Thread.sleep(2000);
-		//Switch to iframe
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-    }
-	
-	public void downloadReportIE(WebDriver driver, SoftAssertions softly, List<String> verifyChinese)throws Exception {
-		
-		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		Thread.sleep(3000);
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(3000);
-    	try {
-			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
-			  q.waitFor();
-			  }catch (UnhandledAlertException f){	
-				  System.out.println("Unexpected alert");
-				  driver.switchTo().alert().accept();
-				  
-		  	  }catch (NoAlertPresentException f){
-		  		  System.out.println ("No unexpected alert");
-		  		  }
-    	Thread.sleep(7000);
-    	//If no pdf repeat
-    	// specify your directory
-    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
-    	// here we get the stream with full directory listing
-    	// exclude subdirectories from listing
-    	// finally get the last file using simple comparator by lastModified field
-    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-    	try{
-    		System.out.println(lastFilePath.get());
-    		if(lastFilePath.get().endsWith(".pdf")==false)
-    			throw new NullPointerException("No pdf in ie10");
-    	}catch(java.util.NoSuchElementException | NullPointerException r)
-    	{
-    		//deletes files in reports folder before starting to download
-        	obj1.deleteFiles(file);
-        	//Clicks on download button
-    		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-    		Thread.sleep(3000);
-    		//Wait for loading message to disappear
-    		obj.loadingServer(driver);
-    		//Clicks on open pdf report
-    		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-        	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-    		Thread.sleep(3000);
-        	try {
-    			  Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
-    			  q.waitFor();
-    			  }catch (UnhandledAlertException f){	
-    				  System.out.println("Unexpected alert");
-    				  driver.switchTo().alert().accept();
-    				  
-    		  	  }catch (NoAlertPresentException f){
-    		  		  System.out.println ("No unexpected alert");
-    		  		  }
-        	Thread.sleep(7000);
-    	}
-    	//pdf verification
-    	pdfCheck(driver,softly,verifyChinese);
-	    Thread.sleep(4000);
-    	//Switch to window    	
-    	driver.switchTo().window(window);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(8000);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
 		Thread.sleep(2000);
-		//Switch to iframe
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-    }
-	
-	public void downloadReportIE11(WebDriver driver, SoftAssertions softly, List<String> verifyChinese)throws Exception {
-		
-		//deletes files in reports folder before starting to download
-    	File file = new File("C://Users//IEUser//Downloads//reports//");
-    	HiRCAEvent obj1 = new HiRCAEvent();
-    	obj1.deleteFiles(file);
-    	WebDriverWait wait1 = new WebDriverWait(driver,60);
-    	//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		Thread.sleep(3000);
-		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
-		String window = driver.getWindowHandle();
-		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-    	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(3000);
-    	try {
-			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
-			  q.waitFor();
-			  }catch (UnhandledAlertException f){	
-				  System.out.println("Unexpected alert");
-				  driver.switchTo().alert().accept();
-				  
-		  	  }catch (NoAlertPresentException f){
-		  		  System.out.println ("No unexpected alert");
-		  		  }
-    	Thread.sleep(7000);
-    	//If no pdf repeat
-    	// specify your directory
-    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
-    	// here we get the stream with full directory listing
-    	// exclude subdirectories from listing
-    	// finally get the last file using simple comparator by lastModified field
-    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-    	try{
-    		System.out.println(lastFilePath.get());
-    	}catch(java.util.NoSuchElementException r)
-    	{
-    		obj1.deleteFiles(file);
-    		try {
-  			  Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
-  			  q.waitFor();
-  			  }catch (UnhandledAlertException f){	
-  				  System.out.println("Unexpected alert");
-  				  driver.switchTo().alert().accept();
-  				  
-  		  	  }catch (NoAlertPresentException f){
-  		  		  System.out.println ("No unexpected alert");
-  		  		  }
-    		Thread.sleep(7000);
-    	}
-    	//pdf verification
-    	pdfCheck(driver,softly,verifyChinese);
-	    Thread.sleep(4000);
-    	//Switch to window    	
-    	driver.switchTo().window(window);	
+		Robot robot = new Robot();
+		// press Ctrl+S the Robot's way
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_S);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_S);
+		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+		p.waitFor();
 		Thread.sleep(2000);
-		//Switch to iframe
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-    }
-	
-	public void pdfCheck(WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
-		
+		//If no pdf repeat
 		// specify your directory
-    	Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
-    	// here we get the stream with full directory listing
-    	// exclude subdirectories from listing
-    	// finally get the last file using simple comparator by lastModified field
-    	Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-    	System.out.println(lastFilePath.get());
-    	//Loads the file to check if correct data is present
-	    String fileName=lastFilePath.get().toString();
-	    File oldfile = new File(fileName);
-	    PDDocument pddoc= PDDocument.load(oldfile);
-	    //Checks text in pdf
-	    String data = new PDFTextStripper().getText(pddoc);
-	    List<String> ans= Arrays.asList(data.split("\r\n"));
-	    String newData1="";
-	    for (int i = 0; i < ans.size(); i++)
-	        {	        	
-	        	int n=ans.get(i).length()-1;
-	        	if (ans.get(i).charAt(n)==' ')
-	        		newData1 = newData1+ans.get(i);
-	        	if (ans.get(i).charAt(n)!=' ')
-	        		newData1 = newData1+ans.get(i);	        	
-	        }
-	    //Verifies all chinese texts
-	    for(int i=0;i<verifyChinese.size();i++)
-	    {
-	    	softly.assertThat(newData1).as("test data").contains(verifyChinese.get(i));
-	    }
-	    //Close pdf
-	    pddoc.close();
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException r)
+		{
+			//deletes files in reports folder before starting to download
+			HiRCAEvent obj2 = new HiRCAEvent();
+			obj2.deleteFiles(file);
+			// press Ctrl+S the Robot's way
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_S);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			robot.keyRelease(KeyEvent.VK_S);
+			Thread.sleep(2000);
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+			q.waitFor();
+			Thread.sleep(7000);
+		}
+		//pdf check
+		pdfCheck(driver,softly,verifyChinese);
+		Thread.sleep(4000);
+		driver.close();
+		Thread.sleep(4000);
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();      
+		Thread.sleep(2000);
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 	}
-	
+
+	public void downloadReportIE(WebDriver driver, SoftAssertions softly, List<String> verifyChinese)throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		Thread.sleep(3000);
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(3000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(7000);
+		//If no pdf repeat
+		// specify your directory
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		try{
+			System.out.println(lastFilePath.get());
+			if(lastFilePath.get().endsWith(".pdf")==false)
+				throw new NullPointerException("No pdf in ie10");
+		}catch(java.util.NoSuchElementException | NullPointerException r)
+		{
+			//deletes files in reports folder before starting to download
+			obj1.deleteFiles(file);
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			Thread.sleep(3000);
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
+			//Clicks on open pdf report
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(3000);
+			try {
+				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+				q.waitFor();
+			}catch (UnhandledAlertException f){	
+				System.out.println("Unexpected alert");
+				driver.switchTo().alert().accept();
+
+			}catch (NoAlertPresentException f){
+				System.out.println ("No unexpected alert");
+			}
+			Thread.sleep(7000);
+		}
+		//pdf verification
+		pdfCheck(driver,softly,verifyChinese);
+		Thread.sleep(4000);
+		//Switch to window    	
+		driver.switchTo().window(window);
+		Thread.sleep(2000);
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+	}
+
+	public void downloadReportIE11(WebDriver driver, SoftAssertions softly, List<String> verifyChinese)throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		Thread.sleep(3000);
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Thread.sleep(3000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(7000);
+		//If no pdf repeat
+		// specify your directory
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException r)
+		{
+			obj1.deleteFiles(file);
+			try {
+				Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+				q.waitFor();
+			}catch (UnhandledAlertException f){	
+				System.out.println("Unexpected alert");
+				driver.switchTo().alert().accept();
+
+			}catch (NoAlertPresentException f){
+				System.out.println ("No unexpected alert");
+			}
+			Thread.sleep(7000);
+		}
+		//pdf verification
+		pdfCheck(driver,softly,verifyChinese);
+		Thread.sleep(4000);
+		//Switch to window    	
+		driver.switchTo().window(window);	
+		Thread.sleep(2000);
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+	}
+
+	public void pdfCheck(WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
+
+		// specify your directory
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		System.out.println(lastFilePath.get());
+		//Loads the file to check if correct data is present
+		String fileName=lastFilePath.get().toString();
+		File oldfile = new File(fileName);
+		PDDocument pddoc= PDDocument.load(oldfile);
+		//Checks text in pdf
+		String data = new PDFTextStripper().getText(pddoc);
+		List<String> ans= Arrays.asList(data.split("\r\n"));
+		String newData1="";
+		for (int i = 0; i < ans.size(); i++)
+		{	        	
+			int n=ans.get(i).length()-1;
+			if (ans.get(i).charAt(n)==' ')
+				newData1 = newData1+ans.get(i);
+			if (ans.get(i).charAt(n)!=' ')
+				newData1 = newData1+ans.get(i);	        	
+		}
+		//Verifies all chinese texts
+		for(int i=0;i<verifyChinese.size();i++)
+		{
+			softly.assertThat(newData1).as("test data").contains(verifyChinese.get(i));
+		}
+		//Close pdf
+		pddoc.close();
+	}
+
 	public void selectAllChecklist(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[3]/div/input"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[3]/td[3]/div/input"))).click();
@@ -309,9 +309,9 @@ public class HiRCAChinese2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[11]/td[3]/div/input"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[12]/td[3]/div/input"))).click();
 	}
-	
+
 	public void chineseLevel3SelectionsStep4_2nd(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Verify all selections here
@@ -447,9 +447,9 @@ public class HiRCAChinese2 {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 	}
-	
+
 	public void chineseLevel3SelectionsSUEP2nd(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Verify all selections here
 		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
@@ -479,10 +479,10 @@ public class HiRCAChinese2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[4]/div/input"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[5]/div/input"))).click();
 	}
-	
+
 
 	public void chineseReport2ndPath (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table3 rows RC
 		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table[1]/tbody/tr[1]/td[1]"))).getText();
@@ -760,10 +760,10 @@ public class HiRCAChinese2 {
 		softly.assertThat(r601).as("test data").contains("不适用");
 		String r602 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[21]/td[3]"))).getText();
 		softly.assertThat(r602).as("test data").contains("不适用");
-		
+
 		//Table 7
 		chineseTable7ReportTab(driver,softly);
-		
+
 		//SUEP
 		chineseSUEPFullFormReportTab(driver,softly);
 		//SUEP table rows
@@ -789,7 +789,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r641).as("test data").contains("3.17.6 维修不到位");
 		String r642 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[7]/td[1]"))).getText();
 		softly.assertThat(r642).as("test data").contains("3.17.7 设备的标识和识别不到位");
-		
+
 		//HiRCA self checklist chinese, all selected
 		chineseHiRCASelfChecklistTitleReportTab(driver,softly);
 		//Row
@@ -851,9 +851,9 @@ public class HiRCAChinese2 {
 		//Last Table
 		chineseLastTableReportTab(driver,softly);
 	}
-	
+
 	public void chineseReport3rdPath (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table3 rows RC
 		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table[1]/tbody/tr[1]/td[1]"))).getText();
@@ -862,7 +862,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r2).as("test data").contains("不适用");
 		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table[1]/tbody/tr[1]/td[3]"))).getText();
 		softly.assertThat(r3).as("test data").contains("不适用");
-	
+
 		//Table4 rows CF
 		String r13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[5]/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r13).as("test data").contains("不适用");
@@ -1018,10 +1018,10 @@ public class HiRCAChinese2 {
 		softly.assertThat(r601).as("test data").contains("不适用");
 		String r602 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[20]/td[3]"))).getText();
 		softly.assertThat(r602).as("test data").contains("不适用");
-		
+
 		//Table 7
 		chineseTable7ReportTab(driver,softly);
-		
+
 		//SUEP
 		chineseSUEPFullFormReportTab(driver,softly);
 		//SUEP table rows
@@ -1035,7 +1035,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r32).as("test data").contains("不适用");
 		String r33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[1]/td[5]"))).getText();
 		softly.assertThat(r33).as("test data").contains("不适用");
-		
+
 		//HiRCA self checklist chinese, all selected
 		//Title
 		String title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[9]"))).getText();
@@ -1076,7 +1076,7 @@ public class HiRCAChinese2 {
 	}
 
 	public void chineseReport1stPath (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table3 row
 		String r1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table/tbody/tr[1]/td[1]"))).getText();
@@ -1348,7 +1348,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r137).as("test data").contains("3.22.5 工前会、班前会、交底会的规则不充分");
 		String r138 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[5]/table/tbody/tr[64]/td[3]"))).getText();
 		softly.assertThat(r138).as("test data").contains("完善关于工前会、班前会、交底会的规则");
-		
+
 		//Table 6 Header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/thead/tr/th[1]"))).getText();
 		softly.assertThat(heading).as("test data").contains("调查问题");
@@ -2707,10 +2707,10 @@ public class HiRCAChinese2 {
 		softly.assertThat(r619).as("test data").contains("情况警觉培训？");
 		String r620 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[32]/td[1]/div/table/tbody/tr[4]/td[4]/ul/li"))).getText();
 		softly.assertThat(r620).as("test data").contains("开展退化、异常和变化等设备性能观察技能方面的培训");
-		
+
 		//Table 7
 		chineseTable7ReportTab(driver,softly);
-		
+
 		//SUEP title
 		chineseSUEPFullFormReportTab(driver,softly);
 
@@ -2847,7 +2847,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r698).as("test data").contains("3.22.4 规则审核不到位");
 		String r699 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[64]/td[1]"))).getText();
 		softly.assertThat(r699).as("test data").contains("3.22.5 工前会、班前会、交底会的规则不充分");
-		
+
 		//HiRCA self checklist chinese, none selected
 		chineseHiRCASelfChecklistTitleReportTab(driver,softly);
 		//Row
@@ -2857,13 +2857,13 @@ public class HiRCAChinese2 {
 		softly.assertThat(r701).as("test data").contains("不适用");
 		String r702 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[10]/table/tbody/tr[1]/td[3]"))).getText();
 		softly.assertThat(r702).as("test data").contains("不适用");
-		
+
 		//Last Table
 		chineseLastTableReportTab(driver,softly);
 	}
-	
+
 	public void chineseReport4thPath (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table3 row
 		String r1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table/tbody/tr[1]/td[1]"))).getText();
@@ -2986,7 +2986,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r65).as("test data").contains("3.21.4 未能识别和缓解环境相关的高风险情况，例如工作条件恶劣（温度、照明、噪音、高辐射水平等等）以及人机接口（标牌、显示屏、控制器等）");
 		String r66 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[5]/table/tbody/tr[28]/td[3]"))).getText();
 		softly.assertThat(r66).as("test data").contains("高风险情境警觉培训");
-		
+
 		//Table 6 Header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/thead/tr/th[1]"))).getText();
 		softly.assertThat(heading).as("test data").contains("调查问题");
@@ -3435,10 +3435,10 @@ public class HiRCAChinese2 {
 		softly.assertThat(r601).as("test data").contains("略过");
 		String r602 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[23]/td[3]"))).getText();
 		softly.assertThat(r602).as("test data").contains("不适用");
-				
+
 		//Table 7
 		chineseTable7ReportTab(driver,softly);
-		
+
 		//SUEP title
 		chineseSUEPFullFormReportTab(driver,softly);
 
@@ -3500,7 +3500,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r662).as("test data").contains("3.21.3 未能识别和缓解人员相关的高风险情况，例如能力、态度、性格、与人打交道的经验存在不足");
 		String r663 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[28]/td[1]"))).getText();
 		softly.assertThat(r663).as("test data").contains("3.21.4 未能识别和缓解环境相关的高风险情况，例如工作条件恶劣（温度、照明、噪音、高辐射水平等等）以及人机接口（标牌、显示屏、控制器等）");
-		
+
 		//HiRCA self checklist chinese, none selected
 		chineseHiRCASelfChecklistTitleReportTab(driver,softly);
 		//Row
@@ -3510,13 +3510,13 @@ public class HiRCAChinese2 {
 		softly.assertThat(r701).as("test data").contains("不适用");
 		String r702 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[10]/table/tbody/tr[1]/td[3]"))).getText();
 		softly.assertThat(r702).as("test data").contains("不适用");
-		
+
 		//Last Table
 		chineseLastTableReportTab(driver,softly);
 	}
-	
+
 	public void chineseReport6thPath (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table3 row
 		String r1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table/tbody/tr[1]/td[1]"))).getText();
@@ -3657,7 +3657,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r67).as("test data").contains("3.18.5 陷入两选一的陷阱: 决策、问题解决或计划不充分，未能确保全面考虑多个选择方案进行分析");
 		String r68 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[5]/table/tbody/tr[32]/td[3]"))).getText();
 		softly.assertThat(r68).as("test data").contains("提高决策、问题解决和计划的结构（委员会）和流程");
-		
+
 		//Table 6 Header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/thead/tr/th[1]"))).getText();
 		softly.assertThat(heading).as("test data").contains("调查问题");
@@ -4159,10 +4159,10 @@ public class HiRCAChinese2 {
 		softly.assertThat(r601).as("test data").contains("略过");
 		String r602 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[21]/td[3]"))).getText();
 		softly.assertThat(r602).as("test data").contains("不适用");
-				
+
 		//Table 7
 		chineseTable7ReportTab(driver,softly);
-		
+
 		//SUEP title
 		chineseSUEPFullFormReportTab(driver,softly);
 
@@ -4232,7 +4232,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r666).as("test data").contains("3.18.4 未能及时止损: (1) 因自满和（或）无知，捍卫过去错误的决定或犹豫不决; (2) 期望通过重复同样的问题处理方法、标准或策略来实现不同的结果");
 		String r667 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[32]/td[1]"))).getText();
 		softly.assertThat(r667).as("test data").contains("3.18.5 陷入两选一的陷阱: 决策、问题解决或计划不充分，未能确保全面考虑多个选择方案进行分析");
-		
+
 		//HiRCA self checklist chinese, none selected
 		chineseHiRCASelfChecklistTitleReportTab(driver,softly);
 		//Row
@@ -4242,13 +4242,13 @@ public class HiRCAChinese2 {
 		softly.assertThat(r701).as("test data").contains("不适用");
 		String r702 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[10]/table/tbody/tr[1]/td[3]"))).getText();
 		softly.assertThat(r702).as("test data").contains("不适用");
-		
+
 		//Last Table
 		chineseLastTableReportTab(driver,softly);
 	}
-	
+
 	public void chineseReport5thPath (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table3 row
 		String r1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[4]/table/tbody/tr[1]/td[1]"))).getText();
@@ -4288,7 +4288,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r13).as("test data").contains("3.16.7 判断出错未能选择正确技能使用");
 		String r14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[5]/table/tbody/tr[7]/td[3]"))).getText();
 		softly.assertThat(r14).as("test data").contains("培训技能的选择, 透过强化规定减少选择错误的机会");
-		
+
 		//Table 6 Header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/thead/tr/th[1]"))).getText();
 		softly.assertThat(heading).as("test data").contains("调查问题");
@@ -4519,10 +4519,10 @@ public class HiRCAChinese2 {
 		softly.assertThat(r601).as("test data").contains("略过");
 		String r602 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[21]/td[3]"))).getText();
 		softly.assertThat(r602).as("test data").contains("不适用");
-				
+
 		//Table 7
 		chineseTable7ReportTab(driver,softly);
-		
+
 		//SUEP title
 		chineseSUEPFullFormReportTab(driver,softly);
 
@@ -4541,7 +4541,7 @@ public class HiRCAChinese2 {
 		softly.assertThat(r642).as("test data").contains("3.16.6 学习技能时相关规定有误");
 		String r643 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[7]/td[1]"))).getText();
 		softly.assertThat(r643).as("test data").contains("3.16.7 判断出错未能选择正确技能使用");
-		
+
 		//HiRCA self checklist chinese, none selected
 		chineseHiRCASelfChecklistTitleReportTab(driver,softly);
 		//Row
@@ -4551,13 +4551,13 @@ public class HiRCAChinese2 {
 		softly.assertThat(r701).as("test data").contains("不适用");
 		String r702 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[10]/table/tbody/tr[1]/td[3]"))).getText();
 		softly.assertThat(r702).as("test data").contains("不适用");
-		
+
 		//Last Table
 		chineseLastTableReportTab(driver,softly);
 	}
-	
+
 	public void chineseHiRCASelfChecklistTitleReportTab (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//HiRCA self checklist chinese, none selected
 		//Title
@@ -4571,9 +4571,9 @@ public class HiRCAChinese2 {
 		String heading52 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[10]/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading52).as("test data").contains("完成打勾?");
 	}
-	
+
 	public void chineseLastTableReportTab (WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//last table with reviewed by etc rows
 		//title
@@ -4593,9 +4593,9 @@ public class HiRCAChinese2 {
 		String r708 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[12]/table/tbody/tr[3]/td[2]"))).getText();
 		softly.assertThat(r708).as("test data").contains("日期");
 	}
-	
+
 	public void chineseSUEPFullFormReportTab (WebDriver driver, SoftAssertions softly) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//SUEP titles
 		String r631 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/div[1]"))).getText();
@@ -4612,14 +4612,14 @@ public class HiRCAChinese2 {
 		String heading49 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/thead/tr/th[1]"))).getText();
 		softly.assertThat(heading49).as("test data").contains("促成因素");
 	}
-	
+
 	public void chineseTable7ReportTab (WebDriver driver, SoftAssertions softly) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Table 7 title
 		String r621 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/div"))).getText();
 		softly.assertThat(r621).as("test data").contains("失效屏障分析过程");
-		
+
 		//Table 7 headings
 		String heading461 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table/thead/tr/th[1]"))).getText();
 		softly.assertThat(heading461).as("test data").contains("调查问题");
@@ -4647,5 +4647,5 @@ public class HiRCAChinese2 {
 		String r630 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table/tbody/tr[3]/td[3]"))).getText();
 		softly.assertThat(r630).as("test data").contains("不适用");		
 	}
-	
+
 }
