@@ -71,9 +71,10 @@ public class ShareCheck {
 		Thread.sleep(1000);
 	}
 
-	public void shareTwice (WebDriver driver) throws Exception {
+	public void shareTwice (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		EiRCA2 obj = new EiRCA2();
 		Thread.sleep(2000);
 		//Enters sharer username
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ShareTextBox)).sendKeys("jenkins_1_nonadmin");
@@ -81,12 +82,16 @@ public class ShareCheck {
 		//Selects from dropdown
 		WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(ShareDropdown));
 		dropdown.findElement(FirstSelectionUnderDropdown).click();
+		//Verify add sharer pop up
+		obj.verifyAddSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
 		//Clicks on add user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 		Thread.sleep(2000);
 		//Click on new shared row
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("QAA (jenkins_1_nonadmin)"))).click();
+		//Verify remove sharer pop up
+		obj.verifyRemoveSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
 		//Click on remove sharing
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();

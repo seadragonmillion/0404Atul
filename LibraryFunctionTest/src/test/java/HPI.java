@@ -135,7 +135,7 @@ public class HPI {
 			String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 			softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 			ShareCheck obj1 = new ShareCheck();
-			obj1.shareTwice (driver);
+			obj1.shareTwice (driver,softly);
 			//Clicks on save
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 			//Wait for loading message to disappear

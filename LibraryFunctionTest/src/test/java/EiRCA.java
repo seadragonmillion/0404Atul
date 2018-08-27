@@ -63,6 +63,7 @@ public class EiRCA {
 	By EiRCASaveButton = By.id("pii-ircam-save");
 
 	//Save pop up
+	By EiRCAPopupHeader = By.id("pii-ircam-dialog-header");
 	By EiRCAPopupTitle = By.id("pii-ircam-dialog-title");
 	By EiRCAConfirmButton = By.id("pii-ircam-dialog-confirmed");
 	By EiRCAPopupCancelButton = By.id("pii-ircam-dialog-cancel");
@@ -70,6 +71,8 @@ public class EiRCA {
 	By EiRCASavedActivitiesButton = By.id("pii-ircam-savedactivities");
 
 	//Report pop up on HTML page
+	By ConfirmPopupHeader = By.id("pii-user-home-dialog-header");
+	By ConfirmPopupNote = By.id("pii-user-home-dialog-note");
 	By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
 	By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
 	By ConfirmCancelButton = By.id("pii-user-home-dialog-cancel");
@@ -244,15 +247,15 @@ public class EiRCA {
 	By HTMLStep7Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]");
 	By HTMLStep7Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]");
 	//Step 5
-	By HTMLTable14Step5Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[7]/table/tbody/tr[1]/td[2]/strong");
-	By HTMLTable14Step5Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[8]/table/tbody/tr[1]/td[2]/strong");
+	By HTMLTable14Step5Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[7]/table/tbody/tr[1]/td[2]");
+	By HTMLTable14Step5Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[8]/table/tbody/tr[1]/td[2]");
 	By HTMLTable14Step5Row1Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[7]/table/tbody/tr[1]/td[3]");
 	By HTMLTable14Step5Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[8]/table/tbody/tr[1]/td[3]");
 	//Step 6
-	By HTMLStep6Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
-	By HTMLStep6Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
-	By HTMLStep6Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
-	By HTMLStep6Row8Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
+	By HTMLStep6Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]");
+	By HTMLStep6Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
+	By HTMLStep6Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]");
+	By HTMLStep6Row8Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]");
 	By HTMLStep6Row5Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[3]");
 	//Step 7
 	By HTMLStep7Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]");
@@ -300,13 +303,19 @@ public class EiRCA {
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ErrorMeter obj = new ErrorMeter();
+		ShareCheck obj1 = new ShareCheck();
+		EiRCA2 obj2 = new EiRCA2();
 		//Clicks on delete button
 		driver.findElement(DeleteButton).click();
+		//Verify delete popup
+		obj2.verifyDeleteReportPopup(driver, softly, recordName);
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle));
 		//Clicks on delete report
 		jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
+		//Verify delete pop up
+		obj2.verifyStickyDeleteReport(driver, softly, recordName);
 		Thread.sleep(2000);
 		jse.executeScript("return document.getElementById('pii-user-home-panel-btn-mirca').click();");
 		//Verify record deleted
@@ -317,18 +326,17 @@ public class EiRCA {
 			System.out.println("Record deleted");
 		else
 			System.out.println("Record could not be deleted");
-		//Verify report not retrieved by shared to person
-		ErrorMeter obj = new ErrorMeter();
+		//Verify report not retrieved by shared to person		
 		String sharer = obj.decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.checkNoReportAfterDelete(driver, sharer, softly);		  			  
 	}
 
-	public void add2ndFailureMode(WebDriver driver) throws Exception {
+	public void add2ndFailureMode(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCAChinese obj = new EiRCAChinese();
 		ShareCheck obj1 = new ShareCheck();
+		EiRCA2 obj2 = new EiRCA2();
 		String text = textCreate(driver);
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable4Step1Q11)).getText().contains("Troubleshooting"))
 		{
@@ -366,10 +374,13 @@ public class EiRCA {
 			enable44In2ndFailureMode(driver);
 			//Save report
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveButton)).click();
+			//Save pop verify
+			obj2.verifySavePopup(driver, softly);
 			//Clicks on Save report
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAConfirmButton)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(StickySuccess));
+			//Verify save sticky
+			obj2.verifyStickySaveReport(driver, softly, username, text,1);
 			obj1.loadingServer(driver);
 			//Clicks on Saved activities
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();
@@ -465,12 +476,12 @@ public class EiRCA {
 		//4.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode1Option45CheckBox)).click();
 		//4.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode1Option46CheckBox)).click();
-		//4.7
-		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode1Option47CheckBox));
-		//Scroll to 4.7
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode1Option46CheckBox));
+		//Scroll to 4.6
 		obj1.scrollToElement(driver, l);
 		l.click();
+		//4.7
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode1Option47CheckBox)).click();
 	}
 
 	public void verifyStep4With2FailureModes(WebDriver driver) throws Exception {
@@ -677,7 +688,12 @@ public class EiRCA {
 		if(n>0)
 		{
 			String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA)).getText();
-			softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (not applicable)");
+			if(ans1.contains("Root Cause Analysis"))
+				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (not applicable)");
+			else{
+				softly.assertThat(s12).as("test data").contains("Step 4 - Probability of Occurrence and Actions");
+				softly.assertThat(s12).as("test data").contains("Unrefuted failure modes are shown from highest to lowest probability of occurence.");
+			}
 			String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep5Skipped)).getText();
 			softly.assertThat(s13).as("test data").isEqualTo("Step 5 - Identify Possible Contributing Factors (skipped)");
 			String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped)).getText();
@@ -835,7 +851,7 @@ public class EiRCA {
 				i=i+1;
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr["+i+"]/td[1]"))).getText();
 				System.out.println(s);
-				softly.assertThat(s).as("test data").isEqualTo("Culprit work activities");
+				softly.assertThat(s).as("test data").contains("Culprit work activities");
 				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
 				String r1 = s1.replaceAll("\u00AD", "");
 				softly.assertThat(r1).as("test data").contains(EiRCA.this.textCreate(driver));
@@ -845,7 +861,7 @@ public class EiRCA {
 				j=j+1;
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr["+j+"]/td[1]"))).getText();
 				System.out.println(s);
-				softly.assertThat(s).as("test data").isEqualTo("Culprit work activities");
+				softly.assertThat(s).as("test data").contains("Culprit work activities");
 				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[4]/table/tbody/tr["+j+"]/td[2]"))).getText();
 				String r1 = s1.replaceAll("\u00AD", "");
 				softly.assertThat(r1).as("test data").contains(EiRCA.this.textCreate(driver));
@@ -1226,12 +1242,14 @@ public class EiRCA {
 			if(i==1)
 			{
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable14Step5Row1Column3)).getText();
-				softly.assertThat(s).as("test data").isEqualTo(EiRCA.this.textCreate(driver));
+				String r1 = s.replaceAll("\u00AD", "");
+				softly.assertThat(r1).as("test data").contains(EiRCA.this.textCreate(driver));
 			}
 			if(i==2)
 			{
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable14Step5Row2Column3)).getText();
-				softly.assertThat(s).as("test data").isEqualTo(EiRCA.this.textCreate(driver));
+				String r1 = s.replaceAll("\u00AD", "");
+				softly.assertThat(r1).as("test data").contains(EiRCA.this.textCreate(driver));
 			}
 		}
 	}
@@ -1423,20 +1441,25 @@ public class EiRCA {
 		pddoc.close();
 	}
 
-	public void openReport(WebDriver driver) throws Exception{
+	public void openReport(WebDriver driver, String recordName) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		EiRCA2 obj = new EiRCA2();
 		//Clicks on Open button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+		//Verify open report pop up
+		obj.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		//Clicks on open report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveButton)).click();
+		//Save pop verify
+		obj.verifySavePopup(driver, softly);
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAConfirmButton)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(StickySuccess));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(StickyClose)).click();
 		Thread.sleep(1000);
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();
@@ -1447,7 +1470,9 @@ public class EiRCA {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
+		ShareCheck obj = new ShareCheck();		
 		HiRCAEvent obj1 = new HiRCAEvent();
+		EiRCA2 obj2 = new EiRCA2();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
@@ -1455,9 +1480,12 @@ public class EiRCA {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
+		//Verify download pop up
+		obj2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -1479,16 +1507,21 @@ public class EiRCA {
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
+		EiRCA2 obj2 = new EiRCA2();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -1521,16 +1554,21 @@ public class EiRCA {
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
+		EiRCA2 obj2 = new EiRCA2();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -1561,16 +1599,21 @@ public class EiRCA {
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
+		EiRCA2 obj2 = new EiRCA2();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -1600,6 +1643,8 @@ public class EiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
+		ShareCheck obj1 = new ShareCheck();
+		EiRCA2 obj2 = new EiRCA2();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	
 		//Waits for the page to load
@@ -1618,10 +1663,11 @@ public class EiRCA {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		ShareCheck obj1 = new ShareCheck();
-		obj1.shareTwice (driver);
+		obj1.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
+		//Verify share save sticky
+		obj2.verifyStickyShareSave(driver, softly);
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on EiRCA side panel
@@ -1635,8 +1681,11 @@ public class EiRCA {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		EiRCA2 obj2 = new EiRCA2();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
+		//Mark critical pop up
+		obj2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -1647,6 +1696,8 @@ public class EiRCA {
 			System.out.println("Marked critical");
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
+		//Un Mark critical pop up
+		obj2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -2015,7 +2066,7 @@ public class EiRCA {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAConfirmButton)).click();
 	}
 
-	public HashMap<String,String> pathEiRCASequenceOfEvents(WebDriver driver) throws Exception {
+	public HashMap<String,String> pathEiRCASequenceOfEvents(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -2075,7 +2126,7 @@ public class EiRCA {
 		HashMap<String,String> hm1 = verifyOrderOfEvents(driver);
 		System.out.println(hm1);
 		//Verify changes have been saved
-		verifyChangesSavedSequenceOfEvents(driver,hm1);
+		verifyChangesSavedSequenceOfEvents(driver,hm1, username,0);
 		//Change date on 3rd row
 		changeDate(driver,CalendarIcon3rdEvent);
 		Thread.sleep(1000);
@@ -2083,7 +2134,7 @@ public class EiRCA {
 		HashMap<String,String> hm4 = verifyOrderOfEvents(driver);
 		System.out.println(hm4);
 		//Verify changes have been saved
-		verifyChangesSavedSequenceOfEvents(driver,hm4);
+		verifyChangesSavedSequenceOfEvents(driver,hm4, username,1);
 		//Make date same and change time on 3rd row
 		makeDateSame(driver,CalendarIcon3rdEvent);
 		Thread.sleep(1000);
@@ -2101,7 +2152,7 @@ public class EiRCA {
 		HashMap<String,String> hm2 = verifyOrderOfEvents(driver);
 		System.out.println(hm2);
 		//Verify changes have been saved
-		verifyChangesSavedSequenceOfEvents(driver,hm2);
+		verifyChangesSavedSequenceOfEvents(driver,hm2, username,1);
 		//Delete 2nd event
 		delete2ndEvent(driver);
 		//Store all event data in hashmap
@@ -2111,10 +2162,11 @@ public class EiRCA {
 		return hm3;
 	}
 
-	public void verifyChangesSavedSequenceOfEvents(WebDriver driver, HashMap<String,String> hm1) throws Exception {
+	public void verifyChangesSavedSequenceOfEvents(WebDriver driver, HashMap<String,String> hm1, String username, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCANextButton)).click();	
 		Thread.sleep(1000);
@@ -2133,7 +2185,11 @@ public class EiRCA {
 			softly.fail("Changes did not get saved: \n"+hm1+"\n"+hm);
 		//Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveButton)).click();	
+		//Save pop verify
+		obj1.verifySavePopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAConfirmButton)).click();
+		//Verify sticky save
+		obj1.verifyStickySaveReport(driver, softly, username, textCreate(driver), n);
 		obj.loadingServer(driver);
 		//Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();	
@@ -2533,9 +2589,13 @@ public class EiRCA {
 	}
 	public String checkIfStep6Option65IsSelected(String key) throws Exception {
 
-		int n = key.indexOf(":");
-		String s = key.substring(0, n);
-		return s;
+		if(key.contains("Culprit work activities"))
+		{
+			int n = key.indexOf(":");
+			String s = key.substring(0, n);
+			return s;
+		}
+		else return key;
 	}
 
 	public HashMap<String,Integer> EiRCAStep7OneFailureMode(WebDriver driver, int n) throws Exception {
@@ -2683,6 +2743,7 @@ public class EiRCA {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCAChinese obj = new EiRCAChinese();
+		EiRCA2 obj1 = new EiRCA2();
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
 		String text = textCreate(driver);
 		//Clicks on EiRCA
@@ -2690,6 +2751,8 @@ public class EiRCA {
 		Thread.sleep(1000);
 		//Verify placeholder of problem statement
 		verifyProbStatementPlaceHolder(driver);
+		//Verify Error Messages for mandatory fields on Info page
+		obj1.verifyErrorMessagesInfoPage(driver,softly);
 		//Fills all mandatory fields
 		driver.findElement(obj.EiRCAEventTitleField).sendKeys(text);
 		driver.findElement(obj.EiRCAEventLocationField).sendKeys(text);
@@ -2747,8 +2810,10 @@ public class EiRCA {
 			driver.findElement(obj.EiRCAEventComponentField).clear();
 			driver.findElement(obj.EiRCAEventComponentField).sendKeys(text);
 		}
+		//Verify errors have disappeared
+		obj1.verifyNoErrorsOnInfoPage(driver);
 		//Sequence of Events
-		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver);
+		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
 		//Step1
 		EIRCAStep1Troubleshooting(driver);
 		String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep1Q11AnswerSelected)).getText();
@@ -2789,7 +2854,8 @@ public class EiRCA {
 		Thread.sleep(2000);
 		jse.executeScript("return document.getElementById('pii-ircam-dialog-confirmed').click();");
 		//Waits for the green popup on the right top corner
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
+		//Verify sticky save
+		obj1.verifyStickySaveReport(driver, softly, username, text,1);
 		Thread.sleep(2000);
 		//Clicks on info tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(InfoTab)).click();
@@ -2816,6 +2882,7 @@ public class EiRCA {
 			System.out.println ("Record not found.");
 		//Checks if the name displayed on record is same as expected
 		softly.assertThat(r1).as("test data").isEqualTo(name);
+		hm.put("record name", r1);
 		//Open HTML and verify Sequence of Events
 		verifyHTML(driver,hm, text, n, x, y, z, s2, s, s1,c);
 		return hm;

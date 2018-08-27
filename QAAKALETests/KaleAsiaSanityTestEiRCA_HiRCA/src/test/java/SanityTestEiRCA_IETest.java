@@ -70,14 +70,13 @@ public class SanityTestEiRCA_IETest {
 		  }
 		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
-		  String recordName = record.getText();
+		  String recordName = hm.get("record name");
 		  //Opens record
-		  obj1.openReport(driver);
+		  obj1.openReport(driver,recordName);
 		  //Downloads record
 		  obj1.downloadRecordIE10(driver,hm);
 		  //Add 2nd failure mode
-		  obj1.add2ndFailureMode(driver);
+		  obj1.add2ndFailureMode(driver,username);
 		  //Shares report 0 for admin and 1 for non admin
 		  obj1.shareReport(driver, username, password, 0);
 		  //Mark critical, integer same as shareReport

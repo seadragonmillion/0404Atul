@@ -861,7 +861,7 @@ public class RemoteVerification {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);		
-		obj1.shareTwice (driver);
+		obj1.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareSaveButton)).click();
 		//Wait for loading message to disappear

@@ -84,14 +84,13 @@ public class SanityTestEiRCA_FirefoxTest {
 		  }
 		  HashMap<String,String> hm =obj1.reportCreate(driver, username);
 		  //Gets the name of the record created
-		  WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"));
-		  String recordName = record.getText();
+		  String recordName = hm.get("record name");
 		  //Opens record
-		  obj1.openReport(driver);
+		  obj1.openReport(driver,recordName);
 		  //Downloads record
 		  obj1.downloadRecordFirefox(driver,hm);
 		  //Add 2nd failure mode
-		  obj1.add2ndFailureMode(driver);
+		  obj1.add2ndFailureMode(driver,username);
 		  //Shares report 
 		  /* Dev/Asia
 		 * 0=admin
