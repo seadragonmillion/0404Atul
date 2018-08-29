@@ -2751,6 +2751,8 @@ public class EiRCA {
 		Thread.sleep(1000);
 		//Verify placeholder of problem statement
 		verifyProbStatementPlaceHolder(driver);
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		//Verify Error Messages for mandatory fields on Info page
 		obj1.verifyErrorMessagesInfoPage(driver,softly);
 		//Fills all mandatory fields

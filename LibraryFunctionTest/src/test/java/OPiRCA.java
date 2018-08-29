@@ -109,17 +109,21 @@ public class OPiRCA {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
+		OPiRCA2 obj2 = new OPiRCA2 ();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		obj1.loadingServer(driver);
 		//Clicks on delete button
 		driver.findElement(DeleteButton).click();
+		//Verify delete popup
+		obj2.verifyDeleteReportPopup(driver, softly, recordName);
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle));
 		//Clicks on delete report
 		jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
+		obj2.verifyStickyDeleteReport(driver, softly, recordName);
 		Thread.sleep(2000);
 		jse.executeScript("return document.getElementById('pii-user-home-panel-btn-opa').click();");
 		//Verify record deleted
@@ -132,23 +136,27 @@ public class OPiRCA {
 		else
 			System.out.println("Record could not be deleted");
 		//Verify report not retrieved by shared to person
-		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
 		obj1.checkNoReportAfterDelete(driver, sharer, softly);
 	}
 
 
-	public void openReport(WebDriver driver) throws Exception{
+	public void openReport(WebDriver driver, String recordName) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
+		OPiRCA2 obj1 = new OPiRCA2();
 		//Clicks on Open button	    	
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+		//Verify open report pop up
+		obj1.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		//Clicks on open report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveButton)).click();
+		//Save pop verify
+		obj1.verifySavePopup(driver, softly);
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveConfirmButton)).click();
@@ -166,7 +174,8 @@ public class OPiRCA {
 	public void downloadRecordChrome(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();			
+		ShareCheck obj = new ShareCheck();	
+		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message
@@ -174,8 +183,12 @@ public class OPiRCA {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -193,15 +206,20 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message to disappear			
 		obj.loadingServer(driver);
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -231,15 +249,20 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message to disappear			
 		obj.loadingServer(driver);
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -266,15 +289,20 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message to disappear			
 		obj.loadingServer(driver);
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -507,6 +535,8 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ErrorMeter obj = new ErrorMeter();
+		ShareCheck obj1 = new ShareCheck();
+		EiRCA2 obj2 = new EiRCA2();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
 		//Switches to the iframe
@@ -524,10 +554,11 @@ public class OPiRCA {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
+		//Verify share save sticky
+		obj2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		//Checks the username of creator
@@ -548,8 +579,13 @@ public class OPiRCA {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ErrorMeter obj = new ErrorMeter();
+		ShareCheck obj1 = new ShareCheck();
+		EiRCA2 obj2 = new EiRCA2();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
+		//Mark critical pop up
+		obj2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -560,6 +596,8 @@ public class OPiRCA {
 			System.out.println("Marked critical");
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
+		//Un-mark critical pop up
+		obj2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -569,9 +607,7 @@ public class OPiRCA {
 			System.out.println("Unmarked critical");
 		}
 		//Verify report not retrieved by shared to person
-		ErrorMeter obj = new ErrorMeter();
-		String sharer = obj.decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
+		String sharer = obj.decideSharer (y);		
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on O&PiRCA side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASidePanel)).click();
@@ -593,7 +629,7 @@ public class OPiRCA {
 			if(n==0)
 				continue;
 			break;
-		}	    	
+		}	
 		//Create a List to store HiRCA selections
 		List<String> hircaL3 = new ArrayList<String>();
 		for(int i=1;i<=n;i++)
@@ -1727,9 +1763,11 @@ public class OPiRCA {
 	public void pathOPiRCA(WebDriver driver, String username) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCA obj = new EiRCA ();
 		ShareCheck obj1 = new ShareCheck();
+		OPiRCA2 obj2 = new OPiRCA2();
 		String text = obj.textCreate(driver);
 		//Scroll down
 		Thread.sleep(1000);
@@ -1813,11 +1851,13 @@ public class OPiRCA {
 		Thread.sleep(2000);
 		//Clicks on save button
 		jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
+		//Verify save pop up
+		obj2.verifySavePopup(driver, softly);
 		//Clicks on save report
-		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle));
 		jse.executeScript("return document.getElementById('pii-opa-dialog-confirmed').click();");
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(StickyNote));
+		//Verfy save sticky
+		obj2.verifyStickySaveReport(driver, softly, username, obj.textCreate(driver), 0);
 		//Clicks on Info tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoTab)).click();
 		//Creates the expected name of record
@@ -1842,7 +1882,7 @@ public class OPiRCA {
 		//Verify Apparent Causes in HTML
 		verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		//Open report
-		openReport(driver);
+		openReport(driver,r1);
 		//Download report
 		downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options);
 		Thread.sleep(2000);
@@ -1879,9 +1919,14 @@ public class OPiRCA {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCA obj = new EiRCA ();
+		OPiRCA2 obj1 = new OPiRCA2();
 		String text = obj.textCreate(driver);
 		//Clicks on O&P IRCA
 		jse.executeScript("return document.getElementById('pii-a-menu-opirca').click();");
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
+		//Verify Error Messages for mandatory fields on Info page
+		obj1.verifyErrorMessagesInfoPage(driver,softly);
 		//Fills the mandatory fields
 		driver.findElement(OPiRCAEventTitleField).sendKeys(text);
 		driver.findElement(OPiRCAEventLocationField).sendKeys(text);
@@ -1925,6 +1970,8 @@ public class OPiRCA {
 			driver.findElement(OPiRCAInvestigatorsField).clear();
 			driver.findElement(OPiRCAInvestigatorsField).sendKeys(text);
 		}
+		//Verify no errors
+		obj1.verifyNoErrorsOnInfoPage(driver);
 		//Step1 and KALE-1838
 		pathOPiRCA(driver,username);			  
 	}

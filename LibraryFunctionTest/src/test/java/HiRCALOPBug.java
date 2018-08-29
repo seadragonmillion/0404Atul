@@ -26,7 +26,6 @@ public class HiRCALOPBug {
 	//Info Page
 	By HiRCAEventTitleField = By.id("pii-irca-event-title");
 	By HiRCAEventLocationField = By.id("pii-irca-event-location");
-	By HiRCANewReportButton = By.id("efi-irca-button-new");
 
 	By DescriptionPlusSign = By.xpath(".//*[@id='efi-irca-description']/h4/a");
 	By DescriptionText = By.id("efi-irca-description-text");
@@ -70,8 +69,11 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCALevel1 obj1 = new HiRCALevel1();
+		HiRCA2 obj2 = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj2.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Event title
@@ -138,8 +140,11 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
+		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -254,8 +259,11 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
+		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -366,8 +374,11 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
+		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -508,8 +519,11 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
+		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -622,8 +636,11 @@ public class HiRCALOPBug {
 	public void bugPath1KALE1947(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		HiRCA2 obj = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -821,8 +838,11 @@ public class HiRCALOPBug {
 	public void createReportForbugKALE1846(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		HiRCA2 obj = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -943,8 +963,12 @@ public class HiRCALOPBug {
 	public void bugKALE1852(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		HiRCALevel1 obj = new HiRCALevel1();
+		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
@@ -965,7 +989,6 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 2.21
-		HiRCALevel1 obj = new HiRCALevel1();
 		obj.verify221(driver);
 		//Randomly select one LOP option
 		int k = select221Random(driver);
@@ -1378,6 +1401,7 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
+		HiRCA2 obj1 = new HiRCA2();
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -1423,7 +1447,9 @@ public class HiRCALOPBug {
 		select2ndLOP(driver);
 		//Create new report
 		//Click on new for new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCANewReportButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
+		//Verify new report pop up
+		obj1.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Go to KALE homepage
