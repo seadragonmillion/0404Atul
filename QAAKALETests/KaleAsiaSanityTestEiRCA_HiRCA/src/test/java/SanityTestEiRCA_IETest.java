@@ -45,7 +45,7 @@ public class SanityTestEiRCA_IETest {
 		  EiRCA obj1 = new EiRCA();
 		  //Logs in
 		  int login = obj.LoginUser(driver, username, password);
-		  Thread.sleep(5000);
+		  Thread.sleep(14000);
 		  System.out.println("Title after login: "+driver.getTitle());
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

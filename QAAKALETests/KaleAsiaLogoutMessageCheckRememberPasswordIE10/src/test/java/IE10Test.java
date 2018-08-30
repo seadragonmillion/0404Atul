@@ -51,7 +51,7 @@ public class IE10Test {
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
       //Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		Thread.sleep(5000);
+		Thread.sleep(14000);
 		if (login==1)
       {
             

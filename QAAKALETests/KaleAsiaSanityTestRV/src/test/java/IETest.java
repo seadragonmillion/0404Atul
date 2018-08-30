@@ -45,7 +45,7 @@ public class IETest {
 		  //Logs in
 		  int login = obj.LoginUser(driver,username,password);
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(10000);		  
+		  Thread.sleep(14000);		  
 		  //Assigns wait time to driver element
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe

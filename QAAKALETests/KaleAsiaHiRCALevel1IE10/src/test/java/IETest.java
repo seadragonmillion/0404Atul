@@ -40,7 +40,7 @@ public class IETest {
 		HiRCALevel1 obj1 = new HiRCALevel1();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(5000);
+		Thread.sleep(9000);
 		//Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
