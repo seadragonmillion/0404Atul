@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FirefoxTest {
 
 	private WebDriver driver;
-	private String username ="jenkinsvmnonadmin";
+	private String username ="jenkins_chinese";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = System.getProperty("qaurl");

@@ -13,7 +13,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class IETest {
 
 	private WebDriver driver;
-	private String username = "jenkinsvmnonadmin";
+	private String username = "jenkins_chinese";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = System.getProperty("qaurl");
