@@ -70,9 +70,9 @@ public class FirefoxTest {
                       WebDriverWait wait2 = new WebDriverWait(driver,20);
                       wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
                 }
-          }catch (NoSuchElementException e){
-                 throw e;
-        }
+          }catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
+
+		}
 		Thread.sleep(5000);	
 		WebDriverWait wait = new WebDriverWait(driver,20);	
 		//Mark all email read

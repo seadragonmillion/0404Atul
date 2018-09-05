@@ -810,9 +810,9 @@ public class SanityIETest {
                     WebDriverWait wait2 = new WebDriverWait(driver,20);
                     wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
               }
-              }catch (NoSuchElementException e){
-              throw e;
-              }
+              }catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
+
+		}
 		  JavascriptExecutor jse = (JavascriptExecutor)driver;
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  WebDriverWait wait = new WebDriverWait(driver,20);

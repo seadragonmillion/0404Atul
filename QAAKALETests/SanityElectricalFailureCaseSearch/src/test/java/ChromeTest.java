@@ -52,9 +52,9 @@ public class ChromeTest {
                  WebDriverWait wait2 = new WebDriverWait(driver,20);
                  wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
            }
-    }catch (NoSuchElementException e){
-           throw e;
-    }
+    }catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
+
+		}
 		  Thread.sleep(4000);
 		  //Clicks on Electrical Failure Modes
 		  /*Verify order or modules
