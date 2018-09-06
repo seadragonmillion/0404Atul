@@ -1,6 +1,4 @@
-catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
-
-		}import java.net.MalformedURLException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
