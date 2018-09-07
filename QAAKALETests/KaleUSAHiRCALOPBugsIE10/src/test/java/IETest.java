@@ -63,7 +63,7 @@ public class IETest {
         }	
 		Thread.sleep(4000);
 		//Fill mandatory data
-		obj1.fillUpHiRCAEventInfo(driver);
+		obj1.fillUpHiRCAEventInfo(driver,obj1.text);
 		//Bug KALE 1959
 		obj1.bugPath1KALE1959(driver);
 		//Bug KALE 1926
