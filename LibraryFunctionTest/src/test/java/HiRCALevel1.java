@@ -1,6 +1,7 @@
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,13 +26,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.google.common.collect.Iterables;
 
@@ -496,13 +498,25 @@ public class HiRCALevel1 {
 			}
 		}
 	}
+	
+	public void deleteFiles(File folder) throws IOException {
+		File[] files = folder.listFiles();
+		for(File file: files){
+			if(file.isFile()){
+				String fileName = file.getName();
+				boolean del= file.delete();
+				System.out.println(fileName + " : got deleted ? " + del);
+			}else if(file.isDirectory()) {
+				deleteFiles(file);
+			}
+		}
+	}
 
 	public void downloadReportChrome (WebDriver driver, List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options,List<String>checklist) throws Exception {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
-		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
@@ -529,8 +543,7 @@ public class HiRCALevel1 {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
-		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
@@ -571,8 +584,7 @@ public class HiRCALevel1 {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
-		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
@@ -611,8 +623,7 @@ public class HiRCALevel1 {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
-		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
@@ -1677,7 +1688,7 @@ public class HiRCALevel1 {
 		//Click on skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Verify Step 3 SUEP
-		HashMap<String,Integer> options = verifySUEP(driver,lopOptions);
+		HashMap<String,Integer> options = verifySUEP(driver,lopOptions, softly);
 		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		Thread.sleep(2000);
 		if(skip.contains("ui-state-disabled"))
@@ -2087,6 +2098,7 @@ public class HiRCALevel1 {
 			String s = lopOptions.get(h).replace("]", ":");
 			lopOptions1.add(s);
 		}
+		System.out.println("lopOptions1: "+lopOptions1);
 		//Get number of Root causes in Level 3 answers
 		//int count = Collections.frequency(options, 4);
 		int count = options.get("Root causes");
@@ -2416,10 +2428,9 @@ public class HiRCALevel1 {
 		return checklist;
 	}
 
-	public HashMap<String,Integer> verifySUEP (WebDriver driver, List<String> lopOptions) throws Exception {
+	public HashMap<String,Integer> verifySUEP (WebDriver driver, List<String> lopOptions, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Verify SUEP title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -2457,7 +2468,7 @@ public class HiRCALevel1 {
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
 			if(lopOptions1.contains(s5)==false)
 			{
-				softly.fail("3.17 option not present on Step 3 "+s5);
+				softly.fail("LOP option not present on Step 3 "+s5);
 			}
 			//Click on random SUEP
 			Random random = new Random();
@@ -2467,9 +2478,8 @@ public class HiRCALevel1 {
 				r=r+1;
 			//Store no of SUEP checkboxes in hashmap: key=level 3 answer, value = no of suep checks
 			options.put(s5, num);
-			//Scroll down
-			jse.executeScript("scroll(0,1100)");
-			Thread.sleep(2000);
+			//Scroll to element
+			obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]"))));
 			for (int j=1;j<=num;j++)
 			{
 				Thread.sleep(1000);
@@ -2749,9 +2759,55 @@ public class HiRCALevel1 {
 			//Check if Evidence Entry, Further Investigation and Possible corrective action are in collapsible form
 			checkCollapsibleEEFIPCA(driver,y);
 		}
+		//Add contributing factor
+		lopOptions1.add(addContributingFactor(driver));
 		obj1.scrollToTop(driver);	
 		System.out.println(lopOptions1);
 		return lopOptions1;
+	}
+	
+	public String addContributingFactor(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		//Identify number of answers for a level 3
+		int count = 2;
+		int k=1;
+		while(true)
+		{
+			try{
+				k=k+1;
+				String s = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+k+"]")).getAttribute("class");
+				if(s.equals("ui-contain"))
+					count = count + 1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+		//Scroll to add cf button
+		//Click on answer
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button")));
+		//Scroll to element
+		obj.scrollToElement(driver, l);
+		//Click on add new contributing factor
+		l.click();
+		//Enter contributing factor
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))).sendKeys("contributing factor");
+		Thread.sleep(1000);
+		//Click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-save"))).click();
+		Thread.sleep(1000);
+		//Wait for loading message
+		obj.loadingServer(driver);
+		//Get text of new contributing factor
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+count+"]/fieldset/div/div/label")));
+		//Click on Evidence Entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+count+"]/fieldset/div/div[2]/div/h4/a"))).click();
+		//Fill in evidence entry text
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+count+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(textEvidence(driver));
+		String s1=l.getText().replace("[", "");
+		return s1.trim();
 	}
 
 	public void checkCollapsibleEEFIPCA(WebDriver driver,int y) throws Exception{

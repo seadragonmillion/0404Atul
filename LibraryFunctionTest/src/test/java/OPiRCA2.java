@@ -1,12 +1,20 @@
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class OPiRCA2 {
-	
+
 	//Info Page
 	By OPiRCAPopupNote = By.id("pii-opa-dialog-note");
 	By NewButton = By.id("efi-opa-button-new");
@@ -16,36 +24,564 @@ public class OPiRCA2 {
 	By TimelineOfEventsError = By.id("pii-opa-event-events-error");
 	By BackgroundInfoError = By.id("pii-opa-event-bginfos-error");
 	By InvestigatorError = By.id("pii-opa-event-investigators-error");
-	
+
+	public void step2HTML(WebDriver driver, SoftAssertions softly, int rc, List<String>step2QuestionAnswers, List<String>step2ApparentCausesAnswers, List<String>apparentCausesAnswersNew) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,3);
+		System.out.println(step2QuestionAnswers);
+		int i = 1;
+		//Counter for answers to d1 to d12
+		int j = 0;
+		int start = 0;
+		while (true)
+		{
+			Thread.sleep(500);
+			try{
+				System.out.println(i);
+				//div for step 2 will be rc+6
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[2]"))).getText();
+				int m = s.indexOf(":");
+				String s1 = s.substring(m+2, s.length());
+				System.out.println("step2 html "+s1);
+				if(j<12){
+				if(s1.contains("D1.1: "))
+				{
+					String s2 = s1.substring(6, s1.length());
+					softly.assertThat(s2).as("test data").isEqualTo(step2QuestionAnswers.get(j));
+				}
+				else
+					softly.assertThat(s1).as("test data").isEqualTo(step2QuestionAnswers.get(j));
+				}
+				j=j+1;
+				if(s.startsWith("D9.")||s.startsWith("D12."))
+				{
+					if(s1.equals("Yes"))
+					{
+						i=i+1;
+						String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
+						if(s2.contains("is in conflict with answers")==true)
+							i=i+1;
+					}
+					else
+					{
+						i=i+1;
+						int k = verifyApparentCauseAnswersStep2HTML(driver,softly,step2ApparentCausesAnswers,rc,i,start,apparentCausesAnswersNew);
+						start = k-1;
+						i=i+1;
+						System.out.println("end of try catch "+i);
+					}
+				}
+				else if(s.startsWith("D10."))
+				{
+					if(s1.contains("High"))
+					{
+						i=i+1;
+						String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
+						if(s2.contains("is in conflict with answers")==true)
+							i=i+1;
+					}
+					else
+					{
+						i=i+1;
+						int k = verifyApparentCauseAnswersStep2HTML(driver,softly,step2ApparentCausesAnswers,rc,i,start,apparentCausesAnswersNew);
+						start = k-1;
+						i=i+1;
+						System.out.println("end of try catch "+i);
+					}
+				}
+				else if(s1.equals("No"))
+				{
+					i=i+1;
+					String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
+					if(s2.contains("is in conflict with answers")==true)
+						i=i+1;
+				}
+				else
+				{
+					i=i+1;
+					int k = verifyApparentCauseAnswersStep2HTML(driver,softly,step2ApparentCausesAnswers,rc,i,start,apparentCausesAnswersNew);
+					start = k-1;
+					i=i+1;
+					System.out.println("end of try catch "+i);
+				}
+			}catch(org.openqa.selenium.TimeoutException r)
+			{
+				System.out.println(r);
+				break;
+			}
+		}	
+	}
+
+	public int verifyApparentCauseAnswersStep2HTML(WebDriver driver, SoftAssertions softly, List<String>step2ApparentCausesAnswers, int rc, int i, int start, List<String>apparentCausesAnswersNew) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,1);
+		int j=0;
+		System.out.println(i);
+		//count no of apparent causes under each question of step 2
+		while(true)
+		{
+			try{
+				j=j+1;
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td/div/table/tbody/tr["+j+"]/td[1]")));
+			}catch(org.openqa.selenium.TimeoutException e)
+			{
+				break;
+			}
+		}
+		//Create a sublist
+		List<String> sub = new ArrayList<String>();
+		for(int k = start; k<j;k++ )
+		{
+			String s = step2ApparentCausesAnswers.get(k).replace("[", "");
+			String s1 = s.replace("]", "");
+			sub.add(s1);
+		}
+		//Verify the apparent cause is in the sub list
+		for(int k=1;k<j;k++)
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td/div/table/tbody/tr["+k+"]/td[1]"))).getText();
+			if(sub.contains(s)==false)
+			{
+				if(apparentCausesAnswersNew.contains(s)==false)
+					softly.fail("Apparent cause not selected, yet is appearing in HTML under step2 "+s+"\n"+sub+"\n"+apparentCausesAnswersNew);
+			}
+		}
+		System.out.println("end of apparent cause function "+i);
+		return j;
+	}
+
+	public int getOptionsForStep2(WebDriver driver) throws Exception {
+
+		int count = 0;
+		int k=1;
+		//Identify number of answers for an apparent cause
+		while(true)
+		{
+			try{
+				String s = driver.findElement(By.xpath(".//*[@id='efi-opa-answers']/div["+k+"]")).getAttribute("class");
+				k=k+1;
+				if(s.equals("ui-contain"))
+					count = count +1;
+			}catch(NoSuchElementException e)
+			{
+				break;
+			}
+		}
+		return count;
+	}
+
+	public List<String> opircaStep2(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		OPiRCA obj = new OPiRCA ();	
+		ShareCheck obj1 = new ShareCheck();
+		//Create list to add all apparent cause answers
+		List<String> ac = new ArrayList<String>();
+		//D1: integer is total no of answers in d1
+		List<String> d1 = selectStep2D(driver,4);
+		//Select apparent cause for d1
+		if(Integer.parseInt(d1.get(1))>0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D2: integer is total no of answers in d2
+		d1.addAll(selectStep2D(driver,5));
+		//Select apparent cause for d1
+		if(Integer.parseInt(d1.get(3))>0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();			
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D3: integer is total no of answers in d3
+		d1.addAll(selectStep2D(driver,6));
+		//Select apparent cause for d3
+		if(Integer.parseInt(d1.get(5))>0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D4: integer is total no of answers in d4
+		d1.addAll(selectStep2D(driver,5));
+		//Select apparent cause for d4
+		if(Integer.parseInt(d1.get(7))>0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D5: integer is total no of answers in d5
+		d1.addAll(selectStep2D(driver,4));
+		//Select apparent cause for d5
+		if(Integer.parseInt(d1.get(9))>0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			if(Integer.parseInt(d1.get(9))==3)
+			{
+				//Click next for oo2
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				//Select Apparent cause answers
+				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+				obj1.scrollToTop(driver);
+				//Click next for oo3
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				//Select Apparent cause answers
+				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+				obj1.scrollToTop(driver);
+			}
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D6: integer is total no of answers in d6
+		d1.addAll(selectStep2D(driver,4));
+		//Select apparent cause for d6
+		if(Integer.parseInt(d1.get(11))>0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			if(Integer.parseInt(d1.get(11))==3)
+			{
+				//Click next for p2
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				//Select Apparent cause answers
+				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+				obj1.scrollToTop(driver);
+			}
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D7: integer is total no of answers in d7
+		d1.addAll(selectStep2D(driver,4));
+		//Select apparent cause for d6
+		if(Integer.parseInt(d1.get(13))>0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			if(Integer.parseInt(d1.get(13))==3)
+			{
+				//Click next for p2
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				//Select Apparent cause answers
+				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+				obj1.scrollToTop(driver);
+			}
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D8: integer is total no of answers in d8
+		d1.addAll(selectStep2D(driver,2));
+		//Select apparent cause for d8
+		if(Integer.parseInt(d1.get(15))==0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D9: integer is total no of answers in d9
+		d1.addAll(selectStep2D(driver,5));
+		//Select apparent cause for d9
+		if(Integer.parseInt(d1.get(17))>0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D10: integer is total no of answers in d10
+		d1.addAll(selectStep2D(driver,2));
+		//Select apparent cause for d10
+		if(Integer.parseInt(d1.get(19))==0)
+		{
+
+			//Click next for op2
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			//Click next for op3
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			//Click next for pp1
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			//Click next for pp2
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			//Click next for pp5
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D11: integer is total no of answers in d11
+		d1.addAll(selectStep2D(driver,3));
+		//Select apparent cause for d6
+		if(Integer.parseInt(d1.get(21))>0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+			if(Integer.parseInt(d1.get(21))==2)
+			{
+				//Click next for p2
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				//Select Apparent cause answers
+				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+				obj1.scrollToTop(driver);
+			}
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//D12: integer is total no of answers in d12
+		d1.addAll(selectStep2D(driver,4));
+		//Select apparent cause for d9
+		if(Integer.parseInt(d1.get(23))>0)
+		{
+
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			//Select Apparent cause answers
+			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
+			obj1.scrollToTop(driver);
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		//Create a list to combine d1 and d12 answers and apparent causes selected 
+		List<String> combinedStep2 = new ArrayList<String>();
+		for(int i=0;i<d1.size();i=i+2)
+		{
+			combinedStep2.add(d1.get(i));
+		}
+		//System.out.println(combinedStep2);
+		combinedStep2.addAll(ac);
+		return combinedStep2;
+	}
+
+	public List<String> step2QuestionsAnswersOnly(List<String> combined) throws Exception {
+
+		List<String> b = new ArrayList<String>();
+		for(int i=0;i<12;i++)
+			b.add(combined.get(i));
+		return b;
+	}
+
+	public List<String> step2ApparentCausesAnswersOnly(List<String> combined) throws Exception {
+
+		List<String> b = new ArrayList<String>();
+		for(int i=12;i<combined.size();i++)
+			b.add(combined.get(i));
+		return b;
+	}
+
+	public List<String> sortListPerCategory (List<String> listWithoutDuplicates, String start) throws Exception {
+
+		List<String> b = new ArrayList<String>();
+		HashMap <Integer,String>hm = new HashMap <Integer,String>();
+		for(int i=0;i<listWithoutDuplicates.size();i++)
+		{
+			int n = listWithoutDuplicates.get(i).indexOf(".");
+			String s = listWithoutDuplicates.get(i).substring(0, n);
+			if(s.equals(start)==true)
+				b.add(listWithoutDuplicates.get(i).trim());			
+		}
+		for(int i=0;i<b.size();i++)
+		{
+			int n = b.get(i).indexOf(".");
+			int y = b.get(i).indexOf(":");
+			String number = b.get(i).substring(n+1, y);
+			hm.put(Integer.parseInt(number), b.get(i));
+		}
+		//System.out.println(hm);
+		List<String> b1 = new ArrayList<String>();
+		//loop is till 12 because none of the apparent causes have options more than 12
+		for(int i=0;i<=12;i++)
+		{
+			if(hm.containsKey(i))
+				b1.add(hm.get(i));
+		}
+		//System.out.println(b1);
+		return b1;
+	}
+
+	public List<String> combineApparentCausesFromStep1AndStep2(List<String> step1,List<String>step2) throws Exception {
+
+		OPiRCA obj = new OPiRCA();
+		List<String> b = new ArrayList<String>();
+		b.addAll(step1);
+		b.addAll(step2);
+		List<String> listWithoutDuplicates1 = b.stream().distinct().collect(Collectors.toList());
+		List<String> listWithoutDuplicates = obj.modifyList(listWithoutDuplicates1);
+		//System.out.println(listWithoutDuplicates);
+		//Combine all the lists
+		List<String> b1 = new ArrayList<String>();
+		//O1
+		List<String> o1 = sortListPerCategory(listWithoutDuplicates, "O1");
+		b1.addAll(o1);
+		//O2
+		List<String> o2 = sortListPerCategory(listWithoutDuplicates, "O2");
+		b1.addAll(o2);
+		//O3
+		List<String> o3 = sortListPerCategory(listWithoutDuplicates, "O3");
+		b1.addAll(o3);
+		//O4
+		List<String> o4 = sortListPerCategory(listWithoutDuplicates, "O4");
+		b1.addAll(o4);
+		//O5
+		List<String> o5 = sortListPerCategory(listWithoutDuplicates, "O5");
+		b1.addAll(o5);
+		//OO1
+		List<String> oo1 = sortListPerCategory(listWithoutDuplicates, "OO1");
+		b1.addAll(oo1);
+		//OO2
+		List<String> oo2 = sortListPerCategory(listWithoutDuplicates, "OO2");
+		b1.addAll(oo2);
+		//OO3
+		List<String> oo3 = sortListPerCategory(listWithoutDuplicates, "OO3");
+		b1.addAll(oo3);
+		//OP1
+		List<String> op1 = sortListPerCategory(listWithoutDuplicates, "OP1");
+		b1.addAll(op1);
+		//OP2
+		List<String> op2 = sortListPerCategory(listWithoutDuplicates, "OP2");
+		b1.addAll(op2);
+		//OP3
+		List<String> op3 = sortListPerCategory(listWithoutDuplicates, "OP3");
+		b1.addAll(op3);
+		//OP4
+		List<String> op4 = sortListPerCategory(listWithoutDuplicates, "OP4");
+		b1.addAll(op4);
+		//P1
+		List<String> p1 = sortListPerCategory(listWithoutDuplicates, "P1");
+		b1.addAll(p1);
+		//P2
+		List<String> p2 = sortListPerCategory(listWithoutDuplicates, "P2");
+		b1.addAll(p2);
+		//P3
+		List<String> p3 = sortListPerCategory(listWithoutDuplicates, "P3");
+		b1.addAll(p3);
+		//P4
+		List<String> p4 = sortListPerCategory(listWithoutDuplicates, "P4");
+		b1.addAll(p4);
+		//P5
+		List<String> p5 = sortListPerCategory(listWithoutDuplicates, "P5");
+		b1.addAll(p5);
+		//PP1
+		List<String> pp1 = sortListPerCategory(listWithoutDuplicates, "PP1");
+		b1.addAll(pp1);
+		//PP2
+		List<String> pp2 = sortListPerCategory(listWithoutDuplicates, "PP2");
+		b1.addAll(pp2);
+		//System.out.println(b1);
+		return b1;
+	}
+
+	public List<String> selectStep2D(WebDriver driver, int x) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		OPiRCAChinese obj = new OPiRCAChinese();
+		EiRCA obj1 = new EiRCA();
+		List<String>ac = new ArrayList<String>();
+		//Enter reason entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAReasonEntryField)).sendKeys(obj1.textCreate(driver));
+		//Choose a number between 0 to x
+		int n = chooseRandomOption(x);
+		//Choose the option based on selection
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).click();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).getText();
+		ac.add(s);
+		ac.add(Integer.toString(n));
+		return ac;
+	}
+
+	public int chooseRandomOption(int range) throws Exception {
+
+		Random random = new Random();
+		//Choose a number between 0 to range (range is exclusive)
+		int n = random.nextInt(range);
+		return n;
+	}
+
 	public void verifyStickySaveReport(WebDriver driver, SoftAssertions softly, String username, String reportTitle, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		EiRCA obj = new EiRCA ();
 		try{
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
-		String r = s.replaceAll("\u00AD", "");
-		softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
-		if(n == 0)
-			softly.assertThat(r).as("test data").contains("Object created for id: ");
-		else
-			softly.assertThat(r).as("test data").contains("O&P iRCA™ Data updated for id: ");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String r = s.replaceAll("\u00AD", "");
+			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
+			if(n == 0)
+				softly.assertThat(r).as("test data").contains("Object created for id: ");
+			else
+				softly.assertThat(r).as("test data").contains("O&P iRCA™ Data updated for id: ");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find save pop up");
 		}
 	}
-	
+
 	public void verifyStickyDeleteReport(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		EiRCA obj = new EiRCA ();
 		try{
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
-		String r = s.replaceAll("\u00AD", "");
-		String r1 = recordName.replaceAll("\u00AD", "");
-		softly.assertThat(r).as("test data").isEqualTo("O&P iRCA™ data deleted: "+r1);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String r = s.replaceAll("\u00AD", "");
+			String r1 = recordName.replaceAll("\u00AD", "");
+			softly.assertThat(r).as("test data").isEqualTo("O&P iRCA™ data deleted: "+r1);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find delete pop up");
@@ -83,7 +619,7 @@ public class OPiRCA2 {
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(InvestigatorError)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Investigators is required");
 	}
-	
+
 	public void verifyNoErrorsOnInfoPage(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -101,7 +637,7 @@ public class OPiRCA2 {
 		//investigator
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(InvestigatorError));
 	}
-	
+
 	public void verifyInfoPageErrorPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -117,7 +653,7 @@ public class OPiRCA2 {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASaveConfirmButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("ok");
 	}
-	
+
 	public void verifySavePopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -136,7 +672,7 @@ public class OPiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASaveConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
 	}
-	
+
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -185,7 +721,7 @@ public class OPiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Open");
 	}	
-	
+
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -207,5 +743,38 @@ public class OPiRCA2 {
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
+	}
+
+	public void verifyChangeLanguage(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		HiRCAChinese obj1 = new HiRCAChinese();
+		LanguageCheckOfReports obj2 = new LanguageCheckOfReports();
+		OPiRCA obj3 = new OPiRCA();
+		EiRCAChinese obj4 = new EiRCAChinese();
+		OPiRCAChinese obj5 = new OPiRCAChinese();/* 
+		//Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCASaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCASaveConfirmButton)).click();*/
+		//Change language to english
+		obj1.changeToEnglish(driver);
+		//Click on Analysis
+		obj.loadingServer(driver);  
+		//Clicks on Analysis 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.AnalysisLink)).click();
+		//Click on OPiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj5.OPiRCALink)).click();
+		//Verify the language as english
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.PageTitle)).getText();		
+		if (obj2.containsHanScript(s)==true)
+			softly.fail("Not in english");
+		//Change language to chinese
+		obj1.changeToChinese(driver);		
+		//Click on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.AnalysisLink)).click();
+		//Click on OPiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj5.OPiRCALink)).click();
+		//Verify the language as chinese in test		
 	}
 }

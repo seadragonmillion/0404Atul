@@ -1101,6 +1101,7 @@ public class CaseBrowse {
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
+		obj.loadingServer(driver);
 		//Enters the term and check the search by enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);

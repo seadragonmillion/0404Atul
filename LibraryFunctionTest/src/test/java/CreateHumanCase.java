@@ -1188,9 +1188,11 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+			Thread.sleep(1000);
 			//Clicks on new case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			Thread.sleep(1000);
 			//Waits for black loading message to disappear
 			obj1.loadingServer(driver);
 			obj1.loadingServer(driver);
@@ -1322,9 +1324,11 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+			Thread.sleep(1000);
 			//Clicks on create case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			Thread.sleep(1000);
 			//Waits for black loading message to disappear
 			obj1.loadingServer(driver);
 			obj1.loadingServer(driver);

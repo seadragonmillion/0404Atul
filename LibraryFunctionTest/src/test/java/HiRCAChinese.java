@@ -21,7 +21,7 @@ public class HiRCAChinese {
 	SoftAssertions softly = new SoftAssertions();
 	String text = "Chinese check";
 
-	public void chineseEventInfoFill (WebDriver driver) throws Exception {
+	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -67,13 +67,16 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
+		HiRCA2 obj2 = new HiRCA2();
 		obj.loadingServer(driver);  
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Go to hirca and fill mandatory details on event info
-		chineseEventInfoFill(driver);		
+		chineseEventInfoFill(driver,text);		
 		//Verify chinese on Step1 tab q1.1
 		obj1.chineseStepOneq11(driver,softly);
+		//Check language change
+		obj2.verifyChangeLanguage(driver, softly);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
@@ -88,6 +91,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify 3.4
 		obj1.chineseStepOneL34(driver,softly);
+		//Check language change
+		obj2.verifyChangeLanguage(driver, softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -98,6 +103,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.6
 		obj1.chineseStepOneq16(driver,softly);
+		//Check language change
+		obj2.verifyChangeLanguage(driver, softly);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
@@ -124,6 +131,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify 3.9
 		obj1.chineseStepOneL39(driver,softly);
+		//Check language change
+		obj2.verifyChangeLanguage(driver, softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -175,6 +184,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.12
 		chineseStepOneq112(driver);
+		//Check language change
+		obj2.verifyChangeLanguage(driver, softly);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
@@ -273,6 +284,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify 3.5
 		chineseStepOneL35(driver);
+		//Check language change
+		obj2.verifyChangeLanguage(driver, softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -285,7 +298,7 @@ public class HiRCAChinese {
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
-		chineseEventInfoFill(driver);
+		chineseEventInfoFill(driver,text);
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		obj1.chineseStepOneq11(driver,softly);
@@ -308,7 +321,7 @@ public class HiRCAChinese {
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();		
 		//Go to hirca and fill mandatory details on event info
-		chineseEventInfoFill(driver);
+		chineseEventInfoFill(driver,text);
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		obj1.chineseStepOneq11(driver,softly);
@@ -326,7 +339,7 @@ public class HiRCAChinese {
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
-		chineseEventInfoFill(driver);
+		chineseEventInfoFill(driver,text);
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		obj1.chineseStepOneq11(driver,softly);
@@ -417,7 +430,7 @@ public class HiRCAChinese {
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
-		chineseEventInfoFill(driver);
+		chineseEventInfoFill(driver,text);
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		obj1.chineseStepOneq11(driver,softly);
@@ -467,7 +480,7 @@ public class HiRCAChinese {
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Go to hirca and fill mandatory details on event info
-		chineseEventInfoFill(driver);
+		chineseEventInfoFill(driver,text);
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.1
 		obj1.chineseStepOneq11(driver,softly);
@@ -989,7 +1002,7 @@ public class HiRCAChinese {
 
 	public void changeToEnglish (WebDriver driver) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait = new WebDriverWait(driver,10);
 		while(true)
 		{
 			try{
@@ -1027,9 +1040,21 @@ public class HiRCAChinese {
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("firefox"))
 		{
-			//Clicks on Account
+			//Clicks on Admin
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+			while(true)
+			{
+				Thread.sleep(1000);
+				try{
+					//Clicks on Account
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+					break;
+				}catch(org.openqa.selenium.TimeoutException r)
+				{
+					//Clicks on Admin
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+				}
+			}
 		}
 		else
 		{
@@ -5911,47 +5936,34 @@ public class HiRCAChinese {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
-
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
 		//1.9 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
-
 		softly.assertThat(q11).as("test data").contains("[1.9] 犯错者在事后是否有经组长或管理层问责？");
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();
-
 		softly.assertThat(reason).as("test data").contains("填写原因:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");
-
 		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-
 		softly.assertThat(desc).as("test data").contains("这个问题探讨了现有的问责机制。如果出现失误，无论是无意或有意的，都可从中学习到经验教训。问责机制不表示要接受惩罚，而是针对失误负责任。如果主管或管理层没有与犯错人员交谈，且没有完成全面调查，那么说明问责机制存在问题。");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
-
 		softly.assertThat(ans1).as("test data").contains("没有");
 		//Answer 2
 		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
-
 		softly.assertThat(ans2).as("test data").contains("有");
 		//Answer 3
 		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
-
 		softly.assertThat(ans3).as("test data").contains("未知");
 	}
-
-
-
-
-
-
+	
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

@@ -508,8 +508,8 @@ public class UserManagement {
 				WebDriverWait wait2 = new WebDriverWait(driver,20);
 				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
-		}catch (NoSuchElementException e){
-			throw e;
+		}catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
+			
 		}
 		Thread.sleep(5000);
 	}
@@ -1771,7 +1771,7 @@ public class UserManagement {
 				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
 		}catch (NoSuchElementException e){
-			throw e;
+			
 		}catch(org.openqa.selenium.TimeoutException t){
 
 		}
@@ -1985,14 +1985,14 @@ public class UserManagement {
 		Thread.sleep(3000);
 		//Click on Knowledge
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-k"))).click();
-		try{
-			if (login==1)
-			{
-				Thread.sleep(2000);
+		Thread.sleep(2000);
+		if (login==1)
+		{
+			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			}catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException r){
+				
 			}
-		}catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException r){
-			throw r;
 		}
 		List<String>f = Arrays.asList(op);
 		WebElement element;

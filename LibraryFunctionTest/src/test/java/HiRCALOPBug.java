@@ -30,7 +30,7 @@ public class HiRCALOPBug {
 	By DescriptionPlusSign = By.xpath(".//*[@id='efi-irca-description']/h4/a");
 	By DescriptionText = By.id("efi-irca-description-text");
 
-	public void fillUpHiRCAEventInfo(WebDriver driver) throws Exception {
+	public void fillUpHiRCAEventInfo(WebDriver driver,String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -149,7 +149,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -268,7 +268,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -383,7 +383,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -528,7 +528,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -645,7 +645,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Human error
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click next
@@ -847,7 +847,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Equipment error 1.1.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
 		//Click next
@@ -973,7 +973,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Act of Nature 1.1.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -1454,7 +1454,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		fillUpHiRCAEventInfo(driver);
+		fillUpHiRCAEventInfo(driver,text);
 		//Click on Human error
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click next

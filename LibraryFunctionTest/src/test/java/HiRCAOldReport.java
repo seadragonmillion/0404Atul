@@ -30,6 +30,8 @@ public class HiRCAOldReport {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
+		//Wait for loading message
+		obj.loadingServer(driver);
 		//Click on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Click on HiRCA

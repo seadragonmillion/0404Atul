@@ -290,6 +290,7 @@ public class OPiRCAChinese {
 		OPiRCAChinese3 obj3 = new OPiRCAChinese3();
 		HiRCALevel1 obj4 = new HiRCALevel1();
 		ShareCheck obj5 = new ShareCheck();
+		OPiRCA2 obj6 = new OPiRCA2();
 		//Wait for loading message to disappear
 		obj5.loadingServer(driver);
 		//Click on Analysis
@@ -318,6 +319,8 @@ public class OPiRCAChinese {
 		Thread.sleep(1000);
 		//Select all HiRCA Level 3 Options
 		selectAllHiRCALevel3Options(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		Thread.sleep(1000);
 		//Verify chinese for all apparent causes selected
 		chineseApparentCauses(driver);
@@ -333,6 +336,8 @@ public class OPiRCAChinese {
 		Thread.sleep(1000);
 		//Verify chinese O3
 		chineseApparentCauseO3(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		//Select all O3
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
@@ -353,6 +358,8 @@ public class OPiRCAChinese {
 		Thread.sleep(1000);
 		//Verify chinese OO2
 		chineseApparentCauseOO2(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		//Select all OO2
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
@@ -388,11 +395,15 @@ public class OPiRCAChinese {
 		Thread.sleep(1000);
 		//Verify chinese P2
 		chineseApparentCauseP2(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		//Select all P2
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
 		//Verify chinese P3
 		chineseApparentCauseP3(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		//Select all P3
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
@@ -403,6 +414,8 @@ public class OPiRCAChinese {
 		Thread.sleep(1000);
 		//Verify chinese P5
 		chineseApparentCauseP5(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		//Select all P5
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
@@ -468,6 +481,8 @@ public class OPiRCAChinese {
 		Thread.sleep(1000);
 		//Verify chinese Step 3
 		chineseStep3SURE(driver);
+		//Verify language change
+		obj6.verifyChangeLanguage(driver, softly);
 		//Mark checkboxes in Step 3 SURE table
 		markSUREcheckboxes(driver);
 		//Scroll top

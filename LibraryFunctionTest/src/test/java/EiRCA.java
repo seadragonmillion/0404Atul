@@ -2191,8 +2191,10 @@ public class EiRCA {
 		//Verify sticky save
 		obj1.verifyStickySaveReport(driver, softly, username, textCreate(driver), n);
 		obj.loadingServer(driver);
+		obj.loadingServer(driver);
 		//Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();	
+		obj.loadingServer(driver);
 		obj.loadingServer(driver);
 		//Click on 1st record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();

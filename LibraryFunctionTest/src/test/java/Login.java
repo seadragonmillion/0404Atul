@@ -28,6 +28,7 @@ public class Login {
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		ShareCheck obj = new ShareCheck();
 		//Login button is located and clicked
 		wait.until(ExpectedConditions.elementToBeClickable(LoginButton)).click();
 		//Enter Username
@@ -47,7 +48,7 @@ public class Login {
 				driver.findElement(SignInButton).click();  
 				while(c>0)
 				{
-					Thread.sleep(2000);
+					obj.loadingServer(driver);
 					WebElement element = driver.findElement(SignInMessage);
 					String text = element.getText();
 					if (element.isDisplayed())
@@ -59,10 +60,14 @@ public class Login {
 						}
 						else
 						{
+							element = driver.findElement(SignInMessage);
+							String text1 = element.getText();
 							driver.findElement(Password).sendKeys(decodePassword(password));
 							//Sign in button is located and clicked
 							driver.findElement(SignInButton).click();
-							login =1;
+							if(text1.contains("Warning: This user has an existing login session using another device or web browser. If you choose to login again, the existing session will be closed without saving current activity."))
+								login =1;
+							obj.loadingServer(driver);
 							break;
 						}
 
@@ -92,6 +97,7 @@ public class Login {
 					{
 						//Sign in button is located and clicked
 						driver.findElement(SignInButton).click();
+						obj.loadingServer(driver);
 						break;
 					}
 				}
@@ -99,7 +105,7 @@ public class Login {
 		}
 		return login;
 	}
-
+	
 	public String decodePassword(String pw){
 
 		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);

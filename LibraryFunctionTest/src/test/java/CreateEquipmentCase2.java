@@ -316,7 +316,52 @@ public class CreateEquipmentCase2 {
 		{
 			driver.findElement(obj.EquipListBoxTypesCrossSymbol).click();
 		}
-		System.out.println("Selected type: "+x);	
+		System.out.println("Selected type: "+x);			
+	}
+
+	public void verifyTypeNotEmpty(WebDriver driver, int x, String browserName, String v) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateEquipmentCase obj = new CreateEquipmentCase();
+		while(true)
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypeFieldText)).getText();			
+			if(s.isEmpty()==true)
+			{
+				selectTypeRandom (driver, x, browserName, v);
+			}
+			else break;
+		}
+	}
+	
+	public void verifyDisciplineNotEmpty(WebDriver driver, By element, String browserName, String v) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateEquipmentCase obj = new CreateEquipmentCase();
+		while(true)
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDisciplineFieldText)).getText();			
+			if(s.isEmpty()==true)
+			{
+				obj.selectDisciplineForComboTest(driver, element, browserName, v);
+			}
+			else break;
+		}
+	}
+	
+	public void verifyFieldNotEmpty(WebDriver driver, By element, String browserName, String v) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		CreateEquipmentCase obj = new CreateEquipmentCase();
+		while(true)
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFieldsFieldText)).getText();			
+			if(s.isEmpty()==true)
+			{
+				obj.selectFieldsForComboTest(driver, element, browserName, v);
+			}
+			else break;
+		}
 	}
 
 	public void caseSearchWithDisciplineFieldComboEquipmentDatabank(WebDriver driver, int x, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {

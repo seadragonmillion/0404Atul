@@ -113,6 +113,7 @@ public class CreateEquipmentCase {
 	By EquipCaseIDField = By.id("pii-admin-efse-id");
 	By EquipCaseIDFieldError = By.id("pii-admin-efse-id-error");
 	By EquipCaseTypes = By.id("pii-admin-efse-type-button");
+	By EquipCaseTypeFieldText = By.xpath(".//*[@id='pii-admin-efse-type-button']/span[1]");
 	By EquipCaseQuestion = By.id("pii-admin-efse-question");
 	By EquipCaseAnswer = By.id("pii-admin-efse-answer");
 	By EquipCaseNewKeywordField = By.id("pii-admin-efse-keyword-search-input");
@@ -130,7 +131,9 @@ public class CreateEquipmentCase {
 	By EquipCaseKeywordList = By.id("pii-admin-efse-keyword-list");
 	By EquipImageCollapsibleExpanded = By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div");
 	By EquipCaseFields = By.id("pii-admin-efse-field-button");
+	By EquipCaseFieldsFieldText = By.xpath(".//*[@id='pii-admin-efse-field-button']/span[1]");
 	By EquipCaseDiscipline = By.id("pii-admin-efse-discipline-button");
+	By EquipCaseDisciplineFieldText = By.xpath(".//*[@id='pii-admin-efse-discipline-button']/span[1]");
 	By EquipListBoxTypes = By.id("pii-admin-efse-type-listbox");
 	By ListCrossSymbol = By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete");
 	By EquipListBoxTypesCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-type-listbox']/div/a");
@@ -233,6 +236,8 @@ public class CreateEquipmentCase {
 					//Waits for black loading message to disappear
 					obj.loadingServer(driver);
 					obj.scrollToTop(driver);
+					//Close sticky
+					obj3.closePopUpSticky(driver);
 					while(true)
 					{
 						if(driver.findElement(obj2.AdminOption).isDisplayed()==false)
@@ -283,14 +288,34 @@ public class CreateEquipmentCase {
 				caseID.add(chooseCaseId(driver));
 				//Selects types and returns assigned numeric value of type
 				obj4.selectTypeRandom(driver, x, browserName, v);
+				//Verify type not empty
+				obj4.verifyTypeNotEmpty(driver, x, browserName, v);
 				//Select Discipline
 				selectDisciplineForComboTest(driver, disc_list.get(i), browserName, v);
+				//Verify discipline not empty
+				obj4.verifyDisciplineNotEmpty(driver, disc_list.get(i), browserName, v);
 				//Select Fields
 				selectFieldsForComboTest(driver, field_list.get(j), browserName, v);
+				//Verify field no empty
+				obj4.verifyFieldNotEmpty(driver, field_list.get(j), browserName, v);
 				//Enters Question
 				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).sendKeys(title);
+				//Make sure Question typed in right
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).getAttribute("textContent");
+				if(s1.equals(keyword) == false)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseQuestion)).sendKeys(title);
+				}
 				//Enters Answer
 				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseAnswer)).sendKeys(title);
+				//Make sure Answer typed in right
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseAnswer)).getAttribute("textContent");
+				if(s2.equals(keyword) == false)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseAnswer)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseAnswer)).sendKeys(title);
+				}
 				Thread.sleep(1000);
 				try{
 					jse.executeScript("scroll(0,1700)");
@@ -304,6 +329,13 @@ public class CreateEquipmentCase {
 				//Enters Keyword
 				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword);
 				Thread.sleep(2000);
+				//Make sure keyword typed in right
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).getAttribute("value");
+				if(s.equals(keyword) == false)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword);
+				}					
 				if(i==0 && j==0)
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 				else
@@ -340,7 +372,13 @@ public class CreateEquipmentCase {
 				{
 					if(v.startsWith("10"))
 					{
+						try{
 						jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
+						}catch (org.openqa.selenium.ScriptTimeoutException r)
+						{
+							Thread.sleep(3000);
+							jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
+						}
 						Thread.sleep(3000);
 						Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 						p.waitFor();
@@ -348,6 +386,7 @@ public class CreateEquipmentCase {
 					if(v.startsWith("11"))
 					{
 						jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
+						Thread.sleep(3000);
 						Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 						p.waitFor();
 					}
@@ -384,14 +423,15 @@ public class CreateEquipmentCase {
 				}
 				Thread.sleep(1000);
 				//Clicks on save
-				//Clicks on new case button
-				if(browserName.equals("internet explorer"))
+				if(browserName.equals("internet explorer")){
 					jse.executeScript("return document.getElementById('pii-admin-efse-button-save').click();");
+				Thread.sleep(1000);}
 				else{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSaveButton)).click();
 				}
 				//Clicks on create case
 				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle));
+				System.out.println(wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle)).getText());
 				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
 				//Waits for black loading message to disappear
 				obj.loadingServer(driver);
@@ -1376,9 +1416,9 @@ public class CreateEquipmentCase {
 		Thread.sleep(3000);
 		//Add new keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same);
-		Thread.sleep(3000);
+		obj.loadingServer(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
@@ -2682,6 +2722,8 @@ public class CreateEquipmentCase {
 		}
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a"))).click();
+		//Scroll to element
+		obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
 		//Click on collapsible to close 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();
 	}
@@ -3791,11 +3833,13 @@ public class CreateEquipmentCase {
 			obj.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewButton));
-			ele.click();
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewButton));
+			ele.click();*/
+			jse.executeScript("return document.getElementById('pii-admin-efse-button-new').click();");
+			Thread.sleep(1000);
 			//Clicks on new case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle));
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton));
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton));
 			ele.click();
 			//Waits for black loading message to disappear
 			obj.loadingServer(driver);
@@ -3982,6 +4026,7 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			//Clicks on save
 			jse.executeScript("return document.getElementById('pii-admin-efse-button-save').click();");
+			Thread.sleep(1000);
 			//Clicks on create case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
