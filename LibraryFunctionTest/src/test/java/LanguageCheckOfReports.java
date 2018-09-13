@@ -24,6 +24,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LanguageCheckOfReports {
@@ -44,7 +45,237 @@ public class LanguageCheckOfReports {
 
 	public void englishCheck(String s) {
 		if (containsHanScript(s)==true)
-			softly.fail("Not in english");
+			softly.fail("Not in english: "+s);
+	}
+	
+	public void downloadSelectFunction(WebDriver driver, int y, WebElement l, String browserName, String v)throws Exception {
+		
+		//Download report to check pdf
+		if (browserName.equals("chrome"))
+			downloadReportChrome (driver, y, l);
+		if (browserName.equals("firefox"))
+			downloadReportFirefox (driver, y, l);
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("10"))
+				downloadReportIE (driver, y, l);
+			if (v.startsWith("11"))
+				downloadReportIE11 (driver, y, l);
+		}
+	}
+	
+	public void verifyLabelUserAccount(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//page title
+		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))).getText();
+		softly.assertThat(title).as("test data").isEqualTo("User Profile");
+		//login name
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-loginname']"))).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Login name:");
+		//Password
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password']"))).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Password:");
+		//Retype password
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password-again']"))).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Re-type Password:");
+		//Language
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[6]/fieldset/div/legend"))).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Language:");
+		//name
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-name']"))).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Name:");
+		//company name
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-company']"))).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("Company name:");
+		//department
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[10]/fieldset/div/legend"))).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("Department:");
+		//sub- dept
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[11]/fieldset/div/legend"))).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("Sub-department:");
+		//job title
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[12]/fieldset/div/legend"))).getText();
+		softly.assertThat(s8).as("test data").isEqualTo("Job title:");
+		//email
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-email']"))).getText();
+		softly.assertThat(s9).as("test data").isEqualTo("Email:");
+		//certification
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[14]/fieldset/div/legend"))).getText();
+		softly.assertThat(s10).as("test data").isEqualTo("PII Certification Level:");
+		//license
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-license']"))).getText();
+		softly.assertThat(s11).as("test data").isEqualTo("License agreement:");
+	}
+	
+	public void languageChangeTest(WebDriver driver,String username,String password) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		Login obj = new Login();
+		ShareCheck obj1 = new ShareCheck();
+		HiRCA2 obj2 = new HiRCA2();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		//Set parameters
+		changeAccountPage(driver,username);
+		//Checks language in error meter
+		WebElement l = errorMeter(driver,0);
+		downloadSelectFunction(driver, 0, l,browserName,v);
+		//Checks language in HPI
+		hpi(driver,0);
+		//Checks language in HiRCA
+		l = hirca(driver,0);
+		downloadSelectFunction(driver, 0, l,browserName,v);
+		//Checks language in EiRCA
+		l = eirca(driver,0);
+		downloadSelectFunction(driver, 0, l,browserName,v);
+		//Checks language in O&PiRCA
+		l = opirca(driver,0);
+		downloadSelectFunction(driver, 0, l,browserName,v);
+		//Checks language in Job Observation
+		jobs(driver,0);
+		//Checks language in 3 Pass Review
+		passReview(driver,0);
+		//Checks language in Remote Verification
+		l = rv(driver,0);
+		downloadSelectFunction(driver, 0, l,browserName,v);
+		//Logs out
+		obj.logout(driver);
+		if (browserName.equals("firefox"))
+			driver.switchTo().defaultContent();
+		//Login again
+		obj.LoginUser(driver, username, password);
+		//wait for loading message
+		obj1.loadingServer(driver);
+        //Switches to the iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		Thread.sleep(5000);
+		//Clicks on Account
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//Verifies changed data
+		String name=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).getAttribute("value");
+		System.out.println(name);
+		softly.assertThat(name).as("test data").isEqualTo("QAA changed");
+		String company =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).getAttribute("value");
+		System.out.println(company);
+		softly.assertThat(company).as("test data").isEqualTo("QAA-PII changed");
+		String dept=driver.findElement(By.xpath(".//*[@id='pii-admin-user-dept-button']/span")).getText();
+		System.out.println(dept);
+		softly.assertThat(dept).as("test data").isEqualTo("Design Engineering");
+		String jobTitle=driver.findElement(By.xpath(".//*[@id='pii-admin-user-jobtitle-button']/span")).getText();
+		System.out.println(jobTitle);
+		softly.assertThat(jobTitle).as("test data").isEqualTo("Support");
+		String email=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).getAttribute("value");
+		System.out.println(email);
+		softly.assertThat(email).as("test data").isEqualTo("Email changed");
+		//Changes data back to original value
+		//Change Name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).sendKeys("QAA");
+		//Change Company name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).sendKeys("QAA-PII");
+		//Change department
+		WebElement dropdown2 = driver.findElement(By.id("pii-admin-user-dept"));
+		Select s2 = new Select (dropdown2);
+		s2.selectByVisibleText("Information Technology (IT)");
+		//Change job title
+		WebElement dropdown3 = driver.findElement(By.id("pii-admin-user-jobtitle"));
+		Select s3 = new Select (dropdown3);
+		s3.selectByVisibleText("Engineer");
+		//Change email id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("rramakrishnan@errorfree.com");
+		//Changes language to English
+		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
+		Select s5 = new Select (dropdown1);
+		s5.selectByVisibleText("English");
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//verify sticky
+		obj2.verifyStickyUserAccount(driver, softly, username);
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Checks language in error meter
+		l=errorMeter(driver,1);
+		downloadSelectFunction(driver, 1, l,browserName,v);
+		//Checks language in HPI
+		hpi(driver,1);
+		//Checks language in HiRCA
+		l=hirca(driver,1);
+		downloadSelectFunction(driver, 1, l,browserName,v);
+		//Checks language in EiRCA
+		l=eirca(driver,1);
+		downloadSelectFunction(driver, 1, l,browserName,v);
+		//Checks language in O&PiRCA
+		l=opirca(driver,1);
+		downloadSelectFunction(driver, 1, l,browserName,v);
+		//Checks language in Job Observation
+		jobs(driver,1);
+		//Checks language in 3 Pass Review
+		passReview(driver,1);
+		Thread.sleep(2000);
+		//Checks language in Remote Verification
+		l=rv(driver,1);
+		downloadSelectFunction(driver, 1, l,browserName,v);
+	}
+	
+	public void changeAccountPage(WebDriver driver, String username) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		HiRCA2 obj = new HiRCA2();
+		ShareCheck obj1 = new ShareCheck();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on Account
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//verify labels
+		verifyLabelUserAccount(driver);
+		//Change Name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).sendKeys("QAA changed");
+		//Change Company name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).sendKeys("QAA-PII changed");
+		//Change department
+		WebElement dropdown = driver.findElement(By.id("pii-admin-user-dept"));
+		Select s = new Select (dropdown);
+		s.selectByVisibleText("Design Engineering");
+		//Change job title
+		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-jobtitle"));
+		Select s1 = new Select (dropdown1);
+		s1.selectByVisibleText("Support");
+		//Change email id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("Email changed");
+		//Changes language to Chinese
+		dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
+		Select s4 = new Select (dropdown1);
+		s4.selectByVisibleText("Chinese");
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//Verify sticky 
+		obj.verifyStickyUserAccount(driver, softly, username);
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
 	}
 
 	public void downloadReportIE(WebDriver driver, int y, WebElement element) throws Exception {
@@ -322,6 +553,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[3]"))).getText());
 		//Stores text of label of 4th table 3rd column
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[4]"))).getText());
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -358,6 +590,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
 		//Stores text of share button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -418,9 +651,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText());
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[1]"))).getText());  
 		//Randomly generated tables so think about it*****
-
-
-
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -480,6 +711,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[13]/td[1]"))).getText());
 		//Stores the report header
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[2]"))).getText());		
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -543,6 +775,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
 		//Stores text of share button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -580,6 +813,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
 		//Stores text of share button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -637,6 +871,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[5]/table/tbody/tr[1]/th/div/strong"))).getText());
 		//Stores text of 5th table
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[6]/table/tbody/tr[1]/th/div/strong"))).getText());
+		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{

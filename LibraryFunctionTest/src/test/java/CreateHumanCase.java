@@ -919,7 +919,7 @@ public class CreateHumanCase {
 			for (i=0; i<5;i++)
 			{
 				String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
-				if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+				if (driver.findElement(By.xpath(xpath)).isDisplayed())
 				{
 					System.out.println("Uploaded Image : " + (i+1));
 				}

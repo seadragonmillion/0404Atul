@@ -16,6 +16,21 @@ public class HiRCA2 {
 	By HiRCAPopupConfirmButton = By.id("pii-irca-dialog-confirmed");
 	By HiRCAPopupConfirmButton2 = By.id("pii-irca-dialog-confirmed2");
 	By HiRCAPopupCancelButton = By.id("pii-irca-dialog-cancel");
+	
+	public void verifyStickyUserAccount(WebDriver driver, SoftAssertions softly, String username) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,60);
+		EiRCA obj = new EiRCA ();
+		try{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			softly.assertThat(s).as("test data").isEqualTo("User updated: "+username+".");
+			System.out.println(s);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+		}catch(org.openqa.selenium.TimeoutException r)
+		{
+			System.out.println("Couldn't find share save pop up");
+		}
+	}
 
 	public void verifySticky1ImageUploaded(WebDriver driver, SoftAssertions softly) throws Exception {
 

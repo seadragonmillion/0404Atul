@@ -2323,8 +2323,6 @@ public class CreateEquipmentCase {
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{
@@ -2337,6 +2335,7 @@ public class CreateEquipmentCase {
 			throw e;
 		}
 		Thread.sleep(5000);
+		obj1.loadingServer(driver);
 		//Click on Error-free bank link
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankLink)).click();
 		//Click on Databank Only
@@ -3125,21 +3124,21 @@ public class CreateEquipmentCase {
 			if(count<6){
 				//Enters Keyword
 				wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same);
-				Thread.sleep(2000);
+				Thread.sleep(4000);
 				if(count==1)
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(key1);
-					Thread.sleep(2000);
+					Thread.sleep(4000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(key2);
-					Thread.sleep(2000);
+					Thread.sleep(4000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(key3);
-					Thread.sleep(2000);
+					Thread.sleep(4000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 					if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
 					{
@@ -4331,8 +4330,10 @@ public class CreateEquipmentCase {
 			obj.loadingServer(driver);
 			//Clicks on delete button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDeleteButton)).click();
+			//Waits for black loading message to disappear
+			obj.loadingServer(driver);
 			//Clicks on delete case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupTitle));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasePopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			obj.loadingServer(driver);

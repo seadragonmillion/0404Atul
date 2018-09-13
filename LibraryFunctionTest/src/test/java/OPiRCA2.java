@@ -42,20 +42,20 @@ public class OPiRCA2 {
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[2]"))).getText();
 				int m = s.indexOf(":");
 				String s1 = s.substring(m+2, s.length());
-				System.out.println("step2 html "+s1);
-				if(j<12){
-				if(s1.contains("D1.1: "))
+				System.out.println("step2 html "+s);
+				if(j<12){/*
+				if(s.contains("D1.1: "))
 				{
 					String s2 = s1.substring(6, s1.length());
 					softly.assertThat(s2).as("test data").isEqualTo(step2QuestionAnswers.get(j));
 				}
-				else
-					softly.assertThat(s1).as("test data").isEqualTo(step2QuestionAnswers.get(j));
+				else*/
+					softly.assertThat(s).as("test data").isEqualTo(step2QuestionAnswers.get(j));
 				}
 				j=j+1;
 				if(s.startsWith("D9.")||s.startsWith("D12."))
 				{
-					if(s1.equals("Yes"))
+					if(s1.equals("Yes")||s1.equals("是"))
 					{
 						i=i+1;
 						String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -73,7 +73,7 @@ public class OPiRCA2 {
 				}
 				else if(s.startsWith("D10."))
 				{
-					if(s1.contains("High"))
+					if(s1.contains("High")||s1.contains("高（大于0.2）"))
 					{
 						i=i+1;
 						String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+6)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -178,7 +178,7 @@ public class OPiRCA2 {
 		//Create list to add all apparent cause answers
 		List<String> ac = new ArrayList<String>();
 		//D1: integer is total no of answers in d1
-		List<String> d1 = selectStep2D(driver,4);
+		List<String> d1 = selectStep2D(driver,4,0);
 		//Select apparent cause for d1
 		if(Integer.parseInt(d1.get(1))>0)
 		{
@@ -191,7 +191,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D2: integer is total no of answers in d2
-		d1.addAll(selectStep2D(driver,5));
+		d1.addAll(selectStep2D(driver,5,0));
 		//Select apparent cause for d1
 		if(Integer.parseInt(d1.get(3))>0)
 		{
@@ -204,7 +204,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D3: integer is total no of answers in d3
-		d1.addAll(selectStep2D(driver,6));
+		d1.addAll(selectStep2D(driver,6,0));
 		//Select apparent cause for d3
 		if(Integer.parseInt(d1.get(5))>0)
 		{
@@ -217,7 +217,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D4: integer is total no of answers in d4
-		d1.addAll(selectStep2D(driver,5));
+		d1.addAll(selectStep2D(driver,5,0));
 		//Select apparent cause for d4
 		if(Integer.parseInt(d1.get(7))>0)
 		{
@@ -230,7 +230,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D5: integer is total no of answers in d5
-		d1.addAll(selectStep2D(driver,4));
+		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d5
 		if(Integer.parseInt(d1.get(9))>0)
 		{
@@ -257,7 +257,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D6: integer is total no of answers in d6
-		d1.addAll(selectStep2D(driver,4));
+		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(11))>0)
 		{
@@ -279,7 +279,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D7: integer is total no of answers in d7
-		d1.addAll(selectStep2D(driver,4));
+		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(13))>0)
 		{
@@ -301,7 +301,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D8: integer is total no of answers in d8
-		d1.addAll(selectStep2D(driver,2));
+		d1.addAll(selectStep2D(driver,2,0));
 		//Select apparent cause for d8
 		if(Integer.parseInt(d1.get(15))==0)
 		{
@@ -315,7 +315,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D9: integer is total no of answers in d9
-		d1.addAll(selectStep2D(driver,5));
+		d1.addAll(selectStep2D(driver,5,0));
 		//Select apparent cause for d9
 		if(Integer.parseInt(d1.get(17))>0)
 		{
@@ -329,7 +329,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D10: integer is total no of answers in d10
-		d1.addAll(selectStep2D(driver,2));
+		d1.addAll(selectStep2D(driver,2,0));
 		//Select apparent cause for d10
 		if(Integer.parseInt(d1.get(19))==0)
 		{
@@ -363,7 +363,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D11: integer is total no of answers in d11
-		d1.addAll(selectStep2D(driver,3));
+		d1.addAll(selectStep2D(driver,3,0));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(21))>0)
 		{
@@ -385,7 +385,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
 		//D12: integer is total no of answers in d12
-		d1.addAll(selectStep2D(driver,4));
+		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d9
 		if(Integer.parseInt(d1.get(23))>0)
 		{
@@ -527,29 +527,45 @@ public class OPiRCA2 {
 		return b1;
 	}
 
-	public List<String> selectStep2D(WebDriver driver, int x) throws Exception {
+	public List<String> selectStep2D(WebDriver driver, int x, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		OPiRCAChinese obj = new OPiRCAChinese();
 		EiRCA obj1 = new EiRCA();
+		OPiRCA obj2 = new OPiRCA();
 		List<String>ac = new ArrayList<String>();
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAReasonEntryField)).sendKeys(obj1.textCreate(driver));
 		//Choose a number between 0 to x
-		int n = chooseRandomOption(x);
+		int n = chooseRandomOption(x,y);
 		//Choose the option based on selection
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).click();
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).getText();
-		ac.add(s);
+		ac.add(obj2.verifyIfDAnswer(driver, n+1, s));
 		ac.add(Integer.toString(n));
 		return ac;
 	}
 
-	public int chooseRandomOption(int range) throws Exception {
+	public int chooseRandomOption(int range, int m) throws Exception {
 
 		Random random = new Random();
-		//Choose a number between 0 to range (range is exclusive)
-		int n = random.nextInt(range);
+		//m=0 is english , m=1 is chinese
+		int n;
+		if(m==0) 
+		{
+			//Choose a number between 0 to range (range is exclusive)
+			n = random.nextInt(range);
+		}
+		else
+		{
+			while(true)
+			{
+				//Choose a number between 1 to range (range is exclusive)
+				n = random.nextInt(range);
+				if(n>0)
+					break;
+			}
+		}
 		return n;
 	}
 

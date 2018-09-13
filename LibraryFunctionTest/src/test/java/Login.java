@@ -51,6 +51,7 @@ public class Login {
 					obj.loadingServer(driver);
 					WebElement element = driver.findElement(SignInMessage);
 					String text = element.getText();
+					System.out.println(text);
 					if (element.isDisplayed())
 					{
 						if(text.isEmpty())
@@ -60,12 +61,10 @@ public class Login {
 						}
 						else
 						{
-							element = driver.findElement(SignInMessage);
-							String text1 = element.getText();
 							driver.findElement(Password).sendKeys(decodePassword(password));
 							//Sign in button is located and clicked
 							driver.findElement(SignInButton).click();
-							if(text1.contains("Warning: This user has an existing login session using another device or web browser. If you choose to login again, the existing session will be closed without saving current activity."))
+							if(text.contains("Warning: This user has an existing login session"))
 								login =1;
 							obj.loadingServer(driver);
 							break;

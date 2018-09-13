@@ -930,6 +930,7 @@ public class HiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		Login obj = new Login();
+		ShareCheck obj1 = new ShareCheck();
 		while(true)
 		{
 			try{
@@ -992,7 +993,6 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Waits for loading message to disappear
-		ShareCheck obj1 = new ShareCheck();
 		obj1.loadingServer(driver);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();

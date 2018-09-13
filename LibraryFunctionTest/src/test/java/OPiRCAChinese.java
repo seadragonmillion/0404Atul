@@ -291,6 +291,7 @@ public class OPiRCAChinese {
 		HiRCALevel1 obj4 = new HiRCALevel1();
 		ShareCheck obj5 = new ShareCheck();
 		OPiRCA2 obj6 = new OPiRCA2();
+		OPiRCAChinese4 obj7 = new OPiRCAChinese4();
 		//Wait for loading message to disappear
 		obj5.loadingServer(driver);
 		//Click on Analysis
@@ -419,65 +420,8 @@ public class OPiRCAChinese {
 		//Select all P5
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
-		//Verify chinese D1
-		chineseStep2D1(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D2
-		chineseStep2D2(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D3
-		chineseStep2D3(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D4
-		chineseStep2D4(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D5
-		chineseStep2D5(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D6
-		chineseStep2D6(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D7
-		chineseStep2D7(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D8
-		chineseStep2D8(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D9
-		chineseStep2D9(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D10
-		chineseStep2D10(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D11
-		chineseStep2D11(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
-		Thread.sleep(1000);
-		//Verify chinese D12
-		chineseStep2D12(driver);
-		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		//Verify chinese step 2
+		obj7.chineseStep2skip(driver);
 		Thread.sleep(1000);
 		//Verify chinese Step 3
 		chineseStep3SURE(driver);
@@ -522,6 +466,7 @@ public class OPiRCAChinese {
 		obj2.downloadReport(driver,verifyChinese, softly);
 		//Delete report
 		obj4.deleteReport(driver);
+		obj7.OPiRCAStep2VariationPaths(driver,softly);
 	}
 
 	public void markCritical(WebDriver driver) throws Exception{

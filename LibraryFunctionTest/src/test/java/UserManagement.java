@@ -2007,6 +2007,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
@@ -2023,6 +2024,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
@@ -2039,6 +2041,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
@@ -2055,6 +2058,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
@@ -2071,6 +2075,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
@@ -2087,6 +2092,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
@@ -2107,6 +2113,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2123,6 +2130,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2139,6 +2147,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2155,6 +2164,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2171,6 +2181,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2187,6 +2198,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2203,6 +2215,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2219,6 +2232,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2235,6 +2249,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
@@ -2257,6 +2272,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Error-Free Bank
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
@@ -2273,6 +2289,7 @@ public class UserManagement {
 				Thread.sleep(2000);
 				waitForAsia(driver);
 				element.click();
+				waitForAsia(driver);
 				Thread.sleep(2000);
 				//Clicks on Error-Free Bank
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();

@@ -37,7 +37,7 @@ public class CaseBrowse {
 	String caseHumanProd = "746";
 	String caseHumanProdPercent = "618";
 	String caseEquipProd = "231";
-	String caseEquipProdPercent = "1341";
+	String caseEquipProdPercent = "1754";
 	String caseElecProd = "1260";
 	String caseMechProd = "1638";
 	String keywordHumanDev = "test data";

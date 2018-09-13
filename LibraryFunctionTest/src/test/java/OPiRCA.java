@@ -777,11 +777,25 @@ public class OPiRCA {
 				l.click();
 				//Get answer name and store in list
 				String s1 = l.getText();
-				ac.add(s1);
+				ac.add(verifyIfDAnswer(driver, y,s1));
 				//Check if Evidence entry and Possible corrective action are in collapsible form
 				checkCollapsibleEvidenceEntryPossibleCorrectiveAction(driver,y);	
 			}
 		return ac;		
+	}
+	
+	public String verifyIfDAnswer(WebDriver driver, int y, String s1)throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		OPiRCAChinese obj = new OPiRCAChinese();
+		String opirca_desc = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAInfoPageDesc)).getText();
+		if(opirca_desc.startsWith("[D"))
+		{
+			String s = opirca_desc.substring(opirca_desc.indexOf("[")+1,opirca_desc.indexOf("]") );
+			String s2 = s+"."+y+": "+s1;
+			return s2;
+		}
+		else return s1;
 	}
 
 	public String addContributingFactor(WebDriver driver, int y) throws Exception{
@@ -1781,10 +1795,10 @@ public class OPiRCA {
 		System.out.println("Size:"+apparentCausesSelected.size());
 		for(int i=2; i<=(apparentCausesSelected.size()+1); i++)
 		{
-			//System.out.println("i = "+i+", n = "+n);
+			System.out.println("i = "+i+", n = "+n);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
 			softly.assertThat(s).as("test data").isEqualTo(apparentCausesSelected.get(n));
-			//System.out.println(s+"\n"+apparentCausesSelected.get(n));
+			System.out.println(s+"\n"+apparentCausesSelected.get(n));
 			n = n+1;
 		}
 	}

@@ -180,7 +180,7 @@ public class HiRCAHumanError {
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ReasonEntryField)).sendKeys(obj1.text(driver));
 		//Choose a number between 0 to x
-		int n = obj.chooseRandomOption(x);
+		int n = obj.chooseRandomOption(x,0);
 		//Choose the option based on selection
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+n+"']"))).click();
 		Thread.sleep(500);

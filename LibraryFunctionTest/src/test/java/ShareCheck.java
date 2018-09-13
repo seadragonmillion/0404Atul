@@ -225,13 +225,15 @@ public class ShareCheck {
 			{
 				Thread.sleep(2000);
 				//Click on 1st record/notification
-				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-				act.click(ele).build().perform();
+				WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				if(ele1.isSelected()==false)
+					act.click(ele1).build().perform();
 				Thread.sleep(4000);
 				//Click on read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-				act.click(ele).build().perform();
-				Thread.sleep(2000);
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				if(ele.isEnabled()==false)
+					act.click(ele1).build().perform();
+				Thread.sleep(3000);
 				//Click on mark as read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
 				act.click(ele).build().perform();
