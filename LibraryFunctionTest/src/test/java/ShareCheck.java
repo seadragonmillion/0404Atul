@@ -216,7 +216,7 @@ public class ShareCheck {
 		//Verify if notification is of marked critical
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecordDescriptionText)).getText();
 		softly.assertThat(s).as("test data").contains("Critical");
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		if(browserName.equals("internet explorer"))
 		{
 			Actions act = new Actions (driver);
@@ -240,7 +240,7 @@ public class ShareCheck {
 				Thread.sleep(2000);
 			}
 		}
-		else{
+		else{*/
 			Thread.sleep(2000);
 			for(int i=1;i<=n;i++)
 			{
@@ -260,7 +260,7 @@ public class ShareCheck {
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
 				ele.click();
 			}
-		}		
+		//}		
 		//Wait for loading message to disappear
 		loadingServer(driver);
 		//LogOut

@@ -2167,11 +2167,13 @@ public class EiRCA {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
+		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCANextButton)).click();	
 		Thread.sleep(1000);
 		//Click on info page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(InfoTab)).click();	
+		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCANextButton)).click();	
 		//Verify the events are organised as per date and time
@@ -2192,6 +2194,7 @@ public class EiRCA {
 		obj1.verifyStickySaveReport(driver, softly, username, textCreate(driver), n);
 		obj.loadingServer(driver);
 		obj.loadingServer(driver);
+		Thread.sleep(1000);
 		//Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();	
 		obj.loadingServer(driver);

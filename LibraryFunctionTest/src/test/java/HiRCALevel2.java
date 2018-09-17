@@ -1,0 +1,1114 @@
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Collectors;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+
+public class HiRCALevel2 {
+
+	String text = "HiRCA Level 2";
+	String reason = "Level 2 reason entry";
+	SoftAssertions softly = new SoftAssertions();
+
+	public void pathHiRCALevel2(WebDriver driver) throws Exception{
+
+		HiRCALOPBug obj = new HiRCALOPBug();
+		HiRCALevel1 obj1 = new HiRCALevel1();
+		ShareCheck obj2 = new ShareCheck();
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//create a new report
+		obj.fillUpHiRCAEventInfo(driver, text);
+		//Select 3 lops with Act of Nature
+		List<String> lopSelected = select3LOPs(driver);
+		//Select answers for 1st lop
+		List<String> a1 = answerLOPRelatedQuestions(driver);
+		List<String> level21stLOP = level2List(a1);
+		List<String> level31stLOP = level3List(a1).stream().distinct().collect(Collectors.toList());
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//Select answers for 2nd lop
+		List<String> a2 = answerLOPRelatedQuestions(driver);
+		List<String> level22ndLOP = level2List(a2);
+		List<String> level32ndLOP = level3List(a2).stream().distinct().collect(Collectors.toList());
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//Select answers for 3rd lop
+		List<String> a3 = answerLOPRelatedQuestions(driver);
+		List<String> level23rdLOP = level2List(a3);
+		List<String> level33rdLOP = level3List(a3).stream().distinct().collect(Collectors.toList());
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.20 - make some selections and click next
+		List<String> list220 = selectOptions(driver,12).stream().distinct().collect(Collectors.toList());
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.22 - skip
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		//Step 3 skip
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		//Step 4 verify select HML
+		HashMap<String,String> hml1 = verifyStep4LOP1(driver,lopSelected,level31stLOP,2);
+		int n3 = 3;
+		if(level31stLOP.isEmpty())
+			n3 = 2;
+		HashMap<String,String> hml2 = verifyStep4LOP1(driver,lopSelected,level32ndLOP,n3);
+		if(level32ndLOP.isEmpty())
+			n3 = 3;
+		if(level32ndLOP.isEmpty() && level31stLOP.isEmpty())
+			n3 = 2;
+		if(level32ndLOP.isEmpty()==false && level31stLOP.isEmpty()==false)
+			n3 = 4;
+		HashMap<String,String> hml3 = verifyStep4LOP1(driver,lopSelected,level33rdLOP,n3);
+		obj2.scrollToTop(driver);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//Step 5 select random
+		List<Integer> step5 = selectStep5(driver);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//Save report
+		saveHiRCAReport(driver);
+		//Verify report
+		verifyHTMLReport(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,step5,hml1,hml2,hml3,list220);
+		//download
+		downloadSelectFunction(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		//delete
+		obj1.deleteReport(driver);
+	}
+
+	public void verifyHTMLReport(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<Integer> step5, HashMap<String,String> hml1, HashMap<String,String> hml2, HashMap<String,String> hml3, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,10);
+		//Verify failed LOPs
+		String lop1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[1]/tbody/tr/td[1]"))).getText();
+		softly.assertThat(lop1).as("test data").isIn(lopSelected);
+		String lop2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[1]/tbody/tr/td[2]"))).getText();
+		softly.assertThat(lop2).as("test data").isIn(lopSelected);
+		String lop3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[1]/tbody/tr/td[3]"))).getText();
+		softly.assertThat(lop3).as("test data").isIn(lopSelected);
+		//LOP1
+		verifyLOPTable(driver,lopSelected,level31stLOP,hml1,2);
+		//LOP2
+		verifyLOPTable(driver,lopSelected,level32ndLOP,hml2,3);
+		//LOP3
+		verifyLOPTable(driver,lopSelected,level33rdLOP,hml3,4);
+		//2.20
+		verifyAdditionalLOPSRequired(driver,list220);
+		//Verify selected failed LOPs
+		String lop1a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[1]"))).getText();
+		softly.assertThat(lop1a).as("test data").isIn(lopSelected);
+		String lop2a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[2]"))).getText();
+		softly.assertThat(lop2a).as("test data").isIn(lopSelected);
+		String lop3a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[3]"))).getText();
+		softly.assertThat(lop3a).as("test data").isIn(lopSelected);
+		//LOP1
+		verifyLevel2and3AnswersForLOP(driver,lopSelected,level31stLOP,level21stLOP,8);
+		//LOP2
+		verifyLevel2and3AnswersForLOP(driver,lopSelected,level32ndLOP,level22ndLOP,9);
+		//LOP3
+		verifyLevel2and3AnswersForLOP(driver,lopSelected,level33rdLOP,level23rdLOP,10);
+		//2.20
+		verifySupportingInfoAdditionalLOPs(driver,list220);
+	}
+
+	public void verifyLevel2and3AnswersForLOP(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level21stLOP,int divNumber)throws Exception {
+
+		OPiRCAChinese4 obj = new OPiRCAChinese4();
+		OPiRCA obj1 = new OPiRCA ();
+		WebDriverWait wait1 = new WebDriverWait(driver,3);
+		//list without [ ] :
+		List<String> temp = obj.removeColonFromAnswers(obj1.modifyList(level31stLOP));
+		//heading
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/thead/tr/th[1]"))).getText();
+		int n = s1.indexOf(":");
+		String s = s1.substring(n+2, s1.length());
+		softly.assertThat(s).as("test data").isIn(lopSelected);
+		int i=0;
+		int k=0;
+		while(k<level21stLOP.size())
+		{
+			i=i+1;
+			//verify level 3 selected is present
+			String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/tbody/tr["+i+"]/td[2]/ul/li"))).getText();
+			//System.out.println(s2);
+			softly.assertThat(s2).as("test data").isEqualTo(level21stLOP.get(k));
+			k=k+1;
+			if(s2.equals("No")||s2.equals("Inadequate or Incorrect rules"))
+			{
+				continue;
+			}
+			else
+			{
+				i=i+1;
+				//verify level 3 selected under lop 
+				verifyLevel3Answers(driver,temp,divNumber,i);
+			}
+		}
+	}
+	
+	public void verifyLevel3Answers (WebDriver driver, List<String> temp, int divNumber, int i) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,3);
+		int m=0;
+		while(true)
+		{
+			try{
+				m=m+1;
+				//verify level 3 selected is present
+				String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/tbody/tr["+i+"]/td/div/table/tbody/tr["+m+"]/td[1]"))).getText();
+				//System.out.println(s);
+				softly.assertThat(s).as("test data").isIn(temp);				
+			}catch(org.openqa.selenium.TimeoutException r)
+			{
+				break;
+			}
+		}
+	}
+
+	public void verifySupportingInfoAdditionalLOPs(WebDriver driver, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,3);
+		//System.out.println(list220.size()+" "+list220);
+		for(int i=1;i<list220.size();i++)
+		{
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[1]/td[2]/ul/li["+i+"]"))).getText();
+			//System.out.println(s);
+			softly.assertThat(s).as("test data").isIn(list220);
+		}
+	}
+
+	public void verifyAdditionalLOPSRequired(WebDriver driver, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,3);
+		int count = 0;
+		outer:
+			for(int i=1;i<=4;i++)
+			{
+				for(int m=1;m<=3;m++)
+				{
+					try{
+						String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[5]/tbody/tr["+i+"]/td["+m+"]"))).getText();
+						softly.assertThat(s).as("test data").isIn(list220);
+						count = count + 1;
+						if(count>=list220.size())
+							break outer;
+					}catch(org.openqa.selenium.TimeoutException r)
+					{
+						break outer;
+					}
+				}
+			}
+	}
+
+	public void verifyLOPTable(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, HashMap<String,String> hml, int tableNumber)throws Exception {
+
+		OPiRCAChinese4 obj = new OPiRCAChinese4();
+		OPiRCA obj1 = new OPiRCA ();
+		WebDriverWait wait1 = new WebDriverWait(driver,10);
+		System.out.println(hml);
+		//list without [ ] :
+		List<String> temp = obj.removeColonFromAnswers(obj1.modifyList(level31stLOP));
+		System.out.println(temp.size()+" " +temp);
+		//list without [ ] but with :
+		List<String> temp1 = obj1.modifyList(level31stLOP);
+		System.out.println(temp1.size()+" " +temp1);
+		//heading
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/thead/tr/th[1]"))).getText();
+		int n1 = s1.indexOf(":");
+		String s = s1.substring(n1+2, s1.length());
+		softly.assertThat(s).as("test data").isIn(lopSelected);
+		int b=4;
+		for(int i=1;i<=temp.size();i++)
+		{
+			//verify level 3 selected is present
+			String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[1]"))).getText();
+			softly.assertThat(s2).as("test data").isIn(temp);
+			//Get value of HML
+			if(temp.contains(s2))
+			{
+				int n  = temp.indexOf(s2);
+				//Get same value from temp1 and get hml from hashmap
+				String s3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[2]"))).getText();
+				System.out.println(temp1.get(n) + " "+n+ " "+s2);
+				if(hml.get(temp1.get(n)).equals("None"))
+				{
+					softly.assertThat(s3).as("test data").isEqualTo("");
+				}
+				else
+					softly.assertThat(s3).as("test data").isEqualTo(hml.get(temp1.get(n)));
+				//Verify hml order
+				b = checkHMLOrder(b,s3);
+			}
+		}
+	}
+
+	public int checkHMLOrder(int b, String s) throws Exception{
+
+		if(s.equals("High"))
+		{
+			if(b>3||b==3)
+			{
+				b=3;
+				//System.out.println("Order is correct:High");
+			}
+			if(b<3)
+				softly.fail("Currently in High Block: Order is wrong");
+		}
+		if(s.equals("Medium"))
+		{
+			if(b>2||b==2)
+			{
+				b=2;
+				//System.out.println("Order is correct:Medium");
+			}
+			if(b<2)
+				softly.fail("Currently in Medium Block: Order is wrong");
+		}
+		if(s.equals("Low"))
+		{
+			if(b>1||b==1)
+			{
+				b=1;
+				//System.out.println("Order is correct:Low");
+			}
+			if(b<1)
+				softly.fail("Currently in Low Block: Order is wrong");
+		}
+		if(s.equals("")||s==""||s.equals(null))
+		{
+			if(b>0||b==0)
+			{
+				b=0;
+				//System.out.println("Order is correct:None");
+			}
+			if(b<0)
+				softly.fail("Currently in None Block: Order is wrong");
+		}
+		return b;
+	}
+	
+	public HashMap<String,String> verifyStep4LOP1 (WebDriver driver, List<String> lopSelected, List<String> level31stLOP, int n) throws Exception {
+
+		HashMap<String,String> hml = new HashMap<String,String>();
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List <String> temp = new ArrayList<String>();
+		OPiRCA obj = new OPiRCA();
+		if(level31stLOP.isEmpty()==false)
+		{
+			//LOP 1
+			//Verify title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr[1]/th[1]"))).getText();
+			int a = s.indexOf(":");
+			String r = s.substring(a+2, s.length()-1);
+			softly.assertThat(r).as("test data").isIn(lopSelected);
+			//Modify level 3 list,  remove [ and replace ] with :
+			temp.addAll(obj.modifyList(level31stLOP));
+			//Verify level 3 selected
+			for(int i=1;i<=(level31stLOP.size()*2);i=i+2)
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText();
+				softly.assertThat(s1).as("test data").isIn(temp);
+				String imp = selectHML(driver,i,n);
+				System.out.println(s1+ " "+i);
+				System.out.println(imp);
+				hml.put(s1, imp);
+			}
+			//clear temp
+			temp.clear();
+		}
+		return hml;
+	}
+/*
+	public HashMap<String,String> verifyStep4 (WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP) throws Exception {
+
+		HashMap<String,String> hml = new HashMap<String,String>();
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List <String> temp = new ArrayList<String>();
+		OPiRCA obj = new OPiRCA();
+		ShareCheck obj1 = new ShareCheck();
+		int n2 = 3;
+		int n3 = 4;
+		if(level31stLOP.isEmpty()==false)
+		{
+			//LOP 1
+			//Verify title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr[1]/th[1]"))).getText();
+			int a = s.indexOf(":");
+			String r = s.substring(a+2, s.length()-1);
+			softly.assertThat(r).as("test data").isIn(lopSelected);
+			//Modify level 3 list,  remove [ and replace ] with :
+			temp.addAll(obj.modifyList(level31stLOP));
+			//Verify level 3 selected
+			for(int i=1;i<=level31stLOP.size();i=i+2)
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table[2]/tbody/tr["+(i+1)+"]/td[1]"))).getText();
+				softly.assertThat(s1).as("test data").isIn(temp);
+				String imp = selectHML(driver,i,2);
+				hml.put(s1, imp);
+			}
+			//clear temp
+			temp.clear();
+		}
+		else n2 = 2;
+		if(level32ndLOP.isEmpty()==false)
+		{
+			//LOP 2
+			//Verify title
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n2+"]/tbody/tr[1]/th[1]"))).getText();
+			int a = s2.indexOf(":");
+			String r = s2.substring(a+2, s2.length()-1);
+			softly.assertThat(r).as("test data").isIn(lopSelected);
+			//Modify level 3 list,  remove [ and replace ] with :
+			temp.addAll(obj.modifyList(level32ndLOP));
+			//Verify level 3 selected and select hml
+			for(int i=1;i<=level32ndLOP.size();i=i+2)
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n2+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText();
+				softly.assertThat(s1).as("test data").isIn(temp);
+				String imp = selectHML(driver,i,3);
+				hml.put(s1, imp);
+			}
+			//clear temp
+			temp.clear();
+		}
+		else n3 = 3;
+		if(level32ndLOP.isEmpty() && level31stLOP.isEmpty())
+			n3 = 2;
+		if(level33rdLOP.isEmpty()==false)
+		{
+			//LOP 3
+			//Verify title
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n3+"]/tbody/tr[1]/th[1]"))).getText();
+			int a = s3.indexOf(":");
+			String r = s3.substring(a+2, s3.length()-1);
+			softly.assertThat(r).as("test data").isIn(lopSelected);
+			//Modify level 3 list,  remove [ and replace ] with :
+			temp.addAll(obj.modifyList(level33rdLOP));
+			//Verify level 3 selected
+			for(int i=1;i<=level33rdLOP.size();i=i+2)
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n3+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText();
+				softly.assertThat(s1).as("test data").isIn(temp);
+				String imp = selectHML(driver,i,4);
+				hml.put(s1, imp);
+			}
+			//clear temp
+			temp.clear();
+		}
+		//Scroll to top
+		obj1.scrollToTop(driver);
+		return hml;
+	}
+*/
+	public String selectHML(WebDriver driver, int i, int tableNumber) throws Exception {
+
+		OPiRCA2 obj = new OPiRCA2();
+		ShareCheck obj1 = new ShareCheck();
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Choose a number
+		int n = obj.chooseRandomOption(4, 0);
+		//Scroll to element
+		obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+tableNumber+"]/tbody/tr["+(i+1)+"]/td[3]/fieldset/div/div[1]/label"))));
+		if(n==0)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+tableNumber+"]/tbody/tr["+(i+1)+"]/td[3]/fieldset/div/div[1]/label"))).click();
+			return "High";
+		}
+		if(n==1)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+tableNumber+"]/tbody/tr["+(i+1)+"]/td[3]/fieldset/div/div[2]/label"))).click();
+			return "Medium";
+		}
+		if(n==2)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+tableNumber+"]/tbody/tr["+(i+1)+"]/td[3]/fieldset/div/div[3]/label"))).click();
+			return "Low";
+		}
+		else return "None";
+	}
+
+	public List<Integer> selectStep5(WebDriver driver) throws Exception {
+
+		OPiRCA2 obj = new OPiRCA2();
+		ShareCheck obj1 = new ShareCheck();
+		List<Integer> a = new ArrayList<Integer>();
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Choose a number between 1 to 20
+		int n = obj.chooseRandomOption(20, 1);
+		outer:
+			for(int j=0;j<n;j++)
+			{
+				//Select any answer between 1 and 21
+				//Choose a number between 1 and 21
+				int y;
+				while(true)
+				{
+					Random random = new Random();
+					y=random.nextInt(21);
+					if(y==0)
+						continue;
+					WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+(y+1)+"]/td[3]/div/input")));
+					if(e.isSelected())
+					{
+						continue outer;
+					}
+					break;	    			
+				}
+				WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+(y+1)+"]/td[3]/div/input")));
+				//Scroll to element
+				obj1.scrollToElement(driver, e);
+				e.click();
+				//add number to list
+				a.add(y);	
+			}
+		//Scroll to top
+		obj1.scrollToTop(driver);
+		return a;
+	}
+
+	public void downloadSelectFunction(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220)throws Exception {
+
+		OPiRCA obj = new OPiRCA();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		obj.deleteFiles(file);
+		//Download report to check pdf
+		if (browserName.equals("chrome"))
+			downloadReportChrome(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		if (browserName.equals("firefox"))
+			downloadReportFirefox(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("10"))
+				downloadReportIE10(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+			if (v.startsWith("11"))
+				downloadReportIE11(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		}
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		Thread.sleep(2000);
+	}
+
+	public void downloadReportChrome(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ShareCheck obj = new ShareCheck();	
+		EiRCA2 obj1 = new EiRCA2();
+		OPiRCA obj2 = new OPiRCA();
+		String window = driver.getWindowHandle();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		driver.close();
+		driver.switchTo().window(window);
+		Thread.sleep(1000);	    		    	
+	}
+
+	public void downloadReportFirefox(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
+		OPiRCA obj2 = new OPiRCA();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
+		//Wait for loading message to disappear			
+		obj.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		Thread.sleep(2000);
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
+		Robot robot = new Robot();
+		// press Ctrl+S the Robot's way
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_S);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_S);
+		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
+		p.waitFor();
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		Thread.sleep(4000);
+		driver.close();
+		Thread.sleep(4000);
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();
+	}
+
+	public void downloadReportIE10(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
+		OPiRCA obj2 = new OPiRCA();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		Thread.sleep(3000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(7000);
+		//pdf verification
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		Thread.sleep(4000);
+		//Switch to window    	
+		driver.switchTo().window(window);	
+	}
+
+	public void downloadReportIE11(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ShareCheck obj = new ShareCheck();
+		EiRCA2 obj1 = new EiRCA2();
+		OPiRCA obj2 = new OPiRCA();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		//Verify pdf pop up
+		obj1.verifyStickyCreatePDF(driver, softly);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Verify download pop up
+		obj1.verifyDownloadReportPopup(driver, softly);
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		Thread.sleep(3000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(7000);
+		//pdf verification
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		Thread.sleep(4000);
+		//Switch to window    	
+		driver.switchTo().window(window);
+	}
+
+	public void pdfCheck(List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220) throws Exception{
+
+		OPiRCAChinese4 obj = new OPiRCAChinese4();
+		OPiRCA obj1 = new OPiRCA ();
+		// specify your directory
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		System.out.println(lastFilePath.get());
+		//Loads the file to check if correct data is present
+		String fileName=lastFilePath.get().toString();
+		File oldfile = new File(fileName);
+		PDDocument pddoc= PDDocument.load(oldfile);
+		//Checks text in pdf
+		String data = new PDFTextStripper().getText(pddoc);
+		List<String> ans= Arrays.asList(data.split("\r\n"));
+		String newData1="";
+		for (int i = 0; i < ans.size(); i++)
+		{	        	
+			int n=ans.get(i).length()-1;
+			if (ans.get(i).charAt(n)==' ')
+				newData1 = newData1+ans.get(i);
+			else if (ans.get(i).charAt(n)!=' ')
+				newData1 = newData1+" "+ans.get(i);	        	
+		}
+		newData1 = newData1.replace("  ", " ");
+		System.out.println(newData1);
+		//Verify all lists present in pdf
+		softly.assertThat(newData1).as("test data").contains(lopSelected);   			
+		softly.assertThat(newData1).as("test data").contains(level21stLOP);  
+		softly.assertThat(newData1).as("test data").contains(level22ndLOP);  
+		softly.assertThat(newData1).as("test data").contains(level23rdLOP);  
+		softly.assertThat(newData1).as("test data").contains(list220);  
+		softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(obj1.modifyList(level31stLOP)));  
+		softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(obj1.modifyList(level32ndLOP)));  
+		softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(obj1.modifyList(level33rdLOP)));  
+		//Close pdf
+		pddoc.close();
+	}
+
+	public void saveHiRCAReport(WebDriver driver) throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
+		//Clicks on Save
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+		//Clicks on Save report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		obj.loadingServer(driver);
+		//Clicks on Saved activities
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		obj.loadingServer(driver);
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		obj.loadingServer(driver);
+	}
+
+
+	public String selectLevel2Answer(WebDriver driver, int n) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Fill reason entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason);
+		//CLick on answer
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+n+"']"))).click();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+n+"']"))).getText();
+		return s;
+	}
+
+	public List<String> answerLOPRelatedQuestions(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		OPiRCA2 obj = new OPiRCA2();
+		List<String> combined = new ArrayList<String>();
+		List<String> level2 = new ArrayList<String>();
+		List<String> level3 = new ArrayList<String>();
+		//2.1
+		//Choose option to select
+		int n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.17
+			level3.addAll(selectOptions(driver,7));
+			combined.addAll(level2);
+			combined.addAll(level3);
+			return combined;
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.2
+		//Choose option to select
+		n = obj.chooseRandomOption(3, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.16
+			level3.addAll(selectOptions(driver,7));
+			if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
+			{
+				combined.addAll(level2);
+				combined.addAll(level3);
+				return combined;
+			}
+			else
+			{
+				//Click next
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				//2.3 to 2.8
+				List<String> c = followQuestions23To28(driver);
+				level2.addAll(level2List(c));
+				level3.addAll(level3List(c));
+			}
+		}
+		if(n==1)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//2.3 to 2.8
+			List<String> c = followQuestions23To28(driver);
+			level2.addAll(level2List(c));
+			level3.addAll(level3List(c));
+		}
+		if(n==2)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//2.9 to 2.12
+			List<String> c = followQuestions29To212(driver);
+			level2.addAll(level2List(c));
+			level3.addAll(level3List(c));
+		}
+		combined.addAll(level2);
+		combined.addAll(level3);
+		return combined;
+	}
+
+	public List<String> level2List(List<String>combined) throws Exception{
+
+		List<String> a = new ArrayList<String>();
+		for(int i=0;i<combined.size();i++)
+		{
+			if(combined.get(i).startsWith("["))
+				break;
+			else
+				a.add(combined.get(i));
+		}		
+		//System.out.println(a);
+		return a;
+	}
+
+	public List<String> level3List(List<String>combined) throws Exception{
+
+		List<String> a = new ArrayList<String>();
+		for(int i=0;i<combined.size();i++)
+		{
+			if(combined.get(i).startsWith("[") == false)
+				continue;
+			else
+				a.add(combined.get(i));
+		}
+		//System.out.println(a);
+		return a;
+	}
+
+	public List<String> followQuestions29To212(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		OPiRCA2 obj = new OPiRCA2();
+		List<String> combined = new ArrayList<String>();
+		List<String> level2 = new ArrayList<String>();
+		List<String> level3 = new ArrayList<String>();
+		//2.9
+		//Choose option to select
+		int n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.12
+			level3.addAll(selectOptions(driver,5));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.10
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.13
+			level3.addAll(selectOptions(driver,4));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.11
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.14
+			level3.addAll(selectOptions(driver,5));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.12
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.15
+			level3.addAll(selectOptions(driver,4));			
+		}
+		combined.addAll(level2);
+		combined.addAll(level3);
+		return combined;
+	}
+
+	public List<String> followQuestions23To28(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		OPiRCA2 obj = new OPiRCA2();
+		List<String> combined = new ArrayList<String>();
+		List<String> level2 = new ArrayList<String>();
+		List<String> level3 = new ArrayList<String>();
+		//2.3
+		//Choose option to select
+		int n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.6
+			level3.addAll(selectOptions(driver,9));			
+		}
+		else
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.22
+			level3.addAll(selectOptions(driver,5));
+		}
+		if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
+		{
+			combined.addAll(level2);
+			combined.addAll(level3);
+			return combined;
+		}
+		else
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		}
+		//2.4
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.7
+			level3.addAll(selectOptions(driver,10));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.5
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.8
+			level3.addAll(selectOptions(driver,8));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.6
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.9
+			level3.addAll(selectOptions(driver,6));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.7
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.10
+			level3.addAll(selectOptions(driver,5));			
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//2.8
+		//Choose option to select
+		n = obj.chooseRandomOption(2, 0);
+		//Add answer to list
+		level2.add(selectLevel2Answer(driver,n));
+		if(n==0)
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.11
+			level3.addAll(selectOptions(driver,5));			
+		}
+		combined.addAll(level2);
+		combined.addAll(level3);
+		return combined;
+	}
+
+	public List<String> selectOptions(WebDriver driver, int count) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj = new ShareCheck();
+		List<String> ac = new ArrayList<String>();
+		int x;
+		//Select number of options to select between 1 to count
+		while(true)
+		{
+			Random random = new Random();
+			x=random.nextInt(count+1);
+			if(x==0)
+				continue;
+			else break;
+		}
+		outer:
+			for(int j=0;j<x;j++)
+			{
+				//Select any answer between 1 and count
+				//Choose a number between 1 and count
+				int y;
+				while(true)
+				{
+					Random random = new Random();
+					y=random.nextInt(count+1);
+					if(y==0)
+						continue;
+					WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(y+1)+"]/fieldset/div/div/input")));
+					if(e.isSelected())
+					{
+						ac.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(y+1)+"]/fieldset/div/div/label"))).getText());
+						continue outer;
+					}
+					break;	    			
+				}
+				//Click on answer
+				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(y+1)+"]/fieldset/div/div/label")));
+				//Scroll to element
+				obj.scrollToElement(driver, l);
+				l.click();
+				//Get answer name and store in list
+				String s1 = l.getText();
+				ac.add(s1);	
+			}
+		//Scroll to top
+		obj.scrollToTop(driver);
+		return ac;		
+	}
+
+	public List<String> select3LOPs(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
+		List<String> a = new ArrayList<String>();
+		//Click on Act of nature
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		Thread.sleep(2000);
+		//Click on LOP
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		//Click on Yes
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		Thread.sleep(2000);
+		//Select 3 LOPs randomly
+		//Choose a number between 2 and 13 for LOPs
+		Random random = new Random();
+		int y;
+		for(int i=0;i<3;i++)
+		{
+			while(true)
+			{
+				y=random.nextInt(9);
+				//System.out.println("Chose a no"+y);
+				if(y==0||y==1)
+					continue;
+				String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
+				if(e.contains("ui-checkbox-on"))
+					continue;
+				break;
+			}
+			//System.out.println("Picked a no");
+			//System.out.println("Option no: "+y);
+			Thread.sleep(500);
+			//Scroll to element
+			obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			//Click on LOP
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+			a.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText());
+		}
+		//Scroll to the top
+		obj.scrollToTop(driver);
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		return a;
+	}
+
+	public void softAssert() throws Exception {
+		softly.assertAll();
+		System.gc();
+	}
+}

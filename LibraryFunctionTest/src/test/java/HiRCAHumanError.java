@@ -2067,6 +2067,8 @@ public class HiRCAHumanError {
 		List<String> ans = new ArrayList<String>();
 		//List for storing level 3 answers
 		List<String> level3 = new ArrayList<String>();
+		//Waiting for loading message
+		obj.loadingServer(driver);
 		//Go to hirca and fill mandatory details on event info
 		obj1.fillUpHiRCAEventInfo(driver,obj4.text(driver));		
 		//Scroll up
