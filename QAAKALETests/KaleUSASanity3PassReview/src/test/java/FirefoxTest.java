@@ -94,7 +94,7 @@ public class FirefoxTest {
 		//Mark critical
 		obj1.markCritical(driver, username, password, 4);
 		//Delete report
-		obj1.deleteNewRecord(driver, recordName,4);
+		obj1.deleteNewRecord(driver, recordName,4,username);
 		//Logout
 		obj.logout(driver);
 		afterTest();

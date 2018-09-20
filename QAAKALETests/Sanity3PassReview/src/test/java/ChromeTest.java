@@ -79,7 +79,7 @@ public class ChromeTest {
 		//Mark critical
 		obj1.markCritical(driver, username, password, 0);
 		//Delete report
-		obj1.deleteNewRecord(driver, recordName,0);
+		obj1.deleteNewRecord(driver, recordName,0,username);
 		//Logout
 		obj.logout(driver);
 		afterTest();
