@@ -13,9 +13,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -313,7 +311,7 @@ public class HiRCAChinese2 {
 	public void chineseLevel3SelectionsStep4_2nd(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Verify all selections here
 		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
 		System.out.println(tr);
@@ -414,38 +412,21 @@ public class HiRCAChinese2 {
 		//Click on HML
 		//High for 3.17.2
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[5]/td[3]/fieldset/div/div[1]/label")));
-		Point p = l.getLocation();
-		int yaxis= p.getY()-250;
-		//Scroll to element
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click H
 		l.click();
 		//Medium for 3.17.3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[3]/fieldset/div/div[2]/label")));
-		p = l.getLocation();
-		yaxis= p.getY()-250;
-		//Scroll to element
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click M
 		l.click();
 		//Low for 3.17.4
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[9]/td[3]/fieldset/div/div[3]/label")));
-		p = l.getLocation();
-		yaxis= p.getY()-250;
-		//Scroll to element
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,"+yaxis+")");
-		Thread.sleep(2000);
+		obj.scrollToElement(driver, l);
 		//Click L
 		l.click();
 		//Scroll up
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 	}
 
 	public void chineseLevel3SelectionsSUEP2nd(WebDriver driver, SoftAssertions softly) throws Exception {

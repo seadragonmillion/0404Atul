@@ -41,6 +41,20 @@ public class ShareCheck {
 	By ActivityOnTopRight = By.id("pii-user-activity");
 	By ModuleTitle = By.id("pii-user-home-title");
 	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	
+	public void scrollToAPoint(WebDriver driver, int yaxis)throws Exception{
+
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(1000);
+		try{
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}
+		Thread.sleep(1000);
+	}
 
 	public void scrollToElement(WebDriver driver, WebElement l)throws Exception{
 

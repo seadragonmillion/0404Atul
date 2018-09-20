@@ -204,7 +204,7 @@ public class HiRCAEvent {
 		String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		String newRecord=creationDate + "_"+username+"_"+ "changed title thrice";
 		System.out.println(newRecord);
-		jse.executeScript("scroll(0, 0)");
+		obj1.scrollToTop(driver);
 		//Clicks on Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		Thread.sleep(2000);
@@ -300,7 +300,7 @@ public class HiRCAEvent {
 		String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		String newRecord=creationDate + "_"+username+"_"+ "changed title twice";
 		System.out.println(newRecord);
-		jse.executeScript("scroll(0, 0)");
+		obj1.scrollToTop(driver);
 		//Clicks on Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		Thread.sleep(2000);
@@ -398,7 +398,7 @@ public class HiRCAEvent {
 		String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		String newRecord=creationDate + "_"+username+"_"+ "changed title";
 		System.out.println(newRecord);
-		jse.executeScript("scroll(0, 0)");
+		obj1.scrollToTop(driver);
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		Thread.sleep(2000);
@@ -880,6 +880,7 @@ public class HiRCAEvent {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Checks for Event title data
@@ -1120,7 +1121,7 @@ public class HiRCAEvent {
 		softly.assertThat(rc77).as("test data").isEqualTo("Recommended corrective actions cost effective?");
 		String rc78 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[11]/td[3]"))).getText();
 		softly.assertThat(rc78).as("test data").isEqualTo("");
-		jse.executeScript("scroll(0, 3300)");
+		obj.scrollToAPoint(driver, 3300);
 		Thread.sleep(2000);
 		int n =3500;
 		//Checks the 5 images if appearing
@@ -1131,7 +1132,6 @@ public class HiRCAEvent {
 			String id = "pii-irca-h-event-report-filecollapsible-"+j;
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			//Wait for loading message to disappear
-			ShareCheck obj = new ShareCheck();
 			obj.loadingServer(driver);
 			n=n+1200;
 			String scroll ="scroll(0,"+n+")";
@@ -1145,7 +1145,7 @@ public class HiRCAEvent {
 			}
 		}
 		Thread.sleep(1000);
-		jse.executeScript("scroll(0, 0)");
+		obj.scrollToTop(driver);
 	}
 
 	public void rootCause(WebDriver driver) throws Exception {
@@ -1312,7 +1312,7 @@ public class HiRCAEvent {
 					{
 						Thread.sleep(2000);
 						if(j==4)
-							jse.executeScript("scroll(0, 1000)");
+							obj.scrollToAPoint(driver, 1100);
 
 						l.click();
 					}
@@ -1341,7 +1341,7 @@ public class HiRCAEvent {
 				Thread.sleep(1000);
 				if(driver.findElement(By.id(img)).isDisplayed())
 				{
-					jse.executeScript("scroll(0, 2200)");
+					obj.scrollToAPoint(driver, 2200);
 					//Click on attach another file
 					Thread.sleep(2000);
 					WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
@@ -1351,8 +1351,7 @@ public class HiRCAEvent {
 			}
 		}
 		//Delete 3rd image
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,600)");
+		obj.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
@@ -1377,7 +1376,7 @@ public class HiRCAEvent {
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		jse.executeScript("scroll(0, 2000)");
+		obj.scrollToAPoint(driver, 2000);
 	}
 
 	public void uploadFiveImagesFirefox(WebDriver driver, String username, String reportTitle) throws Exception {
@@ -1449,7 +1448,7 @@ public class HiRCAEvent {
 					{
 						Thread.sleep(2000);
 						if(j==4)
-							jse.executeScript("scroll(0, 1000)");
+							obj.scrollToAPoint(driver, 1000);
 						l=driver.findElement(By.id(rotate));
 						//act.moveToElement(l).build().perform();
 						//jse.executeScript("arguments[0].scrollIntoView();", l);
@@ -1478,7 +1477,7 @@ public class HiRCAEvent {
 				Thread.sleep(1000);
 				if(driver.findElement(By.id(img)).isDisplayed())
 				{
-					jse.executeScript("scroll(0, 2000)");
+					obj.scrollToAPoint(driver, 2000);
 					//Click on attach another file
 					Thread.sleep(2000);
 					WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
@@ -1490,7 +1489,7 @@ public class HiRCAEvent {
 		}
 		//Delete 3rd image
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,600)");
+		obj.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
@@ -1531,7 +1530,7 @@ public class HiRCAEvent {
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		jse.executeScript("scroll(0, 2000)");
+		obj.scrollToAPoint(driver, 2000);
 
 	}
 
@@ -1621,7 +1620,7 @@ public class HiRCAEvent {
 					{
 						Thread.sleep(2000);
 						if(j==4)
-							jse.executeScript("scroll(0, 1000)");
+							obj.scrollToAPoint(driver, 1000);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))).click();
 					}
 				}
@@ -1656,7 +1655,7 @@ public class HiRCAEvent {
 				Thread.sleep(1000);
 				if(driver.findElement(By.id(img)).isDisplayed())
 				{
-					jse.executeScript("scroll(0, 1800)");
+					obj.scrollToAPoint(driver, 1800);
 					//Click on attach another file
 					Thread.sleep(2000);
 					WebElement add= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button")));
@@ -1668,7 +1667,7 @@ public class HiRCAEvent {
 		}
 		//Delete 3rd image
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,600)");
+		obj.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
@@ -1701,7 +1700,7 @@ public class HiRCAEvent {
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		jse.executeScript("scroll(0, 2000)");
+		obj.scrollToAPoint(driver, 2000);
 
 	}
 
@@ -1803,7 +1802,7 @@ public class HiRCAEvent {
 					{
 						Thread.sleep(2000);
 						if(j==4)
-							jse.executeScript("scroll(0, 1000)");
+							obj.scrollToAPoint(driver, 1000);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))).click();
 					}
 				}
@@ -1830,11 +1829,11 @@ public class HiRCAEvent {
 				{
 					if(j<3)
 					{ 
-						jse.executeScript("scroll(0, 1600)");
+						obj.scrollToAPoint(driver, 1600);
 					} 
 					if(j>2)
 					{ 
-						jse.executeScript("scroll(0, 2000)");
+						obj.scrollToAPoint(driver, 2000);
 					}
 					//Click on attach another file
 					Thread.sleep(2000);
@@ -1846,7 +1845,7 @@ public class HiRCAEvent {
 		}
 		//Delete 3rd image
 		Thread.sleep(2000);
-		jse.executeScript("scroll(0,600)");
+		obj.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
@@ -1881,8 +1880,7 @@ public class HiRCAEvent {
 		Thread.sleep(4000);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0, 2000)");
+		obj.scrollToAPoint(driver, 2000);
 	}
 
 	public String hircaEventInfo(WebDriver driver, String username) throws Exception{
@@ -2045,7 +2043,7 @@ public class HiRCAEvent {
 					System.out.println("Error dotted line displayed on background information textbox");
 			}
 
-			jse.executeScript("scroll(0, 250)");
+			obj1.scrollToAPoint(driver, 250);
 			if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed())
 			{
 				String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
@@ -2144,8 +2142,7 @@ public class HiRCAEvent {
 		driver.findElement(By.id("pii-irca-event-pbstatement")).clear();
 		//Re enters text
 		driver.findElement(By.id("pii-irca-event-pbstatement")).sendKeys(paragraph_problem);
-
-		jse.executeScript("scroll(0, 0)");
+		obj1.scrollToTop(driver);
 
 		//Department
 		WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
@@ -2357,11 +2354,11 @@ public class HiRCAEvent {
 			String id = "pii-irca-event-filecollapsible-"+j;
 			if(j==3)
 			{
-				jse.executeScript("scroll(0, 1000)");
+				obj1.scrollToAPoint(driver, 1000);;
 			}
 			if(j==0)
 			{
-				jse.executeScript("scroll(0, 900)");
+				obj1.scrollToAPoint(driver, 900);;
 			}
 			if(j!=4)
 			{
@@ -2385,7 +2382,7 @@ public class HiRCAEvent {
 		//Gets value of department
 		String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 		System.out.println(get_dept);
-		jse.executeScript("scroll(0,6500)");
+		obj1.scrollToAPoint(driver, 6500);;
 		//Clicks on next
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		//Clicks on back
@@ -2396,7 +2393,7 @@ public class HiRCAEvent {
 		//Event id
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).sendKeys(event_id);
 		//Clicks on Next and proceeds with Root Cause
-		jse.executeScript("scroll(0,6500)");
+		obj1.scrollToAPoint(driver, 6500);
 		rootCause(driver);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();

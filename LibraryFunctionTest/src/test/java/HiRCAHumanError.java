@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -782,7 +781,6 @@ public class HiRCAHumanError {
 	public void verify316 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageQuestion)).getText();
@@ -900,9 +898,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.16.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1500)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1500);
 		//3.16.5 question
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.16.5] Attention bank and span insufficiency: 1. working without break > 140 minutes; 2. Work around 10am; 3. Work over 10 hours");
@@ -987,7 +983,6 @@ public class HiRCAHumanError {
 	public void verify36 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageQuestion)).getText();		
@@ -1144,9 +1139,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.6.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.6.6] Missing sections in: (1) Description of purpose; (2) Description of prerequisite; (3) Description of terminology; (4) Description of lessons learned in not-to-do lists; (5) References; (6) Request feedback from users");
@@ -1258,7 +1251,6 @@ public class HiRCAHumanError {
 	public void verify38 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageQuestion)).getText();
@@ -1401,9 +1393,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.8.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.8.6] Unclear and inconsistent equipment labeling and identification between equipment and procedure");
@@ -1482,7 +1472,6 @@ public class HiRCAHumanError {
 	public void verify37 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageQuestion)).getText();
@@ -1633,9 +1622,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.7.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.7.6] Lack of job-site reminders to prevent inattention-to-detail errors for routine work");

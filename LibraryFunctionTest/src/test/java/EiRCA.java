@@ -435,17 +435,9 @@ public class EiRCA {
 	public void enable44In2ndFailureMode(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Scroll to the bottom
-		Thread.sleep(1000);
-		try{
-			jse.executeScript("scroll(0,1500)");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
-		{
-			Thread.sleep(3000);
-			jse.executeScript("scroll(0,1500)");
-		}
+		obj.scrollToAPoint(driver, 1500);
 		Thread.sleep(1000);
 		//4.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode2Option42CheckBox)).click();
@@ -559,7 +551,6 @@ public class EiRCA {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCAChinese obj = new EiRCAChinese();
 		ShareCheck obj1 = new ShareCheck();
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(1000);
 		//Click on collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3FailureCollapsible)).click();
@@ -590,9 +581,7 @@ public class EiRCA {
 		if(Strings.isNullOrEmpty(s4)==false&&s4.contains("true"))
 		{
 			//Scroll to the bottom
-			Thread.sleep(500);
-			jse.executeScript("scroll(0,1200)");
-			Thread.sleep(500);
+			obj1.scrollToAPoint(driver, 1200);
 			//Click on check box for 3.5
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption35CheckBox)).click();
 		}
@@ -602,9 +591,7 @@ public class EiRCA {
 		if(Strings.isNullOrEmpty(s5)==false&&s5.contains("true"))
 		{
 			//Scroll to the bottom
-			Thread.sleep(500);
-			jse.executeScript("scroll(0,1200)");
-			Thread.sleep(500);
+			obj1.scrollToAPoint(driver, 1200);
 			//Click on check box for 3.6
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption36CheckBox)).click();
 		}
@@ -2069,13 +2056,10 @@ public class EiRCA {
 	public HashMap<String,String> pathEiRCASequenceOfEvents(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj1 = new ShareCheck ();
 		ErrorMeter obj = new ErrorMeter();
 		//Scroll to the bottom
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj1.scrollToAPoint(driver, 1200);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NextButtonBottomOfInfoPage)).click();
 		Thread.sleep(2000);
@@ -2340,7 +2324,6 @@ public class EiRCA {
 	public int EIRCAStep3(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCAChinese obj = new EiRCAChinese();
 		ShareCheck obj1 = new ShareCheck();
 		Thread.sleep(1000);
@@ -2386,18 +2369,14 @@ public class EiRCA {
 			if(i==5)
 			{
 				//Scroll to the bottom
-				Thread.sleep(500);
-				jse.executeScript("scroll(0,1200)");
-				Thread.sleep(500);
+				obj1.scrollToAPoint(driver, 1200);
 				//Click on check box for 3.5
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption35CheckBox)).click();
 			}
 			if(i==6)
 			{
 				//Scroll to the bottom
-				Thread.sleep(500);
-				jse.executeScript("scroll(0,1200)");
-				Thread.sleep(500);
+				obj1.scrollToAPoint(driver, 1200);
 				//Click on check box for 3.6
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption36CheckBox)).click();
 			}	    		
@@ -2416,7 +2395,6 @@ public class EiRCA {
 	public void fillTextStep3(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Fill in text in 3.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31Textbox)).sendKeys(textCreate(driver));
@@ -2426,9 +2404,8 @@ public class EiRCA {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33Textbox)).sendKeys(textCreate(driver));
 		//Fill in text in 3.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34Textbox)).sendKeys(textCreate(driver));
-		Thread.sleep(500);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(500);
+		//scroll down
+		obj.scrollToAPoint(driver, 1200);
 		//Fill in text in 3.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35Textbox)).sendKeys(textCreate(driver));
 		//Fill in text in 3.6

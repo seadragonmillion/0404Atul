@@ -14,7 +14,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -223,7 +222,6 @@ public class EquipmentCaseLoad {
 	public String createCaseChrome (WebDriver driver, String title, String keyword, int r) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,90);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -304,18 +302,14 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,1700)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
-		jse.executeScript("scroll(0,2000)");
+		obj.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
@@ -349,8 +343,7 @@ public class EquipmentCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -410,7 +403,6 @@ public class EquipmentCaseLoad {
 	public String createCaseFirefox (WebDriver driver, String title, String keyword, int r) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,90);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -430,9 +422,7 @@ public class EquipmentCaseLoad {
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		//Clicks on new case
@@ -492,18 +482,14 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,1700)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
-		jse.executeScript("scroll(0,2000)");
+		obj.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
@@ -542,8 +528,7 @@ public class EquipmentCaseLoad {
 			}
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -589,16 +574,13 @@ public class EquipmentCaseLoad {
 				}
 			}
 		}
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		return caseId;
 	}
 
 	public String createCaseIE (WebDriver driver, String title, String keyword, int r) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,90);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -618,9 +600,7 @@ public class EquipmentCaseLoad {
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		//Clicks on new case
@@ -680,18 +660,14 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,1700)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(4000);
-		jse.executeScript("scroll(0,2000)");
+		obj.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
@@ -725,8 +701,7 @@ public class EquipmentCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -772,16 +747,13 @@ public class EquipmentCaseLoad {
 				}
 			}
 		}
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		return caseId;
 	}
 
 	public String createCaseIE11 (WebDriver driver, String title, String keyword, int r) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,90);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Actions act1 = new Actions (driver);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
@@ -798,13 +770,10 @@ public class EquipmentCaseLoad {
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
 
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(4000);
+		obj.scrollToTop(driver);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		Thread.sleep(3000);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		Thread.sleep(6000);
 		//Enters mandatory data
 		//Enters case id
@@ -870,18 +839,14 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1700)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(4000);
-		jse.executeScript("scroll(0,2000)");
+		obj.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input")));
 		act1.click(ele).build().perform();
@@ -918,8 +883,7 @@ public class EquipmentCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -965,9 +929,7 @@ public class EquipmentCaseLoad {
 				}
 			}
 		}
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		return caseId;	  
 	}
 
@@ -1024,7 +986,6 @@ public class EquipmentCaseLoad {
 
 	public void deleteCase(WebDriver driver, String caseId) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -1054,9 +1015,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Checks if case deleted
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).sendKeys(caseId);

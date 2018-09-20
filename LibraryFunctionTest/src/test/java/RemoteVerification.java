@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.w3c.dom.Document;
-
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -47,7 +45,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -58,6 +55,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.Document;
 
 
 public class RemoteVerification {
@@ -654,8 +652,8 @@ public class RemoteVerification {
 
 	public void verifierSelect(WebDriver driver, int k) throws Exception {
 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		EiRCA obj = new EiRCA ();
+		ShareCheck obj1 = new ShareCheck();
 		//dev admin
 		if(k==1)
 		{
@@ -717,7 +715,7 @@ public class RemoteVerification {
 			driver.findElement(RVVerifierField).sendKeys("qaausie11rvverifiernonadmin");
 		}
 		//Selects the remote verifier		
-		jse.executeScript("scroll(0, 1500)");
+		obj1.scrollToAPoint(driver, 1500);
 		WebElement select = driver.findElement(RVVerifierDropdown);
 		WebElement option=select.findElement(obj.FirstSelectionUnderDropdown);
 		option.click();
@@ -1298,8 +1296,6 @@ public class RemoteVerification {
 			driver.findElement(RVEventDetails).clear();
 			driver.findElement(RVEventDetails).sendKeys(details(driver));
 		}
-
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Select verifier
 		verifierSelect(driver,k);
 		Thread.sleep(1000);
@@ -1307,13 +1303,12 @@ public class RemoteVerification {
 		//Uploads picture 2
 		upload2ndPicture(driver);
 		//*
-		jse.executeScript("scroll(0, 250)");
+		obj.scrollToAPoint(driver, 250);
 		Thread.sleep(3000);
 		//Uploads picture 1
 		upload1stPicture(driver);
 		//*
-		Thread.sleep(3000);
-		jse.executeScript("scroll(0, 0)");
+		obj.scrollToTop(driver);
 		//Verifies Date and time
 		verifyDateTime(driver);
 		//Verifies location of office

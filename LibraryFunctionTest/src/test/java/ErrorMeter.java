@@ -16,7 +16,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -269,9 +268,9 @@ public class ErrorMeter {
 
 		List<String> text=error100Data(driver);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
 		int i;
 		int j=text.size()-1;
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Closes any warning from server
 		try{
 
@@ -284,21 +283,18 @@ public class ErrorMeter {
 
 		}
 		//Click on Environment of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox2)).click();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox3)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 		for (i=0;i<10;i++)
@@ -319,8 +315,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -342,8 +337,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -364,8 +358,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -386,8 +379,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		//Checks error meter as 0%
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		String meterText = meter.getText();
@@ -400,8 +392,7 @@ public class ErrorMeter {
 
 
 		//Click on People of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox1)).click();
@@ -423,8 +414,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("38%").as("test data").isEqualTo(meterText);
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
@@ -445,8 +435,7 @@ public class ErrorMeter {
 			softly.assertThat("50%").as("test data").isEqualTo(meterText);
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -467,8 +456,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -489,8 +477,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -511,8 +498,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -536,8 +522,7 @@ public class ErrorMeter {
 
 
 		//Click on Activity of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-a"))).click();
 		//Clicks on checkboxes in Activity Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q1"))).click();
@@ -559,8 +544,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("63%").as("test data").isEqualTo(meterText);
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q3"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
@@ -581,8 +565,7 @@ public class ErrorMeter {
 			softly.assertThat("75%").as("test data").isEqualTo(meterText);
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -602,8 +585,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -625,8 +607,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -647,8 +628,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -671,8 +651,7 @@ public class ErrorMeter {
 
 
 		//Clicks on Procedure Tab
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-t"))).click();
 		//Clicks on checkboxes in Procedure Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
@@ -694,8 +673,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("88%").as("test data").isEqualTo(meterText);
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
@@ -713,8 +691,7 @@ public class ErrorMeter {
 		softly.assertThat("100%").as("test data").isEqualTo(meterText);
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -735,8 +712,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -758,8 +734,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -780,8 +755,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -799,8 +773,8 @@ public class ErrorMeter {
 		}
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[4]/textarea"))).clear();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text.get(j));
-		jse.executeScript("scroll(0, 0)");
-		jse.executeScript("scroll(0, 0)");
+		obj.scrollToTop(driver);
+		obj.scrollToTop(driver);
 	}
 
 	public String getBrowser(WebDriver driver) throws Exception {
@@ -817,9 +791,9 @@ public class ErrorMeter {
 
 		List<String> text = error50Data(driver);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
 		int i;
 		int j=text.size()-1;
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Closes any warning from server
 		try{
 
@@ -832,19 +806,16 @@ public class ErrorMeter {
 
 		}
 		//Click on Environment of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 		for (i=0;i<10;i++)
@@ -868,8 +839,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -892,8 +862,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		//Checks error meter as 0%
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		String meterText = meter.getText();
@@ -906,8 +875,7 @@ public class ErrorMeter {
 
 
 		//Click on People of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox2)).click();
@@ -920,8 +888,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("19%").as("test data").isEqualTo(meterText);
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
@@ -933,8 +900,7 @@ public class ErrorMeter {
 			softly.assertThat("25%").as("test data").isEqualTo(meterText);
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -947,8 +913,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -962,8 +927,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -976,8 +940,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -991,8 +954,7 @@ public class ErrorMeter {
 
 
 		//Click on Activity of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-a"))).click();
 		//Clicks on checkboxes in Activity Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
@@ -1005,8 +967,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("31%").as("test data").isEqualTo(meterText);
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
@@ -1018,8 +979,7 @@ public class ErrorMeter {
 			softly.assertThat("38%").as("test data").isEqualTo(meterText);
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -1043,8 +1003,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -1057,8 +1016,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -1072,8 +1030,7 @@ public class ErrorMeter {
 
 
 		//Clicks on Procedure Tab
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-t"))).click();
 		//Clicks on checkboxes in Procedure Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
@@ -1086,8 +1043,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("44%").as("test data").isEqualTo(meterText);
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
@@ -1096,8 +1052,7 @@ public class ErrorMeter {
 		softly.assertThat("50%").as("test data").isEqualTo(meterText);
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -1110,8 +1065,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[3]/textarea"))).sendKeys(text.get(j));
 
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -1125,8 +1079,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -1156,6 +1109,7 @@ public class ErrorMeter {
 
 		String text = error0Data(driver);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
 		//Closes any warning from server
 		try{
 
@@ -1176,9 +1130,7 @@ public class ErrorMeter {
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q2"))).click();
 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q3"))).click();
@@ -1188,8 +1140,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q4"))).click();
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		int i;
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1205,8 +1156,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[3]/textarea"))).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1222,8 +1172,7 @@ public class ErrorMeter {
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[5]/td[3]/textarea"))).clear();
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1238,8 +1187,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[3]/td[4]/textarea"))).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-t']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1260,8 +1208,7 @@ public class ErrorMeter {
 		softly.assertThat("0%").as("test data").isEqualTo(meterText);
 
 		//Click on Activity of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-taba-a"))).click();
 		//Clicks on checkboxes in Activity Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q1"))).click();
@@ -1272,8 +1219,7 @@ public class ErrorMeter {
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q2"))).click();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q3"))).click();
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q3"))).click();
@@ -1283,8 +1229,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-a-q4"))).click();
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[3]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1299,8 +1244,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[3]/textarea"))).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[4]/td[3]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1316,8 +1260,7 @@ public class ErrorMeter {
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[5]/td[3]/textarea"))).clear();
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[2]/td[4]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1332,8 +1275,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[3]/td[4]/textarea"))).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-a']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1354,8 +1296,7 @@ public class ErrorMeter {
 		softly.assertThat("0%").as("test data").isEqualTo(meterText);
 
 		//Click on People of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox1)).click();
@@ -1366,8 +1307,7 @@ public class ErrorMeter {
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox2)).click();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox3)).click();
@@ -1377,8 +1317,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCheckBox4)).click();
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1393,8 +1332,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason2)).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1410,8 +1348,7 @@ public class ErrorMeter {
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleSupportingReason4)).clear();
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1426,8 +1363,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[3]/td[4]/textarea"))).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-epm-tab-p']/table/tbody/tr[4]/td[4]/textarea"))).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1448,8 +1384,7 @@ public class ErrorMeter {
 		softly.assertThat("0%").as("test data").isEqualTo(meterText);
 
 		//Click on Environment of PAPE
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox1)).click();
@@ -1460,8 +1395,7 @@ public class ErrorMeter {
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox2)).click();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox3)).click();
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox3)).click();
@@ -1471,8 +1405,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCheckBox4)).click();
 
 		//Fill in texts in Supporting reasons 
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1488,8 +1421,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason2)).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1507,8 +1439,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1524,8 +1455,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction2)).clear();
 
-		jse.executeScript("scroll(0, 800)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 800);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
@@ -1540,8 +1470,7 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
-		jse.executeScript("scroll(0, 0)");
-		Thread.sleep(2000);
+		obj.scrollToTop(driver);
 		//Checks error meter as 0%
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterPercentageBar));
 		meterText = meter.getText();

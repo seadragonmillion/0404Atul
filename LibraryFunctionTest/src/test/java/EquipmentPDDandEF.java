@@ -1200,7 +1200,6 @@ public class EquipmentPDDandEF {
 
 	public List<String> createCaseChrome(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title) throws Exception{
 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		ShareCheck obj = new ShareCheck();
@@ -1271,9 +1270,7 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseAnswer)).sendKeys(title);
-			Thread.sleep(1000);
-			jse.executeScript("scroll(0,1700)");
-			Thread.sleep(1000);
+			obj.scrollToAPoint(driver, 1700);
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1295,9 +1292,7 @@ public class EquipmentPDDandEF {
 			}
 			else 
 			{
-				Thread.sleep(1000);
-				jse.executeScript("scroll(0,1700)");
-				Thread.sleep(1000);
+				obj.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(obj1.EquipCaseKeywordExistingList);
 				element.findElement(obj2.FirstAndLastChildInList).click();
 			}
@@ -1343,7 +1338,6 @@ public class EquipmentPDDandEF {
 
 	public List<String> createCaseFirefox(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title) throws Exception{
 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		CreateHumanCase obj2 = new CreateHumanCase();
@@ -1415,9 +1409,7 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseAnswer)).sendKeys(title);
-			Thread.sleep(1000);
-			jse.executeScript("scroll(0,1700)");
-			Thread.sleep(1000);
+			obj.scrollToAPoint(driver, 1700);
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1439,9 +1431,7 @@ public class EquipmentPDDandEF {
 			}
 			else 
 			{
-				Thread.sleep(1000);
-				jse.executeScript("scroll(0,1700)");
-				Thread.sleep(1000);
+				obj.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(obj1.EquipCaseKeywordExistingList);
 				element.findElement(obj2.FirstAndLastChildInList).click();
 			}
@@ -1558,15 +1548,7 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseAnswer)).sendKeys(title);
-			Thread.sleep(1000);
-			try{
-				jse.executeScript("scroll(0,1700)");
-			}catch(org.openqa.selenium.ScriptTimeoutException r)
-			{
-				Thread.sleep(3000);
-				jse.executeScript("scroll(0,1700)");
-			}
-			Thread.sleep(1000);
+			obj.scrollToAPoint(driver, 1700);
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1589,14 +1571,7 @@ public class EquipmentPDDandEF {
 			else 
 			{
 				Thread.sleep(1000);
-				try{
-					jse.executeScript("scroll(0,1700)");
-				}catch(org.openqa.selenium.ScriptTimeoutException r)
-				{
-					Thread.sleep(3000);
-					jse.executeScript("scroll(0,1700)");
-				}
-				Thread.sleep(1000);
+				obj.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(obj1.EquipCaseKeywordExistingList);
 				element.findElement(obj2.FirstAndLastChildInList).click();
 			}
@@ -1770,9 +1745,7 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseAnswer)).sendKeys(title);
-			Thread.sleep(1000);
-			jse.executeScript("scroll(0,1700)");
-			Thread.sleep(1000);
+			obj.scrollToAPoint(driver, 1700);;
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1794,9 +1767,7 @@ public class EquipmentPDDandEF {
 			}
 			else 
 			{
-				Thread.sleep(1000);
-				jse.executeScript("scroll(0,1700)");
-				Thread.sleep(1000);
+				obj.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(obj1.EquipCaseKeywordExistingList);
 				element.findElement(obj2.FirstAndLastChildInList).click();
 			}

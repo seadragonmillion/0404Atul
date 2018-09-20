@@ -13,7 +13,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -51,7 +50,6 @@ public class HiRCAOldReport {
 	public void openReportGetData(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		ShareCheck obj = new ShareCheck();
 		//Click on open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
@@ -83,7 +81,7 @@ public class HiRCAOldReport {
 		String investigator1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).getAttribute("value");
 		String investigator = investigator1.trim();
 		System.out.println(investigator);
-		jse.executeScript("scroll(0,0)");
+		obj.scrollToTop(driver);
 		//Click on Step1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click(); 
 		//Click on next once

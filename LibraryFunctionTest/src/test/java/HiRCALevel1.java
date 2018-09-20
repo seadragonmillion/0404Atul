@@ -1494,7 +1494,6 @@ public class HiRCALevel1 {
 	public HashMap<String,Integer> modifySUEP (WebDriver driver, List<String> lopOptions, HashMap<String,Integer> optionsOriginal) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Remove [] from lopOptions
 		List<String> lopOptions1 = new ArrayList<String>();
@@ -1515,8 +1514,7 @@ public class HiRCALevel1 {
 		//Count for root causes
 		int r=0;
 		//Scroll down
-		jse.executeScript("scroll(0,1100)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1100);
 		while(i<=((n*2)+1))
 		{
 			//Get text of option of 3.17
@@ -1603,7 +1601,6 @@ public class HiRCALevel1 {
 	public void HiRCAPathCheck(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj  = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Wait for loading message to disappear
@@ -1638,7 +1635,8 @@ public class HiRCALevel1 {
 		//Gets value of department
 		String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 		System.out.println(get_dept);
-		jse.executeScript("scroll(0,6500)");
+		//scroll down
+		obj.scrollToAPoint(driver, 6500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		//Select Equipment failure
@@ -2624,11 +2622,9 @@ public class HiRCALevel1 {
 	public void select3LOP (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Scroll to the bottom
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		Random random = new Random();
 		//Choose a number between 1 and 3 for number of selections
 		int n;
@@ -2694,7 +2690,6 @@ public class HiRCALevel1 {
 	public List<String> select317(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCALOPBug obj = new HiRCALOPBug();
 		ShareCheck obj1 = new ShareCheck();
 		List<String>  lopOptions1=new ArrayList<String>();
@@ -2735,7 +2730,7 @@ public class HiRCALevel1 {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			if(y>5)
-				jse.executeScript("scroll(0,1200)");
+				obj1.scrollToAPoint(driver, 1200);
 			if(y<=5)
 				obj1.scrollToTop(driver);
 			Thread.sleep(1000);

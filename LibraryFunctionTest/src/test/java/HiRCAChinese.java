@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -24,8 +23,8 @@ public class HiRCAChinese {
 	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCAChinese4 obj = new HiRCAChinese4();
+		ShareCheck obj1 = new ShareCheck();
 		//Clicks on HiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		Thread.sleep(2000);
@@ -56,7 +55,7 @@ public class HiRCAChinese {
 		//Gets value of department
 		String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 		System.out.println(get_dept);
-		jse.executeScript("scroll(0,6500)");
+		obj1.scrollToAPoint(driver, 6500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		Thread.sleep(2000);
@@ -1352,7 +1351,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL313 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -1532,9 +1530,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.13.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1100)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
 		obj1.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
@@ -1546,7 +1542,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL314 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -1769,9 +1764,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.14.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1100)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
 		obj1.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
@@ -1783,7 +1776,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL312 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -2018,9 +2010,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.12.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1100)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
 		obj1.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
@@ -2032,7 +2022,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL317 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -2268,9 +2257,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.17.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1100)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1100);
 		//3.17.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.17.6] 维修不到位");
@@ -2868,7 +2855,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL316 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -3063,9 +3049,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.16.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1500)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1500);
 		//3.16.5 question
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.16.5] 注意不足: 1.长时间工作而没有休息(> 140分钟); 2. 早上10点时做事; 3. 工作超过10小时");
@@ -3241,7 +3225,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL33 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -3504,9 +3487,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.3.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1300)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1300);
 		//3.3.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 
@@ -3874,7 +3855,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL36 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -4173,9 +4153,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.6.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.6.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 
@@ -4394,7 +4372,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL38 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -4663,9 +4640,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.8.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.8.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 
@@ -4825,7 +4800,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL37 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -5089,9 +5063,7 @@ public class HiRCAChinese {
 		//Click on 3rd collapsible for 3.7.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.7.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.7.6] 例行作业未有充分的及时提醒标牌预防粗心犯错");
@@ -5590,7 +5562,6 @@ public class HiRCAChinese {
 	public void chineseStepOneL32 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
 		//Waits for the page to load
@@ -5866,9 +5837,7 @@ public class HiRCAChinese {
 		softly.assertThat(c24).as("test data").contains("监督行为规范的管理");
 		//Click on 3rd collapsible for 3.2.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.2.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 

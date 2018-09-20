@@ -201,7 +201,6 @@ public class UserManagement {
 	public void verifyGroupListGroupModeratorChange (WebDriver driver, String company_id1, String company_id2, String group2) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Clicks on create user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-create"))).click();
@@ -218,9 +217,7 @@ public class UserManagement {
 		}
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1500)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify Group moderator list is empty
@@ -261,9 +258,7 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id1)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1500)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify group moderator list
@@ -313,9 +308,7 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id2)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1500)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify group2 moderator list
@@ -680,7 +673,6 @@ public class UserManagement {
 
 	public String[] chooseModule(WebDriver driver, List<Integer> num, int n, WebElement ele) throws Exception{
 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		String[]op=new String [30];
 		//Checks for the option selected and checks it
@@ -688,7 +680,7 @@ public class UserManagement {
 		{
 			if(num.get(m)>=16)
 			{
-				jse.executeScript("scroll(0,1500)");
+				obj.scrollToAPoint(driver, 1500);
 			}
 			if(num.get(m)==1)
 			{
@@ -752,7 +744,7 @@ public class UserManagement {
 			}
 			if(num.get(m)==16)
 			{
-				jse.executeScript("scroll(0,1500)");
+				obj.scrollToAPoint(driver, 1500);
 				op[m]="eLearning";
 			}
 			if(num.get(m)==17)
@@ -1726,6 +1718,7 @@ public class UserManagement {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Login obj = new Login ();
+		ShareCheck obj1 = new ShareCheck();
 		//If browser is firefox then switch to default content
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -1747,9 +1740,7 @@ public class UserManagement {
 			//Click on next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-license-next"))).click();
 			//Scroll to end and click on I accept
-			JavascriptExecutor jse = (JavascriptExecutor)driver;
-			jse.executeScript("scroll(0,2000)");
-			Thread.sleep(1000);
+			obj1.scrollToAPoint(driver, 2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-license-accept"))).click();
 			Thread.sleep(2000);
 			//Waits for the page to load
@@ -1759,7 +1750,6 @@ public class UserManagement {
 
 		}
 		//Wait for loading message to disappear
-		ShareCheck obj1 = new ShareCheck();
 		obj1.loadingServer(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));

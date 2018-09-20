@@ -3,7 +3,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,7 +32,6 @@ public class HiRCALOPBug {
 	public void fillUpHiRCAEventInfo(WebDriver driver,String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
@@ -58,7 +56,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
 		//Investigators
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
-		jse.executeScript("scroll(0,6500)");
+		obj.scrollToAPoint(driver, 6500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		Thread.sleep(2000);
@@ -138,7 +136,6 @@ public class HiRCALOPBug {
 	public void bugKALE1957(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
@@ -161,7 +158,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
+		obj.scrollToAPoint(driver, 1200);
 		Thread.sleep(1000);//Select number of LOPs and LOPs randomly
 		int y = selectNumberOfLOPs(driver);
 		System.out.println(y);
@@ -257,7 +254,6 @@ public class HiRCALOPBug {
 	public void bugPathWith3LopsKALE1926(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
@@ -289,8 +285,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1200);
 		//Select 3 LOPs randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -372,7 +367,6 @@ public class HiRCALOPBug {
 	public void bugPathWith1LopKALE1926(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
@@ -404,8 +398,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1200);
 		//Select 1 LOP randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -517,7 +510,6 @@ public class HiRCALOPBug {
 	public void bugPathWith2LopsKALE1926(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Click on new for new report
@@ -549,8 +541,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1200);
 		//Select 2 LOPs randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -917,11 +908,9 @@ public class HiRCALOPBug {
 	public int selectNumberOfLOPs(WebDriver driver)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1200);
 		//Select no of LOPs randomly 1 to 3
 		Random random = new Random();
 		int y;
@@ -1074,7 +1063,6 @@ public class HiRCALOPBug {
 	public int select221Random(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		Random random = new Random();
 		int y;
@@ -1084,9 +1072,7 @@ public class HiRCALOPBug {
 		Thread.sleep(1000);
 		if(y>6)
 		{
-			Thread.sleep(2000);
-			jse.executeScript("scroll(0,1100)");
-			Thread.sleep(2000);
+			obj.scrollToAPoint(driver, 1100);
 		}
 		//Click on a lop
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+y+"']"))).click();		
@@ -1316,7 +1302,6 @@ public class HiRCALOPBug {
 	public void select317Random(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		Random random = new Random();
 		//Choose a number between 1 and 7 for number of selections
@@ -1349,7 +1334,7 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			if(y>5)
-				jse.executeScript("scroll(0,1200)");
+				obj.scrollToAPoint(driver, 1200);
 			if(y<=5)
 				obj.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1364,11 +1349,9 @@ public class HiRCALOPBug {
 	public int selectOneLOP(WebDriver driver)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1200);
 		//Select on LOP randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -1399,7 +1382,6 @@ public class HiRCALOPBug {
 	public void bugPath1KALE1959(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Click on Act of nature
@@ -1428,9 +1410,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Scroll down 
 		//Scroll to the top
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//Click on same LOP
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		//Click on modify
@@ -1610,9 +1590,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Scroll down 
 		//Scroll to the top
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//Click on same LOP
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		//Click on modify
@@ -1632,15 +1610,13 @@ public class HiRCALOPBug {
 	public void select2ndLOP (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Select 2nd LOP
 		//Scroll down
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(1000);
+		obj.scrollToAPoint(driver, 1200);
 		//Select on LOP randomly
 		int y;
 		Random random = new Random();

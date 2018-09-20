@@ -1813,9 +1813,7 @@ public class OPiRCA {
 		OPiRCA2 obj2 = new OPiRCA2();
 		String text = obj.textCreate(driver);
 		//Scroll down
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,1500)");	 
-		Thread.sleep(1000);
+		obj1.scrollToAPoint(driver, 1500);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top

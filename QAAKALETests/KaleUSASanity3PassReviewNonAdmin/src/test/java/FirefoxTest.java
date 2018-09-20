@@ -78,8 +78,23 @@ public class FirefoxTest {
 		String recordName = obj1.createReport(driver);
 		//Open report
 		obj1.openReport(driver);
+		//ShareReport
+		/* Dev/Asia
+		   * 0=admin
+		   * 1=non admin
+		   * 2= admin ie11
+		   * 3= non admin ie11
+		   * US
+		   * 4=admin
+		   * 5=non admin
+		   * 6=admin ie11
+		   * 7=non admin ie11
+		  */
+		obj1.shareReport(driver, username, password, 5);
+		//Mark critical
+		obj1.markCritical(driver, username, password, 5);
 		//Delete report
-		obj1.deleteNewRecord(driver, recordName);
+		obj1.deleteNewRecord(driver, recordName,5);
 		//Logout
 		obj.logout(driver);
 		afterTest();

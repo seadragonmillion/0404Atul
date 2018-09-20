@@ -12,7 +12,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HumanCaseLoad {
-	
+
 	String keyword1 = "Slide100images";
 	String keyword2 = "Slide100NoImages";
 	String keyword3 = "Slide100Images50";
@@ -49,713 +48,676 @@ public class HumanCaseLoad {
 	String sheetMechDev = "MechanicalFailureDev";
 	String sheetMechAsia = "MechanicalFailureAsia";
 	String sheetMechUSA = "MechanicalFailureUSA";
-	
+
 	public void getHumanPerformanceLink(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on ErrorFree Bank
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		//Clicks on Human Performance Search
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance"))).click();
 	}
-	
+
 	public String createCaseChrome (WebDriver driver, String title, String keyword, int r) throws Exception {
-		
-		  WebDriverWait wait = new WebDriverWait(driver,90);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //Clicks on admin user name on top right corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  //Clicks on admin option
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		  //Clicks on Errorfree bank option
-		  if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-			  }
-		  //Clicks on Human cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
-		  //Enters mandatory data
-		  //Enters case id
-		  Random random = new Random();
-		  String caseId="";
-		  List<WebElement> list = new ArrayList<WebElement>();
-			//Wait for loading message to disappear
-		  ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
-			  //Clicks on new case button
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
-				//Wait for loading message to disappear
-				obj.loadingServer(driver);
-			  //Clicks on new case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			while (true)
-		  {
-			  Thread.sleep(1000);
-			  int y=random.nextInt(10000);
-			  if(y<1000)
-			     continue;
-			  caseId = String.format("%d", y);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
-			  Thread.sleep(1000);
-			  WebElement errorCaseId;
-			  try{
-				  errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
-			  }catch(org.openqa.selenium.NoSuchElementException e)
-			  {
-				  	break;
-				  }
-			  if(errorCaseId.isDisplayed()==true)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
-				  continue;
-			  }
-			  if(errorCaseId.isDisplayed()==false)
-				  break;
-		  }
-		  System.out.println("Case id: "+ caseId);
-		  //Enters Question
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
-		  //Enters Answer
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(1000);
-		  //Enters Keyword
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
-		  //Enters task
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
-		  //Enters purpose
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		  jse.executeScript("scroll(0,2000)");
-		  //Enters condition
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  jse.executeScript("scroll(0,2000)");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
-		  if(r==1)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeNoImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==2)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeOnlyImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==3)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChrome50ImagesAndText100.exe");
-			  p.waitFor();
-		  }
-		  Thread.sleep(3000);
-		  //Checks if 100 images have been uploaded
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  Thread.sleep(2000);
-		  int i;
-		  for (i=0; i<100;i++)
-		  {
-			  String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
-			  {
-				  System.out.println("Uploaded Image : " + (i+1));
-				  list.add(driver.findElement(By.xpath(xpath)));
-			  }
-			  
-		  }
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Clicks on save
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-		  //Clicks on create case
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  if(r==2 ||r==3)
-		  {
+
+		WebDriverWait wait = new WebDriverWait(driver,90);
+		ShareCheck obj = new ShareCheck();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		//Clicks on Errorfree bank option
+		if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		}
+		//Clicks on Human cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
+		//Enters mandatory data
+		//Enters case id
+		Random random = new Random();
+		String caseId="";
+		List<WebElement> list = new ArrayList<WebElement>();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Clicks on new case button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Clicks on new case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		while (true)
+		{
+			Thread.sleep(1000);
+			int y=random.nextInt(10000);
+			if(y<1000)
+				continue;
+			caseId = String.format("%d", y);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
+			Thread.sleep(1000);
+			WebElement errorCaseId;
+			try{
+				errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
+			}catch(org.openqa.selenium.NoSuchElementException e)
+			{
+				break;
+			}
+			if(errorCaseId.isDisplayed()==true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
+				continue;
+			}
+			if(errorCaseId.isDisplayed()==false)
+				break;
+		}
+		System.out.println("Case id: "+ caseId);
+		//Enters Question
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
+		//Enters Answer
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
+		obj.scrollToAPoint(driver, 1700);
+		//Enters Keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+		//Enters task
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
+		//Enters purpose
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		obj.scrollToAPoint(driver, 2000);
+		//Enters condition
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		obj.scrollToAPoint(driver, 2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		obj.scrollToTop(driver);
+		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
+		if(r==1)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeNoImages100.exe");
+			p.waitFor();
+		}
+		if(r==2)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeOnlyImages100.exe");
+			p.waitFor();
+		}
+		if(r==3)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChrome50ImagesAndText100.exe");
+			p.waitFor();
+		}
+		Thread.sleep(3000);
+		//Checks if 100 images have been uploaded
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		Thread.sleep(2000);
+		int i;
+		for (i=0; i<100;i++)
+		{
+			String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+			{
+				System.out.println("Uploaded Image : " + (i+1));
+				list.add(driver.findElement(By.xpath(xpath)));
+			}
+
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		obj.scrollToTop(driver);
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+		//Clicks on create case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		if(r==2 ||r==3)
+		{
 			//Waits for black loading message to disappear
-			  try{
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
-		  }
-		  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
-		  {
+			try{
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			{
+
+			}
+		}
+		if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
+		{
 			//Clicks on save
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-			  //Clicks on create case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-				//Wait for loading message to disappear
-				obj.loadingServer(driver);
-			  if(r==2 ||r==3)
-			  {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+			//Clicks on create case
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
+			if(r==2 ||r==3)
+			{
 				//Waits for black loading message to disappear
-				  try{
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
-			  }
-		  }
-		  return caseId;		  
+				try{
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				}catch (org.openqa.selenium.TimeoutException e)
+				{
+
+				}
+			}
+		}
+		return caseId;		  
 	}
-	
+
 	public String createCaseFirefox (WebDriver driver, String title, String keyword, int r) throws Exception {
-		
-		  WebDriverWait wait = new WebDriverWait(driver,90);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //Clicks on admin user name on top right corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  //Clicks on admin option
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		  //Clicks on Errorfree bank option
-		  if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-			  }
-		  //Clicks on Human cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
-		  //Enters mandatory data
-		  //Enters case id
-		  Random random = new Random();
-		  String caseId="";
-		  List<WebElement> list = new ArrayList<WebElement>();
-			//Wait for loading message to disappear
-		  ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
-			  //Clicks on new case button
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
-			  //Clicks on new case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			while (true)
-		  {
-			  Thread.sleep(1000);
-			  int y=random.nextInt(10000);
-			  if(y<1000)
-			     continue;
-			  caseId = String.format("%d", y);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
-			  Thread.sleep(1000);
-			  WebElement errorCaseId;
-			  try{
-				  errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
-			  }catch(org.openqa.selenium.NoSuchElementException e)
-			  {
-				  	break;
-				  }
-			  if(errorCaseId.isDisplayed()==true)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
-				  continue;
-			  }
-			  if(errorCaseId.isDisplayed()==false)
-				  break;
-		  }
-		  System.out.println("Case id: "+ caseId);
-		  //Enters Question
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
-		  //Enters Answer
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(1000);
-		  //Enters Keyword
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
-		  //Enters task
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
-		  //Enters purpose
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		  jse.executeScript("scroll(0,2000)");
-		  //Enters condition
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  jse.executeScript("scroll(0,2000)");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
-		  if(r==1)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesFirefoxNoImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==2)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesFirefoxOnlyImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==3)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesFirefox50ImagesAndText100.exe");
-			  p.waitFor();
-		  }
-		  Thread.sleep(3000);
-		  //Checks if 100 images have been uploaded
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  Thread.sleep(2000);
-		  int i;
-		  for (i=0; i<100;i++)
-		  {
-			  String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
-			  {
-				  System.out.println("Uploaded Image : " + (i+1));
-				  list.add(driver.findElement(By.xpath(xpath)));
-			  }
-			  
-		  }
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Clicks on save
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-		  //Clicks on create case
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  if(r==2 ||r==3)
-		  {
+
+		WebDriverWait wait = new WebDriverWait(driver,90);
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		//Clicks on Errorfree bank option
+		if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		}
+		//Clicks on Human cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
+		//Enters mandatory data
+		//Enters case id
+		Random random = new Random();
+		String caseId="";
+		List<WebElement> list = new ArrayList<WebElement>();
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		//Clicks on new case button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
+		//Clicks on new case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		while (true)
+		{
+			Thread.sleep(1000);
+			int y=random.nextInt(10000);
+			if(y<1000)
+				continue;
+			caseId = String.format("%d", y);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
+			Thread.sleep(1000);
+			WebElement errorCaseId;
+			try{
+				errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
+			}catch(org.openqa.selenium.NoSuchElementException e)
+			{
+				break;
+			}
+			if(errorCaseId.isDisplayed()==true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
+				continue;
+			}
+			if(errorCaseId.isDisplayed()==false)
+				break;
+		}
+		System.out.println("Case id: "+ caseId);
+		//Enters Question
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
+		//Enters Answer
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
+		obj.scrollToAPoint(driver, 1700);
+		//Enters Keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+		//Enters task
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
+		//Enters purpose
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		obj.scrollToAPoint(driver, 2000);
+		//Enters condition
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		obj.scrollToAPoint(driver, 2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		obj.scrollToTop(driver);
+		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
+		if(r==1)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesFirefoxNoImages100.exe");
+			p.waitFor();
+		}
+		if(r==2)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesFirefoxOnlyImages100.exe");
+			p.waitFor();
+		}
+		if(r==3)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesFirefox50ImagesAndText100.exe");
+			p.waitFor();
+		}
+		Thread.sleep(3000);
+		//Checks if 100 images have been uploaded
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		Thread.sleep(2000);
+		int i;
+		for (i=0; i<100;i++)
+		{
+			String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+			{
+				System.out.println("Uploaded Image : " + (i+1));
+				list.add(driver.findElement(By.xpath(xpath)));
+			}
+
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		obj.scrollToTop(driver);
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+		//Clicks on create case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		if(r==2 ||r==3)
+		{
 			//Waits for black loading message to disappear
-			  try{
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
-		  }
-		  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
-		  {
+			try{
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			{
+
+			}
+		}
+		if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
+		{
 			//Clicks on save
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-			  //Clicks on create case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-				//Wait for loading message to disappear
-				obj.loadingServer(driver);
-			  if(r==2 ||r==3)
-			  {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+			//Clicks on create case
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
+			if(r==2 ||r==3)
+			{
 				//Waits for black loading message to disappear
-				  try{
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
-			  }
-		  }
-		  jse.executeScript("scroll(0,0)");
-		  return caseId;		  
+				try{
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				}catch (org.openqa.selenium.TimeoutException e)
+				{
+
+				}
+			}
+		}
+		obj.scrollToTop(driver);
+		return caseId;		  
 	}
-	
+
 	public String createCaseIE (WebDriver driver, String title, String keyword, int r) throws Exception {
-		
-		  WebDriverWait wait = new WebDriverWait(driver,90);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //Clicks on admin user name on top right corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  //Clicks on admin option
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		  //Clicks on Errorfree bank option
-		  if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-			  }
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(2000);
-		  //Clicks on Human cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
-		  //Enters mandatory data
-		  //Enters case id
-		  Random random = new Random();
-		  String caseId="";
-		  List<WebElement> list = new ArrayList<WebElement>();
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(2000);
-			//Wait for loading message to disappear
-		  ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(2000);
-			  //Clicks on new case button
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
-			  //Clicks on new case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			while (true)
-		  {
-			  Thread.sleep(1000);
-			  int y=random.nextInt(10000);
-			  if(y<1000)
-			     continue;
-			  caseId = String.format("%d", y);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
-			  Thread.sleep(1000);
-			  WebElement errorCaseId;
-			  try{
-				  errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
-			  }catch(org.openqa.selenium.NoSuchElementException e)
-			  {
-				  	break;
-				  }
-			  if(errorCaseId.isDisplayed()==true)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
-				  continue;
-			  }
-			  if(errorCaseId.isDisplayed()==false)
-				  break;
-		  }
-		  System.out.println("Case id: "+ caseId);
-		  //Enters Question
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
-		  //Enters Answer
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(2000);
-		  //Enters Keyword
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
-		  //Enters task
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
-		  //Enters purpose
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		  jse.executeScript("scroll(0,2000)");
-		  //Enters condition
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  jse.executeScript("scroll(0,2000)");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(2000);
-		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
-		  if(r==1)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesIE10NoImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==2)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesIE10OnlyImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==3)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesIE1050ImagesAndText100.exe");
-			  p.waitFor();
-		  }
-		  Thread.sleep(3000);
-		  //Checks if 100 images have been uploaded
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  Thread.sleep(2000);
-		  int i;
-		  for (i=0; i<100;i++)
-		  {
-			  String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
-			  {
-				  System.out.println("Uploaded Image : " + (i+1));
-				  list.add(driver.findElement(By.xpath(xpath)));
-			  }
-			  
-		  }
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Clicks on save
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-		  //Clicks on create case
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  if(r==2 ||r==3)
-		  {
+
+		WebDriverWait wait = new WebDriverWait(driver,90);
+		ShareCheck obj = new ShareCheck();
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		//Clicks on Errorfree bank option
+		if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		}
+		obj.scrollToTop(driver);
+		//Clicks on Human cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
+		//Enters mandatory data
+		//Enters case id
+		Random random = new Random();
+		String caseId="";
+		List<WebElement> list = new ArrayList<WebElement>();
+		obj.scrollToTop(driver);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);
+		//Clicks on new case button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
+		//Clicks on new case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		while (true)
+		{
+			Thread.sleep(1000);
+			int y=random.nextInt(10000);
+			if(y<1000)
+				continue;
+			caseId = String.format("%d", y);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
+			Thread.sleep(1000);
+			WebElement errorCaseId;
+			try{
+				errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
+			}catch(org.openqa.selenium.NoSuchElementException e)
+			{
+				break;
+			}
+			if(errorCaseId.isDisplayed()==true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
+				continue;
+			}
+			if(errorCaseId.isDisplayed()==false)
+				break;
+		}
+		System.out.println("Case id: "+ caseId);
+		//Enters Question
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
+		//Enters Answer
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
+		obj.scrollToAPoint(driver, 1700);
+		//Enters Keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+		//Enters task
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
+		//Enters purpose
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		obj.scrollToAPoint(driver, 2000);
+		//Enters condition
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		obj.scrollToAPoint(driver, 2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		obj.scrollToTop(driver);
+		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
+		if(r==1)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesIE10NoImages100.exe");
+			p.waitFor();
+		}
+		if(r==2)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesIE10OnlyImages100.exe");
+			p.waitFor();
+		}
+		if(r==3)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesIE1050ImagesAndText100.exe");
+			p.waitFor();
+		}
+		Thread.sleep(3000);
+		//Checks if 100 images have been uploaded
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		Thread.sleep(2000);
+		int i;
+		for (i=0; i<100;i++)
+		{
+			String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+			{
+				System.out.println("Uploaded Image : " + (i+1));
+				list.add(driver.findElement(By.xpath(xpath)));
+			}
+
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
+		obj.scrollToTop(driver);
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+		//Clicks on create case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		if(r==2 ||r==3)
+		{
 			//Waits for black loading message to disappear
-			  try{
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
-		  }
-		  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
-		  {
-			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
-			  Thread.sleep(1000);
-			  //Clicks on save
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-			  //Clicks on create case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-				//Wait for loading message to disappear
-				obj.loadingServer(driver);
-			  if(r==2 ||r==3)
-			  {
+			try{
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			{
+
+			}
+		}
+		if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
+		{
+			obj.scrollToTop(driver);
+			//Clicks on save
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+			//Clicks on create case
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
+			if(r==2 ||r==3)
+			{
 				//Waits for black loading message to disappear
-				  try{
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
-			  }
-		  }
-		  jse.executeScript("scroll(0,0)");
-		  return caseId;		  
+				try{
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				}catch (org.openqa.selenium.TimeoutException e)
+				{
+
+				}
+			}
+		}
+		obj.scrollToTop(driver);
+		return caseId;		  
 	}
-	
+
 	public String createCaseIE11 (WebDriver driver, String title, String keyword, int r) throws Exception {
-		
-		  WebDriverWait wait = new WebDriverWait(driver,90);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //Clicks on admin user name on top right corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  //Clicks on admin option
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		  //Clicks on Errorfree bank option
-		  if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-			  }
-			//Wait for loading message to disappear
-		  ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
-		  Thread.sleep(2000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(2000);		
-		  //Clicks on Human cases
-		  WebElement button1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button")));
-		  Actions act2= new Actions(driver);
-		  act2.click(button1).build().perform();
-		  //Enters mandatory data
-		  //Enters case id
-		  Random random = new Random();
-		  String caseId="";
-		  List<WebElement> list = new ArrayList<WebElement>();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(3000);
-		  //Clicks on new case button
-		  WebElement button2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new")));
-		  act2.click(button2).build().perform();
-		  Thread.sleep(4000);
-		  //Clicks on new case
-		  WebElement button3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title")));
-		  act2.click(button3).build().perform();
-		  WebElement button4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed")));
-		  act2.click(button4).build().perform();
-		  while (true)
-		  {
-			  Thread.sleep(1000);
-			  int y=random.nextInt(10000);
-			  if(y<1000)
-			     continue;
-			  caseId = String.format("%d", y);
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
-			  Thread.sleep(1000);
-			  WebElement errorCaseId;
-			  try{
-				  errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
-			  }catch(org.openqa.selenium.NoSuchElementException e)
-			  {
-				  	break;
-				  }
-			  if(errorCaseId.isDisplayed()==true)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
-				  continue;
-			  }
-			  if(errorCaseId.isDisplayed()==false)
-				  break;
-		  }
-		  System.out.println("Case id: "+ caseId);
-		  //Enters Question
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
-		  //Enters Answer
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,1700)");
-		  Thread.sleep(3000);
-		  //Enters Keyword
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
-		  Thread.sleep(1500);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
-		  //Enters task
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
-		  Thread.sleep(3000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
-		  //Enters purpose
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
-		  Thread.sleep(3000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		  jse.executeScript("scroll(0,2000)");
-		  //Enters condition
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
-		  Thread.sleep(3000);
-		  jse.executeScript("scroll(0,2000)");
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		  Thread.sleep(4000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(2000);
-		  //Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		  WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input")));
-		  act2.click(ele).build().perform();
-		  if(r==1)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE10NoImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==2)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE10OnlyImages100.exe");
-			  p.waitFor();
-		  }
-		  if(r==3)
-		  {
-			  Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE1050ImagesAndText100.exe");
-			  p.waitFor();
-		  }
-		  Thread.sleep(3000);
-		  //Checks if 100 images have been uploaded
-		  WebElement button11=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div")));
-		  act2.click(button11).build().perform();
-		  int i;
-		  for (i=0; i<100;i++)
-		  {
-			  String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
-			  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
-			  {
-				  System.out.println("Uploaded Image : " + (i+1));
-				  list.add(driver.findElement(By.xpath(xpath)));
-			  }
-			  
-		  }
-		  WebElement plussign=driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"));
-		  act2.click(plussign).build().perform();
-		  Thread.sleep(3000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Clicks on save
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-		  //Clicks on create case
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  if(r==2 ||r==3)
-		  {
+
+		WebDriverWait wait = new WebDriverWait(driver,90);
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		//Clicks on Errorfree bank option
+		if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		}
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);		
+		//Clicks on Human cases
+		WebElement button1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button")));
+		Actions act2= new Actions(driver);
+		act2.click(button1).build().perform();
+		//Enters mandatory data
+		//Enters case id
+		Random random = new Random();
+		String caseId="";
+		List<WebElement> list = new ArrayList<WebElement>();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);
+		//Clicks on new case button
+		WebElement button2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new")));
+		act2.click(button2).build().perform();
+		Thread.sleep(4000);
+		//Clicks on new case
+		WebElement button3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title")));
+		act2.click(button3).build().perform();
+		WebElement button4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed")));
+		act2.click(button4).build().perform();
+		while (true)
+		{
+			Thread.sleep(1000);
+			int y=random.nextInt(10000);
+			if(y<1000)
+				continue;
+			caseId = String.format("%d", y);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).sendKeys(caseId);
+			Thread.sleep(1000);
+			WebElement errorCaseId;
+			try{
+				errorCaseId=driver.findElement(By.id("pii-admin-efsh-id-error"));
+			}catch(org.openqa.selenium.NoSuchElementException e)
+			{
+				break;
+			}
+			if(errorCaseId.isDisplayed()==true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-id"))).clear();
+				continue;
+			}
+			if(errorCaseId.isDisplayed()==false)
+				break;
+		}
+		System.out.println("Case id: "+ caseId);
+		//Enters Question
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
+		//Enters Answer
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
+		obj.scrollToAPoint(driver, 1700);
+		//Enters Keyword
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+		//Enters task
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
+		//Enters purpose
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		obj.scrollToAPoint(driver, 2000);
+		//Enters condition
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
+		Thread.sleep(3000);
+		obj.scrollToAPoint(driver, 2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		Thread.sleep(4000);
+		obj.scrollToTop(driver);
+		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
+		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input")));
+		act2.click(ele).build().perform();
+		if(r==1)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE10NoImages100.exe");
+			p.waitFor();
+		}
+		if(r==2)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE10OnlyImages100.exe");
+			p.waitFor();
+		}
+		if(r==3)
+		{
+			Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlidesIE1050ImagesAndText100.exe");
+			p.waitFor();
+		}
+		Thread.sleep(3000);
+		//Checks if 100 images have been uploaded
+		WebElement button11=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-form-selectedfiles-div")));
+		act2.click(button11).build().perform();
+		int i;
+		for (i=0; i<100;i++)
+		{
+			String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+			{
+				System.out.println("Uploaded Image : " + (i+1));
+				list.add(driver.findElement(By.xpath(xpath)));
+			}
+
+		}
+		WebElement plussign=driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"));
+		act2.click(plussign).build().perform();
+		Thread.sleep(3000);
+		obj.scrollToTop(driver);
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+		//Clicks on create case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		if(r==2 ||r==3)
+		{
 			//Waits for black loading message to disappear
-			  try{
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-				  Thread.sleep(5000);
-				  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-				 }catch (org.openqa.selenium.TimeoutException e)
-				  {
-					  
-				  }
-		  }
-		  if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
-		  {
-			  Thread.sleep(1000);
-			  jse.executeScript("scroll(0,0)");
-			  Thread.sleep(1000);
-			  //Clicks on save
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
-			  //Clicks on create case
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-				//Wait for loading message to disappear
-				obj.loadingServer(driver);
-			  if(r==2 ||r==3)
-			  {
+			try{
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+				Thread.sleep(5000);
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+			}catch (org.openqa.selenium.TimeoutException e)
+			{
+
+			}
+		}
+		if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
+		{
+			obj.scrollToTop(driver);
+			//Clicks on save
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
+			//Clicks on create case
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
+			if(r==2 ||r==3)
+			{
 				//Waits for black loading message to disappear
-				  try{
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
-					  Thread.sleep(5000);
-					  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
-					 }catch (org.openqa.selenium.TimeoutException e)
-					  {
-						  
-					  }
-			  }
-		  }
-		  jse.executeScript("scroll(0,0)");
-		  return caseId;		  
+				try{
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-icon-loading")));
+					Thread.sleep(5000);
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("ui-icon-loading")));
+				}catch (org.openqa.selenium.TimeoutException e)
+				{
+
+				}
+			}
+		}
+		obj.scrollToTop(driver);
+		return caseId;		  
 	}
-	
+
 	public int deletePreviousCase(WebDriver driver, String keyword) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on Error free bank
@@ -806,56 +768,53 @@ public class HumanCaseLoad {
 	}
 
 	public void deleteCase(WebDriver driver, String caseId) throws Exception{
-		  WebDriverWait wait = new WebDriverWait(driver,40);
-		  JavascriptExecutor jse = (JavascriptExecutor)driver;
-		  //Clicks on admin user name on top right corner
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		  //Clicks on admin option
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-		  Thread.sleep(1000);
-		  //Clicks on Errorfree bank option
-		  if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
-			  {
-				  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
-			  }
-		  //Clicks on Human cases
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
-			//Wait for loading message to disappear
-		  ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
-		  jse.executeScript("scroll(0,0)");
-		  //Click on enter case id
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
-		  Thread.sleep(2000);
-		  //Clicks on case id
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-ul"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  jse.executeScript("scroll(0,0)");
-		  //Clicks on delete button
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  //Clicks on delete case
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
-			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-		  Thread.sleep(1000);
-		  jse.executeScript("scroll(0,0)");
-		  Thread.sleep(1000);
-		  //Checks if case deleted
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).clear();
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
-		  Thread.sleep(2000);
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(Keys.ENTER);
-		  Thread.sleep(1000);
-		  if(driver.findElement(By.id("pii-admin-efsh-list-ul")).isDisplayed()==false)
-			  System.out.println("Case deleted "+caseId);		  
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Clicks on admin user name on top right corner
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//Clicks on admin option
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+		Thread.sleep(1000);
+		//Clicks on Errorfree bank option
+		if (driver.findElement(By.id("pii-admin-efsh-manage-button")).isDisplayed()==false)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
+		}
+		//Clicks on Human cases
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
+		//Wait for loading message to disappear
+		ShareCheck obj = new ShareCheck();
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);
+		//Click on enter case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
+		Thread.sleep(2000);
+		//Clicks on case id
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-ul"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);
+		//Clicks on delete button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		//Clicks on delete case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);
+		//Checks if case deleted
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		if(driver.findElement(By.id("pii-admin-efsh-list-ul")).isDisplayed()==false)
+			System.out.println("Case deleted "+caseId);		  
 	}
 
 	public long searchCase100(WebDriver driver, String keyword, String identifier) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Types in the keyword to get slide 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
@@ -881,8 +840,8 @@ public class HumanCaseLoad {
 		System.out.println(slide);
 		System.out.println(slide.indexOf("(") + "  "+ slide.indexOf(")"));
 		String number= slide.substring(slide.indexOf("(")+1, slide.indexOf(")"));
-	    element.sendKeys(Keys.TAB);
-	    element.sendKeys(Keys.ENTER);
+		element.sendKeys(Keys.TAB);
+		element.sendKeys(Keys.ENTER);
 		driver.findElement(By.id("pii-slideshow-"+identifier+"-popup"));
 		System.out.println(number);
 		int n = Integer.parseInt(number);
@@ -912,9 +871,9 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-clear"))).click();
 		return total;
 	}
-	
+
 	public void storeData(WebDriver driver, long total1, long total2, long total3, String sheet) throws Exception {
-		
+
 		File file = new File("E:/LoadCase.xlsx");		
 		// Open the Excel file
 		FileInputStream ExcelFile = new FileInputStream(file);
@@ -925,12 +884,12 @@ public class HumanCaseLoad {
 		int rows = ExcelWSheet.getPhysicalNumberOfRows();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-	    String browserName = cap.getBrowserName().toLowerCase();
-	    System.out.println(browserName);
-	    //Get date
-	    SimpleDateFormat sfdate = new SimpleDateFormat("MM/dd/yyy");
-	    Date date = new Date();
-	    //System.out.println(sfdate.format(date));
+		String browserName = cap.getBrowserName().toLowerCase();
+		System.out.println(browserName);
+		//Get date
+		SimpleDateFormat sfdate = new SimpleDateFormat("MM/dd/yyy");
+		Date date = new Date();
+		//System.out.println(sfdate.format(date));
 		//Create a new row for only images
 		Row row1 = ExcelWSheet.createRow(rows);
 		row1.createCell(0).setCellValue("Only Images");
@@ -956,7 +915,7 @@ public class HumanCaseLoad {
 		ExcelWBook.write(outputStream);
 		ExcelWBook.close();
 		outputStream.close();
-		
+
 	}
 
 }

@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -19,7 +18,6 @@ public class HiRCAHumanError2 {
 	public void verify31 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -157,9 +155,7 @@ public class HiRCAHumanError2 {
 		softly.assertThat(c24).as("test data").contains("Performing self analysis");
 		//Click on 3rd collapsible for 3.1.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.1.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();		
 		softly.assertThat(q396).as("test data").contains("[3.1.6] Unfit for work (sick, ill, preoccupied, etc.)");
@@ -485,7 +481,6 @@ public class HiRCAHumanError2 {
 	public void verify39 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -627,9 +622,7 @@ public class HiRCAHumanError2 {
 		softly.assertThat(c26).as("test data").contains("Improvement of training resources");
 		//Click on 3rd collapsible for 3.9.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.9.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.9.6] Inadequate provision of needed training (on-the-job)");
@@ -663,7 +656,6 @@ public class HiRCAHumanError2 {
 	public void verify32 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -803,9 +795,7 @@ public class HiRCAHumanError2 {
 		softly.assertThat(c24).as("test data").contains("Management of supervisor behavior standards");
 		//Click on 3rd collapsible for 3.2.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.2.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.2.6] Inadequate supervisor communication and coordination skills in giving instructions and follow-through");
@@ -1074,7 +1064,6 @@ public class HiRCAHumanError2 {
 	public void verify33 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -1219,9 +1208,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1300)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1300);
 		//3.3.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.3.6] Inadequate performance monitoring and trending in the manager's group");

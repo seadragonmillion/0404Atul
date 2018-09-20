@@ -4,9 +4,7 @@ import java.util.regex.Pattern;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -385,7 +383,6 @@ public class OPiRCAChinese4 {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		WebDriverWait wait1 = new WebDriverWait(driver,2);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCA obj = new OPiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		List<String> ac = new ArrayList<String>();
@@ -414,11 +411,7 @@ public class OPiRCAChinese4 {
 			//Click on answer
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
 			//Scroll to element
-			Point p = l.getLocation();
-			int yaxis= p.getY()-250;
-			Thread.sleep(500);
-			jse.executeScript("scroll(0,"+yaxis+")");
-			Thread.sleep(500);
+			obj1.scrollToElement(driver, l);
 			l.click();
 			ac.add(l.getText());
 		}
@@ -758,9 +751,9 @@ public class OPiRCAChinese4 {
 	public void chineseApparentCausePP2(WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
+		ShareCheck obj2 = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("接口存在不足");
@@ -837,9 +830,7 @@ public class OPiRCAChinese4 {
 		softly.assertThat(c10).as("test data").contains("纠正制度-制度接口问题");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		Thread.sleep(1000);
-		jse.executeScript("scroll(0,1500)");
-		Thread.sleep(1000);
+		obj2.scrollToAPoint(driver, 1500);
 		//P5.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[PP2.6] 制度与制度的接口不明确或模糊");

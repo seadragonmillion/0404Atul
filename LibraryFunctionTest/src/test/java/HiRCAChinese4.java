@@ -2,7 +2,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -700,7 +699,6 @@ public class HiRCAChinese4 {
 	public void chineseStepOneL39 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -979,9 +977,7 @@ public class HiRCAChinese4 {
 		softly.assertThat(c26).as("test data").contains("完善培训资源");
 		//Click on 3rd collapsible for 3.9.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.9.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 
@@ -1093,7 +1089,6 @@ public class HiRCAChinese4 {
 	public void chineseStepOneL31 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1368,9 +1363,7 @@ public class HiRCAChinese4 {
 		softly.assertThat(c24).as("test data").contains("开展自我分析");
 		//Click on 3rd collapsible for 3.1.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1200);
 		//3.1.6 question
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();		
 		softly.assertThat(q396).as("test data").contains("[3.1.6] 不适合工作（生病、有心事等）");
@@ -2585,18 +2578,13 @@ public class HiRCAChinese4 {
 	public void chineseAddContributingFactor(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Scroll down
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1300)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1300);
 		//Click on add contributing factor
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).click();
 		//Scroll down
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1400)");
-		Thread.sleep(2000);
+		obj.scrollToAPoint(driver, 1400);
 		//Verify all labels
 		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-cf']"))).getText();
 		softly.assertThat(label1).as("test data").contains("促成因素:");

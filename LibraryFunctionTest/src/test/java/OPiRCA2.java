@@ -726,7 +726,10 @@ public class OPiRCA2 {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
-		softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: "+r1+"?");
+		if (driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: "+r1+"?");
+		else
+			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: <br/>"+r1+"?");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");

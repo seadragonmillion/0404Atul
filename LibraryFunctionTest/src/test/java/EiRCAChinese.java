@@ -16,7 +16,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -1177,7 +1176,7 @@ public class EiRCAChinese {
 	public void selectAllCheckboxesStep3 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
 		//Click on check box for 3.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31CheckBox)).click();
 		//Click on check box for 3.2
@@ -1187,17 +1186,13 @@ public class EiRCAChinese {
 		//Click on check box for 3.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34CheckBox)).click();
 		//Scroll to the bottom
-		Thread.sleep(500);
-		jse.executeScript("scroll(0,1200)");
-		Thread.sleep(500);
+		obj.scrollToAPoint(driver, 1200);
 		//Click on check box for 3.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35CheckBox)).click();
 		//Click on check box for 3.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36CheckBox)).click();
 		//Scroll to the top
-		Thread.sleep(500);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(500);
+		obj.scrollToTop(driver);
 	}
 
 
@@ -4115,7 +4110,7 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj1= new ShareCheck();
 		//Click on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLink)).click();
 		//Clicks on EiRCA
@@ -4141,14 +4136,11 @@ public class EiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAEventReviewerField)).sendKeys(text);
 		//Sponsor
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAEventSponsorField)).sendKeys(text);
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,1500)");
+		obj1.scrollToAPoint(driver, 1500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.NextButtonBottomOfInfoPage)).click();
 		//Scroll top
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);		
+		obj1.scrollToTop(driver);	
 	}
 
 	public void softAssert() throws Exception {
