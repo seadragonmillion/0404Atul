@@ -249,6 +249,8 @@ public class PassReview {
 		//q1 to q6
 		for(int i=2;i<=7;i++)
 		{
+			//Scroll to element
+			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))).click();
 			Thread.sleep(500);
@@ -460,12 +462,13 @@ public class PassReview {
 		obj1.loadingServer(driver);
 	}
 
-	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{
+	public void deleteNewRecord(WebDriver driver, String recordName, int y, String username) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		EiRCA obj1 = new EiRCA ();
 		ErrorMeter obj2 = new ErrorMeter();
+		LanguageCheckOfReports obj3 = new LanguageCheckOfReports();
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		obj.loadingServer(driver);
@@ -486,7 +489,10 @@ public class PassReview {
 		if (name!=recordName)
 			System.out.println("Record deleted");
 		else
-			System.out.println("Record could not be deleted");			
+			System.out.println("Record could not be deleted");	
+		//verify admin user account page
+		if(y==0||y==2||y==4||y==6)
+			obj3.verifyAccountPageAdminUser(driver, username, softly);
 		//Verify report not retrieved by shared to person		
 		String sharer = obj2.decideSharer (y);
 		obj.checkNoReportAfterDelete(driver, sharer, softly);		
@@ -531,6 +537,7 @@ public class PassReview {
 		ShareCheck obj = new ShareCheck();
 		EiRCA obj1 = new EiRCA ();
 		HiRCALOPBug obj2 = new HiRCALOPBug();
+		FontCheck obj3 = new FontCheck();
 		String text = obj1.textCreate(driver);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
@@ -541,6 +548,8 @@ public class PassReview {
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
+		//Check font on Analysis page
+		obj3.analysisModuleFontCheck(driver, softly);
 		//Clicks on 3 Pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewLink)).click();
 		Thread.sleep(2000);

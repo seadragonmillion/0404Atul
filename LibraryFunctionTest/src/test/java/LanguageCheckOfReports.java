@@ -64,7 +64,7 @@ public class LanguageCheckOfReports {
 		}
 	}
 	
-	public void verifyLabelUserAccount(WebDriver driver) throws Exception {
+	public void verifyLabelUserAccount(WebDriver driver,SoftAssertions softly) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//page title
@@ -106,6 +106,13 @@ public class LanguageCheckOfReports {
 		//license
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-license']"))).getText();
 		softly.assertThat(s11).as("test data").isEqualTo("License agreement:");
+		//Verify place holder for password
+		//enter password
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password"))).getAttribute("placeholder");
+		softly.assertThat(s12).as("test data").isEqualTo("(Optional) Enter password: 8 characters min, min 1 number, min 1 letter upper and 1 lower, min 1 special char.");
+		//enter password again
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password-again"))).getAttribute("placeholder");
+		softly.assertThat(s13).as("test data").isEqualTo("(Optional) Enter password again: must be the exactly the same.");
 	}
 	
 	public void languageChangeTest(WebDriver driver,String username,String password) throws Exception {
@@ -230,6 +237,108 @@ public class LanguageCheckOfReports {
 		downloadSelectFunction(driver, 1, l,browserName,v);
 	}
 	
+	public void verifyLabelAdminUserAccount(WebDriver driver, SoftAssertions softly) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Verify all label which are same as non admin user
+		verifyLabelUserAccount(driver,softly);
+		//Labels which are visible only to admin user
+		//Activation status
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-status']"))).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Activation status:");
+		//Select group
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-div']/fieldset/div[1]/legend"))).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Select group(s):");
+		//Cases slide security
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-slidesecurity']/div[1]/legend"))).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Cases slide security:");
+		//Company ID
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerId-div']/fieldset/div[1]/legend"))).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Company ID:");
+		//Company moderator
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerAdmin']/div[1]/legend"))).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Company moderator:");
+		//Group moderator
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-modgroups-div']/fieldset/div[1]/legend"))).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("Group moderator:");
+		//Verify all fields are present
+		//Login name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname")));
+		//Reset password and send email button
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-resend-button"))).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("reset password and send email");
+		//Language
+		driver.findElement(By.id("pii-admin-user-language"));
+		//Select groups
+		driver.findElement(By.id("pii-admin-user-groups-button"));
+		//Name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name")));
+		//Company name
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company")));
+		//Dept
+		driver.findElement(By.id("pii-admin-user-dept"));
+		//Sub dept
+		driver.findElement(By.id("pii-admin-user-subdept-button"));
+		//job title
+		driver.findElement(By.id("pii-admin-user-jobtitle"));
+		//email
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email")));
+		//cerificate level
+		driver.findElement(By.id("pii-admin-user-certif"));
+		//case slide on button
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-on']"))).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("On");
+		//case slide off button
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-off']"))).getText();
+		softly.assertThat(s8).as("test data").isEqualTo("Off");
+		//company id
+		driver.findElement(By.id("pii-admin-user-customerId"));
+		//company moderator on button
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-customerAdmin-no']"))).getText();
+		softly.assertThat(s9).as("test data").isEqualTo("No");
+		//company moderator off button
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-customerAdmin-yes']"))).getText();
+		softly.assertThat(s10).as("test data").isEqualTo("Yes");
+		//group moderator
+		driver.findElement(By.id("pii-admin-user-modgroups-button"));
+		//license
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-license")));
+	}
+	
+	public void verifyAccountPageAdminUser(WebDriver driver, String username, SoftAssertions softly) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		HiRCA2 obj = new HiRCA2();
+		ShareCheck obj1 = new ShareCheck();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on Account
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on Account
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//verify labels
+		verifyLabelAdminUserAccount(driver,softly);
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//Verify sticky 
+		obj.verifyStickyUserAccount(driver, softly, username);
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		//Waits for loading message to disappear
+		obj1.loadingServer(driver);
+	}
+	
 	public void changeAccountPage(WebDriver driver, String username) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -241,7 +350,7 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
 		//verify labels
-		verifyLabelUserAccount(driver);
+		verifyLabelUserAccount(driver,softly);
 		//Change Name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).sendKeys("QAA changed");

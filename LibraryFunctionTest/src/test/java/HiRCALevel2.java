@@ -735,6 +735,8 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
+		HiRCALevel2Text obj1 = new HiRCALevel2Text();
+		HiRCAHumanError obj2 = new HiRCAHumanError();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
 		List<String> level3 = new ArrayList<String>();
@@ -742,12 +744,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		int n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q21(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.17
+			obj1.step2verify317(driver, softly);
 			level3.addAll(selectOptions(driver,7));
 			combined.addAll(level2);
 			combined.addAll(level3);
@@ -759,12 +763,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(3, 0);
 		//Add answer to list
+		obj1.step2q22(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.16
+			obj2.verify316(driver, softly);
 			level3.addAll(selectOptions(driver,7));
 			if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
 			{
@@ -837,6 +843,8 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
+		HiRCALevel2Text obj1 = new HiRCALevel2Text();
+		HiRCAHumanError obj2 = new HiRCAHumanError();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
 		List<String> level3 = new ArrayList<String>();
@@ -844,12 +852,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		int n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q29(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.12
+			obj2.verify312(driver, softly);
 			level3.addAll(selectOptions(driver,5));			
 		}
 		//Click next
@@ -858,12 +868,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q210(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.13
+			obj2.verify313(driver, softly);
 			level3.addAll(selectOptions(driver,4));			
 		}
 		//Click next
@@ -872,12 +884,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q211(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.14
+			obj2.verify314(driver, softly);
 			level3.addAll(selectOptions(driver,5));			
 		}
 		//Click next
@@ -886,12 +900,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q212(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.15
+			obj2.verify315(driver, softly);
 			level3.addAll(selectOptions(driver,4));			
 		}
 		combined.addAll(level2);
@@ -903,6 +919,9 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
+		HiRCALevel2Text obj1 = new HiRCALevel2Text();
+		HiRCAHumanError obj2 = new HiRCAHumanError();
+		HiRCAHumanError2 obj3 = new HiRCAHumanError2();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
 		List<String> level3 = new ArrayList<String>();
@@ -910,12 +929,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		int n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q23(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.6
+			obj2.verify36(driver, softly);
 			level3.addAll(selectOptions(driver,9));			
 		}
 		else
@@ -923,6 +944,7 @@ public class HiRCALevel2 {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.22
+			obj3.verify322(driver, softly);
 			level3.addAll(selectOptions(driver,5));
 		}
 		if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
@@ -940,12 +962,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q24(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.7
+			obj2.verify37(driver, softly);
 			level3.addAll(selectOptions(driver,10));			
 		}
 		//Click next
@@ -954,12 +978,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q25(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.8
+			obj2.verify38(driver, softly);
 			level3.addAll(selectOptions(driver,8));			
 		}
 		//Click next
@@ -968,12 +994,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q26(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.9
+			obj3.verify39(driver, softly);
 			level3.addAll(selectOptions(driver,6));			
 		}
 		//Click next
@@ -982,12 +1010,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q27(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.10
+			obj3.verify310(driver, softly);
 			level3.addAll(selectOptions(driver,5));			
 		}
 		//Click next
@@ -996,12 +1026,14 @@ public class HiRCALevel2 {
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
 		//Add answer to list
+		obj1.step2q28(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		if(n==0)
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.11
+			obj3.verify311(driver, softly);
 			level3.addAll(selectOptions(driver,5));			
 		}
 		combined.addAll(level2);
@@ -1062,6 +1094,7 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
+		HiRCALevel2Text obj1 = new HiRCALevel2Text();
 		List<String> a = new ArrayList<String>();
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
@@ -1074,6 +1107,8 @@ public class HiRCALevel2 {
 		//Click on Yes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
+		//Verify Step 2 question 1
+		obj1.step2Q20(driver, softly);
 		//Select 3 LOPs randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();

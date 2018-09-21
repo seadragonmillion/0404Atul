@@ -4328,6 +4328,7 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchCaseIDDropdownAdmin)).click();
 			//Waits for black loading message to disappear
 			obj.loadingServer(driver);
+			obj.scrollToTop(driver);
 			//Clicks on delete button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDeleteButton)).click();
 			//Waits for black loading message to disappear

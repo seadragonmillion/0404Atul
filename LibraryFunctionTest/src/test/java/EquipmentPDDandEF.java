@@ -1020,7 +1020,7 @@ public class EquipmentPDDandEF {
 			softly.assertThat(actual_title).as("test data").isEqualTo(expected_title);
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
-			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
+			String actual_copyright = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(copyright_xpath))).getAttribute("textContent");
 			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
@@ -1028,7 +1028,7 @@ public class EquipmentPDDandEF {
 				System.out.println("Logo is displayed");
 			//Checking if slide number appears and is correct
 			String slide_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span[2]";
-			String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
+			String actual_slide = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(slide_xpath))).getAttribute("textContent");
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 			//Click on previous
@@ -1274,20 +1274,28 @@ public class EquipmentPDDandEF {
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
+			//Make sure keyword typed in right
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).getAttribute("value");
+			if(s.equals(keyword_same) == false)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(keyword_same);
+			}
 			if(count==1)
 			{
+				obj.loadingServer(driver);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordAddButton)).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).clear();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(key1);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordAddButton)).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).clear();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(key2);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordAddButton)).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).clear();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordField)).sendKeys(key3);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseNewKeywordAddButton)).click();			  
 			}
 			else 

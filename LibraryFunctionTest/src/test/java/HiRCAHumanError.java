@@ -2,7 +2,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -32,6 +31,8 @@ public class HiRCAHumanError {
 	By Answer8 = By.xpath(".//*[@for='efi-irca-answer-7']");
 	By Answer9 = By.xpath(".//*[@for='efi-irca-answer-8']");
 	By Answer10 = By.xpath(".//*[@for='efi-irca-answer-9']");
+	By Answer11 = By.xpath(".//*[@for='efi-irca-answer-10']");
+	By Answer12 = By.xpath(".//*[@for='efi-irca-answer-11']");
 	By NextButton = By.id("efi-irca-button-next");
 	By SkipButton = By.id("efi-irca-button-skip");
 	By DescriptionPlusSign = By.xpath(".//*[@id='efi-irca-description']/h4/a");
@@ -40,8 +41,6 @@ public class HiRCAHumanError {
 	public void stepOneq11 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
@@ -68,8 +67,6 @@ public class HiRCAHumanError {
 	public void stepOneq12 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
@@ -96,8 +93,6 @@ public class HiRCAHumanError {
 	public void stepOneq13 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
@@ -124,8 +119,6 @@ public class HiRCAHumanError {
 	public void stepOneq14 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
@@ -149,8 +142,6 @@ public class HiRCAHumanError {
 	public void stepOneq15 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
@@ -258,7 +249,7 @@ public class HiRCAHumanError {
 		return lopOptions1;
 	}
 
-	public void verify312(WebDriver driver) throws Exception {
+	public void verify312(WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on Description
@@ -401,7 +392,7 @@ public class HiRCAHumanError {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 	}
 
-	public void verify313 (WebDriver driver) throws Exception {
+	public void verify313 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -520,7 +511,7 @@ public class HiRCAHumanError {
 		Thread.sleep(2000);
 	}
 
-	public void verify314 (WebDriver driver) throws Exception {
+	public void verify314 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -662,7 +653,7 @@ public class HiRCAHumanError {
 		Thread.sleep(2000);
 	}
 
-	public void verify315 (WebDriver driver) throws Exception {
+	public void verify315 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//question
@@ -778,7 +769,7 @@ public class HiRCAHumanError {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 	}
 
-	public void verify316 (WebDriver driver) throws Exception {
+	public void verify316 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -980,7 +971,7 @@ public class HiRCAHumanError {
 		Thread.sleep(2000);
 	}
 
-	public void verify36 (WebDriver driver) throws Exception {
+	public void verify36 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -1248,7 +1239,7 @@ public class HiRCAHumanError {
 		Thread.sleep(2000);
 	}
 
-	public void verify38 (WebDriver driver) throws Exception {
+	public void verify38 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -1469,7 +1460,7 @@ public class HiRCAHumanError {
 		Thread.sleep(2000);
 	}
 
-	public void verify37 (WebDriver driver) throws Exception {
+	public void verify37 (WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -2090,22 +2081,22 @@ public class HiRCAHumanError {
 				if(s2.equals("Inattention to detail"))
 				{
 					//3.16
-					verify316(driver);
+					verify316(driver,softly);
 					//Select answers
 					level3.addAll(selectAnswersLevel3(driver,7));	
 				}
 				if(s2.equals("Inadequate rules"))
 				{
 					//3.6
-					verify36(driver);
+					verify36(driver,softly);
 					//Select answers
 					level3.addAll(selectAnswersLevel3(driver,9));	
 					//3.7
-					verify37(driver);
+					verify37(driver,softly);
 					//Select answers
 					level3.addAll(selectAnswersLevel3(driver,10));
 					//3.8
-					verify38(driver);
+					verify38(driver,softly);
 					//Select answers
 					level3.addAll(selectAnswersLevel3(driver,8));
 					//3.18
@@ -2117,19 +2108,19 @@ public class HiRCAHumanError {
 			if(s1.equals("Intentional"))
 			{
 				//3.12
-				verify312(driver);
+				verify312(driver,softly);
 				//Select answers
 				level3.addAll(selectAnswersLevel3(driver,5));	
 				//3.13
-				verify313(driver);
+				verify313(driver,softly);
 				//Select answers
 				level3.addAll(selectAnswersLevel3(driver,4));
 				//3.14
-				verify314(driver);
+				verify314(driver,softly);
 				//Select answers
 				level3.addAll(selectAnswersLevel3(driver,5));	
 				//3.15
-				verify315(driver);
+				verify315(driver,softly);
 				//Select answers
 				level3.addAll(selectAnswersLevel3(driver,4));
 			}
@@ -2165,7 +2156,7 @@ public class HiRCAHumanError {
 		if(ans.get(0).equals("Skill-based"))
 		{
 			//3.16
-			verify316(driver);		
+			verify316(driver,softly);		
 			//Select answers
 			level3.addAll(selectAnswersLevel3(driver,7));
 		}
@@ -2177,7 +2168,7 @@ public class HiRCAHumanError {
 		if(s2.equals("Yes"))
 		{
 			//3.15
-			verify315(driver);		
+			verify315(driver,softly);		
 			//Select answers
 			level3.addAll(selectAnswersLevel3(driver,4));
 		}
@@ -2295,14 +2286,14 @@ public class HiRCAHumanError {
 		if(s11.equals("Yes, but not identified ahead of time"))
 		{
 			//3.6
-			verify36(driver);
+			verify36(driver,softly);
 			//Select answers
 			level3.addAll(selectAnswersLevel3(driver,9));
 		}
 		if(s11.equals("Yes, identified but without mitigation actions"))
 		{
 			//3.16
-			verify316(driver);		
+			verify316(driver,softly);		
 			//Select answers
 			level3.addAll(selectAnswersLevel3(driver,7));
 		}

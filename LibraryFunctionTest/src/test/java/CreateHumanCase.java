@@ -685,10 +685,15 @@ public class CreateHumanCase {
 		obj1.scrollToElement(driver, l);
 		//Enter title for link 1
 		l.sendKeys(obj.noVideoLinkTitle);
+		//Scroll to element
+		obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)));
 		//Enter url 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).sendKeys(obj.noVideoLink);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
+		Thread.sleep(1000);
 		//To make url form appear click on title for link 1
-		l.click();
+		if(driver.getCurrentUrl().contains("kaleqa")==false)
+			l.click();
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);/*
 		//For firefox 
@@ -702,8 +707,12 @@ public class CreateHumanCase {
 		}*/
 		//Enter title for link 2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2Tile)).sendKeys(obj.videoLinkTitle);
+		//Scroll to element
+		obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2URL)).click();
 		//Enter url 2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2URL)).sendKeys(obj.videoLink);
+		obj1.loadingServer(driver);
 		//Click on video checkbox
 		obj.clickTypesDisciplineIE(driver, HumanCasesLink2VideoCheckbox);	
 	}
