@@ -4017,9 +4017,7 @@ public class EiRCAChinese {
 	public void verifyEnglish (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 		//Check if title contains english EiRCA
 		String eirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAInfoPageTitle)).getText();
 		System.out.println(eirca_title);

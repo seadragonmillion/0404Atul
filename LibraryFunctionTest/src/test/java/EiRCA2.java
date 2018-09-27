@@ -31,9 +31,10 @@ public class EiRCA2 {
 		else
 			softly.assertThat(r).as("test data").contains("EiRCA™ Data updated for id:");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
-		}catch(org.openqa.selenium.TimeoutException r)
+		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find save pop up");
+			Thread.sleep(2000);
 		}
 	}
 	

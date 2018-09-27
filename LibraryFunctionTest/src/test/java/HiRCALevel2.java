@@ -711,6 +711,22 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		obj.loadingServer(driver);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("11"))
+			{
+				//Clicks on Save
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				//Clicks on Save report
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				obj.loadingServer(driver);
+			}
+		}
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		obj.loadingServer(driver);

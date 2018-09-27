@@ -1,5 +1,11 @@
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -14,12 +20,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.Finder;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 
 
 public class ShareCheck {
 
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-
+	SoftAssertions softly = new SoftAssertions();
+	
 	By ShareTextBox = By.id("pii-uhshare-search-input");
 	By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
 	By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
@@ -41,7 +51,9 @@ public class ShareCheck {
 	By ActivityOnTopRight = By.id("pii-user-activity");
 	By ModuleTitle = By.id("pii-user-home-title");
 	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
-	
+	By PIIContactButton = By.linkText("CONTACT");
+	By KALESupportButton = By.id("pii-contact-mailto");
+
 	public void scrollToAPoint(WebDriver driver, int yaxis)throws Exception{
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -255,25 +267,25 @@ public class ShareCheck {
 			}
 		}
 		else{*/
+		Thread.sleep(2000);
+		for(int i=1;i<=n;i++)
+		{
 			Thread.sleep(2000);
-			for(int i=1;i<=n;i++)
-			{
-				Thread.sleep(2000);
-				//Click on 1st record/notification
-				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-				if(ele.isSelected()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
-				Thread.sleep(2000);
-				//Click on read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-				if(ele.isEnabled()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
-				ele.click();
-				Thread.sleep(2000);
-				//Click on mark as read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-				ele.click();
-			}
+			//Click on 1st record/notification
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+			if(ele.isSelected()==false)
+				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+			Thread.sleep(2000);
+			//Click on read
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+			if(ele.isEnabled()==false)
+				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+			ele.click();
+			Thread.sleep(2000);
+			//Click on mark as read
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+			ele.click();
+		}
 		//}		
 		//Wait for loading message to disappear
 		loadingServer(driver);
@@ -673,5 +685,109 @@ public class ShareCheck {
 				Thread.sleep(6000);
 			}
 		}
+	}
+
+	public void helpEmailCheck(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Wait for loading server message
+		loadingServer(driver);
+		//Scroll to contact
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(PIIContactButton));
+		scrollToElement(driver,l);
+		//Click on contact
+		l.click();
+		//Wait for loading server message
+		loadingServer(driver);
+		//Click on KALE support
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(KALESupportButton));
+		l.click();
+		String kaleWindow = driver.getWindowHandle();
+		//get email from mail client
+		Process p = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/GetEmailFromEMMailClient.exe");
+		p.waitFor();
+		BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line;
+		while ((line = input.readLine()) != null) {
+			System.out.println(line);
+		}
+		System.out.println("0000");
+		Thread.sleep(4000);
+		Screen screen = new Screen();
+		ImageIO.write(screen.capture().getImage(), "png", new File("C:\\Users\\IEUser\\screenshots\\screenshots1.png"));
+		Thread.sleep(4000);
+		//Crop image
+		File fileToWrite = new File("C:\\Users\\IEUser\\screenshots\\screenshots1.png");
+		BufferedImage bufferedImage = cropImage(fileToWrite, 0, 0, 300, 300);
+		File outputfile = new File("C:\\Users\\IEUser\\screenshots\\screenshots2.png");
+		ImageIO.write(bufferedImage, "png", outputfile);
+		//Compare the 2 images
+		compareImage();
+		//Close the email client
+		Process p1 = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/CloseEMClient.exe");
+		p1.waitFor();
+		Process p2 = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/CloseEMClient.exe");
+		p2.waitFor();
+		//Switch to kale window
+		driver.switchTo().window(kaleWindow);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if (browserName.equals("firefox"))
+			driver.switchTo().defaultContent();
+		//Switches to the iframe
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+		closeMailClient();
+	}
+	
+	 public void closeMailClient() throws Exception {
+	        ProcessBuilder builder = new ProcessBuilder(
+	            "cmd.exe", "/c", "taskkill /F /IM MailClient.exe");
+	        builder.redirectErrorStream(true);
+	        Process p = builder.start();
+	        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	        String line;
+	        while (true) {
+	            line = r.readLine();
+	            if (line == null) { break; }
+	            System.out.println(line);
+	        }
+	    }
+	
+	public void compareImage() throws IOException {
+		
+		Pattern searchImage = new Pattern("C:\\Users\\IEUser\\screenshots\\screenshotPermanent.png").similar((float)0.9);
+		//In this case, the image you want to search
+		String ScreenImage = "C:\\Users\\IEUser\\screenshots\\screenshots2.png"; 
+		Finder objFinder = null;
+		objFinder = new Finder(ScreenImage);
+		//searchImage is the image you want to search within ScreenImage
+		objFinder.find(searchImage);
+		int counter = 0;
+		while(objFinder.hasNext())
+		{
+			objFinder.next(); //objMatch gives you the matching region.
+		    counter++;
+		}
+		if(counter!=0)
+			System.out.println("Match Found!");
+		else softly.fail("No the email is wrong as image did not match");
+	}
+	
+	public BufferedImage cropImage(File filePath, int x, int y, int w, int h){
+
+	    try {
+	        BufferedImage originalImgage = ImageIO.read(filePath);
+	        BufferedImage subImgage = originalImgage.getSubimage(x, y, w, h);
+	        return subImgage;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+		System.gc();
 	}
 }

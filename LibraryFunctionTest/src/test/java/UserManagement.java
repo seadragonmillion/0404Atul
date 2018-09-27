@@ -1765,6 +1765,8 @@ public class UserManagement {
 		}catch(org.openqa.selenium.TimeoutException t){
 
 		}
+		//Wait for loading message to disappear
+		obj1.loadingServer(driver);
 		//Clicks on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		Thread.sleep(2000);
@@ -1959,23 +1961,14 @@ public class UserManagement {
 
 	}
 
-	public void waitForAsia(WebDriver driver) throws Exception {
-
-		String s = driver.getCurrentUrl();
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		if((s.contains("kaleasia"))&&(browserName.equals("chrome")))
-		{
-			Thread.sleep(4000);
-		}
-	}
-
+	
 	public void checkAccess(WebDriver driver, int login, String[]op) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		Thread.sleep(3000);
+		ShareCheck obj = new ShareCheck ();
+		obj.loadingServer(driver);
 		//Click on Knowledge
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-k"))).click();
-		Thread.sleep(2000);
+		obj.loadingServer(driver);
 		if (login==1)
 		{
 			try{
@@ -1987,21 +1980,19 @@ public class UserManagement {
 		List<String>f = Arrays.asList(op);
 		WebElement element;
 		//Verify the modules selected
-		waitForAsia(driver);
+		obj.loadingServer(driver);
 		if(f.contains("Event Reports"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Event Reports")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Event Reports enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("Event Reports disabled");
 		}
@@ -2011,14 +2002,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("JIT Wisdom enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("JIT Wisdom disabled");
 		}
@@ -2028,14 +2017,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("JIT Risk Joggers enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("JIT Risk Joggers disabled");
 		}
@@ -2045,14 +2032,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Knowledge Bank enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("Knowledge Bank disabled");
 		}
@@ -2062,14 +2047,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Knowledge Exchange enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("Knowledge Exchange disabled");
 		}
@@ -2079,35 +2062,31 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Performance Accountability & Analytics enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("Performance Accountability & Analytics disabled");
 		}
-		waitForAsia(driver);
+		obj.loadingServer(driver);
 		//Clicks on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-		waitForAsia(driver);
+		obj.loadingServer(driver);
 		if(f.contains("SPV Error Meter"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("SPV Error Meter enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("SPV Error Meter disabled");
 		}
@@ -2117,14 +2096,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("HPI enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("HPI disabled");
 		}
@@ -2134,14 +2111,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("HiRCA enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("HiRCA disabled");
 		}
@@ -2151,14 +2126,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("EiRCA enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("EiRCA disabled");
 		}
@@ -2168,14 +2141,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("O&PiRCA enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("O&PiRCA disabled");
 		}
@@ -2185,14 +2156,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("ICCA enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("ICCA disabled");
 		}
@@ -2202,14 +2171,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Job Obs enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("Job Obs disabled");
 		}
@@ -2219,14 +2186,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("3 Pass Review enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("3 Pass Review disabled");
 		}
@@ -2236,34 +2201,30 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Remote Verification enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 			}
 			else softly.fail("Remote Verification disabled");
 		}
-		waitForAsia(driver);
+		obj.loadingServer(driver);
 		//Clicks on Learning
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
-		waitForAsia(driver);
+		obj.loadingServer(driver);
 		if(f.contains("Human Performance"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Human Performance enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Error-Free Bank
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
 				Thread.sleep(2000);
@@ -2276,11 +2237,9 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Equipment Performance enabled");
-				Thread.sleep(2000);
-				waitForAsia(driver);
+				obj.loadingServer(driver);
 				element.click();
-				waitForAsia(driver);
-				Thread.sleep(2000);
+				obj.loadingServer(driver);
 				//Clicks on Error-Free Bank
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
 				Thread.sleep(2000);

@@ -1158,16 +1158,26 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("11"))
+			{
+				//Clicks on Save
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				//Clicks on Save report
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				obj.loadingServer(driver);
+			}
+		}
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		//Get browser name
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		System.out.println(browserName);
-		String v = cap.getVersion().toString();
-		System.out.println(v);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			downloadReportChrome(driver,lopOptions,hmlNew,optionsNew,checklistNew);

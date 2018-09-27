@@ -2068,6 +2068,8 @@ public class HiRCAHumanError2 {
 		System.out.println(name);	 
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		//Wait for loading message to disappear
+		obj1.loadingServer(driver);
 		//Gets newly created record name
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"));
 		String recordName = record.getText();

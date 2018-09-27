@@ -4,7 +4,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -127,7 +126,7 @@ public class Login {
 			{
 					break;
 			}
-			catch( StaleElementReferenceException f)
+			catch( org.openqa.selenium.StaleElementReferenceException f)
 			{
 
 				break;
