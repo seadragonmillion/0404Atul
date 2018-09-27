@@ -217,7 +217,7 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.6
-		chineseStepOneL36(driver);
+		chineseStepOneL36(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -253,7 +253,7 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.22
-		chineseStepOneL322(driver);
+		chineseStepOneL322(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -362,17 +362,17 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.12
-		chineseStepOneL312(driver);
+		chineseStepOneL312(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.13
-		chineseStepOneL313(driver);
+		chineseStepOneL313(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.14
-		chineseStepOneL314(driver);
+		chineseStepOneL314(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -460,7 +460,7 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.16
-		chineseStepOneL316(driver);
+		chineseStepOneL316(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -510,17 +510,17 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.6
-		chineseStepOneL36(driver);
+		chineseStepOneL36(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.7
-		chineseStepOneL37(driver);
+		chineseStepOneL37(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Verify 3.8
-		chineseStepOneL38(driver);
+		chineseStepOneL38(driver,softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
@@ -1348,7 +1348,7 @@ public class HiRCAChinese {
 		softly.assertThat(rc).as("test data").contains("根本原因");
 	}
 
-	public void chineseStepOneL313 (WebDriver driver) throws Exception {
+	public void chineseStepOneL313 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -1539,7 +1539,7 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 	}
 
-	public void chineseStepOneL314 (WebDriver driver) throws Exception {
+	public void chineseStepOneL314 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -1773,7 +1773,7 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 	}
 
-	public void chineseStepOneL312 (WebDriver driver) throws Exception {
+	public void chineseStepOneL312 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -2619,7 +2619,7 @@ public class HiRCAChinese {
 		softly.assertThat(ans3).as("test data").contains("没有");
 	}
 
-	public void chineseStepOneL322 (WebDriver driver) throws Exception {
+	public void chineseStepOneL322 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCAChinese4 obj = new HiRCAChinese4();
@@ -2852,7 +2852,7 @@ public class HiRCAChinese {
 		obj.chineseAddContributingFactor(driver, softly);
 	}
 
-	public void chineseStepOneL316 (WebDriver driver) throws Exception {
+	public void chineseStepOneL316 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -3852,7 +3852,7 @@ public class HiRCAChinese {
 		softly.assertThat(ans3).as("test data").contains("未知");
 	}
 
-	public void chineseStepOneL36 (WebDriver driver) throws Exception {
+	public void chineseStepOneL36 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -4369,7 +4369,7 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 	}
 
-	public void chineseStepOneL38 (WebDriver driver) throws Exception {
+	public void chineseStepOneL38 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -4797,7 +4797,7 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 	}
 
-	public void chineseStepOneL37 (WebDriver driver) throws Exception {
+	public void chineseStepOneL37 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();

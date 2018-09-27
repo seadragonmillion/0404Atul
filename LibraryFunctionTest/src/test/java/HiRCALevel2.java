@@ -37,8 +37,6 @@ public class HiRCALevel2 {
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
 
 		HiRCALOPBug obj = new HiRCALOPBug();
-		HiRCALevel1 obj1 = new HiRCALevel1();
-		ShareCheck obj2 = new ShareCheck();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//create a new report
 		obj.fillUpHiRCAEventInfo(driver, text);
@@ -70,6 +68,15 @@ public class HiRCALevel2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Step 3 skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		//Step 4 / Step 5 / Report/ pdf
+		verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+	}
+	
+	public void verifyRemainingSteps(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220) throws Exception{
+		
+		HiRCALevel1 obj1 = new HiRCALevel1();
+		ShareCheck obj2 = new ShareCheck();
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Step 4 verify select HML
 		HashMap<String,String> hml1 = verifyStep4LOP1(driver,lopSelected,level31stLOP,2);
 		int n3 = 3;
@@ -157,7 +164,7 @@ public class HiRCALevel2 {
 			//System.out.println(s2);
 			softly.assertThat(s2).as("test data").isEqualTo(level21stLOP.get(k));
 			k=k+1;
-			if(s2.equals("No")||s2.equals("Inadequate or Incorrect rules"))
+			if(s2.equals("No")||s2.equals("Inadequate or Incorrect rules")||s2.equals("否")||s2.equals("规则存在不足或规则不正确"))
 			{
 				continue;
 			}
