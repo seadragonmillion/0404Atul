@@ -15,7 +15,7 @@ import org.openqa.selenium.remote.CapabilityType;
 public class ChromeTest {
 
 	private WebDriver driver;
-	private String username = "jenkins_2_nonadmin";
+	private String username = "jenkins_chinese";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String url = "https://kaleasia.error-free.com/";
 
