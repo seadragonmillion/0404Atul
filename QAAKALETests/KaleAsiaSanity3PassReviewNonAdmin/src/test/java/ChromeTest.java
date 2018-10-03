@@ -82,15 +82,16 @@ public class ChromeTest {
 		obj1.deleteNewRecord(driver, recordName,1,username);
 		//Logout
 		obj.logout(driver);
-		afterTest();
+		afterTest(obj1);
 	}
 	
-	public void afterTest(){
+	public void afterTest(PassReview obj) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
 		driver.quit();
+		obj.softAssert();
 	}
 
 }

@@ -97,14 +97,15 @@ public class FirefoxTest {
 		obj1.deleteNewRecord(driver, recordName,5,username);
 		//Logout
 		obj.logout(driver);
-		afterTest();
+		afterTest(obj1);
 	}
 	
-	public void afterTest(){
+	public void afterTest(PassReview obj) throws Exception{
 		
 		driver.manage().window().maximize();
 		//Browser closes
 		driver.quit();
+		obj.softAssert();
 	}
 
 }

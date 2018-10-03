@@ -83,13 +83,14 @@ public class IETest {
 		obj1.deleteNewRecord(driver, recordName,4,username);
 		//Logout
 		obj.logout(driver);
-		afterTest();
-		
+		afterTest(obj1);
 	}
-	public void afterTest(){
+	
+	public void afterTest(PassReview obj) throws Exception{
 		
 		//Browser closes
 		driver.quit();
+		obj.softAssert();
 	}
 }
 
