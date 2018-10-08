@@ -2169,6 +2169,7 @@ public class HiRCAEvent {
 			if (noerror_location_dotted.isDisplayed())
 				System.out.println("Error dotted line disappeared on location of event textbox");
 		}
+		obj1.scrollToTop(driver);
 		//Clears some text
 		for(int i =0; i<20; i++)
 		{

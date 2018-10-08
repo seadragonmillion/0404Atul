@@ -2820,7 +2820,7 @@ public class ErrorMeter {
 		ShareCheck obj1 = new ShareCheck();
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ShareSave)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		//Checks the username of creator and shared with

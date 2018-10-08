@@ -76,7 +76,7 @@ public class EiRCA2 {
 		String r1 = recordName.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").isEqualTo("EiRCA™ data deleted: "+r1);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
-		}catch(org.openqa.selenium.TimeoutException r)
+		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find delete pop up");
 		}

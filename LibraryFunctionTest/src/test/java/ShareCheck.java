@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
@@ -31,6 +33,7 @@ public class ShareCheck {
 	SoftAssertions softly = new SoftAssertions();
 	
 	By ShareTextBox = By.id("pii-uhshare-search-input");
+	By ShareSave = By.id("pii-uhshare-save");
 	By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
 	By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
 	By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
@@ -188,6 +191,7 @@ public class ShareCheck {
 	}
 
 	public void checkCriticalNotification (WebDriver driver, String sharer, String username, String password1, SoftAssertions softly) throws Exception {
+		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//LogOut
@@ -238,35 +242,10 @@ public class ShareCheck {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Click on 1st record/notification
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
 		//Verify if notification is of marked critical
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecordDescriptionText)).getText();
 		softly.assertThat(s).as("test data").contains("Critical");
-		Thread.sleep(2000);/*
-		if(browserName.equals("internet explorer"))
-		{
-			Actions act = new Actions (driver);
-			Thread.sleep(2000);
-			for(int i=1;i<=n;i++)
-			{
-				Thread.sleep(2000);
-				//Click on 1st record/notification
-				WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-				if(ele1.isSelected()==false)
-					act.click(ele1).build().perform();
-				Thread.sleep(4000);
-				//Click on read
-				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
-				if(ele.isEnabled()==false)
-					act.click(ele1).build().perform();
-				Thread.sleep(3000);
-				//Click on mark as read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-				act.click(ele).build().perform();
-				Thread.sleep(2000);
-			}
-		}
-		else{*/
+		Thread.sleep(2000);
 		Thread.sleep(2000);
 		for(int i=1;i<=n;i++)
 		{
@@ -286,60 +265,10 @@ public class ShareCheck {
 			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
 			ele.click();
 		}
-		//}		
 		//Wait for loading message to disappear
 		loadingServer(driver);
-		//LogOut
-		obj.logout(driver);
-		if(browserName.equals("firefox"))
-		{
-			driver.switchTo().defaultContent();
-		}
-		Thread.sleep(6000);
-		int login1 = obj.LoginUser(driver, username, password1);
-		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(5000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(IFrame));
-		Thread.sleep(8000);
-		if (login1==1)
-		{
-
-			while(true)
-			{
-				Thread.sleep(1000);
-				if (driver.findElement(StickyPopUp).isDisplayed())
-				{
-					WebElement ele =driver.findElement(StickyPopUp);
-					ele.findElement(StickyClose).click();
-					break;
-				}
-				else break;
-			}
-		}	
-		Thread.sleep(3000);
-		Actions act = new Actions(driver);
-		if(browserName.equals("firefox"))
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
-			Thread.sleep(3000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight)).click();
-			Thread.sleep(4000);
-		}
-		else
-		{
-			//Clicks on admin user name on top right corner
-			WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
-			act.click(ele).build().perform();
-			Thread.sleep(3000);
-			//Clicks on Activity
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
-			WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight));
-			act.click(ele1).build().perform();
-			Thread.sleep(4000);
-		}
+		//Log in back to user
+		logInToUser(driver,username,password1);
 	}
 
 	public void receiptReport(WebDriver driver, String sharer, String username, String password1) throws Exception {
@@ -476,6 +405,17 @@ public class ShareCheck {
 		}		
 		//Wait for loading message to disappear
 		loadingServer(driver);
+		//Log in back to user
+		logInToUser(driver,username,password1);
+	}
+	
+	public void logInToUser(WebDriver driver,String username, String password1) throws Exception{
+		
+		Login obj = new Login();
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//LogOut
 		obj.logout(driver);
 		if(browserName.equals("firefox"))
@@ -784,6 +724,323 @@ public class ShareCheck {
 	        e.printStackTrace();
 	        return null;
 	    }
+	}
+	
+	public List<String> usersSharedDevAsia(WebDriver driver)throws Exception {
+		List<String> text = new ArrayList<String>();
+		text.add("qaasharer_1");
+		text.add("qaasharer_2");
+		text.add("qaasharer_3");
+		text.add("qaasharer_4");
+		text.add("qaasharer_5");
+		text.add("qaasharer_6");
+		text.add("qaasharer_7");
+		text.add("qaasharer_8");
+		text.add("qaasharer_9");
+		text.add("qaasharer_10");
+		return text;
+	}
+	
+	public List<String> usersSharedDevAsiaIE11(WebDriver driver)throws Exception {
+		List<String> text = new ArrayList<String>();
+		text.add("qaasharer_ie11_11");
+		text.add("qaasharer_ie11_2");
+		text.add("qaasharer_ie11_3");
+		text.add("qaasharer_ie11_4");
+		text.add("qaasharer_ie11_5");
+		text.add("qaasharer_ie11_6");
+		text.add("qaasharer_ie11_7");
+		text.add("qaasharer_ie11_8");
+		text.add("qaasharer_ie11_9");
+		text.add("qaasharer_ie11_10");
+		return text;
+	}
+	
+	public List<String> usersSharedUS(WebDriver driver)throws Exception {
+		List<String> text = new ArrayList<String>();
+		text.add("qaasharerus1");
+		text.add("qaasharerus2");
+		text.add("qaasharerus3");
+		text.add("qaasharerus4");
+		text.add("qaasharerus5");
+		text.add("qaasharerus6");
+		text.add("qaasharerus7");
+		text.add("qaasharerus8");
+		text.add("qaasharerus9");
+		text.add("qaasharerus10");
+		return text;
+	}
+	
+	public List<String> usersSharedUSIE11(WebDriver driver)throws Exception {
+		List<String> text = new ArrayList<String>();
+		text.add("qaasharerus_ie11_1");
+		text.add("qaasharerus_ie11_2");
+		text.add("qaasharerus_ie11_3");
+		text.add("qaasharerus_ie11_4");
+		text.add("qaasharerus_ie11_5");
+		text.add("qaasharerus_ie11_6");
+		text.add("qaasharerus_ie11_7");
+		text.add("qaasharerus_ie11_8");
+		text.add("qaasharerus_ie11_9");
+		text.add("qaasharerus_ie11_10");
+		return text;
+	}
+
+	public void shareReportMultipleTimesAnalysisModules(WebDriver driver, String username, String password1) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		EiRCA obj = new EiRCA();
+		OPiRCA obj1 = new OPiRCA();
+		PassReview obj2 = new PassReview();
+		RemoteVerification obj3 = new RemoteVerification();
+		loadingServer(driver);
+		//Go to Activity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ActivityOnTopRight)).click();
+		//Error meter
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareButton)).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//HPI
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//HiRCA
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ShareButton)).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//EiRCA
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCASidePanel)).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAFirstRecord)).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ShareButton)).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//O&PiRCA
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASidePanel)).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAFirstRecord)).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ShareButton)).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//Job Observation
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//3 Pass Review
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.PassReviewSidePanel)).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.FirstRecord)).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareButton)).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+		//Remote Verification
+		//Click on side panel 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.RVSidePanel)).click();
+		loadingServer(driver);
+		//First record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.RVNewlyCreatedFirstRecord)).click();
+		loadingServer(driver);
+		//click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.RVShareButton)).click();
+		//share to 10 users
+		shareReportToManyUsers(driver,username,password1);
+	}
+	
+	public void shareReportToManyUsers(WebDriver driver, String username, String password1) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> users = new ArrayList<String>();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		//Decide on sharer list
+		if(driver.getCurrentUrl().contains("kale."))
+		{
+			if(browserName.equals("internet explorer")&&v.startsWith("11"))
+				users.addAll(usersSharedUSIE11(driver));
+			else
+				users.addAll(usersSharedUS(driver));
+		}
+		else
+		{
+			if(browserName.equals("internet explorer")&&v.startsWith("11"))
+				users.addAll(usersSharedDevAsiaIE11(driver));
+			else
+				users.addAll(usersSharedDevAsia(driver));
+		}
+		for(int i=0;i<users.size();i++)
+		{
+			//Enters sharer username
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ShareTextBox)).sendKeys(users.get(i));
+			Thread.sleep(2000);
+			//Selects from dropdown
+			WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(ShareDropdown));
+			dropdown.findElement(FirstSelectionUnderDropdown).click();
+			//Clicks on add user
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+			Thread.sleep(2000);
+		}
+		//Clicks on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ShareSave)).click();
+		//Wait for loading message to disappear
+		loadingServer(driver);
+		//Verify notificaion received by shared users
+		verifyNoificationsInSharedUsers(driver,users,username,password1);
+	}
+	
+	public void verifyNoificationsInSharedUsers(WebDriver driver, List<String> users, String username, String password1) throws Exception {
+		
+		for(int i=0;i<users.size();i++)
+		{
+			if((i+1)<users.size())
+			{
+			    //Verify if notification is visible and mark it read
+				receiveNotification(driver, users.get(i));
+			}
+		}
+		//Log back into user
+		logInToUser(driver,username,password1);
+	}
+	
+	public void receiveNotification(WebDriver driver, String sharer) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//LogOut
+		Login obj = new Login();
+		obj.logout(driver);
+		Thread.sleep(2000);
+		//If browser is firefox then switch to default content
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if(browserName.equals("firefox"))
+		{
+			driver.switchTo().defaultContent();
+		}
+		Thread.sleep(8000);
+		int login = obj.LoginUser(driver, sharer, password);
+		System.out.println("Title after login: "+driver.getTitle());
+		Thread.sleep(10000);
+		//Waits for the page to load
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Switches to the iframe
+		driver.switchTo().frame(driver.findElement(IFrame));
+		Thread.sleep(8000);
+		if (login==1)
+		{
+
+			while(true)
+			{
+				Thread.sleep(1000);
+				if (driver.findElement(StickyPopUp).isDisplayed())
+				{
+					WebElement ele =driver.findElement(StickyPopUp);
+					ele.findElement(StickyClose).click();
+					break;
+				}
+				else break;
+			}
+		}	
+		Thread.sleep(4000);
+		//Get count from notification
+		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationCount)).getText();
+		System.out.println("Number of notifications: "+count);
+		int n= Integer.parseInt(count);
+		Thread.sleep(2000);
+		//Click on notification
+		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
+		Thread.sleep(1000);
+		//Waits for the page to load
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		if(browserName.equals("firefox")==false)
+			scrollToTop(driver);
+		if(browserName.equals("internet explorer"))
+		{
+			Actions act = new Actions (driver);
+			for(int i=1;i<=n;i++)
+			{
+				Thread.sleep(2000);
+				//Click on 1st record/notification
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				act.click(ele).build().perform();
+				Thread.sleep(4000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				act.click(ele).build().perform();
+				Thread.sleep(2000);
+				//Click on mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				act.click(ele).build().perform();
+				Thread.sleep(2000);
+			}
+		}
+		else
+		{
+			for(int i=1;i<=n;i++)
+			{
+				Thread.sleep(2000);
+				//Click on 1st record/notification
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
+				if(ele.isSelected()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				Thread.sleep(4000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				if(ele.isEnabled()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				ele.click();
+				Thread.sleep(2000);
+				//Click on mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				ele.click();
+				Thread.sleep(2000);
+			}
+		}		
+		//Wait for loading message to disappear
+		loadingServer(driver);
 	}
 	
 	public void softAssert() throws Exception {

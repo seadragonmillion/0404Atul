@@ -43,9 +43,14 @@ public class PassReview {
 	By Pass1ScopeText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[5]/td[2]/textarea");
 	By Pass1TestingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[6]/td[2]/textarea");
 	By NextButton = By.id("pii-3pr-next");
+	By Pass1Tab = By.id("pii-3pr-tab-2-a");
+	
+	//Pass 2 Tab
+	By Pass2Tab = By.id("pii-3pr-tab-3-a");
 
 	//Pass 3 Tab
 	By Pass3CriticalText = By.xpath(".//*[@id='pii-3pr-tab-4']/div[3]/table/tbody/tr[2]/td[2]/textarea");
+	By Pass3Tab = By.id("pii-3pr-tab-4-a");
 
 	//HTML
 	By HTMLPass3CriticalText = By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr[2]/td[2]");
@@ -276,25 +281,25 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NextButton)).click();
 	}
 
-	public void verifyHTMLReport(WebDriver driver) throws Exception {
+	public void verifyHTMLReport(WebDriver driver, List<String> textList) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ErrorMeter obj = new ErrorMeter ();
-		List<String> textList = obj.error100Data(driver);
 		//Pass 1
 		//Table 1
 		for(int i=2;i<=6;i++)
 		{
 			//Verify text
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
-			softly.assertThat(s).as("test data").isIn(textList);
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 		}
 		//Table 2
 		for(int i=2;i<=11;i++)
 		{
 			//Verify text
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[4]/table/tbody/tr["+i+"]/td[3]"))).getText();
-			softly.assertThat(s).as("test data").isIn(textList);
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 			//Verify Yes for checkbox
 			if(i%2==0)
 			{
@@ -309,7 +314,8 @@ public class PassReview {
 		{
 			//Verify text
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[5]/table/tbody/tr["+i+"]/td[2]"))).getText();
-			softly.assertThat(s).as("test data").isIn(textList);
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 		}
 		int m = 2;
 		//Table 2
@@ -323,7 +329,8 @@ public class PassReview {
 				m=2;
 			//Verify text
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[6]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
-			softly.assertThat(s).as("test data").isIn(textList);
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 			//Verify Yes for checkbox
 			if(i%2==0)
 			{
@@ -337,7 +344,8 @@ public class PassReview {
 		{
 			//Verify text
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[7]/table/tbody/tr["+i+"]/td[2]"))).getText();
-			softly.assertThat(s).as("test data").isIn(textList);
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 		}
 		//Table 4
 		for(int i=2;i<=13;i++)
@@ -350,7 +358,8 @@ public class PassReview {
 				m=2;
 			//Verify text
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[8]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
-			softly.assertThat(s).as("test data").isIn(textList);
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 			//Verify Yes for checkbox
 			if(i%2==0)
 			{
@@ -362,13 +371,15 @@ public class PassReview {
 		//Table 1
 		//Verify text
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLPass3CriticalText)).getText();
-		softly.assertThat(s).as("test data").isIn(textList);
+		String r1 = s.replaceAll("\u00AD", "");
+		softly.assertThat(r1).as("test data").isIn(textList);
 		//Table 2
 		for(int i=2;i<=7;i++)
 		{
 			//Verify text
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
-			softly.assertThat(s1).as("test data").isIn(textList);
+			String r2 = s1.replaceAll("\u00AD", "");
+			softly.assertThat(r2).as("test data").isIn(textList);
 			//Verify Yes for checkbox
 			if(i%2==0)
 			{
@@ -377,7 +388,7 @@ public class PassReview {
 			}
 		}
 	}
-	
+
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -420,7 +431,7 @@ public class PassReview {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);	    					
-	}
+	}	
 
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 
@@ -434,6 +445,8 @@ public class PassReview {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		obj1.loadingServer(driver);
+		//Verify change in text
+		verifyHTMLReport(driver, obj.error50Data(driver));
 		//Clicks on share button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareButton)).click();
 		//Enters username
@@ -456,7 +469,7 @@ public class PassReview {
 		obj1.loadingServer(driver);
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
-		//Clicks on OPiRCA side panel
+		//Clicks on 3 Pass Review side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
@@ -498,22 +511,147 @@ public class PassReview {
 		obj.checkNoReportAfterDelete(driver, sharer, softly);		
 	}
 
+	public void changeText(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,10); 
+		ErrorMeter obj = new ErrorMeter();
+		ShareCheck obj1 = new ShareCheck();
+		//Click on Pass 1 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1Tab)).click();
+		//Change text
+		List<String> textList = obj.error50Data(driver);
+		Iterator<String> iter = Iterables.cycle(textList).iterator();
+		//Fill text in Requirement
+		if(iter.hasNext()) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1RequirementText)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1RequirementText)).sendKeys(iter.next());
+		}
+		//Operating mode
+		if(iter.hasNext()) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1OperatingText)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1OperatingText)).sendKeys(iter.next());
+		}
+		//Assumption
+		if(iter.hasNext()) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1AssumptionText)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1AssumptionText)).sendKeys(iter.next());
+		}
+		//Scope of work
+		if(iter.hasNext()) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1ScopeText)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1ScopeText)).sendKeys(iter.next());
+		}
+		//Testing
+		if(iter.hasNext()) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1TestingText)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1TestingText)).sendKeys(iter.next());
+		}
+		//Scroll down
+		obj1.scrollToAPoint(driver, 1500);
+		Thread.sleep(1000);
+		//Enter text in each text box for q1 to q10
+		for(int i=2;i<=11;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).clear();
+			if(iter.hasNext()) 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
+		}
+		//Scroll up
+		obj1.scrollToTop(driver);
+		//Click on Pass 2 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Pass2Tab)).click();
+		//Table 1
+		//Enter text in each text box
+		for(int i=2;i<=5;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[3]/table/tbody/tr["+i+"]/td[2]/textarea"))).clear();
+			if(iter.hasNext()) 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[3]/table/tbody/tr["+i+"]/td[2]/textarea"))).sendKeys(iter.next());
+		}
+		//Enter text in each text box
+		int m=2;
+		for(int i=2;i<=13;i++)
+		{
+			if(i==2||i==5||i==8||i==11)
+			{
+				m=3;
+			}
+			else
+				m=2;
+			//Scroll to element
+			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).clear();
+			if(iter.hasNext()) 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
+		}
+		//Table 3
+		//Enter text in each text box
+		for(int i=2;i<=5;i++)
+		{
+			//Scroll to element
+			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))).clear();
+			if(iter.hasNext()) 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))).sendKeys(iter.next());
+		}
+		//Table 4
+		//Enter text in each text box
+		for(int i=2;i<=13;i++)
+		{
+			if(i==2||i==5||i==8||i==11)
+			{
+				m=3;
+			}
+			else
+				m=2;
+			//Scroll to element
+			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).clear();
+			if(iter.hasNext()) 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
+		}
+		//Scroll up
+		obj1.scrollToTop(driver);
+		//Click on Pass 3 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Pass3Tab)).click();
+		//Table 1
+		if(iter.hasNext()) 
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass3CriticalText)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass3CriticalText)).sendKeys(iter.next());
+		}
+		//Enter text in each text box
+		for(int i=2;i<=7;i++)
+		{
+			//Scroll to element
+			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).clear();
+			if(iter.hasNext()) 
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
+		}
+		//Scroll up
+		obj1.scrollToTop(driver);
+	}
+
 	public void openReport(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10); 
 		ShareCheck obj = new ShareCheck();
 		EiRCA obj1 = new EiRCA ();
+		ErrorMeter obj2 = new ErrorMeter ();
 		//Clicks on record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		//Wait for loading message
 		obj.loadingServer(driver);
 		//Verify final report
-		verifyHTMLReport(driver);
+		verifyHTMLReport(driver, obj2.error100Data(driver));
 		//Clicks on open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OpenButton)).click();
 		//Clicks on open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
+		//Change text
+		changeText(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SaveButton)).click();
 		Thread.sleep(2000);
@@ -526,7 +664,7 @@ public class PassReview {
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavedAcivitiesButton)).click();
 		obj.loadingServer(driver);
-		//Clicks on side panel option for job observation
+		//Clicks on side panel option for 3 pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
 		obj.loadingServer(driver);
 	}
@@ -607,8 +745,14 @@ public class PassReview {
 		//Gets the name of the record created
 		WebElement record = driver.findElement(FirstRecord);
 		String recordName = record.getText();
-		softly.assertThat(recordName).as("test data").contains(text);
-		return recordName;
+		String r1 = recordName.replaceAll("\u00AD", "");
+		softly.assertThat(r1).as("test data").contains(text);
+		return r1;
+	}
+	
+	public void softAssert() throws Exception {
+		softly.assertAll();
+		System.gc();
 	}
 
 }

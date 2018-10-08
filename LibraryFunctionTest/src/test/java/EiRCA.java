@@ -382,9 +382,13 @@ public class EiRCA {
 			//Verify save sticky
 			obj2.verifyStickySaveReport(driver, softly, username, text,1);
 			obj1.loadingServer(driver);
+			obj1.loadingServer(driver);
 			obj1.scrollToTop(driver);
 			//Clicks on Saved activities
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();
+			obj1.loadingServer(driver);
+			obj1.scrollToTop(driver);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASidePanel)).click();
 			obj1.loadingServer(driver);
 			obj1.scrollToTop(driver);
 			//Clicks on first newly created record
@@ -2185,6 +2189,10 @@ public class EiRCA {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();	
 		obj.loadingServer(driver);
 		obj.loadingServer(driver);
+		//Side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASidePanel)).click();	
+		obj.loadingServer(driver);
+		obj.scrollToTop(driver);
 		//Click on 1st record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 		obj.loadingServer(driver);
@@ -2713,7 +2721,7 @@ public class EiRCA {
 	public String textCreate(WebDriver driver) throws Exception {
 
 		if(driver.getCurrentUrl().contains("kaleqa"))
-			return ("Sanity <div> Test \"title\" Sanity");
+			return ("Sanity <table> Test \"title\" Sanity");
 		else
 			return("Sanity Test \"title\" Sanity");
 	}

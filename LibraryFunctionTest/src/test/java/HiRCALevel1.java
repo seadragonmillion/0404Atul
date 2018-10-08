@@ -2599,6 +2599,7 @@ public class HiRCALevel1 {
 	public void verifyLOP(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		Thread.sleep(2000);
 		//Verify LOP title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(title).as("test data").contains("[2.0] What were the failed LOPs (3 max) that caused this event to happen?");

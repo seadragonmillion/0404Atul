@@ -26,8 +26,8 @@ public class CreateEquipmentCase {
 	SoftAssertions softly = new SoftAssertions();
 	String titleCombo = "QAA Type Discipline Field Filters Combo Test";
 	String titleComboUS = "QAA US Type Discipline Field Filters Combo Test";
-	String titleComboie11 = "QAA IE11 Type Discipline Field Filters Combo Test";
-	String titleComboUSie11 = "QAA US IE11 Type Discipline Field Filters Combo Test";
+	String titleComboie11 = "QAA IE11 Type Disciplineie11 Fieldie11 Filters Combo Test";
+	String titleComboUSie11 = "QAA US IE11 Type Disciplineie11 Fieldie11 Filters Combo Test";
 	String keywordCombo = "QAADiscFieldCombo";
 	String keywordComboUS = "QAAUSDiscFieldCombo";
 	String keywordComboie11 = "QAAie11DiscFieldCombo";

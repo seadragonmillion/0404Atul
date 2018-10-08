@@ -54,8 +54,11 @@ public class HiRCALevel2Chinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Step 3 skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
-		//Step 4 / Step 5 / Report/ pdf
-		obj3.verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220);
+		/*Step 4 / Step 5 / Report/ pdf
+		0=english
+		1=chinese
+		*/
+		obj3.verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,1);
 	}
 	
 	public List<String> answerLOPRelatedQuestions(WebDriver driver) throws Exception {

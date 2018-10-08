@@ -33,6 +33,17 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
+		fillPage(driver,text);
+		obj.scrollToAPoint(driver, 6500);
+		//Clicks on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+		Thread.sleep(2000);
+	}
+	
+	public void fillPage(WebDriver driver,String text) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Clicks on Analysis 
@@ -56,10 +67,6 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
 		//Investigators
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
-		obj.scrollToAPoint(driver, 6500);
-		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
-		Thread.sleep(2000);
 	}
 
 	public void bugKALE2219KALE2246(WebDriver driver) throws Exception {
