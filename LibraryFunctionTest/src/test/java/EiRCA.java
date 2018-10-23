@@ -80,7 +80,7 @@ public class EiRCA {
 	By EiRCAFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a");
 	By StickyNote = By.className("sticky-note");
 	By StickySuccess = By.className("sticky-success");
-	By StickyClose = By.className("sticky-close");;
+	By StickyClose = By.className("sticky-close");
 
 	//Sequence of Events in HTML
 	By SequenceOfEventPageTitle = By.xpath(".//*[@id='mirca-rpt']/div[5]/div");

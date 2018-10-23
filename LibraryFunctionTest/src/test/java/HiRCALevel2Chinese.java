@@ -102,21 +102,21 @@ public class HiRCALevel2Chinese {
 			//Select random level 3 answers for 3.16
 			obj2.chineseStepOneL316(driver, softly);
 			level3.addAll(selectAllLevel3(driver,7));
-			if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
+			/*if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
 			{
 				combined.addAll(level2);
 				combined.addAll(level3);
 				return combined;
 			}
 			else
-			{
+			{*/
 				//Click next
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				//2.3 to 2.8
 				List<String> c = followQuestions23To28(driver);
 				level2.addAll(obj1.level2List(c));
 				level3.addAll(obj1.level3List(c));
-			}
+		//	}
 		}
 		if(n==1)
 		{
@@ -250,17 +250,17 @@ public class HiRCALevel2Chinese {
 			obj2.chineseStepOneL322(driver, softly);
 			level3.addAll(selectAllLevel3(driver,5));
 		}
-		if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
+		/*if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
 		{
 			combined.addAll(level2);
 			combined.addAll(level3);
 			return combined;
 		}
 		else
-		{
+		{*/
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-		}
+		//}
 		//2.4
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);

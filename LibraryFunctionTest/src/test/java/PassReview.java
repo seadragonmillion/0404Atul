@@ -107,6 +107,12 @@ public class PassReview {
 		{
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).getAttribute("value");
+			if(s.equals(""))
+			{
+				if(iter.hasNext()) 
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
+			}
 		}
 		//Scroll up
 		obj1.scrollToTop(driver);
