@@ -43,6 +43,15 @@ public class ChromeTest {
 		//qaasharernonadminie11
 		login = obj.LoginUser(driver, obj1.decideSharer(3), password);
 		obj2.deleteNotif(driver,obj, login);
+		//qaaandroidshare1
+		login = obj.LoginUser(driver, obj2.decideSharerAndroid(0), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaaandroidshare2
+		login = obj.LoginUser(driver, obj2.decideSharerAndroid(1), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaaandroidshare3
+		login = obj.LoginUser(driver, obj2.decideSharerAndroid(2), password);
+		obj2.deleteNotif(driver,obj, login);
 		afterTest();
 	}
 	

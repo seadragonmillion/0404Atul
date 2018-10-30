@@ -1,7 +1,6 @@
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,11 +20,54 @@ public class deleteNotifications {
 	private By NotificationDeleteButton = By.id("pii-notif-del-btn");
 	private By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
 	private By NotificationReadConfirmButton2 = By.id("pii-notif-dialog-confirmed");
+	
+	public String decideSharerAndroid (int y) throws Exception{
+
+		/* Dev/Asia
+		 * 0=android 7
+		 * 1=android 8
+		 * 2=android 9
+		 * US
+		 * 3=android 7
+		 * 4=android 8
+		 * 5=android 9
+		 */
+		if(y==0)
+		{
+			String sharer ="qaaandroidshare1";
+			return sharer;
+		}
+		if(y==1)
+		{
+			String sharer ="qaaandroidshare2";
+			return sharer;
+		}
+		if(y==2)
+		{
+			String sharer ="qaaandroidshare3";
+			return sharer;
+		}
+		if(y==3)
+		{
+			String sharer ="qaausandroidshare1";
+			return sharer;
+		}
+		if(y==4)
+		{
+			String sharer ="qaausandroidshare2";
+			return sharer;
+		}
+		else
+		{
+			String sharer ="qaausandroidshare3";
+			return sharer;
+		}
+	}
 
 	public void deleteNotif(WebDriver driver,Login obj, int login) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj1 = new ShareCheck();
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
 		//Waits for the page to load
@@ -51,9 +93,7 @@ public class deleteNotifications {
 		Thread.sleep(4000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
+		obj1.scrollToTop(driver);
 		//Click on check box for selecting all noifications
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationAllCheckBox)).click();
 		Thread.sleep(2000);
@@ -65,7 +105,6 @@ public class deleteNotifications {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton2)).click();
 		}
 		Thread.sleep(2000);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.loadingServer(driver);
 		//LogOut
 		obj.logout(driver);
