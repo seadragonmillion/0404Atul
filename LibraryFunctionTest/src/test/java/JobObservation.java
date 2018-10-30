@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -92,7 +96,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E")));
 		verifyLOSEStep5(driver);
 	}
-	
+
 	public void verifyLOSEStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -179,7 +183,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D")));
 		verifyCADStep5(driver);
 	}
-	
+
 	public void verifyCADStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -232,7 +236,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5")));
 		verifyBOOSTStep5(driver);
 	}
-	
+
 	public void verifyBOOSTStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -303,7 +307,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A")));
 		verifyTQAStep5(driver);
 	}
-	
+
 	public void verifyTQAStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -368,7 +372,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C")));
 		verifyABCStep5(driver);
 	}
-	
+
 	public void verifyABCStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -456,7 +460,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P")));
 		verifyBURPStep5(driver);
 	}
-	
+
 	public void verifyBURPStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -533,7 +537,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5")));
 		verifyDDOTAStep5(driver);
 	}
-	
+
 	public void verifyDDOTAStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -593,35 +597,336 @@ public class JobObservation {
 		Thread.sleep(500);
 	}
 
+	public List<String> selectStep3Step4Step5Random(WebDriver driver) throws Exception {
+
+		List<String> k = new ArrayList<String>();
+		String s = selectStep3(driver);
+		k.add(s);
+		if(s.equals("Skill-based"))
+			k.addAll(selectDDOTA(driver));
+		if(s.equals("Rule-based"))
+			k.addAll(selectOptionStep4Rule(driver));
+		if(s.equals("Knowledge-based"))
+			k.addAll(selectOptionStep4Knowledge(driver));
+		if(s.equals("Equipment"))
+			k.addAll(selectCAD(driver));
+		if(s.equals("Injury"))
+			k.addAll(selectLOSE(driver));
+		List<String> step5 = selectStep5(driver);
+		k.addAll(step5);
+		return k;
+	}
+
+	public List<String> selectStep5 (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,3);
+		List<String> step5 = new ArrayList<String>();
+		Random random = new Random();
+		int count=0;
+		while(true)
+		{
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-"+count)));
+				count=count+1;
+			}catch(org.openqa.selenium.TimeoutException r)
+			{
+				break;
+			}
+		}
+		int n = random.nextInt(count);
+		for(int i=0;i<=n;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-"+i+"']"))).click();
+			step5.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-"+i+"']"))).getText());
+		}
+		return step5;
+	}
+
+	public List<String> selectOptionStep4Knowledge(WebDriver driver) throws Exception {
+
+		Random random = new Random();
+		int n = random.nextInt(2);
+		if(n==0)
+			return selectDDOTA(driver);
+		else
+			return selectBOOST(driver);
+	}	
+
+	public List<String> selectOptionStep4Rule(WebDriver driver) throws Exception {
+
+		Random random = new Random();
+		int n = random.nextInt(4);
+		if(n==0)
+			return selectDDOTA(driver);
+		if(n==1)
+			return selectBURP(driver);
+		if(n==2)
+			return selectABC(driver);
+		else
+			return selectTQA(driver);
+	}
+
+	public List<String> selectCAD (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Random random = new Random();
+		List<String> s = new ArrayList<String>();
+		int n = random.nextInt(3);
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-C"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-C"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-A"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-A"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D"))).click();
+		}
+		s.add("No6");
+		return s;
+	}
+
+	public List<String> selectLOSE (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Random random = new Random();
+		List<String> s = new ArrayList<String>();
+		int n = random.nextInt(4);
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-L"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-L"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-O"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-O"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-S"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-S"))).click();
+		}
+		if(n==3)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E"))).click();
+		}
+		s.add("No6");
+		return s;
+	}
+
+	public List<String> selectBOOST (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> s = new ArrayList<String>();
+		Random random = new Random();
+		int n = random.nextInt(5);
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-1"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-1"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-2"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-2"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-3"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-3"))).click();
+		}
+		if(n==3)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-4"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-4"))).click();
+		}
+		if(n==4)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5"))).click();
+		}
+		s.add("No6");
+		return s;
+	}
+
+	public List<String> selectDDOTA(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Random random = new Random();
+		int n = random.nextInt(5);
+		List<String> s = new ArrayList<String>();
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-1"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-1"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-2"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-2"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-3"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-3"))).click();
+		}
+		if(n==3)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-4"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-4"))).click();
+		}
+		if(n==4)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
+		}
+		return s;
+	}
+
+	public List<String> selectBURP (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Random random = new Random();
+		List<String> s = new ArrayList<String>();
+		int n = random.nextInt(4);
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-B"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-B"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-U"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-U"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-R"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-R"))).click();
+		}
+		if(n==3)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P"))).click();
+		}
+		return s;
+	}
+
+	public List<String> selectABC (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> s = new ArrayList<String>();
+		Random random = new Random();
+		int n = random.nextInt(3);
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-A"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-A"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-B"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-B"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C"))).click();
+		}
+		s.add("No6");
+		return s;
+	}
+
+	public List<String> selectTQA (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> s = new ArrayList<String>();
+		Random random = new Random();
+		int n = random.nextInt(3);
+		if(n==0)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-T"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-T"))).click();
+		}
+		if(n==1)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-Q"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-Q"))).click();
+		}
+		if(n==2)
+		{
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A"))).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A"))).click();
+		}
+		s.add("No6");
+		return s;
+	}
+
+	public String selectStep3(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		Random random = new Random();
+		int n = random.nextInt(5);
+		String s = "";
+		if(n==0)
+		{
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-SB"))).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-SB"))).click();
+		}
+		if(n==1)
+		{
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-RB"))).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-RB"))).click();
+		}
+		if(n==2)
+		{
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).click();
+		}
+		if(n==3)
+		{
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-EQ"))).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-EQ"))).click();
+		}
+		if(n==4)
+		{
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-IN"))).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-IN"))).click();
+		}
+		return s;
+	}
+
 	public void path(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
-		//Verify Step 3 and Step 4
+		//Verify Step 3/Step 4/Step 5
 		verifyObservationTypesSelection(driver);
-		//Clicks on Knowledge based button in step 3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).click();
-		//Clicks on Attention bank & span insufficiency button in step 4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
-		//Clicks on both answers in step 5
-		Thread.sleep(1000);
-		Actions act = new Actions(driver);
-		WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-0")));
-		act.moveToElement(element).click().build().perform();
-		Thread.sleep(1000);
-		element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-5-answer-1")));
-		act.moveToElement(element).click().build().perform();
+		//Select Step 3/4/5
+		List<String> k = selectStep3Step4Step5Random(driver);
 		//Enters text 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step5"))).sendKeys(text(driver));
 		//Clicks on Next
 		driver.findElement(By.id("pii-joa-tab-5-button")).click();
-		//Clicks on both answers in step 6
-		element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-0")));
-		act.moveToElement(element).click().build().perform();
-		Thread.sleep(1000);
-		element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-1")));
-		act.moveToElement(element).click().build().perform();
+		if(k.contains("No6")==false)
+		{
+			//Clicks on both answers in step 6
+			Actions act = new Actions(driver);
+			WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-0")));
+			act.moveToElement(element).click().build().perform();
+			Thread.sleep(1000);
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-1")));
+			act.moveToElement(element).click().build().perform();
+		}
 		//Enters text
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step6"))).sendKeys(text1(driver));
 		//Clicks on build report
@@ -636,6 +941,16 @@ public class JobObservation {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
 		String r1 = s1.replaceAll("\u00AD", "");
 		softly.assertThat(r1).as("test data").contains(text1(driver));
+		//Verify random selections in report
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[2]/span"))).getText();
+		softly.assertThat(s2).as("test data").contains(k.get(0)+"/"+k.get(1));
+		int c=1;
+		for(int i=2;i<k.size();i++)
+		{
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[3]/span/ul/li["+c+"]"))).getText();
+			softly.assertThat(s3).as("test data").contains(k.get(i));
+			c=c+1;
+		}
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
 		//Clicks on save report
@@ -789,11 +1104,7 @@ public class JobObservation {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Uploads a picture on next page in step 2
-		Thread.sleep(1000);/*
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
-		WebElement element =  driver.findElement(By.id("pii-joa-tab-2-photo-input"));
-		Actions act = new Actions(driver);
-		act.doubleClick(element).build().perform();*/
+		Thread.sleep(1000);
 		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(3000);
 		//Uploads picture
