@@ -3,9 +3,11 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -379,13 +381,27 @@ public class PassReview {
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLPass3CriticalText)).getText();
 		String r1 = s.replaceAll("\u00AD", "");
 		softly.assertThat(r1).as("test data").isIn(textList);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		System.out.println(browserName);
 		//Table 2
 		for(int i=2;i<=7;i++)
 		{
 			//Verify text
-			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
-			String r2 = s1.replaceAll("\u00AD", "");
-			softly.assertThat(r2).as("test data").isIn(textList);
+			if (browserName.equals("internet explorer"))
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getAttribute("textContent");
+				String r2 = s1.replaceAll("\u00AD", "");
+				softly.assertThat(r2).as("test data").isIn(textList);
+				//System.out.println(s1+"\n"+r2);
+			}
+			else
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
+				String r2 = s1.replaceAll("\u00AD", "");
+				softly.assertThat(r2).as("test data").isIn(textList);
+			}
 			//Verify Yes for checkbox
 			if(i%2==0)
 			{

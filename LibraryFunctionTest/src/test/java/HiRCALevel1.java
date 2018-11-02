@@ -1166,6 +1166,7 @@ public class HiRCALevel1 {
 		{
 			if (v.startsWith("11"))
 			{
+				obj.loadingServer(driver);	
 				//Clicks on Save
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
@@ -1748,6 +1749,23 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("11"))
+			{
+				obj.loadingServer(driver);	
+				//Clicks on Save
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				//Clicks on Save report
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				obj.loadingServer(driver);
+			}
+		}
 		//Clicks on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		//Create an expected name
@@ -1770,12 +1788,6 @@ public class HiRCALevel1 {
 		softly.assertThat(r1).as("test data").isEqualTo(name);
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		//Get browser name
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		System.out.println(browserName);
-		String v = cap.getVersion().toString();
-		System.out.println(v);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			downloadReportChrome(driver,lopOptions,hml,options,checklist);

@@ -949,20 +949,21 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		obj.loadingServer(driver);
-		//Get browser name
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		String v = cap.getVersion().toString();
+		obj.loadingServer(driver);		
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("11"))
 			{
+				obj.loadingServer(driver);	
 				//Clicks on Save
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
@@ -973,6 +974,10 @@ public class HiRCALevel2 {
 		}
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		obj.loadingServer(driver);
+		//Clicks on side panel
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
+		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();

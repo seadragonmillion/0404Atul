@@ -775,7 +775,7 @@ public class HiRCAEvent {
 		softly.assertThat("1.19 Was there a rising trend of similar errors? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.20 Was the error contributed to by changes during jobs? n/a n/a").as("test data").isSubstringOf(newData);
 		//Verify LOP failure inquiry
-		softly.assertThat("Were there LOPs in place to prevent the triggering event? No n/a").as("test data").isSubstringOf(newData);
+		softly.assertThat("Were there LOPs in place to prevent the triggering event? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("2.21 What LOPs can prevent this event from happening? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("2.22 Was HiRCA").as("test data").isSubstringOf(newData);
 		softly.assertThat("adequate in leading this investigation? n/a n/a").as("test data").isSubstringOf(newData);
@@ -1030,7 +1030,7 @@ public class HiRCAEvent {
 		softly.assertThat(rc40).as("test data").isEqualTo("n/a");
 		//Verify LOP failure inquiry
 		String lop8 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr/td[2]"))).getText();
-		softly.assertThat(lop8).as("test data").isEqualTo("No");
+		softly.assertThat(lop8).as("test data").isEqualTo("n/a");
 		String lop9 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr/td[3]"))).getText();
 		softly.assertThat(lop9).as("test data").isEqualTo("n/a");
 		String lop10 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]"))).getText();

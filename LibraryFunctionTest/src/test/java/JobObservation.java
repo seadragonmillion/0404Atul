@@ -944,12 +944,10 @@ public class JobObservation {
 		//Verify random selections in report
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[2]/span"))).getText();
 		softly.assertThat(s2).as("test data").contains(k.get(0)+"/"+k.get(1));
-		int c=1;
-		for(int i=2;i<k.size();i++)
+		for(int i=2;i<k.size()-1;i++)
 		{
-			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[3]/span/ul/li["+c+"]"))).getText();
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[3]/span/ul/li["+(i-1)+"]"))).getText();
 			softly.assertThat(s3).as("test data").contains(k.get(i));
-			c=c+1;
 		}
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();

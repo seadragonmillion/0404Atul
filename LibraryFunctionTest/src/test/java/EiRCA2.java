@@ -211,10 +211,10 @@ public class EiRCA2 {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open EiRCA™ report referenced as: "+r1+"?");
-		else
-			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open EiRCA™ report referenced as: <br/>"+r1+"?");
+		//if (driver.getCurrentUrl().contains("kaleqa"))
+		softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open EiRCA™ report referenced as: "+r1+"?");
+		/*else
+			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open EiRCA™ report referenced as: <br/>"+r1+"?");*/
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
@@ -235,10 +235,7 @@ public class EiRCA2 {
 		softly.assertThat(s).as("test data").isEqualTo("Share to user");
 		//Verify question on pop up, sharer in format = QAA (ritica_only_nonadmin)
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want share current activity to user ["+sharer+"]?");
-		else
-			softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want share current activity to user <­strong>["+sharer+"]<­/strong>?");
+		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want share current activity to user ["+sharer+"]?");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: report will be shared after you save your changes.");
@@ -259,10 +256,7 @@ public class EiRCA2 {
 		softly.assertThat(s).as("test data").isEqualTo("Remove sharing to a user");
 		//Verify question on pop up, sharer in format = QAA (ritica_only_nonadmin)
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to remove user ["+sharer+"] from 'shared to' users?");
-		else
-			softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to remove user <­strong>["+sharer+"]<­/strong> from 'shared to' users?");
+		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to remove user ["+sharer+"] from 'shared to' users?");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: sharing to user will be removed after you save your changes.");

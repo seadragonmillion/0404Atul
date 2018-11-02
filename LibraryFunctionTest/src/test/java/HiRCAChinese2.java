@@ -4612,7 +4612,7 @@ public class HiRCAChinese2 {
 		String r622 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r622).as("test data").contains("屏障是否存在能预防始发事件的发生？");
 		String r623 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table/tbody/tr[1]/td[2]"))).getText();
-		softly.assertThat(r623).as("test data").contains("否");
+		softly.assertThat(r623).as("test data").contains("不适用");
 		String r624 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table/tbody/tr[1]/td[3]"))).getText();
 		softly.assertThat(r624).as("test data").contains("不适用");
 		String r625 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[7]/table/tbody/tr[2]/td[1]"))).getText();

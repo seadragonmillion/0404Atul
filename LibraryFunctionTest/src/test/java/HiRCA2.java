@@ -216,20 +216,10 @@ public class HiRCA2 {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			if(r.contains("This report is currently open in "))
+		if(r.contains("This report is currently open in "))
 				softly.assertThat(r).as("test data").isEqualTo("This report is currently open in HiRCA™, are you sure you want to delete this report ["+r1+"]?");
 			else
 				softly.assertThat(r).as("test data").isEqualTo("Are you sure you want to delete this HiRCA™ report ["+r1+"]?");
-		}
-		else
-		{
-			if(r.contains("This report is currently open in "))
-				softly.assertThat(r).as("test data").isEqualTo("<strong style='color: red'>This report is currently open in HiRCA™</strong>, are you sure you want to delete this report ["+r1+"]?");
-			else
-				softly.assertThat(r).as("test data").isEqualTo("Are you sure you want to delete this HiRCA™ report ["+r1+"]?");
-		}
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");

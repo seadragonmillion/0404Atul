@@ -2060,6 +2060,23 @@ public class HiRCAHumanError2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("11"))
+			{
+				obj1.loadingServer(driver);	
+				//Clicks on Save
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+				//Clicks on Save report
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				obj1.loadingServer(driver);
+			}
+		}
 		//Clicks on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		//Create an expected name
@@ -2068,6 +2085,10 @@ public class HiRCAHumanError2 {
 		System.out.println(name);	 
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		//Wait for loading message to disappear
+		obj1.loadingServer(driver);
+		//Clicks on side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		//Gets newly created record name
@@ -2084,10 +2105,6 @@ public class HiRCAHumanError2 {
 		softly.assertThat(r1).as("test data").isEqualTo(name);
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
-		//Get browser name
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		String v = cap.getVersion().toString();
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			obj.downloadReportChrome(driver,lopOptions1,hml,options,checklist);
