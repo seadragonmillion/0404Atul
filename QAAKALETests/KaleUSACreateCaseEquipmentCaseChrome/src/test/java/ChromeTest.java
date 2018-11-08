@@ -70,8 +70,6 @@ public class ChromeTest {
 		Thread.sleep(1000);
 		obj1.deletePreviousCase(driver, obj1.ee_titleUS);
 		Thread.sleep(1000);
-		obj1.deletePreviousCase(driver, obj1.me_titleUS);
-		Thread.sleep(1000);
 		//Creates 5 slides for Equipment Case Search
 		List<String> eqCases = obj1.createCaseChrome(driver, obj1.keyword_same_eqUS, obj1.key1_eqUS, obj1.key2_eqUS, obj1.key3_eqUS, obj1.eq_titleUS);
 		System.out.println("Slides created for equipment: "+ eqCases);
@@ -79,10 +77,6 @@ public class ChromeTest {
 		//Creates 5 slides for Electrical Case Search
 		List<String> eeCases = obj1.createCaseChrome(driver, obj1.keywordUS_same_ee, obj1.key1_eeUS, obj1.key2_eeUS, obj1.key3_eeUS, obj1.ee_titleUS);
 		System.out.println("Slides created for electrical "+eeCases);
-		Thread.sleep(2000);
-		//Creates 5 slides for Mechanical Case Search
-		List<String> meCases = obj1.createCaseChrome(driver, obj1.keywordUS_same_me, obj1.key1_meUS, obj1.key2_meUS, obj1.key3_meUS, obj1.me_titleUS);
-		System.out.println("Slides created for mechanical "+meCases);
 		Thread.sleep(2000);
 		//Checks slides for one Equipment non PII case
 		obj1.compareSlide(driver, eqCases.get(0), obj1.eq_titleUS, 0);
@@ -100,10 +94,6 @@ public class ChromeTest {
 		obj1.compareSlide(driver, eeCases.get(0), obj1.ee_titleUS, 0);
 		System.out.println("Slide checked for electrical");
 		Thread.sleep(2000);
-		//Checks slides for one Mechanical case
-		obj1.compareSlide(driver, meCases.get(0), obj1.me_titleUS, 0);
-		System.out.println("Slide checked for mechanical");
-		Thread.sleep(2000);
 		//Check the keyword search for Equipment
 		obj1.checkkeyword(driver, eqCases, obj1.keyword_same_eqUS, obj1.key1_eqUS, obj1.key2_eqUS, obj1.key3_eqUS, 0,obj1.eq_titleUS);
 		System.out.println("Keyword checked for equipment");
@@ -116,12 +106,8 @@ public class ChromeTest {
 		obj1.checkkeyword(driver, eeCases, obj1.keywordUS_same_ee, obj1.key1_eeUS, obj1.key2_eeUS, obj1.key3_eeUS, 0,obj1.ee_titleUS);
 		System.out.println("Keyword checked for electrical");
 		Thread.sleep(2000);
-		//Check the keyword search for Mechanical
-		obj1.checkkeyword(driver, meCases, obj1.keywordUS_same_me, obj1.key1_meUS, obj1.key2_meUS, obj1.key3_meUS, 0,obj1.me_titleUS);
-		System.out.println("Keyword checked for mechanical");
-		Thread.sleep(2000);
 		//Check for presence of Equipment cases in Mechanical or Electrical modules
-		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), meCases.get(1), obj1.keyword_same_eqUS, obj1.keywordUS_same_ee);
+		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), obj1.keyword_same_eqUS, obj1.keywordUS_same_ee);
 		System.out.println("Cases checked in each module");
 		Thread.sleep(2000);
 		//Look for equipment cases with Type Advanced Learning
@@ -154,10 +140,6 @@ public class ChromeTest {
 		//Deletes Electrical cases
 		obj1.deleteCase(driver, eeCases);
 		System.out.println("Slides deleted for electrical");
-		Thread.sleep(2000);
-		//Deletes Mechanical cases
-		obj1.deleteCase(driver, meCases);
-		System.out.println("Slides deleted for mechanical");
 		Thread.sleep(2000);
 		//Logs out
 		obj2.logout(driver);

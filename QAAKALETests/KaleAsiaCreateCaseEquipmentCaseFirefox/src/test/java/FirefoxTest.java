@@ -86,8 +86,6 @@ public class FirefoxTest {
 		Thread.sleep(1000);
 		obj1.deletePreviousCase(driver, obj1.ee_title);
 		Thread.sleep(1000);
-		obj1.deletePreviousCase(driver, obj1.me_title);
-		Thread.sleep(1000);
 		//Creates 5 slides for Equipment Case Search
 		List<String> eqCases = obj1.createCaseFirefox(driver, obj1.keyword_same_eq, obj1.key1_eq, obj1.key2_eq, obj1.key3_eq, obj1.eq_title);
 		System.out.println("Slides created for equipment: "+ eqCases);
@@ -95,10 +93,6 @@ public class FirefoxTest {
 		//Creates 5 slides for Electrical Case Search
 		List<String> eeCases = obj1.createCaseFirefox(driver, obj1.keyword_same_ee, obj1.key1_ee, obj1.key2_ee, obj1.key3_ee, obj1.ee_title);
 		System.out.println("Slides created for electrical "+eeCases);
-		Thread.sleep(2000);
-		//Creates 5 slides for Mechanical Case Search
-		List<String> meCases = obj1.createCaseFirefox(driver, obj1.keyword_same_me, obj1.key1_me, obj1.key2_me, obj1.key3_me, obj1.me_title);
-		System.out.println("Slides created for mechanical "+meCases);
 		Thread.sleep(2000);
 		//Checks slides for one Equipment non PII case
 		obj1.compareSlide(driver, eqCases.get(0), obj1.eq_title, 0);
@@ -116,10 +110,6 @@ public class FirefoxTest {
 		obj1.compareSlide(driver, eeCases.get(0), obj1.ee_title, 0);
 		System.out.println("Slide checked for electrical");
 		Thread.sleep(2000);
-		//Checks slides for one Mechanical case
-		obj1.compareSlide(driver, meCases.get(0), obj1.me_title, 0);
-		System.out.println("Slide checked for mechanical");
-		Thread.sleep(2000);
 		//Check the keyword search for Equipment
 		obj1.checkkeyword(driver, eqCases, obj1.keyword_same_eq, obj1.key1_eq, obj1.key2_eq, obj1.key3_eq, 0,obj1.eq_title);
 		System.out.println("Keyword checked for equipment");
@@ -132,12 +122,8 @@ public class FirefoxTest {
 		obj1.checkkeyword(driver, eeCases, obj1.keyword_same_ee, obj1.key1_ee, obj1.key2_ee, obj1.key3_ee, 0,obj1.ee_title);
 		System.out.println("Keyword checked for electrical");
 		Thread.sleep(2000);
-		//Check the keyword search for Mechanical
-		obj1.checkkeyword(driver, meCases, obj1.keyword_same_me, obj1.key1_me, obj1.key2_me, obj1.key3_me, 0,obj1.me_title);
-		System.out.println("Keyword checked for mechanical");
-		Thread.sleep(2000);
 		//Check for presence of Equipment cases in Mechanical or Electrical modules
-		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), meCases.get(1), obj1.keyword_same_eq, obj1.keyword_same_ee);
+		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), obj1.keyword_same_eq, obj1.keyword_same_ee);
 		System.out.println("Cases checked in each module");
 		Thread.sleep(2000);
 		//Look for equipment cases with Type Advanced Learning
@@ -170,10 +156,6 @@ public class FirefoxTest {
 		//Deletes Electrical cases
 		obj1.deleteCase(driver, eeCases);
 		System.out.println("Slides deleted for electrical");
-		Thread.sleep(2000);
-		//Deletes Mechanical cases
-		obj1.deleteCase(driver, meCases);
-		System.out.println("Slides deleted for mechanical");
 		Thread.sleep(2000);
 		//Logs out
 		obj2.logout(driver);
