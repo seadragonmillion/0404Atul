@@ -944,6 +944,10 @@ public class JobObservation {
 		//Verify random selections in report
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[2]/span"))).getText();
 		softly.assertThat(s2).as("test data").contains(k.get(0)+"/"+k.get(1));
+		if(k.contains("No6"))
+		{			
+			k.remove("No6");
+		}
 		for(int i=2;i<k.size()-1;i++)
 		{
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[3]/span/ul/li["+(i-1)+"]"))).getText();
