@@ -73,6 +73,30 @@ public class ChromeTest {
 		//qaausandroidshare3
 		login = obj.LoginUser(driver, obj2.decideSharerAndroid(5), password);
 		obj2.deleteNotif(driver,obj, login);
+		//qaarvverifier1
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(0), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaarvverifiernonadmin
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(1), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaaie11rvverifier
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(2), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaaie11rvverifiernonadmin
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(3), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaausrvverifier
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(4), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaausrvverifiernonadmin
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(5), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaausie11rvverifier
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(6), password);
+		obj2.deleteNotif(driver,obj, login);
+		//qaausie11rvverifiernonadmin
+		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(7), password);
+		obj2.deleteNotif(driver,obj, login);
 		afterTest();
 	}
 	
