@@ -16,7 +16,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -148,8 +147,6 @@ public class RemoteVerification {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Clicks on Save and Send
 		driver.findElement(RVSaveAndSendButton).click();
 		//Clicks on save and send report
@@ -657,7 +654,7 @@ public class RemoteVerification {
 		//dev admin
 		if(k==1)
 		{
-			driver.findElement(RVVerifierField).sendKeys("qaarvverifier");
+			driver.findElement(RVVerifierField).sendKeys("qaarvverifier1");
 		}
 		//dev nonadmin
 		if(k==2)
@@ -880,7 +877,7 @@ public class RemoteVerification {
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();;
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
 	}
 
 	public void downloadRecordChrome(WebDriver driver, String verifier, String username) throws Exception {
@@ -1266,7 +1263,7 @@ public class RemoteVerification {
 				upload1stpictureIE11(driver);
 		}
 	}
-
+	
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 
 		ShareCheck obj = new ShareCheck();

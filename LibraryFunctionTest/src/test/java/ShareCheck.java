@@ -31,7 +31,7 @@ public class ShareCheck {
 
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	SoftAssertions softly = new SoftAssertions();
-	
+
 	By ShareTextBox = By.id("pii-uhshare-search-input");
 	By ShareSave = By.id("pii-uhshare-save");
 	By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
@@ -45,6 +45,7 @@ public class ShareCheck {
 	By StickyClose = By.className("sticky-close");
 	By NotificationBell = By.id("pii-notification-button");
 	By NotificationFirstRecord = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]");
+	By NotificationFirstRecordReportTitle = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]/td[7]");
 	By NotificationOpenButton = By.id("pii-notif-report-btn");
 	By NotificationCount = By.id("pii-notification-count");
 	By NotificationFirstRecordDescriptionText = By.xpath(".//*[@id='pii-notif-jqgrid']/tbody/tr[2]/td[6]");
@@ -53,7 +54,7 @@ public class ShareCheck {
 	By LoginNameOnTopRight = By.id("pii-user-loginname");
 	By ActivityOnTopRight = By.id("pii-user-activity");
 	By ModuleTitle = By.id("pii-user-home-title");
-	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]");
 	By PIIContactButton = By.linkText("CONTACT");
 	By KALESupportButton = By.id("pii-contact-mailto");
 
@@ -191,7 +192,7 @@ public class ShareCheck {
 	}
 
 	public void checkCriticalNotification (WebDriver driver, String sharer, String username, String password1, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//LogOut
@@ -274,7 +275,7 @@ public class ShareCheck {
 	public void receiptReport(WebDriver driver, String sharer, String username, String password1) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		RemoteVerification rv = new RemoteVerification();
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
@@ -324,9 +325,7 @@ public class ShareCheck {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		if(browserName.equals("firefox")==false)
 		{
-			Thread.sleep(4000);
-			jse.executeScript("scroll(0,0)");
-			Thread.sleep(2000);
+			scrollToTop(driver);
 		}
 		//Click on 1st record/notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
@@ -352,7 +351,8 @@ public class ShareCheck {
 					downloadReportIE(driver);
 				if (v.startsWith("11"))
 					downloadReportIE11(driver);
-			}}
+			}
+		}
 		Thread.sleep(2000);
 		Thread.sleep(2000);
 		if(browserName.equals("internet explorer"))
@@ -364,6 +364,13 @@ public class ShareCheck {
 			Thread.sleep(4000);
 			for(int i=1;i<=n;i++)
 			{
+				//verify the title in remote verification title
+				if(s.contains("Remote Verification"))
+				{
+					String title = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecordReportTitle)).getText();
+					System.out.println("Title in rv in sharer notification center: "+title);
+					softly.assertThat(title).as("test data").contains(rv.eventTitle(driver));
+				}
 				Thread.sleep(2000);
 				//Click on 1st record/notification
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
@@ -408,9 +415,9 @@ public class ShareCheck {
 		//Log in back to user
 		logInToUser(driver,username,password1);
 	}
-	
+
 	public void logInToUser(WebDriver driver,String username, String password1) throws Exception{
-		
+
 		Login obj = new Login();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Get browser name
@@ -679,23 +686,23 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		closeMailClient();
 	}
-	
-	 public void closeMailClient() throws Exception {
-	        ProcessBuilder builder = new ProcessBuilder(
-	            "cmd.exe", "/c", "taskkill /F /IM MailClient.exe");
-	        builder.redirectErrorStream(true);
-	        Process p = builder.start();
-	        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	        String line;
-	        while (true) {
-	            line = r.readLine();
-	            if (line == null) { break; }
-	            System.out.println(line);
-	        }
-	    }
-	
+
+	public void closeMailClient() throws Exception {
+		ProcessBuilder builder = new ProcessBuilder(
+				"cmd.exe", "/c", "taskkill /F /IM MailClient.exe");
+		builder.redirectErrorStream(true);
+		Process p = builder.start();
+		BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line;
+		while (true) {
+			line = r.readLine();
+			if (line == null) { break; }
+			System.out.println(line);
+		}
+	}
+
 	public void compareImage() throws IOException {
-		
+
 		Pattern searchImage = new Pattern("C:\\Users\\IEUser\\screenshots\\screenshotPermanent.png").similar((float)0.9);
 		//In this case, the image you want to search
 		String ScreenImage = "C:\\Users\\IEUser\\screenshots\\screenshots2.png"; 
@@ -707,25 +714,25 @@ public class ShareCheck {
 		while(objFinder.hasNext())
 		{
 			objFinder.next(); //objMatch gives you the matching region.
-		    counter++;
+			counter++;
 		}
 		if(counter!=0)
 			System.out.println("Match Found!");
 		else softly.fail("No the email is wrong as image did not match");
 	}
-	
+
 	public BufferedImage cropImage(File filePath, int x, int y, int w, int h){
 
-	    try {
-	        BufferedImage originalImgage = ImageIO.read(filePath);
-	        BufferedImage subImgage = originalImgage.getSubimage(x, y, w, h);
-	        return subImgage;
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
+		try {
+			BufferedImage originalImgage = ImageIO.read(filePath);
+			BufferedImage subImgage = originalImgage.getSubimage(x, y, w, h);
+			return subImgage;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
+
 	public List<String> usersSharedDevAsia(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
 		text.add("qaasharer_1");
@@ -740,7 +747,7 @@ public class ShareCheck {
 		text.add("qaasharer_10");
 		return text;
 	}
-	
+
 	public List<String> usersSharedDevAsiaIE11(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
 		text.add("qaasharer_ie11_11");
@@ -755,7 +762,7 @@ public class ShareCheck {
 		text.add("qaasharer_ie11_10");
 		return text;
 	}
-	
+
 	public List<String> usersSharedUS(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
 		text.add("qaasharerus1");
@@ -770,7 +777,7 @@ public class ShareCheck {
 		text.add("qaasharerus10");
 		return text;
 	}
-	
+
 	public List<String> usersSharedUSIE11(WebDriver driver)throws Exception {
 		List<String> text = new ArrayList<String>();
 		text.add("qaasharerus_ie11_1");
@@ -787,7 +794,7 @@ public class ShareCheck {
 	}
 
 	public void shareReportMultipleTimesAnalysisModules(WebDriver driver, String username, String password1) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA();
 		OPiRCA obj1 = new OPiRCA();
@@ -886,9 +893,9 @@ public class ShareCheck {
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 	}
-	
+
 	public void shareReportToManyUsers(WebDriver driver, String username, String password1) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> users = new ArrayList<String>();
 		//Get browser name
@@ -930,24 +937,23 @@ public class ShareCheck {
 		//Verify notificaion received by shared users
 		verifyNoificationsInSharedUsers(driver,users,username,password1);
 	}
-	
+
 	public void verifyNoificationsInSharedUsers(WebDriver driver, List<String> users, String username, String password1) throws Exception {
-		
+
 		for(int i=0;i<users.size();i++)
 		{
 			if((i+1)<users.size())
 			{
-			    //Verify if notification is visible and mark it read
+				//Verify if notification is visible and mark it read
 				receiveNotification(driver, users.get(i));
 			}
 		}
 		//Log back into user
 		logInToUser(driver,username,password1);
 	}
-	
+
 	public void receiveNotification(WebDriver driver, String sharer) throws Exception {
-		
-		WebDriverWait wait = new WebDriverWait(driver,30);
+
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
@@ -985,16 +991,20 @@ public class ShareCheck {
 			}
 		}	
 		Thread.sleep(4000);
+		//Mark read all notifications
+		markNotificationsRead(driver,browserName);
+	}
+
+	public void markNotificationsRead(WebDriver driver, String browserName) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Get count from notification
 		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationCount)).getText();
 		System.out.println("Number of notifications: "+count);
 		int n= Integer.parseInt(count);
-		Thread.sleep(2000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		if(browserName.equals("firefox")==false)
 			scrollToTop(driver);
 		if(browserName.equals("internet explorer"))
@@ -1042,7 +1052,8 @@ public class ShareCheck {
 		//Wait for loading message to disappear
 		loadingServer(driver);
 	}
-	
+
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

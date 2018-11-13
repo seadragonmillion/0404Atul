@@ -20,6 +20,66 @@ public class deleteNotifications {
 	private By NotificationDeleteButton = By.id("pii-notif-del-btn");
 	private By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
 	private By NotificationReadConfirmButton2 = By.id("pii-notif-dialog-confirmed");
+
+	public String decideSharerRVVerifier(int y) throws Exception {
+		
+		/* Dev/Asia
+		 * 0=admin
+		 * 1=non admin
+		 * 2=admin ie11
+		 * 3=non admin ie11
+		 * US
+		 * 4=us admin
+		 * 5=us non admin
+		 * 6=us admin ie11
+		 * 7=us non admin ie11
+		 */
+		if(y==0)
+		{
+			String sharer ="qaarvverifier1";
+			return sharer;
+		}
+		if(y==1)
+		{
+			String sharer ="qaarvverifiernonadmin";
+			return sharer;
+		}
+		if(y==2)
+		{
+			String sharer ="qaaie11rvverifier";
+			return sharer;
+		}
+		if(y==3)
+		{
+			String sharer ="qaaie11rvverifiernonadmin";
+			return sharer;
+		}
+		if(y==4)
+		{
+			String sharer ="qaausrvverifier";
+			return sharer;
+		}
+		if(y==5)
+		{
+			String sharer ="qaausrvverifiernonadmin";
+			return sharer;
+		}
+		if(y==6)
+		{
+			String sharer ="qaausie11rvverifier";
+			return sharer;
+		}		
+		if(y==7)
+		{
+			String sharer ="qaarvverifier";
+			return sharer;
+		}
+		else
+		{
+			String sharer ="qaausie11rvverifiernonadmin";
+			return sharer;
+		}
+	}
 	
 	public String decideSharerAndroid (int y) throws Exception{
 

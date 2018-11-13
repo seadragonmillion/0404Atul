@@ -117,8 +117,10 @@ public class HiRCALevel2 {
 		//download
 		downloadSelectFunction(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 		if(chineseOrEnglish==0)
+		{
 			modifyStep4(driver,level31stLOP,level32ndLOP,level33rdLOP);
-		modifyLOPVerifyAnswersSaved(driver,lopSelected);
+			modifyLOPVerifyAnswersSaved(driver,lopSelected);
+		}
 		//delete
 		obj1.deleteReport(driver);
 	}
@@ -230,9 +232,15 @@ public class HiRCALevel2 {
 		//Verify No is not selected
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-answer-1"))).isSelected()==true)
 			softly.fail("No is selected");
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Verify reason entry is empty
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("textContent");
-		softly.assertThat(reason).as("test data").isEmpty();
+		if(browserName.equals("internet explorer"))
+			softly.assertThat(reason).as("test data").contains("Optionally enter the reason of your selection");
+		else
+			softly.assertThat(reason).as("test data").isEmpty();
 		//save report
 		saveHiRCAReport(driver);
 	}
