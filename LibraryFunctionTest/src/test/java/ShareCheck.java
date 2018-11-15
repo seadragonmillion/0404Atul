@@ -1016,15 +1016,19 @@ public class ShareCheck {
 				//Click on 1st record/notification
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
 				act.click(ele).build().perform();
-				Thread.sleep(4000);
+				loadingServer(driver);
+				if(wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton)).isSelected()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				if(ele.isEnabled()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
 				act.click(ele).build().perform();
 				Thread.sleep(2000);
 				//Click on mark as read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
 				act.click(ele).build().perform();
-				Thread.sleep(2000);
+				loadingServer(driver);
 			}
 		}
 		else
@@ -1046,7 +1050,7 @@ public class ShareCheck {
 				//Click on mark as read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
 				ele.click();
-				Thread.sleep(2000);
+				loadingServer(driver);
 			}
 		}		
 		//Wait for loading message to disappear

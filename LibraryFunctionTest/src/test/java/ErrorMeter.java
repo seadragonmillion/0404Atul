@@ -2843,7 +2843,7 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();;
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	}
 
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{

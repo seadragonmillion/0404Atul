@@ -19,6 +19,7 @@ public class RemoteVerification2 {
 	RemoteVerification rv = new RemoteVerification();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
+	
 	SoftAssertions softly = new SoftAssertions();
 	
 	String password = "S2FsZWplbmtpbnNAMTIz";
@@ -271,6 +272,8 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectComment)).sendKeys(rejectComment);
 		//Click on reject confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectConfirmButton)).click();
+		share.loadingServer(driver);
+		share.markNotificationsRead(driver, browserName);
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification
@@ -318,6 +321,9 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectComment)).sendKeys(passComment);
 		//Click on reject confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectConfirmButton)).click();
+		share.loadingServer(driver);
+		//Mark notification as read
+		share.markNotificationsRead(driver, browserName);
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification

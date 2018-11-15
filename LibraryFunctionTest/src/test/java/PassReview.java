@@ -297,7 +297,7 @@ public class PassReview {
 		for(int i=2;i<=6;i++)
 		{
 			//Verify text
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getAttribute("textContent");
 			String r1 = s.replaceAll("\u00AD", "");
 			softly.assertThat(r1).as("test data").isIn(textList);
 		}
