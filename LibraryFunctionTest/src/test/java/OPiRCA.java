@@ -34,6 +34,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OPiRCA {
 
 	SoftAssertions softly = new SoftAssertions();
+	
+	OPiRCAChinese opc = new OPiRCAChinese();
 
 	By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
 	By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
@@ -49,6 +51,7 @@ public class OPiRCA {
 	By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
 	By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
 	By OPIRCAMarkCriticalIndicatorText1 = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th");
+	By OPiRCAFinalizeButton = By.id("efi-opa-button-finalize");
 	By OPiRCASaveButton = By.id("efi-opa-button-save");
 	By OPiRCASavePopupTitle = By.id("pii-opa-dialog-title");
 	By OPiRCASaveConfirmButton = By.id("pii-opa-dialog-confirmed");
@@ -67,7 +70,11 @@ public class OPiRCA {
 	By OPiRCASkipButton = By.id("efi-opa-button-skip");
 	By OPiRCAInfoTab = By.id("efi-opa-tab-0");
 	By OPiRCAStep1Tab = By.id("efi-opa-tab-1");
+	By OPiRCAStep2Tab = By.id("efi-opa-tab-2");
 	By OPiRCAStep3Tab = By.id("efi-opa-tab-3");
+	By OPiRCAStep4Tab = By.id("efi-opa-tab-4");
+	By OPiRCAStep5Tab = By.id("efi-opa-tab-5");
+	By OPiRCAReportTab = By.id("efi-opa-tab-6");
 	By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button");
 	By OPiRCAAddContributingFactorButton = By.id("pii-opa-addnewcf-button");
 	By OPiRCANewContributingFactorField = By.id("pii-opa-addnewcf-cf");
@@ -140,6 +147,59 @@ public class OPiRCA {
 		obj1.checkNoReportAfterDelete(driver, sharer, softly);
 	}
 
+	public void bugForReportTab(WebDriver driver)throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Click on Info Tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoTab)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle));
+		//Click on Report Tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTab)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFinalizeButton));
+		//Choose a random number between 0 to 4
+		Random random = new Random();
+		int n = random.nextInt(5);
+		if(n==0)
+		{
+			//Click on Step 1
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep1Tab)).click();
+			//Verify Step 1 title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAInfoPageTitle)).getText();
+			softly.assertThat(s).as("test data").contains("Step 1");
+		}
+		if(n==1)
+		{
+			//Click on Step 2
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep2Tab)).click();
+			//Verify Step 2 title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAInfoPageTitle)).getText();
+			softly.assertThat(s).as("test data").contains("Step 2");
+		}
+		if(n==2)
+		{
+			//Click on Step 3
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3Tab)).click();
+			//Verify Step 3 title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+			softly.assertThat(s).as("test data").contains("Step 3");
+		}
+		if(n==3)
+		{
+			//Click on Step 4
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4Tab)).click();
+			//Verify Step 4 title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+			softly.assertThat(s).as("test data").contains("Step 4");
+		}
+		if(n==4)
+		{
+			//Click on Step 5
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep5Tab)).click();
+			//Verify Step 5 title
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
+			softly.assertThat(s).as("test data").contains("Step 5");
+		}
+	}
 
 	public void openReport(WebDriver driver, String recordName) throws Exception{
 
@@ -153,6 +213,8 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		//Clicks on open report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		//Verify no bug when clicking on info tab and report tab and other tabs
+		bugForReportTab(driver);
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveButton)).click();
 		//Save pop verify
@@ -1897,6 +1959,8 @@ public class OPiRCA {
 		//Mark HML for all apparent causes answers
 		HashMap<String,String> hml = markHML(driver,options,apparentCausesAnswersNew);
 		//Click skip or next
+		clickNextSkip(driver);
+		//Step 5 click next/skip
 		clickNextSkip(driver);
 		//Scroll to top
 		Thread.sleep(2000);

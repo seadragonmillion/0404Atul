@@ -71,7 +71,7 @@ public class CaseBrowse {
 	String keywordHumanDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
 	String keywordEquipDevAllSpecial = "Testqaa!@#$%^&*,.?/+-=;:_";
 	String keywordEquipDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
-	String[] s= {"@","!","#","$","%","&"," ","/","?",",","."};
+	String[] s= {"@","!","#","$","%","&"," ","/","?",",",".","[abcd]", "(pqrs)"};
 
 
 	By ErrorFreeBankLink = By.id("pii-main-menu-button-e");

@@ -297,7 +297,7 @@ public class PassReview {
 		for(int i=2;i<=6;i++)
 		{
 			//Verify text
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getAttribute("textContent");
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
 			String r1 = s.replaceAll("\u00AD", "");
 			softly.assertThat(r1).as("test data").isIn(textList);
 		}
@@ -391,7 +391,7 @@ public class PassReview {
 			//Verify text
 			if (browserName.equals("internet explorer"))
 			{
-				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getAttribute("textContent");
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
 				String r2 = s1.replaceAll("\u00AD", "");
 				softly.assertThat(r2).as("test data").isIn(textList);
 				//System.out.println(s1+"\n"+r2);

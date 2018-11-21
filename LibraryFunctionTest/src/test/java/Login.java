@@ -1,5 +1,7 @@
 import java.util.Base64;
 
+import static org.junit.Assert.*;
+
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -23,11 +25,15 @@ public class Login {
 	By StickyClose = By.className("sticky-close");
 	By LoginNameOnTopRight = By.id("pii-user-loginname");
 	By LogOutButton = By.id("pii-signout-button");
+	By WebPageMessage = By.className("pii-slogan");
 
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		ShareCheck obj = new ShareCheck();
+		String s = wait.until(ExpectedConditions.elementToBeClickable(WebPageMessage)).getText();
+		System.out.println(s);
+		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked
 		wait.until(ExpectedConditions.elementToBeClickable(LoginButton)).click();
 		//Enter Username

@@ -421,6 +421,7 @@ public class GroupModerator {
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		String v = cap.getVersion().toString();
+		share.scrollToTop(driver);
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		//Clicks on Save report

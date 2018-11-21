@@ -2721,7 +2721,7 @@ public class EiRCA {
 	public String textCreate(WebDriver driver) throws Exception {
 
 		if(driver.getCurrentUrl().contains("kaleqa"))
-			return ("Sanity <table> Test \"title\" Sanity");
+			return ("Sanity <script> Test \"title\" Sanity");
 		else
 			return("Sanity Test \"title\" Sanity");
 	}
