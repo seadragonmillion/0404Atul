@@ -37,6 +37,8 @@ public class HiRCALevel2 {
 	String text = "HiRCA Level 2";
 	String reason = "Level 2 reason entry";
 	SoftAssertions softly = new SoftAssertions();
+	
+	ShareCheck share = new ShareCheck();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
 
@@ -170,6 +172,7 @@ public class HiRCALevel2 {
 		//Click on LOP
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
 		String lopName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText();
+		System.out.println(lopName);
 		obj.scrollToTop(driver);
 		//Decide order of new LOP selected
 		digits.remove(0);
@@ -621,6 +624,7 @@ public class HiRCALevel2 {
 			i=i+1;
 			//verify level 3 selected is present
 			String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/tbody/tr["+i+"]/td[2]/ul/li"))).getText();
+			share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/tbody/tr["+i+"]/td[2]/ul/li"), softly);
 			//System.out.println(s2);
 			softly.assertThat(s2).as("test data").isEqualTo(level21stLOP.get(k));
 			k=k+1;
@@ -648,6 +652,7 @@ public class HiRCALevel2 {
 				m=m+1;
 				//verify level 3 selected is present
 				String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/tbody/tr["+i+"]/td/div/table/tbody/tr["+m+"]/td[1]"))).getText();
+				share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/div["+divNumber+"]/table/tbody/tr["+i+"]/td/div/table/tbody/tr["+m+"]/td[1]"), softly);
 				//System.out.println(s);
 				softly.assertThat(s).as("test data").isIn(temp);				
 			}catch(org.openqa.selenium.TimeoutException r)
@@ -664,6 +669,7 @@ public class HiRCALevel2 {
 		for(int i=1;i<list220.size();i++)
 		{
 			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[1]/td[2]/ul/li["+i+"]"))).getText();
+			share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[1]/td[2]/ul/li["+i+"]"), softly);
 			//System.out.println(s);
 			softly.assertThat(s).as("test data").isIn(list220);
 		}
@@ -680,6 +686,7 @@ public class HiRCALevel2 {
 				{
 					try{
 						String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[5]/tbody/tr["+i+"]/td["+m+"]"))).getText();
+						share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/table[5]/tbody/tr["+i+"]/td["+m+"]"), softly);
 						softly.assertThat(s).as("test data").isIn(list220);
 						count = count + 1;
 						if(count>=list220.size())
@@ -714,6 +721,7 @@ public class HiRCALevel2 {
 		{
 			//verify level 3 selected is present
 			String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[1]"))).getText();
+			share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[1]"), softly);
 			softly.assertThat(s2).as("test data").isIn(temp);
 			//Get value of HML
 			if(temp.contains(s2))
@@ -733,6 +741,7 @@ public class HiRCALevel2 {
 			}
 			//Verify the corrective action
 			String s4 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[3]"))).getText();
+			share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[3]"), softly);
 			softly.assertThat(s4).as("test data").isIn(correctiveActionLOP1);
 		}
 	}
@@ -804,6 +813,7 @@ public class HiRCALevel2 {
 				for(int i=1;i<=(level31stLOP.size()*2);i=i+2)
 				{
 					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText();
+					share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"), softly);
 					softly.assertThat(s1).as("test data").isIn(temp);
 					String imp = selectHML(driver,i,n);
 					System.out.println(s1+ " "+i);
@@ -816,6 +826,7 @@ public class HiRCALevel2 {
 				for(int i=1;i<=(level31stLOP.size()*3);i=i+3)
 				{
 					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText();
+					share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"), softly);
 					softly.assertThat(s1).as("test data").isIn(temp);
 					String imp = selectHML(driver,i,n);
 					System.out.println(s1+ " "+i);
@@ -876,6 +887,8 @@ public class HiRCALevel2 {
 					y=random.nextInt(21);
 					if(y==0)
 						continue;
+					share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+(y+1)+"]/td[1]"), softly);
+					share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+(y+1)+"]/td[1]"), softly);
 					WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+(y+1)+"]/td[3]/div/input")));
 					if(e.isSelected())
 					{
@@ -1020,6 +1033,38 @@ public class HiRCALevel2 {
 			System.out.println ("No unexpected alert");
 		}
 		Thread.sleep(7000);
+		List<String> results = new ArrayList<String>();
+		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		//If this pathname does not denote a directory, then listFiles() returns null. 
+		for (File file1 : files) {
+			if (file1.isFile()) {
+				results.add(file1.getName());
+			}
+		}
+		System.out.println(results.get(0));
+		if(results.get(0).endsWith(".pdf")==false)
+		{
+			obj2.deleteFiles(new File("C://Users//IEUser//Downloads//reports//"));
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			//Wait for loading message to disappear
+			obj.loadingServer(driver);
+			//Clicks on open pdf report
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(4000);
+			try {
+				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+				q.waitFor();
+			}catch (UnhandledAlertException f){	
+				System.out.println("Unexpected alert");
+				driver.switchTo().alert().accept();
+
+			}catch (NoAlertPresentException f){
+				System.out.println ("No unexpected alert");
+			}
+			Thread.sleep(6000);
+		}
 		//pdf verification
 		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 		Thread.sleep(4000);

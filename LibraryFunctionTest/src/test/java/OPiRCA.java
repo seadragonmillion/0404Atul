@@ -36,6 +36,10 @@ public class OPiRCA {
 	SoftAssertions softly = new SoftAssertions();
 	
 	OPiRCAChinese opc = new OPiRCAChinese();
+	OPiRCA2 op2 = new OPiRCA2();
+	ShareCheck share = new ShareCheck();
+	EiRCA2 eirca2 = new EiRCA2 ();
+	EiRCA eirca = new EiRCA ();
 
 	By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
 	By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
@@ -101,6 +105,9 @@ public class OPiRCA {
 	//Step1
 	By Step1DescriptionPlusSign = By.xpath(".//*[@id='efi-opa-description']/h4/a");
 	By Step1DescriptionText = By.id("efi-opa-description-text");
+	
+	//Step 2
+	By DQuestionAnswersClearButton = By.id("pii-opa-clear");
 
 	//HTML
 	//Table 1
@@ -117,11 +124,10 @@ public class OPiRCA {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
-		ShareCheck obj1 = new ShareCheck();
 		OPiRCA2 obj2 = new OPiRCA2 ();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
-		obj1.loadingServer(driver);
+		share.loadingServer(driver);
 		//Clicks on delete button
 		driver.findElement(DeleteButton).click();
 		//Verify delete popup
@@ -144,18 +150,21 @@ public class OPiRCA {
 			System.out.println("Record could not be deleted");
 		//Verify report not retrieved by shared to person
 		String sharer = obj.decideSharer (y);
-		obj1.checkNoReportAfterDelete(driver, sharer, softly);
+		share.checkNoReportAfterDelete(driver, sharer, softly);
 	}
 
 	public void bugForReportTab(WebDriver driver)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		Thread.sleep(500);
 		//Click on Info Tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoTab)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle));
+		Thread.sleep(500);
 		//Click on Report Tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTab)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFinalizeButton));
+		Thread.sleep(500);
 		//Choose a random number between 0 to 4
 		Random random = new Random();
 		int n = random.nextInt(5);
@@ -163,6 +172,7 @@ public class OPiRCA {
 		{
 			//Click on Step 1
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep1Tab)).click();
+			Thread.sleep(500);
 			//Verify Step 1 title
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAInfoPageTitle)).getText();
 			softly.assertThat(s).as("test data").contains("Step 1");
@@ -171,6 +181,7 @@ public class OPiRCA {
 		{
 			//Click on Step 2
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep2Tab)).click();
+			Thread.sleep(500);
 			//Verify Step 2 title
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAInfoPageTitle)).getText();
 			softly.assertThat(s).as("test data").contains("Step 2");
@@ -179,6 +190,7 @@ public class OPiRCA {
 		{
 			//Click on Step 3
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep3Tab)).click();
+			Thread.sleep(500);
 			//Verify Step 3 title
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
 			softly.assertThat(s).as("test data").contains("Step 3");
@@ -187,6 +199,7 @@ public class OPiRCA {
 		{
 			//Click on Step 4
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep4Tab)).click();
+			Thread.sleep(500);
 			//Verify Step 4 title
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
 			softly.assertThat(s).as("test data").contains("Step 4");
@@ -195,6 +208,7 @@ public class OPiRCA {
 		{
 			//Click on Step 5
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAStep5Tab)).click();
+			Thread.sleep(500);
 			//Verify Step 5 title
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
 			softly.assertThat(s).as("test data").contains("Step 5");
@@ -204,12 +218,10 @@ public class OPiRCA {
 	public void openReport(WebDriver driver, String recordName) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
-		ShareCheck obj = new ShareCheck();
-		OPiRCA2 obj1 = new OPiRCA2();
 		//Clicks on Open button	    	
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
 		//Verify open report pop up
-		obj1.verifyOpenReportPopup(driver, softly, recordName);
+		op2.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		//Clicks on open report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -218,39 +230,37 @@ public class OPiRCA {
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveButton)).click();
 		//Save pop verify
-		obj1.verifySavePopup(driver, softly);
+		op2.verifySavePopup(driver, softly);
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASaveConfirmButton)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(StickySuccess));
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		Thread.sleep(1000);
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavedActivitiesButton)).click();
 		Thread.sleep(2000);		  
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 	}
 
 	public void downloadRecordChrome(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>step2) throws Exception {
 
-		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();	
-		EiRCA2 obj1 = new EiRCA2();
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 		//Verify pdf pop up
-		obj1.verifyStickyCreatePDF(driver, softly);
+		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		eirca2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -266,22 +276,20 @@ public class OPiRCA {
 
 	public void downloadRecordFirefox(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>step2) throws Exception {
 
-		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
-		EiRCA2 obj1 = new EiRCA2();
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message to disappear			
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 		//Verify pdf pop up
-		obj1.verifyStickyCreatePDF(driver, softly);
+		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		eirca2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -309,22 +317,20 @@ public class OPiRCA {
 
 	public void downloadRecordIE10(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>step2) throws Exception {
 
-		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
-		EiRCA2 obj1 = new EiRCA2();
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message to disappear			
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 		//Verify pdf pop up
-		obj1.verifyStickyCreatePDF(driver, softly);
+		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		eirca2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -349,22 +355,20 @@ public class OPiRCA {
 
 	public void downloadRecordIE11(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>step2) throws Exception {
 
-		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
-		EiRCA2 obj1 = new EiRCA2();
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 		//Wait for loading message to disappear			
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(DownloadButton)).click();
 		//Verify pdf pop up
-		obj1.verifyStickyCreatePDF(driver, softly);
+		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		eirca2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -602,10 +606,8 @@ public class OPiRCA {
 
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 
-		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
-		ShareCheck obj1 = new ShareCheck();
-		EiRCA2 obj2 = new EiRCA2();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
 		//Switches to the iframe
@@ -623,38 +625,36 @@ public class OPiRCA {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		obj1.shareTwice (driver,softly);
+		share.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
 		//Verify share save sticky
-		obj2.verifyStickyShareSave(driver, softly);
+		eirca2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share.loadingServer(driver);
 		//Checks the username of creator
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(UserNameDisplayInReport));
 		String creatorUsername= creator.getText();
 		System.out.println(creatorUsername);
 		softly.assertThat(creatorUsername).as("test data").isEqualTo(username);
 		//Calls the Share check function
-		obj1.receiptReport(driver, sharer, username, password1);
+		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on OPiRCA side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASidePanel)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
 	}
 
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
-		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
-		ShareCheck obj1 = new ShareCheck();
-		EiRCA2 obj2 = new EiRCA2();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Mark critical pop up
-		obj2.verifyMarkCriticalPopup(driver, softly);
+		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -666,7 +666,7 @@ public class OPiRCA {
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Un-mark critical pop up
-		obj2.verifyUnMarkCriticalPopup(driver, softly);
+		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -677,17 +677,16 @@ public class OPiRCA {
 		}
 		//Verify report not retrieved by shared to person
 		String sharer = obj.decideSharer (y);		
-		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
+		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on O&PiRCA side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASidePanel)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);	    					
+		share.loadingServer(driver);	    					
 	}
 
 	public List<String> selectHiRCALevel3(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Choose a number between 1 to 31 for number of selections
 		Random random = new Random();
 		int n;
@@ -720,7 +719,7 @@ public class OPiRCA {
 			}	    		
 			WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+y+"']/a"));
 			//Scroll to element
-			obj.scrollToElement(driver, l);			
+			share.scrollToElement(driver, l);			
 			//Click on option
 			l.click();
 			//Store selection name in list
@@ -729,7 +728,7 @@ public class OPiRCA {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		obj.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuCloseButton)).click();	    	
@@ -739,16 +738,17 @@ public class OPiRCA {
 
 	public List<String> storeApparentCauses(WebDriver driver) throws Exception{
 
+		WebDriverWait wait = new WebDriverWait(driver,3);
 		//Create a List to store apparent causes
 		List<String> ac = new ArrayList<String>();
 		int i=1;
 		while(true)
 		{
 			try{
-				String s = driver.findElement(By.xpath(".//*[@id='pii-opa-step1-causes']/ul/li["+i+"]")).getText();
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-step1-causes']/ul/li["+i+"]"))).getText();
 				ac.add(s);
 				i=i+1;
-			}catch(NoSuchElementException e)
+			}catch(org.openqa.selenium.TimeoutException e)
 			{
 				break;
 			}
@@ -758,8 +758,7 @@ public class OPiRCA {
 
 	public List<String> selectApparentCausesAnswers(WebDriver driver,List<String> apparentCauses) throws Exception{
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
+		WebDriverWait wait = new WebDriverWait(driver,5);
 		//Create a list to store any apparent cause answer selected
 		List<String> ac = new ArrayList<String>();
 		for(int i=0;i<apparentCauses.size();i++)
@@ -770,11 +769,11 @@ public class OPiRCA {
 			while(true)
 			{
 				try{
-					String s = driver.findElement(By.xpath(".//*[@id='efi-opa-answers']/div["+k+"]")).getAttribute("class");
+					String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+k+"]"))).getAttribute("class");
 					k=k+1;
 					if(s.equals("ui-contain"))
 						count = count +1;
-				}catch(NoSuchElementException e)
+				}catch(NoSuchElementException |org.openqa.selenium.TimeoutException e)
 				{
 					break;
 				}
@@ -787,7 +786,7 @@ public class OPiRCA {
 			ac.add(s);
 			//Scroll to top
 			Thread.sleep(2000);
-			obj.scrollToTop(driver);
+			share.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Click on next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
@@ -798,7 +797,6 @@ public class OPiRCA {
 	public List<String> selectOptions(WebDriver driver, int count) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		List<String> ac = new ArrayList<String>();
 		//Check the description collapsible 
 		collapsibleCheckDescription(driver);
@@ -835,7 +833,7 @@ public class OPiRCA {
 				//Click on answer
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div/label")));
 				//Scroll to element
-				obj.scrollToElement(driver, l);
+				share.scrollToElement(driver, l);
 				l.click();
 				//Get answer name and store in list
 				String s1 = l.getText();
@@ -849,8 +847,7 @@ public class OPiRCA {
 	public String verifyIfDAnswer(WebDriver driver, int y, String s1)throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCAChinese obj = new OPiRCAChinese();
-		String opirca_desc = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAInfoPageDesc)).getText();
+		String opirca_desc = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAInfoPageDesc)).getText();
 		if(opirca_desc.startsWith("[D"))
 		{
 			String s = opirca_desc.substring(opirca_desc.indexOf("[")+1,opirca_desc.indexOf("]") );
@@ -863,12 +860,11 @@ public class OPiRCA {
 	public String addContributingFactor(WebDriver driver, int y) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Scroll to add cf button
 		//Click on answer
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAAddContributingFactorButton));
 		//Scroll to element
-		obj.scrollToElement(driver, l);
+		share.scrollToElement(driver, l);
 		//Click on add new contributing factor
 		l.click();
 		//Get title of page
@@ -880,7 +876,7 @@ public class OPiRCA {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAAddContributingFactorSaveButton)).click();
 		Thread.sleep(1000);
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		Thread.sleep(1000);
 		//Get text of new contributing factor
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div/label")));
@@ -1076,7 +1072,6 @@ public class OPiRCA {
 	public List<String> modifyStep1(WebDriver driver, List<String> hircaL3) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//create a new list without the unselected hirca level 3 option
 		List<String> hircaNewList = new ArrayList<String>(hircaL3);
 		//Click on Step 1 tab
@@ -1093,12 +1088,12 @@ public class OPiRCA {
 		int n = random.nextInt(hircaL3.size());
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(hircaL3.get(n))));
 		//Scroll to element
-		obj.scrollToElement(driver, l);
+		share.scrollToElement(driver, l);
 		//Unselect the chosen HiRCA level 3 option
 		l.click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		obj.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuCloseButton)).click();
@@ -1176,17 +1171,14 @@ public class OPiRCA {
 	public void verifyHTML(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>apparentCausesSelected, List<String>step2QuestionAnswers, List<String>step2ApparentCausesAnswers) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCA obj1 = new EiRCA();
-		OPiRCA2 obj2 = new OPiRCA2();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();	
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share.loadingServer(driver);
 		//Verify all text in 1st table in HTML
-		String text = obj1.textCreate(driver);
+		String text = eirca.textCreate(driver);
 		//Event title
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable1EventTitle)).getText();
 		String r3 = s4.replace("\u00AD", "");
@@ -1463,7 +1455,7 @@ public class OPiRCA {
 		//Empty list1
 		list1.clear();
 		//Verify step 2 table
-		obj2.step2HTML(driver, softly, rc, step2QuestionAnswers, step2ApparentCausesAnswers,apparentCausesAnswersNew);
+		op2.step2HTML(driver, softly, rc, step2QuestionAnswers, step2ApparentCausesAnswers,apparentCausesAnswersNew);
 		//Verify contributing factors under SURE
 		i=1;
 		while (true)
@@ -1499,14 +1491,30 @@ public class OPiRCA {
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EField)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("E: Not an Effect of Other Contributing Factors?");
 	}
+	
+	public List<String> getRootCausesFromStep3(WebDriver driver, HashMap<String,Integer> options, int rc , int n) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> rccf = new ArrayList<String>();
+		for(int i =2;i<=n+1;i++)
+		{
+			//Get text of apparent answer
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
+			int boxesTicked = options.get(s);
+			if((rc==1)&&(boxesTicked==4))
+				rccf.add(s);
+			if((rc==0)&&(boxesTicked<4))
+				rccf.add(s);
+		}
+		return rccf;
+	}
 
 	public HashMap<String,Integer>  markSUREStep3(WebDriver driver, List<String> apparentCausesAnswersNew) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Scroll to top
 		Thread.sleep(2000);
-		obj.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Verify SURE
 		verifySURE(driver);
@@ -1514,12 +1522,13 @@ public class OPiRCA {
 		HashMap<String,Integer> options = new HashMap<String,Integer> ();
 		//Get size of Apparent Causes Answers
 		int n=apparentCausesAnswersNew.size();
+		System.out.println(n+"\n"+apparentCausesAnswersNew);
 		if (n<1)
 			return options;
 		//Row no starts from 2
 		//Count for root causes
 		int r=0;
-		for(int i =2;i<=n+1;i++)
+		for(int i = 2;i<=n+1;i++)
 		{
 			//Get text of apparent answer
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -1535,7 +1544,7 @@ public class OPiRCA {
 			{
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input")));
 				//Scroll to element
-				obj.scrollToElement(driver, l);
+				share.scrollToElement(driver, l);
 				//Click on checkbox of SURE
 				l.click();
 			}
@@ -1544,7 +1553,7 @@ public class OPiRCA {
 		options.put("Root causes",r);
 		//System.out.println(options);
 		//Scroll up
-		obj.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
 		return options;
 	}
@@ -1566,10 +1575,9 @@ public class OPiRCA {
 		}
 	}
 
-	public HashMap<String,String> markHML(WebDriver driver,HashMap<String,Integer>options,List<String>apparentCausesAnswersNew) throws Exception {
+	public HashMap<String,String> markHML(WebDriver driver,HashMap<String,Integer>options,List<String>apparentCausesAnswersNew,List<String>apparentCausesForStep3_modified,List<String> rootCauses,List<String> contributingFactors) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Verify title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(PageTitle)).getText();
 		softly.assertThat(title).as("test data").contains("Step 4 - Level of Importance Attribution For Root Causes & Contributing Factors");
@@ -1589,6 +1597,8 @@ public class OPiRCA {
 		System.out.println("No of contributing factors:"+count1);		
 		//tr starts at 2 and each root cause has 4 four rows
 		int i=2;
+		//check order of root cause
+		op2.verifyOrderOfRootCausesContributingFactorsInStep4(driver, rootCauses, softly, count, i, 1, 1,3);
 		//Verify if any root causes are appearing
 		while(i<=((count*3)+1))
 		{
@@ -1617,7 +1627,7 @@ public class OPiRCA {
 			//HML random select
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
 			//Scroll to element
-			obj.scrollToElement(driver, ele);
+			share.scrollToElement(driver, ele);
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
@@ -1662,8 +1672,9 @@ public class OPiRCA {
 		}
 		//Verifies if any contributing factors
 		//tr starts at 2 and each root cause has 4 four rows
-		//System.out.println("Starting row of contributing factors:"+i);
-		int start =i-1;
+		int start = i-1;
+		//check order of contributing factors
+		op2.verifyOrderOfRootCausesContributingFactorsInStep4(driver, contributingFactors, softly, count1, i, 0, start,2);
 		//Verify if any contributing factors are appearing
 		while(i<=((count1*2)+start))
 		{
@@ -1692,7 +1703,7 @@ public class OPiRCA {
 			//HML random select
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
 			//Scroll to element
-			obj.scrollToElement(driver, ele);
+			share.scrollToElement(driver, ele);
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
@@ -1734,9 +1745,9 @@ public class OPiRCA {
 			i=i+1;
 		}
 		//Scroll up
-		obj.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
-		obj.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
 		return hml;
 	}
@@ -1794,7 +1805,6 @@ public class OPiRCA {
 	public List<String> verifyApparentCausesAnswers(WebDriver driver,List<String> apparentCausesNew) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//List for storing all checked apparent cause answers
 		List<String> answers = new ArrayList<String>();
 		//Create a list to store only title of apparent cause answer
@@ -1808,7 +1818,7 @@ public class OPiRCA {
 			List<String>a=storeChangedApparentCauseAnswers(driver);
 			//Scroll to top
 			Thread.sleep(2000);
-			obj.scrollToTop(driver);
+			share.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Add to master list
 			answers.addAll(a);
@@ -1870,17 +1880,14 @@ public class OPiRCA {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		EiRCA obj = new EiRCA ();
-		ShareCheck obj1 = new ShareCheck();
-		OPiRCA2 obj2 = new OPiRCA2();
-		String text = obj.textCreate(driver);
+		String text = eirca.textCreate(driver);
 		//Scroll down
-		obj1.scrollToAPoint(driver, 1500);
+		share.scrollToAPoint(driver, 1500);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		Thread.sleep(1000);
-		obj1.scrollToTop(driver);	 
+		share.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on dropdown field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCADropdownMenuButton)).click();
@@ -1917,13 +1924,13 @@ public class OPiRCA {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASkipButton)).click();
 		}*/
 		//Step2
-		List<String>step2 = obj2.opircaStep2(driver, softly);
+		List<String>step2 = op2.opircaStep2(driver, softly);
 		//Seperate list of Step 2 D1 to D12 answers
-		List<String> step2QuestionAnswers = obj2.step2QuestionsAnswersOnly(step2);
+		List<String> step2QuestionAnswers = op2.step2QuestionsAnswersOnly(step2);
 		//List of apparent causes selected under Step 2
-		List<String> step2ApparentCausesAnswers = obj2.step2ApparentCausesAnswersOnly(step2);
+		List<String> step2ApparentCausesAnswers = op2.step2ApparentCausesAnswersOnly(step2);
 		//Combine Apparent causes selected under step1 and step 2 for veryfing in step 3/4 and reports
-		List<String> apparentCausesForStep3 = obj2.combineApparentCausesFromStep1AndStep2(apparentCausesAnswers, step2ApparentCausesAnswers);
+		List<String> apparentCausesForStep3 = op2.combineApparentCausesFromStep1AndStep2(apparentCausesAnswers, step2ApparentCausesAnswers);
 		//Verify apparent causes selections in Step 3
 		verifyApparentCauses(driver,apparentCausesForStep3);
 		//Unselect one HiRCA Level 3 option
@@ -1934,7 +1941,7 @@ public class OPiRCA {
 		verifyCorrespondingApparentCauses(driver,hircaNewList,apparentCausesNew);
 		//Scroll top
 		Thread.sleep(1000);
-		obj1.scrollToTop(driver);	 
+		share.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANextButton)).click();
@@ -1948,33 +1955,35 @@ public class OPiRCA {
 		 */
 		List<String> apparentCausesAnswersNew = verifyModifiedStep3(driver,apparentCausesNew,step2ApparentCausesAnswers);	/*full combined list*/
 		//Combine Apparent causes selected under step1 and step 2 for veryfing in step 3/4 and reports
-		List<String> apparentCausesForStep3_modified = obj2.combineApparentCausesFromStep1AndStep2(apparentCausesSelected, step2ApparentCausesAnswers);
+		List<String> apparentCausesForStep3_modified = op2.combineApparentCausesFromStep1AndStep2(apparentCausesSelected, step2ApparentCausesAnswers);
 		System.out.println(apparentCausesForStep3_modified);
 		//Verify order of apparent cause answers in Step 3
 		verifyOrderOfApparentCauseAnswersInStep3(driver,apparentCausesForStep3_modified);
 		//Select some checkboxes in Step 3 SURE
 		HashMap<String,Integer> options = markSUREStep3(driver,apparentCausesAnswersNew);
+		List<String> rootCauses = getRootCausesFromStep3(driver,options,1,apparentCausesAnswersNew.size());
+		List<String> contributingFactors = getRootCausesFromStep3(driver,options,0,apparentCausesAnswersNew.size());
 		//Click skip or next
 		clickNextSkip(driver);
 		//Mark HML for all apparent causes answers
-		HashMap<String,String> hml = markHML(driver,options,apparentCausesAnswersNew);
+		HashMap<String,String> hml = markHML(driver,options,apparentCausesAnswersNew,apparentCausesForStep3_modified,rootCauses,contributingFactors);
 		//Click skip or next
 		clickNextSkip(driver);
 		//Step 5 click next/skip
 		clickNextSkip(driver);
 		//Scroll to top
 		Thread.sleep(2000);
-		obj1.scrollToTop(driver);
+		share.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save button
 		jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
 		//Verify save pop up
-		obj2.verifySavePopup(driver, softly);
+		op2.verifySavePopup(driver, softly);
 		//Clicks on save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCASavePopupTitle));
 		jse.executeScript("return document.getElementById('pii-opa-dialog-confirmed').click();");
 		//Verfy save sticky
-		obj2.verifyStickySaveReport(driver, softly, username, obj.textCreate(driver), 0);
+		op2.verifyStickySaveReport(driver, softly, username, eirca.textCreate(driver), 0);
 		//Clicks on Info tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAInfoTab)).click();
 		//Creates the expected name of record
@@ -2047,15 +2056,13 @@ public class OPiRCA {
 	public void reportCreate(WebDriver driver, String username) throws Exception {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		EiRCA obj = new EiRCA ();
-		OPiRCA2 obj1 = new OPiRCA2();
-		String text = obj.textCreate(driver);
+		String text = eirca.textCreate(driver);
 		//Clicks on O&P IRCA
 		jse.executeScript("return document.getElementById('pii-a-menu-opirca').click();");
 		//Verify new report pop up
-		obj1.verifyNewReportPopup(driver, softly);
+		op2.verifyNewReportPopup(driver, softly);
 		//Verify Error Messages for mandatory fields on Info page
-		obj1.verifyErrorMessagesInfoPage(driver,softly);
+		op2.verifyErrorMessagesInfoPage(driver,softly);
 		//Fills the mandatory fields
 		driver.findElement(OPiRCAEventTitleField).sendKeys(text);
 		driver.findElement(OPiRCAEventLocationField).sendKeys(text);
@@ -2100,7 +2107,7 @@ public class OPiRCA {
 			driver.findElement(OPiRCAInvestigatorsField).sendKeys(text);
 		}
 		//Verify no errors
-		obj1.verifyNoErrorsOnInfoPage(driver);
+		op2.verifyNoErrorsOnInfoPage(driver);
 		//Step1 and KALE-1838
 		pathOPiRCA(driver,username);			  
 	}

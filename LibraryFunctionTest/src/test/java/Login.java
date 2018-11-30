@@ -107,6 +107,7 @@ public class Login {
 				}
 			}		  
 		}
+		obj.loadingServer(driver);
 		return login;
 	}
 	

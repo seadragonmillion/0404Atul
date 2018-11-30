@@ -14,6 +14,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class OPiRCA2 {
+	
+	ShareCheck share = new ShareCheck();
+	EiRCA eirca = new EiRCA ();
+
 
 	//Info Page
 	By OPiRCAPopupNote = By.id("pii-opa-dialog-note");
@@ -24,6 +28,33 @@ public class OPiRCA2 {
 	By TimelineOfEventsError = By.id("pii-opa-event-events-error");
 	By BackgroundInfoError = By.id("pii-opa-event-bginfos-error");
 	By InvestigatorError = By.id("pii-opa-event-investigators-error");
+	
+	public void verifyOrderOfRootCausesContributingFactorsInStep4(WebDriver driver,List<String> apparentCausesSelected, SoftAssertions softly, int count, int i, int rc, int start, int num) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verify order
+		//Counter for list
+		int n = 0;
+		System.out.println("Size:"+apparentCausesSelected.size());
+		while(i<=((count*num)+start))
+		{
+			//Get name of level 3 answer
+			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
+			softly.assertThat(level3).as("test data").isEqualTo(apparentCausesSelected.get(n));
+			System.out.println(level3+"\n"+apparentCausesSelected.get(n));
+			n = n+1;
+			//rc=1 means root cause else contributing factor
+			if(rc==1)
+			{
+				//Increase i for extra root cause text boxes
+				i=i+1;
+			}
+			//Increase i for changing corrective actions
+			i=i+1;
+			//Increase i for next root cause
+			i=i+1;
+		}
+	}
 
 	public void step2HTML(WebDriver driver, SoftAssertions softly, int rc, List<String>step2QuestionAnswers, List<String>step2ApparentCausesAnswers, List<String>apparentCausesAnswersNew) throws Exception {
 
@@ -173,8 +204,7 @@ public class OPiRCA2 {
 	public List<String> opircaStep2(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCA obj = new OPiRCA ();	
-		ShareCheck obj1 = new ShareCheck();
+		OPiRCA opirca = new OPiRCA();
 		//Create list to add all apparent cause answers
 		List<String> ac = new ArrayList<String>();
 		//D1: integer is total no of answers in d1
@@ -183,52 +213,52 @@ public class OPiRCA2 {
 		if(Integer.parseInt(d1.get(1))>0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D2: integer is total no of answers in d2
 		d1.addAll(selectStep2D(driver,5,0));
 		//Select apparent cause for d1
 		if(Integer.parseInt(d1.get(3))>0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();			
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D3: integer is total no of answers in d3
 		d1.addAll(selectStep2D(driver,6,0));
 		//Select apparent cause for d3
 		if(Integer.parseInt(d1.get(5))>0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D4: integer is total no of answers in d4
 		d1.addAll(selectStep2D(driver,5,0));
 		//Select apparent cause for d4
 		if(Integer.parseInt(d1.get(7))>0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D5: integer is total no of answers in d5
 		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d5
@@ -236,26 +266,26 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(9))==3)
 			{
 				//Click next for oo2
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
-				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-				obj1.scrollToTop(driver);
+				ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+				share.scrollToTop(driver);
 				//Click next for oo3
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
-				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-				obj1.scrollToTop(driver);
+				ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+				share.scrollToTop(driver);
 			}
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D6: integer is total no of answers in d6
 		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d6
@@ -263,21 +293,21 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(11))==3)
 			{
 				//Click next for p2
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
-				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-				obj1.scrollToTop(driver);
+				ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+				share.scrollToTop(driver);
 			}
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D7: integer is total no of answers in d7
 		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d6
@@ -285,21 +315,21 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(13))==3)
 			{
 				//Click next for p2
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
-				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-				obj1.scrollToTop(driver);
+				ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+				share.scrollToTop(driver);
 			}
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D8: integer is total no of answers in d8
 		d1.addAll(selectStep2D(driver,2,0));
 		//Select apparent cause for d8
@@ -307,13 +337,13 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D9: integer is total no of answers in d9
 		d1.addAll(selectStep2D(driver,5,0));
 		//Select apparent cause for d9
@@ -321,13 +351,13 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D10: integer is total no of answers in d10
 		d1.addAll(selectStep2D(driver,2,0));
 		//Select apparent cause for d10
@@ -335,33 +365,33 @@ public class OPiRCA2 {
 		{
 
 			//Click next for op2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			//Click next for op3
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			//Click next for pp1
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			//Click next for pp2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			//Click next for pp5
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D11: integer is total no of answers in d11
 		d1.addAll(selectStep2D(driver,3,0));
 		//Select apparent cause for d6
@@ -369,21 +399,21 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(21))==2)
 			{
 				//Click next for p2
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
-				ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-				obj1.scrollToTop(driver);
+				ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+				share.scrollToTop(driver);
 			}
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D12: integer is total no of answers in d12
 		d1.addAll(selectStep2D(driver,4,0));
 		//Select apparent cause for d9
@@ -391,13 +421,13 @@ public class OPiRCA2 {
 		{
 
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
-			ac.addAll(obj.selectOptions(driver,getOptionsForStep2(driver)));
-			obj1.scrollToTop(driver);
+			ac.addAll(opirca.selectOptions(driver,getOptionsForStep2(driver)));
+			share.scrollToTop(driver);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//Create a list to combine d1 and d12 answers and apparent causes selected 
 		List<String> combinedStep2 = new ArrayList<String>();
 		for(int i=0;i<d1.size();i=i+2)
@@ -457,12 +487,12 @@ public class OPiRCA2 {
 
 	public List<String> combineApparentCausesFromStep1AndStep2(List<String> step1,List<String>step2) throws Exception {
 
-		OPiRCA obj = new OPiRCA();
+		OPiRCA opirca = new OPiRCA();
 		List<String> b = new ArrayList<String>();
 		b.addAll(step1);
 		b.addAll(step2);
 		List<String> listWithoutDuplicates1 = b.stream().distinct().collect(Collectors.toList());
-		List<String> listWithoutDuplicates = obj.modifyList(listWithoutDuplicates1);
+		List<String> listWithoutDuplicates = opirca.modifyList(listWithoutDuplicates1);
 		//System.out.println(listWithoutDuplicates);
 		//Combine all the lists
 		List<String> b1 = new ArrayList<String>();
@@ -530,18 +560,17 @@ public class OPiRCA2 {
 	public List<String> selectStep2D(WebDriver driver, int x, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCAChinese obj = new OPiRCAChinese();
-		EiRCA obj1 = new EiRCA();
-		OPiRCA obj2 = new OPiRCA();
+		OPiRCA opirca = new OPiRCA();
+		OPiRCAChinese opc = new OPiRCAChinese();
 		List<String>ac = new ArrayList<String>();
 		//Enter reason entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAReasonEntryField)).sendKeys(obj1.textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAReasonEntryField)).sendKeys(eirca.textCreate(driver));
 		//Choose a number between 0 to x
 		int n = chooseRandomOption(x,y);
 		//Choose the option based on selection
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).click();
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).getText();
-		ac.add(obj2.verifyIfDAnswer(driver, n+1, s));
+		ac.add(opirca.verifyIfDAnswer(driver, n+1, s));
 		ac.add(Integer.toString(n));
 		return ac;
 	}
@@ -572,16 +601,15 @@ public class OPiRCA2 {
 	public void verifyStickySaveReport(WebDriver driver, SoftAssertions softly, String username, String reportTitle, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.StickyNote)).getText();
 			String r = s.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
 			if(n == 0)
 				softly.assertThat(r).as("test data").contains("Object created for id: ");
 			else
 				softly.assertThat(r).as("test data").contains("O&P iRCA™ Data updated for id: ");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find save pop up");
@@ -591,13 +619,12 @@ public class OPiRCA2 {
 	public void verifyStickyDeleteReport(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.StickyNote)).getText();
 			String r = s.replaceAll("\u00AD", "");
 			String r1 = recordName.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").isEqualTo("O&P iRCA™ data deleted: "+r1);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find delete pop up");
@@ -607,13 +634,13 @@ public class OPiRCA2 {
 	public void verifyErrorMessagesInfoPage(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCA obj = new OPiRCA ();		
+		OPiRCA opirca = new OPiRCA();
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		Thread.sleep(1000);
 		verifyInfoPageErrorPopup(driver,softly);
 		//Click on ok
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
 		Thread.sleep(1000);
 		//Verify errors
 		//Event title
@@ -657,73 +684,72 @@ public class OPiRCA2 {
 	public void verifyInfoPageErrorPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCAChinese obj = new OPiRCAChinese();
-		OPiRCA obj1 = new OPiRCA();
+		OPiRCA opirca = new OPiRCA();
+		OPiRCAChinese opc = new OPiRCAChinese();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCASavePopupTitle)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Invalid Data Entry");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASavePopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavePopupTitle)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Please fix all errors mentioned in red.");
 		//ok button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASaveConfirmButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("ok");
 	}
 
 	public void verifySavePopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCAChinese obj = new OPiRCAChinese();
-		OPiRCA obj1 = new OPiRCA();
+		OPiRCA opirca = new OPiRCA();
+		OPiRCAChinese opc = new OPiRCAChinese();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCASavePopupTitle)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Save Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASavePopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavePopupTitle)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCASaveCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASaveConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
 	}
 
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCAChinese obj = new OPiRCAChinese();
-		OPiRCA obj1 = new OPiRCA();
+		OPiRCA opirca = new OPiRCA();
+		OPiRCAChinese opc = new OPiRCAChinese();
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NewButton)).click();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCASavePopupTitle)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("New Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASavePopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavePopupTitle)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Would you like to confirm you want to erase the current report and create a new report?");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCASaveCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//New button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASaveConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("New Report");
 		//Click on cancel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveCancelButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCASaveCancelButton)).click();
 	}	
 
 	public void verifyOpenReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCA obj = new EiRCA();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Open");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		//if (driver.getCurrentUrl().contains("kaleqa"))
@@ -731,69 +757,67 @@ public class OPiRCA2 {
 		/*else
 			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: <br/>"+r1+"?");*/
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Open");
 	}	
 
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCA obj = new EiRCA();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Delete Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").isEqualTo("Are you sure you want to delete this O&P iRCA™ report ["+r1+"]?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
 	}
 
 	public void verifyChangeLanguage(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
-		HiRCAChinese obj1 = new HiRCAChinese();
-		LanguageCheckOfReports obj2 = new LanguageCheckOfReports();
-		OPiRCA obj3 = new OPiRCA();
-		EiRCAChinese obj4 = new EiRCAChinese();
-		OPiRCAChinese obj5 = new OPiRCAChinese();/* 
+		EiRCAChinese ec = new EiRCAChinese();
+		OPiRCA opirca = new OPiRCA();
+		OPiRCAChinese opc = new OPiRCAChinese();
+		HiRCAChinese hc = new HiRCAChinese();
+		LanguageCheckOfReports lcor = new LanguageCheckOfReports();/* 
 		//Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCASaveButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCASaveConfirmButton)).click();*/
 		//Change language to english
-		obj1.changeToEnglish(driver);
+		hc.changeToEnglish(driver);
 		//Click on Analysis
-		obj.loadingServer(driver);  
+		share.loadingServer(driver);  
 		//Clicks on Analysis 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
 		//Click on OPiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj5.OPiRCALink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCALink)).click();
 		//Verify the language as english
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.PageTitle)).getText();		
-		if (obj2.containsHanScript(s)==true)
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText();		
+		if (lcor.containsHanScript(s)==true)
 			softly.fail("Not in english");
 		//Change language to chinese
-		obj1.changeToChinese(driver);		
+		hc.changeToChinese(driver);		
 		//Click on Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
 		//Click on OPiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj5.OPiRCALink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCALink)).click();
 		//Verify the language as chinese in test		
 	}
 }

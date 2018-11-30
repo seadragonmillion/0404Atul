@@ -2965,8 +2965,13 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a[2]"))).click();
 		}
 		//Verify title of Related Links slide doesnt exist		
+		try{
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/ul/li["+Integer.parseInt(number)+"]/div[1]/div"))).getText();
 		softly.assertThat(s2).as("test data").doesNotContain("Related Links");
+		}catch (org.openqa.selenium.TimeoutException t)
+		{
+			System.out.println("No related links slide");
+		}
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a"))).click();
 		//Scroll to element

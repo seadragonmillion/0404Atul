@@ -96,12 +96,13 @@ public class OPiRCAChinese4 {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
+		EiRCAChinese obj2 = new EiRCAChinese();
 		//Go to Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLinkText)).click();
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCALink)).click();
 		//Create a new OPiRCA report 
-		obj1.chineseEventInfoFill(driver);
+		obj1.chineseEventInfoFill(driver, obj2.text);
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
 	}

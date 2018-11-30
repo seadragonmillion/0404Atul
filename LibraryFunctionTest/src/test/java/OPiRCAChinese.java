@@ -308,7 +308,7 @@ public class OPiRCAChinese {
 		//Verify errors in Chinese
 		chineseErrorsInfoPage(driver);
 		//Create a new OPiRCA report 
-		chineseEventInfoFill(driver);
+		chineseEventInfoFill(driver, obj1.text);
 		Thread.sleep(2000);
 		//Verify step 1
 		chineseOPiRCAStep1(driver);
@@ -3266,19 +3266,18 @@ public class OPiRCAChinese {
 		softly.assertThat(opircaEventInvestigatorError).as("test data").contains("事件调查员 必填");
 	}
 
-	public void chineseEventInfoFill (WebDriver driver) throws Exception {
+	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCAChinese obj = new EiRCAChinese();
 		OPiRCA obj1 = new OPiRCA ();
 		ShareCheck obj2 = new ShareCheck();
 		//Fills the mandatory fields
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAEventTitleField)).sendKeys(obj.text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAEventLocationField)).sendKeys(obj.text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAProblemStatementField)).sendKeys(obj.text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCATimelineOfEventField)).sendKeys(obj.text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCABackgroundInfoField)).sendKeys(obj.text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAInvestigatorsField)).sendKeys(obj.text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAEventTitleField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAEventLocationField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAProblemStatementField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCATimelineOfEventField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCABackgroundInfoField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAInvestigatorsField)).sendKeys(text);
 		obj2.scrollToAPoint(driver, 1500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCANextButtonAtBottomOfInfoTab)).click();

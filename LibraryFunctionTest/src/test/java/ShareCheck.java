@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -57,6 +58,27 @@ public class ShareCheck {
 	By SharedReportDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]");
 	By PIIContactButton = By.linkText("CONTACT");
 	By KALESupportButton = By.id("pii-contact-mailto");
+	
+	public void checkColorOfElement(WebDriver driver, By locator,SoftAssertions softly) throws Exception {
+		
+		List<String> hexValue = new ArrayList<String>();
+		//Get color
+		String color = driver.findElement(locator).getCssValue("color");
+		System.out.println(color);
+		//Format to # from rgba
+		if(color.contains("rgba"))
+			hexValue.addAll(Arrays.asList(color.replace("rgba(", "").replace(")", "").split(",")));
+		else
+			hexValue.addAll(Arrays.asList(color.replace("rgb(", "").replace(")", "").split(",")));
+		System.out.println(hexValue);
+		int hexValue1=Integer.parseInt(hexValue.get(0));
+		int hexValue2=Integer.parseInt(hexValue.get(1).trim());
+		int hexValue3=Integer.parseInt(hexValue.get(2).trim());		 
+		String actualColor = String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
+		System.out.println(actualColor);
+		//compare with expected color
+		softly.assertThat(actualColor).as("test data").isEqualTo("#333333");
+	}
 
 	public void scrollToAPoint(WebDriver driver, int yaxis)throws Exception{
 

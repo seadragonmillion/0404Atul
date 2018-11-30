@@ -339,11 +339,16 @@ public class OPiRCAChinese2 {
 	By OPiRCAStep5TableRow1Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[2]/td[3]/div/input");
 	By OPiRCAStep5TableRow2Column1 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[3]/td[1]");
 	By OPiRCAStep5TableRow2Column2 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[3]/td[2]");
+	By OPiRCAStep5TableRow2Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[3]/td[3]/div/input");
 	By OPiRCAStep5TableRow3Column2 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[4]/td[2]");
+	By OPiRCAStep5TableRow3Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[4]/td[3]/div/input");
 	By OPiRCAStep5TableRow4Column2 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[5]/td[2]");
+	By OPiRCAStep5TableRow4Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[5]/td[3]/div/input");
 	By OPiRCAStep5TableRow5Column1 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[6]/td[1]");
 	By OPiRCAStep5TableRow5Column2 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[6]/td[2]");
+	By OPiRCAStep5TableRow5Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[6]/td[3]/div/input");
 	By OPiRCAStep5TableRow6Column2 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[7]/td[2]");
+	By OPiRCAStep5TableRow6Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[7]/td[3]/div/input");
 
 	//Report Tab
 	//Table 1
