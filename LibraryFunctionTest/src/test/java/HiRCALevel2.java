@@ -174,6 +174,7 @@ public class HiRCALevel2 {
 		String lopName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText();
 		System.out.println(lopName);
 		obj.scrollToTop(driver);
+		obj.scrollToTop(driver);
 		//Decide order of new LOP selected
 		digits.remove(0);
 		digits.add(y);

@@ -98,6 +98,7 @@ public class OPiRCA {
 	By RField = By.xpath(".//*[@id='efi-opa-answers']/div[3]");
 	By EField = By.xpath(".//*[@id='efi-opa-answers']/div[4]");
 
+	By OPiRCARootCauseTable = By.xpath(".//*[@id='opa-rpt']/div[4]");
 	By OPiRCANoRCField1 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[1]");
 	By OPiRCANoRCField2 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[2]");
 	By OPiRCANoRCField3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table/tbody/tr/td[3]");
@@ -1220,6 +1221,9 @@ public class OPiRCA {
 		//When no root causes present
 		if (rc==0)
 		{
+			//Verify the table doesnt have text before the table like "undefined"
+			String undefined = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCARootCauseTable)).getText();
+			softly.assertThat(undefined).as("test data").doesNotContain("undefined \n");
 			//Verify Root cause as n/a
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCANoRCField1)).getText();
 			softly.assertThat(s).as("test data").isEqualTo("n/a");
@@ -1233,6 +1237,9 @@ public class OPiRCA {
 		//When root cause is present
 		for (int i=4;i<=rc+3;i++)
 		{
+			//Verify the table doesnt have text before the table like "undefined"
+			String undefined = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+i+"]"))).getText();
+			softly.assertThat(undefined).as("test data").doesNotContain("undefined \n");
 			//Get name of level 3 answer
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+i+"]/table[1]/tbody/tr/td[1]"))).getText();
 			//Verify if this level 3 answer was selected
@@ -1306,6 +1313,9 @@ public class OPiRCA {
 		//When no contributing factors present
 		if(cf==0)
 		{
+			//Verify the table doesnt have text before the table like "undefined"
+			String undefined = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]"))).getText();
+			softly.assertThat(undefined).as("test data").doesNotContain("undefined \n");
 			//Verify Contributing factors as n/a
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr/td[1]"))).getText();
 			softly.assertThat(s).as("test data").isEqualTo("n/a");
@@ -1319,6 +1329,9 @@ public class OPiRCA {
 		b=4;
 		while(i<=cf)
 		{
+			//Verify the table doesnt have text before the table like "undefined"
+			String undefined = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]"))).getText();
+			softly.assertThat(undefined).as("test data").doesNotContain("undefined \n");
 			//Get name of level 3 answer
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='opa-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
 			//Verify if this level 3 answer was selected
