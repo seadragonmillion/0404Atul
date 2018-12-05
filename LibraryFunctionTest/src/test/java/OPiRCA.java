@@ -56,6 +56,7 @@ public class OPiRCA {
 	By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
 	By OPIRCAMarkCriticalIndicatorText1 = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th");
 	By OPiRCAFinalizeButton = By.id("efi-opa-button-finalize");
+	By OPiRCAReportTabDownloadButton = By.id("efi-opa-button-download");
 	By OPiRCASaveButton = By.id("efi-opa-button-save");
 	By OPiRCASavePopupTitle = By.id("pii-opa-dialog-title");
 	By OPiRCASaveConfirmButton = By.id("pii-opa-dialog-confirmed");

@@ -2154,10 +2154,11 @@ public class EiRCA {
 
 	public void verifyChangesSavedSequenceOfEvents(WebDriver driver, HashMap<String,String> hm1, String username, int n) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		Thread.sleep(1000);
+		obj.scrollToTop(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCANextButton)).click();	
 		Thread.sleep(1000);

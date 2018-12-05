@@ -2299,6 +2299,8 @@ public class UserManagement {
 		//Clicks on delete
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-delete"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete user
 		driver.findElement(By.id("pii-admin-user-dialog-confirmed")).click();
 		try{
@@ -2329,6 +2331,8 @@ public class UserManagement {
 		Thread.sleep(4000);
 		//Clicks on delete
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-delete"))).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
 		//Clicks on delete group
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
@@ -2359,6 +2363,8 @@ public class UserManagement {
 		Thread.sleep(4000);
 		//Clicks on delete
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 		//Clicks on delete company
 		driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();

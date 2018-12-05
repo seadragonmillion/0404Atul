@@ -268,6 +268,8 @@ public class RemoteVerification2 {
 		share.loadingServer(driver);
 		//Click on Reject button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectButton)).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Enter comment
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectComment)).sendKeys(rejectComment);
 		//Click on reject confirm button
@@ -317,6 +319,8 @@ public class RemoteVerification2 {
 		share.loadingServer(driver);
 		//Click on Accept button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierAcceptButton)).click();
+		String noHtml1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
+		softly.assertThat(noHtml1).as("test data").doesNotContain("<br/>");
 		//Enter comment
 		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectComment)).sendKeys(passComment);
 		//Click on reject confirm button

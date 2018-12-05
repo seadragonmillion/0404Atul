@@ -1262,6 +1262,7 @@ public class HiRCAEvent {
 			//Click on Supporting file details
 			Thread.sleep(500);
 			String id = "pii-irca-event-filecollapsible-"+j;
+			obj.scrollToElement(driver, driver.findElement(By.id(id)));
 			driver.findElement(By.id(id)).click();
 			//Uploads file
 			String file = "pii-irca-event-file-"+j;
@@ -1392,6 +1393,7 @@ public class HiRCAEvent {
 			//Click on Supporting file details
 			Thread.sleep(500);
 			String id = "pii-irca-event-filecollapsible-"+j;
+			obj.scrollToElement(driver, driver.findElement(By.id(id)));
 			driver.findElement(By.id(id)).click();
 			//Uploads file
 			String file = "pii-irca-event-file-"+j;
@@ -1547,6 +1549,7 @@ public class HiRCAEvent {
 			//Click on Supporting file details
 			Thread.sleep(1500);
 			String id = "pii-irca-event-filecollapsible-"+j;
+			obj.scrollToElement(driver, driver.findElement(By.id(id)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			//Uploads file
 			String file = "pii-irca-event-file-"+j;/*
@@ -1719,6 +1722,7 @@ public class HiRCAEvent {
 			//Click on Supporting file details
 			Thread.sleep(1500);
 			String id = "pii-irca-event-filecollapsible-"+j;
+			obj.scrollToElement(driver, driver.findElement(By.id(id)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			x=x+200;
 			String scroll1 = "scroll(0,"+x+")";

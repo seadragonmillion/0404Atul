@@ -107,8 +107,23 @@ public class Login {
 				}
 			}		  
 		}
-		obj.loadingServer(driver);
+		waitForIframe(driver);
 		return login;
+	}
+	
+	public void waitForIframe(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		while(true)
+		{
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@name='pii-iframe-main']")));
+				break;
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				continue;
+			}
+		}
 	}
 	
 	public String decodePassword(String pw){

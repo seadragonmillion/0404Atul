@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -446,6 +447,7 @@ public class OPiRCABug {
 		System.out.println(apparentCauseSelected);
 		List<String> onlyOneApparentCause = new ArrayList<String>();
 		onlyOneApparentCause.add(apparentCauseSelected.get(index));
+		System.out.println(onlyOneApparentCause);
 		//Select some apparent cause answers
 		List<String> answers = op.selectApparentCausesAnswers(driver, onlyOneApparentCause);
 		//Scroll up 
@@ -547,6 +549,54 @@ public class OPiRCABug {
 			
 		}
 	}
+	
+	public List<String> selectApparentCausesAnswers(WebDriver driver,List<String> apparentCauses) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		//Create a list to store any apparent cause answer selected
+		List<String> ac = new ArrayList<String>();
+		int c=1;
+		while(c==1)
+		{
+			//Get title of page and see if it is same as apparent Causes
+			String title = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
+			String title_expected = apparentCauses.get(0).substring((apparentCauses.get(0).indexOf(": ")+2), apparentCauses.get(0).length());
+			if(title.contains(title_expected)==true)
+				break;
+			else 
+			{
+				//Click on skip
+				wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
+			}
+		}
+		int count = 0;
+		int k=1;
+		//Identify number of answers for an apparent cause
+		while(true)
+		{
+			try{
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+k+"]"))).getAttribute("class");
+				k=k+1;
+				if(s.equals("ui-contain"))
+					count = count +1;
+			}catch(NoSuchElementException |org.openqa.selenium.TimeoutException e)
+			{
+				break;
+			}
+		}
+		//Get answers list
+		ac.addAll(op.selectOptions(driver,count));
+		//Add contributing factor
+		String s = op.addContributingFactor(driver, count+1);
+		ac.add(s);
+		//Scroll to top
+		Thread.sleep(2000);
+		share.scrollToTop(driver);
+		Thread.sleep(2000);
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();    	
+		return ac;
+	}
 
 	public void opircaBugKALE2268Path (WebDriver driver) throws Exception {
 
@@ -571,7 +621,7 @@ public class OPiRCABug {
 		List<String> oneApparentCause = new ArrayList<String>();
 		oneApparentCause.add(apparentCauseSelected.get(index));
 		System.out.println(oneApparentCause);
-		List<String> apparentCausesAnswersNew1 = op.selectApparentCausesAnswers(driver, oneApparentCause);
+		List<String> apparentCausesAnswersNew1 = selectApparentCausesAnswers(driver, oneApparentCause);
 		for(int i=index+1; i<apparentCauseSelected.size();i++)
 		{
 			//Click on skip
@@ -654,6 +704,96 @@ public class OPiRCABug {
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		verifyStep5(driver);
+	}
+	
+	public void opircaBugKALE2011Path (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click on new button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op2.NewButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
+		//Fill mandatory details on Info page and click next
+		opc.chineseEventInfoFill(driver,text);
+		//Click on skip Step 1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
+		//Select No for D1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer1)).click();
+		//Next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		//D2.2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer2)).click();
+		//Next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		//OP1.1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer1)).click();
+		//Next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		//D3.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer6)).click();
+		//Next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		//OP1.2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer2)).click();
+		//Next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		//Skip d4 to d12 and Step 3/4/5= 9+3 skips 
+		for(int i=1;i<=12;i++)
+		{
+			//Click on skip
+			wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
+		}
+		//Click on Step 2 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)).click();
+		//Next on D1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		//Clear D2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.DQuestionAnswersClearButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
+		//Wait for popup to disappear
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
+		share.scrollToTop(driver);
+		//Click on Step 3
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep3Tab)).click();
+		//Verify Step 3 title
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
+		softly.assertThat(s).as("test data").contains("Step 3");
+		share.scrollToTop(driver);
+		//Click on Step 4
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep4Tab)).click();
+		//Verify Step 4 title
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
+		softly.assertThat(s1).as("test data").contains("Step 4");
+		//Click on Step 5
+		share.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();
+		//Verify Step 5 title
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
+		softly.assertThat(s2).as("test data").contains("Step 5");
+		share.scrollToTop(driver);
+		//Click on Report Tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTab)).click();
+		//Verify Report Tab by looking for finalize button and download button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAFinalizeButton));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabDownloadButton));
+		//Event information table title
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAReportTabTable1Heading));
+		share.scrollToTop(driver);
+		//Click on Step 5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();
+		//Verify Step 5 title
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
+		softly.assertThat(s3).as("test data").contains("Step 5");
+	}
+	
+	public void pathForAllBugs(WebDriver driver) throws Exception{
+		
+		//KALE 2138 / QAA 614
+		opircaBugKALE2138Path(driver);
+		//KALE 2268 / QAA 613
+		opircaBugKALE2268Path(driver);
+		//KALE 2011
+		opircaBugKALE2011Path(driver);
 	}
 	
 	public void softAssert() throws Exception {

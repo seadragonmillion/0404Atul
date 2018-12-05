@@ -510,6 +510,8 @@ public class PassReview {
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(DeleteButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle));
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete report
 		driver.findElement(obj1.ConfirmPopupButton).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote));
@@ -671,6 +673,8 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OpenButton)).click();
 		//Clicks on open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
 		//Change text
 		changeText(driver);

@@ -55,10 +55,8 @@ public class IETest {
 			throw e;
 		}
 		Thread.sleep(2000);
-		//KALE 2138 / QAA 614
-		obj1.opircaBugKALE2138Path(driver);
-		//KALE 2268 / QAA 613
-		obj1.opircaBugKALE2268Path(driver);
+		//KALE 2138 / QAA 614, KALE 2268 / QAA 613, KALE 2011 / QAA 617
+		obj1.pathForAllBugs(driver);
 		//Logs out
 		obj.logout(driver);
 		afterTest(obj1);		  

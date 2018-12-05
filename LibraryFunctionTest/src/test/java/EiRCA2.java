@@ -144,7 +144,7 @@ public class EiRCA2 {
 	
 	public void verifySavePopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAPopupHeader)).getText();
@@ -162,7 +162,7 @@ public class EiRCA2 {
 	
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCAChinese obj = new EiRCAChinese();
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NewButton)).click();
@@ -187,7 +187,7 @@ public class EiRCA2 {
 	
 	public void verifyInfoPageErrorPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCAChinese obj = new EiRCAChinese();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PopUpTitle)).getText();
@@ -202,7 +202,7 @@ public class EiRCA2 {
 	
 	public void verifyOpenReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
@@ -228,7 +228,7 @@ public class EiRCA2 {
 	
 	public void verifyAddSharerPopup(WebDriver driver, SoftAssertions softly, String sharer) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
@@ -249,7 +249,7 @@ public class EiRCA2 {
 	
 	public void verifyRemoveSharerPopup(WebDriver driver, SoftAssertions softly, String sharer) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
@@ -270,7 +270,7 @@ public class EiRCA2 {
 	
 	public void verifyDownloadReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
@@ -291,7 +291,7 @@ public class EiRCA2 {
 	
 	public void verifyMarkCriticalPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
@@ -312,7 +312,7 @@ public class EiRCA2 {
 	
 	public void verifyUnMarkCriticalPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
@@ -333,7 +333,7 @@ public class EiRCA2 {
 	
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		EiRCA obj = new EiRCA();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();

@@ -145,6 +145,8 @@ public class RemoteVerification {
 		softly.assertThat(status).as("test data").contains("Not yet sent to verifier");
 		//Click on Open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.OpenButton)).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
 		//Clicks on Save and Send
@@ -724,6 +726,7 @@ public class RemoteVerification {
 		//Get browser value
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
+		String version = cap.getVersion().toLowerCase();
 		//Get longitude latitude from rv location image
 		String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(RVLatitudeLongitudeAboveLocationImage)).getText();
 		System.out.println(location); 
@@ -731,7 +734,7 @@ public class RemoteVerification {
 		if(url.contains("kaleqa"))
 		{
 			//Store in excel
-			excelStore(location,browserName);
+			excelStore(location,browserName,version);
 		}	    
 		String address = "462 Stevens Avenue, Suite #306 Solana Beach, CA 92705";
 		Thread.sleep(4000);
@@ -750,7 +753,7 @@ public class RemoteVerification {
 		}		
 	}
 
-	public void excelStore (String location, String browserName) throws Exception{
+	public void excelStore (String location, String browserName, String version) throws Exception{
 
 		File file = new File("E:/EmailError.xlsx");		
 		// Open the Excel file
@@ -767,7 +770,7 @@ public class RemoteVerification {
 		//Create a new row for only images
 		Row row1 = ExcelWSheet.createRow(rows);
 		row1.createCell(0).setCellValue(sfdate.format(date));
-		row1.createCell(1).setCellValue(browserName);
+		row1.createCell(1).setCellValue(browserName + " " + version);
 		row1.createCell(2).setCellValue(location);
 		//Close File input stream
 		ExcelFile.close();
@@ -1175,6 +1178,8 @@ public class RemoteVerification {
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(RVDeleteButton)).click();		 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle));
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle)).getText();
+		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete report
 		driver.findElement(obj2.ConfirmPopupButton).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.StickyNote));
