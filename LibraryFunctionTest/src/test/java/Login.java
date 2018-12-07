@@ -31,7 +31,7 @@ public class Login {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		ShareCheck obj = new ShareCheck();
-		String s = wait.until(ExpectedConditions.elementToBeClickable(WebPageMessage)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(WebPageMessage)).getText();
 		System.out.println(s);
 		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked

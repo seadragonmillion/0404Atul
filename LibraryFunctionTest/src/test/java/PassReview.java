@@ -392,6 +392,7 @@ public class PassReview {
 			if (browserName.equals("internet explorer"))
 			{
 				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
+				System.out.println(s1);
 				String r2 = s1.replaceAll("\u00AD", "");
 				softly.assertThat(r2).as("test data").isIn(textList);
 				//System.out.println(s1+"\n"+r2);

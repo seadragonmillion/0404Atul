@@ -100,6 +100,7 @@ public class RemoteVerification {
 	By RVReportEventDetails = By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[2]/td/span");
 	By RVMarkedCriticalText = By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong");
 	By RVDeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	By AcceptRejectConfirmPopupTitle = By.id("pii-user-home-rv-dialog-title");
 
 	//Share Page
 	By RVSharePageVerifierBlock = By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul");

@@ -171,13 +171,13 @@ public class HiRCABug2 {
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Verify the warning message
-		try{
+		//try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-file-status-0"))).getText();
 			softly.assertThat(s).as("test data").isEqualTo("Warning: no file attached.");
-		}catch(org.openqa.selenium.TimeoutException t)
+		/*}catch(org.openqa.selenium.TimeoutException t)
 		{
 			
-		}
+		}*/
 		share.scrollToTop(driver);
 		//Delete report
 		hircaL1.deleteReport(driver);
