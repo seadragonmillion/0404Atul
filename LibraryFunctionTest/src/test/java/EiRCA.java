@@ -37,7 +37,7 @@ import com.google.common.collect.Iterables;
 public class EiRCA {
 
 	SoftAssertions softly = new SoftAssertions();
-
+	String textToVerifyClearTextBox = "to verify clearing of text";
 
 	//Buttons on HTML report page
 	By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
@@ -138,6 +138,7 @@ public class EiRCA {
 	By EiRCAStep1Q16AnswerTextBox = By.xpath(".//*[@id='pii-ircam-tab-2']/textarea[3]");
 	By EiRCAStep1Q12AnswerTextBox = By.xpath(".//*[@id='pii-ircam-1-2-other-div']/div/input");
 	By EiRCAStep1Q13AnswerTextBox = By.xpath(".//*[@id='pii-ircam-1-3-other-div']/div/input");
+	By EiRCAStep1Tab = By.id("pii-ircam-tab-2-a");
 
 	//Step 2
 	By EiRCAStep2Tab = By.id("pii-ircam-tab-3-a");
@@ -150,6 +151,7 @@ public class EiRCA {
 	By Step3TableOption34Textbox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[4]/td[4]/textarea");
 	By Step3TableOption35Textbox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[5]/td[4]/textarea");
 	By Step3TableOption36Textbox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[6]/td[4]/textarea");
+	By EiRCAStep3Tab = By.id("pii-ircam-tab-4-a");
 
 	//Step 4
 	By Step4FailureMode1Option42CheckBox = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[2]/td[2]/div/input");
@@ -168,14 +170,17 @@ public class EiRCA {
 	By Step4FailureMode2Option47CheckBox = By.xpath(".//*[@id='pii-ircam-tab-5']/div[4]/div/table/tbody/tr[7]/td[2]/div/input");
 	By Step4FailureMode1Option44Row = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[4]");
 	By Step4FailureMode2Option44Row = By.xpath(".//*[@id='pii-ircam-tab-5']/div[4]/div/table/tbody/tr[4]");
-	By Step3TableOption44Textbox = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[1]/td[3]/textarea");	
+	By Step4FailureModeOption44Textbox = By.xpath(".//*[@id='pii-ircam-tab-5']/div[3]/div/table/tbody/tr[1]/td[3]/textarea");	
+	By EiRCAStep4Tab = By.id("pii-ircam-tab-5-a");
 
 	//Step 5
 	By Step5TableOption55Textbox = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[1]/td[3]/textarea");
 	By Step5TableOption56Textbox = By.xpath(".//*[@id='pii-ircam-tab-6']/div[3]/div/table[9]/tbody/tr[2]/td[3]/textarea");
+	By EiRCAStep5Tab = By.id("pii-ircam-tab-6-a");
 
 	//Step 6
 	By Step6TableOption65Textbox = By.xpath(".//*[@id='pii-ircam-tab-7']/div[3]/div/table/tbody/tr[5]/td[3]/textarea");
+	By EiRCAStep6Tab = By.id("pii-ircam-tab-7-a");
 
 	//Step 7
 	By Step7SUEPTableRow2CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[6]/textarea");
@@ -228,6 +233,7 @@ public class EiRCA {
 	By HTMLStep4Table1Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[2]/td[2]");
 	By HTMLStep4Table1Row3Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[3]/td[2]");
 	By HTMLStep4Table1Row4Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[2]");
+	By HTMLStep4Table1Row4Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[4]/td[3]");
 	By HTMLStep4Table1Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[5]/td[2]");
 	By HTMLStep4Table1Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
 	By HTMLStep4Table1Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
@@ -707,14 +713,14 @@ public class EiRCA {
 					/*String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep5Skipped)).getText();
 				softly.assertThat(s13).as("test data").isEqualTo("Step 5 - Identify Possible Contributing Factors (skipped)");*/
 					//Commented the lines because the bug exists for eirca, even if nothing is selected, the text enetered will show up in report and step 5 is not skipped
-					int x1 = 2;
-					HTMLStep5Text(driver,x1);
+					//int x1 = 2;
+					//HTMLStep5Text(driver,x);
 				}
 				else
 				{
 					//bug exists for eirca, even if nothing is selected, the text enetered will show up in report and step 5 is not skipped
-					int x1 = 2;
-					HTMLStep5Text(driver,x1);
+					//int x1 = 2;
+					HTMLStep5Text(driver,x);
 					HTMLStep5(driver,x);
 				}
 				//Verify step 6 skipped
@@ -723,14 +729,14 @@ public class EiRCA {
 					/*String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped)).getText();
 				softly.assertThat(s13).as("test data").isEqualTo("Step 6 - Determine Contributing Factors (skipped)");*/
 					//Commented the lines because the bug exists for eirca, even if nothing is selected, the text enetered will show up in report and step 6 is not skipped
-					int x1 = 2;
-					HTMLStep6Text(driver,x1);
+					//int x1 = 2;
+					HTMLStep6Text(driver,y);
 				}
 				else
 				{
 					//bug exists for eirca, even if nothing is selected, the text enetered will show up in report and step 6 is not skipped
-					int x1 = 1;
-					HTMLStep6Text(driver,x1);
+					//int x1 = 1;
+					HTMLStep6Text(driver,y);
 					HTMLStep6(driver,y);
 				}
 				//Verify step 7 skipped
@@ -783,14 +789,14 @@ public class EiRCA {
 					/*String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped)).getText();
 				softly.assertThat(s13).as("test data").isEqualTo("Step 6 - Determine Contributing Factors (skipped)");*/
 					//Commented the lines because the bug exists for eirca, even if nothing is selected, the text enetered will show up in report and step 6 is not skipped
-					int x1 = 2;
-					HTMLStep6Text(driver,x1);
+					//int x1 = 2;
+					HTMLStep6Text(driver,y);
 				}
 				else
 				{
 					//bug exists for eirca, even if nothing is selected, the text enetered will show up in report and step 6 is not skipped
-					int x1 = 1;
-					HTMLStep6Text(driver,x1);
+					//int x1 = 1;
+					HTMLStep6Text(driver,y);
 					HTMLStep6(driver,y);
 				}
 				//Verify step 7 skipped
@@ -1296,8 +1302,8 @@ public class EiRCA {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//For now x is 6 because there is a bug that exists in eirca, by which even if nothing is selected, the ext still shows up
 		//Once it is fixed change function
-		int x=6;
-		HTMLStep3TableText(driver,x);
+		//	int x=6;
+		HTMLStep3TableText(driver,n);
 		for(int i=1;i<=n;i++)
 		{
 			if(i==1)
@@ -1493,6 +1499,9 @@ public class EiRCA {
 		Thread.sleep(3000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+		//Open eirca report and uncheck the checkboxes
+		if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
+			editEiRCAReport(driver);
 	}
 
 	public void downloadRecordFirefox(WebDriver driver, HashMap <String,String> hm) throws Exception {
@@ -1540,6 +1549,9 @@ public class EiRCA {
 		Thread.sleep(3000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+		//Open eirca report and uncheck the checkboxes
+		if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
+			editEiRCAReport(driver);
 	}
 
 	public void downloadRecordIE10(WebDriver driver, HashMap <String,String> hm) throws Exception {
@@ -1585,6 +1597,9 @@ public class EiRCA {
 		Thread.sleep(3000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+		//Open eirca report and uncheck the checkboxes
+		if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
+			editEiRCAReport(driver);
 	}
 
 	public void downloadRecordIE11(WebDriver driver, HashMap <String,String> hm) throws Exception {
@@ -1630,6 +1645,9 @@ public class EiRCA {
 		Thread.sleep(3000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
+		//Open eirca report and uncheck the checkboxes
+		if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
+			editEiRCAReport(driver);
 	}
 
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
@@ -1710,6 +1728,211 @@ public class EiRCA {
 		obj1.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
+	}
+
+	public void editEiRCAReport(WebDriver driver) throws Exception {
+/*
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		EiRCAChinese obj = new EiRCAChinese();
+		ShareCheck obj1 = new ShareCheck();
+		//Open Report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();/*
+		//Click on Step 1 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep1Tab)).click();
+		//Select other mechanical/electrical and erase
+		WebElement dropdown1 = driver.findElement(obj.Step1Q13Answer);
+		Select s1 = new Select(dropdown1);
+		s1.selectByIndex(17);
+		//Enter text in textbox
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1Q13AnswerTextBox)).sendKeys(textToVerifyClearTextBox);
+		//Select some other option
+		s1.selectByIndex(12);
+		//Verify the text is gone
+		if(driver.findElement(obj.Step1Q13AnswerTextBox).isDisplayed()==false)
+			softly.fail("Step 1 text box visible after selecting other options other than mechanical/electrical related symptoms");*//*
+		//Click on Step 3
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep3Tab)).click();
+		//Click on collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3FailureCollapsible)).click();
+		//Check any boxes
+		if(driver.findElement(obj.Step3TableOption31CheckBox).isSelected() ==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption31CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption32CheckBox).isSelected() ==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption32CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption33CheckBox).isSelected() ==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption33CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption34CheckBox).isSelected() ==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption34CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption35CheckBox).isSelected() ==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption35CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption36CheckBox).isSelected() ==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption36CheckBox)).click();
+		//Enter text
+		fillTextStep3(driver,textToVerifyClearTextBox);
+		//Save report
+		saveEiRCAReport(driver);
+		//uncheck the boxes and verify the text is gone
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row1Column4)).getText();
+		softly.assertThat(s).as("test data").contains(textToVerifyClearTextBox);
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row2Column4)).getText();
+		softly.assertThat(s1).as("test data").contains(textToVerifyClearTextBox);
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row3Column4)).getText();
+		softly.assertThat(s2).as("test data").contains(textToVerifyClearTextBox);
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row4Column4)).getText();
+		softly.assertThat(s3).as("test data").contains(textToVerifyClearTextBox);
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row5Column4)).getText();
+		softly.assertThat(s4).as("test data").contains(textToVerifyClearTextBox);
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row6Column4)).getText();
+		softly.assertThat(s5).as("test data").contains(textToVerifyClearTextBox);
+		//Open Report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		//Click on Step 3
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep3Tab)).click();
+		//Click on collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3FailureCollapsible)).click();
+		//UnCheck any boxes
+		if(driver.findElement(obj.Step3TableOption31CheckBox).isSelected() ==true)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption31CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption32CheckBox).isSelected() ==true)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption32CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption33CheckBox).isSelected() ==true)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption33CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption34CheckBox).isSelected() ==true)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption34CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption35CheckBox).isSelected() ==true)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption35CheckBox)).click();
+		if(driver.findElement(obj.Step3TableOption36CheckBox).isSelected() ==true)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption36CheckBox)).click();
+		//Save report
+		saveEiRCAReport(driver);
+		//Verify no text is visible in step 3 table
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row1Column4)).getText();
+		softly.assertThat(s6).as("test data").isEmpty();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row2Column4)).getText();
+		softly.assertThat(s7).as("test data").isEmpty();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row3Column4)).getText();
+		softly.assertThat(s8).as("test data").isEmpty();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row4Column4)).getText();
+		softly.assertThat(s9).as("test data").isEmpty();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row5Column4)).getText();
+		softly.assertThat(s10).as("test data").isEmpty();
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row6Column4)).getText();
+		softly.assertThat(s11).as("test data").isEmpty();
+		//Open Report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		//Click on Step 4
+		System.out.println(driver.findElement(EiRCAStep4Tab).isEnabled());
+		if(driver.findElement(EiRCAStep4Tab).isEnabled()==true)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep4Tab)).click();			
+			//Click on collapsible
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4FailureCollapsible)).click();
+			//Check any boxes
+			String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4TableOption44CheckBox)).getAttribute("checked");
+			System.out.println("Strings.isNullOrEmpty(s12) : "+Strings.isNullOrEmpty(s12) + " "+s12);
+			if(Strings.isNullOrEmpty(s12)==true&&s12.contains("false"))
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4TableOption44CheckBox)).click();
+			//Enter text
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureModeOption44Textbox)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureModeOption44Textbox)).sendKeys(textToVerifyClearTextBox);
+			//Save report
+			saveEiRCAReport(driver);
+			//verify text in html in step 4 table
+			String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4Table1Row4Column3)).getText();
+			softly.assertThat(s13).as("test data").contains(textToVerifyClearTextBox);
+			//Open Report
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+			//uncheck the boxes and verify the text is gone
+			//Click on Step 4
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep4Tab)).click();
+			//Click on collapsible
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4FailureCollapsible)).click();
+			//Uncheck
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4TableOption44CheckBox)).click();
+			//Save report
+			saveEiRCAReport(driver);
+			//Verify text is gone
+			String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4Table1Row4Column3)).getText();
+			softly.assertThat(s14).as("test data").isEmpty();
+			//Open Report
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();		
+		}
+		//Click on Step 5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep5Tab)).click();
+		//Click on collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5FailureCollapsible)).click();
+		//Check any boxes
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption55CheckBox));
+		obj1.scrollToElement(driver, l);
+		//Click on 5.5
+		if(l.isSelected()==false)
+			l.click();
+		WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption56CheckBox));
+		obj1.scrollToElement(driver, l1);
+		//Click on 5.6
+		if(l1.isSelected()==false)
+			l1.click();
+		//Enter text
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).sendKeys(textToVerifyClearTextBox);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).sendKeys(textToVerifyClearTextBox);
+		//Save report
+		saveEiRCAReport(driver);
+		//Verify text
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable14Step5Row1Column3)).getText();
+		softly.assertThat(s15).as("test data").contains(textToVerifyClearTextBox);
+		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable14Step5Row2Column3)).getText();
+		softly.assertThat(s16).as("test data").contains(textToVerifyClearTextBox);
+		//Open Report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
+		//uncheck the boxes and verify the text is gone
+		//Click on Step 5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep5Tab)).click();
+		//Click on collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5FailureCollapsible)).click();
+		//Check any boxes
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption55CheckBox));
+		obj1.scrollToElement(driver, l);
+		//Click on 5.5
+		l.click();
+		l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption56CheckBox));
+		obj1.scrollToElement(driver, l1);
+		//Click on 5.6
+		l1.click();
+		//Save report and verify html that it has no text from Step 5
+		saveEiRCAReport(driver);
+		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep5Skipped)).getText();
+		softly.assertThat(s17).as("test data").isEqualTo("Step 5 - Identify Possible Contributing Factors (skipped)");*/
+	}
+
+	public void saveEiRCAReport(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		ShareCheck obj1 = new ShareCheck();
+		//Save report
+		obj1.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASaveButton)).click();
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAConfirmButton)).click();
+		//Verify save sticky
+		obj1.loadingServer(driver);
+		obj1.loadingServer(driver);
+		obj1.scrollToTop(driver);
+		//Clicks on Saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCASavedActivitiesButton)).click();
+		obj1.loadingServer(driver);
+		obj1.scrollToTop(driver);
+		//Clicks on first newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
+		obj1.loadingServer(driver);
 	}
 
 	public void verifyProbStatementPlaceHolder(WebDriver driver) throws Exception {
@@ -2344,7 +2567,7 @@ public class EiRCA {
 		Random random = new Random();
 		int n = random.nextInt(7);
 		//Fill text in Step 3
-		fillTextStep3(driver);
+		//fillTextStep3(driver, textCreate(driver));
 		//n = 0;
 		Thread.sleep(1000);
 		if(n==0)
@@ -2361,21 +2584,25 @@ public class EiRCA {
 			{
 				//Click on check box for 3.1
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption31CheckBox)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==2)
 			{
 				//Click on check box for 3.2
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption32CheckBox)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption32Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==3)
 			{
 				//Click on check box for 3.3
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption33CheckBox)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==4)
 			{
 				//Click on check box for 3.4
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption34CheckBox)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==5)
 			{
@@ -2383,6 +2610,7 @@ public class EiRCA {
 				obj1.scrollToAPoint(driver, 1200);
 				//Click on check box for 3.5
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption35CheckBox)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==6)
 			{
@@ -2390,6 +2618,7 @@ public class EiRCA {
 				obj1.scrollToAPoint(driver, 1200);
 				//Click on check box for 3.6
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step3TableOption36CheckBox)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36Textbox)).sendKeys(textCreate(driver));
 			}	    		
 		}
 		//Scroll to the top
@@ -2403,24 +2632,30 @@ public class EiRCA {
 		return n;
 	}
 
-	public void fillTextStep3(WebDriver driver) throws Exception {
+	public void fillTextStep3(WebDriver driver, String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		//Fill in text in 3.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31Textbox)).sendKeys(textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption31Textbox)).sendKeys(text);
 		//Fill in text in 3.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption32Textbox)).sendKeys(textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption32Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption32Textbox)).sendKeys(text);
 		//Fill in text in 3.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33Textbox)).sendKeys(textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption33Textbox)).sendKeys(text);
 		//Fill in text in 3.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34Textbox)).sendKeys(textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption34Textbox)).sendKeys(text);
 		//scroll down
 		obj.scrollToAPoint(driver, 1200);
 		//Fill in text in 3.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35Textbox)).sendKeys(textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption35Textbox)).sendKeys(text);
 		//Fill in text in 3.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36Textbox)).sendKeys(textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption36Textbox)).sendKeys(text);
 		//Scroll to the top
 		Thread.sleep(500);
 		obj.scrollToTop(driver);
@@ -2437,12 +2672,12 @@ public class EiRCA {
 		Thread.sleep(1000);
 		//Click on collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4FailureCollapsible)).click();
-		//Fill in text in 4.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step3TableOption44Textbox)).sendKeys(textCreate(driver));
 		if(n==1)
 		{
 			//Select 4.4
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step4TableOption44CheckBox)).click();
+			//Fill in text in 4.4
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureModeOption44Textbox)).sendKeys(textCreate(driver));
 		}
 		Thread.sleep(1000);
 		//Click next
@@ -2466,7 +2701,7 @@ public class EiRCA {
 		Random random = new Random ();
 		int n = random.nextInt(3);
 		//Fill text in 5.5 and 5.6
-		fillTextStep5(driver);
+		//fillTextStep5(driver);
 		if(n==0)
 		{
 			//Click next
@@ -2481,6 +2716,8 @@ public class EiRCA {
 				obj1.scrollToElement(driver, l);
 				//Click on 5.5
 				l.click();
+				//Fill in text in 5.5
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==2)
 			{
@@ -2488,6 +2725,8 @@ public class EiRCA {
 				obj1.scrollToElement(driver, l);
 				//Click on 5.6
 				l.click();
+				//Fill in text in 5.6
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).sendKeys(textCreate(driver));
 			}
 		}
 		//Scroll to the top
@@ -2526,8 +2765,6 @@ public class EiRCA {
 		//Choose 0 to 4
 		Random random = new Random ();
 		int n = random.nextInt(5);
-		//Fill in text in 6.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption65Textbox)).sendKeys(textCreate(driver));
 		if(n==0)
 		{
 			//Click next
@@ -2542,6 +2779,8 @@ public class EiRCA {
 				obj1.scrollToElement(driver, l);
 				//Click on 6.5
 				l.click();
+				//Fill in text in 6.5
+				wait.until(ExpectedConditions.visibilityOfElementLocated(Step6TableOption65Textbox)).sendKeys(textCreate(driver));
 			}
 			if(i==2)
 			{

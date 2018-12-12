@@ -393,7 +393,7 @@ public class ShareCheck {
 					System.out.println("Title in rv in sharer notification center: "+title);
 					softly.assertThat(title).as("test data").contains(rv.eventTitle(driver));
 				}
-				Thread.sleep(2000);
+				loadingServer(driver);
 				//Click on 1st record/notification
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
 				Thread.sleep(4000);
