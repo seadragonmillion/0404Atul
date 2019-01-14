@@ -1041,17 +1041,21 @@ public class CreateEquipmentCase {
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseEditButton)).click();
 		//Scroll to 1st Link title
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink2Title));
 		obj.scrollToElement(driver, l);
-		//delete 2 to 13
-		for(int i=1;i<=12;i++)
+		//delete 2 to 12
+		for(int i=1;i<=11;i++)
 		{
-			//Click on delete link 2 cross symbol of Title
-			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1TitleCrossSymbol)).click();
 			//Click on delete link 2 cross symbol of URL
-			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1URLCrossSymbol)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink2URLCrossSymbol)).click();
+			//Click on delete link 2 cross symbol of Title
+			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink2TitleCrossSymbol)).click();
 			Thread.sleep(500);
 		}
+		//Click on delete link 1 cross symbol of URL
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1URLCrossSymbol)).click();
+		//Click on delete link 1 cross symbol of Title
+		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCasesLink1TitleCrossSymbol)).click();
 		//Save case
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -2966,7 +2970,7 @@ public class CreateEquipmentCase {
 		}
 		//Verify title of Related Links slide doesnt exist		
 		try{
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/ul/li["+Integer.parseInt(number)+"]/div[1]/div"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[1]/div"))).getText();
 		softly.assertThat(s2).as("test data").doesNotContain("Related Links");
 		}catch (org.openqa.selenium.TimeoutException t)
 		{
@@ -3048,7 +3052,7 @@ public class CreateEquipmentCase {
 		}
 		int number1 = Integer.parseInt(number)-1;
 		//Verify title of Related Links slide
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[1]/div"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[1]/div"))).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Related Links");
 		//Verify title of 1st link with video
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"))).getText();

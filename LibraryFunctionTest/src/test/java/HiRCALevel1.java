@@ -278,8 +278,11 @@ public class HiRCALevel1 {
 					softly.fail("Text wrong: "+re4);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
+			int j=2;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				j=j+1;
 			//Verify Supporting Evidence
-			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr["+j+"]/td"))).getText();
 			String re3 = s4.replaceAll("\u00AD", "");
 			softly.assertThat(re3).as("test data").contains(textEvidence(driver));
 			//Verify Extent of condition
@@ -382,6 +385,8 @@ public class HiRCALevel1 {
 				}
 				//Increase i for supporting evidence
 				i=i+1;
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					i=i+1;
 				//Verify Supporting Evidence
 				String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
 				String re5 = s4.replaceAll("\u00AD", "");
@@ -430,6 +435,8 @@ public class HiRCALevel1 {
 				}
 				//Increase i for supporting evidence
 				i=i+1;
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					i=i+1;
 				//Verify Supporting Evidence
 				String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
 				String re = s4.replaceAll("\u00AD", "");
@@ -472,12 +479,18 @@ public class HiRCALevel1 {
 			//Number of SUEP checks
 			int num = options.get(s1);
 			if(num==0)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					i=i+1;
 				continue;
+			}
 			for (int j=1;j<=num;j++)
 			{
 				String s2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td["+(j+1)+"]"))).getText();
 				softly.assertThat(s2).as("test data").isEqualTo("Yes");
 			}
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				i=i+1;
 		}
 		//No Level 3 answers selected, SUEP skipped increases one more div, so rc increased by 1
 		if(lopOptions.size()==0)
@@ -1353,6 +1366,8 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				i=i+1;
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -1398,7 +1413,10 @@ public class HiRCALevel1 {
 		System.out.println("Starting row of contributing factors:"+i);
 		int start =i-1;
 		//Verify if any root causes are appearing
-		while(i<=((count1*3)+start))
+		int x=3;
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			x=4;
+		while(i<=((count1*x)+start))
 		{
 			//Get name of level 3 answer
 			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -1472,6 +1490,8 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				i=i+1;
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -1526,7 +1546,10 @@ public class HiRCALevel1 {
 		int r=0;
 		//Scroll down
 		obj.scrollToAPoint(driver, 1100);
-		while(i<=((n*2)+1))
+		int k=2;
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			k=3;
+		while(i<=((n*k)+1))
 		{
 			//Get text of option of 3.17
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -1561,9 +1584,11 @@ public class HiRCALevel1 {
 			{
 				//Click on checkbox of SUEP
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))).click();
-			}			
+			}	
 			//Increase i+1 for evidence entry
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -1766,6 +1791,7 @@ public class HiRCALevel1 {
 				obj.loadingServer(driver);
 			}
 		}
+		obj.scrollToTop(driver);
 		//Clicks on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		//Create an expected name
@@ -1920,8 +1946,11 @@ public class HiRCALevel1 {
 					softly.fail("Text wrong: "+re4);
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
+			int k=2;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				k=k+1;
 			//Verify Supporting Evidence
-			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr[2]/td"))).getText();
+			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr["+k+"]/td"))).getText();
 			String re3 = s4.replaceAll("\u00AD", "");
 			softly.assertThat(re3).as("test data").contains(textEvidence(driver));
 			//Verify Extent of condition
@@ -1988,7 +2017,10 @@ public class HiRCALevel1 {
 		}
 		//When contributing factors are present
 		int i=1;
-		while(i<=(cf*2))
+		int k=2;
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			k=3;
+		while(i<=(cf*k))
 		{
 			//Get name of level 3 answer
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -2026,12 +2058,14 @@ public class HiRCALevel1 {
 			}
 			//Increase i for supporting evidence
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				i=i+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
 			String re = s4.replaceAll("\u00AD", "");
 			softly.assertThat(re).as("test data").contains(textEvidence(driver));
 			//Increase i for next cf
-			i=i+1;
+			i=i+1;			
 		}
 		//Verify Root Cause Analysis
 		String rc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+5)+"]/table/tbody/tr[1]/td[2]"))).getText();
@@ -2064,15 +2098,22 @@ public class HiRCALevel1 {
 			{
 				softly.fail("Level 3 is not suppose to be here: "+s1);
 			}
+			System.out.println(s1);
 			//Number of SUEP checks
 			int num = options.get(s1);
 			if(num==0)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					i=i+1;
 				continue;
+			}
 			for (int j=1;j<=num;j++)
 			{
 				String s2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td["+(j+1)+"]"))).getText();
 				softly.assertThat(s2).as("test data").isEqualTo("Yes");
 			}
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				i=i+1;
 		}
 		//No Level 3 answers selected, SUEP skipped increases one more div, so rc increased by 1
 		if(lopOptions.size()==0)
@@ -2131,8 +2172,11 @@ public class HiRCALevel1 {
 		int i=2;
 		int scroll=42;
 		Iterator<String> iter = Iterables.cycle(varText).iterator();
+		int p=4;
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			p=5;
 		//Verify if any root causes are appearing
-		while(i<=((count*4)+1))
+		while(i<=((count*p)+1))
 		{
 			//Get name of level 3 answer
 			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -2201,6 +2245,8 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa")==true)
+				i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -2256,9 +2302,15 @@ public class HiRCALevel1 {
 		//Verifies if any contributing factors
 		//tr starts at 2 and each root cause has 4 four rows
 		System.out.println("Starting row of contributing factors:"+i);
-		int start =i-1;
+		int start = i-1;
 		//Verify if any contributing factors are appearing
-		while(i<=((count1*3)+start))
+		int x = 3;
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			x=4;
+			//start = i;
+		}
+		while(i<=((count1*x)+start))
 		{
 			//Get name of level 3 answer
 			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -2271,6 +2323,7 @@ public class HiRCALevel1 {
 			//verify level 3 answer without :
 			int n = lopOptions1.indexOf(level3);
 			String l = lopOptions.get(n).replace("]", "");
+			System.out.println(l);
 			//Check if it has 4 boxes ticked
 			if(options.get(l)>3)
 			{
@@ -2286,11 +2339,11 @@ public class HiRCALevel1 {
 			softly.assertThat(lop4).as("test data").isEqualTo("true");
 			//HML random select
 			//Select a number between 0 to 3 for H,M,L
-			Random random =new Random();
+			Random random = new Random();
 			int y=random.nextInt(4);
+			obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));
 			if(y==1)
 			{
-				obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				//Click on H
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
@@ -2326,6 +2379,8 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa")==true)
+				i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -2335,6 +2390,7 @@ public class HiRCALevel1 {
 			{
 				System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
 			}
+			obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))));
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -2363,8 +2419,8 @@ public class HiRCALevel1 {
 			//Increase i for next contributing factor
 			i=i+1;
 			//Scroll down
-			scroll = scroll+215;
-			jse.executeScript("scroll(0,"+scroll+")");
+		/*	scroll = scroll+215;
+			jse.executeScript("scroll(0,"+scroll+")");*/
 		}
 		//Scroll up
 		obj.scrollToTop(driver);
@@ -2484,7 +2540,10 @@ public class HiRCALevel1 {
 		int i=2;
 		//Count for root causes
 		int r=0;
-		while(i<=((n*2)+1))
+		int x=2;
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			x=3;
+		while(i<=((n*x)+1))
 		{
 			//Get text of option of 3.17
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -2510,6 +2569,8 @@ public class HiRCALevel1 {
 			}			
 			//Increase i+1 for evidence entry
 			i=i+1;
+			if(driver.getCurrentUrl().contains("kaleqa")==true)
+				i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));

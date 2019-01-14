@@ -64,18 +64,18 @@ public class ShareCheck {
 		List<String> hexValue = new ArrayList<String>();
 		//Get color
 		String color = driver.findElement(locator).getCssValue("color");
-		System.out.println(color);
+		//System.out.println(color);
 		//Format to # from rgba
 		if(color.contains("rgba"))
 			hexValue.addAll(Arrays.asList(color.replace("rgba(", "").replace(")", "").split(",")));
 		else
 			hexValue.addAll(Arrays.asList(color.replace("rgb(", "").replace(")", "").split(",")));
-		System.out.println(hexValue);
+		//System.out.println(hexValue);
 		int hexValue1=Integer.parseInt(hexValue.get(0));
 		int hexValue2=Integer.parseInt(hexValue.get(1).trim());
 		int hexValue3=Integer.parseInt(hexValue.get(2).trim());		 
 		String actualColor = String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
-		System.out.println(actualColor);
+		//System.out.println(actualColor);
 		//compare with expected color
 		softly.assertThat(actualColor).as("test data").isEqualTo("#333333");
 	}
@@ -216,7 +216,6 @@ public class ShareCheck {
 	public void checkCriticalNotification (WebDriver driver, String sharer, String username, String password1, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
@@ -261,9 +260,8 @@ public class ShareCheck {
 		Thread.sleep(2000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
-		Thread.sleep(2000);
-		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
+		scrollToTop(driver);
+		loadingServer(driver);
 		//Click on 1st record/notification
 		//Verify if notification is of marked critical
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecordDescriptionText)).getText();

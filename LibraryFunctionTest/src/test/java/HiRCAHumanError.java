@@ -773,6 +773,7 @@ public class HiRCAHumanError {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
+		try{
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(PageQuestion)).getText();
 		softly.assertThat(heading).as("test data").contains("Contributing factor for inattention-to-detail");
@@ -965,6 +966,10 @@ public class HiRCAHumanError {
 		softly.assertThat(c34).as("test data").contains("Elimination of selection options through specific rules");
 		//Click on 3rd collapsible for 3.16.7
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		}catch(org.openqa.selenium.WebDriverException r)
+		{
+			
+		}
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);

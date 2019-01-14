@@ -170,6 +170,7 @@ public class OPiRCA {
 		//Choose a random number between 0 to 4
 		Random random = new Random();
 		int n = random.nextInt(5);
+		share.scrollToTop(driver);
 		if(n==0)
 		{
 			//Click on Step 1
@@ -612,8 +613,6 @@ public class OPiRCA {
 		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
-		//Switches to the iframe
-		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		//Clicks on share button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareButton)).click();
 		//Enters username
@@ -2043,6 +2042,7 @@ public class OPiRCA {
 
 	public void downloadSelectFunction (WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>step2) throws Exception {
 
+		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
@@ -2064,6 +2064,9 @@ public class OPiRCA {
 			if (v.startsWith("11"))
 				downloadRecordIE11(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options,step2);
 		}
+
+		//Switches to the iframe
+		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
 

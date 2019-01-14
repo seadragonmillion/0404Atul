@@ -30,6 +30,7 @@ public class Login {
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait1 = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(WebPageMessage)).getText();
 		System.out.println(s);
@@ -107,7 +108,13 @@ public class Login {
 				}
 			}		  
 		}
-		waitForIframe(driver);
+		try{
+			//Click on agree terms box
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-license-checkbox-div']/fieldset/div/div/label")));
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+			waitForIframe(driver);
+		}
 		return login;
 	}
 	
