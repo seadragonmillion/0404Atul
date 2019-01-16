@@ -2,7 +2,6 @@ import java.awt.Robot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -1125,8 +1124,6 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipCaseTypes)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListBoxTypes));
 		if(keyword.equals(keywordEF)||keyword.equals(keywordEFie11)||keyword.equals(keywordEFUS)||keyword.equals(keywordEFUSie11))
 		{
@@ -1182,8 +1179,6 @@ public class EquipmentPDDandEF {
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipListBoxDiscipline));
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		if (browserName.contains("internet")==true)
 		{
 			obj1.clickTypesDisciplineIE(driver, obj1.EquipListDisciplineGeneral);

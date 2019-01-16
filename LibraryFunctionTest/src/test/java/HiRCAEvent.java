@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -140,7 +139,6 @@ public class HiRCAEvent {
 		//Login
 		obj.LoginUser(driver, username, password);
 		Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);
 		//Wait for loading message to disappear		  
@@ -235,7 +233,6 @@ public class HiRCAEvent {
 		//Login
 		obj.LoginUser(driver, username, password);
 		Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);
 		//Wait for loading message to disappear
@@ -332,7 +329,6 @@ public class HiRCAEvent {
 		//Login
 		obj.LoginUser(driver, username, password);
 		Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);
 		//Wait for loading message to disappear

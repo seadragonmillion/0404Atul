@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -460,8 +459,6 @@ public class HiRCALOPBug {
 	public void verify222(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(s).as("test data").contains("[2.22] Was HiRCA");
 		softly.assertThat(s).as("test data").contains(" adequate in leading this investigation?");
@@ -1108,8 +1105,6 @@ public class HiRCALOPBug {
 		}
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify that 3.17 for Concurrent check occurs
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(s).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 2/2: Concurrent check");
@@ -1119,8 +1114,6 @@ public class HiRCALOPBug {
 			softly.fail("3.17.2 not checked for Concurrent Check");
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify that 2.1 for Concurrent check
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(s2).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 2/2: Concurrent check");
@@ -1132,8 +1125,6 @@ public class HiRCALOPBug {
 		softly.assertThat(s6).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");	
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify that 3.17 for Briefings occurs
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(s4).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 1/2: Briefings (PJB, MJB, PSM, TO, etc.)");
@@ -1143,8 +1134,6 @@ public class HiRCALOPBug {
 			softly.fail("3.17.1 not checked for Briefings");
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify that 2.1 for Concurrent check
 		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(s7).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP 1/2: Briefings (PJB, MJB, PSM, TO, etc.)");
@@ -1156,8 +1145,6 @@ public class HiRCALOPBug {
 		softly.assertThat(s9).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");		
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify 2.0 question
 		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(s10).as("test data").contains("Step 2: Layers of Protection Failure Inquiry");

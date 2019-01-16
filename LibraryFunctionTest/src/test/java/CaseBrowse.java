@@ -1,6 +1,5 @@
 import java.awt.Robot;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -378,8 +377,6 @@ public class CaseBrowse {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineBox)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CaseSearchDisciplineList));
 		//Choose a number between 1 and 6 for number of Discipline
 		Random random = new Random ();

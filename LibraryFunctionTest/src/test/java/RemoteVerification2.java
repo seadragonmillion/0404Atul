@@ -1,5 +1,3 @@
-import java.util.concurrent.TimeUnit;
-
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -223,8 +221,6 @@ public class RemoteVerification2 {
 		int login1 = login.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(share.IFrame));
 		Thread.sleep(8000);

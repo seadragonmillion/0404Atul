@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -177,8 +176,6 @@ public class HiRCALevel1 {
 	public void verifyHTMLReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Get List to compare
 		List<String> varText = variableText(driver);
 		List<String> modText = modifyText(driver);
@@ -1844,8 +1841,6 @@ public class HiRCALevel1 {
 	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Get List to compare
 		List<String> varText = variableText(driver);
 		List<String> modText = modifyText(driver);

@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -1085,8 +1084,6 @@ public class HiRCAChinese {
 	public void chineseReportButtons(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Back Button
 		String back = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhome-back"))).getText();
 		softly.assertThat(back).as("test data").contains("返回");
@@ -1122,8 +1119,6 @@ public class HiRCAChinese {
 	public void chineseReport(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Table1 header 
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[1]/table/thead/tr/th"))).getText();
 		softly.assertThat(heading).as("test data").contains("事件信息");
@@ -1198,8 +1193,6 @@ public class HiRCAChinese {
 	public void chineseHIRCAChecklist(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("第五步");
@@ -1259,8 +1252,6 @@ public class HiRCAChinese {
 	public void chineseStep4(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("第四步 - 判别根本原因和促成因素的重要性");
@@ -1289,8 +1280,6 @@ public class HiRCAChinese {
 	public void chineseSUEP(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//header
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("第三步 - 判别根本原因");
@@ -1353,8 +1342,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("不当动机");
@@ -1544,8 +1531,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("预期风险低");
@@ -1778,8 +1763,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("负担");
@@ -2024,8 +2007,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("设备的鉴定、试验和维修");
@@ -2358,8 +2339,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq120 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
@@ -2394,8 +2373,6 @@ public class HiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCAChinese4 obj = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("情况警觉不充分");
@@ -2587,8 +2564,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq119 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
@@ -2623,8 +2598,6 @@ public class HiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCAChinese4 obj = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("规则不正确");
@@ -2857,8 +2830,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("粗心犯错的促成因素");
@@ -3193,8 +3164,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq118 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
@@ -3227,8 +3196,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("经理层面");
@@ -3785,8 +3752,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq117 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
@@ -3820,8 +3785,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq116 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
@@ -3857,8 +3820,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
 		softly.assertThat(heading).as("test data").contains("全面性不足");
@@ -4374,8 +4335,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("\"明确性\"欠缺");
@@ -4802,8 +4761,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 
@@ -5310,8 +5267,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq115 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 
@@ -5353,8 +5308,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq114 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 
@@ -5396,8 +5349,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq113 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 
@@ -5437,8 +5388,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq112 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 
@@ -5480,8 +5429,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq111 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 
@@ -5523,8 +5470,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq110 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 
@@ -5564,8 +5509,6 @@ public class HiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		HiRCAChinese4 obj1 = new HiRCAChinese4();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 
@@ -5901,8 +5844,6 @@ public class HiRCAChinese {
 	public void chineseStepOneq19 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
 		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");

@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -491,8 +490,6 @@ public class UserManagement {
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{
@@ -607,8 +604,6 @@ public class UserManagement {
 		//Open pop up for expiration date
 		driver.findElement(By.xpath(".//*[@title='Open Date Picker']")).click();
 		Thread.sleep(2000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Click on + sign for next month
 		//WebElement ele1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ui-datebox-gridplus"))).click();
@@ -839,8 +834,6 @@ public class UserManagement {
 		//Fill expiration date
 		driver.findElement(By.xpath(".//*[@title='Open Date Picker']")).click();
 		Thread.sleep(2000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Click on + sign for next month
 		//WebElement ele1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ui-datebox-gridplus"))).click();
@@ -989,7 +982,6 @@ public class UserManagement {
 		}        
 		driver2.get(activate);
 		Thread.sleep(2000);
-		driver2.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver2.quit();
 		//Wait for 10 seconds
 		Thread.sleep(10000);
@@ -1072,7 +1064,6 @@ public class UserManagement {
 		}        
 		driver2.get(activate);
 		Thread.sleep(2000);
-		driver2.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver2.quit();
 		//Wait for 10 seconds
 		Thread.sleep(10000);
@@ -1732,8 +1723,6 @@ public class UserManagement {
 		int login = obj.LoginUser(driver, company_id, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		try{
 			//Click on agree terms box
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-license-checkbox-div']/fieldset/div/div/label"))).click();
@@ -1743,8 +1732,6 @@ public class UserManagement {
 			obj1.scrollToAPoint(driver, 2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-license-accept"))).click();
 			Thread.sleep(2000);
-			//Waits for the page to load
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		}catch (org.openqa.selenium.TimeoutException e)
 		{
 

@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -949,8 +948,6 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Stores text of Remote Verification title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
@@ -991,8 +988,6 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();	
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		WebElement element=null;
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();

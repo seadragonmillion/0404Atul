@@ -1,5 +1,3 @@
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -130,8 +128,6 @@ public class deleteNotifications {
 		ShareCheck obj1 = new ShareCheck();
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(5000);

@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -1667,8 +1666,6 @@ public class EiRCA {
 		EiRCA2 obj2 = new EiRCA2();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Clicks on share button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareButton)).click();
 		//Enters username
@@ -1957,8 +1954,6 @@ public class EiRCA {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCAChinese obj = new EiRCAChinese();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Get place holder of Problem Statement and verify that it is not "foo"
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAEventProblemStatementField)).getAttribute("placeholder");
 		softly.assertThat(s).as("test data").isEqualTo("Fill in Problem statement");
@@ -2310,8 +2305,6 @@ public class EiRCA {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NextButtonBottomOfInfoPage)).click();
 		Thread.sleep(2000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj1.scrollToTop(driver);

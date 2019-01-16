@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -832,8 +831,6 @@ public class EiRCAChinese {
 		EiRCA obj = new EiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		HiRCALevel1 obj2 = new HiRCALevel1();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
 		//Click on Analysis
@@ -1423,8 +1420,6 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> c = new ArrayList<String>();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify the buttons
 		HiRCAChinese obj2 = new HiRCAChinese();
 		obj2.chineseReportButtons(driver);
@@ -1911,8 +1906,6 @@ public class EiRCAChinese {
 		List<String> c = new ArrayList<String>();
 		EiRCA obj = new EiRCA();
 		ShareCheck obj1 = new ShareCheck();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify the buttons
 		HiRCAChinese obj2 = new HiRCAChinese();
 		obj2.chineseReportButtons(driver);
@@ -2301,8 +2294,6 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> c = new ArrayList<String>();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Table 1
 		List<String> c1 = chineseHTMLTable1 (driver);
 		c.addAll(c1);
@@ -2507,8 +2498,6 @@ public class EiRCAChinese {
 	public void chineseReportTabPath3 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Table 1
 		chineseReportTabTable1(driver);
 		//Heading before Table 2
@@ -2877,8 +2866,6 @@ public class EiRCAChinese {
 	public void chineseReportTabPath2 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Table 1
 		chineseReportTabTable1(driver);
 		//Heading before Table 2
@@ -3039,8 +3026,6 @@ public class EiRCAChinese {
 	public void chineseReportTab (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Table 1
 		chineseReportTabTable1(driver);
 		//Heading before Table 2
@@ -3313,8 +3298,6 @@ public class EiRCAChinese {
 	public void chineseStep7SUEP (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step7Title)).getText();
 		softly.assertThat(s1).as("test data").contains("第七步 - 识别根本原因和制定纠正行动 (");
@@ -3342,8 +3325,6 @@ public class EiRCAChinese {
 	public void chineseStep6 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step6Title)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("第六步 - 确定促成因素");
@@ -3398,8 +3379,6 @@ public class EiRCAChinese {
 	public void chineseStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step5Title)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("第五步 - 识别可能的促成因素");
@@ -3542,8 +3521,6 @@ public class EiRCAChinese {
 	public void chineseStep4 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step4Title)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("第四步 - 发生概率和行动");
@@ -3579,8 +3556,6 @@ public class EiRCAChinese {
 	public void chineseStep3 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step3Title)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("第三步 - 排除失效模式");
@@ -3635,8 +3610,6 @@ public class EiRCAChinese {
 	public void chineseStep2 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step2Title)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("第二步 - 可能的失效模式");
@@ -3704,8 +3677,6 @@ public class EiRCAChinese {
 	public void chineseStep1 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step1Title)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("第一步 - 失效设备与失效症状");
@@ -3889,8 +3860,6 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify date box header
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.TableDateHeader)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("日期");
@@ -3909,8 +3878,6 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA();
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Verify Sequence of Events title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAInfoPageTitle)).getText();
 		softly.assertThat(title).as("test data").contains("事件时序");
@@ -4018,8 +3985,6 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Check if title contains english EiRCA
 		String eirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAInfoPageTitle)).getText();
 		System.out.println(eirca_title);
@@ -4039,8 +4004,6 @@ public class EiRCAChinese {
 	public void chineseInfoPage (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Check if title contains english EiRCA
 		String eirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAInfoPageTitle)).getText();
 		softly.assertThat(eirca_title).as("test data").contains(" - 启动调查与基本问题");

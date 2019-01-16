@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
@@ -168,8 +167,6 @@ public class ShareCheck {
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
@@ -232,8 +229,6 @@ public class ShareCheck {
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
@@ -312,8 +307,6 @@ public class ShareCheck {
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
@@ -341,8 +334,6 @@ public class ShareCheck {
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		if(browserName.equals("firefox")==false)
 		{
 			scrollToTop(driver);
@@ -395,7 +386,7 @@ public class ShareCheck {
 				//Click on 1st record/notification
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
 				Thread.sleep(4000);
-				if(ele.isSelected()==false)
+				if(wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).isSelected()==false)
 					act.click(ele).build().perform();
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
@@ -456,8 +447,6 @@ public class ShareCheck {
 		int login1 = obj.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);
@@ -635,7 +624,6 @@ public class ShareCheck {
 
 	public void loadingServer(WebDriver driver) throws Exception {
 
-		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 		while (true)
 		{
 			try{
@@ -993,8 +981,6 @@ public class ShareCheck {
 		int login = obj.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
 		Thread.sleep(8000);

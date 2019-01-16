@@ -3,7 +3,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -1483,6 +1482,7 @@ public class CreateEquipmentCase {
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordField)).sendKeys(keyword_same);
 		obj.loadingServer(driver);
+		obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseNewKeywordAddButton)).click();
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
@@ -1703,8 +1703,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseTypes)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxTypes));
 		//Verify types list
 		verifyTypesList(driver);
@@ -1866,8 +1864,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseTypes)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxTypes));
 		if (browserName.contains("internet"))
 		{
@@ -2062,8 +2058,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseFields)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxFields));	
 		//Verify fields list
 		verifyFieldsList(driver);
@@ -2132,8 +2126,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseFields)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxFields));	
 		//Click all fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListFieldsAuto)).click();		
@@ -2269,8 +2261,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDiscipline)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxDiscipline));	 
 		//Verify Discipline list
 		verifyDisciplineList(driver);
@@ -2337,8 +2327,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseDiscipline)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipListBoxDiscipline));	 
 		if (browserName.contains("internet")==true)
 		{
@@ -2466,8 +2454,6 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeBox)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.CaseSearchTypeList));
 		if (browserName.contains("internet"))
 		{

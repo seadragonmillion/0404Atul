@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -87,8 +86,6 @@ public class EquipmentCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFields)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListBoxFields));	
 		//Click all fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListFieldsAuto)).click();
@@ -127,8 +124,6 @@ public class EquipmentCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDiscipline)).click();
 		}
 		Thread.sleep(1000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListBoxDiscipline));	 
 		if (browserName.contains("internet")==true)
 		{
