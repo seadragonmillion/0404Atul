@@ -3310,7 +3310,10 @@ public class CreateEquipmentCase {
 		//Checking if copyright is correct
 		String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/span/span[1]";
 		String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-		softly.assertThat(actual_copyright).as("test data").isEqualTo(obj1.expected_copyright);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(actual_copyright).as("test data").isEqualTo(obj1.expected_copyright);
+		else
+			softly.assertThat(actual_copyright).as("test data").isEqualTo(obj1.expected_copyright1);
 		//Checking if footer image appears
 		String image_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/span/img";
 		if(driver.findElement(By.xpath(image_xpath)).isDisplayed())

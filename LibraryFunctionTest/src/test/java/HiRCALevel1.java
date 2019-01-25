@@ -18,6 +18,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
@@ -40,6 +41,7 @@ import com.google.common.collect.Iterables;
 public class HiRCALevel1 {
 
 	SoftAssertions softly = new SoftAssertions();
+	HiRCAFunctionsForLevel1_2_3 hfl123 = new HiRCAFunctionsForLevel1_2_3();
 
 	public String text(WebDriver driver) throws Exception{
 
@@ -173,7 +175,7 @@ public class HiRCALevel1 {
 		return text;
 	}
 
-	public void verifyHTMLReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
+	public void verifyHTMLReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d,MultiValuedMap<String,String>hircaNoteLopSURE) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Get List to compare
@@ -276,8 +278,10 @@ public class HiRCALevel1 {
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			int j=2;
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				j=j+1;
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr["+j+"]/td/span"))).getText();
+			List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s));
+			softly.assertThat(note).as("test data").isEqualTo(temp.get(0));
+			j=j+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr["+j+"]/td"))).getText();
 			String re3 = s4.replaceAll("\u00AD", "");
@@ -382,8 +386,10 @@ public class HiRCALevel1 {
 				}
 				//Increase i for supporting evidence
 				i=i+1;
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					i=i+1;
+				String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td/span"))).getText();
+				List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s));
+				softly.assertThat(note).as("test data").isEqualTo(temp.get(0));
+				i=i+1;
 				//Verify Supporting Evidence
 				String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
 				String re5 = s4.replaceAll("\u00AD", "");
@@ -432,8 +438,10 @@ public class HiRCALevel1 {
 				}
 				//Increase i for supporting evidence
 				i=i+1;
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					i=i+1;
+				String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td/span"))).getText();
+				List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s));
+				softly.assertThat(note).as("test data").isEqualTo(temp.get(0)); 
+				i=i+1;
 				//Verify Supporting Evidence
 				String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
 				String re = s4.replaceAll("\u00AD", "");
@@ -477,8 +485,7 @@ public class HiRCALevel1 {
 			int num = options.get(s1);
 			if(num==0)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					i=i+1;
+				i=i+1;
 				continue;
 			}
 			for (int j=1;j<=num;j++)
@@ -486,8 +493,10 @@ public class HiRCALevel1 {
 				String s2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td["+(j+1)+"]"))).getText();
 				softly.assertThat(s2).as("test data").isEqualTo("Yes");
 			}
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				i=i+1;
+			i=i+1;
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td/span"))).getText();
+			List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s1));
+			softly.assertThat(note).as("test data").isEqualTo(temp.get(0));
 		}
 		//No Level 3 answers selected, SUEP skipped increases one more div, so rc increased by 1
 		if(lopOptions.size()==0)
@@ -508,7 +517,7 @@ public class HiRCALevel1 {
 			}
 		}
 	}
-	
+
 	public void deleteFiles(File folder) throws IOException {
 		File[] files = folder.listFiles();
 		for(File file: files){
@@ -1078,7 +1087,7 @@ public class HiRCALevel1 {
 
 	}
 
-	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist) throws Exception {
+	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist,MultiValuedMap<String,String>hircaNoteLopSURE) throws Exception {
 
 		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
@@ -1095,7 +1104,7 @@ public class HiRCALevel1 {
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Verify HTML
-		verifyHTMLReport(driver, lopOptions, options, hml, checklist,0);
+		verifyHTMLReport(driver, lopOptions, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on Open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -1162,7 +1171,7 @@ public class HiRCALevel1 {
 		}
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
-		verifyReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1);
+		verifyReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
@@ -1213,7 +1222,7 @@ public class HiRCALevel1 {
 		//Wait for loading message to disappear
 		obj.loadingServer(driver);
 		//Verify HTML report
-		verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1);
+		verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
 	}
 
 	public List<String> modifyHiRCAChecklist(WebDriver driver,List<String> checklistOriginal) throws Exception {
@@ -1363,8 +1372,7 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				i=i+1;
+			i=i+1;
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -1410,9 +1418,7 @@ public class HiRCALevel1 {
 		System.out.println("Starting row of contributing factors:"+i);
 		int start =i-1;
 		//Verify if any root causes are appearing
-		int x=3;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			x=4;
+		int x=4;
 		while(i<=((count1*x)+start))
 		{
 			//Get name of level 3 answer
@@ -1487,8 +1493,7 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				i=i+1;
+			i=i+1;
 			//Click on Evidence Entry
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
 			//Verify the text
@@ -1543,9 +1548,7 @@ public class HiRCALevel1 {
 		int r=0;
 		//Scroll down
 		obj.scrollToAPoint(driver, 1100);
-		int k=2;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			k=3;
+		int k=3;
 		while(i<=((n*k)+1))
 		{
 			//Get text of option of 3.17
@@ -1584,8 +1587,7 @@ public class HiRCALevel1 {
 			}	
 			//Increase i+1 for evidence entry
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				i=i+1;
+			i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -1674,10 +1676,19 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		//Select Equipment failure
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div/label"))).click();
+		//Get the question and answer of the Level 1 leading to Level 3
+		String note = hfl123.getNoteShowingPreviousAnswer(driver);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Verify 3.17
 		List<String> lopOptions= verify317(driver);
+		//Join the list with the note for SURE
+		MultiValuedMap<String,String> hircaNoteLopSURE = hfl123.joinNoteWithAnswerForSURE(driver, note, lopOptions);/*
+		System.out.println("******* \n"+hircaNoteLopSURE.get(lopOptions.get(0).replace("]", "").replace("[", "")));
+		List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(lopOptions.get(0).replace("]", "").replace("[", "")));
+		System.out.println("******* \n"+temp.get(0));*/
+		//Join the list with the note for Step4
+		HashMap<String,String> hircaNoteLopStep4 = hfl123.joinNoteWithAnswerWithSemicolon(driver, note, lopOptions);
 		if(lopOptions.size()==0)
 		{
 			//Click on skip
@@ -1720,7 +1731,7 @@ public class HiRCALevel1 {
 		//Click on skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Verify Step 3 SUEP
-		HashMap<String,Integer> options = verifySUEP(driver,lopOptions, softly);
+		HashMap<String,Integer> options = verifySUEP(driver,lopOptions, softly,hircaNoteLopSURE);
 		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		Thread.sleep(2000);
 		if(skip.contains("ui-state-disabled"))
@@ -1734,7 +1745,7 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
 		//Verify Step 4
-		HashMap<String,String> hml =verifyStep4(driver,options,lopOptions);
+		HashMap<String,String> hml =verifyStep4(driver,options,lopOptions,hircaNoteLopStep4);
 		Thread.sleep(6000);
 		String skip2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		if(skip2.contains("ui-state-disabled"))
@@ -1765,7 +1776,7 @@ public class HiRCALevel1 {
 		Thread.sleep(2000);
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
-		verifyReport(driver, lopOptions, options, hml, checklist,0);
+		verifyReport(driver, lopOptions, options, hml, checklist,0, hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
@@ -1824,7 +1835,7 @@ public class HiRCALevel1 {
 				downloadReportIE11(driver,lopOptions,hml,options,checklist);
 		}
 		//Modify report
-		modifyReport(driver,lopOptions,options,hml,checklist);
+		modifyReport(driver,lopOptions,options,hml,checklist,hircaNoteLopSURE);
 	}
 
 	public void deleteReport (WebDriver driver) throws Exception {
@@ -1838,7 +1849,7 @@ public class HiRCALevel1 {
 		obj.loadingServer(driver);
 	}
 
-	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d) throws Exception {
+	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d, MultiValuedMap<String,String>hircaNoteLopSURE) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Get List to compare
@@ -1942,8 +1953,10 @@ public class HiRCALevel1 {
 				//softly.assertThat(s3).as("test data").isEqualTo(text1);
 			}
 			int k=2;
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				k=k+1;
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr["+k+"]/td/span"))).getText();
+			List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s));
+			softly.assertThat(note).as("test data").isEqualTo(temp.get(0));
+			k=k+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr["+k+"]/td"))).getText();
 			String re3 = s4.replaceAll("\u00AD", "");
@@ -2012,9 +2025,7 @@ public class HiRCALevel1 {
 		}
 		//When contributing factors are present
 		int i=1;
-		int k=2;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			k=3;
+		int k=3;
 		while(i<=(cf*k))
 		{
 			//Get name of level 3 answer
@@ -2053,8 +2064,10 @@ public class HiRCALevel1 {
 			}
 			//Increase i for supporting evidence
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				i=i+1;
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td/span"))).getText();
+			List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s));
+			softly.assertThat(note).as("test data").isEqualTo(temp.get(0));
+			i=i+1;
 			//Verify Supporting Evidence
 			String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+4)+"]/table/tbody/tr["+i+"]/td"))).getText();
 			String re = s4.replaceAll("\u00AD", "");
@@ -2098,8 +2111,7 @@ public class HiRCALevel1 {
 			int num = options.get(s1);
 			if(num==0)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					i=i+1;
+				i=i+1;
 				continue;
 			}
 			for (int j=1;j<=num;j++)
@@ -2107,8 +2119,10 @@ public class HiRCALevel1 {
 				String s2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td["+(j+1)+"]"))).getText();
 				softly.assertThat(s2).as("test data").isEqualTo("Yes");
 			}
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				i=i+1;
+			i=i+1;
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td/span"))).getText();
+			List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s1));
+			softly.assertThat(note).as("test data").isEqualTo(temp.get(0));
 		}
 		//No Level 3 answers selected, SUEP skipped increases one more div, so rc increased by 1
 		if(lopOptions.size()==0)
@@ -2130,7 +2144,7 @@ public class HiRCALevel1 {
 		}
 	}
 
-	public HashMap<String,String> verifyStep4(WebDriver driver,HashMap<String,Integer>options,List<String>lopOptions) throws Exception {
+	public HashMap<String,String> verifyStep4(WebDriver driver,HashMap<String,Integer>options,List<String>lopOptions,HashMap<String,String>hircaNoteLopStep4) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -2167,9 +2181,7 @@ public class HiRCALevel1 {
 		int i=2;
 		int scroll=42;
 		Iterator<String> iter = Iterables.cycle(varText).iterator();
-		int p=4;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			p=5;
+		int p=5;
 		//Verify if any root causes are appearing
 		while(i<=((count*p)+1))
 		{
@@ -2240,8 +2252,10 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa")==true)
-				i=i+1;
+			//Verify note
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/span"))).getText();
+			softly.assertThat(note).as("test data").isEqualTo(hircaNoteLopStep4.get(level3));
+			i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -2299,12 +2313,7 @@ public class HiRCALevel1 {
 		System.out.println("Starting row of contributing factors:"+i);
 		int start = i-1;
 		//Verify if any contributing factors are appearing
-		int x = 3;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			x=4;
-			//start = i;
-		}
+		int x = 4;
 		while(i<=((count1*x)+start))
 		{
 			//Get name of level 3 answer
@@ -2374,8 +2383,10 @@ public class HiRCALevel1 {
 			}
 			//Increase i for evidence entry
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa")==true)
-				i=i+1;
+			//Verify note
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/span"))).getText();
+			softly.assertThat(note).as("test data").isEqualTo(hircaNoteLopStep4.get(level3));
+			i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l1 = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -2414,7 +2425,7 @@ public class HiRCALevel1 {
 			//Increase i for next contributing factor
 			i=i+1;
 			//Scroll down
-		/*	scroll = scroll+215;
+			/*	scroll = scroll+215;
 			jse.executeScript("scroll(0,"+scroll+")");*/
 		}
 		//Scroll up
@@ -2501,7 +2512,7 @@ public class HiRCALevel1 {
 		return checklist;
 	}
 
-	public HashMap<String,Integer> verifySUEP (WebDriver driver, List<String> lopOptions, SoftAssertions softly) throws Exception {
+	public HashMap<String,Integer> verifySUEP (WebDriver driver, List<String> lopOptions, SoftAssertions softly, MultiValuedMap<String,String> hircaNoteLopSURE) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
@@ -2535,9 +2546,7 @@ public class HiRCALevel1 {
 		int i=2;
 		//Count for root causes
 		int r=0;
-		int x=2;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			x=3;
+		int x=3;
 		while(i<=((n*x)+1))
 		{
 			//Get text of option of 3.17
@@ -2564,8 +2573,28 @@ public class HiRCALevel1 {
 			}			
 			//Increase i+1 for evidence entry
 			i=i+1;
-			if(driver.getCurrentUrl().contains("kaleqa")==true)
-				i=i+1;
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/span"))).getText().trim();
+			if(note.substring(note.length()-1, note.length()).equals(" "))
+			{
+				String newNote1 = note.substring(0, note.length()-1);
+				List<String> temp = new ArrayList<String>(hircaNoteLopSURE.get(s5));
+				softly.assertThat(newNote1).as("test data").contains(temp.get(0));
+			}
+			if(note.contains(" :"))
+			{
+				String sub = hircaNoteLopSURE.get(s5).toString();
+				String sub1 = sub.substring(0, sub.indexOf("?")).replace("[", "").replace("]", "");
+				String sub2 = sub.substring(sub.indexOf("?")+3, sub.length()).replace("[", "").replace("]", "");
+				softly.assertThat(note).as("test data").contains(sub1);
+				softly.assertThat(note).as("test data").contains(sub2);
+			}
+			else
+			{
+				if(hircaNoteLopSURE.get(s5).contains(note)==false)
+					softly.fail("Note is not correct in SUEP table in step 3: "+hircaNoteLopSURE.get(s5)+"\n"+note);
+			}
+			//contains((Collection<String>)hircaNoteLopSURE.get(s5));
+			i=i+1;
 			//Verify Evidence Entry text not visible
 			try{
 				WebElement l = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"));
@@ -2841,7 +2870,7 @@ public class HiRCALevel1 {
 		System.out.println(lopOptions1);
 		return lopOptions1;
 	}
-	
+
 	public String addContributingFactor(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);

@@ -64,7 +64,8 @@ public class EquipmentPDDandEF {
 	String key3EFUSie11 = "QAAUShorseEFie11";
 	String titlePDDUSie11 = "QAA US IE11 PDD Test Slides";
 	String titleEFUSie11 = "QAA US IE11 EF Test Slides";
-	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
+	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
+	String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 	String keywordPDDDev ="SanityPDD";
 	String keywordPDDDevPercent ="SanityPDD%";
 	String keywordPDDDevSpcl ="SanityPDD./";
@@ -710,7 +711,10 @@ public class EquipmentPDDandEF {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -837,7 +841,10 @@ public class EquipmentPDDandEF {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -976,7 +983,10 @@ public class EquipmentPDDandEF {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -1020,7 +1030,10 @@ public class EquipmentPDDandEF {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(copyright_xpath))).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())

@@ -19,7 +19,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CaseBrowse {
 
 	SoftAssertions softly = new SoftAssertions();
-	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
+	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
+	String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
 	String caseEquipALProd = "1545";
 	String caseEquipGProd = "1636";
 	String caseEquipCSDev = "1985";
@@ -1497,7 +1498,10 @@ public class CaseBrowse {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -1554,7 +1558,10 @@ public class CaseBrowse {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-Q"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-Q"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -1611,7 +1618,10 @@ public class CaseBrowse {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-Q"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-Q"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -1645,7 +1655,10 @@ public class CaseBrowse {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-Q"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-Q"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -1679,7 +1692,10 @@ public class CaseBrowse {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
@@ -1713,7 +1729,10 @@ public class CaseBrowse {
 			//Checking if copyright is correct
 			String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/span";
 			String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
-			softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright);
+			else
+				softly.assertThat(actual_copyright).as("test data").isEqualTo(expected_copyright1);
 			//Checking if footer image appears
 			String image_xpath = ".//*[@id='pii-slideshow-equip-F"+identifier+"']/ul/li["+i+"]/span/img";
 			if(driver.findElement(By.xpath(image_xpath)).isDisplayed())

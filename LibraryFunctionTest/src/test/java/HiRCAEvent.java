@@ -802,6 +802,7 @@ public class HiRCAEvent {
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
 		EiRCA2 obj2 = new EiRCA2();
+		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);
 		//Switches to the iframe
@@ -824,6 +825,11 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Verify share save sticky
 		obj2.verifyStickyShareSave(driver, softly);
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));		
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on HiRCA side panel
@@ -840,6 +846,7 @@ public class HiRCAEvent {
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
 		EiRCA2 obj2 = new EiRCA2();
+		EiRCA eirca = new EiRCA();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
@@ -852,6 +859,16 @@ public class HiRCAEvent {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
 			System.out.println("Marked critical");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[2]")));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		obj1.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
@@ -860,7 +877,7 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
-			System.out.println("Unmarked critical");
+			System.out.println("Unmarked critical");		
 		//Verify report not retrieved by shared to person
 		String sharer = obj.decideSharer (y);
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		

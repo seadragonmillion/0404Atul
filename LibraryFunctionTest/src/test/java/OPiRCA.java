@@ -64,6 +64,8 @@ public class OPiRCA {
 	By ConfirmPopupTitle = By.id("pii-user-home-dialog-title");
 	By ConfirmPopupButton = By.id("pii-user-home-dialog-confirmed");
 	By OPiRCAFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a");
+	By OPiRCAShareIconOrCriticalIcon = By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a/span[1]");
+	By OPiRCAShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a/span[2]");
 	By StickyNote = By.className("sticky-note");
 	By StickySuccess = By.className("sticky-success");
 
@@ -611,6 +613,7 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
+		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
 		//Clicks on share button
@@ -631,6 +634,11 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
 		//Verify share save sticky
 		eirca2.verifyStickyShareSave(driver, softly);
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconOrCriticalIcon));
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Checks the username of creator
@@ -652,6 +660,7 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
+		EiRCA eirca = new EiRCA();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Mark critical pop up
@@ -664,6 +673,16 @@ public class OPiRCA {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(OPIRCAMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
+		share.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Un-mark critical pop up
@@ -945,6 +964,19 @@ public class OPiRCA {
 		{
 			String s = apparentCausesAnswers.get(i).trim();
 			s=s.replace("]", ":");
+			s=s.replace("[", "");
+			ac.add(s);
+		}	    	
+		return ac;
+	}
+	
+	public List<String> modifyListWithNoSemiColonForSUEP_SURE(List<String> apparentCausesAnswers)  throws Exception{
+
+		List<String> ac = new ArrayList<String>();
+		for(int i=0;i<apparentCausesAnswers.size();i++)
+		{
+			String s = apparentCausesAnswers.get(i).trim();
+			s=s.replace("]", "");
 			s=s.replace("[", "");
 			ac.add(s);
 		}	    	

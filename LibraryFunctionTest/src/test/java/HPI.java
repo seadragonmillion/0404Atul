@@ -114,6 +114,7 @@ public class HPI {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ErrorMeter obj = new ErrorMeter();
+		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	
 		//CLicks on first newly created record
@@ -152,6 +153,11 @@ public class HPI {
 		String sharedText = shared.getText();
 		System.out.println(sharedText);
 		softly.assertThat("Shared to:").as("test data").isSubstringOf(sharedText);
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));		
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on HPI side panel
@@ -165,6 +171,8 @@ public class HPI {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		EiRCA eirca = new EiRCA();
+		ShareCheck obj1 = new ShareCheck();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -175,6 +183,16 @@ public class HPI {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='hpi-rpt']/div/span[4]/strong")).isDisplayed())
 			System.out.println("Marked critical");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[2]")));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
+		obj1.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -188,7 +206,6 @@ public class HPI {
 		//Verify report not retrieved by shared to person
 		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on HPI side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();

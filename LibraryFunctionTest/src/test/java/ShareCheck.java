@@ -268,7 +268,7 @@ public class ShareCheck {
 			Thread.sleep(2000);
 			//Click on 1st record/notification
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
-			if(ele.isSelected()==false)
+			if(wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).isSelected()==false)
 				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
 			Thread.sleep(2000);
 			//Click on read
@@ -343,6 +343,7 @@ public class ShareCheck {
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationOpenButton)).click();
 		//Wait for loading message to disappear
+		loadingServer(driver);
 		loadingServer(driver);
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(ModuleTitle)).getText();
 		if(s.contains("iRCA")||s.contains("SPV Error Meter")||s.contains("Remote Verification"))

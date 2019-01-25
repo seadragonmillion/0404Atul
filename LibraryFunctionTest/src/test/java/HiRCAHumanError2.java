@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.collections4.MultiValuedMap;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -1993,7 +1994,7 @@ public class HiRCAHumanError2 {
 		softly.assertThat(ans3).as("test data").contains("No");
 	}
 	
-	public void verifySelections(WebDriver driver, List<String> lopOptions, SoftAssertions softly, String username, String text) throws Exception{
+	public void verifySelections(WebDriver driver, List<String> lopOptions, SoftAssertions softly, String username, String text, MultiValuedMap<String,String>hircaNoteLopSURE,HashMap<String,String>hircaNoteLopStep4) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCALevel1 obj = new HiRCALevel1();
@@ -2006,7 +2007,7 @@ public class HiRCAHumanError2 {
 			lopOptions1.add(s);
 		}
 		//Verify Step 3 SUEP
-		HashMap<String,Integer> options = obj.verifySUEP(driver,lopOptions1, softly);
+		HashMap<String,Integer> options = obj.verifySUEP(driver,lopOptions1, softly,hircaNoteLopSURE);
 		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		Thread.sleep(2000);
 		if(skip.contains("ui-state-disabled"))
@@ -2020,7 +2021,7 @@ public class HiRCAHumanError2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
 		//Verify Step 4
-		HashMap<String,String> hml = obj.verifyStep4(driver,options,lopOptions1);
+		HashMap<String,String> hml = obj.verifyStep4(driver,options,lopOptions1,hircaNoteLopStep4);
 		Thread.sleep(6000);
 		String skip2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		if(skip2.contains("ui-state-disabled"))
@@ -2051,7 +2052,7 @@ public class HiRCAHumanError2 {
 		Thread.sleep(2000);
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
-		obj.verifyReport(driver, lopOptions1, options, hml, checklist,0);
+		obj.verifyReport(driver, lopOptions1, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();

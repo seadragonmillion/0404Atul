@@ -1292,6 +1292,7 @@ public class JobObservation {
 
 		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
+		EiRCA eirca = new EiRCA();
 		String sharerAdded = obj.decideSharerAdded (y);	    	
 		//CLicks on first newly created record
 		driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
@@ -1315,6 +1316,11 @@ public class JobObservation {
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[1]")));
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on Job Observation side panel
@@ -1328,6 +1334,8 @@ public class JobObservation {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ShareCheck obj1 = new ShareCheck();
+		EiRCA eirca = new EiRCA();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -1338,6 +1346,16 @@ public class JobObservation {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong")).isDisplayed())
 			System.out.println("Marked critical");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[1]")));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[2]")));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
+		obj1.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -1351,7 +1369,6 @@ public class JobObservation {
 		//Verify report not retrieved by shared to person
 		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on EiRCA side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();

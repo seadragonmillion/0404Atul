@@ -490,6 +490,7 @@ public class UserManagement {
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
+		obj.waitForIframe(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{
@@ -1738,6 +1739,7 @@ public class UserManagement {
 		}
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
+		obj.waitForIframe(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{

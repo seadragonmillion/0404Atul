@@ -55,6 +55,7 @@ public class CreateHumanCase {
 	By HumanCaseNewButton = By.id("pii-admin-efsh-button-new");
 	By HumanCaseIDField = By.id("pii-admin-efsh-id");
 	By HumanCaseIDFieldError = By.id("pii-admin-efsh-id-error");
+	By HumanCaseSlideError = By.id("pii-admin-efsh-upload-file-input-error");
 	By HumanCaseQuestion = By.id("pii-admin-efsh-question");
 	By HumanCaseAnswer = By.id("pii-admin-efsh-answer");
 	By HumanCaseKeywordNewField = By.id("pii-admin-efsh-keyword-search-input");
@@ -72,6 +73,7 @@ public class CreateHumanCase {
 	By HumanCaseConditionExistingList = By.xpath(".//*[@id='pii-admin-efsh-condition-blocks']/div[2]/ul");
 	By HumanCaseImageInputField = By.id("pii-admin-efsh-upload-file-input");
 	By HumanCaseImageInputCollapsible = By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a");
+	By HumanCaseSlidesDivContainingErrorDottedLine = By.xpath(".//*[@id='pii-admin-efsh-upload-form']/div[2]/div[1]");
 	By HumanCaseSaveButton = By.id("pii-admin-efsh-button-save");
 	By HumanCaseEditButton = By.id("pii-admin-efsh-button-edit");
 	By HumanCaseExistingKeywordOnlyOne = By.xpath(".//*[@id='pii-admin-efsh-keyword-form']/div/ul/li/a");
@@ -113,7 +115,37 @@ public class CreateHumanCase {
 	By HumanCasesLink1URLCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-0']/div[2]/table/tbody/tr[1]/td[2]/div/a");
 	By HumanCasesLink2TitleCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-1']/div[1]/div/a");
 	By HumanCasesLink2URLCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-1']/div[2]/table/tbody/tr[1]/td[2]/div/a");
+	
+	public void checkForErrorWithoutUploadingSlides(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		ShareCheck obj = new ShareCheck();
+		//Scroll top
+		obj.scrollToTop(driver);
+		//Click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		//Click ok on error message
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		//Verify error message on slides
+		String error = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlideError)).getText();
+		softly.assertThat(error).as("test data").isEqualTo("Please select some PNG files with .png extension");
+		//Verify error dotted line present
+		String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
+		softly.assertThat(errorDotted).as("test data").contains("error");
+	}
 
+	public void checkNoError(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			//Verify the red error message is gone
+			String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
+			softly.assertThat(errorDotted).as("test data").doesNotContain("error");
+		}
+	}
+	
 	public int deletePreviousCase(WebDriver driver, String title) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
@@ -442,6 +474,7 @@ public class CreateHumanCase {
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(HumanCaseAdminPopupConfirmButton));
 		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
 		element1.click();
 		//Go to  Human Performance
@@ -1180,6 +1213,8 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
@@ -1188,6 +1223,8 @@ public class CreateHumanCase {
 			//Checks if 5 images have been uploaded
 			if(count==1)
 				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			if(count==1)
+				checkNoError(driver);
 			Thread.sleep(2000);
 			int i;
 			int n=1000;
@@ -1203,6 +1240,12 @@ public class CreateHumanCase {
 				Thread.sleep(1000);
 				jse.executeScript(scroll);
 				Thread.sleep(1000);
+			}
+			if(count==1)
+			{
+				obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)));
+				//Click on collapsible
+				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
 			}
 			//Add links in case number 3 
 			if(count==3)
@@ -1366,6 +1409,8 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
@@ -1373,14 +1418,17 @@ public class CreateHumanCase {
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();if(count==1)
+				checkNoError(driver);
+			}
 			Thread.sleep(2000);
 			int i;
 			int n=1000;
 			for (i=0; i<5;i++)
 			{
 				String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
-				if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
+				if (driver.findElement(By.xpath(xpath)).isDisplayed())
 				{
 					System.out.println("Uploaded Image : " + (i+1));
 				}
@@ -1563,6 +1611,8 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
 			/*  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField));
 		  Actions act= new Actions(driver);
@@ -1574,6 +1624,8 @@ public class CreateHumanCase {
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			if(count==1)
+				checkNoError(driver);
 			Thread.sleep(2000);
 			int i;
 			int n=1000;
@@ -1760,6 +1812,8 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
 			jse.executeScript("return document.getElementById('pii-admin-efsh-upload-file-input').click();");
@@ -1769,6 +1823,8 @@ public class CreateHumanCase {
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			if(count==1)
+				checkNoError(driver);
 			Thread.sleep(2000);
 			int i;
 			int n=1000;

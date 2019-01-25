@@ -43,6 +43,9 @@ public class EiRCA {
 	By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]");
 	By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
 	By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
+	By BackButton = By.id("pii-uhome-back");
+	By EiRCAShareIconOrCriticalIcon = By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a/span[1]");
+	By EiRCAShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a/span[2]");
 
 	//Share page
 	By ShareTextBox = By.id("pii-uhshare-search-input");
@@ -1682,9 +1685,14 @@ public class EiRCA {
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();		
 		//Verify share save sticky
 		obj2.verifyStickyShareSave(driver, softly);
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconOrCriticalIcon));
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on EiRCA side panel
@@ -1699,6 +1707,8 @@ public class EiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj2 = new EiRCA2();
+		ShareCheck obj1 = new ShareCheck();
+		ErrorMeter obj = new ErrorMeter();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Mark critical pop up
@@ -1711,6 +1721,16 @@ public class EiRCA {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(EiRCAMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
+		obj1.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Un Mark critical pop up
@@ -1724,9 +1744,7 @@ public class EiRCA {
 			System.out.println("Unmarked critical");
 		}
 		//Verify report not retrieved by shared to person
-		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on EiRCA side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCASidePanel)).click();

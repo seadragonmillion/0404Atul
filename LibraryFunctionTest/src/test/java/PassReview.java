@@ -26,6 +26,8 @@ public class PassReview {
 	By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
 	By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
 	By PassReviewMarkCriticalIndicatorText = By.xpath(".//*[@id='3pr-rpt']/table[1]/tbody/tr/th/strong[1]");
+	By PassReviewShareIconOrCriticalIcon = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[1]");
+	By PassReviewShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[2]");
 
 	//Basic Info
 	By Reviewer = By.id("pii-3pr-tab-1-reviewer");
@@ -419,6 +421,7 @@ public class PassReview {
 		ShareCheck obj1 = new ShareCheck();
 		EiRCA2 obj2 = new EiRCA2();
 		OPiRCA obj3 = new OPiRCA();
+		EiRCA eirca = new EiRCA();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		//Wait for loading message to disappear
@@ -435,6 +438,16 @@ public class PassReview {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(PassReviewMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
+		obj1.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.MarkCritical)).click();
 		//Un-mark critical pop up
@@ -463,6 +476,7 @@ public class PassReview {
 		ShareCheck obj1 = new ShareCheck();
 		EiRCA2 obj2 = new EiRCA2();
 		OPiRCA obj3 = new OPiRCA();
+		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
 		//Clicks on first newly created record
@@ -490,6 +504,11 @@ public class PassReview {
 		obj2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		obj1.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on 3 Pass Review side panel
