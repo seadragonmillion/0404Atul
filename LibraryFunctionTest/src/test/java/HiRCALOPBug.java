@@ -302,8 +302,10 @@ public class HiRCALOPBug {
 			{
 				y=random.nextInt(9);
 				System.out.println("Chose a no"+y);
-				if(y==0||y==1)
-					continue;
+				if(y==0)
+					y=y+2;
+				if(y==1)
+					y=y+1;
 				String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
 				if(e.contains("ui-checkbox-on"))
 					continue;
@@ -413,8 +415,10 @@ public class HiRCALOPBug {
 		{
 			y=random.nextInt(9);
 			System.out.println("Chose a no"+y);
-			if(y==0||y==1)
-				continue;
+			if(y==0)
+				y=y+2;
+			if(y==1)
+				y=y+1;
 			String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
 			if(e.contains("ui-checkbox-on"))
 				continue;
@@ -556,8 +560,10 @@ public class HiRCALOPBug {
 			{
 				y=random.nextInt(9);
 				System.out.println("Chose a no"+y);
-				if(y==0||y==1)
-					continue;
+				if(y==0)
+					y=y+2;
+				if(y==1)
+					y=y+1;
 				String e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getAttribute("class");
 				if(e.contains("ui-checkbox-on"))
 					continue;

@@ -825,11 +825,14 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Verify share save sticky
 		obj2.verifyStickyShareSave(driver, softly);
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Share icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));		
+		}
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on HiRCA side panel
@@ -859,16 +862,19 @@ public class HiRCAEvent {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
 			System.out.println("Marked critical");
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Marked critical icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));
-		//Verify presence of shared icon 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[2]")));
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		obj1.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[2]")));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+			obj1.loadingServer(driver);
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
@@ -1558,7 +1564,6 @@ public class HiRCAEvent {
 		int n=450;
 		for (int j=0; j<5; j++)
 		{
-			Actions act = new Actions(driver);
 			//Click on Supporting file details
 			Thread.sleep(1500);
 			String id = "pii-irca-event-filecollapsible-"+j;
@@ -1646,8 +1651,10 @@ public class HiRCAEvent {
 				Thread.sleep(3000);
 				//Clicks on Save
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
-				act.click(ele).build().perform();
+				obj.scrollToElement(driver, ele);
+				ele.click();
 				Thread.sleep(3000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton));
 				//Clicks on Save report
 				/* try{
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage));
@@ -2467,7 +2474,7 @@ public class HiRCAEvent {
 		Thread.sleep(2000);		
 		return recordName;
 	}
-	
+
 	public void downloadSelectFunction (WebDriver driver, String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 
 		//deletes files in reports folder before starting to download

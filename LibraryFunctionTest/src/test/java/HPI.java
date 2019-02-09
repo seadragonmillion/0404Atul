@@ -153,11 +153,14 @@ public class HPI {
 		String sharedText = shared.getText();
 		System.out.println(sharedText);
 		softly.assertThat("Shared to:").as("test data").isSubstringOf(sharedText);
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Share icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));		
+		}
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on HPI side panel
@@ -183,16 +186,19 @@ public class HPI {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='hpi-rpt']/div/span[4]/strong")).isDisplayed())
 			System.out.println("Marked critical");
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Marked critical icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));
-		//Verify presence of shared icon 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[2]")));
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
-		obj1.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[2]")));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
+			obj1.loadingServer(driver);
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change

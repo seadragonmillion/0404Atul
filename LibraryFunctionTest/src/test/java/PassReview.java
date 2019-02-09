@@ -48,7 +48,7 @@ public class PassReview {
 	By Pass1TestingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[6]/td[2]/textarea");
 	By NextButton = By.id("pii-3pr-next");
 	By Pass1Tab = By.id("pii-3pr-tab-2-a");
-	
+
 	//Pass 2 Tab
 	By Pass2Tab = By.id("pii-3pr-tab-3-a");
 
@@ -393,7 +393,7 @@ public class PassReview {
 			//Verify text
 			if (browserName.equals("internet explorer"))
 			{
-				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
+				String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]")).getText();
 				System.out.println(s1);
 				String r2 = s1.replaceAll("\u00AD", "");
 				softly.assertThat(r2).as("test data").isIn(textList);
@@ -401,7 +401,7 @@ public class PassReview {
 			}
 			else
 			{
-				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]"))).getText();
+				String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]")).getText();
 				String r2 = s1.replaceAll("\u00AD", "");
 				softly.assertThat(r2).as("test data").isIn(textList);
 			}
@@ -438,16 +438,19 @@ public class PassReview {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(PassReviewMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Marked critical icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
-		//Verify presence of shared icon 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconWhenAlsoMarkedCritical));
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
-		obj1.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconWhenAlsoMarkedCritical));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
+			obj1.loadingServer(driver);
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.MarkCritical)).click();
 		//Un-mark critical pop up
@@ -504,11 +507,14 @@ public class PassReview {
 		obj2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Share icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
+		}
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on 3 Pass Review side panel
@@ -795,7 +801,7 @@ public class PassReview {
 		softly.assertThat(r1).as("test data").contains(text);
 		return r1;
 	}
-	
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

@@ -278,8 +278,24 @@ public class ShareCheck {
 			ele.click();
 			Thread.sleep(2000);
 			//Click on mark as read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
-			ele.click();
+			try{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				ele.click();
+			}catch(org.openqa.selenium.TimeoutException g)
+			{
+				//Click on 1st record/notification
+				if(wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).isSelected()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				Thread.sleep(2000);
+				//Click on read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
+				if(ele.isEnabled()==false)
+					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				ele.click();
+				//Mark as read
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
+				ele.click();				
+			}
 		}
 		//Wait for loading message to disappear
 		loadingServer(driver);

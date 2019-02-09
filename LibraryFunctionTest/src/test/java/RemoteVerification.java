@@ -876,11 +876,14 @@ public class RemoteVerification {
 		String verifierUsername = verifier1.getText();
 		System.out.println(verifierUsername);
 		softly.assertThat(verifier).as("test data").isSubstringOf(verifierUsername);
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Share icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareIconOrCriticalIcon));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareIconOrCriticalIcon));
+		}
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on Remote Verification side panel
@@ -1154,16 +1157,19 @@ public class RemoteVerification {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(RVMarkedCriticalText).isDisplayed())
 			System.out.println("Marked critical");
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Marked critical icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareIconOrCriticalIcon));
-		//Verify presence of shared icon 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareIconWhenAlsoMarkedCritical));
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
-		obj1.loadingServer(driver);		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareIconOrCriticalIcon));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(RVShareIconWhenAlsoMarkedCritical));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(RVNewlyCreatedFirstRecord)).click();
+			obj1.loadingServer(driver);		
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.MarkCritical)).click();
 		//Clicks on confirm change
@@ -1286,7 +1292,7 @@ public class RemoteVerification {
 				upload1stpictureIE11(driver);
 		}
 	}
-	
+
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 
 		ShareCheck obj = new ShareCheck();

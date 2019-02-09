@@ -212,6 +212,7 @@ public class HiRCALevel2 {
 					softly.assertThat(title).as("test data").contains(lopName);
 					break;
 				}
+				share.scrollToTop(driver);
 				//Click next
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			}				
@@ -228,6 +229,7 @@ public class HiRCALevel2 {
 					softly.assertThat(title).as("test data").contains(lopName);
 					break;
 				}
+				share.scrollToTop(driver);
 				//Click next
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			}	

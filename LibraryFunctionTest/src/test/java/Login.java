@@ -52,6 +52,7 @@ public class Login {
 			{
 				//Sign in button is located and clicked
 				driver.findElement(SignInButton).click();  
+				obj.loadingServer(driver);
 				while(c>0)
 				{
 					obj.loadingServer(driver);

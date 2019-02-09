@@ -2801,6 +2801,8 @@ public class ErrorMeter {
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		ShareCheck obj1 = new ShareCheck();
+		EiRCA eirca = new EiRCA();
 		String sharer = decideSharer (y);
 		String sharerAdded = decideSharerAdded (y);
 		//Clicks on share button
@@ -2817,7 +2819,6 @@ public class ErrorMeter {
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		Thread.sleep(3000);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ShareSave)).click();
@@ -2836,6 +2837,14 @@ public class ErrorMeter {
 		String sharedText = shared.getText();
 		System.out.println(sharedText);
 		softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
+		}
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on Error Meter side panel
@@ -2849,6 +2858,8 @@ public class ErrorMeter {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		EiRCA eirca = new EiRCA();
+		ShareCheck obj1 = new ShareCheck();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -2859,6 +2870,19 @@ public class ErrorMeter {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong")).isDisplayed())
 			System.out.println("Marked critical");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[2]")));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+			obj1.loadingServer(driver);
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -2871,7 +2895,6 @@ public class ErrorMeter {
 		}
 		//Verify report not retrieved by shared to person
 		String sharer = decideSharer (y);
-		ShareCheck obj1 = new ShareCheck();
 		obj1.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on Error meter side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
@@ -2913,6 +2936,7 @@ public class ErrorMeter {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA ();
+		ShareCheck obj1 = new ShareCheck();
 		String text = obj.textCreate(driver);
 		Thread.sleep(2000);
 		//Click on finalize
@@ -2923,6 +2947,7 @@ public class ErrorMeter {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		obj1.loadingServer(driver);
 		//Creates expected record name
 		String date= driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]")).getText();
 		date = date.substring(14);
@@ -2935,6 +2960,7 @@ public class ErrorMeter {
 		System.out.println ("Expected name of record: " +name);
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
+		obj1.loadingServer(driver);
 		//Gets the name of the record created
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"));
 		String recordName = record.getText();

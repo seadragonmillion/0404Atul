@@ -34,7 +34,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OPiRCA {
 
 	SoftAssertions softly = new SoftAssertions();
-	
+
 	OPiRCAChinese opc = new OPiRCAChinese();
 	OPiRCA2 op2 = new OPiRCA2();
 	ShareCheck share = new ShareCheck();
@@ -109,7 +109,7 @@ public class OPiRCA {
 	//Step1
 	By Step1DescriptionPlusSign = By.xpath(".//*[@id='efi-opa-description']/h4/a");
 	By Step1DescriptionText = By.id("efi-opa-description-text");
-	
+
 	//Step 2
 	By DQuestionAnswersClearButton = By.id("pii-opa-clear");
 
@@ -634,11 +634,6 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();
 		//Verify share save sticky
 		eirca2.verifyStickyShareSave(driver, softly);
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		share.loadingServer(driver);
-		//Verify Share icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconOrCriticalIcon));
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Checks the username of creator
@@ -646,6 +641,14 @@ public class OPiRCA {
 		String creatorUsername= creator.getText();
 		System.out.println(creatorUsername);
 		softly.assertThat(creatorUsername).as("test data").isEqualTo(username);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			share.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconOrCriticalIcon));
+		}
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on OPiRCA side panel
@@ -673,16 +676,19 @@ public class OPiRCA {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(OPIRCAMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-		share.loadingServer(driver);
-		//Verify Marked critical icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconOrCriticalIcon));
-		//Verify presence of shared icon 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconWhenAlsoMarkedCritical));
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
-		share.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			share.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconOrCriticalIcon));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAShareIconWhenAlsoMarkedCritical));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAFirstRecord)).click();
+			share.loadingServer(driver);
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Un-mark critical pop up
@@ -863,9 +869,9 @@ public class OPiRCA {
 			}
 		return ac;		
 	}
-	
+
 	public String verifyIfDAnswer(WebDriver driver, int y, String s1)throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		String opirca_desc = wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAInfoPageDesc)).getText();
 		if(opirca_desc.startsWith("[D"))
@@ -969,7 +975,7 @@ public class OPiRCA {
 		}	    	
 		return ac;
 	}
-	
+
 	public List<String> modifyListWithNoSemiColonForSUEP_SURE(List<String> apparentCausesAnswers)  throws Exception{
 
 		List<String> ac = new ArrayList<String>();
@@ -1536,9 +1542,9 @@ public class OPiRCA {
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(EField)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("E: Not an Effect of Other Contributing Factors?");
 	}
-	
+
 	public List<String> getRootCausesFromStep3(WebDriver driver, HashMap<String,Integer> options, int rc , int n) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> rccf = new ArrayList<String>();
 		for(int i =2;i<=n+1;i++)
@@ -2058,7 +2064,7 @@ public class OPiRCA {
 		downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options, step2QuestionAnswers);
 		Thread.sleep(2000);
 	}
-	
+
 	public void deleteFiles(File folder) throws IOException {
 		File[] files = folder.listFiles();
 		for(File file: files){

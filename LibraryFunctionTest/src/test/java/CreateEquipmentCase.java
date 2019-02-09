@@ -110,7 +110,9 @@ public class CreateEquipmentCase {
 	By KaleHomePage = By.className("pii-logo-div-element-kale");
 
 	//Equipment databank only search page
-	By EquipDropwdownTitle = By.xpath(".//*[@id='pii-question-list-equip']/div/h4/a/div");
+	By EquipDropwdownTitle_1st = By.xpath(".//*[@id='pii-question-list-equip']/div[1]/h4/a/div");
+	By EquipDropwdownTitle_2nd = By.xpath(".//*[@id='pii-question-list-equip']/div[2]/h4/a/div");
+	By EquipDropwdownTitle_3rd = By.xpath(".//*[@id='pii-question-list-equip']/div[3]/h4/a/div");
 	By EquipSearchMessage = By.xpath(".//*[@id='pii-efse-search-message']/div");
 	By EquipSearchMessageErrorLink = By.xpath(".//*[@id='pii-efse-search-message']/div/a");
 	By PreventionOfDesignDeficienciesLink = By.linkText("Prevention of Design Deficiencies");
@@ -922,7 +924,7 @@ public class CreateEquipmentCase {
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		//Checks if Exact matches appear
-		WebElement exact = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipDropwdownTitle));
+		WebElement exact = wait.until(ExpectedConditions.visibilityOfElementLocated(EquipDropwdownTitle_1st));
 		String exactText=exact.getText();		
 		if(exactText.equals("Results")==true)
 		{

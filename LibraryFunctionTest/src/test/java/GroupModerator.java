@@ -115,6 +115,7 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
+		share.loadingServer(driver);
 		//Gets the name of the record created
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).getText());
 	}
@@ -191,6 +192,7 @@ public class GroupModerator {
 		//Clicks on Saved activities button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca2.EiRCASavedActivitiesButton)).click();
 		share.loadingServer(driver);
+		share.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca2.EiRCAFirstRecord)).getText());
 	}
 
@@ -251,6 +253,7 @@ public class GroupModerator {
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
 		share.loadingServer(driver);
+		share.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).getText());
 	}
 
@@ -301,6 +304,7 @@ public class GroupModerator {
 		share.loadingServer(driver);
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
+		share.loadingServer(driver);
 		share.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).getText());
 	}
@@ -359,6 +363,7 @@ public class GroupModerator {
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-btn-savedactivities"))).click();
 		share.loadingServer(driver);
+		share.loadingServer(driver);
 		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).getText());
 	}
 
@@ -408,6 +413,7 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
+		share.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).getText());
 	}
 	
@@ -447,6 +453,7 @@ public class GroupModerator {
 		//Clicks on side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
+		share.loadingServer(driver);
 		share.loadingServer(driver);
 		return(wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText());
 	}
@@ -543,6 +550,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -558,6 +566,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -573,6 +582,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -588,6 +598,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -603,6 +614,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -618,6 +630,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -633,6 +646,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -648,6 +662,7 @@ public class GroupModerator {
 		{
 			String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li["+i+"]/a"))).getText();
 			softly.assertThat(recordName).as("test data").isIn(allReportNames);
+			System.out.println(recordName);
 			//Click on record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li["+i+"]/a"))).click();
 			share.loadingServer(driver);
@@ -688,6 +703,7 @@ public class GroupModerator {
 		//Group Moderator 1 (user1) for group 1 will view reports from all user 2 and 3
 		//Login to user 1 gm
 		loginToUsersForTest(driver,user1gm,password);
+		System.out.println(allReportNamesFromGroup1);
 		//View reports
 		groupModeratorViewReportsFromUsers(driver,allReportNamesFromGroup1);
 		//Logout
@@ -697,6 +713,7 @@ public class GroupModerator {
 		//Group Moderator 2 (user4) for group 2 will view reports of user 5
 		//Login to user 4 gm
 		loginToUsersForTest(driver,user4gm,password);
+		System.out.println(allReportNamesFromGroup2);
 		//View reports
 		groupModeratorViewReportsFromUsers(driver,allReportNamesFromGroup2);
 		//Logout

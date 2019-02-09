@@ -463,6 +463,7 @@ public class EiRCA {
 		Thread.sleep(1000);
 		//4.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode2Option44CheckBox)).click();
+		obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode2Option47CheckBox)));
 		//4.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step4FailureMode2Option46CheckBox)).click();
 		//4.7
@@ -732,8 +733,8 @@ public class EiRCA {
 				if(z==0)
 				{
 					try{
-					String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped)).getText();
-				softly.assertThat(s13).as("test data").isEqualTo("Step 6 - Determine Contributing Factors (skipped)");
+						String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped)).getText();
+						softly.assertThat(s13).as("test data").isEqualTo("Step 6 - Determine Contributing Factors (skipped)");
 					}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException r)
 					{
 						String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped2)).getText();
@@ -1688,11 +1689,14 @@ public class EiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareSaveButton)).click();		
 		//Verify share save sticky
 		obj2.verifyStickyShareSave(driver, softly);
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Share icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconOrCriticalIcon));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Share icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconOrCriticalIcon));
+		}
 		//Calls the Share check function
 		obj1.receiptReport(driver, sharer, username, password1);
 		//Clicks on EiRCA side panel
@@ -1721,16 +1725,19 @@ public class EiRCA {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(EiRCAMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(BackButton)).click();
-		obj1.loadingServer(driver);
-		//Verify Marked critical icon
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconOrCriticalIcon));
-		//Verify presence of shared icon 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconWhenAlsoMarkedCritical));
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
-		obj1.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Click back
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(BackButton)).click();
+			obj1.loadingServer(driver);
+			//Verify Marked critical icon
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconOrCriticalIcon));
+			//Verify presence of shared icon 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAShareIconWhenAlsoMarkedCritical));
+			//Clicks on first newly created record
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
+			obj1.loadingServer(driver);
+		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(MarkCritical)).click();
 		//Un Mark critical pop up
@@ -1891,29 +1898,30 @@ public class EiRCA {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();		
 		}
 		//Click on Step 5
+		obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep5Tab)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAStep5Tab)).click();
 		try{
-		//Click on collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5FailureCollapsible)).click();
-		//Check any boxes
-		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption55CheckBox));
-		obj1.scrollToElement(driver, l);
-		//Click on 5.5
-		if(l.isSelected()==false)
-			l.click();
-		WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption56CheckBox));
-		obj1.scrollToElement(driver, l1);
-		//Click on 5.6
-		if(l1.isSelected()==false)
-			l1.click();
-		//Enter text
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).sendKeys(textToVerifyClearTextBox);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).sendKeys(textToVerifyClearTextBox);
+			//Click on collapsible
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5FailureCollapsible)).click();
+			//Check any boxes
+			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption55CheckBox));
+			obj1.scrollToElement(driver, l);
+			//Click on 5.5
+			if(l.isSelected()==false)
+				l.click();
+			WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step5TableOption56CheckBox));
+			obj1.scrollToElement(driver, l1);
+			//Click on 5.6
+			if(l1.isSelected()==false)
+				l1.click();
+			//Enter text
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption55Textbox)).sendKeys(textToVerifyClearTextBox);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step5TableOption56Textbox)).sendKeys(textToVerifyClearTextBox);
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
-			
+
 		}
 		//Save report
 		saveEiRCAReport(driver);
@@ -2517,13 +2525,9 @@ public class EiRCA {
 
 		Random random = new Random ();
 		int y;
-		while(true)
-		{
-			y = random.nextInt(3);
-			if(y<1)
-				continue;
-			break;
-		}
+		y = random.nextInt(3);
+		if(y<2)
+			y=y+1;
 		WebElement dropdown1 = driver.findElement(obj.Step1Q11Answer);
 		Select s1 = new Select(dropdown1);
 		s1.selectByIndex(y);
@@ -2534,13 +2538,9 @@ public class EiRCA {
 
 		Random random = new Random ();
 		int y;
-		while(true)
-		{
-			y = random.nextInt(28);
-			if(y<1)
-				continue;
-			break;
-		}
+		y = random.nextInt(28);
+		if(y<27)
+			y=y+1;
 		WebElement dropdown1 = driver.findElement(obj.Step1Q12Answer);
 		Select s1 = new Select(dropdown1);
 		s1.selectByIndex(y);
@@ -2549,14 +2549,9 @@ public class EiRCA {
 	public void selectDropdown13(WebDriver driver,EiRCAChinese obj) throws Exception {
 
 		Random random = new Random ();
-		int y;
-		while(true)
-		{
-			y = random.nextInt(34);
-			if(y<1)
-				continue;
-			break;
-		}
+		int y = random.nextInt(34);
+		if(y<33)
+			y=y+1;
 		WebElement dropdown1 = driver.findElement(obj.Step1Q13Answer);
 		Select s1 = new Select(dropdown1);
 		s1.selectByIndex(y);

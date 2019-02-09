@@ -4,12 +4,14 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -140,6 +142,14 @@ public class CreateHumanCase {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			//Get browser name
+			Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+			String browserName = cap.getBrowserName().toLowerCase();
+			System.out.println(browserName);
+			if (browserName.equals("internet explorer"))
+			{
+				Thread.sleep(2000);
+			}
 			//Verify the red error message is gone
 			String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
 			softly.assertThat(errorDotted).as("test data").doesNotContain("error");
@@ -466,7 +476,7 @@ public class CreateHumanCase {
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
