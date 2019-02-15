@@ -25,6 +25,7 @@ public class SafariTest {
 		System.out.println("HiRCA LOP Bug Check Safari on MAC");
 		System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
 		WebDriver driver = new SafariDriver();
+		System.out.println("driver=" + driver); 
 		//Browser is maximized
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
