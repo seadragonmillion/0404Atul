@@ -18,12 +18,6 @@
     <artifactId>javax.mail</artifactId>
     <version>1.6.2</version>
   </dependency>
-  <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-safari-driver -->
-<dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-safari-driver</artifactId>
-    <version>3.141.59</version>
-</dependency>
 <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
 <dependency>
     <groupId>org.apache.pdfbox</groupId>
@@ -70,13 +64,13 @@
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
-    <version>3.141.59</version>
+    <version>3.14.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-ie-driver</artifactId>
-    <version>3.141.59</version>
+    <version>3.14.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-junit-adaptor -->
 <dependency>
