@@ -33,7 +33,8 @@ public class SafariTest {
 
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
-		Login obj1 = new Login();
+		Login obj1 = new Login();		
+		Thread.sleep(2000);
 		//ShareCheck obj = new ShareCheck();
 		String s = driver.findElement(obj1.WebPageMessage).getText();
 		System.out.println(s);
