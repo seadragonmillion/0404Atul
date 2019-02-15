@@ -38,7 +38,8 @@ public class SafariTest {
 		Login obj1 = new Login();		
 		Thread.sleep(2000);
 		//ShareCheck obj = new ShareCheck();
-		String s = driver.findElement(obj1.WebPageMessage).getText();
+		WebElement e = driver.findElement(obj1.WebPageMessage);
+		String s = e.getText();
 		System.out.println(s);
 		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked
