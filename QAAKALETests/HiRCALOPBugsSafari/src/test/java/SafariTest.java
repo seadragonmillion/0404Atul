@@ -192,6 +192,6 @@ public class SafariTest {
 	public void afterTest() throws Exception {
 
 		driver.quit();
-		obj1.softAssert();
+		//obj1.softAssert();
 	}
 }
