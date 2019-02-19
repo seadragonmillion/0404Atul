@@ -36,7 +36,7 @@ public class IETest {
 	@Test
 	public void SanityTest() throws Exception{
 		Login obj = new Login ();
-		TermSearch obj1 = new TermSearch();
+		TermSearchEQ obj1 = new TermSearchEQ();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(7000);
@@ -66,7 +66,7 @@ public class IETest {
 		afterTest(obj1);
 	}
 
-	public void afterTest(TermSearch obj) throws Exception{
+	public void afterTest(TermSearchEQ obj) throws Exception{
 
 		//Browser closes
 		driver.quit();
