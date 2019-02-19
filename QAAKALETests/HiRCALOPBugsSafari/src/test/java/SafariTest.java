@@ -35,22 +35,21 @@ public class SafariTest {
 
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
-		Login obj1 = new Login();		
+		//Login obj1 = new Login();
 		Thread.sleep(2000);
 		//ShareCheck obj = new ShareCheck();
-		WebElement e = driver.findElement(obj1.WebPageMessage);
-		String s = e.getText();
+		String s = driver.findElement(By.className("pii-slogan")).getText();
 		System.out.println(s);
 		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked
-		driver.findElement(obj1.LoginButton).click();
+		driver.findElement(By.id("pii-login-button")).click();
 		//Enter Username
-		driver.findElement(obj1.UserName).sendKeys(username);
+		driver.findElement(By.id("pii-un")).sendKeys(username);
 		//Enter password
-		driver.findElement(obj1.Password).sendKeys(decodePassword(password));
+		driver.findElement(By.id("pii-pw")).sendKeys(decodePassword(password));
 		Thread.sleep(2000);
-		String user = driver.findElement(obj1.UserName).getAttribute("value");
-		String pw = driver.findElement(obj1.Password).getAttribute("value");
+		String user = driver.findElement(By.id("pii-un")).getAttribute("value");
+		String pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 		int c=1;
 		int login=0;
 		if (user.equals(username)==true)
@@ -58,13 +57,13 @@ public class SafariTest {
 			if(pw.equals(decodePassword(password))==true)
 			{
 				//Sign in button is located and clicked
-				driver.findElement(obj1.SignInButton).click();  
+				driver.findElement(By.id("pii-signin-button")).click();  
 				//obj.loadingServer(driver);
 				Thread.sleep(2000);
 				while(c>0)
 				{
 					Thread.sleep(2000);
-					WebElement element = driver.findElement(obj1.SignInMessage);
+					WebElement element = driver.findElement(By.id("pii-signin-message"));
 					String text = element.getText();
 					System.out.println(text);
 					if (element.isDisplayed())
@@ -76,9 +75,9 @@ public class SafariTest {
 						}
 						else
 						{
-							driver.findElement(obj1.Password).sendKeys(decodePassword(password));
+							driver.findElement(By.id("pii-pw")).sendKeys(decodePassword(password));
 							//Sign in button is located and clicked
-							driver.findElement(obj1.SignInButton).click();
+							driver.findElement(By.id("pii-signin-button")).click();
 							if(text.contains("Warning: This user has an existing login session"))
 								login =1;
 							Thread.sleep(2000);
@@ -95,22 +94,22 @@ public class SafariTest {
 			while(c>0)
 			{
 				Thread.sleep(1000);
-				driver.findElement(obj1.UserName).clear();
-				driver.findElement(obj1.Password).clear();
+				driver.findElement(By.id("pii-un")).clear();
+				driver.findElement(By.id("pii-pw")).clear();
 				Thread.sleep(2000);
 				//Username text field is located and the username is entered
-				driver.findElement(obj1.UserName).sendKeys(username);
+				driver.findElement(By.id("pii-un")).sendKeys(username);
 				//Password field is located and the password is entered
-				driver.findElement(obj1.Password).sendKeys(decodePassword(password));
+				driver.findElement(By.id("pii-pw")).sendKeys(decodePassword(password));
 				Thread.sleep(2000);
-				user = driver.findElement(obj1.UserName).getAttribute("value");
-				pw = driver.findElement(obj1.Password).getAttribute("value");
+				user = driver.findElement(By.id("pii-un")).getAttribute("value");
+				pw = driver.findElement(By.id("pii-pw")).getAttribute("value");
 				if (user.equals(username)==true)
 				{
 					if(pw.equals(decodePassword(password))==true)
 					{
 						//Sign in button is located and clicked
-						driver.findElement(obj1.SignInButton).click();
+						driver.findElement(By.id("pii-signin-button")).click();
 						Thread.sleep(2000);
 						break;
 					}
@@ -130,15 +129,15 @@ public class SafariTest {
 
 	public void logout (WebDriver driver) throws Exception {
 
-		Login obj = new Login();
+		//Login obj = new Login();
 		Thread.sleep(4000);
 		Actions act = new Actions (driver);
-		driver.findElement(obj.LoginNameOnTopRight);
-		WebElement element = driver.findElement(obj.LoginNameOnTopRight);
+		driver.findElement(By.id("pii-user-loginname"));
+		WebElement element = driver.findElement(By.id("pii-user-loginname"));
 		act.click(element).build().perform();
 		Thread.sleep(3000);
-		driver.findElement(obj.LogOutButton);
-		element = driver.findElement(obj.LogOutButton);
+		driver.findElement(By.id("pii-signout-button"));
+		element = driver.findElement(By.id("pii-signout-button"));
 		act.click(element).build().perform();
 		Thread.sleep(4000);
 	}
