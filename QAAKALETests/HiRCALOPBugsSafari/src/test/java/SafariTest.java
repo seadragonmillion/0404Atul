@@ -146,7 +146,7 @@ public class SafariTest {
 	@Test
 	public void test() throws Exception{
 		//Login obj = new Login ();
-		HiRCALOPBug obj1 = new HiRCALOPBug();
+		//HiRCALOPBug obj1 = new HiRCALOPBug();
 		int login = LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
@@ -187,10 +187,10 @@ public class SafariTest {
 		//obj1.bugKALE2219KALE2246(driver);*/
 		//Logout
 		logout(driver);
-		afterTest(obj1);
+		afterTest();
 	}
 
-	public void afterTest(HiRCALOPBug obj1) throws Exception {
+	public void afterTest() throws Exception {
 
 		driver.quit();
 		obj1.softAssert();
