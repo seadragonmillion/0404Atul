@@ -19,6 +19,7 @@ public class SafariTest {
 	public void beforeTest() throws MalformedURLException{
 
 		System.out.println("HiRCA LOP Bug Check Safari on MAC");
+		System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
 		driver = new SafariDriver();
 		System.out.println("driver=" + driver); 
 		//Browser is maximized
