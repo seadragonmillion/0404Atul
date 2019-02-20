@@ -4,14 +4,14 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 
 public class SafariTest {
 
-	private WebDriver driver;
+	private SafariDriver driver;
 	private String username = "ritica_only_nonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 
@@ -20,7 +20,9 @@ public class SafariTest {
 
 		System.out.println("HiRCA LOP Bug Check Safari on MAC");
 		System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
-		driver = new SafariDriver();
+		SafariOptions options = new SafariOptions();
+		options.setUseTechnologyPreview(true);
+		driver = new SafariDriver(options);
 		System.out.println("driver=" + driver); 
 		//Browser is maximized
 		driver.manage().window().maximize();
