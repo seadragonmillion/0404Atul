@@ -24,7 +24,7 @@ public class SafariTest {
 
 		System.out.println("HiRCA LOP Bug Check Safari on MAC");
 		//System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
-		WebDriver driver = new SafariDriver();
+		driver = new SafariDriver();
 		System.out.println("driver=" + driver); 
 		//Browser is maximized
 		driver.manage().window().maximize();
@@ -38,10 +38,10 @@ public class SafariTest {
 		//Login obj1 = new Login();
 		Thread.sleep(2000);
 		//ShareCheck obj = new ShareCheck();
-		/*WebElement ele = driver.findElement(By.className("pii-slogan"));
+		WebElement ele = driver.findElement(By.className("pii-slogan"));
 		String s = ele.getText();
 		System.out.println(s);
-		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);*/
+		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked
 		 WebElement ele = driver.findElement(By.id("pii-login-button"));
 		ele.click();
