@@ -43,7 +43,7 @@ public class SafariTest {
 		System.out.println(s);
 		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked
-		 WebElement ele = driver.findElement(By.id("pii-login-button"));
+		 ele = driver.findElement(By.id("pii-login-button"));
 		ele.click();
 		//Enter Username
 		driver.findElement(By.id("pii-un")).sendKeys(username);
