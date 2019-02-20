@@ -38,12 +38,12 @@ public class SafariTest {
 		//Login obj1 = new Login();
 		Thread.sleep(2000);
 		//ShareCheck obj = new ShareCheck();
-		WebElement ele = driver.findElement(By.className("pii-slogan"));
+		/*WebElement ele = driver.findElement(By.className("pii-slogan"));
 		String s = ele.getText();
 		System.out.println(s);
-		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
+		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);*/
 		//Login button is located and clicked
-		ele = driver.findElement(By.id("pii-login-button"));
+		 WebElement ele = driver.findElement(By.id("pii-login-button"));
 		ele.click();
 		//Enter Username
 		driver.findElement(By.id("pii-un")).sendKeys(username);
