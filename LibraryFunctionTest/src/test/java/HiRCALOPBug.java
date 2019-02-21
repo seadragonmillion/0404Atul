@@ -2,6 +2,7 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,9 +34,11 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		fillPage(driver,text);
-		obj.scrollToAPoint(driver, 6500);
+		obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
 		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
 		Thread.sleep(2000);
 	}
 	
@@ -122,7 +125,14 @@ public class HiRCALOPBug {
 		//Clicks on open report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		//Clicks on Info tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		}catch(org.openqa.selenium.WebDriverException t)
+		{
+			obj.scrollToTop(driver);
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))));
+		}
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAEventLocationField)).getAttribute("value");
 		softly.assertThat(s1).as("test data").isEqualTo(text+" \"foo\" "+text);
 		//Click on saved activities
@@ -216,9 +226,18 @@ public class HiRCALOPBug {
 		}
 		Thread.sleep(2000);
 		//Select RC from pop up
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
+		obj.scrollToTop(driver);
 		//Go to Step 2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2")));
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
+		}catch(org.openqa.selenium.WebDriverException t)
+		{
+			obj.scrollToTop(driver);
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))));
+		}
 		//Verify Step 2 page of question 2.0
 		verifyStep2Q2_0(driver);
 	}
@@ -315,7 +334,8 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			//Click on LOP
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
@@ -428,7 +448,8 @@ public class HiRCALOPBug {
 		System.out.println("Option no: "+y);
 		Thread.sleep(500);
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
@@ -573,7 +594,8 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			//Click on LOP
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
@@ -716,7 +738,8 @@ public class HiRCALOPBug {
 		//Select error-proof design as 3rd LOP
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -950,7 +973,8 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+x);
 			Thread.sleep(500);
 			//Click on LOP
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+x+"]/fieldset/div/div/label"))).click();
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+x+"]/fieldset/div/div/label"))));
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
@@ -1054,7 +1078,8 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-no']"))).click();
 		Thread.sleep(2000);
 		//Modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);		
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1102,7 +1127,8 @@ public class HiRCALOPBug {
 		//Uncheck EPD
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click on modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Click next till 2.20
 		for (int i=1;i<=5;i++)
 		{
@@ -1292,7 +1318,8 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(1000);
 			//Click on a lop inquiry in 3.4
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
@@ -1339,7 +1366,8 @@ public class HiRCALOPBug {
 				obj.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Click on a lop inquiry in 3.17
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
@@ -1371,7 +1399,8 @@ public class HiRCALOPBug {
 		System.out.println("Option no: "+y);
 		Thread.sleep(500);
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
@@ -1412,9 +1441,11 @@ public class HiRCALOPBug {
 		//Scroll to the top
 		obj.scrollToAPoint(driver, 1200);
 		//Click on same LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Click on modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed")));
+		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
@@ -1592,9 +1623,9 @@ public class HiRCALOPBug {
 		//Scroll to the top
 		obj.scrollToAPoint(driver, 1200);
 		//Click on same LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Click on modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
@@ -1636,9 +1667,10 @@ public class HiRCALOPBug {
 		System.out.println("Option no: "+y);
 		Thread.sleep(500);
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Click modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);

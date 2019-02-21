@@ -155,6 +155,10 @@ public class CaseBrowse {
 	By HumanSearchDropdownListLoaded = By.xpath(".//*[@id='pii-question-list']/div/h4/a/div");
 	By HumanSearch1stCollapsibleCases = By.xpath(".//*[@id='pii-question-list']/div[1]/h4/a");
 	By HumanSearch2ndCollapsibleCases = By.xpath(".//*[@id='pii-question-list']/div[2]/h4/a");
+	By HumanSearch3rdCollapsibleCases = By.xpath(".//*[@id='pii-question-list']/div[3]/h4/a");
+	By HumanSearch1stCollapsibleCasesText = By.xpath(".//*[@id='pii-question-list']/div[1]/h4/a/div");
+	By HumanSearch2ndCollapsibleCasesText = By.xpath(".//*[@id='pii-question-list']/div[2]/h4/a/div");
+	By HumanSearch3rdCollapsibleCasesText = By.xpath(".//*[@id='pii-question-list']/div[3]/h4/a/div");
 
 	//Slides
 	By SlideNextButton = By.linkText("Next");

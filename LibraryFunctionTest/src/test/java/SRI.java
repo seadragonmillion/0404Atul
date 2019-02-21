@@ -3,6 +3,7 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -43,9 +44,12 @@ public class SRI {
 	By Step2Notes = By.id("pii-sri-newentry-notes");
 	By Step2AddButton = By.id("pii-sri-newevent-add");
 	By Step2Measurement1Date = By.id("pii-sri-tab-1-event-date");
+	By Step2Measurement1DateFirefox = By.id("pii-sri-tab-1-event0-date");
 	By Step2Measurement2Date = By.id("pii-sri-tab-1-event1-date");
 	By Step2Measurement1Time = By.id("pii-sri-tab-1-event-time");
+	By Step2Measurement1TimeFirefox = By.id("pii-sri-tab-1-event0-time");
 	By Step2Measurement2Time = By.id("pii-sri-tab-1-event1-time");
+	By Step2MeasurementDropDown = By.id("pii-sri-newentry-measurement-button");
 	By Step2Measurement1Measurement =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/span");
 	By Step2Measurement2Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[2]/td[4]/div/div/span");
 	By Step2Measurement1Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[5]/textarea");
@@ -260,12 +264,23 @@ public class SRI {
 
 		}
 		//Select Measurement
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(Step2MeasurementDropDown)).click();
 		Select s = new Select(driver.findElement(Step2Measurment));
 		//Choose a number between 1 to 14
 		int index = random.nextInt(15);
 		if(index<14)
 			index=index+1;
-		s.selectByIndex(index);
+		try{
+			s.selectByIndex(index);
+		}catch(org.openqa.selenium.ElementNotInteractableException e)
+		{
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-sri-newentry-measurement']/option["+index+"]")));
+			/*Actions act = new Actions(driver);
+			act.moveToElement(ele).click().build().perform();*/
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].scrollIntoView();", ele);
+			jse.executeScript("arguments[0].click();", ele);
+		}
 		//Clear value 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step2Value)).clear();
 		//Fill value
@@ -285,12 +300,12 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Step1InspectionStaff)).sendKeys(text);
 		//Component
 		Select s = new Select(driver.findElement(Step1Component));
-		//Choose a number between 1 to 29
-		int index = random.nextInt(30);
-		if(index<29)
+		//Choose a number between 1 to 28
+		int index = random.nextInt(29);
+		if(index<28)
 			index=index+1;
 		s.selectByIndex(index);
-		if(index==15||index==29)
+		if(index==14||index==28)
 		{
 			//Other
 			wait.until(ExpectedConditions.visibilityOfElementLocated(Step1ComponentOther)).sendKeys(text);
@@ -339,11 +354,25 @@ public class SRI {
 	public HashMap<String,String> getStep2Data(WebDriver driver)throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait1 = new WebDriverWait(driver,3);
 		HashMap<String,String> storeData = new HashMap<String,String>();
+		WebElement ele;
 		//Get date 1
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1Date)).getAttribute("value");
+		try{
+			ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1Date));
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+			ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1DateFirefox));
+		}
+		String s = ele.getAttribute("value");
 		//Get time 1
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1Time)).getAttribute("value");
+		try{
+			ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1Time));
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+			ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1TimeFirefox));
+		}
+		String s1 = ele.getAttribute("value");
 		//Get Measurement 1
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step2Measurement1Measurement)).getText();
 		//Get value 1

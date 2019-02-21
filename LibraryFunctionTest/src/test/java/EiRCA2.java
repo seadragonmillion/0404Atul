@@ -46,7 +46,7 @@ public class EiRCA2 {
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Sharing updated successfully.");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
-		}catch(org.openqa.selenium.TimeoutException r)
+		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find share save pop up");
 		}
@@ -60,7 +60,7 @@ public class EiRCA2 {
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("PDF successfully built and downloaded");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
-		}catch(org.openqa.selenium.TimeoutException r)
+		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find pdf create pop up");
 		}

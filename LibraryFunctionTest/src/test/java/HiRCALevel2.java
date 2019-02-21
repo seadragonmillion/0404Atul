@@ -214,7 +214,13 @@ public class HiRCALevel2 {
 				}
 				share.scrollToTop(driver);
 				//Click next
+				try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				}catch(org.openqa.selenium.ElementClickInterceptedException r)
+				{
+					obj.scrollToTop(driver);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				}
 			}				
 		}
 		if(index==2)
@@ -231,7 +237,13 @@ public class HiRCALevel2 {
 				}
 				share.scrollToTop(driver);
 				//Click next
+				try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				}catch(org.openqa.selenium.ElementClickInterceptedException r)
+				{
+					obj.scrollToTop(driver);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				}
 			}	
 		}
 		//Check for 2.1 question
@@ -1110,10 +1122,15 @@ public class HiRCALevel2 {
 		for (int i = 0; i < ans.size(); i++)
 		{	
 			int n=ans.get(i).length()-1;
+			try{
 			if (ans.get(i).charAt(n)==' ')
 				newData1 = newData1+ans.get(i);
 			else if (ans.get(i).charAt(n)!=' ')
 				newData1 = newData1+" "+ans.get(i);
+			}catch(java.lang.IllegalArgumentException r)
+			{
+				softly.fail("threw exception: java.lang.IllegalArgumentException \n"+r+"\n"+ans);
+			}
 		}
 		newData1 = newData1.replace("  ", " ");
 		System.out.println(newData1);
