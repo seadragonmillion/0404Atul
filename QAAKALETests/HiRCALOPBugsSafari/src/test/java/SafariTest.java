@@ -60,13 +60,13 @@ public class SafariTest {
 		}	
 		Thread.sleep(4000);
 		//Fill mandatory data
-		obj1.fillUpHiRCAEventInfo(driver,obj1.text);
+		obj1.fillUpHiRCAEventInfo(driver,obj1.text);/*
 		//Bug KALE 1959
 		obj1.bugPath1KALE1959(driver);
 		//Bug KALE 1926
 		obj1.bugPathWith2LopsKALE1926(driver);
 		//Bug KALE 1947
-		obj1.bugPath1KALE1947(driver);
+		obj1.bugPath1KALE1947(driver);*/
 		//Bug KALE 1957
 		obj1.bugKALE1957(driver);
 		//Bug KALE 1846
