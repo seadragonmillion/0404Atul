@@ -66,13 +66,13 @@ public class SafariTest {
 		//Bug KALE 1926
 		obj1.bugPathWith2LopsKALE1926(driver);
 		//Bug KALE 1947
-		obj1.bugPath1KALE1947(driver);*/
+		obj1.bugPath1KALE1947(driver);
 		//Bug KALE 1957
 		obj1.bugKALE1957(driver);
 		//Bug KALE 1846
 		obj1.bugKALE1846(driver);
 		//Bug KALE 1852
-		obj1.bugKALE1852(driver);
+		obj1.bugKALE1852(driver);*/
 		//Bug KALE 2219 and KALE 2246
 		obj1.bugKALE2219KALE2246(driver);
 		//Logout
