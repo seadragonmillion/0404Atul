@@ -4,6 +4,7 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class PassReview {
 	//Basic Info
 	By Reviewer = By.id("pii-3pr-tab-1-reviewer");
 	By DocumentTitle = By.id("pii-3pr-tab-1-title");
+	By DocumentTitleCharacterCount = By.id("pii-3pr-tab-1-title-count");
 	By Organisation = By.id("pii-3pr-tab-1-org");
 	By DocumentType = By.id("pii-3pr-tab-1-doctype");
 	By SaveButton = By.id("pii-3pr-save");
@@ -720,6 +722,37 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
 		obj.loadingServer(driver);
 	}
+	
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(DocumentTitleCharacterCount).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(DocumentTitle)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(DocumentTitle)).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(DocumentTitle)).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
+	}
 
 	public String createReport (WebDriver driver) throws Exception{
 
@@ -743,6 +776,8 @@ public class PassReview {
 		//Clicks on 3 Pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewLink)).click();
 		Thread.sleep(2000);
+		//Check title count reset when characters are entered and deleted
+		checkTitleCountReset(driver);
 		//Fills in mandatory details
 		driver.findElement(Reviewer).sendKeys(text);
 		driver.findElement(DocumentTitle).sendKeys(text);

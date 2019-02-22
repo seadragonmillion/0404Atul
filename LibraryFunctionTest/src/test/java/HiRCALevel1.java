@@ -25,6 +25,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -1632,6 +1633,37 @@ public class HiRCALevel1 {
 		Thread.sleep(2000);
 		return options;
 	}
+	
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(By.id("pii-irca-event-title-count")).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
+	}
 
 	public void HiRCAPathCheck(WebDriver driver, String username) throws Exception {
 
@@ -1645,6 +1677,8 @@ public class HiRCALevel1 {
 		//Clicks on HiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		Thread.sleep(2000);
+		//Check title count reset when characters are entered and deleted
+		checkTitleCountReset(driver);
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(text(driver));
 		//Location of event

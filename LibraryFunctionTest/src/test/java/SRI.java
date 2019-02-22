@@ -4,6 +4,7 @@ import java.util.Random;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,6 +28,7 @@ public class SRI {
 	By SRILink = By.id("pii-a-menu-sri");
 	//Step1
 	By SRIStep1NextButton = By.id("pii-sri-tab-1-form-submit");
+	By Step1TitleCharacterCount = By.id("pii-sri-tab-1-title-count");
 	By Step1EventTitle = By.id("pii-sri-tab-1-title");
 	By Step1InspectionStaff = By.id("pii-sri-tab-1-inspection-staff");
 	By Step1Component = By.id("pii-sri-tab-1-component");
@@ -527,6 +529,37 @@ public class SRI {
 		return recordName;
 	}
 	
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(Step1TitleCharacterCount).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step1EventTitle)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Step1EventTitle)).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Step1EventTitle)).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
+	}
+	
 	public String path_SRI(WebDriver driver)throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -536,6 +569,8 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRILink)).click();
 		//Step 1 check for errors
 		checkForErrorStep1(driver);
+		//Check title count reset when characters are entered and deleted
+		checkTitleCountReset(driver);
 		//Fill Step 1
 		step1DataFill(driver,text);
 		//Get Data from Step 1

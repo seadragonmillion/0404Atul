@@ -21,6 +21,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -87,6 +88,7 @@ public class OPiRCA {
 	By OPiRCANewContributingFactorField = By.id("pii-opa-addnewcf-cf");
 	By OPiRCAAddContributingFactorSaveButton = By.id("pii-opa-addnewcf-save");
 
+	By OPiRCATitleCharacterCount = By.id("pii-opa-event-title-count");
 	By OPiRCAReportCreationDateTimeField = By.id("pii-opa-event-repdatetime");
 	By OPiRCAEventTitleField = By.id("pii-opa-event-title");
 	By OPiRCAEventLocationField = By.id("pii-opa-event-location");
@@ -2107,7 +2109,36 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
-
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(OPiRCATitleCharacterCount).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAEventTitleField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAEventTitleField)).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAEventTitleField)).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
+	}
 	public void reportCreate(WebDriver driver, String username) throws Exception {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -2118,6 +2149,8 @@ public class OPiRCA {
 		op2.verifyNewReportPopup(driver, softly);
 		//Verify Error Messages for mandatory fields on Info page
 		op2.verifyErrorMessagesInfoPage(driver,softly);
+		//Check title count reset when characters are entered and deleted
+		checkTitleCountReset(driver);
 		//Fills the mandatory fields
 		driver.findElement(OPiRCAEventTitleField).sendKeys(text);
 		driver.findElement(OPiRCAEventLocationField).sendKeys(text);

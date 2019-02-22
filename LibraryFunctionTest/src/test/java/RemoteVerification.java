@@ -44,6 +44,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -84,6 +85,7 @@ public class RemoteVerification {
 	By RVEventTitle = By.id("pii-rv-tab-1-title");
 	By RVEventDetails = By.id("pii-rv-tab-1-details");
 	By RVVerifierValue = By.id("pii-rv-verifier-name");
+	By RVTitleCharacterCount = By.id("pii-rv-tab-1-title-count");
 
 	By RVNewlyCreatedFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a");
 	By RVSidePanel = By.id("pii-user-home-panel-btn-rv");
@@ -1292,6 +1294,37 @@ public class RemoteVerification {
 				upload1stpictureIE11(driver);
 		}
 	}
+	
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(RVTitleCharacterCount).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVEventTitle)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(RVEventTitle)).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(RVEventTitle)).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
+	}
 
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 
@@ -1307,6 +1340,8 @@ public class RemoteVerification {
 		}
 		//Clicks on Remote Verification
 		driver.findElement(RVLink).click();
+		//Check title count reset when characters are entered and deleted
+		checkTitleCountReset(driver);
 		//Fills the mandatory fields
 		driver.findElement(RVEventTitle).sendKeys(eventTitle(driver));
 		driver.findElement(RVEventDetails).sendKeys(details(driver));

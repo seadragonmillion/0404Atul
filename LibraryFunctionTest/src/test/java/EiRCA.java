@@ -63,6 +63,7 @@ public class EiRCA {
 	By NextButtonBottomOfInfoPage = By.id("pii-ircam-tab-1-form-submit");
 	By ReportCreationDateField = By.id("pii-ircam-tab-1-repdatetime");
 	By EiRCASaveButton = By.id("pii-ircam-save");
+	By TitleCharacterCount = By.id("pii-ircam-tab-1-title-count");
 
 	//Save pop up
 	By EiRCAPopupHeader = By.id("pii-ircam-dialog-header");
@@ -248,15 +249,21 @@ public class EiRCA {
 	By HTMLStep4Table2Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[4]/table/tbody/tr[5]/td[2]");
 	By HTMLStep4Table2Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[4]/table/tbody/tr[6]/td[2]");
 	By HTMLStep4Table2Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[4]/table/tbody/tr[7]/td[2]");
+	//Step 3 skipped
+	By HTMLTable7Step3Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]");
 	//Skipped steps 4,5,6,7
 	By HTMLStep4SkippedRCA = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]");
+	By HTMLStep4SkippedRCA2 = By.xpath(".//*[@id='mirca-rpt']/div[8]");
 	By HTMLStep4SkippedTr = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[1]");
 	By HTMLStep4SkippedTr1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[2]");
 	By HTMLStep5Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]");
+	By HTMLStep5Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[9]");
 	By HTMLStep6Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[6]");
 	By HTMLStep6Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]");
+	By HTMLStep6Skipped3 = By.xpath(".//*[@id='mirca-rpt']/div[10]");
 	By HTMLStep7Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]");
 	By HTMLStep7Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]");
+	By HTMLStep7Skipped3 = By.xpath(".//*[@id='mirca-rpt']/div[11]");
 	//Step 5
 	By HTMLTable14Step5Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[7]/table/tbody/tr[1]/td[2]");
 	By HTMLTable14Step5Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[8]/table/tbody/tr[1]/td[2]");
@@ -620,6 +627,7 @@ public class EiRCA {
 	public void verifyHTML(WebDriver driver,HashMap<String,String>hm, String text, int n,int x, int y, int z, String ans1, String ans2, String ans3, HashMap<String,Integer> c)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EiRCAFirstRecord)).click();
 		ShareCheck obj1 = new ShareCheck();
@@ -692,18 +700,43 @@ public class EiRCA {
 		//Verify Step 5,6,7 skipped when there is some selections in Step 3
 		if(n>0)
 		{
-			String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA)).getText();
+			WebElement ele;
+			try{
+				ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA));
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA2));
+			}
+			String s12 = ele.getText();
 			if(ans1.contains("Root Cause Analysis"))
-				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (not applicable)");
+				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (skipped)");
 			else{
 				softly.assertThat(s12).as("test data").contains("Step 4 - Probability of Occurrence and Actions");
 				softly.assertThat(s12).as("test data").contains("Unrefuted failure modes are shown from highest to lowest probability of occurence.");
 			}
-			String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep5Skipped)).getText();
+			try{
+				ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep5Skipped));
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep5Skipped2));
+			}
+			String s13 = ele.getText();
 			softly.assertThat(s13).as("test data").isEqualTo("Step 5 - Identify Possible Contributing Factors (skipped)");
-			String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped)).getText();
+			try{
+				ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped));
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep6Skipped3));
+			}
+			String s17 = ele.getText();
 			softly.assertThat(s17).as("test data").isEqualTo("Step 6 - Determine Contributing Factors (skipped)");
-			String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Skipped)).getText();
+			try{
+				ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Skipped));
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep7Skipped3));
+			}
+			String s18 = ele.getText();
 			softly.assertThat(s18).as("test data").contains("Step 7 - Root Causes Determination Checklist (SUEP");
 			softly.assertThat(s18).as("test data").contains("(skipped)");
 		}
@@ -711,8 +744,15 @@ public class EiRCA {
 			//Verify step 4 skipped
 			if(ans1.contains("Root Cause Analysis"))
 			{
-				String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA)).getText();
-				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (not applicable)");
+				WebElement ele;
+				try{
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA));
+				}catch(org.openqa.selenium.TimeoutException t)
+				{
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA2));
+				}
+				String s12 = ele.getText();
+				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (skipped)");
 				//Verify step5 skipped
 				if(y==0)
 				{
@@ -1843,6 +1883,7 @@ public class EiRCA {
 		//Save report
 		saveEiRCAReport(driver);
 		//Verify no text is visible in step 3 table
+		try{
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row1Column4)).getText();
 		softly.assertThat(s6).as("test data").isEmpty();
 		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row2Column4)).getText();
@@ -1855,6 +1896,11 @@ public class EiRCA {
 		softly.assertThat(s10).as("test data").isEmpty();
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Row6Column4)).getText();
 		softly.assertThat(s11).as("test data").isEmpty();
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable7Step3Skipped)).getText();
+			softly.assertThat(s6).as("test data").isEqualTo("Step 3 - Statements of Refutability (skipped)");
+		}
 		//Open Report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();
@@ -2986,7 +3032,7 @@ public class EiRCA {
 	public String textCreate(WebDriver driver) throws Exception {
 
 		if(driver.getCurrentUrl().contains("kaleqa"))
-			return ("Sanity <script> Test \"title\" Sanity");
+			return ("Sanity <td> Test \"title\" Sanity");
 		else
 			return("Sanity Test \"title\" Sanity");
 	}
@@ -2994,6 +3040,38 @@ public class EiRCA {
 	public String textCreate1() throws Exception {
 
 		return("Sanity Test");
+	}
+	
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(TitleCharacterCount).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		EiRCAChinese obj = new EiRCAChinese();
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAEventTitleField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAEventTitleField)).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EiRCAEventTitleField)).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
 	}
 
 	public HashMap<String,String> reportCreate(WebDriver driver,String username) throws Exception {
@@ -3012,6 +3090,8 @@ public class EiRCA {
 		obj1.verifyNewReportPopup(driver, softly);
 		//Verify Error Messages for mandatory fields on Info page
 		obj1.verifyErrorMessagesInfoPage(driver,softly);
+		//Check title count reset when characters are entered and deleted
+		checkTitleCountReset(driver);
 		//Fills all mandatory fields
 		driver.findElement(obj.EiRCAEventTitleField).sendKeys(text);
 		driver.findElement(obj.EiRCAEventLocationField).sendKeys(text);

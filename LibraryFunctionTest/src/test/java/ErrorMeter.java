@@ -28,6 +28,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ErrorMeter {
 
 	SoftAssertions softly = new SoftAssertions();
+	//Firs page of module
+	By JobTitleCharacterCount = By.id("pii-epm-job-title-count");
 
 	//HTML
 	By ErrorMeterEnvironmentSupportingReason1 = By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]");
@@ -1111,16 +1113,8 @@ public class ErrorMeter {
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ShareCheck obj = new ShareCheck();
 		//Closes any warning from server
-		try{
-
-			//CLoses server warning
-			String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
-			System.out.println(s);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
-		}catch (org.openqa.selenium.TimeoutException e)
-		{
-
-		}
+		Login obj1 = new Login();
+		obj1.closePopUpSticky(driver);
 		//Clicks on checkboxes in Procedure Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1"))).click();
 		Thread.sleep(500);
@@ -1476,7 +1470,6 @@ public class ErrorMeter {
 		meterText = meter.getText();
 		System.out.println(meterText);
 		softly.assertThat("0%").as("test data").isEqualTo(meterText);
-
 	}
 
 	public void downloadReportIE(WebDriver driver, int y) throws Exception {
@@ -1953,6 +1946,54 @@ public class ErrorMeter {
 		String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorMeterEnvironmentSPVNonIssue4)).getText();
 		softly.assertThat(textsp8).as("test data").isEqualTo("Non-Issue");
 	}
+	
+	public void checkTitleCount(WebDriver driver) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
+		//Click on Analysis on top
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+		//Click on Error Meter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
+		//Check title count 
+		checkTitleCountReset(driver);
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))).click();
+		obj.loadingServer(driver);
+		//Click on 1st record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+		obj.loadingServer(driver);
+	}
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+		
+		//Get count of characters
+		String s = driver.findElement(JobTitleCharacterCount).getText();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void checkTitleCountReset(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys("aaaa");
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		if(count!=4)
+			softly.fail("Count did not match: aaaa: " + count);
+		//Clear text
+		for(int i=0;i<4;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(250);
+		}
+		count = getCharCountFromTitle(driver);
+		if(count!=1)
+			softly.fail("Count did not match: aaaa: " + count);
+	}
 
 	public void reportCheck0(WebDriver driver) throws Exception{
 
@@ -1962,137 +2003,14 @@ public class ErrorMeter {
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			reportCheck0Dev(driver);
-		else{
-			//Compare Environment data
-			//Supporting reasons
-			String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text1E).as("test data").isEqualTo("");
-			String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text2E).as("test data").isEqualTo("");
-			String text3E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text3E).as("test data").isEqualTo("");
-			String text4E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text4E).as("test data").isEqualTo("");
-			//Corrective actions
-			String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text5E).as("test data").isEqualTo("");    	
-			String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text6E).as("test data").isEqualTo("");    	
-			String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text7E).as("test data").isEqualTo("");    	
-			String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text8E).as("test data").isEqualTo("");
-
-
-			//Compare People data
-			//Supporting reasons
-			String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text9E).as("test data").isEqualTo("");    	
-			String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text10E).as("test data").isEqualTo("");    	
-			String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text11E).as("test data").isEqualTo("");    	
-			String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text12E).as("test data").isEqualTo("");    	
-			//Corrective actions
-			String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text13E).as("test data").isEqualTo("");    	
-			String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text14E).as("test data").isEqualTo("");    	
-			String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text15E).as("test data").isEqualTo("");    	
-			String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text16E).as("test data").isEqualTo("");
-
-
-			//Compare Activity data
-			//Supporting reasons
-			String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text17E).as("test data").isEqualTo("");    	
-			String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text18E).as("test data").isEqualTo("");    	
-			String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text19E).as("test data").isEqualTo("");    	
-			String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text20E).as("test data").isEqualTo("");    	
-			//Corrective actions
-			String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text21E).as("test data").isEqualTo("");    	
-			String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text22E).as("test data").isEqualTo("");    	
-			String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text23E).as("test data").isEqualTo("");    	
-			String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text24E).as("test data").isEqualTo("");    	
-
-			//Compare Procedure data
-			//Supporting reasons
-			String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text25E).as("test data").isEqualTo("");    	
-			String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text26E).as("test data").isEqualTo("");    	
-			String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text27E).as("test data").isEqualTo("");    	
-			String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text28E).as("test data").isEqualTo("");    	
-			//Corrective actions
-			String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text29E).as("test data").isEqualTo("");    	
-			String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text30E).as("test data").isEqualTo("");    	
-			String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text31E).as("test data").isEqualTo("");    	
-			String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text32E).as("test data").isEqualTo("");
-
-			//Checks for Non issue
-			//Procedure
-			String textsp1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textsp1).as("test data").isEqualTo("Non-Issue");
-			String textnon1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textnon1).as("test data").isEqualTo("Non-Issue");
-			String textsp2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textsp2).as("test data").isEqualTo("Non-Issue");
-			String textnon2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textnon2).as("test data").isEqualTo("Non-Issue");
-
-			//Activity
-			String textnon3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textnon3).as("test data").isEqualTo("Non-Issue");
-			String textsp3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textsp3).as("test data").isEqualTo("Non-Issue");
-			String textnon4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textnon4).as("test data").isEqualTo("Non-Issue");
-			String textsp4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textsp4).as("test data").isEqualTo("Non-Issue");
-
-			//People
-			String textnon5=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textnon5).as("test data").isEqualTo("Non-Issue");
-			String textsp5=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textsp5).as("test data").isEqualTo("Non-Issue");
-			String textsp6=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textsp6).as("test data").isEqualTo("Non-Issue");
-			String textnon6=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textnon6).as("test data").isEqualTo("Non-Issue");
-
-			//Environment
-			String textsp7=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textsp7).as("test data").isEqualTo("Non-Issue");
-			String textnon7=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textnon7).as("test data").isEqualTo("Non-Issue");
-			String textnon8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textnon8).as("test data").isEqualTo("Non-Issue");
-			String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textsp8).as("test data").isEqualTo("Non-Issue");
-		}
+		reportCheck0Dev(driver);
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText();
 		System.out.println(probabilityText);
-		softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);		
+		softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);	
+		//Check the title count
+		checkTitleCount(driver);
 	}
 
 	public void reportCheck50Dev (WebDriver driver) throws Exception{
@@ -2242,138 +2160,13 @@ public class ErrorMeter {
 
 	public void reportCheck50(WebDriver driver) throws Exception{
 
-		List<String> text = error50Data(driver);
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		int j=text.size()-1;
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			reportCheck50Dev(driver);
-		else{
-			//Compare Environment data
-			//Supporting reasons
-			String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text1E).as("test data").isEqualTo(text.get(j--));
-			String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text2E).as("test data").isEqualTo("");
-			String text3E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text3E).as("test data").isEqualTo("");
-			String text4E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text4E).as("test data").isEqualTo(text.get(j--));
-			//Corrective actions
-			String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text5E).as("test data").isEqualTo(text.get(j--));
-			String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text6E).as("test data").isEqualTo("");
-			String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text7E).as("test data").isEqualTo("");
-			String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text8E).as("test data").isEqualTo(text.get(j--));
-
-			//Compare People data
-			//Supporting reasons
-			String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text9E).as("test data").isEqualTo("");
-			String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text10E).as("test data").isEqualTo(text.get(j--));
-			String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text11E).as("test data").isEqualTo(text.get(j--));
-			String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text12E).as("test data").isEqualTo("");
-			//Corrective actions
-			String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text13E).as("test data").isEqualTo("");
-			String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text14E).as("test data").isEqualTo(text.get(j--));
-			String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text15E).as("test data").isEqualTo(text.get(j--));
-			String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text16E).as("test data").isEqualTo("");
-
-			//Compare Activity data
-			//Supporting reasons
-			String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text17E).as("test data").isEqualTo("");
-			String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text18E).as("test data").isEqualTo(text.get(j--));
-			String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text19E).as("test data").isEqualTo("");
-			String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text20E).as("test data").isEqualTo(text.get(j--));
-			//Corrective actions
-			String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text21E).as("test data").isEqualTo("");
-			String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text22E).as("test data").isEqualTo(text.get(j--));
-			String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text23E).as("test data").isEqualTo("");
-			String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text24E).as("test data").isEqualTo(text.get(j--));
-
-			//Compare Procedure data
-			//Supporting reasons
-			String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text25E).as("test data").isEqualTo(text.get(j--));
-			String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text26E).as("test data").isEqualTo("");
-			String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text27E).as("test data").isEqualTo(text.get(j--));
-			String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text28E).as("test data").isEqualTo("");
-			//Corrective actions
-			String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text29E).as("test data").isEqualTo(text.get(j--));
-			String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text30E).as("test data").isEqualTo("");
-			String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text31E).as("test data").isEqualTo(text.get(j--));
-			String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text32E).as("test data").isEqualTo("");
-
-			//Checks for SPV and non issue
-			//Procedure
-			String textsp1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textsp1).as("test data").isEqualTo("SPV");
-			String textnon1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textnon1).as("test data").isEqualTo("Non-Issue");
-			String textsp2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textsp2).as("test data").isEqualTo("SPV");
-			String textnon2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textnon2).as("test data").isEqualTo("Non-Issue");
-
-			//Activity
-			String textnon3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textnon3).as("test data").isEqualTo("Non-Issue");
-			String textsp3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textsp3).as("test data").isEqualTo("SPV");
-			String textnon4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textnon4).as("test data").isEqualTo("Non-Issue");
-			String textsp4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textsp4).as("test data").isEqualTo("SPV");
-
-			//People
-			String textnon5=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textnon5).as("test data").isEqualTo("Non-Issue");
-			String textsp5=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textsp5).as("test data").isEqualTo("SPV");
-			String textsp6=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textsp6).as("test data").isEqualTo("SPV");
-			String textnon6=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textnon6).as("test data").isEqualTo("Non-Issue");
-
-			//Environment
-			String textsp7=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textsp7).as("test data").isEqualTo("SPV");
-			String textnon7=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textnon7).as("test data").isEqualTo("Non-Issue");
-			String textnon8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textnon8).as("test data").isEqualTo("Non-Issue");
-			String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textsp8).as("test data").isEqualTo("SPV");
-		}
+		reportCheck50Dev(driver);
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText();
@@ -2544,141 +2337,13 @@ public class ErrorMeter {
 
 	public void reportCheck100(WebDriver driver) throws Exception{
 
-		List<String> text = error100Data(driver);
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		int j=text.size()-1;
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
 		obj.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			reportCheck100Dev(driver);
-		else{
-			//Compare Environment data
-			//Supporting reasons
-			String text1E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text1E).as("test data").isEqualTo(text.get(j--));
-			String text2E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text2E).as("test data").isEqualTo(text.get(j--));
-			String text3E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text3E).as("test data").isEqualTo(text.get(j--));
-			String text4E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text4E).as("test data").isEqualTo(text.get(j--));
-			//Corrective actions
-			String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text5E).as("test data").isEqualTo(text.get(j--));    	
-			String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text6E).as("test data").isEqualTo(text.get(j--));    	
-			String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text7E).as("test data").isEqualTo(text.get(j--));    	
-			String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text8E).as("test data").isEqualTo(text.get(j--));
-
-
-			//Compare People data
-			//Supporting reasons
-			String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text9E).as("test data").isEqualTo(text.get(j--));    	
-			String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text10E).as("test data").isEqualTo(text.get(j--));    	
-			String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text11E).as("test data").isEqualTo(text.get(j--));    	
-			String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text12E).as("test data").isEqualTo(text.get(j--));    	
-			//Corrective actions
-			String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text13E).as("test data").isEqualTo(text.get(j--));    	
-			String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text14E).as("test data").isEqualTo(text.get(j--));    	
-			String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text15E).as("test data").isEqualTo(text.get(j--));    	
-			String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text16E).as("test data").isEqualTo(text.get(j--));
-
-
-			//Compare Activity data
-			//Supporting reasons
-			String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text17E).as("test data").isEqualTo(text.get(j--));    	
-			String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text18E).as("test data").isEqualTo(text.get(j--));    	
-			String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text19E).as("test data").isEqualTo(text.get(j--));    	
-			String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text20E).as("test data").isEqualTo(text.get(j--));    	
-			//Corrective actions
-			String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text21E).as("test data").isEqualTo(text.get(j--));    	
-			String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text22E).as("test data").isEqualTo(text.get(j--));    	
-			String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text23E).as("test data").isEqualTo(text.get(j--));    	
-			String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text24E).as("test data").isEqualTo(text.get(j--));
-
-
-			//Compare Procedure data
-			//Supporting reasons
-			String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[3]"))).getText();
-			softly.assertThat(text25E).as("test data").isEqualTo(text.get(j--));    	
-			String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[3]"))).getText();
-			softly.assertThat(text26E).as("test data").isEqualTo(text.get(j--));    	
-			String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[3]"))).getText();
-			softly.assertThat(text27E).as("test data").isEqualTo(text.get(j--));    	
-			String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[3]"))).getText();
-			softly.assertThat(text28E).as("test data").isEqualTo(text.get(j--));    	
-			//Corrective actions
-			String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[4]"))).getText();
-			softly.assertThat(text29E).as("test data").isEqualTo(text.get(j--));    	
-			String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[4]"))).getText();
-			softly.assertThat(text30E).as("test data").isEqualTo(text.get(j--));    	
-			String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[4]"))).getText();
-			softly.assertThat(text31E).as("test data").isEqualTo(text.get(j--));    	
-			String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[4]"))).getText();
-			softly.assertThat(text32E).as("test data").isEqualTo(text.get(j--));
-
-			//Checks for SPV
-			//Procedure
-			String textsp1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textsp1).as("test data").isEqualTo("SPV");
-			String textnon1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textnon1).as("test data").isEqualTo("SPV");
-			String textsp2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textsp2).as("test data").isEqualTo("SPV");
-			String textnon2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textnon2).as("test data").isEqualTo("SPV");
-
-			//Activity
-			String textnon3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textnon3).as("test data").isEqualTo("SPV");
-			String textsp3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textsp3).as("test data").isEqualTo("SPV");
-			String textnon4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textnon4).as("test data").isEqualTo("SPV");
-			String textsp4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textsp4).as("test data").isEqualTo("SPV");
-
-			//People
-			String textnon5=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textnon5).as("test data").isEqualTo("SPV");
-			String textsp5=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textsp5).as("test data").isEqualTo("SPV");
-			String textsp6=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textsp6).as("test data").isEqualTo("SPV");
-			String textnon6=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textnon6).as("test data").isEqualTo("SPV");
-
-			//Environment
-			String textsp7=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[2]/td[1]"))).getText();
-			softly.assertThat(textsp7).as("test data").isEqualTo("SPV");
-			String textnon7=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[3]/td[1]"))).getText();
-			softly.assertThat(textnon7).as("test data").isEqualTo("SPV");
-			String textnon8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[4]/td[1]"))).getText();
-			softly.assertThat(textnon8).as("test data").isEqualTo("SPV");
-			String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]"))).getText();
-			softly.assertThat(textsp8).as("test data").isEqualTo("SPV");
-		}
+		reportCheck100Dev(driver);
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText();
@@ -2980,5 +2645,4 @@ public class ErrorMeter {
 		softly.assertAll();
 		System.gc();
 	}
-
 }

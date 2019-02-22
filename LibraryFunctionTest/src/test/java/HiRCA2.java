@@ -279,5 +279,6 @@ public class HiRCA2 {
 		//Click on HiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		//Verify the language as chinese in test		
+		obj.loadingServer(driver);
 	}	
 }

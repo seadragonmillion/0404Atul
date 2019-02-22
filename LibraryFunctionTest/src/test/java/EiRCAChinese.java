@@ -1639,10 +1639,7 @@ public class EiRCAChinese {
 		softly.assertThat(s58).as("test data").contains("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
 		c.add("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
 		String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row4Column2)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s59).as("test data").contains("是");
-		else
-			softly.assertThat(s59).as("test data").contains("不适用");
+		softly.assertThat(s59).as("test data").contains("是");
 		//Row 5
 		String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3HTMLTable7Row5Column1)).getText();
 		softly.assertThat(s60).as("test data").contains("4.5: 该故障模式是否与老化有关且与老化超出预期寿命的故障子部件有关？");
@@ -2146,10 +2143,7 @@ public class EiRCAChinese {
 		softly.assertThat(s58).as("test data").contains("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
 		c.add("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
 		String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable8Row4Column2)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
-			softly.assertThat(s59).as("test data").contains("不适用");
-		else
-			softly.assertThat(s59).as("test data").isEmpty();
+		softly.assertThat(s59).as("test data").contains("不适用");
 		//Row 5
 		String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLTable8Row5Column1)).getText();
 		softly.assertThat(s60).as("test data").contains("4.5: 该故障模式是否与老化有关且与老化超出预期寿命的故障子部件有关？");
@@ -2663,10 +2657,7 @@ public class EiRCAChinese {
 		String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row4Column1)).getText();
 		softly.assertThat(s58).as("test data").contains("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
 		String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row4Column2)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s59).as("test data").contains("是");
-		else
-			softly.assertThat(s59).as("test data").contains("不适用");
+		softly.assertThat(s59).as("test data").contains("是");		
 		//Row 5
 		String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(Path3ReportTabTable7Row5Column1)).getText();
 		softly.assertThat(s60).as("test data").contains("4.5: 该故障模式是否与老化有关且与老化超出预期寿命的故障子部件有关？");
@@ -3196,10 +3187,7 @@ public class EiRCAChinese {
 		String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable8Row4Column1)).getText();
 		softly.assertThat(s58).as("test data").contains("4.4: 该故障模式是否与设计、运行或维修活动（活动后立即发生的）有关？");
 		String s59 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable8Row4Column2)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
-			softly.assertThat(s59).as("test data").contains("不适用");
-		else
-			softly.assertThat(s59).as("test data").isEmpty();
+		softly.assertThat(s59).as("test data").contains("不适用");
 		//Row 5
 		String s60 = wait.until(ExpectedConditions.visibilityOfElementLocated(ReportTabTable8Row5Column1)).getText();
 		softly.assertThat(s60).as("test data").contains("4.5: 该故障模式是否与老化有关且与老化超出预期寿命的故障子部件有关？");

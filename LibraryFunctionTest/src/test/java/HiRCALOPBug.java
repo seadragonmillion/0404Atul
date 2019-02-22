@@ -249,29 +249,29 @@ public class HiRCALOPBug {
 		softly.assertThat(s).as("test data").contains("Were there LOPs in place to prevent the triggering event?");
 		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(s13).as("test data").contains("[2.0] What were the failed LOPs (3 max) that caused this event to happen?");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]"))).getText().trim();
 		softly.assertThat(s1).as("test data").isEqualTo("Briefings (PJB, MJB, PSM, TO, etc.)");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]"))).getText().trim();
 		softly.assertThat(s2).as("test data").isEqualTo("Concurrent check");
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]"))).getText().trim();
 		softly.assertThat(s3).as("test data").isEqualTo("Error-proof design");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]"))).getText().trim();
 		softly.assertThat(s4).as("test data").isEqualTo("Independent check");
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]"))).getText().trim();
 		softly.assertThat(s5).as("test data").isEqualTo("JIT alarm");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]"))).getText().trim();
 		softly.assertThat(s6).as("test data").isEqualTo("JIT reminder (signage, not-to do postings)");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]"))).getText().trim();
 		softly.assertThat(s7).as("test data").isEqualTo("Passive protection (safety net, fall protection, air bags, safety belt, etc.)");
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]"))).getText().trim();
 		softly.assertThat(s8).as("test data").isEqualTo("Peer coaching");
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]"))).getText();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]"))).getText().trim();
 		softly.assertThat(s9).as("test data").isEqualTo("Review (PNR, Technical review)");
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]"))).getText();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]"))).getText().trim();
 		softly.assertThat(s10).as("test data").isEqualTo("Self-check");
-		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[12]"))).getText();
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[12]"))).getText().trim();
 		softly.assertThat(s11).as("test data").isEqualTo("Supervisory intervention");
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[13]"))).getText();
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[13]"))).getText().trim();
 		softly.assertThat(s12).as("test data").contains("Other:");
 	}
 
@@ -988,6 +988,7 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCALevel1 obj = new HiRCALevel1();
 		HiRCA2 obj1 = new HiRCA2();
+		ShareCheck obj2 = new ShareCheck();
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCANewReportButton)).click();
 		//Verify new report pop up
@@ -1091,6 +1092,7 @@ public class HiRCALOPBug {
 		if(s2.contains("ui-checkbox-on")==false)
 			softly.fail("LOP is not selected in 2.21");
 		//Click next
+		obj2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 	}
@@ -1110,7 +1112,8 @@ public class HiRCALOPBug {
 			obj.scrollToAPoint(driver, 1100);
 		}
 		//Click on a lop
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+y+"']"))).click();		
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+y+"']"))));		
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
 		Thread.sleep(2000);
