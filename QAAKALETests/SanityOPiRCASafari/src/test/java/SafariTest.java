@@ -76,13 +76,13 @@ public class SafariTest {
 		 * 6=admin ie11
 		 * 7=non admin ie11
 		 */
-		obj1.shareReport(driver, username, password, 0);
+		obj1.shareReport(driver, username, password, 1);
 		//Mark critical integer same as shareReport
-		obj1.markCritical(driver,username, password,0);
+		obj1.markCritical(driver,username, password,1);
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"));
 		String recordName = record.getText();
 		//Deletes the newly created record, integer same as shareReport
-		obj1.deleteNewRecord(driver, recordName,0);
+		obj1.deleteNewRecord(driver, recordName,1);
 		//Logs out
 		obj.logout(driver);
 		afterTest(obj1);		 
