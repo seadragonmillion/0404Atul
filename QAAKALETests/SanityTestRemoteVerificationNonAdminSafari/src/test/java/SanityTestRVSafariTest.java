@@ -11,10 +11,11 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SanityTestRVSafariTest {
 
-	private WebDriver driver;
+	private RemoteWebDriver driver;
 	private String username ="ritica_only_nonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String url = "https://kaleqa.error-free.com/";
@@ -26,7 +27,7 @@ public class SanityTestRVSafariTest {
 		System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
 		SafariOptions options = new SafariOptions();
 		options.setUseTechnologyPreview(true);
-		driver = new SafariDriver(options);
+		driver = new RemoteWebDriver(options);
 		//Browser is maximized
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
