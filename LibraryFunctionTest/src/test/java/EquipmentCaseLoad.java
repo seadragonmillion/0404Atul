@@ -25,6 +25,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EquipmentCaseLoad {
 
+
+	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
+	CreateEquipPageObj equipObj = new CreateEquipPageObj();
+	
 	String keyword1eq = "Slide100imageseq";
 	String keyword2eq = "Slide100NoImageseq";
 	String keyword3eq = "Slide100Images50eq";
@@ -62,7 +66,6 @@ public class EquipmentCaseLoad {
 	public void selectFields(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -72,35 +75,34 @@ public class EquipmentCaseLoad {
 			if (v.startsWith("10")==true)
 			{
 				//Fields
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFields)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFields)).sendKeys(Keys.ENTER);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).sendKeys(Keys.ENTER);
 			}
 			if (v.startsWith("11")==true)
 			{
 				//Fields
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFields)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).click();
 			}
 		}
 		else{
 			//Fields
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFields)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).click();
 		}
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListBoxFields));	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxFields));	
 		//Click all fields
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListFieldsAuto)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsAuto)).click();
 		try{
-			driver.findElement(obj.ListCrossSymbol).click();
+			driver.findElement(equipObj.ListCrossSymbol).click();
 		}catch (NoSuchElementException | ElementNotInteractableException e)
 		{
-			driver.findElement(obj.EquipListBoxFieldsCrossSymbol).click();
+			driver.findElement(equipObj.EquipListBoxFieldsCrossSymbol).click();
 		}
 	}
 	
 	public void selectDiscipline(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -110,41 +112,40 @@ public class EquipmentCaseLoad {
 			if (v.startsWith("10")==true)
 			{
 				//Discipline
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDiscipline)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDiscipline)).sendKeys(Keys.ENTER);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDiscipline)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDiscipline)).sendKeys(Keys.ENTER);
 			}
 			if (v.startsWith("11")==true)
 			{
 				//Discipline
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDiscipline)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDiscipline)).click();
 			}
 		}
 		else{
 			//Discipline
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDiscipline)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDiscipline)).click();
 		}
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListBoxDiscipline));	 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxDiscipline));	 
 		if (browserName.contains("internet")==true)
 		{
-			obj.clickTypesDisciplineIE(driver, obj.EquipListDisciplineElectrical);
+			equip3.clickTypesDisciplineIE(driver, equipObj.EquipListDisciplineElectrical);
 		}
 		else
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListDisciplineElectrical)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListDisciplineElectrical)).click();
 		}
 		try{
-			driver.findElement(obj.ListCrossSymbol).click();
+			driver.findElement(equipObj.ListCrossSymbol).click();
 		}catch (NoSuchElementException | ElementNotInteractableException e)
 		{
-			driver.findElement(obj.EquipListBoxDisciplineCrossSymbol).click();
+			driver.findElement(equipObj.EquipListBoxDisciplineCrossSymbol).click();
 		}
 	}
 	
 	public void selectTypes (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -156,34 +157,34 @@ public class EquipmentCaseLoad {
 			if (v.startsWith("10")==true)
 			{
 				//Type
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).sendKeys(Keys.ENTER);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).sendKeys(Keys.ENTER);
 			}
 			if (v.startsWith("11")==true)
 			{
 				//Type
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
 			}
 		}
 		else{
 			//Type
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
 		}
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListBoxTypes));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxTypes));
 		if (browserName.contains("internet"))
 		{
-			obj.clickTypesDisciplineIE(driver, obj.EquipListTypesAdvancedLearning);	
+			equip3.clickTypesDisciplineIE(driver, equipObj.EquipListTypesAdvancedLearning);	
 		}
 		else
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesAdvancedLearning)).click();	
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesAdvancedLearning)).click();	
 		}
 		try{
-			driver.findElement(obj.ListCrossSymbol).click();
+			driver.findElement(equipObj.ListCrossSymbol).click();
 		}catch (NoSuchElementException | ElementNotInteractableException e)
 		{
-			driver.findElement(obj.EquipListBoxTypesCrossSymbol).click();
+			driver.findElement(equipObj.EquipListBoxTypesCrossSymbol).click();
 		}
 	}
 

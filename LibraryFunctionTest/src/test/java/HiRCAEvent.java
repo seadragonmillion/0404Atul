@@ -1267,6 +1267,140 @@ public class HiRCAEvent {
 		Thread.sleep(1000);		  
 	}
 
+	public void uploadFiveImagesSafari(WebDriver driver, String username, String reportTitle) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		ShareCheck obj = new ShareCheck();
+		HiRCA2 obj1 = new HiRCA2();
+		String filepath = "/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide1.jpg";
+		int n=500;
+		for (int j=0; j<5; j++)
+		{
+
+			//Click on Supporting file details
+			Thread.sleep(500);
+			String id = "pii-irca-event-filecollapsible-"+j;
+			String file = "pii-irca-event-file-"+j;
+			obj.scrollToElement(driver, driver.findElement(By.id(id)));			
+			while(true)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(id))).click();
+			/*	Actions act = new Actions(driver);
+				act.click(wait.until(ExpectedConditions.elementToBeClickable(By.id(id)))).build().perform();*/
+				//driver.findElement(By.xpath(".//*[@id='"+id+"']/h4/a")).click();
+				if(driver.findElement(By.id(file)).isDisplayed())
+					break;
+			}
+			//Uploads file
+			WebElement l=driver.findElement(By.id(file));
+			obj.scrollToElement(driver, l);
+			l.sendKeys(filepath);
+			String img = "pii-irca-event-file-img-"+j;
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+			if(driver.findElement(By.id(img)).isDisplayed())
+			{
+				//delete file
+				String del = "pii-irca-event-file-remove-"+j;
+				Thread.sleep(1000);
+				jse.executeScript("arguments[0].click();", driver.findElement(By.id(del))); 			
+				//Delete file pop up
+				obj1.verifyDeleteFilePopup(driver, softly, j+1);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				if(j!=0)
+				{
+					jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-irca-addnewfile-button")));
+					Thread.sleep(1000);
+					n=n+80;
+					String scroll = "scroll(0,"+n+")";
+					jse.executeScript(scroll);
+				}
+				//Click on Supporting file details
+				jse.executeScript("arguments[0].click();", driver.findElement(By.id(id)));
+				//Fill title and description
+				String title_id="pii-irca-event-file-title-"+j;
+				driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
+				String desc = "pii-irca-event-file-description-"+j;
+				driver.findElement(By.id(desc)).sendKeys("Description0"+j);
+				//re-upload file
+				driver.findElement(By.id(file)).sendKeys(filepath);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+				Thread.sleep(2000);
+				if(driver.findElement(By.id(img)).isDisplayed())
+				{
+					//rotate file
+					String rotate= "pii-irca-event-file-rotate-"+j;
+					l=driver.findElement(By.id(rotate));
+					obj.scrollToElement(driver, l);/*
+					for(int r=0;r<=j;r++)
+					{
+						Thread.sleep(2000);
+						if(j==4)
+							obj.scrollToAPoint(driver, 1100);
+
+						l.click();
+					}*/
+				}
+				Thread.sleep(2000);
+				//Debug
+				//Clicks on save without images
+				obj.scrollToTop(driver);
+				Thread.sleep(2000);
+				//Clicks on Save
+				driver.findElement(By.id("efi-irca-button-save")).click();
+				//Save pop verify
+				obj1.verifySavePopup(driver, softly);
+				//Clicks on Save report
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				//Verify save sticky
+				obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
+				Thread.sleep(1500);
+				obj1.verifySticky1ImageUploaded(driver,softly);
+				//Wait for loading message to disappear
+				obj.loadingServer(driver); 
+				jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				Thread.sleep(1000);
+				if(driver.findElement(By.id(img)).isDisplayed())
+				{
+					obj.scrollToAPoint(driver, 2200);
+					//Click on attach another file
+					Thread.sleep(2000);
+					WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
+					add.click();
+				}
+
+			}
+		}
+		//Delete 3rd image
+		obj.scrollToAPoint(driver, 600);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)));
+		//Click on last collapsible
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))));
+		//Fill title and description
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
+		//Upload image
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-4"))).sendKeys(filepath);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
+		Thread.sleep(2000);
+		//Clicks on save without images
+		obj.scrollToTop(driver);
+		Thread.sleep(2000);
+		//Clicks on Save
+		driver.findElement(By.id("efi-irca-button-save")).click();
+		//Clicks on Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		Thread.sleep(500);
+		//Wait for loading message to disappear
+		obj.loadingServer(driver);
+		obj.scrollToAPoint(driver, 2000);
+	}
+
 	public void uploadFiveImagesChrome(WebDriver driver, String username, String reportTitle) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -1514,6 +1648,7 @@ public class HiRCAEvent {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
+		obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
 		//Fill title and description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
@@ -1624,7 +1759,7 @@ public class HiRCAEvent {
 					Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumJOBOBS.exe");
 					q.waitFor();
 				}catch (UnhandledAlertException f){	
-					System.out.println("Unexpecetd alert for picture 2");
+					System.out.println("Unexpected alert for picture 2");
 					driver.switchTo().alert().accept();
 
 				}catch (NoAlertPresentException f){
@@ -2360,7 +2495,8 @@ public class HiRCAEvent {
 		obj1.loadingServer(driver);
 		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		//Check if it allows for uploading more than one file
-		driver.findElement(By.id("pii-irca-addnewfile-button")).click();
+		obj1.scrollToElement(driver, driver.findElement(By.id("pii-irca-addnewfile-button")));
+		jse.executeScript("arguments[0].click();",driver.findElement(By.id("pii-irca-addnewfile-button")));
 		//Supporting file pop up
 		obj.verifyNoSupportingFilePopup(driver, softly);
 		String error_attach=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
@@ -2420,6 +2556,7 @@ public class HiRCAEvent {
 		//Clicks on Next and proceeds with Root Cause
 		obj1.scrollToAPoint(driver, 6500);
 		rootCause(driver);
+		obj1.scrollToTop(driver);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
@@ -2499,6 +2636,10 @@ public class HiRCAEvent {
 			if (v.startsWith("11"))
 				downloadRecordIE11(driver, get_date, get_time, get_dept, creationDate);
 		}
+		if(browserName.contains("safari"))
+		{
+			driver.switchTo().defaultContent();
+		}
 	}
 
 	public void uploadFiveImages(WebDriver driver, String username, String text) throws Exception {
@@ -2521,6 +2662,8 @@ public class HiRCAEvent {
 			if (v.startsWith("11"))
 				uploadFiveImagesIE11(driver,username,text);
 		}
+		if(browserName.contains("safari"))
+			uploadFiveImagesSafari(driver,username,text);
 	}
 
 	public void softAssert() throws Exception {

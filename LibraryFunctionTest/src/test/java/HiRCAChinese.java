@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAChinese {
 
 	SoftAssertions softly = new SoftAssertions();
+	LoginPageObj lpo = new LoginPageObj();
 	String text = "Chinese check";
 
 	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
@@ -927,15 +928,14 @@ public class HiRCAChinese {
 	public void changeToChinese (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		Login obj = new Login();
 		ShareCheck obj1 = new ShareCheck();
 		while(true)
 		{
 			try{
-				if (driver.findElement(obj.StickyNote).isDisplayed())
+				if (driver.findElement(lpo.StickyNote).isDisplayed())
 				{
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
 
 				}}catch (NoSuchElementException e)
 			{

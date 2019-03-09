@@ -18,7 +18,10 @@ import com.google.common.collect.Iterables;
 
 public class PassReview {
 	SoftAssertions softly = new SoftAssertions();
-
+	ErrorMeter2 em2 = new ErrorMeter2 ();
+	OPiRCAPageObj opirca = new OPiRCAPageObj();
+	TextBoxResizing tbr = new TextBoxResizing ();
+	
 	By PassReviewLink = By.id("pii-a-menu-3pr");
 
 	//HTML report
@@ -64,26 +67,30 @@ public class PassReview {
 	public void pass1Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ErrorMeter obj = new ErrorMeter ();
 		ShareCheck obj1 = new ShareCheck();
-		List<String> textList = obj.error100Data(driver);
+		List<String> textList = em2.error100Data(driver);
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		//Fill text in Requirement
+		tbr.sizeCheck(driver, Pass1RequirementText,softly);
 		if(iter.hasNext()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1RequirementText)).sendKeys(iter.next());
 		}
+		tbr.sizeCheck(driver, Pass1OperatingText,softly);
 		//Operating mode
 		if(iter.hasNext()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1OperatingText)).sendKeys(iter.next());
 		}
+		tbr.sizeCheck(driver, Pass1AssumptionText,softly);
 		//Assumption
 		if(iter.hasNext()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1AssumptionText)).sendKeys(iter.next());
 		}
+		tbr.sizeCheck(driver, Pass1ScopeText,softly);
 		//Scope of work
 		if(iter.hasNext()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1ScopeText)).sendKeys(iter.next());
 		}
+		tbr.sizeCheck(driver, Pass1TestingText,softly);
 		//Testing
 		if(iter.hasNext()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1TestingText)).sendKeys(iter.next());
@@ -111,6 +118,7 @@ public class PassReview {
 		//Enter text in each text box for q1 to q10
 		for(int i=2;i<=11;i++)
 		{
+			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).getAttribute("value");
@@ -129,14 +137,14 @@ public class PassReview {
 	public void pass2Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ErrorMeter obj = new ErrorMeter ();
 		ShareCheck obj1 = new ShareCheck();
-		List<String> textList = obj.error100Data(driver);
+		List<String> textList = em2.error100Data(driver);
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		//Table 1
 		//Enter text in each text box
 		for(int i=2;i<=5;i++)
 		{
+			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[3]/table/tbody/tr["+i+"]/td[2]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[3]/table/tbody/tr["+i+"]/td[2]/textarea"))).sendKeys(iter.next());
 		}
@@ -186,6 +194,7 @@ public class PassReview {
 				m=2;
 			//Scroll to element
 			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
 		}
@@ -243,6 +252,7 @@ public class PassReview {
 				m=2;
 			//Scroll to element
 			obj1.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
 		}
@@ -255,9 +265,8 @@ public class PassReview {
 	public void pass3Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ErrorMeter obj = new ErrorMeter ();
 		ShareCheck obj1 = new ShareCheck();
-		List<String> textList = obj.error100Data(driver);
+		List<String> textList = em2.error100Data(driver);
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		//Table 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Pass3CriticalText)).sendKeys(iter.next());
@@ -284,6 +293,7 @@ public class PassReview {
 		//Enter text in each text box
 		for(int i=2;i<=7;i++)
 		{
+			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
 		}
@@ -422,19 +432,18 @@ public class PassReview {
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
 		EiRCA2 obj2 = new EiRCA2();
-		OPiRCA obj3 = new OPiRCA();
 		EiRCA eirca = new EiRCA();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		//Wait for loading message to disappear
 		obj1.loadingServer(driver);	
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.MarkCritical)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Mark critical pop up
 		obj2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
 		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewMarkCriticalIndicatorText)).getText();
 		softly.assertThat(critical).as("test data").contains("Critical");
@@ -454,12 +463,12 @@ public class PassReview {
 			obj1.loadingServer(driver);
 		}
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.MarkCritical)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Un-mark critical pop up
 		obj2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
 		if(driver.findElement(PassReviewMarkCriticalIndicatorText).isDisplayed()==false)
 		{
@@ -480,7 +489,6 @@ public class PassReview {
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
 		EiRCA2 obj2 = new EiRCA2();
-		OPiRCA obj3 = new OPiRCA();
 		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
@@ -488,23 +496,23 @@ public class PassReview {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		obj1.loadingServer(driver);
 		//Verify change in text
-		verifyHTMLReport(driver, obj.error50Data(driver));
+		verifyHTMLReport(driver, em2.error50Data(driver));
 		//Clicks on share button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(ShareButton)).click();
 		//Enters username
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ShareTextBox)).sendKeys(sharer);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
 		//Selects from dropdown
-		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ShareDropdown));
-		dropdown.findElement(obj3.FirstSelectionUnderDropdown).click();
+		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareDropdown));
+		dropdown.findElement(opirca.FirstSelectionUnderDropdown).click();
 		//Clicks on add user
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Verifies user added
-		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.SharerAdded)).getText();
+		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj3.ShareSaveButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareSaveButton)).click();
 		//Verify share save sticky
 		obj2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
@@ -566,12 +574,11 @@ public class PassReview {
 	public void changeText(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10); 
-		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
 		//Click on Pass 1 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Pass1Tab)).click();
 		//Change text
-		List<String> textList = obj.error50Data(driver);
+		List<String> textList = em2.error50Data(driver);
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		//Fill text in Requirement
 		if(iter.hasNext()) {
@@ -690,13 +697,12 @@ public class PassReview {
 		WebDriverWait wait = new WebDriverWait(driver,10); 
 		ShareCheck obj = new ShareCheck();
 		EiRCA obj1 = new EiRCA ();
-		ErrorMeter obj2 = new ErrorMeter ();
 		//Clicks on record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		//Wait for loading message
 		obj.loadingServer(driver);
 		//Verify final report
-		verifyHTMLReport(driver, obj2.error100Data(driver));
+		verifyHTMLReport(driver, em2.error100Data(driver));
 		//Clicks on open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OpenButton)).click();
 		//Clicks on open

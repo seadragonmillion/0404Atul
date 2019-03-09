@@ -31,6 +31,8 @@ public class ShareCheck {
 
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	SoftAssertions softly = new SoftAssertions();
+	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
+	OPiRCAPageObj opirca = new OPiRCAPageObj();
 
 	By ShareTextBox = By.id("pii-uhshare-search-input");
 	By ShareSave = By.id("pii-uhshare-save");
@@ -159,7 +161,7 @@ public class ShareCheck {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox"))
+		if(browserName.equals("firefox")||browserName.contains("safari"))
 		{
 			driver.switchTo().defaultContent();
 		}
@@ -192,7 +194,7 @@ public class ShareCheck {
 		jse.executeScript("scroll(0,0)");
 		Thread.sleep(2000);
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -213,6 +215,7 @@ public class ShareCheck {
 	public void checkCriticalNotification (WebDriver driver, String sharer, String username, String password1, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
@@ -221,7 +224,7 @@ public class ShareCheck {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox"))
+		if(browserName.equals("firefox")||browserName.contains("safari"))
 		{
 			driver.switchTo().defaultContent();
 		}
@@ -269,7 +272,7 @@ public class ShareCheck {
 			//Click on 1st record/notification
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
 			if(wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).isSelected()==false)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 			Thread.sleep(2000);
 			//Click on read
 			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
@@ -285,12 +288,12 @@ public class ShareCheck {
 			{
 				//Click on 1st record/notification
 				if(wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).isSelected()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 				Thread.sleep(2000);
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
 				if(ele.isEnabled()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 				ele.click();
 				//Mark as read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton));
@@ -306,7 +309,7 @@ public class ShareCheck {
 	public void receiptReport(WebDriver driver, String sharer, String username, String password1) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		RemoteVerification rv = new RemoteVerification();
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//LogOut
 		Login obj = new Login();
 		obj.logout(driver);
@@ -315,7 +318,7 @@ public class ShareCheck {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox"))
+		if(browserName.equals("firefox")||browserName.contains("safari"))
 		{
 			driver.switchTo().defaultContent();
 		}
@@ -355,7 +358,7 @@ public class ShareCheck {
 			scrollToTop(driver);
 		}
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -427,12 +430,12 @@ public class ShareCheck {
 				//Click on 1st record/notification
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
 				if(ele.isSelected()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 				Thread.sleep(4000);
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
 				if(ele.isEnabled()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 				ele.click();
 				Thread.sleep(2000);
 				//Click on mark as read
@@ -456,7 +459,7 @@ public class ShareCheck {
 		String browserName = cap.getBrowserName().toLowerCase();
 		//LogOut
 		obj.logout(driver);
-		if(browserName.equals("firefox"))
+		if(browserName.equals("firefox")||browserName.contains("safari"))
 		{
 			driver.switchTo().defaultContent();
 		}
@@ -708,7 +711,7 @@ public class ShareCheck {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if (browserName.equals("firefox"))
+		if (browserName.equals("firefox")||browserName.contains("safari"))
 			driver.switchTo().defaultContent();
 		//Switches to the iframe
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
@@ -825,9 +828,7 @@ public class ShareCheck {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		EiRCA obj = new EiRCA();
-		OPiRCA obj1 = new OPiRCA();
 		PassReview obj2 = new PassReview();
-		RemoteVerification obj3 = new RemoteVerification();
 		loadingServer(driver);
 		//Go to Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
@@ -878,10 +879,10 @@ public class ShareCheck {
 		shareReportToManyUsers(driver,username,password1);
 		//O&PiRCA
 		//Click on side panel 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCASidePanel)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASidePanel)).click();
 		loadingServer(driver);
 		//First record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		loadingServer(driver);
 		//click on share button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ShareButton)).click();
@@ -911,13 +912,13 @@ public class ShareCheck {
 		shareReportToManyUsers(driver,username,password1);
 		//Remote Verification
 		//Click on side panel 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.RVSidePanel)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
 		loadingServer(driver);
 		//First record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.RVNewlyCreatedFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.RVShareButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareButton)).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 	}
@@ -990,7 +991,7 @@ public class ShareCheck {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox"))
+		if(browserName.equals("firefox")||browserName.contains("safari"))
 		{
 			driver.switchTo().defaultContent();
 		}
@@ -1024,6 +1025,7 @@ public class ShareCheck {
 	public void markNotificationsRead(WebDriver driver, String browserName) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Get count from notification
 		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationCount)).getText();
 		System.out.println("Number of notifications: "+count);
@@ -1065,12 +1067,12 @@ public class ShareCheck {
 				//Click on 1st record/notification
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord));
 				if(ele.isSelected()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 				Thread.sleep(4000);
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadButton));
 				if(ele.isEnabled()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)).click();
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationFirstRecord)));
 				ele.click();
 				Thread.sleep(2000);
 				//Click on mark as read

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -15,7 +14,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class CreateEquipmentCase2 {
+public class CreateEquipmentCase2 {	
+
+	LoginPageObj lpo = new LoginPageObj();
+	CreateEquipPageObj equipObj = new CreateEquipPageObj();
+	CreateEquipmentCase3 equip = new CreateEquipmentCase3();
 
 	String keyword = "KeywordQAAadded";
 	String keywordUS = "KeywordUSQAAadded";
@@ -52,13 +55,12 @@ public class CreateEquipmentCase2 {
 
 		CaseBrowse obj = new CaseBrowse();
 		EquipmentPDDandEF obj1 = new EquipmentPDDandEF();
-		CreateEquipmentCase obj2 = new CreateEquipmentCase();
 		ShareCheck obj3 = new ShareCheck();
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		if((caseID.equals(obj.caseElecDev))||(caseID.equals(obj.caseMechDev))||(caseID.equals(obj.caseEquipDev))||(caseID.equals(obj1.caseEFDev))||(caseID.equals(obj1.casePDDDev)))
 		{
 			//Add keyword
-			obj2.addKeywordEquip(driver,caseID,keywordDecide(driver));
+			equip.addKeywordEquip(driver,caseID,keywordDecide(driver));
 		}
 		if((caseID.equals(obj.caseElecDev))||(caseID.equals(obj.caseMechDev)))
 		{
@@ -70,11 +72,11 @@ public class CreateEquipmentCase2 {
 		}
 		if(caseID.equals(obj1.caseEFDev))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.EngineeringFundamentalsLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EngineeringFundamentalsLink)).click();
 		}
 		if(caseID.equals(obj1.casePDDDev))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.PreventionOfDesignDeficienciesLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.PreventionOfDesignDeficienciesLink)).click();
 		}
 		//Clears Everything
 		Thread.sleep(2000);
@@ -98,38 +100,36 @@ public class CreateEquipmentCase2 {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
-		Login obj1 = new Login();
 		CreateHumanCase obj3 = new CreateHumanCase();
-		CreateEquipmentCase obj4 = new CreateEquipmentCase();
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
-		if (driver.findElement(obj4.EquipCasesLink).isDisplayed()==false)
+		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankLink)).click();
 		}
 		//Clicks on Equipment cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
 		Thread.sleep(2000);
 		//Scroll down
 		try{
@@ -156,8 +156,8 @@ public class CreateEquipmentCase2 {
 		}
 		Thread.sleep(2000);
 		//Clicks on remove keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(2000);
@@ -165,10 +165,10 @@ public class CreateEquipmentCase2 {
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj4.EquipCasePopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		obj.loadingServer(driver);
 		Thread.sleep(1000);
@@ -180,7 +180,6 @@ public class CreateEquipmentCase2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CaseBrowse obj = new CaseBrowse();
-		CreateEquipmentCase obj1 = new CreateEquipmentCase ();
 		if((x == 1)||(x==2)||(x==6))
 		{
 			//click on Equipment performance
@@ -193,7 +192,7 @@ public class CreateEquipmentCase2 {
 		if(x==3)
 		{
 			//Click on Prevention of Design Deficiencies
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.PreventionOfDesignDeficienciesLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.PreventionOfDesignDeficienciesLink)).click();
 			//Clicks on clear
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchClearButton)).click();
 		}
@@ -207,114 +206,96 @@ public class CreateEquipmentCase2 {
 		if(x==5)
 		{
 			//Click on Engineering Fundamentals
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EngineeringFundamentalsLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EngineeringFundamentalsLink)).click();
 			//Clicks on clear
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchClearButton)).click();
 		}
 	}
 
-	public int selectNumberForType(WebDriver driver) throws Exception {
-
-		//Choose a number between 
-		Random random = new Random ();
-		int x;
-		//Choose a number between 1 and 6
-		while(true)
-		{
-			x = random.nextInt(7);
-			if(x==0)
-				continue;
-			break;
-		}
-		return x;
-	}
-
-
 	public void selectTypeRandom (WebDriver driver, int x, String browserName, String v) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		if (browserName.contains("internet")==true)
 		{
 			if (v.startsWith("10")==true)
 			{
 				//Type
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).sendKeys(Keys.ENTER);	    		
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).sendKeys(Keys.ENTER);	    		
 			}
 			if (v.startsWith("11")==true)
 			{
 				//Type
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
 			}
 		}
 		else{
 			//Type
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypes)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
 		}
 		Thread.sleep(1000);
 		//Waits for popup
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListBoxTypes));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxTypes));
 		//Click type random
 		if(x==1)
 		{
 			if (browserName.contains("internet"))
 			{
-				obj.clickTypesDisciplineIE(driver, obj.EquipListTypesAdvancedLearning);
+				equip.clickTypesDisciplineIE(driver, equipObj.EquipListTypesAdvancedLearning);
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesAdvancedLearning)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesAdvancedLearning)).click();
 		}
 		if(x==2)
 		{
 			if (browserName.contains("internet"))
 			{
-				obj.clickTypesDisciplineIE(driver, obj.EquipListTypesCaseStudies);
+				equip.clickTypesDisciplineIE(driver, equipObj.EquipListTypesCaseStudies);
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesCaseStudies)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesCaseStudies)).click();
 		}
 		if(x==3)
 		{
 			if (browserName.contains("internet"))
 			{
-				obj.clickTypesDisciplineIE(driver, obj.EquipListTypesDesign);
+				equip.clickTypesDisciplineIE(driver, equipObj.EquipListTypesDesign);
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesDesign)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesDesign)).click();
 		}
 		if(x==4)
 		{
 			if (browserName.contains("internet"))
 			{
-				obj.clickTypesDisciplineIE(driver, obj.EquipListTypesFailureModes);
+				equip.clickTypesDisciplineIE(driver, equipObj.EquipListTypesFailureModes);
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesFailureModes)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesFailureModes)).click();
 		}
 		if(x==5)
 		{
 			if (browserName.contains("internet"))
 			{
-				obj.clickTypesDisciplineIE(driver, obj.EquipListTypesFundamentals);
+				equip.clickTypesDisciplineIE(driver, equipObj.EquipListTypesFundamentals);
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesFundamentals)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesFundamentals)).click();
 		}
 		if(x==6)
 		{
 			if (browserName.contains("internet"))
 			{
-				obj.clickTypesDisciplineIE(driver, obj.EquipListTypesGeneral);
+				equip.clickTypesDisciplineIE(driver, equipObj.EquipListTypesGeneral);
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipListTypesGeneral)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesGeneral)).click();
 		}		
 		try{
-			driver.findElement(obj.ListCrossSymbol).click();
+			driver.findElement(equipObj.ListCrossSymbol).click();
 		}catch (NoSuchElementException | ElementNotInteractableException e)
 		{
-			driver.findElement(obj.EquipListBoxTypesCrossSymbol).click();
+			driver.findElement(equipObj.EquipListBoxTypesCrossSymbol).click();
 		}
 		System.out.println("Selected type: "+x);			
 	}
@@ -322,10 +303,9 @@ public class CreateEquipmentCase2 {
 	public void verifyTypeNotEmpty(WebDriver driver, int x, String browserName, String v) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		while(true)
 		{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseTypeFieldText)).getText();			
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypeFieldText)).getText();			
 			if(s.isEmpty()==true)
 			{
 				selectTypeRandom (driver, x, browserName, v);
@@ -337,13 +317,12 @@ public class CreateEquipmentCase2 {
 	public void verifyDisciplineNotEmpty(WebDriver driver, By element, String browserName, String v) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		while(true)
 		{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseDisciplineFieldText)).getText();			
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDisciplineFieldText)).getText();			
 			if(s.isEmpty()==true)
 			{
-				obj.selectDisciplineForComboTest(driver, element, browserName, v);
+				equip.selectDisciplineForComboTest(driver, element, browserName, v);
 			}
 			else break;
 		}
@@ -352,13 +331,12 @@ public class CreateEquipmentCase2 {
 	public void verifyFieldNotEmpty(WebDriver driver, By element, String browserName, String v) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		while(true)
 		{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipCaseFieldsFieldText)).getText();			
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFieldsFieldText)).getText();			
 			if(s.isEmpty()==true)
 			{
-				obj.selectFieldsForComboTest(driver, element, browserName, v);
+				equip.selectFieldsForComboTest(driver, element, browserName, v);
 			}
 			else break;
 		}
@@ -370,7 +348,6 @@ public class CreateEquipmentCase2 {
 		ShareCheck obj = new ShareCheck();
 		CaseBrowse obj1 = new CaseBrowse();
 		CreateHumanCase obj2 = new CreateHumanCase ();
-		CreateEquipmentCase obj3 = new CreateEquipmentCase();
 		//Go to Failure mode
 		//Clicks on Error free bank
 		try
@@ -390,17 +367,17 @@ public class CreateEquipmentCase2 {
 		//Wait for loading message
 		obj.loadingServer(driver);
 		//Look for all cases without filter
-		obj3.lookForCases(driver, electrical);
-		obj3.lookForCases(driver, general);
-		obj3.lookForCases(driver, ic);
-		obj3.lookForCases(driver, mechanical);
-		obj3.lookForCases(driver, software);
-		obj3.lookForCases(driver, structural);
+		equip.lookForCases(driver, electrical);
+		equip.lookForCases(driver, general);
+		equip.lookForCases(driver, ic);
+		equip.lookForCases(driver, mechanical);
+		equip.lookForCases(driver, software);
+		equip.lookForCases(driver, structural);
 		//Look for case with filter
 		//Create a list with discipline filters for case search
-		List<By> discList = obj3.disciplineCaseSearchList();
+		List<By> discList = equip.disciplineCaseSearchList();
 		//Create a list with field filters for case search
-		List<By> fieldList = obj3.fieldCaseSearchList();
+		List<By> fieldList = equip.fieldCaseSearchList();
 		//Search and verify case with filter
 		for(int i=0;i<discList.size();i++)
 		{
@@ -629,7 +606,6 @@ public class CreateEquipmentCase2 {
 	public void verifyCasesWithOnlyDisciplineFilter(WebDriver driver, int i, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception{
 
 		List<String> cases = new ArrayList<String>();
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		if(i==0)
 		{
 			cases.addAll(electrical);
@@ -654,7 +630,7 @@ public class CreateEquipmentCase2 {
 		{
 			cases.addAll(structural);
 		}
-		obj.lookForCases(driver, cases);
+		equip.lookForCases(driver, cases);
 	}
 
 }

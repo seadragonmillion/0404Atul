@@ -18,12 +18,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OPiRCABug {
 
 	ShareCheck share = new ShareCheck();
-	OPiRCA op = new OPiRCA();
-	OPiRCA2 op2 = new OPiRCA2();
+	OPiRCAPageObj op = new OPiRCAPageObj();
+	OPiRCA3 op3 = new OPiRCA3();
+	OPiRCA op1 = new OPiRCA();
 	EiRCAChinese ec = new EiRCAChinese();
-	OPiRCAChinese opc = new OPiRCAChinese();
-	OPiRCAChinese2 opc2 = new OPiRCAChinese2();
 	CreateEquipmentCase cec =  new CreateEquipmentCase();
+	OPiRCAChinese opc = new OPiRCAChinese();
 	
 	SoftAssertions softly = new SoftAssertions();
 
@@ -62,7 +62,7 @@ public class OPiRCABug {
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuCloseButton)).click();	  
 		//Store apparent causes selected
-		List<String> apparentCauseSelected = op.storeApparentCauses(driver);
+		List<String> apparentCauseSelected = op1.storeApparentCauses(driver);
 		apparentCauseSelected.add(String.valueOf(y));
 		return apparentCauseSelected;
 	}
@@ -166,12 +166,12 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Select all checkbox in Step 5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow1Column3)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow2Column3)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow3Column3)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow4Column3)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow5Column3)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow6Column3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow1Column3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow2Column3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow3Column3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow4Column3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow5Column3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow6Column3)).click();
 	}
 	
 	public void verifyStep3 (WebDriver driver, HashMap<String,Integer> options) throws Exception {
@@ -323,17 +323,17 @@ public class OPiRCABug {
 	public void verifyStep5 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow1Column3)).isSelected()==false)
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow1Column3)).isSelected()==false)
 			softly.fail("box 1 not selected in step 5");
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow2Column3)).isSelected()==false)
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow2Column3)).isSelected()==false)
 			softly.fail("box 2 not selected in step 5");
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow3Column3)).isSelected()==false)
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow3Column3)).isSelected()==false)
 			softly.fail("box 3 not selected in step 5");
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow4Column3)).isSelected()==false)
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow4Column3)).isSelected()==false)
 			softly.fail("box 4 not selected in step 5");
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow5Column3)).isSelected()==false)
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow5Column3)).isSelected()==false)
 			softly.fail("box 5 not selected in step 5");
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAStep5TableRow6Column3)).isSelected()==false)
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5TableRow6Column3)).isSelected()==false)
 			softly.fail("box 6 not selected in step 5");
 	}
 	
@@ -449,7 +449,7 @@ public class OPiRCABug {
 		onlyOneApparentCause.add(apparentCauseSelected.get(index));
 		System.out.println(onlyOneApparentCause);
 		//Select some apparent cause answers
-		List<String> answers = op.selectApparentCausesAnswers(driver, onlyOneApparentCause);
+		List<String> answers = op3.selectApparentCausesAnswers(driver, onlyOneApparentCause,softly);
 		//Scroll up 
 		share.scrollToTop(driver);
 		//Skip till Step 3
@@ -585,9 +585,9 @@ public class OPiRCABug {
 			}
 		}
 		//Get answers list
-		ac.addAll(op.selectOptions(driver,count));
+		ac.addAll(op3.selectOptions(driver,count,softly));
 		//Add contributing factor
-		String s = op.addContributingFactor(driver, count+1);
+		String s = op3.addContributingFactor(driver, count+1);
 		ac.add(s);
 		//Scroll to top
 		Thread.sleep(2000);
@@ -602,7 +602,7 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on new button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op2.NewButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
 		//Fill mandatory details on Info page and click next
@@ -636,7 +636,7 @@ public class OPiRCABug {
 		answers.addAll(apparentCausesAnswersNew1);
 		List<String> apparentCausesAnswersNew = answers.stream().distinct().collect(Collectors.toList());
 		//Verify the answers are present on Step 3
-		verifyStep3WithAnswerPresence(driver,op.modifyList(apparentCausesAnswersNew));
+		verifyStep3WithAnswerPresence(driver,op3.modifyList(apparentCausesAnswersNew));
 		//Go to step1 and unselect the hirca level option
 		unselectHiRCALevel(driver,hircaLevelOption);
 		//Skip
@@ -655,7 +655,7 @@ public class OPiRCABug {
 		//Click on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
 		//Clicks on OPiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCALink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
 		//Fill mandatory details on Info page and click next
 		opc.chineseEventInfoFill(driver,text);
 		//Select only one
@@ -666,7 +666,7 @@ public class OPiRCABug {
 		//Select options under the 1st apparentCause
 		List<String> oneApparentCause = new ArrayList<String>();
 		oneApparentCause.add(apparentCauseSelected.get(0));
-		List<String> apparentCausesAnswersNew1 = op.selectApparentCausesAnswers(driver, oneApparentCause);
+		List<String> apparentCausesAnswersNew1 = op3.selectApparentCausesAnswers(driver, oneApparentCause,softly);
 		List<String> apparentCausesAnswersNew = apparentCausesAnswersNew1.stream().distinct().collect(Collectors.toList());
 		//Skip till question D1
 		for (int i=1;i<apparentCauseSelected.size()-1;i++)
@@ -681,7 +681,7 @@ public class OPiRCABug {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
 		}
 		//Mark SURE
-		HashMap<String,Integer> options = op.markSUREStep3(driver, apparentCausesAnswersNew);
+		HashMap<String,Integer> options = op1.markSUREStep3(driver, apparentCausesAnswersNew);
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		//Select HML
@@ -695,7 +695,7 @@ public class OPiRCABug {
 		//Click on Step 2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)).click();
 		//Select D1 as no
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer1)).click();
 		//Verify Step 3,4,5 and Report Tab are enabled
 		verifyStep3(driver,options);
 		//Next
@@ -710,7 +710,7 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on new button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op2.NewButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
 		//Fill mandatory details on Info page and click next
@@ -718,23 +718,23 @@ public class OPiRCABug {
 		//Click on skip Step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
 		//Select No for D1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer1)).click();
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		//D2.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer2)).click();
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		//OP1.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer1)).click();
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		//D3.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer6)).click();
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		//OP1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc.OPiRCAApparentCauseAnswer2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer2)).click();
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		//Skip d4 to d12 and Step 3/4/5= 9+3 skips 
@@ -777,7 +777,7 @@ public class OPiRCABug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAFinalizeButton));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabDownloadButton));
 		//Event information table title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opc2.OPiRCAReportTabTable1Heading));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabTable1Heading));
 		share.scrollToTop(driver);
 		//Click on Step 5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();

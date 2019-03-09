@@ -906,7 +906,9 @@ public class UserManagement {
 				props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
 			else
 				props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
-		}
+		}		
+		else if (browserName.contains("safari"))
+			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
 		else
 			props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
@@ -1090,6 +1092,8 @@ public class UserManagement {
 			else
 				props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
 		}
+		else if (browserName.contains("safari"))
+			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
 		else
 			props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);

@@ -3,7 +3,6 @@ import java.util.Base64;
 import static org.junit.Assert.*;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -16,34 +15,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login {
 
 	SoftAssertions softly = new SoftAssertions();
-	By LoginButton = By.id("pii-login-button");
-	By UserName = By.id("pii-un");
-	By Password = By.id("pii-pw");
-	By SignInButton = By.id("pii-signin-button");
-	By SignInMessage = By.id("pii-signin-message");
-	By StickyNote = By.className("sticky-note");
-	By StickyClose = By.className("sticky-close");
-	By LoginNameOnTopRight = By.id("pii-user-loginname");
-	By LogOutButton = By.id("pii-signout-button");
-	By WebPageMessage = By.className("pii-slogan");
+	LoginPageObj lpo = new LoginPageObj();
 
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(WebPageMessage)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.WebPageMessage)).getText();
 		System.out.println(s);
 		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
 		//Login button is located and clicked
-		wait.until(ExpectedConditions.elementToBeClickable(LoginButton)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(lpo.LoginButton)).click();
 		//Enter Username
-		wait.until(ExpectedConditions.visibilityOfElementLocated(UserName)).sendKeys(username);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys(username);
 		//Enter password
-		driver.findElement(Password).sendKeys(decodePassword(password));
+		driver.findElement(lpo.Password).sendKeys(decodePassword(password));
 		Thread.sleep(2000);
-		String user = driver.findElement(UserName).getAttribute("value");
-		String pw = driver.findElement(Password).getAttribute("value");
+		String user = driver.findElement(lpo.UserName).getAttribute("value");
+		String pw = driver.findElement(lpo.Password).getAttribute("value");
 		int c=1;
 		int login=0;
 		if (user.equals(username)==true)
@@ -51,12 +41,12 @@ public class Login {
 			if(pw.equals(decodePassword(password))==true)
 			{
 				//Sign in button is located and clicked
-				driver.findElement(SignInButton).click();  
+				driver.findElement(lpo.SignInButton).click();  
 				obj.loadingServer(driver);
 				while(c>0)
 				{
 					obj.loadingServer(driver);
-					WebElement element = driver.findElement(SignInMessage);
+					WebElement element = driver.findElement(lpo.SignInMessage);
 					String text = element.getText();
 					System.out.println(text);
 					if (element.isDisplayed())
@@ -68,9 +58,9 @@ public class Login {
 						}
 						else
 						{
-							driver.findElement(Password).sendKeys(decodePassword(password));
+							driver.findElement(lpo.Password).sendKeys(decodePassword(password));
 							//Sign in button is located and clicked
-							driver.findElement(SignInButton).click();
+							driver.findElement(lpo.SignInButton).click();
 							if(text.contains("Warning: This user has an existing login session"))
 								login =1;
 							obj.loadingServer(driver);
@@ -87,22 +77,22 @@ public class Login {
 			while(c>0)
 			{
 				Thread.sleep(1000);
-				driver.findElement(UserName).clear();
-				driver.findElement(Password).clear();
+				driver.findElement(lpo.UserName).clear();
+				driver.findElement(lpo.Password).clear();
 				Thread.sleep(2000);
 				//Username text field is located and the username is entered
-				driver.findElement(UserName).sendKeys(username);
+				driver.findElement(lpo.UserName).sendKeys(username);
 				//Password field is located and the password is entered
-				driver.findElement(Password).sendKeys(decodePassword(password));
+				driver.findElement(lpo.Password).sendKeys(decodePassword(password));
 				Thread.sleep(2000);
-				user = driver.findElement(UserName).getAttribute("value");
-				pw = driver.findElement(Password).getAttribute("value");
+				user = driver.findElement(lpo.UserName).getAttribute("value");
+				pw = driver.findElement(lpo.Password).getAttribute("value");
 				if (user.equals(username)==true)
 				{
 					if(pw.equals(decodePassword(password))==true)
 					{
 						//Sign in button is located and clicked
-						driver.findElement(SignInButton).click();
+						driver.findElement(lpo.SignInButton).click();
 						obj.loadingServer(driver);
 						break;
 					}
@@ -111,7 +101,7 @@ public class Login {
 		}
 		try{
 			//Click on agree terms box
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-license-checkbox-div']/fieldset/div/div/label")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(lpo.AgreeTermsButton));
 		}catch(org.openqa.selenium.TimeoutException t)
 		{
 			waitForIframe(driver);
@@ -125,7 +115,7 @@ public class Login {
 		while(true)
 		{
 			try{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@name='pii-iframe-main']")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.Iframe));
 				break;
 			}catch(org.openqa.selenium.TimeoutException t)
 			{
@@ -147,10 +137,10 @@ public class Login {
 		while(true)
 		{
 			try{
-				if (driver.findElement(StickyNote).isDisplayed())
+				if (driver.findElement(lpo.StickyNote).isDisplayed())
 				{
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(StickyClose)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
 
 				}}catch (NoSuchElementException e)
 			{
@@ -188,16 +178,16 @@ public class Login {
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("firefox"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();		
+			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();		
 			Thread.sleep(3000);
 			while(true)
 			{
 				try{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
 					break;
 				}catch(org.openqa.selenium.TimeoutException t)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 				}
 			}
 			Thread.sleep(5000);
@@ -205,12 +195,12 @@ public class Login {
 		else
 		{
 			Actions act = new Actions (driver);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(LoginNameOnTopRight));
-			WebElement element = driver.findElement(LoginNameOnTopRight);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight));
+			WebElement element = driver.findElement(lpo.LoginNameOnTopRight);
 			act.click(element).build().perform();
 			Thread.sleep(3000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(LogOutButton));
-			element = driver.findElement(LogOutButton);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton));
+			element = driver.findElement(lpo.LogOutButton);
 			act.click(element).build().perform();
 			Thread.sleep(2000);
 		}

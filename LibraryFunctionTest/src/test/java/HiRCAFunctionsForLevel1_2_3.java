@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAFunctionsForLevel1_2_3 {
 	
 	OPiRCA op = new OPiRCA();
+	OPiRCA3 op3 = new OPiRCA3();
 	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
 	
 	public String getNoteShowingPreviousAnswer(WebDriver driver) throws Exception {
@@ -22,7 +23,8 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		//Get question text
 		String question = wait.until(ExpectedConditions.visibilityOfElementLocated(hhe.PageQuestion)).getText().trim();
 		//remove [ and ] 
-		String r = question.replace("]", "").replace("[", "");
+		int indexOfQuestionMark = question.lastIndexOf("?");
+		String r = question.substring(0, indexOfQuestionMark+1).replace("]", "").replace("[", "");
 		//Get answer text
 		//Count number of answers under question= number of div - the reason entry div
 		int count = 0;
@@ -71,7 +73,7 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		List<String> lopOptions1 = op.modifyListWithNoSemiColonForSUEP_SURE(lopOptions);
 		for(int i=0;i<lopOptions1.size();i++)
 		{
-			hm.put(lopOptions1.get(i), note);
+			hm.put(lopOptions1.get(i).trim(), note);
 		}		
 		return hm;
 	}
@@ -80,7 +82,7 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		
 		HashMap<String,String> hm = new HashMap<String,String>();
 		//Modify list
-		List<String> lopOptions1 = op.modifyList(lopOptions);
+		List<String> lopOptions1 = op3.modifyList(lopOptions);
 		for(int i=0;i<lopOptions1.size();i++)
 		{
 			hm.put(lopOptions1.get(i), note);

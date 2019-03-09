@@ -11,100 +11,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class OPiRCAChinese4 {
-	
-	By AnalysisLinkText = By.linkText("Analysis");
-	//Step 2 table report tab
-	By OPiRCAReportTabTable5Heading3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/thead/tr/th[3]");
-	By OPiRCAReportTabTable5Row1Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[1]/td[1]");
-	By OPiRCAReportTabTable5Row1Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[1]/td[2]");
-	By OPiRCAReportTabTable5Row1Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[1]/td[3]");
-	By OPiRCAReportTabTable5Row2Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[2]/td[1]");
-	By OPiRCAReportTabTable5Row2Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[2]/td[2]");
-	By OPiRCAReportTabTable5Row2Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[2]/td[3]");
-	By OPiRCAReportTabTable5Row3Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[3]/td[1]");
-	By OPiRCAReportTabTable5Row3Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[3]/td[2]");
-	By OPiRCAReportTabTable5Row3Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[3]/td[3]");
-	By OPiRCAReportTabTable5Row4Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[4]/td[1]");
-	By OPiRCAReportTabTable5Row4Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[4]/td[2]");
-	By OPiRCAReportTabTable5Row4Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[4]/td[3]");
-	By OPiRCAReportTabTable5Row5Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[5]/td[1]");
-	By OPiRCAReportTabTable5Row5Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[5]/td[2]");
-	By OPiRCAReportTabTable5Row5Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[5]/td[3]");
-	By OPiRCAReportTabTable5Row6Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[6]/td[1]");
-	By OPiRCAReportTabTable5Row6Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[6]/td[2]");
-	By OPiRCAReportTabTable5Row6Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[6]/td[3]");
-	By OPiRCAReportTabTable5Row7Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[7]/td[1]");
-	By OPiRCAReportTabTable5Row7Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[7]/td[2]");
-	By OPiRCAReportTabTable5Row7Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[7]/td[3]");
-	By OPiRCAReportTabTable5Row8Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[8]/td[1]");
-	By OPiRCAReportTabTable5Row8Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[8]/td[2]");
-	By OPiRCAReportTabTable5Row8Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[8]/td[3]");
-	By OPiRCAReportTabTable5Row9Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[9]/td[1]");
-	By OPiRCAReportTabTable5Row9Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[9]/td[2]");
-	By OPiRCAReportTabTable5Row9Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[9]/td[3]");
-	By OPiRCAReportTabTable5Row10Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[10]/td[1]");
-	By OPiRCAReportTabTable5Row10Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[10]/td[2]");
-	By OPiRCAReportTabTable5Row10Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[10]/td[3]");
-	By OPiRCAReportTabTable5Row11Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[11]/td[1]");
-	By OPiRCAReportTabTable5Row11Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[11]/td[2]");
-	By OPiRCAReportTabTable5Row11Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[11]/td[3]");
-	By OPiRCAReportTabTable5Row12Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[12]/td[1]");
-	By OPiRCAReportTabTable5Row12Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[12]/td[2]");
-	By OPiRCAReportTabTable5Row12Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[6]/table/tbody/tr[12]/td[3]");
-	//Step 2 table HTML
-	By OPiRCAHTMLTable5Heading3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/thead/tr/th[3]");
-	By OPiRCAHTMLTable5Row1Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[1]/td[1]");
-	By OPiRCAHTMLTable5Row1Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[1]/td[2]");
-	By OPiRCAHTMLTable5Row1Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[1]/td[3]");
-	By OPiRCAHTMLTable5Row2Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[2]/td[1]");
-	By OPiRCAHTMLTable5Row2Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[2]/td[2]");
-	By OPiRCAHTMLTable5Row2Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[2]/td[3]");
-	By OPiRCAHTMLTable5Row3Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[3]/td[1]");
-	By OPiRCAHTMLTable5Row3Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[3]/td[2]");
-	By OPiRCAHTMLTable5Row3Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[3]/td[3]");
-	By OPiRCAHTMLTable5Row4Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[4]/td[1]");
-	By OPiRCAHTMLTable5Row4Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[4]/td[2]");
-	By OPiRCAHTMLTable5Row4Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[4]/td[3]");
-	By OPiRCAHTMLTable5Row5Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[5]/td[1]");
-	By OPiRCAHTMLTable5Row5Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[5]/td[2]");
-	By OPiRCAHTMLTable5Row5Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[5]/td[3]");
-	By OPiRCAHTMLTable5Row6Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[6]/td[1]");
-	By OPiRCAHTMLTable5Row6Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[6]/td[2]");
-	By OPiRCAHTMLTable5Row6Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[6]/td[3]");
-	By OPiRCAHTMLTable5Row7Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[7]/td[1]");
-	By OPiRCAHTMLTable5Row7Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[7]/td[2]");
-	By OPiRCAHTMLTable5Row7Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[7]/td[3]");
-	By OPiRCAHTMLTable5Row8Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[8]/td[1]");
-	By OPiRCAHTMLTable5Row8Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[8]/td[2]");
-	By OPiRCAHTMLTable5Row8Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[8]/td[3]");
-	By OPiRCAHTMLTable5Row9Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[9]/td[1]");
-	By OPiRCAHTMLTable5Row9Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[9]/td[2]");
-	By OPiRCAHTMLTable5Row9Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[9]/td[3]");
-	By OPiRCAHTMLTable5Row10Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[10]/td[1]");
-	By OPiRCAHTMLTable5Row10Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[10]/td[2]");
-	By OPiRCAHTMLTable5Row10Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[10]/td[3]");
-	By OPiRCAHTMLTable5Row11Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[11]/td[1]");
-	By OPiRCAHTMLTable5Row11Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[11]/td[2]");
-	By OPiRCAHTMLTable5Row11Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[11]/td[3]");
-	By OPiRCAHTMLTable5Row12Column1 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[12]/td[1]");
-	By OPiRCAHTMLTable5Row12Column2 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[12]/td[2]");
-	By OPiRCAHTMLTable5Row12Column3 = By.xpath(".//*[@id='opa-rpt']/div[6]/table/tbody/tr[12]/td[3]");
+public class OPiRCAChinese4 {	
+
+	OPiRCAPageObj opirca = new OPiRCAPageObj();
+	OPiRCA3 op3 = new OPiRCA3();
 	
 	public void OPiRCASkipStep1(WebDriver driver) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
 		EiRCAChinese obj2 = new EiRCAChinese();
 		//Go to Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLinkText)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.AnalysisLinkText)).click();
 		//Clicks on OPiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCALink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Create a new OPiRCA report 
 		obj1.chineseEventInfoFill(driver, obj2.text);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 	}
 	
 	public int verifyApparentCauseAnswersStep2ReportTab(WebDriver driver, SoftAssertions softly, List<String>step2ApparentCausesAnswers, int rc, int i, int start, List<String>apparentCausesAnswersNew) throws Exception {
@@ -148,9 +72,8 @@ public class OPiRCAChinese4 {
 	public List<String> chineseReportTabStep2Variation3(WebDriver driver, SoftAssertions softly, int rc, List<String>step2QuestionAnswers, List<String>step2ApparentCausesAnswers, List<String>apparentCausesAnswersNew) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,3);
-		OPiRCA obj1 = new OPiRCA ();
 		List<String> ac = new ArrayList<String>();
-		ac.addAll(removeColonFromAnswers(obj1.modifyList(step2ApparentCausesAnswers)));
+		ac.addAll(removeColonFromAnswers(op3.modifyList(step2ApparentCausesAnswers)));
 		System.out.println(step2QuestionAnswers);
 		int i = 1;
 		//Counter for answers to d1 to d12
@@ -233,25 +156,24 @@ public class OPiRCAChinese4 {
 	
 	public void saveReport(WebDriver driver) throws Exception {
 		
-		OPiRCA obj = new OPiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
 		//Clicks on Save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		//Clicks on Save report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavePopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASaveConfirmButton)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.StickySuccess));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavePopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.StickySuccess));
 		//Wait for loading message
 		obj1.loadingServer(driver);
 		Thread.sleep(1000);
 		//Clicks on Saved activities
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASavedActivitiesButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
 		Thread.sleep(2000);		  
 		//Wait for loading message
 		obj1.loadingServer(driver);
 		//Click on new record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAFirstRecord)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		//Wait for loading message
 		obj1.loadingServer(driver);
 	}
@@ -268,11 +190,11 @@ public class OPiRCAChinese4 {
 		//Step 2 with No or yes but directly leads to next question
 		chineseStep2AnswerLeadsToNextQuestion(driver);
 		//Click skip step3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		//Click skip step4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		//Click skip step5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		//Chinese verify report tab
 		chineseReportTabStep2Variation2(driver,softly);
 		Thread.sleep(1000);
@@ -300,13 +222,13 @@ public class OPiRCAChinese4 {
 		//Verify step 3 with selected 
 		obj.verifyApparentCauses(driver, orderedApparentCauses);
 		//Click skip step3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		//Verify Step 4
 		verifyStep4WithRandomStep2Selections(driver,softly,orderedApparentCauses);
 		//Click skip step4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		//Click skip step5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		//Remove : from all apparent cause answers
 		List<String> a1 = removeColonFromAnswers(orderedApparentCauses);
 		//Chinese verify report tab
@@ -339,8 +261,7 @@ public class OPiRCAChinese4 {
 	public void verifyStep4WithRandomStep2Selections(WebDriver driver, SoftAssertions softly,List<String> orderedApparentCauses) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		OPiRCA obj = new OPiRCA();
-		List<String> ac = obj.modifyList(orderedApparentCauses);
+		List<String> ac = op3.modifyList(orderedApparentCauses);
 		//Verify if any contributing factors are appearing
 		int i=2;
 		while(i<=((ac.size()*2)+1))
@@ -384,7 +305,6 @@ public class OPiRCAChinese4 {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		WebDriverWait wait1 = new WebDriverWait(driver,2);
-		OPiRCA obj = new OPiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		List<String> ac = new ArrayList<String>();
 		int count = 0;
@@ -421,7 +341,7 @@ public class OPiRCAChinese4 {
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();   
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();   
 		return ac;
 	}
 	
@@ -634,71 +554,70 @@ public class OPiRCAChinese4 {
 	public void chineseApparentCauseO2(WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
 		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAInfoPageDesc)).getText();
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("对新兴问题的关注不足");
 		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionPlusSign)).click();
 		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionText)).getText();
+		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionText)).getText();
 		softly.assertThat(desc).as("test data").contains("这是否为突然变成灾难或事件的已知问题？如果是，请选择原因并且输入支持性证据。");
 		softly.assertThat(desc).as("test data").contains("对新兴问题关注不足的示例包括: 疏忽危机管理、未监督风险率的上升情况、很少召开干预会议以处理危机、经理、主管或工作人员未接受培训，以识别或响应新兴挑战。");		
 		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionPlusSign)).click();
 		//O1.1 question
-		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).getText();
+		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).getText();
 		softly.assertThat(q1).as("test data").contains("[O2.1] 新兴问题报告职能存在不足");
 		//Evidence entry collapsible text
-		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
+		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
-		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
+		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("根据两个方面—风险上升率和风险等级，建立涵盖四个问题模式的紧急问题报告系统");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		//O1.2 question
-		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer2)).getText();
+		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[O2.2] 确定新兴问题相关行动优先级的职能存在不足");
 		//Evidence entry collapsible text
-		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
+		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
-		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
-		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
+		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("针对危机管理模式，建立分类系统，以管理快速变化的问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		//O1.3 question
-		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer3)).getText();
+		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[O2.3] 各个组织报告新兴高风险问题方面的危机管理职能存在不足");
 		//Evidence entry collapsible text
-		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
+		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
-		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
+		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("建立紧急问题报告系统");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		//O1.4 question
-		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer4)).getText();
+		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[O2.4] 解决新兴高风险问题的危机管理决策流程（例如在日常会议上处理问题）存在不足");
 		//Evidence entry collapsible text
-		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
+		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
-		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
+		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("建立危机管理的决策流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		//Contributing factor
 		obj1.chineseOPiRCAContributingFactor(driver);
 	}
@@ -706,45 +625,44 @@ public class OPiRCAChinese4 {
 	public void chineseApparentCausePP1(WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
 		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAInfoPageDesc)).getText();
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("接口遗漏");
 		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionPlusSign)).click();
 		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionText)).getText();
+		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionText)).getText();
 		softly.assertThat(desc).as("test data").contains("是否有证据表明一部分制度所要求的行动或信息在另一部分制度中不可用？如果是，请选择原因并输入支持性证据。");
 		softly.assertThat(desc).as("test data").contains("接口遗漏体现在以下方面：制度设计不足以涵盖所有受影响制度的潜在接口、管理层偏向于不对某些制度进行讨论。");		
 		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionPlusSign)).click();
 		//O1.1 question
-		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).getText();
+		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).getText();
 		softly.assertThat(q1).as("test data").contains("[PP1.1] 制度之间的接口流程或方法存在疏忽，例如没有通过问题上报和解决系统报告（通过审查发现的）工程技术支持失误，以便进行趋势分析和根本原因分析，然而却例行报告运行方面的未遂事件");
 		//Evidence entry collapsible text
-		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
+		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
-		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
+		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("改进接口流程和方法");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		//O1.2 question
-		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer2)).getText();
+		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[PP1.2] 在接口要求方面存在疏忽如没有要求对项目预算（项目管理制度）超支进行根本原因分析（纠正行动制度）");
 		//Evidence entry collapsible text
-		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
+		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
-		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
-		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
+		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("改进接口要求");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		//Contributing factor
 		obj1.chineseOPiRCAContributingFactor(driver);
 	}
@@ -752,133 +670,131 @@ public class OPiRCAChinese4 {
 	public void chineseApparentCausePP2(WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
 		ShareCheck obj2 = new ShareCheck();
 		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAInfoPageDesc)).getText();
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 		softly.assertThat(heading).as("test data").contains("接口存在不足");
 		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionPlusSign)).click();
 		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionText)).getText();
+		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionText)).getText();
 		softly.assertThat(desc).as("test data").contains("是否有证据表明一个制度与另一个制度的接口效率不足或者两个不同制度所要求的行动存在冲突？如果是，请选择原因并输入支持性证据。");
 		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Step1DescriptionPlusSign)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.Step1DescriptionPlusSign)).click();
 		//P5.1 question
-		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).getText();
+		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).getText();
 		softly.assertThat(q1).as("test data").contains("[PP2.1] 工作授权和技术审查制度之间的接口存在不足。也就是说，技术审查人员未进行培训和授权，而其他关键工作进行了培训和授权");
 		//Evidence entry collapsible text
-		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
+		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
-		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
+		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("纠正制度-制度接口问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		//P5.2 question
-		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer2)).getText();
+		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[PP2.2] 工作授权和管理层选拔制度之间的接口存在不足。也就是说，管理人员有时在未经过培训和授权流程的情况下被选拔，而其他关键工作进行了培训和授权");
 		//Evidence entry collapsible text
-		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
+		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
-		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
-		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
+		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("纠正制度-制度接口问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		//P5.3 question
-		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer3)).getText();
+		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[PP2.3] 维修和应急响应制度之间的接口存在不足，因为其场外设备不受现场维修制度要求的约束");
 		//Evidence entry collapsible text
-		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
+		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
-		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
+		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("纠正制度-制度接口问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		//P5.4 question
-		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer4)).getText();
+		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[PP2.4] 危机管理制度和问题上报制度之间的接口存在不足。也就是说，当风险上升时，记录在问题上报系统中的问题没有被及时地输入危机管理制度中");
 		//Evidence entry collapsible text
-		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
+		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
-		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
+		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("纠正制度-制度接口问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		//P5.5 question
-		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer5)).getText();
+		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[PP2.5] 工业安全制度和工作计划制度之间的接口存在不足。也就是说，工作计划中有时未规定明确制定安全措施");
 		//Evidence entry collapsible text
-		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
+		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
-		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
-		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
+		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("纠正制度-制度接口问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
 		obj2.scrollToAPoint(driver, 1500);
 		//P5.6 question
-		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer6)).getText();
+		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[PP2.6] 制度与制度的接口不明确或模糊");
 		//Evidence entry collapsible text
-		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
+		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
-		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
-		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
+		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("纠正制度-制度接口问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		//P5.7 question
-		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer7)).getText();
+		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[PP2.7] 两个制度之间传递信息的跟踪和确认方面存在不足");
 		//Evidence entry collapsible text
-		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
+		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
 		//Corrective action
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
-		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
 		softly.assertThat(c13).as("test data").contains("可能的纠正行动");
-		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction7Text1)).getText();
+		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text1)).getText();
 		softly.assertThat(c14).as("test data").contains("改进两个制度之间传递信息的跟踪和确认系统");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		//Contributing factor
 		obj1.chineseOPiRCAContributingFactor(driver);
 	}
 	
 	public List<String> chineseStep2AnswerLeadingToLevel3(WebDriver driver,SoftAssertions softly) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCA obj = new OPiRCA ();	
 		ShareCheck obj1 = new ShareCheck();
 		OPiRCA2 obj2 = new OPiRCA2();
 		OPiRCAChinese obj3 = new OPiRCAChinese();
 		//Create list to add all apparent cause answers
 		List<String> ac = new ArrayList<String>();
 		//D1: integer is total no of answers in d1
-		List<String> d1 = obj2.selectStep2D(driver,4,1);
+		List<String> d1 = obj2.selectStep2D(driver,4,1,softly);
 		//Select apparent cause for d1
 		if(Integer.parseInt(d1.get(1))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(1)),s);
 			//Select Apparent cause answers
@@ -886,14 +802,14 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D2: integer is total no of answers in d2
-		d1.addAll(obj2.selectStep2D(driver,5,1));
+		d1.addAll(obj2.selectStep2D(driver,5,1,softly));
 		//Select apparent cause for d1
 		if(Integer.parseInt(d1.get(3))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(3)),s);
 			//Select Apparent cause answers
@@ -901,14 +817,14 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D3: integer is total no of answers in d3
-		d1.addAll(obj2.selectStep2D(driver,6,1));
+		d1.addAll(obj2.selectStep2D(driver,6,1,softly));
 		//Select apparent cause for d3
 		if(Integer.parseInt(d1.get(5))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(5)),s);
 			//Select Apparent cause answers
@@ -916,14 +832,14 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D4: integer is total no of answers in d4
-		d1.addAll(obj2.selectStep2D(driver,5,1));
+		d1.addAll(obj2.selectStep2D(driver,5,1,softly));
 		//Select apparent cause for d4
 		if(Integer.parseInt(d1.get(7))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(7)),s);
 			//Select Apparent cause answers
@@ -931,14 +847,14 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D5: integer is total no of answers in d5
-		d1.addAll(obj2.selectStep2D(driver,4,1));
+		d1.addAll(obj2.selectStep2D(driver,4,1,softly));
 		//Select apparent cause for d5
 		if(Integer.parseInt(d1.get(9))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(9)),s);
 			//Select Apparent cause answers
@@ -959,14 +875,14 @@ public class OPiRCAChinese4 {
 			}
 		}
 		//D6: integer is total no of answers in d6
-		d1.addAll(obj2.selectStep2D(driver,4,1));
+		d1.addAll(obj2.selectStep2D(driver,4,1,softly));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(11))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(11)),s);
 			//Select Apparent cause answers
@@ -982,14 +898,14 @@ public class OPiRCAChinese4 {
 			}
 		}
 		//D7: integer is total no of answers in d7
-		d1.addAll(obj2.selectStep2D(driver,4,1));
+		d1.addAll(obj2.selectStep2D(driver,4,1,softly));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(13))>0)
 		{
 			//Get 1st answer
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(13)),s);
 			//Select Apparent cause answers
@@ -1005,8 +921,8 @@ public class OPiRCAChinese4 {
 			}
 		}
 		//D8
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAApparentCauseAnswer1)).click();
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAApparentCauseAnswer1)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).getText();
 		//add d8 text
 		d1.add("D8.1: "+s);
 		//add 0 to d1
@@ -1015,7 +931,7 @@ public class OPiRCAChinese4 {
 		if(Integer.parseInt(d1.get(15))==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//o2
 			chineseApparentCauseO2(driver, softly);
 			//Select Apparent cause answers
@@ -1023,14 +939,14 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D9: integer is total no of answers in d9
-		d1.addAll(obj2.selectStep2D(driver,5,1));
+		d1.addAll(obj2.selectStep2D(driver,5,1,softly));
 		//Select apparent cause for d9
 		if(Integer.parseInt(d1.get(17))>0)
 		{
 			//Get 1st answer
-			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(17)),s1);
 			//Select Apparent cause answers
@@ -1038,8 +954,8 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D10
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAApparentCauseAnswer1)).click();
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAApparentCauseAnswer1)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).getText();
 		//add d10 text
 		d1.add("D10.1: "+s1);
 		//add 0 to d1
@@ -1048,7 +964,7 @@ public class OPiRCAChinese4 {
 		if(Integer.parseInt(d1.get(19))==0)
 		{
 			//Click next for op2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			obj3.chineseApparentCauseOP2(driver);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
@@ -1075,14 +991,14 @@ public class OPiRCAChinese4 {
 			obj1.scrollToTop(driver);
 		}
 		//D11: integer is total no of answers in d11
-		d1.addAll(obj2.selectStep2D(driver,3,1));
+		d1.addAll(obj2.selectStep2D(driver,3,1,softly));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(21))>0)
 		{
 			//Get 1st answer
-			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(21)),s2);
 			//Select Apparent cause answers
@@ -1098,14 +1014,14 @@ public class OPiRCAChinese4 {
 			}
 		}
 		//D12: integer is total no of answers in d12
-		d1.addAll(obj2.selectStep2D(driver,4,1));
+		d1.addAll(obj2.selectStep2D(driver,4,1,softly));
 		//Select apparent cause for d9
 		if(Integer.parseInt(d1.get(23))>0)
 		{
 			//Get 1st answer
-			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.OPiRCAInfoPageDesc)).getText();
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageDesc)).getText();
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Verify chinese
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(23)),s2);
 			//Select Apparent cause answers
@@ -1127,129 +1043,128 @@ public class OPiRCAChinese4 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List <String> ac = new ArrayList<String>();
-		OPiRCAChinese3 obj = new OPiRCAChinese3();
 		//Title
-		String title1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAHTMLTable5Title)).getText();
+		String title1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Title)).getText();
 		softly.assertThat(title1).as("test data").contains("根本原因分析过程");
 		ac.add(title1);
 		//Headings
-		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAHTMLTable5Heading1)).getText();
+		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Heading1)).getText();
 		softly.assertThat(h1).as("test data").contains("调查问题");
 		ac.add(h1);
-		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAHTMLTable5Heading2)).getText();
+		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Heading2)).getText();
 		softly.assertThat(h2).as("test data").contains("答案");
 		ac.add(h2);
-		String h3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Heading3)).getText();
+		String h3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Heading3)).getText();
 		softly.assertThat(h3).as("test data").contains("选择原因");
 		ac.add(h3);
 		//Row1
-		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row1Column1)).getText();
+		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row1Column1)).getText();
 		softly.assertThat(r1).as("test data").contains("D1: 每年的病假缺勤率（＞5%）是否较高？");
 		ac.add(r1);
-		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row1Column2)).getText();
+		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row1Column2)).getText();
 		softly.assertThat(r2).as("test data").contains("D1.1: 否");
 		ac.add(r2);
-		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row1Column3)).getText();
+		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row1Column3)).getText();
 		softly.assertThat(r3).as("test data").contains("不适用");
 		ac.add(r3);
 		//Row2
-		String r4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row2Column1)).getText();
+		String r4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row2Column1)).getText();
 		softly.assertThat(r4).as("test data").contains("D2: 加班是否过多?");
 		ac.add(r4);
-		String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row2Column2)).getText();
+		String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row2Column2)).getText();
 		softly.assertThat(r5).as("test data").contains("D2.1: 否");
 		ac.add(r5);
-		String r6 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row2Column3)).getText();
+		String r6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row2Column3)).getText();
 		softly.assertThat(r6).as("test data").contains("不适用");
 		//Row3
-		String r7 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row3Column1)).getText();
+		String r7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row3Column1)).getText();
 		softly.assertThat(r7).as("test data").contains("D3: 返工率是否较高?");
 		ac.add(r7);
-		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row3Column2)).getText();
+		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row3Column2)).getText();
 		softly.assertThat(r8).as("test data").contains("D3.1: 否");
 		ac.add(r8);
-		String r9 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row3Column3)).getText();
+		String r9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row3Column3)).getText();
 		softly.assertThat(r9).as("test data").contains("不适用");
 		//Row4
-		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row4Column1)).getText();
+		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row4Column1)).getText();
 		softly.assertThat(r10).as("test data").contains("D4: 每单位产量的生产成本（不包括返工成本）是否高于其他类似公司?");
 		ac.add(r10);
-		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row4Column2)).getText();
+		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row4Column2)).getText();
 		softly.assertThat(r11).as("test data").contains("D4.1: 否");
 		ac.add(r11);
-		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row4Column3)).getText();
+		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row4Column3)).getText();
 		softly.assertThat(r12).as("test data").contains("不适用");
 		//Row5
-		String r13 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row5Column1)).getText();
+		String r13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row5Column1)).getText();
 		softly.assertThat(r13).as("test data").contains("D5: 会议是否占用人员过多的时间?");
 		ac.add(r13);
-		String r14 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row5Column2)).getText();
+		String r14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row5Column2)).getText();
 		softly.assertThat(r14).as("test data").contains("D5.1: 否");
 		ac.add(r14);
-		String r15 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row5Column3)).getText();
+		String r15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row5Column3)).getText();
 		softly.assertThat(r15).as("test data").contains("不适用");
 		//Row6
-		String r16 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row6Column1)).getText();
+		String r16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row6Column1)).getText();
 		softly.assertThat(r16).as("test data").contains("D6: 该问题是否是同一制度或组织中的重复性问题?");
 		ac.add(r16);
-		String r17 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row6Column2)).getText();
+		String r17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row6Column2)).getText();
 		softly.assertThat(r17).as("test data").contains("D6.1: 否");
 		ac.add(r17);
-		String r18 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row6Column3)).getText();
+		String r18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row6Column3)).getText();
 		softly.assertThat(r18).as("test data").contains("不适用");
 		//Row7
-		String r19 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row7Column1)).getText();
+		String r19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row7Column1)).getText();
 		softly.assertThat(r19).as("test data").contains("D7: 是否有大量积压项？");
 		ac.add(r19);
-		String r20 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row7Column2)).getText();
+		String r20 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row7Column2)).getText();
 		softly.assertThat(r20).as("test data").contains("D7.1: 否");
 		ac.add(r20);
-		String r21 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row7Column3)).getText();
+		String r21 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row7Column3)).getText();
 		softly.assertThat(r21).as("test data").contains("不适用");
 		//Row8
-		String r22 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row8Column1)).getText();
+		String r22 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row8Column1)).getText();
 		softly.assertThat(r22).as("test data").contains("D8: 近期（＜1年）是否存在发生事件发生之前就已经知道其先兆但未进行管理的事件？");
 		ac.add(r22);
-		String r23 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row8Column2)).getText();
+		String r23 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row8Column2)).getText();
 		softly.assertThat(r23).as("test data").contains("D8.2: 否");
 		ac.add(r23);
-		String r24 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row8Column3)).getText();
+		String r24 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row8Column3)).getText();
 		softly.assertThat(r24).as("test data").contains("不适用");
 		//Row9
-		String r25 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row9Column1)).getText();
+		String r25 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row9Column1)).getText();
 		softly.assertThat(r25).as("test data").contains("D9: 共同目的是否用于管理人员和工作人员的奖惩体系?");
 		ac.add(r25);
-		String r26 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row9Column2)).getText();
+		String r26 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row9Column2)).getText();
 		softly.assertThat(r26).as("test data").contains("D9.1: 是");
 		ac.add(r26);
-		String r27 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row9Column3)).getText();
+		String r27 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row9Column3)).getText();
 		softly.assertThat(r27).as("test data").contains("不适用");
 		//Row10
-		String r28 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row10Column1)).getText();
+		String r28 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row10Column1)).getText();
 		softly.assertThat(r28).as("test data").contains("D10: 自我识别的事件数与总事件数的比是低还是高？");
 		ac.add(r28);
-		String r29 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row10Column2)).getText();
+		String r29 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row10Column2)).getText();
 		softly.assertThat(r29).as("test data").contains("D10.2: 高（大于0.2）");
 		ac.add(r29);
-		String r30 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row10Column3)).getText();
+		String r30 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row10Column3)).getText();
 		softly.assertThat(r30).as("test data").contains("不适用");
 		//Row11
-		String r31 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row11Column1)).getText();
+		String r31 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row11Column1)).getText();
 		softly.assertThat(r31).as("test data").contains("D11: 在现场的监督时间（＜20%）是否不足以与工作人员进行互动?");
 		ac.add(r31);
-		String r32 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row11Column2)).getText();
+		String r32 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row11Column2)).getText();
 		softly.assertThat(r32).as("test data").contains("D11.1: 否");
 		ac.add(r32);
-		String r33 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row11Column3)).getText();
+		String r33 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row11Column3)).getText();
 		softly.assertThat(r33).as("test data").contains("不适用");
 		//Row12
-		String r34 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row12Column1)).getText();
+		String r34 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row12Column1)).getText();
 		softly.assertThat(r34).as("test data").contains("D12: 主管人员是否在工作之前或工作期间识别并缓解单项弱点?");
 		ac.add(r34);
-		String r35 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row12Column2)).getText();
+		String r35 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row12Column2)).getText();
 		softly.assertThat(r35).as("test data").contains("D12.1: 是");
 		ac.add(r35);
-		String r36 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAHTMLTable5Row12Column3)).getText();
+		String r36 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable5Row12Column3)).getText();
 		softly.assertThat(r36).as("test data").contains("不适用");		
 		return ac;
 	}
@@ -1257,257 +1172,254 @@ public class OPiRCAChinese4 {
 	public void chineseReportTabStep2Variation2(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCAChinese2 obj = new OPiRCAChinese2();
 		//Title
-		String title1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAReportTabTable5Title)).getText();
+		String title1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Title)).getText();
 		softly.assertThat(title1).as("test data").contains("根本原因分析过程");
 		//Headings
-		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAReportTabTable5Heading1)).getText();
+		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Heading1)).getText();
 		softly.assertThat(h1).as("test data").contains("调查问题");
-		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCAReportTabTable5Heading2)).getText();
+		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Heading2)).getText();
 		softly.assertThat(h2).as("test data").contains("答案");
-		String h3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Heading3)).getText();
+		String h3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Heading3)).getText();
 		softly.assertThat(h3).as("test data").contains("选择原因");
 		//Row1
-		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row1Column1)).getText();
+		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row1Column1)).getText();
 		softly.assertThat(r1).as("test data").contains("D1: 每年的病假缺勤率（＞5%）是否较高？");
-		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row1Column2)).getText();
+		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row1Column2)).getText();
 		softly.assertThat(r2).as("test data").contains("D1.1: 否");
-		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row1Column3)).getText();
+		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row1Column3)).getText();
 		softly.assertThat(r3).as("test data").contains("不适用");
 		//Row2
-		String r4 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row2Column1)).getText();
+		String r4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row2Column1)).getText();
 		softly.assertThat(r4).as("test data").contains("D2: 加班是否过多?");
-		String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row2Column2)).getText();
+		String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row2Column2)).getText();
 		softly.assertThat(r5).as("test data").contains("D2.1: 否");
-		String r6 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row2Column3)).getText();
+		String r6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row2Column3)).getText();
 		softly.assertThat(r6).as("test data").contains("不适用");
 		//Row3
-		String r7 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row3Column1)).getText();
+		String r7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row3Column1)).getText();
 		softly.assertThat(r7).as("test data").contains("D3: 返工率是否较高?");
-		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row3Column2)).getText();
+		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row3Column2)).getText();
 		softly.assertThat(r8).as("test data").contains("D3.1: 否");
-		String r9 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row3Column3)).getText();
+		String r9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row3Column3)).getText();
 		softly.assertThat(r9).as("test data").contains("不适用");
 		//Row4
-		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row4Column1)).getText();
+		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row4Column1)).getText();
 		softly.assertThat(r10).as("test data").contains("D4: 每单位产量的生产成本（不包括返工成本）是否高于其他类似公司?");
-		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row4Column2)).getText();
+		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row4Column2)).getText();
 		softly.assertThat(r11).as("test data").contains("D4.1: 否");
-		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row4Column3)).getText();
+		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row4Column3)).getText();
 		softly.assertThat(r12).as("test data").contains("不适用");
 		//Row5
-		String r13 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row5Column1)).getText();
+		String r13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row5Column1)).getText();
 		softly.assertThat(r13).as("test data").contains("D5: 会议是否占用人员过多的时间?");
-		String r14 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row5Column2)).getText();
+		String r14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row5Column2)).getText();
 		softly.assertThat(r14).as("test data").contains("D5.1: 否");
-		String r15 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row5Column3)).getText();
+		String r15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row5Column3)).getText();
 		softly.assertThat(r15).as("test data").contains("不适用");
 		//Row6
-		String r16 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row6Column1)).getText();
+		String r16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row6Column1)).getText();
 		softly.assertThat(r16).as("test data").contains("D6: 该问题是否是同一制度或组织中的重复性问题?");
-		String r17 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row6Column2)).getText();
+		String r17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row6Column2)).getText();
 		softly.assertThat(r17).as("test data").contains("D6.1: 否");
-		String r18 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row6Column3)).getText();
+		String r18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row6Column3)).getText();
 		softly.assertThat(r18).as("test data").contains("不适用");
 		//Row7
-		String r19 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row7Column1)).getText();
+		String r19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row7Column1)).getText();
 		softly.assertThat(r19).as("test data").contains("D7: 是否有大量积压项？");
-		String r20 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row7Column2)).getText();
+		String r20 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row7Column2)).getText();
 		softly.assertThat(r20).as("test data").contains("D7.1: 否");
-		String r21 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row7Column3)).getText();
+		String r21 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row7Column3)).getText();
 		softly.assertThat(r21).as("test data").contains("不适用");
 		//Row8
-		String r22 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row8Column1)).getText();
+		String r22 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row8Column1)).getText();
 		softly.assertThat(r22).as("test data").contains("D8: 近期（＜1年）是否存在发生事件发生之前就已经知道其先兆但未进行管理的事件？");
-		String r23 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row8Column2)).getText();
+		String r23 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row8Column2)).getText();
 		softly.assertThat(r23).as("test data").contains("D8.2: 否");
-		String r24 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row8Column3)).getText();
+		String r24 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row8Column3)).getText();
 		softly.assertThat(r24).as("test data").contains("不适用");
 		//Row9
-		String r25 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row9Column1)).getText();
+		String r25 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row9Column1)).getText();
 		softly.assertThat(r25).as("test data").contains("D9: 共同目的是否用于管理人员和工作人员的奖惩体系?");
-		String r26 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row9Column2)).getText();
+		String r26 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row9Column2)).getText();
 		softly.assertThat(r26).as("test data").contains("D9.1: 是");
-		String r27 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row9Column3)).getText();
+		String r27 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row9Column3)).getText();
 		softly.assertThat(r27).as("test data").contains("不适用");
 		//Row10
-		String r28 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row10Column1)).getText();
+		String r28 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row10Column1)).getText();
 		softly.assertThat(r28).as("test data").contains("D10: 自我识别的事件数与总事件数的比是低还是高？");
-		String r29 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row10Column2)).getText();
+		String r29 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row10Column2)).getText();
 		softly.assertThat(r29).as("test data").contains("D10.2: 高（大于0.2）");
-		String r30 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row10Column3)).getText();
+		String r30 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row10Column3)).getText();
 		softly.assertThat(r30).as("test data").contains("不适用");
 		//Row11
-		String r31 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row11Column1)).getText();
+		String r31 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row11Column1)).getText();
 		softly.assertThat(r31).as("test data").contains("D11: 在现场的监督时间（＜20%）是否不足以与工作人员进行互动?");
-		String r32 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row11Column2)).getText();
+		String r32 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row11Column2)).getText();
 		softly.assertThat(r32).as("test data").contains("D11.1: 否");
-		String r33 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row11Column3)).getText();
+		String r33 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row11Column3)).getText();
 		softly.assertThat(r33).as("test data").contains("不适用");
 		//Row12
-		String r34 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row12Column1)).getText();
+		String r34 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row12Column1)).getText();
 		softly.assertThat(r34).as("test data").contains("D12: 主管人员是否在工作之前或工作期间识别并缓解单项弱点?");
-		String r35 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row12Column2)).getText();
+		String r35 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row12Column2)).getText();
 		softly.assertThat(r35).as("test data").contains("D12.1: 是");
-		String r36 = wait.until(ExpectedConditions.visibilityOfElementLocated(OPiRCAReportTabTable5Row12Column3)).getText();
+		String r36 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable5Row12Column3)).getText();
 		softly.assertThat(r36).as("test data").contains("不适用");
 	}
 
 	public void chineseStep2skip(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
 		//Verify chinese D1
 		obj1.chineseStep2D1(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D2
 		obj1.chineseStep2D2(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D3
 		obj1.chineseStep2D3(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D4
 		obj1.chineseStep2D4(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D5
 		obj1.chineseStep2D5(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D6
 		obj1.chineseStep2D6(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D7
 		obj1.chineseStep2D7(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D8
 		obj1.chineseStep2D8(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D9
 		obj1.chineseStep2D9(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D10
 		obj1.chineseStep2D10(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D11
 		obj1.chineseStep2D11(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D12
 		obj1.chineseStep2D12(driver);
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCASkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
 	}
 	
 	public void chineseStep2AnswerLeadsToNextQuestion(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		OPiRCA obj = new OPiRCA();
 		OPiRCAChinese obj1 = new OPiRCAChinese();
 		//Verify chinese D1
 		obj1.chineseStep2D1(driver);
 		//Click D1.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D2
 		obj1.chineseStep2D2(driver);
 		//Click D2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D3
 		obj1.chineseStep2D3(driver);
 		//Click D3.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D4
 		obj1.chineseStep2D4(driver);
 		//Click D4.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D5
 		obj1.chineseStep2D5(driver);
 		//Click D5.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D6
 		obj1.chineseStep2D6(driver);
 		//Click D6.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D7
 		obj1.chineseStep2D7(driver);
 		//Click D7.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D8
 		obj1.chineseStep2D8(driver);
 		//Click D8.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D9
 		obj1.chineseStep2D9(driver);
 		//Click D9.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D10
 		obj1.chineseStep2D10(driver);
 		//Click D10.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D11
 		obj1.chineseStep2D11(driver);
 		//Click D11.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Verify chinese D12
 		obj1.chineseStep2D12(driver);
 		//Click D12.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OPiRCAApparentCauseAnswer1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.OPiRCANextButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 	}
 
 }

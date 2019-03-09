@@ -36,6 +36,7 @@ import com.google.common.collect.Iterables;
 public class EiRCA {
 
 	SoftAssertions softly = new SoftAssertions();
+	ErrorMeter2 em2 = new ErrorMeter2 ();
 	String textToVerifyClearTextBox = "to verify clearing of text";
 
 	//Buttons on HTML report page
@@ -1937,8 +1938,21 @@ public class EiRCA {
 			//Save report
 			saveEiRCAReport(driver);
 			//Verify text is gone
+			try{
 			String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4Table1Row4Column3)).getText();
 			softly.assertThat(s14).as("test data").isEmpty();
+			}catch(org.openqa.selenium.TimeoutException y)
+			{
+				WebElement ele;
+				try{
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA));
+				}catch(org.openqa.selenium.TimeoutException t)
+				{
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HTMLStep4SkippedRCA2));
+				}
+				String s14 = ele.getText();
+				softly.assertThat(s14).as("test data").contains("Step 4 - Probability of Occurrence and Actions (skipped)");
+			}
 			//Open Report
 			wait.until(ExpectedConditions.visibilityOfElementLocated(OpenButton)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmPopupButton)).click();		
@@ -2371,7 +2385,6 @@ public class EiRCA {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj1 = new ShareCheck ();
-		ErrorMeter obj = new ErrorMeter();
 		//Scroll to the bottom
 		obj1.scrollToAPoint(driver, 1200);
 		//Click next
@@ -2384,7 +2397,7 @@ public class EiRCA {
 		//Verify text in Sequence of Events
 		verifySequenceOfEvents(driver);
 		//Get list of text
-		List <String> list1=obj.error50Data(driver);
+		List <String> list1=em2.error50Data(driver);
 		Iterator<String> iter = Iterables.cycle(list1).iterator();
 		//Create a new event
 		createNewEvent(driver, iter.next());

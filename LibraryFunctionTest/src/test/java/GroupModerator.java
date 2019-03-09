@@ -20,11 +20,11 @@ public class GroupModerator {
 	HiRCALOPBug hirca = new HiRCALOPBug();
 	EiRCAChinese eirca = new EiRCAChinese();
 	EiRCA eirca2 = new EiRCA();
-	OPiRCA opirca = new OPiRCA();
+	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	PassReview pr = new PassReview();
 	JobObservation jo = new JobObservation();
-	RemoteVerification rv = new RemoteVerification();
 	RemoteVerification2 rv2 = new RemoteVerification2();
+	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 
 	SoftAssertions softly = new SoftAssertions();
 

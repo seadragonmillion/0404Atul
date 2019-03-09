@@ -3649,7 +3649,7 @@ public class EiRCAChinese {
 		//Select answer for q1.2 that brings up text box
 		WebElement dropdown1 = driver.findElement(Step1Q12Answer);
 		Select s1 = new Select(dropdown1);
-		s1.selectByVisibleText("---- 其他机械相关部件 ----");
+		s1.selectByVisibleText("---- 其他电气与仪控相关部件");
 		//Verify placeholder of text box
 		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Step1Q12AnswerTextBox)).getAttribute("placeholder");
 		softly.assertThat(r1).as("test data").isEqualTo("输入其他的选项（非必选）");

@@ -1,5 +1,4 @@
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -14,7 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class RemoteVerification2 {
 	
 	EiRCA eirca = new EiRCA();
-	RemoteVerification rv = new RemoteVerification();
+	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
+	RemoteVerification rv1 = new RemoteVerification();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
 	
@@ -24,18 +24,7 @@ public class RemoteVerification2 {
 	String rejectComment = "Rejected for test";
 	String passComment = "Passed for test";
 	
-	//Verifier report view
-	By VerifierAcceptButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
-	By VerifierRejectButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
-	By VerifierRejectComment = By.id("pii-rv-dialog-comments");
-	By VerifierRejectConfirmButton = By.id("pii-user-home-rv-dialog-confirmed");
-	
-	//HTML creator
-	By RVReportVerificationStatus = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]");
-	By RVReportVerificationRejectedResult = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[7]/div/strong[2]");
-	By RVReportVerificationAcceptedResult = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[7]/strong[2]");
-	By RVReportVerificationReviseButton = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[7]/div/a");
-	By RVReportVerificationComments = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[8]");
+
 	
 	
 	public void upload2ndpictureChrome(WebDriver driver) throws Exception {
@@ -263,13 +252,13 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Click on Reject button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectButton)).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.AcceptRejectConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Enter comment
-		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectComment)).sendKeys(rejectComment);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectComment)).sendKeys(rejectComment);
 		//Click on reject confirm button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectConfirmButton)).click();
 		share.loadingServer(driver);
 		share.markNotificationsRead(driver, browserName);
 		//login to report creator
@@ -281,16 +270,16 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Verify the Verification status
-		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationStatus)).getText();
+		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationStatus)).getText();
 		softly.assertThat(status).as("test data").contains("responded to request for verification");
 		//Verification result
-		String result = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationRejectedResult)).getText();
+		String result = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationRejectedResult)).getText();
 		softly.assertThat(result).as("test data").contains("REJECTED");
 		//Verification comments
-		String comments = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationComments)).getText();
+		String comments = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationComments)).getText();
 		softly.assertThat(comments).as("test data").contains(rejectComment);
 		//Click on Revise button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationReviseButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationReviseButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Clicks on Save and Send
 		driver.findElement(rv.RVSaveAndSendButton).click();
@@ -314,13 +303,13 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Click on Accept button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierAcceptButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierAcceptButton)).click();
 		String noHtml1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.AcceptRejectConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml1).as("test data").doesNotContain("<br/>");
 		//Enter comment
-		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectComment)).sendKeys(passComment);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectComment)).sendKeys(passComment);
 		//Click on reject confirm button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(VerifierRejectConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectConfirmButton)).click();
 		share.loadingServer(driver);
 		//Mark notification as read
 		share.markNotificationsRead(driver, browserName);
@@ -363,13 +352,13 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share.loadingServer(driver);
 		//Verify the Verification status
-		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationStatus)).getText();
+		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationStatus)).getText();
 		softly.assertThat(status1).as("test data").contains("responded to request for verification");
 		//Verification result
-		String result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationAcceptedResult)).getText();
+		String result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationAcceptedResult)).getText();
 		softly.assertThat(result1).as("test data").contains("ACCEPTED");
 		//Verification comments
-		String comments1 = wait.until(ExpectedConditions.visibilityOfElementLocated(RVReportVerificationComments)).getText();
+		String comments1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationComments)).getText();
 		softly.assertThat(comments1).as("test data").contains(passComment);
 	}
 	
@@ -414,7 +403,7 @@ public class RemoteVerification2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver));
 		}
 		//Select verifier
-		rv.verifierSelect(driver,k);
+		rv1.verifierSelect(driver,k);
 		Thread.sleep(1000);
 		String verifier= wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVVerifierValue)).getAttribute("piivalue");
 		//Uploads picture 2

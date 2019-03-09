@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreateHumanCase {
 
 	SoftAssertions softly = new SoftAssertions();
+	LoginPageObj lpo = new LoginPageObj();
 	int numberOfImages=5;
 	String keyword_same="QAAfive";
 	String key1="QAAzebra";
@@ -149,6 +150,7 @@ public class CreateHumanCase {
 			if (browserName.equals("internet explorer"))
 			{
 				Thread.sleep(2000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
 			}
 			//Verify the red error message is gone
 			String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
@@ -1106,10 +1108,9 @@ public class CreateHumanCase {
 		List<String> caseID = new ArrayList<String>();
 		CaseBrowse obj = new CaseBrowse();
 		ShareCheck obj1 = new ShareCheck();
-		Login obj2 = new Login();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Clicks on Errorfree bank option
@@ -1282,10 +1283,9 @@ public class CreateHumanCase {
 		List<String> caseID = new ArrayList<String>();
 		CaseBrowse obj = new CaseBrowse();
 		ShareCheck obj1 = new ShareCheck();
-		Login obj2 = new Login();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Waits for black loading message to disappear
@@ -1476,10 +1476,9 @@ public class CreateHumanCase {
 		List<String> caseID = new ArrayList<String>();
 		CaseBrowse obj = new CaseBrowse();
 		ShareCheck obj1 = new ShareCheck();
-		Login obj2 = new Login();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Waits for black loading message to disappear
@@ -1682,10 +1681,9 @@ public class CreateHumanCase {
 		List<String> caseID = new ArrayList<String>();
 		CaseBrowse obj = new CaseBrowse();
 		ShareCheck obj1 = new ShareCheck();
-		Login obj2 = new Login();
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Waits for black loading message to disappear
@@ -1878,10 +1876,9 @@ public class CreateHumanCase {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
-		Login obj1 = new Login();
 		CaseBrowse obj2 = new CaseBrowse();
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		Thread.sleep(1000);

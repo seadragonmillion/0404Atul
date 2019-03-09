@@ -23,7 +23,7 @@ public class SRI {
 	EiRCA2 eirca2 = new EiRCA2();
 	ShareCheck share = new ShareCheck();
 	ErrorMeter em = new ErrorMeter();
-	OPiRCA opirca = new OPiRCA ();
+	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	
 	By SRILink = By.id("pii-a-menu-sri");
 	//Step1

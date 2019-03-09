@@ -26,8 +26,9 @@ public class TermSearchEQ {
 	CaseBrowse cb  = new CaseBrowse();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
+	LoginPageObj lpo = new LoginPageObj();
 	CreateHumanCase human = new CreateHumanCase();
-	CreateEquipmentCase equip = new CreateEquipmentCase();
+	CreateEquipPageObj equip = new CreateEquipPageObj();
 
 	public List<String> getCasesListFromSearch_eq(WebDriver driver, int y) throws Exception {
 
@@ -470,7 +471,7 @@ public class TermSearchEQ {
 			if(driver.findElement(human.AdminOption).isDisplayed()==false)
 			{
 				//Clicks on admin user name on top right corner
-				wait.until(ExpectedConditions.visibilityOfElementLocated(login.LoginNameOnTopRight)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 			}
 			else
 			{

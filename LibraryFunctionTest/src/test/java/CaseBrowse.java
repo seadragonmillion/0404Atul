@@ -19,8 +19,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CaseBrowse {
 
 	SoftAssertions softly = new SoftAssertions();
+	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
+	
 	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
-	String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2018. Derivative Product Strictly Prohibited.";
+	String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
 	String caseEquipALProd = "1545";
 	String caseEquipGProd = "1636";
 	String caseEquipCSDev = "1985";
@@ -35,7 +37,7 @@ public class CaseBrowse {
 	String caseElecDev = "1678";
 	String caseMechDev = "1988";
 	String caseHumanProd = "746";
-	String caseHumanProdPercent = "618";
+	String caseHumanProdPercent = "209";
 	String caseEquipProd = "231";
 	String caseEquipProdPercent = "1754";
 	String caseElecProd = "1260";
@@ -53,7 +55,7 @@ public class CaseBrowse {
 	String keywordMechDevSpcl = "test.1/1";
 	String keywordMechDevPercent = "Testpercentme%";
 	String keywordHumanProd = "power plant worker";
-	String keywordHumanProdPercent = "50%";
+	String keywordHumanProdPercent = "100%";
 	String keywordEquipProd = "Static electrification failure mechanism";
 	String keywordEquipProdPercent = "20%";
 	String keywordElecProd = "pneumatic controller";
@@ -358,7 +360,6 @@ public class CaseBrowse {
 	public void selectRandomDisciplineInSearchCase(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateEquipmentCase obj = new CreateEquipmentCase();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -412,7 +413,7 @@ public class CaseBrowse {
 			{
 				if (browserName.contains("internet")==true)
 				{
-					obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineElectrical);
+					equip3.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineElectrical);
 				}
 				else
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineElectrical)).click();			
@@ -421,7 +422,7 @@ public class CaseBrowse {
 			{
 				if (browserName.contains("internet")==true)
 				{
-					obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineGeneral);
+					equip3.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineGeneral);
 				}
 				else
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineGeneral)).click();				
@@ -430,7 +431,7 @@ public class CaseBrowse {
 			{
 				if (browserName.contains("internet")==true)
 				{
-					obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineIC);
+					equip3.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineIC);
 				}
 				else
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineIC)).click();			
@@ -439,7 +440,7 @@ public class CaseBrowse {
 			{
 				if (browserName.contains("internet")==true)
 				{
-					obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineMechanical);
+					equip3.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineMechanical);
 				}
 				else
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineMechanical)).click();		
@@ -448,7 +449,7 @@ public class CaseBrowse {
 			{
 				if (browserName.contains("internet")==true)
 				{
-					obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineSoftware);
+					equip3.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineSoftware);
 				}
 				else
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineSoftware)).click();			
@@ -457,7 +458,7 @@ public class CaseBrowse {
 			{
 				if (browserName.contains("internet")==true)
 				{
-					obj.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineStructural);
+					equip3.clickTypesDisciplineIE(driver, EquipCaseSearchListDisciplineStructural);
 				}
 				else
 					wait.until(ExpectedConditions.visibilityOfElementLocated(EquipCaseSearchListDisciplineStructural)).click();		
