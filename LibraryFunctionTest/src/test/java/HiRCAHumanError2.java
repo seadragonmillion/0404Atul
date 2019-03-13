@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HiRCAHumanError2 {
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void verify31 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -2060,7 +2061,6 @@ public class HiRCAHumanError2 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCALevel1 obj = new HiRCALevel1();
-		ShareCheck obj1 = new ShareCheck();
 		HiRCA2 obj2 = new HiRCA2();
 		List<String>lopOptions1 = new ArrayList<String>();
 		for(int i=0;i<lopOptions.size();i++)
@@ -2119,7 +2119,7 @@ public class HiRCAHumanError2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -2128,13 +2128,13 @@ public class HiRCAHumanError2 {
 		{
 			if (v.startsWith("11"))
 			{
-				obj1.loadingServer(driver);	
+				share2.loadingServer(driver);	
 				//Clicks on Save
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				obj1.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 		}
 		//Clicks on Info tab
@@ -2146,11 +2146,11 @@ public class HiRCAHumanError2 {
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Gets newly created record name
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"));
 		String recordName = record.getText();
@@ -2164,7 +2164,7 @@ public class HiRCAHumanError2 {
 		//Checks if expected name and actual name is correct
 		softly.assertThat(r1).as("test data").isEqualTo(name);
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			obj.downloadReportChrome(driver,lopOptions1,hml,options,checklist);

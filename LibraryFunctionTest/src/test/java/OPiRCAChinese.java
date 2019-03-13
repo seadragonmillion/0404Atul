@@ -14,11 +14,13 @@ public class OPiRCAChinese {
 
 	SoftAssertions softly = new SoftAssertions();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	EiRCA2 eirca2= new EiRCA2();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void OPiRCApath (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCAChinese obj1 = new EiRCAChinese();
 		OPiRCAChinese2 obj2 = new OPiRCAChinese2(); 
 		OPiRCAChinese3 obj3 = new OPiRCAChinese3();
 		HiRCALevel1 obj4 = new HiRCALevel1();
@@ -26,9 +28,9 @@ public class OPiRCAChinese {
 		OPiRCA2 obj6 = new OPiRCA2();
 		OPiRCAChinese4 obj7 = new OPiRCAChinese4();
 		//Wait for loading message to disappear
-		obj5.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Scroll down
@@ -44,7 +46,7 @@ public class OPiRCAChinese {
 		//Verify errors in Chinese
 		chineseErrorsInfoPage(driver);
 		//Create a new OPiRCA report 
-		chineseEventInfoFill(driver, obj1.text);
+		chineseEventInfoFill(driver, eirca2.textCreate1());
 		Thread.sleep(2000);
 		//Verify step 1
 		chineseOPiRCAStep1(driver);
@@ -203,7 +205,6 @@ public class OPiRCAChinese {
 	public void markCritical(WebDriver driver) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj1 = new ShareCheck();
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		//Verify chinese in save box
@@ -213,17 +214,17 @@ public class OPiRCAChinese {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.StickySuccess));
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
 		Thread.sleep(2000);		  
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on new record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).getText();
 		softly.assertThat(s).as("test data").contains("重要");
 		//Clicks on mark critical

@@ -12,6 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HPI {
+	
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	SoftAssertions softly = new SoftAssertions();
 
@@ -45,8 +48,7 @@ public class HPI {
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Creates expected record name
 		Thread.sleep(3000);
 		String date= driver.findElement(By.xpath(".//*[@id='pii-hpi-rpt-header']/span/span")).getText();
@@ -115,7 +117,6 @@ public class HPI {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ErrorMeter obj = new ErrorMeter();
-		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	
 		//CLicks on first newly created record
@@ -140,7 +141,7 @@ public class HPI {
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks the username of creator and verifier
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='hpi-rpt']/div/span[2]/span")));
 		String creatorUsername= creator.getText();
@@ -158,7 +159,7 @@ public class HPI {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Share icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));		
 		}
@@ -167,7 +168,7 @@ public class HPI {
 		//Clicks on HPI side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 	}
@@ -175,7 +176,6 @@ public class HPI {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		EiRCA eirca = new EiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
@@ -191,14 +191,14 @@ public class HPI {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Marked critical icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));
 			//Verify presence of shared icon 
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[2]")));
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
@@ -217,7 +217,7 @@ public class HPI {
 		//Clicks on HPI side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 	}

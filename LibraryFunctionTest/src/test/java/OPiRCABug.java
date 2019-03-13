@@ -21,9 +21,10 @@ public class OPiRCABug {
 	OPiRCAPageObj op = new OPiRCAPageObj();
 	OPiRCA3 op3 = new OPiRCA3();
 	OPiRCA op1 = new OPiRCA();
-	EiRCAChinese ec = new EiRCAChinese();
+	EiRCAPageObj eirca = new EiRCAPageObj();
 	CreateEquipmentCase cec =  new CreateEquipmentCase();
 	OPiRCAChinese opc = new OPiRCAChinese();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	SoftAssertions softly = new SoftAssertions();
 
@@ -651,9 +652,9 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Wait for loading message
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
 		//Fill mandatory details on Info page and click next

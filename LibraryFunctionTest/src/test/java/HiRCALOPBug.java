@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HiRCALOPBug {
 
+	ShareCheck2 share2 = new ShareCheck2();
+
 	String text = "HiRCA bug LOP";
 	String reason = "reason entry";
 	String reason1 = "reason entry 1";
@@ -45,9 +47,8 @@ public class HiRCALOPBug {
 	public void fillPage(WebDriver driver,String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		ShareCheck obj = new ShareCheck();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AnalysisLink)).click();
 		//Clicks on HiRCA
@@ -108,17 +109,17 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for loading message to disappear		  
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).getText();
 		softly.assertThat(s2).as("test data").contains(text+" \"title\" "+text);
 		//Click on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear		  
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -138,11 +139,11 @@ public class HiRCALOPBug {
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for loading message to disappear		  
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear		  
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Delete
 		obj1.deleteReport(driver);
 		//Go to KALE homepage

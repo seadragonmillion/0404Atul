@@ -20,6 +20,7 @@ public class CaseBrowse {
 
 	SoftAssertions softly = new SoftAssertions();
 	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
 	String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
@@ -228,13 +229,12 @@ public class CaseBrowse {
 	public void lookForCaseWithTypeFilter(WebDriver driver, String keyword, String caseId) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		ShareCheck obj = new ShareCheck();
 		//Search for keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Look for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 	}
@@ -242,9 +242,8 @@ public class CaseBrowse {
 	public void getHumanPerformanceLink(WebDriver driver, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		/*Verify order or modules
@@ -259,9 +258,8 @@ public class CaseBrowse {
 	public void getEquipPerformanceLink(WebDriver driver, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		/*Verify order or modules
@@ -276,9 +274,8 @@ public class CaseBrowse {
 	public void getEquipPerformancePIILink(WebDriver driver, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		/*Verify order or modules
@@ -293,9 +290,8 @@ public class CaseBrowse {
 	public void getElecFailureModeLink(WebDriver driver, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		/*Verify order or modules
@@ -310,9 +306,8 @@ public class CaseBrowse {
 	public void getMechFailureModeLink(WebDriver driver, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		/*Verify order or modules
@@ -328,7 +323,6 @@ public class CaseBrowse {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CreateHumanCase obj = new CreateHumanCase();
-		ShareCheck obj1 = new ShareCheck();
 		//Click on top Error-free bank link
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
 		//Click on Failure Modes
@@ -338,7 +332,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys("failure");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get number of cases displayed when no discipline is selected
 		int i = getNumberOfCasesIn1stCollapsibleListEquip(driver);
 		System.out.println("Number of cases without any discipline chosen: "+(i));
@@ -348,7 +342,7 @@ public class CaseBrowse {
 		//Click on search button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get number of cases displayed when no discipline is selected
 		int j = getNumberOfCasesIn1stCollapsibleListEquip(driver);
 		//Get text of Discipline box
@@ -520,13 +514,12 @@ public class CaseBrowse {
 	public void searchColorCasesHuman(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Search for keyword oil
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys("oil color");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		int i=1;
 		//Check for titles for 1st set of cases (Similar results)
 		while(true)
@@ -601,7 +594,7 @@ public class CaseBrowse {
 		//Click on case collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+caseID))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Check in description of case inside collapsible if it has color:blue
 		String desc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-collapsible-"+caseID+"']/div/p[1]"))).getText();
 		softly.assertThat(desc1).as("test data").doesNotContain("color:blue");
@@ -631,13 +624,12 @@ public class CaseBrowse {
 	public void searchColorCasesEquip(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		//Search for keyword oil
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys("oil color");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		int i=1;
 		//Check for titles for 1st set of cases (Similar results)
 		while(true)
@@ -712,7 +704,7 @@ public class CaseBrowse {
 		//Click on case collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Check in description of case inside collapsible if it has color:blue
 		String desc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-collapsible-equip-"+caseID+"']/div/p[1]"))).getText();
 		softly.assertThat(desc1).as("test data").doesNotContain("color:blue");
@@ -950,8 +942,7 @@ public class CaseBrowse {
 		//Press ENTER
 		ele.sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Look for case
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
@@ -1010,8 +1001,7 @@ public class CaseBrowse {
 			//Press Enter
 			ele.sendKeys(Keys.ENTER);
 			//Wait for loading message to disappear
-			ShareCheck obj = new ShareCheck();
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify dropdown has disappeared
 			try{
 				dropdown = driver.findElement(EquipmentSearchDropDown);
@@ -1043,8 +1033,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keypercent);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		Thread.sleep(2000);		  
@@ -1061,8 +1050,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyspcl);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		Thread.sleep(2000);		  
@@ -1087,12 +1075,11 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Look for dynamic dropdown
 		try{
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchDropDown));
@@ -1104,12 +1091,12 @@ public class CaseBrowse {
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Enters the term and check the search by enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Look for dynamic dropdown
 		try{
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchDropDown));
@@ -1151,8 +1138,7 @@ public class CaseBrowse {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentDropDownListTitle)).click();
 		}
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);	
+		share2.loadingServer(driver);	
 	}
 
 	public void browseTermEquip (WebDriver driver, String keyword, String identifier, String title) throws Exception {
@@ -1184,8 +1170,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIDFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchClearButton)).click();
@@ -1194,11 +1179,11 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(EquipmentSearchCaseIdField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+identifier));
@@ -1277,8 +1262,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIDFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
@@ -1287,11 +1271,11 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(identifier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchCaseIdField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-Q"+identifier));
@@ -1364,12 +1348,11 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-Q"+identifier));
@@ -1438,12 +1421,11 @@ public class CaseBrowse {
 			}
 		}
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+identifier));
@@ -1762,8 +1744,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keypercent);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		Thread.sleep(2000);		  
@@ -1780,8 +1761,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyspcl);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		Thread.sleep(2000);		  
@@ -1806,8 +1786,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchClearButton)).click();
@@ -1824,7 +1803,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Look for dynamic dropdown
 		try{
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(HumanSearchDropDown));
@@ -1866,8 +1845,7 @@ public class CaseBrowse {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanDropDownListTitle)).click();
 		}
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);		
+		share2.loadingServer(driver);		
 	}
 
 	public void softAssert() throws Exception {

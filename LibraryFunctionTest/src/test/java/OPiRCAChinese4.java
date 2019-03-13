@@ -15,6 +15,7 @@ public class OPiRCAChinese4 {
 
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	OPiRCA3 op3 = new OPiRCA3();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void OPiRCASkipStep1(WebDriver driver) throws Exception{
 		
@@ -156,7 +157,6 @@ public class OPiRCAChinese4 {
 	
 	public void saveReport(WebDriver driver) throws Exception {
 		
-		ShareCheck obj1 = new ShareCheck();
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
@@ -165,17 +165,17 @@ public class OPiRCAChinese4 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.StickySuccess));
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
 		Thread.sleep(2000);		  
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on new record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		//Wait for loading message
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 	
 	public void OPiRCAStep2VariationPaths(WebDriver driver, SoftAssertions softly) throws Exception {

@@ -16,12 +16,12 @@ public class Login {
 
 	SoftAssertions softly = new SoftAssertions();
 	LoginPageObj lpo = new LoginPageObj();
+	ShareCheck2 share = new ShareCheck2();
 
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.WebPageMessage)).getText();
 		System.out.println(s);
 		assertEquals("\"An Error-Free Knowledge and Tool Bank\"", s);
@@ -42,10 +42,10 @@ public class Login {
 			{
 				//Sign in button is located and clicked
 				driver.findElement(lpo.SignInButton).click();  
-				obj.loadingServer(driver);
+				share.loadingServer(driver);
 				while(c>0)
 				{
-					obj.loadingServer(driver);
+					share.loadingServer(driver);
 					WebElement element = driver.findElement(lpo.SignInMessage);
 					String text = element.getText();
 					System.out.println(text);
@@ -63,7 +63,7 @@ public class Login {
 							driver.findElement(lpo.SignInButton).click();
 							if(text.contains("Warning: This user has an existing login session"))
 								login =1;
-							obj.loadingServer(driver);
+							share.loadingServer(driver);
 							break;
 						}
 
@@ -93,7 +93,7 @@ public class Login {
 					{
 						//Sign in button is located and clicked
 						driver.findElement(lpo.SignInButton).click();
-						obj.loadingServer(driver);
+						share.loadingServer(driver);
 						break;
 					}
 				}

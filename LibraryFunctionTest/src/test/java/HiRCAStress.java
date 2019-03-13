@@ -21,11 +21,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HiRCAStress {
-	
-	static String text = "HiRCA Stress test";
-	static SoftAssertions softly = new SoftAssertions();
 
-	public static void HiRCAUpload10Images(WebDriver driver) throws Exception {
+	ShareCheck2 share2 = new ShareCheck2();
+	
+	 String text = "HiRCA Stress test";
+	 SoftAssertions softly = new SoftAssertions();
+
+	public void HiRCAUpload10Images(WebDriver driver) throws Exception {
 		
 		HiRCALOPBug obj = new HiRCALOPBug();
 		ShareCheck obj1 = new ShareCheck();
@@ -37,13 +39,13 @@ public class HiRCAStress {
 		uploadFiveImages(driver);
 		//Clicks on Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks the 5 images if appearing
 		for (int j=0; j<5; j++)
 		{				  
@@ -53,7 +55,7 @@ public class HiRCAStress {
 			obj1.scrollToElement(driver, driver.findElement(By.id(id)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			//Wait for loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			String img = "pii-irca-h-event-report-file-img-"+j;
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
@@ -72,7 +74,7 @@ public class HiRCAStress {
 		obj2.deleteReport(driver);
 	}
 	
-	public static void downloadSelectFunction (WebDriver driver) throws Exception {
+	public  void downloadSelectFunction (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -101,7 +103,7 @@ public class HiRCAStress {
 		Thread.sleep(2000);
 	}
 	
-	public static void pdfCheck() throws Exception{
+	public  void pdfCheck() throws Exception{
 
 		HiRCAEvent obj = new HiRCAEvent();
 		List<String> results = new ArrayList<String>();
@@ -126,9 +128,8 @@ public class HiRCAStress {
 		pddoc.close();	      
 	}
 	
-	public static void downloadRecordChrome (WebDriver driver) throws Exception {
+	public void downloadRecordChrome (WebDriver driver) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -138,10 +139,10 @@ public class HiRCAStress {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -156,9 +157,8 @@ public class HiRCAStress {
 	}
 
 
-	public static void downloadRecordFirefox(WebDriver driver) throws Exception {
+	public  void downloadRecordFirefox(WebDriver driver) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -167,11 +167,11 @@ public class HiRCAStress {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -197,9 +197,8 @@ public class HiRCAStress {
 		driver.switchTo().defaultContent();
 	}
 
-	public static void downloadRecordIE10(WebDriver driver) throws Exception {
+	public  void downloadRecordIE10(WebDriver driver) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -209,11 +208,11 @@ public class HiRCAStress {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -245,11 +244,11 @@ public class HiRCAStress {
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
-			obj.loadingServer(driver);
-			obj.loadingServer(driver);
-			obj.loadingServer(driver);
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -274,9 +273,8 @@ public class HiRCAStress {
 	}
 
 
-	public static void downloadRecordIE11(WebDriver driver) throws Exception {
+	public  void downloadRecordIE11(WebDriver driver) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -285,11 +283,11 @@ public class HiRCAStress {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -314,7 +312,7 @@ public class HiRCAStress {
 		driver.switchTo().window(window);			    		    	
 	}
 	
-	public static void uploadTenImagesChrome(WebDriver driver) throws Exception {
+	public  void uploadTenImagesChrome(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		ShareCheck obj = new ShareCheck();
@@ -350,29 +348,29 @@ public class HiRCAStress {
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
 	
-	public static void uploadTenImagesFirefox(WebDriver driver) throws Exception {
+	public  void uploadTenImagesFirefox(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		ShareCheck obj = new ShareCheck();
@@ -409,29 +407,29 @@ public class HiRCAStress {
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
 	
-	public static void uploadTenImagesIE10(WebDriver driver) throws Exception {
+	public  void uploadTenImagesIE10(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -477,29 +475,29 @@ public class HiRCAStress {
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
 	
-	public static void uploadTenImagesIE11(WebDriver driver) throws Exception {
+	public  void uploadTenImagesIE11(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -545,29 +543,29 @@ public class HiRCAStress {
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
 	
-	public static void verifyImagesUploaded(WebDriver driver) throws Exception {
+	public  void verifyImagesUploaded(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		ShareCheck obj = new ShareCheck();
@@ -587,7 +585,7 @@ public class HiRCAStress {
 		obj.scrollToTop(driver);
 	}
 	
-	public static void uploadFiveImages(WebDriver driver) throws Exception {
+	public  void uploadFiveImages(WebDriver driver) throws Exception {
 
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -609,7 +607,7 @@ public class HiRCAStress {
 		}
 	}
 	
-	public static void softAssert() throws Exception {
+	public  void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
 	}

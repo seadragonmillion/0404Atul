@@ -47,6 +47,8 @@ public class HiRCALevel2 {
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	OPiRCA3 op3 = new OPiRCA3();
 	ShareCheck share = new ShareCheck();
+	TextBoxResizing tbr = new TextBoxResizing ();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
 
@@ -392,7 +394,6 @@ public class HiRCALevel2 {
 	public void downloadReportChangeCorrectiveActionChrome(WebDriver driver, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();	
 		EiRCA2 obj1 = new EiRCA2();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
@@ -400,7 +401,7 @@ public class HiRCALevel2 {
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
@@ -419,14 +420,13 @@ public class HiRCALevel2 {
 	public void downloadReportChangeCorrectiveActionFirefox(WebDriver driver, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
@@ -458,14 +458,13 @@ public class HiRCALevel2 {
 	public void downloadReportChangeCorrectiveActionIE10(WebDriver driver, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
@@ -494,14 +493,13 @@ public class HiRCALevel2 {
 	public void downloadReportChangeCorrectiveActionIE11(WebDriver driver, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
@@ -535,7 +533,12 @@ public class HiRCALevel2 {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -940,7 +943,6 @@ public class HiRCALevel2 {
 	public void downloadReportChrome(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();	
 		EiRCA2 obj1 = new EiRCA2();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
@@ -948,7 +950,7 @@ public class HiRCALevel2 {
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
@@ -967,14 +969,13 @@ public class HiRCALevel2 {
 	public void downloadReportFirefox(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
@@ -1006,7 +1007,6 @@ public class HiRCALevel2 {
 	public void downloadReportIE10(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		OPiRCA obj2 = new OPiRCA();
 		//Clicks on download button
@@ -1014,7 +1014,7 @@ public class HiRCALevel2 {
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
@@ -1048,7 +1048,7 @@ public class HiRCALevel2 {
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -1075,14 +1075,13 @@ public class HiRCALevel2 {
 	public void downloadReportIE11(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		ShareCheck obj = new ShareCheck();
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
 		obj1.verifyDownloadReportPopup(driver, softly);
@@ -1117,7 +1116,12 @@ public class HiRCALevel2 {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -1172,30 +1176,30 @@ public class HiRCALevel2 {
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-		obj.loadingServer(driver);		
+		share2.loadingServer(driver);		
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("11"))
 			{
-				obj.loadingServer(driver);	
+				share2.loadingServer(driver);	
 				//Clicks on Save
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 		}
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 
@@ -1203,6 +1207,7 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Fill reason entry
+		//tbr.sizeCheck(driver, By.id("pii-irca-reason-entry"), softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason);
 		//CLick on answer
 		JavascriptExecutor executor = (JavascriptExecutor)driver;

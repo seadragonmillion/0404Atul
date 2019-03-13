@@ -23,6 +23,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HumanCaseLoad {
+	
+	ShareCheck2 share2 = new ShareCheck2();
 
 	String keyword1 = "Slide100images";
 	String keyword2 = "Slide100NoImages";
@@ -79,11 +81,11 @@ public class HumanCaseLoad {
 		String caseId="";
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on new case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
@@ -177,7 +179,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -200,7 +202,7 @@ public class HumanCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -240,7 +242,7 @@ public class HumanCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 		//Clicks on new case
@@ -336,7 +338,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -359,7 +361,7 @@ public class HumanCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -402,7 +404,7 @@ public class HumanCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		obj.scrollToTop(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
@@ -499,7 +501,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -523,7 +525,7 @@ public class HumanCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -557,7 +559,7 @@ public class HumanCaseLoad {
 		}
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);		
 		//Clicks on Human cases
 		WebElement button1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button")));
@@ -569,7 +571,7 @@ public class HumanCaseLoad {
 		String caseId="";
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Clicks on new case button
 		WebElement button2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new")));
@@ -674,7 +676,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -698,7 +700,7 @@ public class HumanCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -730,8 +732,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks if Exact matches appear
 		try{
 			driver.findElement(By.xpath(".//*[@id='pii-question-list']/div/h4/a/div"));			
@@ -783,7 +784,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Click on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
@@ -791,17 +792,17 @@ public class HumanCaseLoad {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-ul"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on delete case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Checks if case deleted
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).clear();
@@ -820,12 +821,11 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+identifier))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-"+identifier));

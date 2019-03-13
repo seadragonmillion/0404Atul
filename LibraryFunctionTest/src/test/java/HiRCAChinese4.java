@@ -7,124 +7,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HiRCAChinese4 {
+	
+	HiRCAChinese6 hc6 = new HiRCAChinese6();
 
-	public void chineseEventInfo (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Check if title contains chinese HiRCA
-		String hirca_title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
-		System.out.println(hirca_title);
-		softly.assertThat(hirca_title).as("test data").contains(" - 事件信息");
-		//Heading of event info page in chinese?
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(heading).as("test data").contains("输入事件信息");
-		//Checks if the textboxes have the correct titles
-		//Event title
-		String ev_title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title-label"))).getText();
-		System.out.println(ev_title);
-		softly.assertThat(ev_title).as("test data").contains("事件名称:");
-		//Verify place holder of event title
-		String ev_ph = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).getAttribute("placeholder");
-		System.out.println(ev_ph);
-		softly.assertThat(ev_ph).as("test data").contains("输入 事件名称");
-		//Event id
-		String ev_id = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[2]/label"))).getText();
-		System.out.println(ev_id);
-		softly.assertThat(ev_id).as("test data").contains("事件编号:");
-		//Verify place holder of event id
-		String ev_ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-crnumber"))).getAttribute("placeholder");
-		System.out.println(ev_ph1);
-		softly.assertThat(ev_ph1).as("test data").contains("输入 事件编号 (非必填)");
-		//Event location
-		String loc=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/label"))).getText();
-		System.out.println(loc);
-		softly.assertThat(loc).as("test data").contains("事件发生地点:");
-		//Verify place holder of event location
-		String ev_ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).getAttribute("placeholder");
-		System.out.println(ev_ph2);
-		softly.assertThat(ev_ph2).as("test data").contains("输入 事件发生地点");
-		//Department
-		String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend"))).getText();
-		System.out.println(dept);
-		softly.assertThat(dept).as("test data").contains("部门:");
-		//Sub department
-		String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
-		System.out.println(sub_dept);
-		softly.assertThat(sub_dept).as("test data").contains("组:");
-		//Date of event
-		String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label"))).getText();
-		System.out.println(date);
-		softly.assertThat(date).as("test data").contains("事件发生日期:");
-		//Time of event
-		String time=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label"))).getText();
-		System.out.println(time);
-		softly.assertThat(time).as("test data").contains("事件发生时间:");
-		//Problem statement
-		String prob=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label"))).getText();
-		System.out.println(prob);
-		softly.assertThat(prob).as("test data").contains("事件描述:");
-		//Verify place holder of problem statement
-		String ev_ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).getAttribute("placeholder");
-		System.out.println(ev_ph3);
-		softly.assertThat(ev_ph3).as("test data").contains("输入 事件描述");
-		//Executive summary
-		String exec=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label"))).getText();
-		System.out.println(exec);
-		softly.assertThat(exec).as("test data").contains("报告摘要:");
-		//Verify place holder of executive summary
-		String ev_ph4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-execsummary"))).getAttribute("placeholder");
-		System.out.println(ev_ph4);
-		softly.assertThat(ev_ph4).as("test data").contains("输入 报告摘要 (非必填)");
-		//Timeline of event
-		String timeline=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label"))).getText();
-		System.out.println(timeline);
-		softly.assertThat(timeline).as("test data").contains("事件详细过程（时序构建）:");
-		//Verify place holder of timeline of event
-		String ev_ph5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).getAttribute("placeholder");
-		System.out.println(ev_ph5);
-		softly.assertThat(ev_ph5).as("test data").contains("输入 事件详细过程（时序构建）");
-		//Background information
-		String back=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[11]/label"))).getText();
-		System.out.println(back);
-		softly.assertThat(back).as("test data").contains("相关信息:");
-		//Verify place holder of background information
-		String ev_ph6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).getAttribute("placeholder");
-		System.out.println(ev_ph6);
-		softly.assertThat(ev_ph6).as("test data").contains("输入 相关信息");
-		//Supporting file (1)
-		String supp1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-fieldcontain-label-0"))).getText();
-		System.out.println(supp1);
-		softly.assertThat(supp1).as("test data").contains("支援文件 (1):");
-		//Header of supporting file
-		String supp1_header = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-header-0"))).getText();
-		System.out.println(supp1_header);
-		softly.assertThat(supp1_header).as("test data").contains("支援文件描述细节");
-		//Add new file button
-		String newFilebutton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).getText();
-		System.out.println(newFilebutton);
-		softly.assertThat(newFilebutton).as("test data").contains("上传另一个档案");
-		//Investigators
-		String inve=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label"))).getText();
-		System.out.println(inve);
-		softly.assertThat(inve).as("test data").contains("事件调查员:");
-		//Verify place holder of investigator
-		String ev_ph7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).getAttribute("placeholder");
-		System.out.println(ev_ph7);
-		softly.assertThat(ev_ph7).as("test data").contains("输入 事件调查员");
-		//Report creation date
-		String repo=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/label"))).getText();
-		System.out.println(repo);
-		softly.assertThat(repo).as("test data").contains("报告编写时间:");
-	}
-
-	public void chineseStepOneL311 (WebDriver driver, SoftAssertions softly) throws Exception {
+	public void chineseStepOneL31 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		ShareCheck obj = new ShareCheck();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 
-		softly.assertThat(heading).as("test data").contains("工作问责");
-		softly.assertThat(heading).as("test data").contains("不充分");
+		softly.assertThat(heading).as("test data").contains("个人层面");
 		//text under description 
 		String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
 
@@ -134,14 +27,14 @@ public class HiRCAChinese4 {
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
 
-		softly.assertThat(desc).as("test data").contains("问责机制系指业主对制度绩效负责的机制。缺乏问责机制是否是发生这种失误的促成因素？");
+		softly.assertThat(desc).as("test data").contains("这些促成因素归因于个人，因为这关系到影响组织绩效的失误。");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//3.11.1 question
+		//3.1.1 question
 		String q341 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
 		System.out.println(q341);
-		softly.assertThat(q341).as("test data").contains("[3.11.1] 绩效跟踪与趋势分析(PM&T)以及给员工的反馈不到位");
-		//Click on 3.11.1 to reveal evidence entry
+		softly.assertThat(q341).as("test data").contains("[3.1.1] 能力不足");
+		//Click on 3.1.1 to reveal evidence entry
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']")));
 		String s1 = ele.getAttribute("class");
 		if(s1.contains("ui-checkbox-on")==false)
@@ -159,40 +52,40 @@ public class HiRCAChinese4 {
 		softly.assertThat(ph1).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
-		//Click on 3.11.1 to disable evidence entry
+		//Click on 3.1.1 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
-		//2nd collapsible for 3.11.1
+		//2nd collapsible for 3.1.1
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c1).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.11.1
+		//Click on 2nd collapsible for 3.1.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
 
-		softly.assertThat(c2).as("test data").contains("向员工反馈绩效趋势结果？");
-		//Click on 2nd collapsible for 3.11.1
+		softly.assertThat(c2).as("test data").contains("重复失误？");
+		//Click on 2nd collapsible for 3.1.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.11.1
+		//3rd collapsible 3.1.1
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c10).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.11.1
+		//Click on 3rd collapsible for 3.1.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c3).as("test data").contains("完善趋势分析体系");
-		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+		softly.assertThat(c3).as("test data").contains("重新调到合适岗位");
+		String c37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
 
-		softly.assertThat(c22).as("test data").contains("完善趋势反馈");
-		//Click on 3rd collapsible for 3.11.1
+		softly.assertThat(c37).as("test data").contains("培训");
+		//Click on 3rd collapsible for 3.1.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.11.2 question
+		//3.1.2 question
 		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
 		System.out.println(q342);
-		softly.assertThat(q342).as("test data").contains("[3.11.2] 即时反馈和持续强化(IF&CR)的管理技能不到位");
-		//Click on 3.11.2 to reveal evidence entry
+		softly.assertThat(q342).as("test data").contains("[3.1.2] 态度和任务不匹配");
+		//Click on 3.1.2 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']")));
 		String s2 = ele.getAttribute("class");
 		if(s2.contains("ui-checkbox-on")==false)
@@ -210,49 +103,37 @@ public class HiRCAChinese4 {
 		softly.assertThat(ph2).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
-		//Click on 3.11.2 to disable evidence entry
+		//Click on 3.1.2 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		//2nd collapsible for 3.11.2
+		//2nd collapsible for 3.1.2
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c4).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.11.2
+		//Click on 2nd collapsible for 3.1.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
 
-		softly.assertThat(c5).as("test data").contains("花在现场观察和监督工作的时间是否足够？");
-		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c23).as("test data").contains("标准的持续强化？");
-		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[3]"))).getText();
-
-		softly.assertThat(c24).as("test data").contains("观察到偏差时，是否及时反馈？");
-		String c27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[4]"))).getText();
-
-		softly.assertThat(c27).as("test data").contains("正面反馈多余负面反馈？");
-		//Click on 2nd collapsible for 3.11.2
+		softly.assertThat(c5).as("test data").contains("性格-态度分析？");
+		//Click on 2nd collapsible for 3.1.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.11.2
+		//3rd collapsible 3.1.2
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.11.2
+		//Click on 3rd collapsible for 3.1.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
-		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
 
-		softly.assertThat(c6).as("test data").contains("提高主管人员的问责意识");
-		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c28).as("test data").contains("改善关于管理技能的培训");
-		//Click on 3rd collapsible for 3.11.2
+		softly.assertThat(c6).as("test data").contains("改善任务分工策略");
+		//Click on 3rd collapsible for 3.1.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.11.3 question
+		//3.1.3 question
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		System.out.println(q343);
-		softly.assertThat(q343).as("test data").contains("[3.11.3] 用于绩效控制的奖惩制度不到位");
-		//Click on 3.11.3 to reveal evidence entry
+		softly.assertThat(q343).as("test data").contains("[3.1.3] 性格和任务不匹配");
+		//Click on 3.1.3 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']")));
 		String s3 = ele.getAttribute("class");
 		if(s3.contains("ui-checkbox-on")==false)
@@ -270,43 +151,37 @@ public class HiRCAChinese4 {
 		softly.assertThat(ph3).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
-		//Click on 3.11.3 to disable evidence entry
+		//Click on 3.1.3 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		//2nd collapsible for 3.11.3
+		//2nd collapsible for 3.1.3
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c7).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.11.3
+		//Click on 2nd collapsible for 3.1.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
 
-		softly.assertThat(c8).as("test data").contains("奖惩制度是否及时？");
-		String c25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c25).as("test data").contains("奖惩制度是否公平？");
-		String c29 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[3]"))).getText();
-
-		softly.assertThat(c29).as("test data").contains("奖惩制度是否坚定？");
-		//Click on 2nd collapsible for 3.11.3
+		softly.assertThat(c8).as("test data").contains("性格-态度分析？");
+		//Click on 2nd collapsible for 3.1.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.11.3
+		//3rd collapsible 3.1.3
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c12).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.11.3
+		//Click on 3rd collapsible for 3.1.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
-		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
+		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c9).as("test data").contains("完善奖惩制度");
-		//Click on 3rd collapsible for 3.11.3
+		softly.assertThat(c9).as("test data").contains("改善任务分工策略");
+		//Click on 3rd collapsible for 3.1.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.11.4 question
+		//3.1.4 question
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 
-		softly.assertThat(q344).as("test data").contains("[3.11.4] 问题报告、RCA和纠正行动不到位，给员工的反馈不到位");
-		//Click on 3.11.4 to reveal evidence entry
+		softly.assertThat(q344).as("test data").contains("[3.1.4] 缺乏专业经验");
+		//Click on 3.1.4 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']")));
 		String s4 = ele.getAttribute("class");
 		if(s4.contains("ui-checkbox-on")==false)
@@ -324,42 +199,43 @@ public class HiRCAChinese4 {
 		softly.assertThat(ph4).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
-		//Click on 3.11.4 to disable evidence entry
+		//Click on 3.1.4 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
-		//2nd collapsible for 3.11.4
+		//2nd collapsible for 3.1.4
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c13).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.11.4
+		//Click on 2nd collapsible for 3.1.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();		
-		softly.assertThat(c14).as("test data").contains("核实汇报分析的小事件数量比例以及受伤数量");
-		//Click on 2nd collapsible for 3.11.4
+		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
+
+		softly.assertThat(c14).as("test data").contains("工作历史？");
+		//Click on 2nd collapsible for 3.1.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.11.4
+		//3rd collapsible 3.1.4
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c16).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.11.4
+		//Click on 3rd collapsible for 3.1.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
 		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c17).as("test data").contains("在问题报告政策中要求包含一切问题和及时性");
-		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+		softly.assertThat(c17).as("test data").contains("PJB 和MJB上提供即时经验提醒");
+		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
 
-		softly.assertThat(c26).as("test data").contains("RCA培训和授权");
-		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[3]"))).getText();
+		softly.assertThat(c15).as("test data").contains("辅导");
+		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[3]"))).getText();
 
-		softly.assertThat(c30).as("test data").contains("改善对RCA结果的反馈");
-		//Click on 3rd collapsible for 3.11.4
+		softly.assertThat(c23).as("test data").contains("培训");
+		//Click on 3rd collapsible for 3.1.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.11.5 question
+		//3.1.5 question
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		System.out.println(q345);
-		softly.assertThat(q345).as("test data").contains("[3.11.5] 现场观察不充分，给员工的反馈不到位");
-		//Click on 3.11.5 to reveal evidence entry
+		softly.assertThat(q345).as("test data").contains("[3.1.5] 对自我缺点认识不足，缺乏相应弥补措施");
+		//Click on 3.1.5 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']")));
 		String s5 = ele.getAttribute("class");
 		if(s5.contains("ui-checkbox-on")==false)
@@ -377,57 +253,101 @@ public class HiRCAChinese4 {
 		softly.assertThat(ph5).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).click();
-		//Click on 3.11.5 to disable evidence entry
+		//Click on 3.1.5 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).click();
-		//2nd collapsible for 3.11.5
+		//2nd collapsible for 3.1.5
 		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c18).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.11.5
+		//Click on 2nd collapsible for 3.1.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
 		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c19).as("test data").contains("各部门均建立了现场观察指导制度？");
-		String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c31).as("test data").contains("对过去现场观察指导结果的有效性审查？");
-		String c32 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[3]"))).getText();
-
-		softly.assertThat(c32).as("test data").contains("花在现场观察指导上的时间？");
-		//Click on 2nd collapsible for 3.11.5
+		softly.assertThat(c19).as("test data").contains("访谈同事？");
+		//Click on 2nd collapsible for 3.1.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.11.5
+		//3rd collapsible 3.1.5
 		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c20).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.11.5
+		//Click on 3rd collapsible for 3.1.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
 		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c21).as("test data").contains("针对现场观察结果，改善给员工的反馈");
-		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+		softly.assertThat(c21).as("test data").contains("辅导");
+		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
 
-		softly.assertThat(c33).as("test data").contains("改进现场观察员的制度和TQA");
-		//Click on 3rd collapsible for 3.11.5
+		softly.assertThat(c26).as("test data").contains("自我分析培训");
+		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[3]"))).getText();
+
+		softly.assertThat(c24).as("test data").contains("开展自我分析");
+		//Click on 3rd collapsible for 3.1.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//Add new contributing factor button
-		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
+		obj.scrollToAPoint(driver, 1200);
+		//3.1.6 question
+		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();		
+		softly.assertThat(q396).as("test data").contains("[3.1.6] 不适合工作（生病、有心事等）");
+		//Click on 3.1.6 to reveal evidence entry
+		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']")));
+		String s6 = ele.getAttribute("class");
+		if(s6.contains("ui-checkbox-on")==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).click();
+		Thread.sleep(1000);
+		//Evidence entry
+		String ev6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-5']/h4/a"))).getText();		
+		softly.assertThat(ev6).as("test data").contains("支持证据");
+		//Click on evidence entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-5']/h4/a"))).click();
+		//Evidence entry place holder
+		String ph6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-5"))).getAttribute("placeholder");		
+		softly.assertThat(ph6).as("test data").contains("输入 支持证据 (非必填)");
+		//Click on evidence entry
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-5']/h4/a"))).click();
+		//Click on 3.1.6 to disable evidence entry
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).click();
+		//2nd collapsible for 3.1.6
+		String c151 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+		System.out.println(c151);
+		softly.assertThat(c151).as("test data").contains("进一步调查");
+		//Click on 2nd collapsible for 3.1.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		//text inside
+		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();		
+		softly.assertThat(c28).as("test data").contains("访谈同事？");
+		String c29 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();		
+		softly.assertThat(c29).as("test data").contains("访谈主管？");
+		//Click on 2nd collapsible for 3.1.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		//3rd collapsible 3.1.6
+		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
+		softly.assertThat(c30).as("test data").contains("可能的纠正行动");
+		//Click on 3rd collapsible for 3.1.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		//text inside
+		String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c15).as("test data").contains("新增促成因素");
+		softly.assertThat(c31).as("test data").contains("监督性行为跟踪培训");
+		//Click on 3rd collapsible for 3.1.6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		//Add new contributing factor button
+		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
+
+		softly.assertThat(c33).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
+		hc6.chineseAddContributingFactor(driver,softly);
+		Thread.sleep(2000);
+		obj.scrollToTop(driver);
+		Thread.sleep(2000);
 	}
 
-	public void chineseStepOneL310 (WebDriver driver, SoftAssertions softly) throws Exception {
+	public void chineseStepOneL321 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
-
-		softly.assertThat(heading).as("test data").contains("资格授权");
-		softly.assertThat(heading).as("test data").contains("不充分");
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
+		softly.assertThat(heading).as("test data").contains("高风险情况(");
 		//text under description 
 		String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
 
@@ -435,259 +355,207 @@ public class HiRCAChinese4 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-
-		softly.assertThat(desc).as("test data").contains("授权是对所学技能和影响安全或生产的关键工作能力的证明（如电厂操纵员、审查人员、经理等）");
+		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
+		softly.assertThat(desc).as("test data").contains("30%的错误是由高风险情况所影响导致的。");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//3.10.1 question
+		//3.21.1 question
 		String q341 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
 		System.out.println(q341);
-		softly.assertThat(q341).as("test data").contains("[3.10.1] 关键岗位员工的作业授权不充分");
-		//Click on 3.10.1 to reveal evidence entry
+		softly.assertThat(q341).as("test data").contains("[3.21.1] 未能识别和缓解时间相关的高风险情况，例如日常失误陷阱、工作时间、节假日影响等");
+		//Click on 3.21.1 to reveal evidence entry
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']")));
 		String s1 = ele.getAttribute("class");
 		if(s1.contains("ui-checkbox-on")==false)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		Thread.sleep(1000);
 		//Evidence entry
-		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();
-
+		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();		
 		softly.assertThat(ev1).as("test data").contains("支持证据");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
 		//Evidence entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-0"))).getAttribute("placeholder");
-
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-0"))).getAttribute("placeholder");		
 		softly.assertThat(ph1).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
-		//Click on 3.10.1 to disable evidence entry
+		//Click on 3.21.1 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
-		//2nd collapsible for 3.10.1
+		//2nd collapsible for 3.21.1
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c1).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.10.1
+		//Click on 2nd collapsible for 3.21.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
+		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c2).as("test data").contains("授权政策和证书？");
-		//Click on 2nd collapsible for 3.10.1
+		softly.assertThat(c2).as("test data").contains("高风险情境警觉培训？");
+		String c27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+
+		softly.assertThat(c27).as("test data").contains("作业前意识系统的完善？");
+		//Click on 2nd collapsible for 3.21.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.10.1
-		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
+		//3rd collapsible 3.21.1
+		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
 		softly.assertThat(c10).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.10.1
+		//Click on 3rd collapsible for 3.21.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
 
-		softly.assertThat(c3).as("test data").contains("完善作业授权");
-		//Click on 3rd collapsible for 3.10.1
+		softly.assertThat(c3).as("test data").contains("高风险情境警觉培训");
+		//Click on 3rd collapsible for 3.21.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.10.2 question
+		//3.21.2 question
 		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
 		System.out.println(q342);
-		softly.assertThat(q342).as("test data").contains("[3.10.2] 关键岗位主管和（或）经理授权不充分");
-		//Click on 3.10.2 to reveal evidence entry
+		softly.assertThat(q342).as("test data").contains("[3.21.2] 未能识别和缓解活动相关的高风险情况，例如伪装的首次执行操作、利益失衡、单项弱点失去管理、专门技能缺陷等等");
+		//Click on 3.21.2 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']")));
 		String s2 = ele.getAttribute("class");
 		if(s2.contains("ui-checkbox-on")==false)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
 		Thread.sleep(1000);
 		//Evidence entry
-		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).getText();
-
+		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).getText();		
 		softly.assertThat(ev2).as("test data").contains("支持证据");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
 		//Evidence entry place holder
-		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-1"))).getAttribute("placeholder");
-
+		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-1"))).getAttribute("placeholder");		
 		softly.assertThat(ph2).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
-		//Click on 3.10.2 to disable evidence entry
+		//Click on 3.21.2 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		//2nd collapsible for 3.10.2
+		//2nd collapsible for 3.21.2
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c4).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.10.2
+		//Click on 2nd collapsible for 3.21.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
+		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c5).as("test data").contains("授权政策和证书？");
-		//Click on 2nd collapsible for 3.10.2
+		softly.assertThat(c5).as("test data").contains("高风险情境警觉培训？");
+		String c51 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+
+		softly.assertThat(c51).as("test data").contains("作业前意识系统的完善？");
+		//Click on 2nd collapsible for 3.21.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.10.2
-		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
+		//3rd collapsible 3.21.2
+		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.10.2
+		//Click on 3rd collapsible for 3.21.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
 
-		softly.assertThat(c6).as("test data").contains("完善主管和经理的岗位授权");
-		//Click on 3rd collapsible for 3.10.2
+		softly.assertThat(c6).as("test data").contains("高风险情境警觉培训");
+		//Click on 3rd collapsible for 3.21.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.10.3 question
+		//3.21.3 question
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		System.out.println(q343);
-		softly.assertThat(q343).as("test data").contains("[3.10.3] 供应商服务（QA/RC、来源检查）授权不充分");
-		//Click on 3.10.3 to reveal evidence entry
+		softly.assertThat(q343).as("test data").contains("[3.21.3] 未能识别和缓解人员相关的高风险情况，例如能力、态度、性格、与人打交道的经验存在不足");
+		//Click on 3.21.3 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']")));
 		String s3 = ele.getAttribute("class");
 		if(s3.contains("ui-checkbox-on")==false)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		Thread.sleep(1000);
 		//Evidence entry
-		String ev3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).getText();
-
+		String ev3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).getText();		
 		softly.assertThat(ev3).as("test data").contains("支持证据");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
 		//Evidence entry place holder
-		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-2"))).getAttribute("placeholder");
-
+		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-2"))).getAttribute("placeholder");		
 		softly.assertThat(ph3).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
-		//Click on 3.10.3 to disable evidence entry
+		//Click on 3.21.3 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		//2nd collapsible for 3.10.3
-		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
+		//2nd collapsible for 3.21.3
+		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();		
 		softly.assertThat(c7).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.10.3
+		//Click on 2nd collapsible for 3.21.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-
-		softly.assertThat(c8).as("test data").contains("授权政策和证书？");
-		//Click on 2nd collapsible for 3.10.3
+		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();		
+		softly.assertThat(c8).as("test data").contains("高风险情境警觉培训？");
+		String c81 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+		System.out.println(c81);
+		softly.assertThat(c81).as("test data").contains("作业前意识系统的完善？");
+		//Click on 2nd collapsible for 3.21.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.10.3
-		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
+		//3rd collapsible 3.21.3
+		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
 		softly.assertThat(c12).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.10.3
+		//Click on 3rd collapsible for 3.21.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
-		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
-
-		softly.assertThat(c9).as("test data").contains("完善供应商控制制度");
-		//Click on 3rd collapsible for 3.10.3
+		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();		
+		softly.assertThat(c9).as("test data").contains("高风险情境警觉培训");
+		//Click on 3rd collapsible for 3.21.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.10.4 question
+		//3.21.4 question
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 
-		softly.assertThat(q344).as("test data").contains("[3.10.4] 现场供应商人员授权不充分");
-		//Click on 3.10.4 to reveal evidence entry
+		softly.assertThat(q344).as("test data").contains("[3.21.4] 未能识别和缓解环境相关的高风险情况，例如工作条件恶劣（温度、照明、噪音、高辐射水平等等）以及人机接口（标牌、显示屏、控制器等）");
+		//Click on 3.21.4 to reveal evidence entry
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']")));
 		String s4 = ele.getAttribute("class");
 		if(s4.contains("ui-checkbox-on")==false)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
 		Thread.sleep(1000);
 		//Evidence entry
-		String ev4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).getText();
-
+		String ev4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).getText();		
 		softly.assertThat(ev4).as("test data").contains("支持证据");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
 		//Evidence entry place holder
-		String ph4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-3"))).getAttribute("placeholder");
-
+		String ph4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-3"))).getAttribute("placeholder");		
 		softly.assertThat(ph4).as("test data").contains("输入 支持证据 (非必填)");
 		//Click on evidence entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
-		//Click on 3.10.4 to disable evidence entry
+		//Click on 3.21.4 to disable evidence entry
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
-		//2nd collapsible for 3.10.4
+		//2nd collapsible for 3.21.4
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 
 		softly.assertThat(c13).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.10.4
+		//Click on 2nd collapsible for 3.21.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		//text inside
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c14).as("test data").contains("授权政策和证书？");
-		//Click on 2nd collapsible for 3.10.4
+		softly.assertThat(c14).as("test data").contains("高风险情境警觉培训？");
+		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+
+		softly.assertThat(c23).as("test data").contains("作业前意识系统的完善？");
+		//Click on 2nd collapsible for 3.21.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.4.4
+		//3rd collapsible 3.21.4
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c16).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.10.4
+		//Click on 3rd collapsible for 3.21.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//text inside
-		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
+		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
-		softly.assertThat(c17).as("test data").contains("完善供应商控制制度");
-		//Click on 3rd collapsible for 3.10.4
+		softly.assertThat(c17).as("test data").contains("高风险情境警觉培训");
+		//Click on 3rd collapsible for 3.21.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.10.5 question
-		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
-		System.out.println(q345);
-		softly.assertThat(q345).as("test data").contains("[3.10.5] 培训教员授权不充分");
-		//Click on 3.10.5 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']")));
-		String s5 = ele.getAttribute("class");
-		if(s5.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).getText();
-
-		softly.assertThat(ev5).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-4"))).getAttribute("placeholder");
-
-		softly.assertThat(ph5).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).click();
-		//Click on 3.10.5 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).click();
-		//2nd collapsible for 3.10.5
-		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c18).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.10.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-
-		softly.assertThat(c19).as("test data").contains("授权政策和证书？");
-		//Click on 2nd collapsible for 3.10.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.10.5
-		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c20).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.10.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
-
-		softly.assertThat(c21).as("test data").contains("完善有关培训教员资格授权的管理标准与方针");
-		//Click on 3rd collapsible for 3.10.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Add new contributing factor button
-		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
-
+		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();		
 		softly.assertThat(c22).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
+		hc6.chineseAddContributingFactor(driver,softly);
 	}
-
+	
 	public void chineseStepOneL39 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -1027,631 +895,12 @@ public class HiRCAChinese4 {
 
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
+		hc6.chineseAddContributingFactor(driver,softly);
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
-	public void chineseStepOneq18 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();
-
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.8 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
-
-		softly.assertThat(q11).as("test data").contains("[1.8] 犯错人员是否受过培训知道如何管理易出错精神状态和高风险");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();
-
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");
-
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-
-		softly.assertThat(desc).as("test data").contains("这个问题探讨了犯错人员是否知晓需提前准备避免易出错精神状态或高风险状态促成的个人失误。如果没有，需要进行培训。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
-
-		softly.assertThat(ans1).as("test data").contains("没有");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
-
-		softly.assertThat(ans2).as("test data").contains("有，但超过两年了");
-		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
-
-		softly.assertThat(ans3).as("test data").contains("两年内受过培训");
-	}
-
-	public void chineseStepOneL31 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		ShareCheck obj = new ShareCheck();
-		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
-
-		softly.assertThat(heading).as("test data").contains("个人层面");
-		//text under description 
-		String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
-
-		softly.assertThat(textD).as("test data").contains("若不适用点选skip略过。使用者可于底部新增促成因素。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-
-		softly.assertThat(desc).as("test data").contains("这些促成因素归因于个人，因为这关系到影响组织绩效的失误。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//3.1.1 question
-		String q341 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
-		System.out.println(q341);
-		softly.assertThat(q341).as("test data").contains("[3.1.1] 能力不足");
-		//Click on 3.1.1 to reveal evidence entry
-		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']")));
-		String s1 = ele.getAttribute("class");
-		if(s1.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();
-
-		softly.assertThat(ev1).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-0"))).getAttribute("placeholder");
-
-		softly.assertThat(ph1).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
-		//Click on 3.1.1 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
-		//2nd collapsible for 3.1.1
-		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c1).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.1.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-
-		softly.assertThat(c2).as("test data").contains("重复失误？");
-		//Click on 2nd collapsible for 3.1.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.1.1
-		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c10).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.1.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c3).as("test data").contains("重新调到合适岗位");
-		String c37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c37).as("test data").contains("培训");
-		//Click on 3rd collapsible for 3.1.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.1.2 question
-		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
-		System.out.println(q342);
-		softly.assertThat(q342).as("test data").contains("[3.1.2] 态度和任务不匹配");
-		//Click on 3.1.2 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']")));
-		String s2 = ele.getAttribute("class");
-		if(s2.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).getText();
-
-		softly.assertThat(ev2).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-1"))).getAttribute("placeholder");
-
-		softly.assertThat(ph2).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
-		//Click on 3.1.2 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		//2nd collapsible for 3.1.2
-		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c4).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-
-		softly.assertThat(c5).as("test data").contains("性格-态度分析？");
-		//Click on 2nd collapsible for 3.1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.1.2
-		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
-
-		softly.assertThat(c6).as("test data").contains("改善任务分工策略");
-		//Click on 3rd collapsible for 3.1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.1.3 question
-		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
-		System.out.println(q343);
-		softly.assertThat(q343).as("test data").contains("[3.1.3] 性格和任务不匹配");
-		//Click on 3.1.3 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']")));
-		String s3 = ele.getAttribute("class");
-		if(s3.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).getText();
-
-		softly.assertThat(ev3).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-2"))).getAttribute("placeholder");
-
-		softly.assertThat(ph3).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
-		//Click on 3.1.3 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		//2nd collapsible for 3.1.3
-		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c7).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.1.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-
-		softly.assertThat(c8).as("test data").contains("性格-态度分析？");
-		//Click on 2nd collapsible for 3.1.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.1.3
-		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c12).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.1.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c9).as("test data").contains("改善任务分工策略");
-		//Click on 3rd collapsible for 3.1.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.1.4 question
-		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
-
-		softly.assertThat(q344).as("test data").contains("[3.1.4] 缺乏专业经验");
-		//Click on 3.1.4 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']")));
-		String s4 = ele.getAttribute("class");
-		if(s4.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).getText();
-
-		softly.assertThat(ev4).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-3"))).getAttribute("placeholder");
-
-		softly.assertThat(ph4).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
-		//Click on 3.1.4 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
-		//2nd collapsible for 3.1.4
-		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c13).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.1.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
-
-		softly.assertThat(c14).as("test data").contains("工作历史？");
-		//Click on 2nd collapsible for 3.1.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.1.4
-		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c16).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.1.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c17).as("test data").contains("PJB 和MJB上提供即时经验提醒");
-		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c15).as("test data").contains("辅导");
-		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[3]"))).getText();
-
-		softly.assertThat(c23).as("test data").contains("培训");
-		//Click on 3rd collapsible for 3.1.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.1.5 question
-		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
-		System.out.println(q345);
-		softly.assertThat(q345).as("test data").contains("[3.1.5] 对自我缺点认识不足，缺乏相应弥补措施");
-		//Click on 3.1.5 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']")));
-		String s5 = ele.getAttribute("class");
-		if(s5.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).getText();
-
-		softly.assertThat(ev5).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-4"))).getAttribute("placeholder");
-
-		softly.assertThat(ph5).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-4']/h4/a"))).click();
-		//Click on 3.1.5 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).click();
-		//2nd collapsible for 3.1.5
-		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c18).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.1.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c19).as("test data").contains("访谈同事？");
-		//Click on 2nd collapsible for 3.1.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.1.5
-		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c20).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.1.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c21).as("test data").contains("辅导");
-		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c26).as("test data").contains("自我分析培训");
-		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[3]"))).getText();
-
-		softly.assertThat(c24).as("test data").contains("开展自我分析");
-		//Click on 3rd collapsible for 3.1.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		obj.scrollToAPoint(driver, 1200);
-		//3.1.6 question
-		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();		
-		softly.assertThat(q396).as("test data").contains("[3.1.6] 不适合工作（生病、有心事等）");
-		//Click on 3.1.6 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']")));
-		String s6 = ele.getAttribute("class");
-		if(s6.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-5']/h4/a"))).getText();		
-		softly.assertThat(ev6).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-5']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-5"))).getAttribute("placeholder");		
-		softly.assertThat(ph6).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-5']/h4/a"))).click();
-		//Click on 3.1.6 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).click();
-		//2nd collapsible for 3.1.6
-		String c151 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		System.out.println(c151);
-		softly.assertThat(c151).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.1.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();		
-		softly.assertThat(c28).as("test data").contains("访谈同事？");
-		String c29 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();		
-		softly.assertThat(c29).as("test data").contains("访谈主管？");
-		//Click on 2nd collapsible for 3.1.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.1.6
-		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
-		softly.assertThat(c30).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.1.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c31).as("test data").contains("监督性行为跟踪培训");
-		//Click on 3rd collapsible for 3.1.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//Add new contributing factor button
-		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
-
-		softly.assertThat(c33).as("test data").contains("新增促成因素");
-		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
-		Thread.sleep(2000);
-		obj.scrollToTop(driver);
-		Thread.sleep(2000);
-	}
-
-	public void chineseStepOneL321 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(heading).as("test data").contains("高风险情况(");
-		//text under description 
-		String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
-
-		softly.assertThat(textD).as("test data").contains("若不适用点选skip略过。使用者可于底部新增促成因素。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("30%的错误是由高风险情况所影响导致的。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//3.21.1 question
-		String q341 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
-		System.out.println(q341);
-		softly.assertThat(q341).as("test data").contains("[3.21.1] 未能识别和缓解时间相关的高风险情况，例如日常失误陷阱、工作时间、节假日影响等");
-		//Click on 3.21.1 to reveal evidence entry
-		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']")));
-		String s1 = ele.getAttribute("class");
-		if(s1.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();		
-		softly.assertThat(ev1).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-0"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).click();
-		//Click on 3.21.1 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
-		//2nd collapsible for 3.21.1
-		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c1).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.21.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c2).as("test data").contains("高风险情境警觉培训？");
-		String c27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c27).as("test data").contains("作业前意识系统的完善？");
-		//Click on 2nd collapsible for 3.21.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.21.1
-		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
-		softly.assertThat(c10).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.21.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
-
-		softly.assertThat(c3).as("test data").contains("高风险情境警觉培训");
-		//Click on 3rd collapsible for 3.21.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.21.2 question
-		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
-		System.out.println(q342);
-		softly.assertThat(q342).as("test data").contains("[3.21.2] 未能识别和缓解活动相关的高风险情况，例如伪装的首次执行操作、利益失衡、单项弱点失去管理、专门技能缺陷等等");
-		//Click on 3.21.2 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']")));
-		String s2 = ele.getAttribute("class");
-		if(s2.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).getText();		
-		softly.assertThat(ev2).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-1"))).getAttribute("placeholder");		
-		softly.assertThat(ph2).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-1']/h4/a"))).click();
-		//Click on 3.21.2 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
-		//2nd collapsible for 3.21.2
-		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c4).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.21.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c5).as("test data").contains("高风险情境警觉培训？");
-		String c51 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c51).as("test data").contains("作业前意识系统的完善？");
-		//Click on 2nd collapsible for 3.21.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.21.2
-		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
-		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.21.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li"))).getText();
-
-		softly.assertThat(c6).as("test data").contains("高风险情境警觉培训");
-		//Click on 3rd collapsible for 3.21.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.21.3 question
-		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
-		System.out.println(q343);
-		softly.assertThat(q343).as("test data").contains("[3.21.3] 未能识别和缓解人员相关的高风险情况，例如能力、态度、性格、与人打交道的经验存在不足");
-		//Click on 3.21.3 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']")));
-		String s3 = ele.getAttribute("class");
-		if(s3.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).getText();		
-		softly.assertThat(ev3).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-2"))).getAttribute("placeholder");		
-		softly.assertThat(ph3).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-2']/h4/a"))).click();
-		//Click on 3.21.3 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
-		//2nd collapsible for 3.21.3
-		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();		
-		softly.assertThat(c7).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.21.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();		
-		softly.assertThat(c8).as("test data").contains("高风险情境警觉培训？");
-		String c81 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-		System.out.println(c81);
-		softly.assertThat(c81).as("test data").contains("作业前意识系统的完善？");
-		//Click on 2nd collapsible for 3.21.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.21.3
-		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();		
-		softly.assertThat(c12).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.21.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();		
-		softly.assertThat(c9).as("test data").contains("高风险情境警觉培训");
-		//Click on 3rd collapsible for 3.21.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.21.4 question
-		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
-
-		softly.assertThat(q344).as("test data").contains("[3.21.4] 未能识别和缓解环境相关的高风险情况，例如工作条件恶劣（温度、照明、噪音、高辐射水平等等）以及人机接口（标牌、显示屏、控制器等）");
-		//Click on 3.21.4 to reveal evidence entry
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']")));
-		String s4 = ele.getAttribute("class");
-		if(s4.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
-		Thread.sleep(1000);
-		//Evidence entry
-		String ev4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).getText();		
-		softly.assertThat(ev4).as("test data").contains("支持证据");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
-		//Evidence entry place holder
-		String ph4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-3"))).getAttribute("placeholder");		
-		softly.assertThat(ph4).as("test data").contains("输入 支持证据 (非必填)");
-		//Click on evidence entry
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-3']/h4/a"))).click();
-		//Click on 3.21.4 to disable evidence entry
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).click();
-		//2nd collapsible for 3.21.4
-		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-
-		softly.assertThat(c13).as("test data").contains("进一步调查");
-		//Click on 2nd collapsible for 3.21.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//text inside
-		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c14).as("test data").contains("高风险情境警觉培训？");
-		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-
-		softly.assertThat(c23).as("test data").contains("作业前意识系统的完善？");
-		//Click on 2nd collapsible for 3.21.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.21.4
-		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-
-		softly.assertThat(c16).as("test data").contains("可能的纠正行动");
-		//Click on 3rd collapsible for 3.21.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//text inside
-		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-
-		softly.assertThat(c17).as("test data").contains("高风险情境警觉培训");
-		//Click on 3rd collapsible for 3.21.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//Add new contributing factor button
-		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();		
-		softly.assertThat(c22).as("test data").contains("新增促成因素");
-		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
-	}
-
-	public void chineseStepOneq17 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.7 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.7] 这个错误是否可以透过自检或独立检查避免");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();		
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("执行独立检查的程序步骤或自我检查可以以保证执行工作者的正确性。可在行动前执行独立检查（监护制），或在行动结束后执行独立验证。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("不能");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();		
-		softly.assertThat(ans2).as("test data").contains("能，程序有规定但未执行");
-		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
-		softly.assertThat(ans3).as("test data").contains("能，但程序未规定");
-	}
 
 	public void chineseStepOneL315 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -1863,41 +1112,9 @@ public class HiRCAChinese4 {
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();		
 		softly.assertThat(c22).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
+		hc6.chineseAddContributingFactor(driver,softly);
 	}
 
-	public void chineseStepOneq16 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.6 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.6] 犯错者违规时是否有旁人观看");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();		
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("这个问题是评估公司/组织文化。如果有许多工作人员目睹犯错者的失误行为却没有认加以干预，这是一个文化和管理问题，需制定标准和问责机制。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("有");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();		
-		softly.assertThat(ans2).as("test data").contains("没有");
-		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
-		softly.assertThat(ans3).as("test data").contains("未知");
-	}
 
 	public void chineseStepOneL318 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -2164,7 +1381,7 @@ public class HiRCAChinese4 {
 
 		softly.assertThat(c15).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
+		hc6.chineseAddContributingFactor(driver,softly);
 	}
 
 	public void chineseStepOneL34 (WebDriver driver, SoftAssertions softly) throws Exception {
@@ -2398,182 +1615,10 @@ public class HiRCAChinese4 {
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		softly.assertThat(c22).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		chineseAddContributingFactor(driver,softly);
+		hc6.chineseAddContributingFactor(driver,softly);
 	}
 
-	public void chineseStepOneq15 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.5 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.5] 若我是犯错者，我是否会犯同样的错？");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();		
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("不会");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();		
-		softly.assertThat(ans2).as("test data").contains("会");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("这是一个替代实验，用于了解失误制造者是否对失误负责或他/她落入造成失误的陷阱里。假设您处于同一情况下，选择适用的答案。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-	}
-
-	public void chineseStepOneq14 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.4 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.4] 此无意违规是粗心导致还是程序不当导致？");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();		
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("粗心犯错");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();		
-		softly.assertThat(ans2).as("test data").contains("程序不当");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("对于非故意的规则型错误（无意违规），存在两种可能性。一种是程序不当（规则存在不足），另一种是失误的人员警觉程度不足，未能遵循规则。请选择哪一种可能性适用于本情况。");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-	}
-
-	public void chineseStepOneq13 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.3 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.3] 若为规则型错误，是否为有意违规还是无意违规");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();		
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("有意违规");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();		
-		softly.assertThat(ans2).as("test data").contains("无意违规");
-		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
-		softly.assertThat(ans3).as("test data").contains("未知");
-	}
-
-	public void chineseStepOneq12 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.2 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.2] 始发事件的错误类型为何");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");		
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("知识型错误");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
-		softly.assertThat(ans2).as("test data").contains("规则型错误");
-		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
-		softly.assertThat(ans3).as("test data").contains("技能型错误");
-	}
-
-	public void chineseStepOneq11 (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText();		
-		softly.assertThat(heading).as("test data").contains("-第一步：调查始发事件根本原因");
-		//1.1 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.1] 始发事件为人因、设备失效还是天灾");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-reason-entry']"))).getText();		
-		softly.assertThat(reason).as("test data").contains("填写原因:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).getAttribute("placeholder");
-		softly.assertThat(ph1).as("test data").contains("可输入选择原因");
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();		
-		softly.assertThat(ans1).as("test data").contains("人因");
-		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();		
-		softly.assertThat(ans2).as("test data").contains("设备失效");
-		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
-		softly.assertThat(ans3).as("test data").contains("天灾");
-	}
-
-	public void chineseAddContributingFactor(WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		ShareCheck obj = new ShareCheck();
-		//Scroll down
-		obj.scrollToAPoint(driver, 1300);
-		//Click on add contributing factor
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).click();
-		//Scroll down
-		obj.scrollToAPoint(driver, 1400);
-		//Verify all labels
-		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-cf']"))).getText();
-		softly.assertThat(label1).as("test data").contains("促成因素:");
-		String label2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-fi']"))).getText();
-		softly.assertThat(label2).as("test data").contains("进一步调查:");
-		String label3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-ca']"))).getText();
-		softly.assertThat(label3).as("test data").contains("可能的纠正行动:");
-		//Verify placeholders
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))).getAttribute("placeholder");
-		softly.assertThat(ph1).as("test data").contains("输入 促成因素");
-		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-fi"))).getAttribute("placeholder");
-		softly.assertThat(ph2).as("test data").contains("输入 进一步调查 (非必填)");
-		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-ca"))).getAttribute("placeholder");
-		softly.assertThat(ph3).as("test data").contains("输入 可能的纠正行动 (非必填)");
-		//Cancel button
-		String cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cancel"))).getText();
-		softly.assertThat(cancel).as("test data").contains("取消");
-		//Save button
-		String save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-save"))).getText();
-		softly.assertThat(save).as("test data").contains("保存");
-		//Scroll up
-		Thread.sleep(2000);
-		obj.scrollToTop(driver);
-		Thread.sleep(2000);
-	}
+	
 	public void chineseLevel3SelectionsStep4_1st(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -3219,563 +2264,4 @@ public class HiRCAChinese4 {
 		softly.assertThat(tr255).as("test data").contains("完善关于工前会、班前会、交底会的规则");
 	}
 
-	public void chineseLevel3SelectionsStep4_4th(WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Verify all selections here
-		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
-		softly.assertThat(tr).as("test data").isEqualTo("3.1.1: 能力不足");
-		String tr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/label"))).getText();
-		softly.assertThat(tr1).as("test data").contains("纠正行动:");
-		String tr2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/label/small"))).getText();
-		softly.assertThat(tr2).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/textarea"))).getText();
-		softly.assertThat(tr3).as("test data").isEqualTo("重新调到合适岗位, 培训");
-		String tr4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[5]/td[1]"))).getText();
-		softly.assertThat(tr4).as("test data").isEqualTo("3.1.2: 态度和任务不匹配");
-		String tr5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/label"))).getText();
-		softly.assertThat(tr5).as("test data").contains("纠正行动:");
-		String tr6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/label/small"))).getText();
-		softly.assertThat(tr6).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/textarea"))).getText();
-		softly.assertThat(tr7).as("test data").isEqualTo("改善任务分工策略");
-		String tr8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[8]/td[1]"))).getText();
-		softly.assertThat(tr8).as("test data").isEqualTo("3.1.3: 性格和任务不匹配");
-		String tr9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/label"))).getText();
-		softly.assertThat(tr9).as("test data").contains("纠正行动:");
-		String tr10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/label/small"))).getText();
-		softly.assertThat(tr10).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/textarea"))).getText();
-		softly.assertThat(tr11).as("test data").isEqualTo("改善任务分工策略");
-		String tr12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[11]/td[1]"))).getText();
-		softly.assertThat(tr12).as("test data").isEqualTo("3.1.4: 缺乏专业经验");
-		String tr13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/label"))).getText();
-		softly.assertThat(tr13).as("test data").contains("纠正行动:");
-		String tr14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/label/small"))).getText();
-		softly.assertThat(tr14).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/textarea"))).getText();
-		softly.assertThat(tr15).as("test data").isEqualTo("PJB 和MJB上提供即时经验提醒, 辅导, 培训");
-		String tr16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[14]/td[1]"))).getText();
-		softly.assertThat(tr16).as("test data").isEqualTo("3.1.5: 对自我缺点认识不足，缺乏相应弥补措施");
-		String tr17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/label"))).getText();
-		softly.assertThat(tr17).as("test data").contains("纠正行动:");
-		String tr18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/label/small"))).getText();
-		softly.assertThat(tr18).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/textarea"))).getText();
-		softly.assertThat(tr19).as("test data").isEqualTo("辅导, 自我分析培训, 开展自我分析");
-		String tr20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[17]/td[1]"))).getText();
-		softly.assertThat(tr20).as("test data").isEqualTo("3.1.6: 不适合工作（生病、有心事等）");
-		String tr21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/label"))).getText();
-		softly.assertThat(tr21).as("test data").contains("纠正行动:");
-		String tr22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/label/small"))).getText();
-		softly.assertThat(tr22).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/textarea"))).getText();
-		softly.assertThat(tr23).as("test data").isEqualTo("监督性行为跟踪培训");
-		String tr24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[20]/td[1]"))).getText();
-		softly.assertThat(tr24).as("test data").isEqualTo("3.12.1: 觉得获取工具和设备有负担");
-		String tr25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/label"))).getText();
-		softly.assertThat(tr25).as("test data").contains("纠正行动:");
-		String tr26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/label/small"))).getText();
-		softly.assertThat(tr26).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/textarea"))).getText();
-		softly.assertThat(tr27).as("test data").isEqualTo("紧急情况下工具的发放, 简化工具放置流程, 在方便的位置放置工具和设备");
-		String tr28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[23]/td[1]"))).getText();
-		softly.assertThat(tr28).as("test data").isEqualTo("3.12.2: 觉得获取文件或程序有负担");
-		String tr29 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[25]/td[1]/label"))).getText();
-		softly.assertThat(tr29).as("test data").contains("纠正行动:");
-		String tr30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[25]/td[1]/label/small"))).getText();
-		softly.assertThat(tr30).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[25]/td[1]/textarea"))).getText();
-		softly.assertThat(tr31).as("test data").isEqualTo("使用自动化系统获取文件或程序, 将所参考程序的适用章节附在主程序后面");
-		String tr32 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[26]/td[1]"))).getText();
-		softly.assertThat(tr32).as("test data").isEqualTo("3.12.3: 觉得获取和穿戴PPE有负担");
-		String tr33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]/label"))).getText();
-		softly.assertThat(tr33).as("test data").contains("纠正行动:");
-		String tr34 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]/label/small"))).getText();
-		softly.assertThat(tr34).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr35 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]/textarea"))).getText();
-		softly.assertThat(tr35).as("test data").isEqualTo("将PPE放置在方便的位置, 避免对PPE规定过度");
-		String tr36 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[29]/td[1]"))).getText();
-		softly.assertThat(tr36).as("test data").isEqualTo("3.12.4: 觉得使用过于复杂或繁琐的程序有负担");
-		String tr37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[31]/td[1]/label"))).getText();
-		softly.assertThat(tr37).as("test data").contains("纠正行动:");
-		String tr38 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[31]/td[1]/label/small"))).getText();
-		softly.assertThat(tr38).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr39 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[31]/td[1]/textarea"))).getText();
-		softly.assertThat(tr39).as("test data").contains("使用无纸化程序系统");
-		String tr40 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[32]/td[1]"))).getText();
-		softly.assertThat(tr40).as("test data").isEqualTo("3.12.5: 因觉得负担麻烦未到现场核实");
-		String tr41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]/label"))).getText();
-		softly.assertThat(tr41).as("test data").contains("纠正行动:");
-		String tr42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]/label/small"))).getText();
-		softly.assertThat(tr42).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr43 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]/textarea"))).getText();
-		softly.assertThat(tr43).as("test data").isEqualTo("增加偏出控制手段如拍照现场核实照片");
-		String tr44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[35]/td[1]"))).getText();
-		softly.assertThat(tr44).as("test data").isEqualTo("3.13.1: 尽早完成工作，以便尽早回家");
-		String tr45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[37]/td[1]/label"))).getText();
-		softly.assertThat(tr45).as("test data").contains("纠正行动:");
-		String tr46 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[37]/td[1]/label/small"))).getText();
-		softly.assertThat(tr46).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr47 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[37]/td[1]/textarea"))).getText();
-		softly.assertThat(tr47).as("test data").isEqualTo("要求员工在办公室做其他相关工作，从而消除不当动机");
-		String tr48 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[38]/td[1]"))).getText();
-		softly.assertThat(tr48).as("test data").isEqualTo("3.13.2: 尽早完成工作，以便获得奖励或免受惩罚");
-		String tr49 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]/label"))).getText();
-		softly.assertThat(tr49).as("test data").contains("纠正行动:");
-		String tr50 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]/label/small"))).getText();
-		softly.assertThat(tr50).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr51 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]/textarea"))).getText();
-		softly.assertThat(tr51).as("test data").isEqualTo("消除不当动机, 采用质量和生产相平衡的奖励机制");
-		String tr52 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[41]/td[1]"))).getText();
-		softly.assertThat(tr52).as("test data").isEqualTo("3.13.3: 尽早完成工作，以便开始其他工作（尤其是根据完成的工作量计算价钱的承包商）");
-		String tr53 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[43]/td[1]/label"))).getText();
-		softly.assertThat(tr53).as("test data").contains("纠正行动:");
-		String tr54 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[43]/td[1]/label/small"))).getText();
-		softly.assertThat(tr54).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr55 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[43]/td[1]/textarea"))).getText();
-		softly.assertThat(tr55).as("test data").isEqualTo("使用奖惩机制来杜绝赶时间的态度");
-		String tr56 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[44]/td[1]"))).getText();
-		softly.assertThat(tr56).as("test data").isEqualTo("3.13.4: 尽早完成工作，以便到更为舒适的环境中休息（尤其是在高温、有辐射或潮湿环境下工作）");
-		String tr57 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]/label"))).getText();
-		softly.assertThat(tr57).as("test data").contains("纠正行动:");
-		String tr58 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]/label/small"))).getText();
-		softly.assertThat(tr58).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr59 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]/textarea"))).getText();
-		softly.assertThat(tr59).as("test data").isEqualTo("给予充分的休息时间, 减少工作场所不舒适的工作条件");
-		String tr60 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[47]/td[1]"))).getText();
-		softly.assertThat(tr60).as("test data").isEqualTo("3.14.1: 观察主管向下属提供反馈的频率和质量");
-		String tr61 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[49]/td[1]/label"))).getText();
-		softly.assertThat(tr61).as("test data").contains("纠正行动:");
-		String tr62 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[49]/td[1]/label/small"))).getText();
-		softly.assertThat(tr62).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr63 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[49]/td[1]/textarea"))).getText();
-		softly.assertThat(tr63).as("test data").isEqualTo("监督管理能力培训");
-		String tr64 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[50]/td[1]"))).getText();
-		softly.assertThat(tr64).as("test data").isEqualTo("3.14.2: 违反既定规定的情况不容易被知道（尤其是单独工作时）");
-		String tr65 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]/label"))).getText();
-		softly.assertThat(tr65).as("test data").contains("纠正行动:");
-		String tr66 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]/label/small"))).getText();
-		softly.assertThat(tr66).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr67 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]/textarea"))).getText();
-		softly.assertThat(tr67).as("test data").isEqualTo("提高工作绩效跟踪");
-		String tr68 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[53]/td[1]"))).getText();
-		softly.assertThat(tr68).as("test data").isEqualTo("3.14.3: 由于缺乏明确的问责制，认为违规的后果不严重");
-		String tr69 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/label"))).getText();
-		softly.assertThat(tr69).as("test data").contains("纠正行动:");
-		String tr70 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/label/small"))).getText();
-		softly.assertThat(tr70).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr71 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/textarea"))).getText();
-		softly.assertThat(tr71).as("test data").isEqualTo("改善问责制");
-		String tr72 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[56]/td[1]"))).getText();
-		softly.assertThat(tr72).as("test data").isEqualTo("3.14.4: 违规造成的受伤风险被认为很低或没有");
-		String tr73 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/label"))).getText();
-		softly.assertThat(tr73).as("test data").contains("纠正行动:");
-		String tr74 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/label/small"))).getText();
-		softly.assertThat(tr74).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr75 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/textarea"))).getText();
-		softly.assertThat(tr75).as("test data").isEqualTo("改善问责制");
-		String tr76 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[59]/td[1]"))).getText();
-		softly.assertThat(tr76).as("test data").isEqualTo("3.14.5: 由于有监护人在场，预期风险更低");
-		String tr77 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[61]/td[1]/label"))).getText();
-		softly.assertThat(tr77).as("test data").contains("纠正行动:");
-		String tr78 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[61]/td[1]/label/small"))).getText();
-		softly.assertThat(tr78).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr79 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[61]/td[1]/textarea"))).getText();
-		softly.assertThat(tr79).as("test data").isEqualTo("提高监督, 改善现场观察, 改善问责制");
-		String tr80 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[62]/td[1]"))).getText();
-		softly.assertThat(tr80).as("test data").isEqualTo("3.15.1: 员工未经过相互指导的培训，或纠正他人违规情况的培训");
-		String tr81 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]/label"))).getText();
-		softly.assertThat(tr81).as("test data").contains("纠正行动:");
-		String tr82 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]/label/small"))).getText();
-		softly.assertThat(tr82).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr83 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]/textarea"))).getText();
-		softly.assertThat(tr83).as("test data").isEqualTo("同事互助提醒（好文化）培训");
-		String tr84 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[65]/td[1]"))).getText();
-		softly.assertThat(tr84).as("test data").isEqualTo("3.15.2: 未要求员工对纠正他人违规的情况承担责任");
-		String tr85 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[67]/td[1]/label"))).getText();
-		softly.assertThat(tr85).as("test data").contains("纠正行动:");
-		String tr86 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[67]/td[1]/label/small"))).getText();
-		softly.assertThat(tr86).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr87 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[67]/td[1]/textarea"))).getText();
-		softly.assertThat(tr87).as("test data").isEqualTo("建立关于同事互助提醒（好文化）的管理期望");
-		String tr88 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[68]/td[1]"))).getText();
-		softly.assertThat(tr88).as("test data").isEqualTo("3.15.3: 员工未充分理解相关行为规范");
-		String tr89 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]/label"))).getText();
-		softly.assertThat(tr89).as("test data").contains("纠正行动:");
-		String tr90 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]/label/small"))).getText();
-		softly.assertThat(tr90).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr91 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]/textarea"))).getText();
-		softly.assertThat(tr91).as("test data").isEqualTo("行为规范培训, 采用行为规范提醒物, 采用禁止事项警告清单");
-		String tr92 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[71]/td[1]"))).getText();
-		softly.assertThat(tr92).as("test data").contains("3.15.4: 主管未到现场强化");
-		softly.assertThat(tr92).as("test data").contains("同事指导");
-		String tr93 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[73]/td[1]/label"))).getText();
-		softly.assertThat(tr93).as("test data").contains("纠正行动:");
-		String tr94 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[73]/td[1]/label/small"))).getText();
-		softly.assertThat(tr94).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr95 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[73]/td[1]/textarea"))).getText();
-		softly.assertThat(tr95).as("test data").isEqualTo("监督管理能力培训, 就监督管理强化，对管理者实施问责");
-		String tr96 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[74]/td[1]"))).getText();
-		softly.assertThat(tr96).as("test data").isEqualTo("3.21.1: 未能识别和缓解时间相关的高风险情况，例如日常失误陷阱、工作时间、节假日影响等");
-		String tr97 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]/label"))).getText();
-		softly.assertThat(tr97).as("test data").contains("纠正行动:");
-		String tr98 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]/label/small"))).getText();
-		softly.assertThat(tr98).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr99 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]/textarea"))).getText();
-		softly.assertThat(tr99).as("test data").isEqualTo("高风险情境警觉培训");
-		String tr100 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[77]/td[1]"))).getText();
-		softly.assertThat(tr100).as("test data").isEqualTo("3.21.2: 未能识别和缓解活动相关的高风险情况，例如伪装的首次执行操作、利益失衡、单项弱点失去管理、专门技能缺陷等等");
-		String tr101 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[79]/td[1]/label"))).getText();
-		softly.assertThat(tr101).as("test data").contains("纠正行动:");
-		String tr102 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[79]/td[1]/label/small"))).getText();
-		softly.assertThat(tr102).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr103 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[79]/td[1]/textarea"))).getText();
-		softly.assertThat(tr103).as("test data").isEqualTo("高风险情境警觉培训");
-		String tr104 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[80]/td[1]"))).getText();
-		softly.assertThat(tr104).as("test data").isEqualTo("3.21.3: 未能识别和缓解人员相关的高风险情况，例如能力、态度、性格、与人打交道的经验存在不足");
-		String tr105 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]/label"))).getText();
-		softly.assertThat(tr105).as("test data").contains("纠正行动:");
-		String tr106 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]/label/small"))).getText();
-		softly.assertThat(tr106).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr107 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]/textarea"))).getText();
-		softly.assertThat(tr107).as("test data").isEqualTo("高风险情境警觉培训");
-		String tr108 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[83]/td[1]"))).getText();
-		softly.assertThat(tr108).as("test data").isEqualTo("3.21.4: 未能识别和缓解环境相关的高风险情况，例如工作条件恶劣（温度、照明、噪音、高辐射水平等等）以及人机接口（标牌、显示屏、控制器等）");
-		String tr109 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[85]/td[1]/label"))).getText();
-		softly.assertThat(tr109).as("test data").contains("纠正行动:");
-		String tr110 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[85]/td[1]/label/small"))).getText();
-		softly.assertThat(tr110).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr111 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[85]/td[1]/textarea"))).getText();
-		softly.assertThat(tr111).as("test data").isEqualTo("高风险情境警觉培训");
-	}
-
-	public void chineseLevel3SelectionsStep4_6th(WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Verify all selections here
-		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
-		softly.assertThat(tr).as("test data").isEqualTo("3.6.1: 要求有遗漏");
-		String tr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/label"))).getText();
-		softly.assertThat(tr1).as("test data").contains("纠正行动:");
-		String tr2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/label/small"))).getText();
-		softly.assertThat(tr2).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/textarea"))).getText();
-		softly.assertThat(tr3).as("test data").isEqualTo("完善规则, 开展程序设计方面的培训");
-		String tr4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[5]/td[1]"))).getText();
-		softly.assertThat(tr4).as("test data").isEqualTo("3.6.2: 运行条件有遗漏");
-		String tr5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/label"))).getText();
-		softly.assertThat(tr5).as("test data").contains("纠正行动:");
-		String tr6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/label/small"))).getText();
-		softly.assertThat(tr6).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/textarea"))).getText();
-		softly.assertThat(tr7).as("test data").isEqualTo("完善规则, 开展程序设计方面的培训");
-		String tr8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[8]/td[1]"))).getText();
-		softly.assertThat(tr8).as("test data").isEqualTo("3.6.3: 假设有遗漏");
-		String tr9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/label"))).getText();
-		softly.assertThat(tr9).as("test data").contains("纠正行动:");
-		String tr10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/label/small"))).getText();
-		softly.assertThat(tr10).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/textarea"))).getText();
-		softly.assertThat(tr11).as("test data").isEqualTo("完善规则, 开展程序设计方面的培训");
-		String tr12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[11]/td[1]"))).getText();
-		softly.assertThat(tr12).as("test data").isEqualTo("3.6.4: 范围有遗漏");
-		String tr13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/label"))).getText();
-		softly.assertThat(tr13).as("test data").contains("纠正行动:");
-		String tr14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/label/small"))).getText();
-		softly.assertThat(tr14).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/textarea"))).getText();
-		softly.assertThat(tr15).as("test data").isEqualTo("完善规则, 开展程序设计方面的培训");
-		String tr16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[14]/td[1]"))).getText();
-		softly.assertThat(tr16).as("test data").isEqualTo("3.6.5: 试验或测量有遗漏");
-		String tr17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/label"))).getText();
-		softly.assertThat(tr17).as("test data").contains("纠正行动:");
-		String tr18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/label/small"))).getText();
-		softly.assertThat(tr18).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/textarea"))).getText();
-		softly.assertThat(tr19).as("test data").isEqualTo("完善规则, 开展程序设计方面的培训");
-		String tr20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[17]/td[1]"))).getText();
-		softly.assertThat(tr20).as("test data").isEqualTo("3.6.6: 遗漏以下信息: (1) 目的; (2) 先决条件; (3) 定义; (4) 经验反馈用\"不准做清单\"体现; (5) 参考资料; (6) 要求使用者反馈");
-		String tr21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/label"))).getText();
-		softly.assertThat(tr21).as("test data").contains("纠正行动:");
-		String tr22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/label/small"))).getText();
-		softly.assertThat(tr22).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/textarea"))).getText();
-		softly.assertThat(tr23).as("test data").isEqualTo("开展程序设计编写培训, 改善程序编写导则");
-		String tr24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[20]/td[1]"))).getText();
-		softly.assertThat(tr24).as("test data").isEqualTo("3.6.7: 审查不到位导致制度有遗漏项");
-		String tr25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/label"))).getText();
-		softly.assertThat(tr25).as("test data").contains("纠正行动:");
-		String tr26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/label/small"))).getText();
-		softly.assertThat(tr26).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/textarea"))).getText();
-		softly.assertThat(tr27).as("test data").isEqualTo("开展程序审查培训");
-		String tr28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[23]/td[1]"))).getText();
-		softly.assertThat(tr28).as("test data").isEqualTo("3.6.8: 根本原因分析不到位导致制度有遗漏项");
-		String tr29 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[25]/td[1]/label"))).getText();
-		softly.assertThat(tr29).as("test data").contains("纠正行动:");
-		String tr30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[25]/td[1]/label/small"))).getText();
-		softly.assertThat(tr30).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[25]/td[1]/textarea"))).getText();
-		softly.assertThat(tr31).as("test data").isEqualTo("开展根本原因培训");
-		String tr32 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[26]/td[1]"))).getText();
-		softly.assertThat(tr32).as("test data").isEqualTo("3.6.9: 纠正措施执行不到位导致制度有遗漏项");
-		String tr33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]/label"))).getText();
-		softly.assertThat(tr33).as("test data").contains("纠正行动:");
-		String tr34 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]/label/small"))).getText();
-		softly.assertThat(tr34).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr35 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]/textarea"))).getText();
-		softly.assertThat(tr35).as("test data").isEqualTo("改善纠正措施制度的监督与执行");
-		String tr36 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[29]/td[1]"))).getText();
-		softly.assertThat(tr36).as("test data").isEqualTo("3.7.1: 进入和退出程序指引不到位");
-		String tr37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[31]/td[1]/label"))).getText();
-		softly.assertThat(tr37).as("test data").contains("纠正行动:");
-		String tr38 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[31]/td[1]/label/small"))).getText();
-		softly.assertThat(tr38).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr39 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[31]/td[1]/textarea"))).getText();
-		softly.assertThat(tr39).as("test data").contains("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则编写人的培训、授权和问责");
-		String tr40 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[32]/td[1]"))).getText();
-		softly.assertThat(tr40).as("test data").isEqualTo("3.7.2: 对于单项弱点步骤未设置自检或是独立检查");
-		String tr41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]/label"))).getText();
-		softly.assertThat(tr41).as("test data").contains("纠正行动:");
-		String tr42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]/label/small"))).getText();
-		softly.assertThat(tr42).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr43 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]/textarea"))).getText();
-		softly.assertThat(tr43).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则编写人的培训、授权和问责");
-		String tr44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[35]/td[1]"))).getText();
-		softly.assertThat(tr44).as("test data").isEqualTo("3.7.3: 未识别出不可逆点(PNR)的操作步骤（予以审查），从而确保继续操作前先前的失误得到纠正");
-		String tr45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[37]/td[1]/label"))).getText();
-		softly.assertThat(tr45).as("test data").contains("纠正行动:");
-		String tr46 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[37]/td[1]/label/small"))).getText();
-		softly.assertThat(tr46).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr47 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[37]/td[1]/textarea"))).getText();
-		softly.assertThat(tr47).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则编写人的培训、授权和问责");
-		String tr48 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[38]/td[1]"))).getText();
-		softly.assertThat(tr48).as("test data").isEqualTo("3.7.4: 未使用操作标记法来防止跳步或跳页");
-		String tr49 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]/label"))).getText();
-		softly.assertThat(tr49).as("test data").contains("纠正行动:");
-		String tr50 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]/label/small"))).getText();
-		softly.assertThat(tr50).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr51 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]/textarea"))).getText();
-		softly.assertThat(tr51).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则审查人的培训、授权和问责");
-		String tr52 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[41]/td[1]"))).getText();
-		softly.assertThat(tr52).as("test data").isEqualTo("3.7.5: 未分析并缓解很有可能出现违章的情况（通过迹象核实、复核、禁止操作警告等方式）");
-		String tr53 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[43]/td[1]/label"))).getText();
-		softly.assertThat(tr53).as("test data").contains("纠正行动:");
-		String tr54 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[43]/td[1]/label/small"))).getText();
-		softly.assertThat(tr54).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr55 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[43]/td[1]/textarea"))).getText();
-		softly.assertThat(tr55).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则编写人的培训、授权和问责");
-		String tr56 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[44]/td[1]"))).getText();
-		softly.assertThat(tr56).as("test data").isEqualTo("3.7.6: 例行作业未有充分的及时提醒标牌预防粗心犯错");
-		String tr57 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]/label"))).getText();
-		softly.assertThat(tr57).as("test data").contains("纠正行动:");
-		String tr58 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]/label/small"))).getText();
-		softly.assertThat(tr58).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr59 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]/textarea"))).getText();
-		softly.assertThat(tr59).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则编写人的培训、授权和问责");
-		String tr60 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[47]/td[1]"))).getText();
-		softly.assertThat(tr60).as("test data").isEqualTo("3.7.7: 未使用清单预防遗忘相关错误");
-		String tr61 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[49]/td[1]/label"))).getText();
-		softly.assertThat(tr61).as("test data").contains("纠正行动:");
-		String tr62 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[49]/td[1]/label/small"))).getText();
-		softly.assertThat(tr62).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr63 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[49]/td[1]/textarea"))).getText();
-		softly.assertThat(tr63).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则编写人的培训、授权和问责");
-		String tr64 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[50]/td[1]"))).getText();
-		softly.assertThat(tr64).as("test data").isEqualTo("3.7.8: 同事指导的好文化不到位，未能鼓励和强调守规行为标准");
-		String tr65 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]/label"))).getText();
-		softly.assertThat(tr65).as("test data").contains("纠正行动:");
-		String tr66 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]/label/small"))).getText();
-		softly.assertThat(tr66).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr67 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]/textarea"))).getText();
-		softly.assertThat(tr67).as("test data").isEqualTo("培训如何做好同事指导守规文化, 改善有缺陷的程序");
-		String tr68 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[53]/td[1]"))).getText();
-		softly.assertThat(tr68).as("test data").isEqualTo("3.7.9: 审查不到位");
-		String tr69 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/label"))).getText();
-		softly.assertThat(tr69).as("test data").contains("纠正行动:");
-		String tr70 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/label/small"))).getText();
-		softly.assertThat(tr70).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr71 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/textarea"))).getText();
-		softly.assertThat(tr71).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则审查人的培训、授权和问责");
-		String tr72 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[56]/td[1]"))).getText();
-		softly.assertThat(tr72).as("test data").isEqualTo("3.7.10: 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
-		String tr73 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/label"))).getText();
-		softly.assertThat(tr73).as("test data").contains("纠正行动:");
-		String tr74 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/label/small"))).getText();
-		softly.assertThat(tr74).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr75 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/textarea"))).getText();
-		softly.assertThat(tr75).as("test data").isEqualTo("纠正维修大纲中的缺陷");
-		String tr76 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[59]/td[1]"))).getText();
-		softly.assertThat(tr76).as("test data").isEqualTo("3.8.1: 规则编写人经验不足，使用了模糊的或需自行判断的字词（例如，\"根据情况\"、\"根据需要\"、\"必要时\"等等）");
-		String tr77 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[61]/td[1]/label"))).getText();
-		softly.assertThat(tr77).as("test data").contains("纠正行动:");
-		String tr78 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[61]/td[1]/label/small"))).getText();
-		softly.assertThat(tr78).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr79 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[61]/td[1]/textarea"))).getText();
-		softly.assertThat(tr79).as("test data").isEqualTo("建立规则编写人规则编写标准或指导文件");
-		String tr80 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[62]/td[1]"))).getText();
-		softly.assertThat(tr80).as("test data").isEqualTo("3.8.2: 使用了不可定量的或需自行判断的条件（例如，检查\"足够多的\"样品）来避免内部QA审查");
-		String tr81 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]/label"))).getText();
-		softly.assertThat(tr81).as("test data").contains("纠正行动:");
-		String tr82 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]/label/small"))).getText();
-		softly.assertThat(tr82).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr83 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]/textarea"))).getText();
-		softly.assertThat(tr83).as("test data").isEqualTo("建立规则编写人规则编写标准或指导文件, 就屏障明确性，对管理人员实施问责");
-		String tr84 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[65]/td[1]"))).getText();
-		softly.assertThat(tr84).as("test data").isEqualTo("3.8.3: 要求判断执行程序步骤");
-		String tr85 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[67]/td[1]/label"))).getText();
-		softly.assertThat(tr85).as("test data").contains("纠正行动:");
-		String tr86 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[67]/td[1]/label/small"))).getText();
-		softly.assertThat(tr86).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr87 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[67]/td[1]/textarea"))).getText();
-		softly.assertThat(tr87).as("test data").isEqualTo("建立规则编写人规则编写标准或指导文件");
-		String tr88 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[68]/td[1]"))).getText();
-		softly.assertThat(tr88).as("test data").isEqualTo("3.8.4: 没有明确与其他程序之间的接口");
-		String tr89 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]/label"))).getText();
-		softly.assertThat(tr89).as("test data").contains("纠正行动:");
-		String tr90 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]/label/small"))).getText();
-		softly.assertThat(tr90).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr91 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]/textarea"))).getText();
-		softly.assertThat(tr91).as("test data").isEqualTo("建立关于屏障接口设计的规则编写标准或指导文件");
-		String tr92 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[71]/td[1]"))).getText();
-		softly.assertThat(tr92).as("test data").contains("3.8.5: 可读性不高（即：高于八年级阅读水平）");
-		String tr93 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[73]/td[1]/label"))).getText();
-		softly.assertThat(tr93).as("test data").contains("纠正行动:");
-		String tr94 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[73]/td[1]/label/small"))).getText();
-		softly.assertThat(tr94).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr95 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[73]/td[1]/textarea"))).getText();
-		softly.assertThat(tr95).as("test data").isEqualTo("建立关于保护屏障接口设计的规则编写标准或指导文件");
-		String tr96 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[74]/td[1]"))).getText();
-		softly.assertThat(tr96).as("test data").isEqualTo("3.8.6: 程序里和设备上出现不明确和不一致的设备标识与识别");
-		String tr97 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]/label"))).getText();
-		softly.assertThat(tr97).as("test data").contains("纠正行动:");
-		String tr98 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]/label/small"))).getText();
-		softly.assertThat(tr98).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr99 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]/textarea"))).getText();
-		softly.assertThat(tr99).as("test data").isEqualTo("改善设备标识和程序对设备的识别的明确性和一致性");
-		String tr100 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[77]/td[1]"))).getText();
-		softly.assertThat(tr100).as("test data").isEqualTo("3.8.7: 时间敏感步骤未明确写出");
-		String tr101 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[79]/td[1]/label"))).getText();
-		softly.assertThat(tr101).as("test data").contains("纠正行动:");
-		String tr102 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[79]/td[1]/label/small"))).getText();
-		softly.assertThat(tr102).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr103 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[79]/td[1]/textarea"))).getText();
-		softly.assertThat(tr103).as("test data").isEqualTo("升版程序");
-		String tr104 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[80]/td[1]"))).getText();
-		softly.assertThat(tr104).as("test data").isEqualTo("3.8.8: 程序未明确量化，使用描述如：稳定、异常");
-		String tr105 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]/label"))).getText();
-		softly.assertThat(tr105).as("test data").contains("纠正行动:");
-		String tr106 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]/label/small"))).getText();
-		softly.assertThat(tr106).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr107 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]/textarea"))).getText();
-		softly.assertThat(tr107).as("test data").isEqualTo("升版程序");
-		String tr108 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[83]/td[1]"))).getText();
-		softly.assertThat(tr108).as("test data").contains("3.18.1: 盲目信任: 关键信息使用质疑的态度");
-		softly.assertThat(tr108).as("test data").contains("不到位");
-		String tr109 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[85]/td[1]/label"))).getText();
-		softly.assertThat(tr109).as("test data").contains("纠正行动:");
-		String tr110 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[85]/td[1]/label/small"))).getText();
-		softly.assertThat(tr110).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr111 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[85]/td[1]/textarea"))).getText();
-		softly.assertThat(tr111).as("test data").contains("提高质疑的态度");
-		softly.assertThat(tr111).as("test data").contains(" 培训");
-		String tr112 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[86]/td[1]"))).getText();
-		softly.assertThat(tr112).as("test data").isEqualTo("3.18.2: 过度自信: (1) 高估自我效能; (2) 未意识到影响变化; (3) 未寻求他人智慧; (4) 没有从过去中学习; (5) 缺少屏障预防错误发生");
-		String tr113 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[88]/td[1]/label"))).getText();
-		softly.assertThat(tr113).as("test data").contains("纠正行动:");
-		String tr114 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[88]/td[1]/label/small"))).getText();
-		softly.assertThat(tr114).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr115 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[88]/td[1]/textarea"))).getText();
-		softly.assertThat(tr115).as("test data").contains("行为培训，避免过度自信");
-		String tr116 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[89]/td[1]"))).getText();
-		softly.assertThat(tr116).as("test data").isEqualTo("3.18.3: 眼不见心不想: (1) 对低概率/高风险事件的风险控制不到位; (2) 忽略与绩效指标或激励无关的问题; (3) 因忽略相关风险而未设置屏障");
-		String tr117 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[91]/td[1]/label"))).getText();
-		softly.assertThat(tr117).as("test data").contains("纠正行动:");
-		String tr118 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[91]/td[1]/label/small"))).getText();
-		softly.assertThat(tr118).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr119 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[91]/td[1]/textarea"))).getText();
-		softly.assertThat(tr119).as("test data").contains("改善风险控制项目");
-		softly.assertThat(tr119).as("test data").contains(", 完善PM&T体系");
-		String tr120 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[92]/td[1]"))).getText();
-		softly.assertThat(tr120).as("test data").isEqualTo("3.18.4: 未能及时止损: (1) 因自满和（或）无知，捍卫过去错误的决定或犹豫不决; (2) 期望通过重复同样的问题处理方法、标准或策略来实现不同的结果");
-		String tr121 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[94]/td[1]/label"))).getText();
-		softly.assertThat(tr121).as("test data").contains("纠正行动:");
-		String tr122 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[94]/td[1]/label/small"))).getText();
-		softly.assertThat(tr122).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr123 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[94]/td[1]/textarea"))).getText();
-		softly.assertThat(tr123).as("test data").isEqualTo("审查以往决策的有效性，提高管理监督");
-		String tr124 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[95]/td[1]"))).getText();
-		softly.assertThat(tr124).as("test data").contains("3.18.5: 陷入两选一的陷阱: 决策、问题解决或计划不充分，未能确保全面考虑多个选择方案进行分析");
-		String tr125 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[97]/td[1]/label"))).getText();
-		softly.assertThat(tr125).as("test data").contains("纠正行动:");
-		String tr126 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[97]/td[1]/label/small"))).getText();
-		softly.assertThat(tr126).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr127 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[97]/td[1]/textarea"))).getText();
-		softly.assertThat(tr127).as("test data").isEqualTo("提高决策、问题解决和计划的结构（委员会）和流程");
-	}
-
-	public void chineseLevel3SelectionsStep4_5th(WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Verify all selections here
-		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
-		softly.assertThat(tr).as("test data").isEqualTo("3.16.1: 疲倦: (1) 大约上午3-4点; (2) 大约下午2-3点; (3) 长时间工作后");
-		String tr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/label"))).getText();
-		softly.assertThat(tr1).as("test data").contains("纠正行动:");
-		String tr2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/label/small"))).getText();
-		softly.assertThat(tr2).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]/textarea"))).getText();
-		softly.assertThat(tr3).as("test data").contains("休息时间管理");
-		softly.assertThat(tr3).as("test data").contains("行为培训");
-		String tr4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[5]/td[1]"))).getText();
-		softly.assertThat(tr4).as("test data").isEqualTo("3.16.2: 注意力不集中（分心）: (1) 同时执行多个任务; (2) 被打断; (3) 有心事");
-		String tr5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/label"))).getText();
-		softly.assertThat(tr5).as("test data").contains("纠正行动:");
-		String tr6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/label/small"))).getText();
-		softly.assertThat(tr6).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[7]/td[1]/textarea"))).getText();
-		softly.assertThat(tr7).as("test data").contains("行为培训");
-		String tr8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[8]/td[1]"))).getText();
-		softly.assertThat(tr8).as("test data").isEqualTo("3.16.3: 过度自信: (1) 首次执行的操作(FTE)，而没有寻求充分帮助；(2) 日常工作，而没有注意到微小变化和新情况；(3) 繁琐任务未定期自检 (如数据输入)；(4) 使用信息数据未审核且核实 (5) 不识别单项弱点也不自检单项弱点；(6) 按记忆中（印象中）的程序作业（未持程序作业）");
-		String tr9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/label"))).getText();
-		softly.assertThat(tr9).as("test data").contains("纠正行动:");
-		String tr10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/label/small"))).getText();
-		softly.assertThat(tr10).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]/textarea"))).getText();
-		softly.assertThat(tr11).as("test data").contains("在工前会、班前会和交底会讨论单项弱点和首次作业,");
-		softly.assertThat(tr11).as("test data").contains("行为培训");
-		String tr12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[11]/td[1]"))).getText();
-		softly.assertThat(tr12).as("test data").isEqualTo("3.16.4: 时间压力: 急着完工");
-		String tr13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/label"))).getText();
-		softly.assertThat(tr13).as("test data").contains("纠正行动:");
-		String tr14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/label/small"))).getText();
-		softly.assertThat(tr14).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[13]/td[1]/textarea"))).getText();
-		softly.assertThat(tr15).as("test data").contains("行为培训, 改善排程和计划系统");
-		String tr16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[14]/td[1]"))).getText();
-		softly.assertThat(tr16).as("test data").isEqualTo("3.16.5: 注意不足: 1.长时间工作而没有休息(> 140分钟); 2. 早上10点时做事; 3. 工作超过10小时");
-		String tr17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/label"))).getText();
-		softly.assertThat(tr17).as("test data").contains("纠正行动:");
-		String tr18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/label/small"))).getText();
-		softly.assertThat(tr18).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]/textarea"))).getText();
-		softly.assertThat(tr19).as("test data").isEqualTo("中间适当休息, 最大程度减少干扰");
-		String tr20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[17]/td[1]"))).getText();
-		softly.assertThat(tr20).as("test data").isEqualTo("3.16.6: 学习技能时相关规定有误");
-		String tr21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/label"))).getText();
-		softly.assertThat(tr21).as("test data").contains("纠正行动:");
-		String tr22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/label/small"))).getText();
-		softly.assertThat(tr22).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[19]/td[1]/textarea"))).getText();
-		softly.assertThat(tr23).as("test data").isEqualTo("学习正确所需技能");
-		String tr24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[20]/td[1]"))).getText();
-		softly.assertThat(tr24).as("test data").isEqualTo("3.16.7: 判断出错未能选择正确技能使用");
-		String tr25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/label"))).getText();
-		softly.assertThat(tr25).as("test data").contains("纠正行动:");
-		String tr26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/label/small"))).getText();
-		softly.assertThat(tr26).as("test data").contains("通用纠正行动已预填。可直接修改为具体纠正行动。");
-		String tr27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]/textarea"))).getText();
-		softly.assertThat(tr27).as("test data").isEqualTo("培训技能的选择, 透过强化规定减少选择错误的机会");
-	}
 }

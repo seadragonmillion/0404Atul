@@ -17,6 +17,7 @@ public class HiRCABug2 {
 	HiRCALevel1 hircaL1 = new HiRCALevel1();
 	HiRCALevel2 hircaL2 = new HiRCALevel2();
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	String text = "HiRCA bug";
 	SoftAssertions softly = new SoftAssertions();
@@ -169,7 +170,7 @@ public class HiRCABug2 {
 		//Click on collapsible of image
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify the warning message
 		//try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-file-status-0"))).getText();

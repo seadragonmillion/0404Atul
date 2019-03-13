@@ -16,10 +16,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OPiRCA2 {
 	
 	ShareCheck share = new ShareCheck();
-	EiRCA eirca = new EiRCA ();
+	EiRCAPageObj eirca = new EiRCAPageObj ();
+	EiRCA2 eirca2 = new EiRCA2();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	OPiRCA3 op3 = new OPiRCA3();
 	TextBoxResizing tbr = new TextBoxResizing ();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void verifyOrderOfRootCausesContributingFactorsInStep4(WebDriver driver,List<String> apparentCausesSelected, SoftAssertions softly, int count, int i, int rc, int start, int num) throws Exception{
 
@@ -553,7 +555,7 @@ public class OPiRCA2 {
 		List<String>ac = new ArrayList<String>();
 		//Enter reason entry
 		//tbr.sizeCheck(driver, opirca.OPiRCAReasonEntryField, softly);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReasonEntryField)).sendKeys(eirca.textCreate(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReasonEntryField)).sendKeys(eirca2.textCreate(driver));
 		//Choose a number between 0 to x
 		int n = chooseRandomOption(x,y);
 		//Choose the option based on selection
@@ -774,7 +776,6 @@ public class OPiRCA2 {
 	public void verifyChangeLanguage(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCAChinese ec = new EiRCAChinese();
 		HiRCAChinese hc = new HiRCAChinese();
 		LanguageCheckOfReports lcor = new LanguageCheckOfReports();/* 
 		//Save report
@@ -783,9 +784,9 @@ public class OPiRCA2 {
 		//Change language to english
 		hc.changeToEnglish(driver);
 		//Click on Analysis
-		share.loadingServer(driver);  
+		share2.loadingServer(driver);  
 		//Clicks on Analysis 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Click on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Verify the language as english
@@ -795,7 +796,7 @@ public class OPiRCA2 {
 		//Change language to chinese
 		hc.changeToChinese(driver);		
 		//Click on Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Click on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Verify the language as chinese in test		

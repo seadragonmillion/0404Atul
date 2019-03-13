@@ -28,6 +28,10 @@ public class ErrorMeter {
 
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ErrorMeter2 em2 = new ErrorMeter2 ();
+	EiRCA2 eirca2 = new EiRCA2();
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
+	
 	SoftAssertions softly = new SoftAssertions();
 	
 	public void papeError100(WebDriver driver) throws Exception{
@@ -1279,8 +1283,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1323,8 +1326,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1365,8 +1367,7 @@ public class ErrorMeter {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -1411,8 +1412,7 @@ public class ErrorMeter {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -1469,7 +1469,12 @@ public class ErrorMeter {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -1514,7 +1519,12 @@ public class ErrorMeter {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -1567,7 +1577,12 @@ public class ErrorMeter {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -1746,7 +1761,6 @@ public class ErrorMeter {
 	public void checkTitleCount(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		ShareCheck obj = new ShareCheck();
 		//Click on Analysis on top
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Click on Error Meter
@@ -1755,10 +1769,10 @@ public class ErrorMeter {
 		checkTitleCountReset(driver);
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on 1st record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
 		
@@ -1797,8 +1811,7 @@ public class ErrorMeter {
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		reportCheck0Dev(driver);
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
@@ -1960,8 +1973,7 @@ public class ErrorMeter {
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		reportCheck50Dev(driver);
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
@@ -2137,8 +2149,7 @@ public class ErrorMeter {
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		reportCheck100Dev(driver);
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
@@ -2263,7 +2274,6 @@ public class ErrorMeter {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA eirca = new EiRCA();
 		String sharer = decideSharer (y);
 		String sharerAdded = decideSharerAdded (y);
 		//Clicks on share button
@@ -2282,9 +2292,9 @@ public class ErrorMeter {
 		Thread.sleep(3000);
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ShareSave)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks the username of creator and shared with
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td")));
 		String creatorUsername= creator.getText();
@@ -2302,7 +2312,7 @@ public class ErrorMeter {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Share icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
 		}
@@ -2311,7 +2321,7 @@ public class ErrorMeter {
 		//Clicks on Error Meter side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	}
@@ -2319,7 +2329,6 @@ public class ErrorMeter {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		EiRCA eirca = new EiRCA();
 		ShareCheck obj1 = new ShareCheck();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
@@ -2335,14 +2344,14 @@ public class ErrorMeter {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Marked critical icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
 			//Verify presence of shared icon 
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[2]")));
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
@@ -2360,7 +2369,7 @@ public class ErrorMeter {
 		//Clicks on Error meter side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();	
 	}
@@ -2396,9 +2405,7 @@ public class ErrorMeter {
 	public String saveReport(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCA obj = new EiRCA ();
-		ShareCheck obj1 = new ShareCheck();
-		String text = obj.textCreate(driver);
+		String text = eirca2.textCreate(driver);
 		Thread.sleep(2000);
 		//Click on finalize
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
@@ -2408,7 +2415,7 @@ public class ErrorMeter {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Creates expected record name
 		String date= driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]")).getText();
 		date = date.substring(14);
@@ -2421,7 +2428,7 @@ public class ErrorMeter {
 		System.out.println ("Expected name of record: " +name);
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterSidePanel)).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Gets the name of the record created
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"));
 		String recordName = record.getText();

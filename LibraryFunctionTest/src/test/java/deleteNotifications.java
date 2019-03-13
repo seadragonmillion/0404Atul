@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class deleteNotifications {
 
+	ShareCheck2 share2 = new ShareCheck2();
+
 	String urlDev= "https://kaleqa.error-free.com/";
 	String urlUS= "https://kale.error-free.com/";
 
@@ -161,7 +163,7 @@ public class deleteNotifications {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationReadConfirmButton2)).click();
 		}
 		Thread.sleep(2000);
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//LogOut
 		obj.logout(driver);
 		Thread.sleep(4000);		

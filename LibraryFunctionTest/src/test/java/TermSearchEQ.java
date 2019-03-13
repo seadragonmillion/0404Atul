@@ -29,6 +29,7 @@ public class TermSearchEQ {
 	LoginPageObj lpo = new LoginPageObj();
 	CreateHumanCase human = new CreateHumanCase();
 	CreateEquipPageObj equip = new CreateEquipPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public List<String> getCasesListFromSearch_eq(WebDriver driver, int y) throws Exception {
 
@@ -127,7 +128,7 @@ public class TermSearchEQ {
 		}
 		Thread.sleep(1000);
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		share.scrollToTop(driver);
 		//Get the case id loaded
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(equip.EquipCaseIDField)).getAttribute("value").equals(caseID.substring(1, caseID.length())))
@@ -439,7 +440,7 @@ public class TermSearchEQ {
 		//Search for term
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(term);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get all cases from Results or Similar results or Other results
 		List<String> caseList1 = getCasesListFromSearch_eq(driver,1);
 		//Get all cases from Similar results or Other results
@@ -460,9 +461,9 @@ public class TermSearchEQ {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
 		//Go to admin
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		share.scrollToTop(driver);
 		//Close sticky
 		login.closePopUpSticky(driver);
@@ -487,7 +488,7 @@ public class TermSearchEQ {
 		}	
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equip.EquipCasesLink)).click();	
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify case and term matching
 		if(collapsibleResultsList.contains("Results"))
 		{

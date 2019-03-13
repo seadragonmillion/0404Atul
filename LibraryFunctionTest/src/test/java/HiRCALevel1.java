@@ -43,6 +43,8 @@ public class HiRCALevel1 {
 
 	SoftAssertions softly = new SoftAssertions();
 	HiRCAFunctionsForLevel1_2_3 hfl123 = new HiRCAFunctionsForLevel1_2_3();
+	TextBoxResizing tbr = new TextBoxResizing ();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public String text(WebDriver driver) throws Exception{
 
@@ -567,8 +569,7 @@ public class HiRCALevel1 {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -590,13 +591,10 @@ public class HiRCALevel1 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-
 		//Clicks on download button
-
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -636,8 +634,7 @@ public class HiRCALevel1 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -675,8 +672,7 @@ public class HiRCALevel1 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -708,7 +704,12 @@ public class HiRCALevel1 {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -1113,7 +1114,6 @@ public class HiRCALevel1 {
 
 	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist,MultiValuedMap<String,String>hircaNoteLopSURE) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		Thread.sleep(2000);
@@ -1122,11 +1122,11 @@ public class HiRCALevel1 {
 		//Click on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify HTML
 		verifyHTMLReport(driver, lopOptions, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on Open button
@@ -1200,7 +1200,7 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -1209,19 +1209,19 @@ public class HiRCALevel1 {
 		{
 			if (v.startsWith("11"))
 			{
-				obj.loadingServer(driver);	
+				share2.loadingServer(driver);	
 				//Clicks on Save
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 		}
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			downloadReportChrome(driver,lopOptions,hmlNew,optionsNew,checklistNew);
@@ -1242,11 +1242,11 @@ public class HiRCALevel1 {
 		//Click on side panel HiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify HTML report
 		verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
 	}
@@ -1752,7 +1752,7 @@ public class HiRCALevel1 {
 		ShareCheck obj  = new ShareCheck();
 		HiRCA2 obj1 = new HiRCA2();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Clicks on HiRCA
@@ -1769,12 +1769,16 @@ public class HiRCALevel1 {
 		Select s = new Select (dropdown);
 		s.selectByVisibleText("Construction");
 		//Problem Statement
+		tbr.sizeCheck(driver, By.id("pii-irca-event-pbstatement"),softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text(driver));
 		//Timeline of event
+		tbr.sizeCheck(driver, By.id("pii-irca-event-events"),softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text(driver));
 		//Background info
+		tbr.sizeCheck(driver, By.id("pii-irca-event-bginfos"),softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text(driver));
 		//Investigators
+		tbr.sizeCheck(driver, By.id("pii-irca-event-investigators"),softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text(driver));
 		//Gets value of date
 		String get_date = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-date"))).getAttribute("value");
@@ -1827,7 +1831,7 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Click back
@@ -1897,7 +1901,7 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)));
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -1907,13 +1911,13 @@ public class HiRCALevel1 {
 		{
 			if (v.startsWith("11"))
 			{
-				obj.loadingServer(driver);	
+				share2.loadingServer(driver);	
 				//Clicks on Save
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 		}
 		obj.scrollToTop(driver);
@@ -1938,7 +1942,7 @@ public class HiRCALevel1 {
 		//Checks if expected name and actual name is correct
 		softly.assertThat(r1).as("test data").isEqualTo(name);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			downloadReportChrome(driver,lopOptions,hml,options,checklist);
@@ -1964,8 +1968,7 @@ public class HiRCALevel1 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void verifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist, int d, MultiValuedMap<String,String>hircaNoteLopSURE) throws Exception {
@@ -2060,7 +2063,7 @@ public class HiRCALevel1 {
 			//Get corresponding Importance value from hashmap
 			String s2 = hml.get(s);
 			//Verify high medium low
-		/*	if(browserName.contains("safari"))
+			/*	if(browserName.contains("safari"))
 				softly.assertThat(s1).as("test data").contains(s2);
 			else */
 			if(browserName.toLowerCase().contains("safari")==false)				
@@ -2360,7 +2363,11 @@ public class HiRCALevel1 {
 				obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+					if(browserName.contains("safari")==false)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					}
+					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						break;
 				}
@@ -2376,7 +2383,11 @@ public class HiRCALevel1 {
 				obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+					if(browserName.contains("safari")==false)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					}
+					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						break;
 				}
@@ -2392,7 +2403,11 @@ public class HiRCALevel1 {
 				obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+					if(browserName.contains("safari")==false)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					}
+					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						break;
 				}
@@ -2523,7 +2538,11 @@ public class HiRCALevel1 {
 				//Click on H
 				while(true)
 				{
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+					if(browserName.contains("safari")==false)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					}
+					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						break;
 				}
@@ -2538,7 +2557,11 @@ public class HiRCALevel1 {
 				//Click on M
 				while(true)
 				{
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+					if(browserName.contains("safari")==false)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					}
+					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						break;
 				}
@@ -2553,7 +2576,11 @@ public class HiRCALevel1 {
 				//Click on L
 				while(true)
 				{
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+					if(browserName.contains("safari")==false)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+					}
+					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						break;
 				}
@@ -3125,7 +3152,7 @@ public class HiRCALevel1 {
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-save"))));
 		Thread.sleep(1000);
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get text of new contributing factor
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+count+"]/fieldset/div/div/label")));
 		//Click on Evidence Entry

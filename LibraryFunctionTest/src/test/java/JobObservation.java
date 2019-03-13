@@ -21,6 +21,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class JobObservation {
 
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	EiRCA2 eirca2 = new EiRCA2();
+	ShareCheck2 share2 = new ShareCheck2();
+	
 	SoftAssertions softly = new SoftAssertions();
 
 	public String text(WebDriver driver) throws Exception {
@@ -1292,7 +1296,6 @@ public class JobObservation {
 
 		ErrorMeter obj = new ErrorMeter();
 		String sharer = obj.decideSharer (y);
-		EiRCA eirca = new EiRCA();
 		String sharerAdded = obj.decideSharerAdded (y);	    	
 		//CLicks on first newly created record
 		driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
@@ -1320,7 +1323,7 @@ public class JobObservation {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Share icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[1]")));
 		}
@@ -1329,7 +1332,7 @@ public class JobObservation {
 		//Clicks on Job Observation side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();;
 	}
@@ -1338,7 +1341,6 @@ public class JobObservation {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA eirca = new EiRCA();
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -1353,14 +1355,14 @@ public class JobObservation {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Marked critical icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[1]")));
 			//Verify presence of shared icon 
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[2]")));
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
@@ -1379,7 +1381,7 @@ public class JobObservation {
 		//Clicks on EiRCA side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();	
 	}
@@ -1424,11 +1426,9 @@ public class JobObservation {
 	public String reportCreate(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		EiRCA obj = new EiRCA ();
-		ShareCheck obj1 = new ShareCheck();
-		String text = obj.textCreate(driver);
+		String text = eirca2.textCreate(driver);
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis 
 		try
 		{
@@ -1475,13 +1475,13 @@ public class JobObservation {
 		path(driver);
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-btn-savedactivities"))).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on side panel option for job observation
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Gets the name of the record created
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"));
 		String recordName = record.getText();

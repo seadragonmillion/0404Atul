@@ -21,6 +21,7 @@ public class HiRCAHumanError {
 
 	SoftAssertions softly = new SoftAssertions();
 	HiRCAFunctionsForLevel1_2_3 hfl123 = new HiRCAFunctionsForLevel1_2_3();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	By PageTitle = By.id("efi-instant-rca-message");
 	By PageQuestion = By.id("efi-irca-question");
@@ -2110,7 +2111,7 @@ public class HiRCAHumanError {
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		HashMap<String,String> hircaNoteLopStep4 = new HashMap<String,String>();
 		//Waiting for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Go to hirca and fill mandatory details on event info
 		obj1.fillUpHiRCAEventInfo(driver,obj4.text(driver));		
 		//Scroll up

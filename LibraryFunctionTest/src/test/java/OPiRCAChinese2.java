@@ -12,11 +12,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OPiRCAChinese2 {
 
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
+	HiRCAChinese8 hc8 = new HiRCAChinese8();
 
 	public void downloadReport(WebDriver driver, List <String> verifyChinese, SoftAssertions softly) throws Exception{
 
 		//Download report and check pdf
-		HiRCAChinese2 obj = new HiRCAChinese2();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -25,15 +25,15 @@ public class OPiRCAChinese2 {
 		System.out.println(v);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
-			obj.downloadReportChrome(driver,softly,verifyChinese);
+			hc8.downloadReportChrome(driver,softly,verifyChinese);
 		if (browserName.equals("firefox"))
-			obj.downloadReportFirefox(driver,softly,verifyChinese);
+			hc8.downloadReportFirefox(driver,softly,verifyChinese);
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("10"))
-				obj.downloadReportIE(driver,softly,verifyChinese);
+				hc8.downloadReportIE(driver,softly,verifyChinese);
 			if (v.startsWith("11"))
-				obj.downloadReportIE11(driver,softly,verifyChinese);
+				hc8.downloadReportIE11(driver,softly,verifyChinese);
 		}
 		Thread.sleep(2000);
 	}

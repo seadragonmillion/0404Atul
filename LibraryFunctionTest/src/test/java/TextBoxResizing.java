@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TextBoxResizing {
 	
 	ErrorMeter2 em2 = new ErrorMeter2 ();
-	ShareCheck share = new ShareCheck ();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void sizeCheck(WebDriver driver, By locator, SoftAssertions softly) throws Exception {
 		
@@ -38,12 +38,12 @@ public class TextBoxResizing {
 		String heightWithoutText = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("style");
 		//heightWithoutText to be same as sizeOriginal
 		//softly.assertThat(heightWithoutText).as("test data").isEqualTo(sizeOriginal);
-		int height1 = Integer.parseInt(heightWithoutText.substring(heightWithoutText.lastIndexOf(":")+2, heightWithoutText.lastIndexOf("p")));
-		int height2 = Integer.parseInt(sizeOriginal.substring(sizeOriginal.indexOf(":")+2, sizeOriginal.lastIndexOf("p")));
+		int height1 = Integer.parseInt(heightWithoutText.substring(heightWithoutText.lastIndexOf("height:")+8, heightWithoutText.lastIndexOf("p")));
+		int height2 = Integer.parseInt(sizeOriginal.substring(sizeOriginal.indexOf("height:")+8, sizeOriginal.lastIndexOf("p")));
 		if(height1<height2)
 			softly.fail("For locator "+locator+"\n Starting size not correct: "+height1+", original height: "+height2);
 		//both heights not equal
-		int height3 = Integer.parseInt(heightWithText.substring(heightWithText.lastIndexOf(":")+2, heightWithText.lastIndexOf("p")));
+		int height3 = Integer.parseInt(heightWithText.substring(heightWithText.lastIndexOf("height:")+8, heightWithText.lastIndexOf("p")));
 		if(height3==height1)
 			softly.fail("For locator "+locator+"\n Height with text equal to height without text "+height3);
 		//softly.assertThat(heightWithText).as("test data").isNotEqualTo(heightWithoutText);
@@ -61,7 +61,7 @@ public class TextBoxResizing {
 		String heightWithText = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorOfTextBox)).getAttribute("style");
 		//Click on add
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locatorOfAddSign)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if size is same as inital/original size
 		String heightWithoutText = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorOfTextBox)).getAttribute("style");
 		//both heights not equal

@@ -10,9 +10,9 @@ public class EiRCABug {
 	
 	SoftAssertions softly = new SoftAssertions();
 	
-	EiRCA eirca = new EiRCA();
-	EiRCAChinese ec = new EiRCAChinese();
+	EiRCA2 eirca2 = new EiRCA2();
 	ShareCheck share = new ShareCheck();
+	EiRCAPageObj eirca = new EiRCAPageObj();
 	
 	String textFillBug = "EiRCA bug";
 	
@@ -20,29 +20,29 @@ public class EiRCABug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Event title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventTitleField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventTitleField)).sendKeys(text);
 		//Event id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventIdField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventIdField)).sendKeys(text);
 		//Location of event
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventLocationField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventLocationField)).sendKeys(text);
 		//Problem Statement
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventProblemStatementField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventProblemStatementField)).sendKeys(text);
 		//Component
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventComponentField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventComponentField)).sendKeys(text);
 		//Reporter
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventReporterField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventReporterField)).sendKeys(text);
 		//Investigators
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventInvestigatorField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventInvestigatorField)).sendKeys(text);
 		//Reviewer
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventReviewerField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventReviewerField)).sendKeys(text);
 		//Sponsor
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCAEventSponsorField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventSponsorField)).sendKeys(text);
 		share.scrollToAPoint(driver, 1500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfInfoPage)).click();
 		//Scroll top
 		share.scrollToTop(driver);	
-	}
+	}	
 	
 	public void EiRCABugKALE2157QAA624(WebDriver driver) throws Exception {
 		
@@ -50,33 +50,33 @@ public class EiRCABug {
 		//Click next on sequence of events
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		//Fill step 1
-		eirca.EIRCAStep1Troubleshooting(driver, textFillBug);
+		eirca2.EIRCAStep1Troubleshooting(driver, textFillBug, softly);
 		//Select Troubleshooting
-		WebElement dropdown1 = driver.findElement(ec.Step1Q11Answer);
+		WebElement dropdown1 = driver.findElement(eirca.Step1Q11Answer);
 		Select s1 = new Select(dropdown1);
 		s1.selectByIndex(1);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		//Add 2 failure modes
 		//Fill text in 1st box 1st row
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step2Row11stTextBoxField)).sendKeys("EiRCA FM 1");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row11stTextBoxField)).sendKeys("EiRCA FM 1");
 		//Click on add failure mode button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step2AddFailureButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)).click();
 		//Fill text in 2nd row
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step2Row21stTextBoxField)).sendKeys("EiRCA FM 2");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row21stTextBoxField)).sendKeys("EiRCA FM 2");
 		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();		
 		//Click on failure mode 1 collapsible in Step 3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step3FailureCollapsible)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FailureCollapsible)).click();
 		//Click on 3.1 for FM 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step3TableOption31CheckBox)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption31CheckBox)).click();
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
 		//Click on collapsible in Step 4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step4FailureCollapsible)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)).click();
 		//Click on 4.4 checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step4TableOption44CheckBox)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4TableOption44CheckBox)).click();
 		//Enter text
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeOption44Textbox)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeOption44Textbox)).sendKeys(textFillBug);
@@ -88,14 +88,14 @@ public class EiRCABug {
 		//Click on Step 3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep3Tab)).click();
 		//Click on collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step3FailureCollapsible)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FailureCollapsible)).click();
 		//Click on 3.1 for FM 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step3TableOption31CheckBox)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption31CheckBox)).click();
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		//Verify 4.4 is greyed out for FM 1
 		//Click on collapsible for FM 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step4FailureCollapsible)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)).click();
 		//Verify 4.4 text is greyed out
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureMode1Option44Row)).getAttribute("class").contains("ui-state-disabled")==false)
 			softly.fail("Text for 4.4 is not greyed out FM 1");
@@ -106,8 +106,8 @@ public class EiRCABug {
 		if(driver.findElement(eirca.Step4FailureMode1Option44TextBox).isDisplayed()==true)
 			softly.fail("Textbox for 4.4 is visible for FM 1");
 		//Click on collapsible for FM 1
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step4FailureCollapsible)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.Step4FailureCollapsible)).click();
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)).click();
 		Thread.sleep(500);
 		//Click on collapsible for FM 2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsibleFailureMode2)).click();
@@ -132,9 +132,9 @@ public class EiRCABug {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Clicks on EiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ec.EiRCALink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCALink)).click();
 		Thread.sleep(2000);
 		//Fill info page and clicks next
 		EiRCAInfoPageFill(driver, textFillBug);

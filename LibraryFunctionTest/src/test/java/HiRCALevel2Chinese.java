@@ -20,7 +20,15 @@ public class HiRCALevel2Chinese {
 
 	String text = "HiRCA Level 2 Chinese";
 	SoftAssertions softly = new SoftAssertions();
+	
 	HiRCAFunctionsForLevel1_2_3 hfl123 = new HiRCAFunctionsForLevel1_2_3();
+	HiRCAChinese5 hc5 = new HiRCAChinese5();
+	HiRCAChinese6 hc6 = new HiRCAChinese6();
+	HiRCAChinese17 hc17 = new HiRCAChinese17();
+	HiRCAChinese18 hc18 = new HiRCAChinese18();
+	HiRCAChinese19 hc19 = new HiRCAChinese19();
+	HiRCAChinese20 hc20 = new HiRCAChinese20();
+	HiRCAChinese21 hc21 = new HiRCAChinese21();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
 
@@ -210,7 +218,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.13
-			obj2.chineseStepOneL313(driver, softly);
+			hc17.chineseStepOneL313(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,4);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -231,7 +239,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.14
-			obj2.chineseStepOneL314(driver, softly);
+			hc17.chineseStepOneL314(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,5);		
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -269,7 +277,6 @@ public class HiRCALevel2Chinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
-		HiRCAChinese obj2 = new HiRCAChinese();
 		HiRCAChinese4 obj3 = new HiRCAChinese4();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
@@ -289,7 +296,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.6
-			obj2.chineseStepOneL36(driver, softly);
+			hc21.chineseStepOneL36(driver, softly);
 			level3.addAll(selectAllLevel3(driver,9));			
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
@@ -299,7 +306,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.22
-			obj2.chineseStepOneL322(driver, softly);
+			hc18.chineseStepOneL322(driver, softly);
 			level3.addAll(selectAllLevel3(driver,5));
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
@@ -328,7 +335,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.7
-			obj2.chineseStepOneL37(driver, softly);
+			hc19.chineseStepOneL37(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,10);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -349,7 +356,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.8
-			obj2.chineseStepOneL38(driver, softly);
+			hc20.chineseStepOneL38(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,8);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -391,7 +398,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.10
-			obj3.chineseStepOneL310(driver, softly);
+			hc6.chineseStepOneL310(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,5);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -412,7 +419,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.11
-			obj3.chineseStepOneL311(driver, softly);
+			hc6.chineseStepOneL311(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,5);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -926,7 +933,6 @@ public class HiRCALevel2Chinese {
 		HiRCAHumanError obj = new HiRCAHumanError();
 		ShareCheck obj1 = new ShareCheck();
 		HiRCALevel2Text obj2 = new HiRCALevel2Text();		
-		HiRCAChinese4 obj3 = new HiRCAChinese4();		
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();
 		softly.assertThat(heading).as("test data").contains("设备的鉴定、试验和维修(QTM)");
@@ -1122,7 +1128,7 @@ public class HiRCALevel2Chinese {
 		//Click on 3rd collapsible for 3.17.7
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.PossibleCorrectiveActionAnswer7)).click();
 		//Verify Add Contributing factor
-		obj3.chineseAddContributingFactor(driver, softly);
+		hc6.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
 		obj1.scrollToTop(driver);

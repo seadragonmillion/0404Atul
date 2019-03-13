@@ -41,6 +41,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 public class UserManagement {
+	
+	LoginPageObj lpo = new LoginPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	SoftAssertions softly = new SoftAssertions();
 	String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
@@ -87,7 +90,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-customers-button")).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on collapsible departments sub-departments
@@ -116,7 +119,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible departments sub-departments
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Verify if department is checked
@@ -144,7 +147,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Sub-Department
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
@@ -173,7 +176,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible departments sub-departments
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Verify if department is checked
@@ -372,8 +375,7 @@ public class UserManagement {
 		WebElement option = select.findElement(By.cssSelector(".ui-li-static.ui-body-inherit.ui-first-child.ui-last-child"));
 		option.click();
 		//Wait for loading message to disappear
-		ShareCheck obj1 = new ShareCheck();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify login name of new user
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).getAttribute("value");
 		System.out.println(s2);
@@ -525,7 +527,7 @@ public class UserManagement {
 		option.click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Change company id
 		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd1.selectByVisibleText(companyChange);
@@ -541,7 +543,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void verifyGroupFields(WebDriver driver, HashMap<String, String>op) throws Exception {
@@ -584,12 +586,11 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id1);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on newly created company id
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Get name of group to verify if group name is as expected
@@ -598,7 +599,7 @@ public class UserManagement {
 		//Click on group under company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[2]/td[1]"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if group fields are as expected
 		verifyGroupFields(driver, opc1g1);
 		//Edit the group by changing the expiration date
@@ -618,7 +619,7 @@ public class UserManagement {
 		//Clicks on Save
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Companies
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
 		//Enters company id in ID field 
@@ -626,11 +627,11 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id1);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on newly created company id
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Get name of group to verify if group name is as expected
@@ -639,7 +640,7 @@ public class UserManagement {
 		//Click on group under company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[1]/td[1]"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if group fields are as expected
 		verifyGroupFields(driver, opc1g2);
 		//Click on Companies
@@ -649,11 +650,11 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id2);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on newly created company id
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Get name of group to verify if group name is as expected
@@ -662,7 +663,7 @@ public class UserManagement {
 		//Click on group under company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if group fields are as expected
 		verifyGroupFields(driver, opc2g2);
 	}
@@ -855,8 +856,7 @@ public class UserManagement {
 		}
 		System.out.println("Group created");
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Hashmap for group properties
 		HashMap<String, String> gp = new HashMap<String,String>();
 		//Get group name
@@ -1258,8 +1258,7 @@ public class UserManagement {
 			System.out.println("Company does not exist, it can be created");
 		}
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void createCompany (WebDriver driver, String company_id) throws Exception {
@@ -1272,8 +1271,7 @@ public class UserManagement {
 		//CLicks on new button
 		driver.findElement(By.id("pii-admin-cust-button-new")).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 		//Clicks on new company
@@ -1365,17 +1363,17 @@ public class UserManagement {
 
 		}
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Enters company id in ID field 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on newly created company id
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		System.out.println("Company created");
 		//Add subdepartments
 		addSubDepartments(driver);
@@ -1529,8 +1527,7 @@ public class UserManagement {
 		}
 		System.out.println("User created");
 		//Wait for loading message to disappear
-		ShareCheck obj1 = new ShareCheck();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void createUserCM(WebDriver driver, String company_id, String password,String email) throws Exception{
@@ -1591,8 +1588,7 @@ public class UserManagement {
 		}
 		System.out.println("User created");
 		//Wait for loading message to disappear
-		ShareCheck obj1 = new ShareCheck();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void addSubDepartments (WebDriver driver) throws Exception {
@@ -1645,7 +1641,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-cust-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void createUser(WebDriver driver, String company_id, String password,String email) throws Exception{
@@ -1706,8 +1702,7 @@ public class UserManagement {
 		}
 		System.out.println("User created");
 		//Wait for loading message to disappear
-		ShareCheck obj1 = new ShareCheck();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void loginAsNewUser(WebDriver driver, String company_id, String password) throws Exception {
@@ -1742,7 +1737,7 @@ public class UserManagement {
 
 		}
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.waitForIframe(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
@@ -1759,7 +1754,7 @@ public class UserManagement {
 
 		}
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		Thread.sleep(2000);
@@ -1772,8 +1767,7 @@ public class UserManagement {
 		//Clicks on HiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Wait for appearance of HIRCA page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-department-button")));
 		//Get WebElement of department
@@ -1907,7 +1901,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public List<String> storeDepartmentList(WebDriver driver) throws Exception {
@@ -1956,11 +1950,10 @@ public class UserManagement {
 	
 	public void checkAccess(WebDriver driver, int login, String[]op) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		ShareCheck obj = new ShareCheck ();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Knowledge
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-k"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if (login==1)
 		{
 			try{
@@ -1972,19 +1965,19 @@ public class UserManagement {
 		List<String>f = Arrays.asList(op);
 		WebElement element;
 		//Verify the modules selected
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(f.contains("Event Reports"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Event Reports")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Event Reports enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("Event Reports disabled");
 		}
@@ -1994,12 +1987,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("JIT Wisdom enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("JIT Wisdom disabled");
 		}
@@ -2009,12 +2002,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("JIT Risk Joggers enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("JIT Risk Joggers disabled");
 		}
@@ -2024,12 +2017,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Knowledge Bank enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("Knowledge Bank disabled");
 		}
@@ -2039,12 +2032,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Knowledge Exchange enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("Knowledge Exchange disabled");
 		}
@@ -2054,31 +2047,31 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Performance Accountability & Analytics enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Knowledge
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Knowledge"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("Performance Accountability & Analytics disabled");
 		}
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(f.contains("SPV Error Meter"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("SPV Error Meter enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("SPV Error Meter disabled");
 		}
@@ -2088,12 +2081,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("HPI enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("HPI disabled");
 		}
@@ -2103,12 +2096,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("HiRCA enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("HiRCA disabled");
 		}
@@ -2118,12 +2111,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("EiRCA enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("EiRCA disabled");
 		}
@@ -2133,12 +2126,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("O&PiRCA enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("O&PiRCA disabled");
 		}
@@ -2148,12 +2141,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("ICCA enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("ICCA disabled");
 		}
@@ -2163,12 +2156,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Job Obs enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("Job Obs disabled");
 		}
@@ -2178,12 +2171,12 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("3 Pass Review enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("3 Pass Review disabled");
 		}
@@ -2193,30 +2186,30 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Remote Verification enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Analysis
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 			}
 			else softly.fail("Remote Verification disabled");
 		}
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Learning
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Learning"))).click();
 		//Clicks on Error-Free Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(f.contains("Human Performance"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Human Performance")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Human Performance enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Error-Free Bank
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
 				Thread.sleep(2000);
@@ -2229,9 +2222,9 @@ public class UserManagement {
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
 				System.out.println("Equipment Performance enabled");
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				element.click();
-				obj.loadingServer(driver);
+				share2.loadingServer(driver);
 				//Clicks on Error-Free Bank
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[4]"))).click();
 				Thread.sleep(2000);

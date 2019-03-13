@@ -25,12 +25,13 @@ public class HiRCAOldReport {
 
 	SoftAssertions softly = new SoftAssertions();
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void verifyOldReport(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Wait for loading message
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Click on HiRCA
@@ -38,11 +39,11 @@ public class HiRCAOldReport {
 		//Click on Saved Activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on an old report in 09/2016
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[5]/a"))).click();
 		//Wait for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get data from old report
 		openReportGetData(driver);
 	}
@@ -182,11 +183,11 @@ public class HiRCAOldReport {
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		//Wait for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on an old report in 09/2016
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[5]/a"))).click();
 		//Wait for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Open and check record
 		openCheckRecord(driver,event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator,LOP1,LOP2,LOP3);
 	}
@@ -514,7 +515,7 @@ public class HiRCAOldReport {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -541,7 +542,7 @@ public class HiRCAOldReport {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading server message
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -577,7 +578,7 @@ public class HiRCAOldReport {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -607,7 +608,7 @@ public class HiRCAOldReport {
 			deleteFiles(file);
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-			share.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -641,7 +642,7 @@ public class HiRCAOldReport {
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -671,7 +672,7 @@ public class HiRCAOldReport {
 			deleteFiles(file);
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
-			share.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Clicks on open pdf report
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();

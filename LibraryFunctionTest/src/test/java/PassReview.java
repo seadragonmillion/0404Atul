@@ -21,6 +21,10 @@ public class PassReview {
 	ErrorMeter2 em2 = new ErrorMeter2 ();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	TextBoxResizing tbr = new TextBoxResizing ();
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	EiRCA2 eirca2 = new EiRCA2();
+	ShareCheck2 share2 = new ShareCheck2();
+	LoginPageObj lpo = new LoginPageObj();
 	
 	By PassReviewLink = By.id("pii-a-menu-3pr");
 
@@ -431,16 +435,14 @@ public class PassReview {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA2 obj2 = new EiRCA2();
-		EiRCA eirca = new EiRCA();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);	
+		share2.loadingServer(driver);	
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Mark critical pop up
-		obj2.verifyMarkCriticalPopup(driver, softly);
+		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
@@ -453,19 +455,19 @@ public class PassReview {
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Marked critical icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
 			//Verify presence of shared icon 
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconWhenAlsoMarkedCritical));
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Un-mark critical pop up
-		obj2.verifyUnMarkCriticalPopup(driver, softly);
+		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
@@ -480,7 +482,7 @@ public class PassReview {
 		//Clicks on 3 pass side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);	    					
+		share2.loadingServer(driver);	    					
 	}	
 
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
@@ -488,13 +490,11 @@ public class PassReview {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA2 obj2 = new EiRCA2();
-		EiRCA eirca = new EiRCA();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);	 
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify change in text
 		verifyHTMLReport(driver, em2.error50Data(driver));
 		//Clicks on share button
@@ -514,14 +514,14 @@ public class PassReview {
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareSaveButton)).click();
 		//Verify share save sticky
-		obj2.verifyStickyShareSave(driver, softly);
+		eirca2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Share icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewShareIconOrCriticalIcon));
 		}
@@ -530,30 +530,29 @@ public class PassReview {
 		//Clicks on 3 Pass Review side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void deleteNewRecord(WebDriver driver, String recordName, int y, String username) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ShareCheck obj = new ShareCheck();
-		EiRCA obj1 = new EiRCA ();
 		ErrorMeter obj2 = new ErrorMeter();
 		LanguageCheckOfReports obj3 = new LanguageCheckOfReports();
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(DeleteButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle));
-		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete report
-		driver.findElement(obj1.ConfirmPopupButton).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote));
-		obj.loadingServer(driver);
+		driver.findElement(eirca.ConfirmPopupButton).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
+		share2.loadingServer(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify record deleted
 		//Click on 1st record
 		Thread.sleep(2000);
@@ -695,21 +694,19 @@ public class PassReview {
 	public void openReport(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10); 
-		ShareCheck obj = new ShareCheck();
-		EiRCA obj1 = new EiRCA ();
 		//Clicks on record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FirstRecord)).click();
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify final report
 		verifyHTMLReport(driver, em2.error100Data(driver));
 		//Clicks on open
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		//Clicks on open
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
-		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Change text
 		changeText(driver);
 		//Click on save
@@ -719,14 +716,14 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavePopupConfirmButton)).click();
 		//Waits for the green popup on the right top corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote));
-		obj.loadingServer(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
+		share2.loadingServer(driver);
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavedAcivitiesButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on side panel option for 3 pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 	
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
@@ -763,13 +760,11 @@ public class PassReview {
 	public String createReport (WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10); 
-		ShareCheck obj = new ShareCheck();
-		EiRCA obj1 = new EiRCA ();
 		HiRCALOPBug obj2 = new HiRCALOPBug();
 		FontCheck obj3 = new FontCheck();
-		String text = obj1.textCreate(driver);
+		String text = eirca2.textCreate(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis 
 		try
 		{
@@ -826,15 +821,15 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavePopupConfirmButton)).click();
 		//Waits for the green popup on the right top corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SavedAcivitiesButton)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on side panel option for 3 pass
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PassReviewSidePanel)).click();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Gets the name of the record created
 		WebElement record = driver.findElement(FirstRecord);
 		String recordName = record.getText();

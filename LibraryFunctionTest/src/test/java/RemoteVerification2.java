@@ -12,11 +12,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RemoteVerification2 {
 	
-	EiRCA eirca = new EiRCA();
+	EiRCAPageObj eirca = new EiRCAPageObj();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	RemoteVerification rv1 = new RemoteVerification();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
+	LoginPageObj lpo = new LoginPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
+	ShareCheckPageObj shareObj = new ShareCheckPageObj();
 	
 	SoftAssertions softly = new SoftAssertions();
 	
@@ -211,7 +214,7 @@ public class RemoteVerification2 {
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(10000);
 		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(share.IFrame));
+		driver.switchTo().frame(driver.findElement(lpo.Iframe));
 		Thread.sleep(8000);
 		if (login1==1)
 		{
@@ -219,10 +222,10 @@ public class RemoteVerification2 {
 			while(true)
 			{
 				Thread.sleep(1000);
-				if (driver.findElement(share.StickyPopUp).isDisplayed())
+				if (driver.findElement(shareObj.StickyPopUp).isDisplayed())
 				{
-					WebElement ele =driver.findElement(share.StickyPopUp);
-					ele.findElement(share.StickyClose).click();
+					WebElement ele =driver.findElement(shareObj.StickyPopUp);
+					ele.findElement(lpo.StickyClose).click();
 					break;
 				}
 				else break;
@@ -230,7 +233,7 @@ public class RemoteVerification2 {
 		}	
 		Thread.sleep(4000);
 		//Click on notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationBell)).click();
 		share.scrollToTop(driver);
 	}
 	
@@ -242,15 +245,15 @@ public class RemoteVerification2 {
 		String browserName = cap.getBrowserName().toLowerCase();
 		loginToUser(driver,verifier,password);
 		//Verify version of report
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordDescriptionText)).getText();
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecordDescriptionText)).getText();
 		System.out.println("Reason in rv in verifier notification center: "+reason);
 		softly.assertThat(reason).as("test data").contains("Remote Verification Requested - v1");
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
 		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Reject button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectButton)).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.AcceptRejectConfirmPopupTitle)).getText();
@@ -259,16 +262,16 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectComment)).sendKeys(rejectComment);
 		//Click on reject confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectConfirmButton)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		share.markNotificationsRead(driver, browserName);
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
 		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify the Verification status
 		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationStatus)).getText();
 		softly.assertThat(status).as("test data").contains("responded to request for verification");
@@ -287,21 +290,21 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
 		driver.findElement(rv.RVSavePopupComfirmButton).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Mark notification as read
 		share.markNotificationsRead(driver, browserName);
 		//Login to verifier
 		loginToUser(driver,verifier,password);
 		//Verify version of report
-		String reason1 = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordDescriptionText)).getText();
+		String reason1 = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecordDescriptionText)).getText();
 		System.out.println("Reason in rv in verifier notification center: "+reason1);
 		softly.assertThat(reason1).as("test data").contains("Remote Verification Requested - v2");
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
 		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Accept button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierAcceptButton)).click();
 		String noHtml1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.AcceptRejectConfirmPopupTitle)).getText();
@@ -310,17 +313,17 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectComment)).sendKeys(passComment);
 		//Click on reject confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectConfirmButton)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Mark notification as read
 		share.markNotificationsRead(driver, browserName);
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
 		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Download report
 		//Get version
 		String v = cap.getVersion().toString();
@@ -342,15 +345,15 @@ public class RemoteVerification2 {
 		//Login to report creator
 		loginToUser(driver,username,password1);
 		//Verify version of report
-		String reason2 = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordDescriptionText)).getText();
+		String reason2 = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecordDescriptionText)).getText();
 		System.out.println("Reason in rv in creator notification center: "+reason1);
 		softly.assertThat(reason2).as("test data").contains("Remote Verification Accepted - v2");
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
 		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify the Verification status
 		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationStatus)).getText();
 		softly.assertThat(status1).as("test data").contains("responded to request for verification");
@@ -370,14 +373,14 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		//Clicks on delete report
 		driver.findElement(eirca.ConfirmPopupButton).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void rvVerifierTest(WebDriver driver, int k, String username, String password1) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis 
 		try
 		{
@@ -419,7 +422,7 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
 		driver.findElement(rv.RVSavePopupComfirmButton).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify if verifier got notification
 		verifierNotification(driver,verifier,username,password1);
 		//Delete report

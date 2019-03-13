@@ -19,11 +19,12 @@ public class SRI {
 	String text = "SRI sanity test";
 	
 	HiRCALOPBug hlb = new HiRCALOPBug();
-	EiRCA eirca = new EiRCA();
+	EiRCAPageObj eirca = new EiRCAPageObj();
 	EiRCA2 eirca2 = new EiRCA2();
 	ShareCheck share = new ShareCheck();
 	ErrorMeter em = new ErrorMeter();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	By SRILink = By.id("pii-a-menu-sri");
 	//Step1
@@ -123,12 +124,12 @@ public class SRI {
 		//Verify share save sticky
 		eirca2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			//Click back
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Share icon
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SRIShareIconOrCriticalIcon));
 		}
@@ -137,7 +138,7 @@ public class SRI {
 		//Clicks on 3 Pass Review side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRISidePanel)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 	
 	public void markCriticalReport(WebDriver driver, String username, String password1, int y) throws Exception {
@@ -146,7 +147,7 @@ public class SRI {
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRINewRecord)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);	
+		share2.loadingServer(driver);	
 		//Clicks on mark critical
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Mark critical pop up
@@ -163,14 +164,14 @@ public class SRI {
 		{
 			//Click back
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify Marked critical icon
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SRIShareIconOrCriticalIcon));
 			//Verify presence of shared icon 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SRIShareIconWhenAlsoMarkedCritical));
 			//Clicks on first newly created record
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SRINewRecord)).click();
-			share.loadingServer(driver);
+			share2.loadingServer(driver);
 		}
 		//Clicks on mark critical again
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
@@ -190,10 +191,10 @@ public class SRI {
 		//Clicks on SRI side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRISidePanel)).click();
 		//Wait for loading message to disappear
-		share.loadingServer(driver);	    	
+		share2.loadingServer(driver);	    	
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRINewRecord)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 	
 	public void verifyDeleteReportPopup(WebDriver driver, String recordName) throws Exception {
@@ -227,7 +228,7 @@ public class SRI {
 		verifyDeleteReportPopup(driver, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify report not retrieved by shared to person		
 		String sharer = em.decideSharer (y);
 		share.checkNoReportAfterDelete(driver, sharer, softly);	
@@ -518,14 +519,14 @@ public class SRI {
 		//Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRISaveButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRISaveConfirmButton)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRISavedActivitiesButton)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(SRINewRecord)).getText();
 		//CLick on new record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(SRINewRecord)).click();
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		return recordName;
 	}
 	

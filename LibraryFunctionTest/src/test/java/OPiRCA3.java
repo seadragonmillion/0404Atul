@@ -19,6 +19,7 @@ public class OPiRCA3 {
 	ShareCheck share = new ShareCheck();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	TextBoxResizing tbr = new TextBoxResizing ();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public List<String> modifyList(List<String> apparentCausesAnswers)  throws Exception{
 
@@ -216,7 +217,7 @@ public class OPiRCA3 {
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAAddContributingFactorSaveButton)));
 		Thread.sleep(1000);
 		//Wait for loading message
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		//Get text of new contributing factor
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div/label")));

@@ -29,6 +29,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LanguageCheckOfReports {
 
 	SoftAssertions softly = new SoftAssertions();
+	
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public boolean containsHanScript(String s) {
 		return s.codePoints().anyMatch(
@@ -46,9 +48,9 @@ public class LanguageCheckOfReports {
 		if (containsHanScript(s)==true)
 			softly.fail("Not in english: "+s);
 	}
-	
+
 	public void downloadSelectFunction(WebDriver driver, int y, WebElement l, String browserName, String v)throws Exception {
-		
+
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
 			downloadReportChrome (driver, y, l);
@@ -62,9 +64,9 @@ public class LanguageCheckOfReports {
 				downloadReportIE11 (driver, y, l);
 		}
 	}
-	
+
 	public void verifyLabelUserAccount(WebDriver driver,SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//page title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))).getText();
@@ -113,12 +115,11 @@ public class LanguageCheckOfReports {
 		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password-again"))).getAttribute("placeholder");
 		softly.assertThat(s13).as("test data").isEqualTo("(Optional) Enter password again: must be the exactly the same.");
 	}
-	
+
 	public void languageChangeTest(WebDriver driver,String username,String password) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Login obj = new Login();
-		ShareCheck obj1 = new ShareCheck();
 		HiRCA2 obj2 = new HiRCA2();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -154,8 +155,8 @@ public class LanguageCheckOfReports {
 		//Login again
 		obj.LoginUser(driver, username, password);
 		//wait for loading message
-		obj1.loadingServer(driver);
-        //Switches to the iframe
+		share2.loadingServer(driver);
+		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(5000);
 		//Clicks on Account
@@ -206,12 +207,12 @@ public class LanguageCheckOfReports {
 		//verify sticky
 		obj2.verifyStickyUserAccount(driver, softly, username);
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks language in error meter
 		l=errorMeter(driver,1);
 		downloadSelectFunction(driver, 1, l,browserName,v);
@@ -235,9 +236,9 @@ public class LanguageCheckOfReports {
 		l=rv(driver,1);
 		downloadSelectFunction(driver, 1, l,browserName,v);
 	}
-	
+
 	public void verifyLabelAdminUserAccount(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Verify all label which are same as non admin user
 		verifyLabelUserAccount(driver,softly);
@@ -303,24 +304,23 @@ public class LanguageCheckOfReports {
 		//license
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-license")));
 	}
-	
+
 	public void verifyAccountPageAdminUser(WebDriver driver, String username, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		HiRCA2 obj = new HiRCA2();
-		ShareCheck obj1 = new ShareCheck();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Account
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Account
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//verify labels
 		verifyLabelAdminUserAccount(driver,softly);
 		//Clicks on save
@@ -330,21 +330,20 @@ public class LanguageCheckOfReports {
 		//Verify sticky 
 		obj.verifyStickyUserAccount(driver, softly, username);
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
-	
+
 	public void changeAccountPage(WebDriver driver, String username) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		HiRCA2 obj = new HiRCA2();
-		ShareCheck obj1 = new ShareCheck();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Account
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
@@ -378,12 +377,12 @@ public class LanguageCheckOfReports {
 		//Verify sticky 
 		obj.verifyStickyUserAccount(driver, softly, username);
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
 		//Waits for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void downloadReportIE(WebDriver driver, int y, WebElement element) throws Exception {
@@ -397,8 +396,7 @@ public class LanguageCheckOfReports {
 		element.click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -429,8 +427,7 @@ public class LanguageCheckOfReports {
 		element.click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -484,8 +481,7 @@ public class LanguageCheckOfReports {
 		//Clicks on download button
 		element.click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -526,8 +522,7 @@ public class LanguageCheckOfReports {
 		//Clicks on download button
 		element.click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -565,7 +560,12 @@ public class LanguageCheckOfReports {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		System.out.println(lastFilePath.get());
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+			
+		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);
@@ -596,12 +596,11 @@ public class LanguageCheckOfReports {
 		//Clicks on error meter side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Stores text of SPV title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
@@ -683,12 +682,11 @@ public class LanguageCheckOfReports {
 		//Clicks on hpi side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Stores text of HPI title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
@@ -717,12 +715,11 @@ public class LanguageCheckOfReports {
 		//Clicks on hirca side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Stores text of HiRCA title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
@@ -780,12 +777,11 @@ public class LanguageCheckOfReports {
 		//Clicks on eirca side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-mirca"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);	
+		share2.loadingServer(driver);	
 		//Stores text of EiRCA title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
@@ -841,12 +837,11 @@ public class LanguageCheckOfReports {
 		//Clicks on opirca side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-opa"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-opa']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
 		{
@@ -868,12 +863,11 @@ public class LanguageCheckOfReports {
 		//Clicks on job observation side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Stores text of Mark critical
 		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-jo-critical-input']"))).getText());
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
@@ -904,12 +898,11 @@ public class LanguageCheckOfReports {
 		//Clicks on 3 pass review side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-3pr"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Stores text of Mark critical
 		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-3pr-critical-input']"))).getText());
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
@@ -942,12 +935,11 @@ public class LanguageCheckOfReports {
 		//Clicks on remote verification side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Stores text of Remote Verification title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical

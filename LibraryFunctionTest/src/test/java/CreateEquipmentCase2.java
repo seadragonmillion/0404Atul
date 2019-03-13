@@ -19,6 +19,7 @@ public class CreateEquipmentCase2 {
 	LoginPageObj lpo = new LoginPageObj();
 	CreateEquipPageObj equipObj = new CreateEquipPageObj();
 	CreateEquipmentCase3 equip = new CreateEquipmentCase3();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	String keyword = "KeywordQAAadded";
 	String keywordUS = "KeywordUSQAAadded";
@@ -55,7 +56,6 @@ public class CreateEquipmentCase2 {
 
 		CaseBrowse obj = new CaseBrowse();
 		EquipmentPDDandEF obj1 = new EquipmentPDDandEF();
-		ShareCheck obj3 = new ShareCheck();
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		if((caseID.equals(obj.caseElecDev))||(caseID.equals(obj.caseMechDev))||(caseID.equals(obj.caseEquipDev))||(caseID.equals(obj1.caseEFDev))||(caseID.equals(obj1.casePDDDev)))
 		{
@@ -86,7 +86,7 @@ public class CreateEquipmentCase2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchKeywordField)).sendKeys(keywordDecide(driver));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.EquipmentSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		obj3.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseID)));
 		//Clear
@@ -114,7 +114,7 @@ public class CreateEquipmentCase2 {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -124,7 +124,7 @@ public class CreateEquipmentCase2 {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -159,7 +159,7 @@ public class CreateEquipmentCase2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		//Scroll to top
 		obj.scrollToTop(driver);
@@ -170,7 +170,7 @@ public class CreateEquipmentCase2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -345,7 +345,6 @@ public class CreateEquipmentCase2 {
 	public void caseSearchWithDisciplineFieldComboEquipmentDatabank(WebDriver driver, int x, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		CaseBrowse obj1 = new CaseBrowse();
 		CreateHumanCase obj2 = new CreateHumanCase ();
 		//Go to Failure mode
@@ -365,7 +364,7 @@ public class CreateEquipmentCase2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Look for all cases without filter
 		equip.lookForCases(driver, electrical);
 		equip.lookForCases(driver, general);
@@ -398,7 +397,7 @@ public class CreateEquipmentCase2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 			//Wait for loading message
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Verify cases with only discipline filter
 			verifyCasesWithOnlyDisciplineFilter(driver, i, electrical, general, ic, mechanical, software, structural);
 			//Select field filter and disc filter
@@ -536,7 +535,6 @@ public class CreateEquipmentCase2 {
 	public void selectFieldDiscFilter (WebDriver driver, int x, int i, List<By> discList, List<By> fieldList, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		CaseBrowse obj1 = new CaseBrowse();
 		for(int j=0;j<fieldList.size();j++)
 		{
@@ -565,7 +563,7 @@ public class CreateEquipmentCase2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(keyword);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 			//Wait for loading message
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Look for case with 2 filters
 			verifyCasesWith2DisciplineFieldFilters(driver, i, j, electrical, general, ic, mechanical, software, structural);
 		}

@@ -7,6 +7,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HiRCA2 {
 
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	LoginPageObj login = new LoginPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
+	
 	//Info Page
 	By HiRCANewReportButton = By.id("efi-irca-button-new");
 	//Popup inside report
@@ -20,12 +24,11 @@ public class HiRCA2 {
 	public void verifyStickyUserAccount(WebDriver driver, SoftAssertions softly, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			softly.assertThat(s).as("test data").isEqualTo("User updated: "+username+".");
 			System.out.println(s);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find share save pop up");
@@ -35,12 +38,11 @@ public class HiRCA2 {
 	public void verifySticky1ImageUploaded(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			softly.assertThat(s).as("test data").isEqualTo("All changed supporting files saved successfully (1)");
 			System.out.println(s);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find share save pop up");
@@ -50,12 +52,11 @@ public class HiRCA2 {
 	public void verifySticky5ImageUploaded(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			softly.assertThat(s).as("test data").isEqualTo("All changed supporting files saved successfully (5)");
 			System.out.println(s);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find share save pop up");
@@ -65,16 +66,15 @@ public class HiRCA2 {
 	public void verifyStickySaveReport(WebDriver driver, SoftAssertions softly, String username, String reportTitle, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			String r = s.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
 			if(n == 0)
 				softly.assertThat(r).as("test data").contains("HiRCA™ Data created for id: ");
 			else
 				softly.assertThat(r).as("test data").contains("HiRCA™ Data updated for id: ");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find save pop up");
@@ -84,13 +84,12 @@ public class HiRCA2 {
 	public void verifyStickyDeleteReport(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
-		EiRCA obj = new EiRCA ();
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyNote)).getText();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			String r = s.replaceAll("\u00AD", "");
 			String r1 = recordName.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").isEqualTo("HiRCA™ data deleted: "+r1);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.StickyClose)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find delete pop up");
@@ -185,35 +184,33 @@ public class HiRCA2 {
 	public void verifyOpenReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCA obj = new EiRCA();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Open");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open HiRCA™ report referenced as: "+r1+"?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Open");
 	}	
 
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		EiRCA obj = new EiRCA();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Delete Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		if(r.contains("This report is currently open in "))
@@ -221,13 +218,13 @@ public class HiRCA2 {
 			else
 				softly.assertThat(r).as("test data").isEqualTo("Are you sure you want to delete this HiRCA™ report ["+r1+"]?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ConfirmPopupButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
 	}
 	
@@ -257,13 +254,12 @@ public class HiRCA2 {
 	public void verifyChangeLanguage(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		ShareCheck obj = new ShareCheck();
 		HiRCAChinese obj1 = new HiRCAChinese();
 		LanguageCheckOfReports obj2 = new LanguageCheckOfReports();
 		//Change language to english
 		obj1.changeToEnglish(driver);
 		//Click on Analysis
-		obj.loadingServer(driver);  
+		share2.loadingServer(driver);  
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Click on HiRCA
@@ -279,6 +275,6 @@ public class HiRCA2 {
 		//Click on HiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hirca"))).click();
 		//Verify the language as chinese in test		
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}	
 }

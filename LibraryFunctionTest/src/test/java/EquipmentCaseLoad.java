@@ -28,6 +28,7 @@ public class EquipmentCaseLoad {
 
 	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
 	CreateEquipPageObj equipObj = new CreateEquipPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	String keyword1eq = "Slide100imageseq";
 	String keyword2eq = "Slide100NoImageseq";
@@ -236,11 +237,11 @@ public class EquipmentCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on new case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
@@ -347,7 +348,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -418,7 +419,7 @@ public class EquipmentCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
@@ -533,7 +534,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -556,7 +557,7 @@ public class EquipmentCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -597,7 +598,7 @@ public class EquipmentCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
@@ -707,7 +708,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -730,7 +731,7 @@ public class EquipmentCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -767,11 +768,11 @@ public class EquipmentCaseLoad {
 		act1.click(button).build().perform();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 
 		obj.scrollToTop(driver);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		Thread.sleep(6000);
 		//Enters mandatory data
@@ -890,7 +891,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		if(r==2 ||r==3)
 		{
 			//Waits for black loading message to disappear
@@ -913,7 +914,7 @@ public class EquipmentCaseLoad {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 			//Wait for loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			if(r==2 ||r==3)
 			{
 				//Waits for black loading message to disappear
@@ -935,9 +936,8 @@ public class EquipmentCaseLoad {
 
 	public int deletePreviousCase(WebDriver driver, String keyword) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		ShareCheck obj = new ShareCheck();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-e"))).click();
 		//Clicks on Equipment Performance Search (PII)
@@ -948,7 +948,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks if Exact matches appear
 		try{
 			driver.findElement(By.xpath(".//*[@id='pii-question-list-equip']/div/h4/a/div"));			
@@ -1000,21 +1000,21 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-manage-button"))).click();
 		//Wait for loading message to disappear
 		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).sendKeys(caseId);
 		Thread.sleep(2000);
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-ul"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-delete"))).click();
 		//Clicks on delete case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToTop(driver);
 		//Checks if case deleted
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).clear();
@@ -1033,12 +1033,11 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efse-searchbykw-input"))).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		ShareCheck obj = new ShareCheck();
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+identifier));

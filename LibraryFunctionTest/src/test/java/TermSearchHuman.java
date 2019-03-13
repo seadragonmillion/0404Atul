@@ -28,6 +28,7 @@ public class TermSearchHuman {
 	CreateHumanCase human = new CreateHumanCase();
 	CreateEquipPageObj equip = new CreateEquipPageObj();
 	TermSearchEQ tse = new TermSearchEQ();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void getCaseInHumanAdmin(WebDriver driver, String caseID) throws Exception{
 
@@ -48,7 +49,7 @@ public class TermSearchHuman {
 		}
 		Thread.sleep(1000);
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		share.scrollToTop(driver);
 		//Get the case id loaded
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(human.HumanCaseIDField)).getAttribute("value").equals(caseID.substring(1, caseID.length())))
@@ -334,7 +335,7 @@ public class TermSearchHuman {
 		//Search for term
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchKeywordField)).sendKeys(term);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchKeywordField)).sendKeys(Keys.ENTER);
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get all cases from Results or Similar results or Other results
 		List<String> caseList1 = getCasesListFromSearch_human(driver,1);
 		//Get all cases from Similar results or Other results
@@ -355,9 +356,9 @@ public class TermSearchHuman {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchClearButton)).click();
 		//Go to admin
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for black loading message to disappear
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		share.scrollToTop(driver);
 		//Close sticky
 		login.closePopUpSticky(driver);
@@ -382,7 +383,7 @@ public class TermSearchHuman {
 		}	
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(human.HumanCasesLink)).click();	
-		share.loadingServer(driver);
+		share2.loadingServer(driver);
 		System.out.println(collapsibleResultsList);
 		//Verify case and term matching
 		if(collapsibleResultsList.contains("Results"))

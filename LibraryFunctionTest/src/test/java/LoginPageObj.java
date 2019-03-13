@@ -15,5 +15,4 @@ public class LoginPageObj {
 	By WebPageMessage = By.className("pii-slogan");
 	By AgreeTermsButton = By.xpath(".//*[@id='pii-license-checkbox-div']/fieldset/div/div/label");
 	By Iframe = By.xpath("//iframe[@name='pii-iframe-main']");
-
 }

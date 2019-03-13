@@ -17,6 +17,7 @@ public class CreateEquipmentCase3 {
 
 	CreateEquipPageObj equipObj = new CreateEquipPageObj();
 	LoginPageObj lpo = new LoginPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void clickTypesDisciplineIE(WebDriver driver, By element) throws Exception {
 
@@ -153,7 +154,7 @@ public class CreateEquipmentCase3 {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -170,7 +171,7 @@ public class CreateEquipmentCase3 {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -190,7 +191,7 @@ public class CreateEquipmentCase3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		obj.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
 		Thread.sleep(1000);
@@ -202,7 +203,7 @@ public class CreateEquipmentCase3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);

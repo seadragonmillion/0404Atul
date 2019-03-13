@@ -62,15 +62,15 @@ public class RemoteVerification {
 
 	SoftAssertions softly = new SoftAssertions();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
-
+	EiRCAPageObj eirca = new EiRCAPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
+	LoginPageObj lpo = new LoginPageObj();
 
 
 	public void checkStatusReport (WebDriver driver, String username, int k) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		UserManagement obj1 = new UserManagement();
-		ShareCheck obj = new ShareCheck();
-		EiRCA obj2 = new EiRCA();
 		//Mark read verifier email		
 		String email = selectEmail(k);
 		obj1.emailMarkRead(email, driver);
@@ -78,23 +78,23 @@ public class RemoteVerification {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).click();
 		//Wait for loading message to disappear		
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on Saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedAcivitiesButton)).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify status
 		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportNotSentStatusMessage)).getText();
 		softly.assertThat(status).as("test data").contains("Not yet sent to verifier");
 		//Click on Open
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.OpenButton)).click();
-		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
 		//Clicks on Save and Send
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -109,7 +109,7 @@ public class RemoteVerification {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
 		driver.findElement(rv.RVSavePopupComfirmButton).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify status
 		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportSentStatusMessage)).getText();
 		softly.assertThat(status1).as("test data").contains("Sent, waiting upon verification");
@@ -644,7 +644,6 @@ public class RemoteVerification {
 
 	public void verifierSelect(WebDriver driver, int k) throws Exception {
 
-		EiRCA obj = new EiRCA ();
 		ShareCheck obj1 = new ShareCheck();
 		//dev admin
 		if(k==1)
@@ -709,7 +708,7 @@ public class RemoteVerification {
 		//Selects the remote verifier		
 		obj1.scrollToAPoint(driver, 1500);
 		WebElement select = driver.findElement(rv.RVVerifierDropdown);
-		WebElement option=select.findElement(obj.FirstSelectionUnderDropdown);		
+		WebElement option=select.findElement(eirca.FirstSelectionUnderDropdown);		
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.toLowerCase().contains("safari"))
@@ -825,7 +824,6 @@ public class RemoteVerification {
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA obj2 = new EiRCA ();
 		String sharer = obj.decideSharer (y);
 		String sharerAdded = obj.decideSharerAdded (y);    	
 		//Get browser name
@@ -835,7 +833,7 @@ public class RemoteVerification {
 		{
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			driver.switchTo().defaultContent();
 		}
 		//Switches to the iframe
@@ -849,40 +847,40 @@ public class RemoteVerification {
 		if(s.equals("true")==false)
 			softly.fail("Verifier text box not suppose to be enabled");    	
 		//Enters verifier username and tries to add verifier
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareTextBox)).sendKeys(verifier);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(verifier);
 		//Selects from dropdown
-		WebElement dropdown1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareDropdown));
-		dropdown1.findElement(obj2.FirstSelectionUnderDropdown).click();
+		WebElement dropdown1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+		dropdown1.findElement(eirca.FirstSelectionUnderDropdown).click();
 		//Gets text from error pop up and verifies text
-		String error = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).getText();
+		String error = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(error).as("test data").contains("Sorry, the current activity is already shared to user");
 		//Verifies cancel button not available
-		WebElement cancel = driver.findElement(obj2.ConfirmCancelButton);
+		WebElement cancel = driver.findElement(eirca.ConfirmCancelButton);
 		if(cancel.isDisplayed()==true)
 			softly.fail("Cancel button not suppose to be displayed");
 		//Verifies if only ok button available and clicks on ok
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.invisibilityOfElementLocated(obj2.ConfirmPopupButton));
+		wait1.until(ExpectedConditions.invisibilityOfElementLocated(eirca.ConfirmPopupButton));
 		//Adds sharer
 		//Enters sharer username
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareTextBox)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).clear();
 		Thread.sleep(3000);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareTextBox)).sendKeys(sharer);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(sharer);
 		//Selects from dropdown
-		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareDropdown));
+		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
 		if(browserName.contains("safari"))
 		{
 			while (true)
 			{
 				Thread.sleep(3000);
 				//JavascriptExecutor executor = (JavascriptExecutor)driver;
-				dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareDropdown));
-				dropdown.findElement(obj2.FirstSelectionUnderDropdown).click();
+				dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+				dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
 				Thread.sleep(2000);
 			//	executor.executeScript("arguments[0].click();", dropdown.findElement(obj2.FirstSelectionUnderDropdown));
 				try{
-					if(driver.findElement(obj2.ConfirmPopupTitle).isDisplayed())
+					if(driver.findElement(eirca.ConfirmPopupTitle).isDisplayed())
 						break;
 				}catch(org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException t)
 				{
@@ -890,18 +888,18 @@ public class RemoteVerification {
 				}
 			}
 		}
-		else dropdown.findElement(obj2.FirstSelectionUnderDropdown).click();
+		else dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
 		//Clicks on add user
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Verifies user added
-		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.SharerAdded)).getText();
+		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);		
 		obj1.shareTwice (driver,softly);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareSaveButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks the username of creator and verifier
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportCreatorUsername));
 		String creatorUsername= creator.getText();
@@ -914,8 +912,8 @@ public class RemoteVerification {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.BackButton)).click();
-			obj1.loadingServer(driver);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			share2.loadingServer(driver);
 			//Verify Share icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
 		}
@@ -924,16 +922,14 @@ public class RemoteVerification {
 		//Clicks on Remote Verification side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void downloadRecordChrome(WebDriver driver, String verifier, String username) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
-		EiRCA obj1 = new EiRCA();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);	    	
@@ -944,10 +940,10 @@ public class RemoteVerification {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear		
-		obj.loadingServer(driver);		
+		share2.loadingServer(driver);		
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(7000);
 		pdfCheck(driver,verifier,username);
 		for(String winHandle : driver.getWindowHandles()){
@@ -961,8 +957,6 @@ public class RemoteVerification {
 
 	public void downloadRecordFirefox(WebDriver driver, String verifier, String username) throws Exception {
 
-		EiRCA obj1 = new EiRCA();
-		ShareCheck obj = new ShareCheck();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);		  
@@ -972,11 +966,11 @@ public class RemoteVerification {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear		
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -1001,8 +995,6 @@ public class RemoteVerification {
 
 	public void downloadRecordIE(WebDriver driver, String verifier, String username) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
-		EiRCA obj1 = new EiRCA();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);		  
@@ -1012,11 +1004,11 @@ public class RemoteVerification {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear		
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(4000);
 		try {
 			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
@@ -1039,8 +1031,6 @@ public class RemoteVerification {
 
 	public void downloadRecordIE11(WebDriver driver, String verifier, String username) throws Exception {
 
-		ShareCheck obj = new ShareCheck();
-		EiRCA obj1 = new EiRCA();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);		  
@@ -1050,11 +1040,11 @@ public class RemoteVerification {
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj1.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(4000);
 		try {
 			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
@@ -1180,14 +1170,13 @@ public class RemoteVerification {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA obj2 = new EiRCA();
 		//Verify text in HTML
 		verifyTextInHTML(driver);
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.MarkCritical)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
 		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVMarkedCriticalText)).getText();
 		softly.assertThat(critical).as("test data").contains("Critical");
@@ -1196,21 +1185,21 @@ public class RemoteVerification {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.BackButton)).click();
-			obj1.loadingServer(driver);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+			share2.loadingServer(driver);
 			//Verify Marked critical icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
 			//Verify presence of shared icon 
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconWhenAlsoMarkedCritical));
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
-			obj1.loadingServer(driver);		
+			share2.loadingServer(driver);		
 		}
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.MarkCritical)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.ConfirmPopupButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
 		if(driver.findElement(rv.RVMarkedCriticalText).isDisplayed()==false)
 		{
@@ -1222,10 +1211,10 @@ public class RemoteVerification {
 		//Clicks on rv side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
 		//Wait for loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();	
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{
@@ -1234,20 +1223,18 @@ public class RemoteVerification {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		ErrorMeter obj = new ErrorMeter();
 		ShareCheck obj1 = new ShareCheck();
-		EiRCA obj3 = new EiRCA ();
-		ShareCheck obj2 = new ShareCheck();
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDeleteButton)).click();		 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle));
-		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ConfirmPopupTitle)).getText();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
+		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete report
-		driver.findElement(obj2.ConfirmPopupButton).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.StickyNote));
+		driver.findElement(eirca.ConfirmPopupButton).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		Thread.sleep(2000);
 		driver.findElement(rv.RVSidePanel).click();
 		//Wait for loading message to disappear		  
-		obj2.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Verify record deleted
 		//Get name of 1st record
 		String name = driver.findElement(rv.RVNewlyCreatedFirstRecord).getText();
@@ -1261,9 +1248,9 @@ public class RemoteVerification {
 		{
 			Thread.sleep(1000);
 			try{
-				if (driver.findElement(obj1.StickyNote).isDisplayed())
+				if (driver.findElement(lpo.StickyNote).isDisplayed())
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.StickyClose)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
 
 				}}catch (NoSuchElementException e)
 			{
@@ -1369,7 +1356,7 @@ public class RemoteVerification {
 
 		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Analysis 
 		try
 		{

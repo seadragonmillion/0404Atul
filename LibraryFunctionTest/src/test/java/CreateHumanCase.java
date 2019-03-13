@@ -20,6 +20,9 @@ public class CreateHumanCase {
 
 	SoftAssertions softly = new SoftAssertions();
 	LoginPageObj lpo = new LoginPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
+	ShareCheckPageObj share = new ShareCheckPageObj();
+	
 	int numberOfImages=5;
 	String keyword_same="QAAfive";
 	String key1="QAAzebra";
@@ -162,9 +165,8 @@ public class CreateHumanCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj1 = new CaseBrowse();
-		ShareCheck obj = new ShareCheck();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankLink)).click();
 		//Clicks on Human Performance Search
@@ -175,7 +177,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HumanSearchKeywordField)).sendKeys(title);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks if Exact matches appear
 		WebElement exact = wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HumanSearchDropdownListLoaded));
 		String exactText=exact.getText();		
@@ -217,7 +219,7 @@ public class CreateHumanCase {
 		for(int i=0;i<caseID.size();i++)
 		{
 			//Clicks on admin user name on top right corner
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 			//Clicks on admin option
 			wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 			Thread.sleep(1000);
@@ -229,7 +231,7 @@ public class CreateHumanCase {
 			//Clicks on Human cases
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 			//Waits for black loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			obj.scrollToTop(driver);
 			//CLick on enter case id
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
@@ -237,7 +239,7 @@ public class CreateHumanCase {
 			//Clicks on case id
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 			//Waits for black loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -247,7 +249,7 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
-			obj.loadingServer(driver);
+			share2.loadingServer(driver);
 			obj.scrollToTop(driver);
 			//Checks if case deleted
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
@@ -267,7 +269,7 @@ public class CreateHumanCase {
 		ShareCheck obj = new ShareCheck();
 		CaseBrowse obj2 = new CaseBrowse();
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		Thread.sleep(1000);
@@ -279,7 +281,7 @@ public class CreateHumanCase {
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -290,7 +292,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -318,7 +320,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -329,7 +331,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -359,7 +361,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -390,11 +392,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanSearchCaseIdField)).sendKeys(cases.get(2));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanSearchCaseIdField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+cases.get(2)))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q"+cases.get(2))));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-Q"+cases.get(2)));
@@ -436,7 +438,7 @@ public class CreateHumanCase {
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		CaseBrowse obj2 = new CaseBrowse();
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		Thread.sleep(1000);
@@ -448,7 +450,7 @@ public class CreateHumanCase {
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -459,7 +461,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -481,7 +483,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -498,11 +500,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanSearchCaseIdField)).sendKeys(cases.get(2));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanSearchCaseIdField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+cases.get(2)))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-Q"+cases.get(2))));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-Q"+cases.get(2)));
@@ -545,7 +547,7 @@ public class CreateHumanCase {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		ShareCheck obj = new ShareCheck();
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		Thread.sleep(1000);
@@ -557,7 +559,7 @@ public class CreateHumanCase {
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -567,7 +569,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -584,7 +586,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
@@ -600,7 +602,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
@@ -619,7 +621,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
@@ -638,7 +640,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -649,7 +651,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -660,7 +662,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -677,7 +679,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -692,7 +694,7 @@ public class CreateHumanCase {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		ShareCheck obj = new ShareCheck();
 		//Clicks on admin user name on top right corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.LoginNameOnTopRight)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		Thread.sleep(1000);
@@ -704,12 +706,12 @@ public class CreateHumanCase {
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -720,7 +722,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -741,7 +743,7 @@ public class CreateHumanCase {
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 	}
 
 	public void verifyCaseFieldsInAdmin(WebDriver driver, String keyword_same) throws Exception {
@@ -977,7 +979,6 @@ public class CreateHumanCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CaseBrowse obj1 = new CaseBrowse();
-		ShareCheck obj = new ShareCheck();
 		CreateEquipmentCase obj2 = new CreateEquipmentCase();
 		//Clicks on Error free bank
 		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
@@ -993,11 +994,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HumanSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HumanSearchKeywordField)).sendKeys(Keys.ENTER);
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Click on collapsible 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+cases.get(2)))).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Get window id
 		String window = driver.getWindowHandle();
 		//Clicks on Show Slides
@@ -1126,7 +1127,7 @@ public class CreateHumanCase {
 		for(int count=1;count<=5;count++)
 		{
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1271,8 +1272,8 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 		}
 		return caseID;
 	}
@@ -1289,7 +1290,7 @@ public class CreateHumanCase {
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1297,14 +1298,14 @@ public class CreateHumanCase {
 		if(m==0)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1316,7 +1317,7 @@ public class CreateHumanCase {
 		for(int count=1;count<=5;count++)
 		{
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1326,7 +1327,7 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1461,8 +1462,8 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1482,8 +1483,8 @@ public class CreateHumanCase {
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1491,7 +1492,7 @@ public class CreateHumanCase {
 		if(m==0)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1504,17 +1505,17 @@ public class CreateHumanCase {
 		for(int count=1;count<=5;count++)
 		{
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			//Clicks on Human cases
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1526,8 +1527,8 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1666,8 +1667,8 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1687,7 +1688,7 @@ public class CreateHumanCase {
 		//Clicks on admin option
 		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1695,7 +1696,7 @@ public class CreateHumanCase {
 		if(m==0)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankLink)).click();
 		//Waits for black loading message to disappear
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj1.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1710,12 +1711,12 @@ public class CreateHumanCase {
 			//Clicks on Human cases
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1725,8 +1726,8 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1862,8 +1863,8 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
-			obj1.loadingServer(driver);
-			obj1.loadingServer(driver);
+			share2.loadingServer(driver);
+			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			obj1.scrollToTop(driver);
 			Thread.sleep(1000);
@@ -1890,7 +1891,7 @@ public class CreateHumanCase {
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1900,7 +1901,7 @@ public class CreateHumanCase {
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1917,7 +1918,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
@@ -1935,7 +1936,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		obj.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1949,12 +1950,12 @@ public class CreateHumanCase {
 		//Clicks on Human Performance Search
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanPerformanceLink)).click();
 		//Waits for black loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks for search method with magnifying glass
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanSearchKeywordField)).sendKeys(keyword_same+"changed");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HumanSearchKeywordFieldSearchButton)).click();
 		//Wait for loading message to disappear
-		obj.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseID.get(1))));
 	}
@@ -1980,14 +1981,13 @@ public class CreateHumanCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj = new CaseBrowse();
-		ShareCheck obj1 = new ShareCheck();
 		//Enters the term and check the search by enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HumanSearchClearButton)).click();
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HumanSearchKeywordField)).sendKeys(keyword_same);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HumanSearchKeywordField)).sendKeys(Keys.ENTER);
-		obj1.loadingServer(driver);
+		share2.loadingServer(driver);
 		//Checks for the five cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+caseID.get(0))));
 		Thread.sleep(1000);
