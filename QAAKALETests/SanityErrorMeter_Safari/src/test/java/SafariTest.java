@@ -95,7 +95,7 @@ public class SafariTest {
 		Thread.sleep(2000);
 		obj1.reportCheck0(driver);
 		//Downloads record, the integer indicates error meter tests based on error %= 0,50,100
-		obj1.downloadReportChrome(driver, 0);
+	//	obj1.downloadReportChrome(driver, 0);
 		Thread.sleep(2000);
 		//Shares report
 		/* Dev/Asia
