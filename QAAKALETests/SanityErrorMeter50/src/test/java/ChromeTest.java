@@ -59,7 +59,7 @@ public class ChromeTest {
 	  public void SanityTest() throws Exception{
 		   Login obj = new Login();
 		  ErrorMeter obj1 = new ErrorMeter();
-		  EiRCA obj2 = new EiRCA();
+		  EiRCA2 obj2 = new EiRCA2();
 		  //Logs in
 		  int login = obj.LoginUser(driver,username,password);
 		  System.out.println("Title after login: "+driver.getTitle());
