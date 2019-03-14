@@ -38,7 +38,7 @@ public class ChromeTest {
 		Login obj = new Login ();
 		CreateEquipmentCase obj1 = new CreateEquipmentCase ();
 		EquipmentPDDandEF obj2 = new EquipmentPDDandEF ();
-		ShareCheck obj3 = new ShareCheck();
+		ShareCheck2 obj3 = new ShareCheck2();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(5000);
