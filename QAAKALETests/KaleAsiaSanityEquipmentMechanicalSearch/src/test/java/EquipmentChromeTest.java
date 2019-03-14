@@ -43,7 +43,7 @@ public class EquipmentChromeTest {
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	      Thread.sleep(5000);
-	      ShareCheck obj2 = new ShareCheck();
+	      ShareCheck2 obj2 = new ShareCheck2();
 	      obj2.loadingServer(driver);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
