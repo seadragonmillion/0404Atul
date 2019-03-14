@@ -1,6 +1,9 @@
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
+import kaleTestSoftware.Login;
+import kaleTestSoftware.PassReview;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
