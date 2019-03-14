@@ -1,3 +1,4 @@
+import kaleTestSoftware.*;
 import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
