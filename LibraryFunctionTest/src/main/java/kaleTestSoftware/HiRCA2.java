@@ -14,14 +14,14 @@ public class HiRCA2 {
 	ShareCheck2 share2 = new ShareCheck2();
 	
 	//Info Page
-	By HiRCANewReportButton = By.id("efi-irca-button-new");
+	public By HiRCANewReportButton = By.id("efi-irca-button-new");
 	//Popup inside report
-	By HiRCAPopupHeader = By.id("pii-irca-dialog-header");
-	By HiRCAPopupMessage = By.id("pii-irca-dialog-title");
-	By HiRCAPopupNote = By.id("pii-irca-dialog-note");
-	By HiRCAPopupConfirmButton = By.id("pii-irca-dialog-confirmed");
-	By HiRCAPopupConfirmButton2 = By.id("pii-irca-dialog-confirmed2");
-	By HiRCAPopupCancelButton = By.id("pii-irca-dialog-cancel");
+	public By HiRCAPopupHeader = By.id("pii-irca-dialog-header");
+	public By HiRCAPopupMessage = By.id("pii-irca-dialog-title");
+	public By HiRCAPopupNote = By.id("pii-irca-dialog-note");
+	public By HiRCAPopupConfirmButton = By.id("pii-irca-dialog-confirmed");
+	public By HiRCAPopupConfirmButton2 = By.id("pii-irca-dialog-confirmed2");
+	public By HiRCAPopupCancelButton = By.id("pii-irca-dialog-cancel");
 	
 	public void verifyStickyUserAccount(WebDriver driver, SoftAssertions softly, String username) throws Exception {
 
@@ -61,7 +61,7 @@ public class HiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
-			System.out.println("Couldn't find share save pop up");
+			System.out.println("Couldn't find supporting files saved pop up");
 		}
 	}
 

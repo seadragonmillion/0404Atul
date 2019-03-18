@@ -25,9 +25,9 @@ public class RemoteVerification2 {
 	
 	SoftAssertions softly = new SoftAssertions();
 	
-	String password = "S2FsZWplbmtpbnNAMTIz";
-	String rejectComment = "Rejected for test";
-	String passComment = "Passed for test";
+	public String password = "S2FsZWplbmtpbnNAMTIz";
+	public String rejectComment = "Rejected for test";
+	public String passComment = "Passed for test";
 	
 
 	

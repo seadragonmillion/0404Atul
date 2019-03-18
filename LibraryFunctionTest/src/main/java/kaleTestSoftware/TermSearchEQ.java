@@ -22,7 +22,7 @@ public class TermSearchEQ {
 
 	SoftAssertions softly = new SoftAssertions();
 	List<String> keywordFound = new ArrayList<String>();
-	String term_eq = "Gear Misalignment";
+	public String term_eq = "Gear Misalignment";
 
 	CaseBrowse cb1  = new CaseBrowse();
 	CaseBrowseObj cb = new CaseBrowseObj();

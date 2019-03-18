@@ -31,7 +31,7 @@ import org.sikuli.script.Screen;
 
 public class ShareCheck {
 
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+	public String password = "S2FsZWplbmtpbnNAMTIz";
 	SoftAssertions softly = new SoftAssertions();
 
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();

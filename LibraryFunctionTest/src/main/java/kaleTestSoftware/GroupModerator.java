@@ -32,26 +32,26 @@ public class GroupModerator {
 
 	SoftAssertions softly = new SoftAssertions();
 
-	String text = "Group moderator test";
+	public String text = "Group moderator test";
 
 	//Dev/asia/us
-	String username1 ="qaapaagroupauser1";
-	String username2 ="qaapaagroupauser2";
-	String username3 ="qaapaagroupauser3";
-	String username4 ="qaapaagroupbuser4";
-	String username5 ="qaapaagroupbuser5";
-	String username6 ="qaapaagroupcuser6";
+	public String username1 ="qaapaagroupauser1";
+	public String username2 ="qaapaagroupauser2";
+	public String username3 ="qaapaagroupauser3";
+	public String username4 ="qaapaagroupbuser4";
+	public String username5 ="qaapaagroupbuser5";
+	public String username6 ="qaapaagroupcuser6";
 
 	//Ie11
 	//Dev/asia/us
-	String username1_ie11 ="qaapaagroupauser1_ie11";
-	String username2_ie11 ="qaapaagroupauser2_ie11";
-	String username3_ie11 ="qaapaagroupauser3_ie11";
-	String username4_ie11 ="qaapaagroupbuser4_ie11";
-	String username5_ie11 ="qaapaagroupbuser5_ie11";
-	String username6_ie11 ="qaapaagroupcuser6_ie11";
+	public String username1_ie11 ="qaapaagroupauser1_ie11";
+	public String username2_ie11 ="qaapaagroupauser2_ie11";
+	public String username3_ie11 ="qaapaagroupauser3_ie11";
+	public String username4_ie11 ="qaapaagroupbuser4_ie11";
+	public String username5_ie11 ="qaapaagroupbuser5_ie11";
+	public String username6_ie11 ="qaapaagroupcuser6_ie11";
 
-	String password = "S2FsZWplbmtpbnNAMTIz";
+	public String password = "S2FsZWplbmtpbnNAMTIz";
 
 	public String createEMReport(WebDriver driver, String username) throws Exception {
 

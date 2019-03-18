@@ -21,7 +21,7 @@ public class HiRCABug2 {
 	ShareCheck share = new ShareCheck();
 	ShareCheck2 share2 = new ShareCheck2();
 
-	String text = "HiRCA bug";
+	public String text = "HiRCA bug";
 	SoftAssertions softly = new SoftAssertions();
 
 	public void uploadImageChrome(WebDriver driver) throws Exception {

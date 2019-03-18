@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAChinese21 {
 	
 	HiRCAChinese6 hc6 = new HiRCAChinese6();
+	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	ShareCheck share = new ShareCheck();
 
 	public void chineseStepOneL36 (WebDriver driver, SoftAssertions softly) throws Exception {
@@ -519,7 +520,7 @@ public class HiRCAChinese21 {
 
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		hc6.chineseAddContributingFactor(driver, softly);
+		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
 		share.scrollToTop(driver);

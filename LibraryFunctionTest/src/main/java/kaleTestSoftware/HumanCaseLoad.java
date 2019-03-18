@@ -29,30 +29,30 @@ public class HumanCaseLoad {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 
-	String keyword1 = "Slide100images";
-	String keyword2 = "Slide100NoImages";
-	String keyword3 = "Slide100Images50";
-	String keyword1ie = "Slide100imagesie";
-	String keyword2ie = "Slide100NoImagesie";
-	String keyword3ie = "Slide100Images50ie";
-	String title1 = "QAA 100 Slides only images";
-	String title2 = "QAA 100 Slides no images";
-	String title3 = "QAA 100 Slides 50 images";
-	String title1ie = "QAA IE11 100 Slides only images";
-	String title2ie = "QAA IE11 100 Slides no images";
-	String title3ie = "QAA IE11 100 Slides 50 images";
-	String sheetHumanDev = "HumanPerformanceDev";
-	String sheetHumanAsia = "HumanPerformanceAsia";
-	String sheetHumanUSA = "HumanPerformanceUSA";
-	String sheetEquipDev = "EquipmentPerformanceDev";
-	String sheetEquipAsia = "EquipmentPerformanceAsia";
-	String sheetEquipUSA = "EquipmentPerformanceUSA";
-	String sheetElecDev = "ElectricalFailureDev";
-	String sheetElecAsia = "ElectricalFailureAsia";
-	String sheetElecUSA = "ElectricalFailureUSA";
-	String sheetMechDev = "MechanicalFailureDev";
-	String sheetMechAsia = "MechanicalFailureAsia";
-	String sheetMechUSA = "MechanicalFailureUSA";
+	public String keyword1 = "Slide100images";
+	public String keyword2 = "Slide100NoImages";
+	public String keyword3 = "Slide100Images50";
+	public String keyword1ie = "Slide100imagesie";
+	public String keyword2ie = "Slide100NoImagesie";
+	public String keyword3ie = "Slide100Images50ie";
+	public String title1 = "QAA 100 Slides only images";
+	public String title2 = "QAA 100 Slides no images";
+	public String title3 = "QAA 100 Slides 50 images";
+	public String title1ie = "QAA IE11 100 Slides only images";
+	public String title2ie = "QAA IE11 100 Slides no images";
+	public String title3ie = "QAA IE11 100 Slides 50 images";
+	public String sheetHumanDev = "HumanPerformanceDev";
+	public String sheetHumanAsia = "HumanPerformanceAsia";
+	public String sheetHumanUSA = "HumanPerformanceUSA";
+	public String sheetEquipDev = "EquipmentPerformanceDev";
+	public String sheetEquipAsia = "EquipmentPerformanceAsia";
+	public String sheetEquipUSA = "EquipmentPerformanceUSA";
+	public String sheetElecDev = "ElectricalFailureDev";
+	public String sheetElecAsia = "ElectricalFailureAsia";
+	public String sheetElecUSA = "ElectricalFailureUSA";
+	public String sheetMechDev = "MechanicalFailureDev";
+	public String sheetMechAsia = "MechanicalFailureAsia";
+	public String sheetMechUSA = "MechanicalFailureUSA";
 
 	public void getHumanPerformanceLink(WebDriver driver) throws Exception {
 

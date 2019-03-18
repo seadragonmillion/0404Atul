@@ -26,12 +26,12 @@ public class HiRCAStress {
 
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
-	
-	 String text = "HiRCA Stress test";
-	 SoftAssertions softly = new SoftAssertions();
+
+	public String text = "HiRCA Stress test";
+	SoftAssertions softly = new SoftAssertions();
 
 	public void HiRCAUpload10Images(WebDriver driver) throws Exception {
-		
+
 		HiRCALOPBug obj = new HiRCALOPBug();
 		HiRCALevel1 obj2 = new HiRCALevel1();
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -65,7 +65,7 @@ public class HiRCAStress {
 			{
 				softly.fail("Image not visible");
 			}
-			
+
 		}
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
@@ -75,7 +75,7 @@ public class HiRCAStress {
 		//Delete report
 		obj2.deleteReport(driver);
 	}
-	
+
 	public  void downloadSelectFunction (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
@@ -104,7 +104,7 @@ public class HiRCAStress {
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		Thread.sleep(2000);
 	}
-	
+
 	public  void pdfCheck() throws Exception{
 
 		HiRCAEvent obj = new HiRCAEvent();
@@ -129,7 +129,7 @@ public class HiRCAStress {
 		softly.assertThat(images.size()).as("test data").isEqualTo(20);
 		pddoc.close();	      
 	}
-	
+
 	public void downloadRecordChrome (WebDriver driver) throws Exception {
 
 		HiRCAEvent obj2 = new HiRCAEvent();
@@ -313,7 +313,7 @@ public class HiRCAStress {
 		//Switch to window    	
 		driver.switchTo().window(window);			    		    	
 	}
-	
+
 	public  void uploadTenImagesChrome(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -370,7 +370,7 @@ public class HiRCAStress {
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
-	
+
 	public  void uploadTenImagesFirefox(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -428,7 +428,7 @@ public class HiRCAStress {
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
-	
+
 	public  void uploadTenImagesIE10(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -495,7 +495,7 @@ public class HiRCAStress {
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
-	
+
 	public  void uploadTenImagesIE11(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -562,9 +562,9 @@ public class HiRCAStress {
 		//Verify if all 10 images are present
 		verifyImagesUploaded(driver);
 	}
-	
+
 	public  void verifyImagesUploaded(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		for (int i=0;i<=9;i++)
 		{
@@ -581,7 +581,7 @@ public class HiRCAStress {
 		share.scrollToTop(driver);
 		share.scrollToTop(driver);
 	}
-	
+
 	public  void uploadFiveImages(WebDriver driver) throws Exception {
 
 		//Get browser name
@@ -603,10 +603,10 @@ public class HiRCAStress {
 				uploadTenImagesIE11(driver);
 		}
 	}
-	
+
 	public  void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
 	}
-	
+
 }

@@ -30,7 +30,7 @@ public class OPiRCABug {
 	
 	SoftAssertions softly = new SoftAssertions();
 
-	String text = "QAA Bug Test";
+	public String text = "QAA Bug Test";
 	
 	public List<String> selectOneHiRCALevel3 (WebDriver driver) throws Exception {
 

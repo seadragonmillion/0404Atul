@@ -16,7 +16,7 @@ public class EiRCABug {
 	ShareCheck share = new ShareCheck();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	
-	String textFillBug = "EiRCA bug";
+	public String textFillBug = "EiRCA bug";
 	
 	public void EiRCAInfoPageFill(WebDriver driver, String text) throws Exception {
 		

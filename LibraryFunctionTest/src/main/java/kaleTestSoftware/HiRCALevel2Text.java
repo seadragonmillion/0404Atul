@@ -12,28 +12,28 @@ public class HiRCALevel2Text {
 	ShareCheck share = new ShareCheck();
 	
 	//Question before 2.0
-	By PageQuestionBefore20 = By.xpath(".//*[@class='efi-irca-question']");
-	By DescriptionPlusSignBefore20 = By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[2]/h4/a");
-	By DescriptionTextBefore20 = By.xpath(".//*[@class='pii-description-text']");
-	By AnswerYes = By.xpath(".//*[@for='efi-irca-lopinplace-yes']");
-	By AnswerNo = By.xpath(".//*[@for='efi-irca-lopinplace-no']");
+	public By PageQuestionBefore20 = By.xpath(".//*[@class='efi-irca-question']");
+	public By DescriptionPlusSignBefore20 = By.xpath(".//*[@id='efi-irca-initialquestions']/div/div[2]/h4/a");
+	public By DescriptionTextBefore20 = By.xpath(".//*[@class='pii-description-text']");
+	public By AnswerYes = By.xpath(".//*[@for='efi-irca-lopinplace-yes']");
+	public By AnswerNo = By.xpath(".//*[@for='efi-irca-lopinplace-no']");
 	
 	//Level 3
-	By UnderDescriptionText = By.xpath(".//*[@id='efi-irca-answers']/div[1]");
-	By FurtherInvestigationCollapsibleAnswer1 = By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a");
-	By FurtherInvestigationCollapsibleAnswer2 = By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a");
-	By FurtherInvestigationCollapsibleAnswer3 = By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a");
-	By FurtherInvestigationCollapsibleAnswer4 = By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a");
-	By FurtherInvestigationCollapsibleAnswer5 = By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a");
-	By FurtherInvestigationCollapsibleAnswer6 = By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a");
-	By FurtherInvestigationCollapsibleAnswer7 = By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a");
-	By PossibleCorrectiveActionAnswer1 = By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a");
-	By PossibleCorrectiveActionAnswer2 = By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a");
-	By PossibleCorrectiveActionAnswer3 = By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a");
-	By PossibleCorrectiveActionAnswer4 = By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a");
-	By PossibleCorrectiveActionAnswer5 = By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a");
-	By PossibleCorrectiveActionAnswer6 = By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a");
-	By PossibleCorrectiveActionAnswer7 = By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a");
+	public By UnderDescriptionText = By.xpath(".//*[@id='efi-irca-answers']/div[1]");
+	public By FurtherInvestigationCollapsibleAnswer1 = By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a");
+	public By FurtherInvestigationCollapsibleAnswer2 = By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a");
+	public By FurtherInvestigationCollapsibleAnswer3 = By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a");
+	public By FurtherInvestigationCollapsibleAnswer4 = By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a");
+	public By FurtherInvestigationCollapsibleAnswer5 = By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a");
+	public By FurtherInvestigationCollapsibleAnswer6 = By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a");
+	public By FurtherInvestigationCollapsibleAnswer7 = By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a");
+	public By PossibleCorrectiveActionAnswer1 = By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a");
+	public By PossibleCorrectiveActionAnswer2 = By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a");
+	public By PossibleCorrectiveActionAnswer3 = By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a");
+	public By PossibleCorrectiveActionAnswer4 = By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a");
+	public By PossibleCorrectiveActionAnswer5 = By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a");
+	public By PossibleCorrectiveActionAnswer6 = By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a");
+	public By PossibleCorrectiveActionAnswer7 = By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a");
 	
 	public void step2verify317 (WebDriver driver, SoftAssertions softly) throws Exception {
 

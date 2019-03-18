@@ -25,10 +25,10 @@ public class CreateEquipmentCase2 {
 	ShareCheck share = new ShareCheck();
 	CaseBrowseObj cb = new CaseBrowseObj();
 
-	String keyword = "KeywordQAAadded";
-	String keywordUS = "KeywordUSQAAadded";
-	String keywordie11 = "Keywordie11QAAadded";
-	String keywordUSie11 = "KeywordUSie11QAAadded";
+	public String keyword = "KeywordQAAadded";
+	public String keywordUS = "KeywordUSQAAadded";
+	public String keywordie11 = "Keywordie11QAAadded";
+	public String keywordUSie11 = "KeywordUSie11QAAadded";
 
 	public String keywordDecide(WebDriver driver) throws Exception {
 

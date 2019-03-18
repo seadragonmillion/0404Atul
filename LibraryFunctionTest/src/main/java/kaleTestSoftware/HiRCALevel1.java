@@ -255,6 +255,7 @@ public class HiRCALevel1 {
 		{
 			//Get name of level 3 answer
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div["+i+"]/table/tbody/tr/td[1]"))).getText().trim();
+			System.out.println(s);
 			//Verify if this level 3 answer was selected
 			if(lopOptions1.contains(s)==false)
 			{
@@ -711,7 +712,7 @@ public class HiRCALevel1 {
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
 		{
-			
+
 		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
@@ -1324,6 +1325,7 @@ public class HiRCALevel1 {
 		//Gets number of contributing factors
 		int count1 = lopOptions1.size()-count;
 		System.out.println("No of contributing factors:"+count1);		
+		System.out.println("hml \n"+hml);
 		//tr starts at 2 and each root cause has 4 four rows
 		int i=2;
 		//int scroll=42;
@@ -1435,6 +1437,11 @@ public class HiRCALevel1 {
 				softly.assertThat(lop2).as("test data").isEqualTo("L");
 				//Insert level 3 answer without [, ] , : after the serial no (for eg, 3.17.1)
 				hml.put(l, "Low");
+			}
+			if(y==0)
+			{
+				//Insert level 3 answer without [, ] , : after the serial no (for eg, 3.17.1)
+				hml.put(l, "");
 			}
 			//Increase i for evidence entry
 			i=i+1;
@@ -2067,7 +2074,7 @@ public class HiRCALevel1 {
 				softly.assertThat(s1).as("test data").contains(s2);
 			else */
 			if(browserName.toLowerCase().contains("safari")==false)				
-				softly.assertThat(s1).as("test data").isEqualTo(s2);
+				softly.assertThat(s1).as("test data").contains(s2);
 			//Get corrective actions
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div["+i+"]/table/tbody/tr/td[3]"))).getText().trim();
 			String re4 = s3.replaceAll("\u00AD", "");

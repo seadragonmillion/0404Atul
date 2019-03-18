@@ -17,22 +17,22 @@ public class HiRCALOPBug {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 
-	String text = "HiRCA bug LOP";
-	String reason = "reason entry";
-	String reason1 = "reason entry 1";
-	String reason2 = "reason entry 2";
-	String reason3 = "reason entry 3";
+	public String text = "HiRCA bug LOP";
+	public String reason = "reason entry";
+	public String reason1 = "reason entry 1";
+	public String reason2 = "reason entry 2";
+	public String reason3 = "reason entry 3";
 	SoftAssertions softly = new SoftAssertions();
 
-	By AnalysisLink = By.id("pii-main-menu-button-a");
-	By HiRCALink = By.id("pii-a-menu-hirca");
+	public By AnalysisLink = By.id("pii-main-menu-button-a");
+	public By HiRCALink = By.id("pii-a-menu-hirca");
 
 	//Info Page
-	By HiRCAEventTitleField = By.id("pii-irca-event-title");
-	By HiRCAEventLocationField = By.id("pii-irca-event-location");
+	public By HiRCAEventTitleField = By.id("pii-irca-event-title");
+	public By HiRCAEventLocationField = By.id("pii-irca-event-location");
 
-	By DescriptionPlusSign = By.xpath(".//*[@id='efi-irca-description']/h4/a");
-	By DescriptionText = By.id("efi-irca-description-text");
+	public By DescriptionPlusSign = By.xpath(".//*[@id='efi-irca-description']/h4/a");
+	public By DescriptionText = By.id("efi-irca-description-text");
 
 	public void fillUpHiRCAEventInfo(WebDriver driver,String text) throws Exception {
 

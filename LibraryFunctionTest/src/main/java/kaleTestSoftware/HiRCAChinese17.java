@@ -12,6 +12,7 @@ public class HiRCAChinese17 {
 	
 	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAChinese6 hc6 = new HiRCAChinese6();
+	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	ShareCheck share = new ShareCheck();
 	
 	public void chineseStepOneL313 (WebDriver driver, SoftAssertions softly) throws Exception {
@@ -194,7 +195,7 @@ public class HiRCAChinese17 {
 		//Scroll to the end
 		share.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
-		hc6.chineseAddContributingFactor(driver, softly);
+		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
@@ -424,7 +425,7 @@ public class HiRCAChinese17 {
 		//Scroll to the end
 		share.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
-		hc6.chineseAddContributingFactor(driver, softly);
+		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
 		share.scrollToTop(driver);

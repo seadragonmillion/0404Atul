@@ -15,17 +15,17 @@ public class deleteNotifications {
 	String urlDev= "https://kaleqa.error-free.com/";
 	String urlUS= "https://kale.error-free.com/";
 
-	private By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
-	private By StickyPopUp = By.cssSelector(".sticky.border-top-right.sticky-error");
-	private By StickyClose = By.className("sticky-close");
-	private By NotificationBell = By.id("pii-notification-button");
-	private By NotificationAllCheckBox = By.id("pii-notif-jqgrid_cb");
-	private By NotificationDeleteButton = By.id("pii-notif-del-btn");
-	private By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
-	private By NotificationReadConfirmButton2 = By.id("pii-notif-dialog-confirmed");
+	public By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
+	public By StickyPopUp = By.cssSelector(".sticky.border-top-right.sticky-error");
+	public By StickyClose = By.className("sticky-close");
+	public By NotificationBell = By.id("pii-notification-button");
+	public By NotificationAllCheckBox = By.id("pii-notif-jqgrid_cb");
+	public By NotificationDeleteButton = By.id("pii-notif-del-btn");
+	public By NotificationReadConfirmButton = By.id("pii-notifcenter-dialog-confirmed");
+	public By NotificationReadConfirmButton2 = By.id("pii-notif-dialog-confirmed");
 
 	public String decideSharerRVVerifier(int y) throws Exception {
-		
+
 		/* Dev/Asia
 		 * 0=admin
 		 * 1=non admin
@@ -83,7 +83,7 @@ public class deleteNotifications {
 			return sharer;
 		}
 	}
-	
+
 	public String decideSharerAndroid (int y) throws Exception{
 
 		/* Dev/Asia

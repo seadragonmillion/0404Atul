@@ -600,9 +600,7 @@ public class HiRCAChinese9 {
 		softly.assertThat(r55).as("test data").contains("建议的纠正行动是否具有成本效益？");
 		String r56 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[10]/table/tbody/tr[11]/td[3]"))).getText();
 		softly.assertThat(r56).as("test data").contains("是");
-
 		//Last Table
 		hc8.chineseLastTableReportTab(driver,softly);
 	}
-
 }

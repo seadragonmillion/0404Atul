@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAChinese18 {
 
 	HiRCAChinese6 hc6 = new HiRCAChinese6();
+	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	ShareCheck share = new ShareCheck();
 	
 	public void chineseStepOneL32 (WebDriver driver, SoftAssertions softly) throws Exception {
@@ -342,7 +343,7 @@ public class HiRCAChinese18 {
 
 		softly.assertThat(c33).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		hc6.chineseAddContributingFactor(driver, softly);
+		hc34.chineseAddContributingFactor(driver, softly);
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(2000);
@@ -575,7 +576,7 @@ public class HiRCAChinese18 {
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 		softly.assertThat(c15).as("test data").contains("新增促成因素");
 		//Verify Add Contributing factor
-		hc6.chineseAddContributingFactor(driver, softly);
+		hc34.chineseAddContributingFactor(driver, softly);
 	}
 
 }

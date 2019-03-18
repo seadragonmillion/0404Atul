@@ -47,7 +47,7 @@ public class EiRCA {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 
-	String textToVerifyClearTextBox = "to verify clearing of text";
+	public String textToVerifyClearTextBox = "to verify clearing of text";
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 

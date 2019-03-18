@@ -49,27 +49,27 @@ public class UserManagement {
 	ShareCheck share = new ShareCheck();
 
 	SoftAssertions softly = new SoftAssertions();
-	String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
-	String emailDev = "fakeemailtestqaa@gmail.com";
-	String emailUSie11 = "fakeemailtestqaaie11usa@gmail.com";
-	String emailUS = "fakeemailtestqaausa@gmail.com";
-	String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
-	String emailAsia = "fakeemailtestqaaasia@gmail.com";
-	String companyPII="pii";
-	String groupPII="pii";
-	String groupAdmin="admin";
-	String company_id1DevAsia="2017qaagroupedit1";
-	String company_id2DevAsia="2017qaagroupedit2";
-	String company_id1DevAsiaIE11="2017ie11qaagroupedit1";
-	String company_id2DevAsiaIE11="2017ie11qaagroupedit2";
-	String company_id1US="2017usqaagroupedit1";
-	String company_id2US="2017usqaagroupedit2";
-	String company_id1USIE11="2017usie11qaagroupedit1";
-	String company_id2USIE11="2017usie11sqaagroupedit2";
-	String group2DevAsia = "2017qaac1g2";
-	String group2DevAsiaIE11 = "2017ie11qaac1g2";
-	String group2US = "2017usqaac1g2";
-	String group2USIE11 = "2017usie11qaac1g2";
+	public String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
+	public String emailDev = "fakeemailtestqaa@gmail.com";
+	public String emailUSie11 = "fakeemailtestqaaie11usa@gmail.com";
+	public String emailUS = "fakeemailtestqaausa@gmail.com";
+	public String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
+	public String emailAsia = "fakeemailtestqaaasia@gmail.com";
+	public String companyPII="pii";
+	public String groupPII="pii";
+	public String groupAdmin="admin";
+	public String company_id1DevAsia="2017qaagroupedit1";
+	public String company_id2DevAsia="2017qaagroupedit2";
+	public String company_id1DevAsiaIE11="2017ie11qaagroupedit1";
+	public String company_id2DevAsiaIE11="2017ie11qaagroupedit2";
+	public String company_id1US="2017usqaagroupedit1";
+	public String company_id2US="2017usqaagroupedit2";
+	public String company_id1USIE11="2017usie11qaagroupedit1";
+	public String company_id2USIE11="2017usie11sqaagroupedit2";
+	public String group2DevAsia = "2017qaac1g2";
+	public String group2DevAsiaIE11 = "2017ie11qaac1g2";
+	public String group2US = "2017usqaac1g2";
+	public String group2USIE11 = "2017usie11qaac1g2";
 
 	public void bugKALE1842 (WebDriver driver) throws Exception {
 

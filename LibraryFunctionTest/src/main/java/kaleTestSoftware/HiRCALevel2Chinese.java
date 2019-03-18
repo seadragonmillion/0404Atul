@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HiRCALevel2Chinese {
 
-	String text = "HiRCA Level 2 Chinese";
+	public String text = "HiRCA Level 2 Chinese";
 	SoftAssertions softly = new SoftAssertions();
 	
 	HiRCAFunctionsForLevel1_2_3 hfl123 = new HiRCAFunctionsForLevel1_2_3();
@@ -31,6 +31,10 @@ public class HiRCALevel2Chinese {
 	HiRCAChinese19 hc19 = new HiRCAChinese19();
 	HiRCAChinese20 hc20 = new HiRCAChinese20();
 	HiRCAChinese21 hc21 = new HiRCAChinese21();
+	HiRCAChinese31 hc31 = new HiRCAChinese31();
+	HiRCAChinese34 hc34 = new HiRCAChinese34();
+	HiRCAChinese35 hc35 = new HiRCAChinese35();
+	HiRCAChinese39 hc39 = new HiRCAChinese39();
 	ShareCheck share = new ShareCheck();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
@@ -87,7 +91,6 @@ public class HiRCALevel2Chinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
-		HiRCAChinese obj2 = new HiRCAChinese();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
 		List<String> level3 = new ArrayList<String>();
@@ -130,7 +133,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.16
-			obj2.chineseStepOneL316(driver, softly);
+			hc31.chineseStepOneL316(driver, softly);
 			level3.addAll(selectAllLevel3(driver,7));
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note1, level3));
 			/*if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
@@ -181,8 +184,6 @@ public class HiRCALevel2Chinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
-		HiRCAChinese obj2 = new HiRCAChinese();
-		HiRCAChinese4 obj3 = new HiRCAChinese4();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
 		List<String> level3 = new ArrayList<String>();
@@ -201,7 +202,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.12
-			obj2.chineseStepOneL312(driver, softly);
+			hc35.chineseStepOneL312(driver, softly);
 			level3.addAll(selectAllLevel3(driver,5));			
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
@@ -263,7 +264,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.15
-			obj3.chineseStepOneL315(driver, softly);
+			hc39.chineseStepOneL315(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,4);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -280,7 +281,6 @@ public class HiRCALevel2Chinese {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
-		HiRCAChinese4 obj3 = new HiRCAChinese4();
 		List<String> combined = new ArrayList<String>();
 		List<String> level2 = new ArrayList<String>();
 		List<String> level3 = new ArrayList<String>();
@@ -380,7 +380,7 @@ public class HiRCALevel2Chinese {
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.9
-			obj3.chineseStepOneL39(driver, softly);
+			hc39.chineseStepOneL39(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,6);			
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
@@ -1128,7 +1128,7 @@ public class HiRCALevel2Chinese {
 		//Click on 3rd collapsible for 3.17.7
 		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.PossibleCorrectiveActionAnswer7)).click();
 		//Verify Add Contributing factor
-		hc6.chineseAddContributingFactor(driver, softly);
+		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
 		share.scrollToTop(driver);

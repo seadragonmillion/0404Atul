@@ -41,8 +41,8 @@ import com.google.common.collect.Iterables;
 
 public class HiRCALevel2 {
 
-	String text = "HiRCA Level 2";
-	String reason = "Level 2 reason entry";
+	public String text = "HiRCA Level 2";
+	public String reason = "Level 2 reason entry";
 	SoftAssertions softly = new SoftAssertions();
 	HiRCAFunctionsForLevel1_2_3 hfl123 = new HiRCAFunctionsForLevel1_2_3();
 	ErrorMeter2 em2 = new ErrorMeter2 ();

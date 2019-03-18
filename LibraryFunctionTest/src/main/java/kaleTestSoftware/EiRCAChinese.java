@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EiRCAChinese {
 
-	String text = "Chinese check";
+	public String text = "Chinese check";
 
 	SoftAssertions softly = new SoftAssertions();
 
@@ -40,6 +40,7 @@ public class EiRCAChinese {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	HiRCAChinese17 hc17 = new HiRCAChinese17();
+	HiRCAChinese hc = new HiRCAChinese();
 
 	public void EiRCApath (WebDriver driver) throws Exception {
 
@@ -3146,8 +3147,7 @@ public class EiRCAChinese {
 		verifyEnglish(driver);
 		Thread.sleep(2000);
 		//Change language to Chinese
-		HiRCAChinese obj1 = new HiRCAChinese();
-		obj1.changeToChinese(driver);
+		hc.changeToChinese(driver);
 		//Clicks on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Clicks on EiRCA
@@ -3156,7 +3156,7 @@ public class EiRCAChinese {
 		verifyChinese(driver);
 		Thread.sleep(2000);
 		//Change language to English
-		obj1.changeToEnglish(driver);
+		hc.changeToEnglish(driver);
 		//Clicks on Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		//Clicks on EiRCA
@@ -3165,7 +3165,7 @@ public class EiRCAChinese {
 		verifyEnglish(driver);
 		Thread.sleep(2000);
 		//Change language to Chinese
-		obj1.changeToChinese(driver);
+		hc.changeToChinese(driver);
 	}
 
 	public void verifyChinese (WebDriver driver) throws Exception {

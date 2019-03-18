@@ -21,7 +21,7 @@ public class TermSearchHuman {
 	
 	SoftAssertions softly = new SoftAssertions();
 	List<String> keywordFound = new ArrayList<String>();
-	String term_human = "animal bite";
+	public String term_human = "animal bite";
 
 	CaseBrowse cb1  = new CaseBrowse();
 	CaseBrowseObj cb = new CaseBrowseObj();
