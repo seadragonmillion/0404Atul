@@ -39,7 +39,8 @@ public class SafariTest {
 	@Test
 	public void test() throws Exception {
 		Login obj = new Login ();
-		EquipmentPDDandEF obj1 = new EquipmentPDDandEF ();
+		EquipmentPDDandEF obj1 = new EquipmentPDDandEF ();		
+		  CreateEquipmentCase2 obj2 = new CreateEquipmentCase2();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		//Switches to the iframe

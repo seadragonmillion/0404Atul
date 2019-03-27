@@ -40,6 +40,7 @@ public class SafariTest {
 	public void SanityTest() throws Exception{
 		Login obj = new Login();
 		CaseBrowse obj1 = new CaseBrowse();
+		  CreateEquipmentCase2 obj2 = new CreateEquipmentCase2();
 		//Logs in
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
