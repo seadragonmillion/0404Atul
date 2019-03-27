@@ -24,10 +24,11 @@ public class SafariTest {
 	public void beforeTest() throws MalformedURLException{
 
 		System.out.println("Performing sanity test on Human Performance Search in Safari on MAC");
-		System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
+		/*System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
 		SafariOptions options = new SafariOptions();
 		options.setUseTechnologyPreview(true);
-		driver = new SafariDriver(options);
+		driver = new SafariDriver(options);*/
+		driver = new SafariDriver();
 		//Browser is maximized
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
