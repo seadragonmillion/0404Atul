@@ -69,6 +69,8 @@ public class SafariTest {
 		obj1.searchCaseInEquipSearchByKeyword(driver, obj1.keywordPDDDev, obj1.casePDDDev);
 		//Search for case in Equipment non pii by case id
 		obj1.searchCaseInEquipSearchByCaseID(driver, obj1.casePDDDev);
+		//Add new keyword to old case
+		obj2.addNewKeywordToOldCase(driver, obj1.casePDDDev);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);		

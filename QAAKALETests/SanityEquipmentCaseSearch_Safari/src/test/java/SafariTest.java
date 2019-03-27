@@ -74,6 +74,8 @@ public class SafariTest {
 		obj1.browseCaseIDEquip(driver, obj1.caseEquipDev, obj1.titleDev);
 		//Search with keyword color oil
 		obj1.searchColorCasesEquip(driver);
+		//Add new keyword to old case
+		obj2.addNewKeywordToOldCase(driver, obj1.caseEquipDev);
 		//Logs out
 		obj.logout(driver);
 		Thread.sleep(2000);
