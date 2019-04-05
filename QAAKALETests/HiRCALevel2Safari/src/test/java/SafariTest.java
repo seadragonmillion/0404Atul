@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SafariTest {
 
 	private WebDriver driver;
-	private String username = "ritica_only_nonadmin";
+	private String username = "qaasafari_nonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 
 	@Before
@@ -30,7 +30,7 @@ public class SafariTest {
 		//Browser is maximized
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
-		driver.navigate().to("https://kaleqa.error-free.com/");
+		driver.navigate().to(System.getProperty("qaurl"));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 

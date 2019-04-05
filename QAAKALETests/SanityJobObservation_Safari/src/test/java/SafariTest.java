@@ -15,9 +15,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SafariTest {
 
 	private WebDriver driver;
-	private String username ="ritica_only_nonadmin";
+	private String username ="qaasafari_nonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	private String url = "https://kaleqa.error-free.com/";
+	private String url = System.getProperty("qaurl");
 
 	@Before
 	public void beforeTest() throws MalformedURLException{
