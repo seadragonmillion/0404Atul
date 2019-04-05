@@ -30,7 +30,7 @@ public class ChromeTest {
 	@Test
 	public void test() throws Exception {
 		Login obj = new Login ();
-		ErrorMeter obj1 = new ErrorMeter();
+		ErrorMeter3 obj1 = new ErrorMeter3();
 		deleteNotifications obj2 = new deleteNotifications();
 		//qaasharer
 		int login = obj.LoginUser(driver, obj1.decideSharer(0), password);

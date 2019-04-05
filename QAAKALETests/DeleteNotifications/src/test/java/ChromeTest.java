@@ -15,7 +15,6 @@ public class ChromeTest {
 	@Before
 	  public void beforeTest() throws Exception{
 		
-		deleteNotifications obj = new deleteNotifications();
 		System.out.println("Delete notifications in Chrome");
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 		driver = new ChromeDriver();
@@ -30,7 +29,7 @@ public class ChromeTest {
 	@Test
 	public void test() throws Exception {
 		Login obj = new Login ();
-		ErrorMeter obj1 = new ErrorMeter();
+		ErrorMeter3 obj1 = new ErrorMeter3();
 		deleteNotifications obj2 = new deleteNotifications();
 		//qaasharer
 		int login = obj.LoginUser(driver, obj1.decideSharer(0), password);
