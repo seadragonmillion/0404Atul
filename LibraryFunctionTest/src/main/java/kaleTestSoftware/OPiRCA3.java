@@ -208,11 +208,9 @@ public class OPiRCA3 {
 		//Click on add new contributing factor
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", l);
-		//Get title of page
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText().trim();		
 		//Enter contributing factor
 		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField)));
-		String sendKeys1 = (s.trim()+" "+"contributing factor").replace("   ", " ");
+		String sendKeys1 = ("contributing factor");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField)).sendKeys(sendKeys1);
 		Thread.sleep(1000);
 		//Click on save

@@ -370,6 +370,5 @@ public class HiRCAChinese36 {
 		Thread.sleep(2000);
 		//Delete report
 		obj2.deleteReport(driver);
-	}	
-
+	}
 }

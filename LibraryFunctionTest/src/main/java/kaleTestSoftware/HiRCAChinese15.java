@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +18,8 @@ public class HiRCAChinese15 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		List <String> verifyChinese = new ArrayList<String>();
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Table3 row
 		String r1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r1a).as("test data").contains("不适用");
@@ -129,7 +133,18 @@ public class HiRCAChinese15 {
 		softly.assertThat(r40).as("test data").contains("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则审查人的培训、授权和问责");
 		verifyChinese.add(r40);
 		String r41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[5]/table/tbody/tr[37]/td[1]"))).getText();
-		softly.assertThat(r41).as("test data").contains("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
+		if(browserName.contains("safari"))
+		{
+			softly.assertThat(r41).as("test data").contains("3.7.10 维修不到位:");
+			softly.assertThat(r41).as("test data").contains("(1) 预见性维修不到位 ");
+			softly.assertThat(r41).as("test data").contains("(2) 预防性维修不到位 ");
+			softly.assertThat(r41).as("test data").contains("3) 纠正性维修不到位 ");
+			softly.assertThat(r41).as("test data").contains("(4) 修后试验不到位 ");
+			softly.assertThat(r41).as("test data").contains("(5) 故障查找和根本原因分析不到位 ");
+			softly.assertThat(r41).as("test data").contains("(6) 维修失误");
+		}
+		else
+			softly.assertThat(r41).as("test data").contains("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
 		verifyChinese.add(r41);
 		String r42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[5]/table/tbody/tr[37]/td[3]"))).getText();
 		softly.assertThat(r42).as("test data").contains("纠正维修大纲中的缺陷");
@@ -464,7 +479,18 @@ public class HiRCAChinese15 {
 		String r180 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[5]/td[1]/div/table/tbody/tr[18]/td[4]/ul/li[1]"))).getText();
 		softly.assertThat(r180).as("test data").contains("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则审查人的培训、授权和问责");
 		String r181 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[5]/td[1]/div/table/tbody/tr[19]/td[1]"))).getText();
-		softly.assertThat(r181).as("test data").contains("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
+		if(browserName.contains("safari"))
+		{
+			softly.assertThat(r181).as("test data").contains("3.7.10 维修不到位:");
+			softly.assertThat(r181).as("test data").contains("(1) 预见性维修不到位 ");
+			softly.assertThat(r181).as("test data").contains("(2) 预防性维修不到位 ");
+			softly.assertThat(r181).as("test data").contains("3) 纠正性维修不到位 ");
+			softly.assertThat(r181).as("test data").contains("(4) 修后试验不到位 ");
+			softly.assertThat(r181).as("test data").contains("(5) 故障查找和根本原因分析不到位 ");
+			softly.assertThat(r181).as("test data").contains("(6) 维修失误");
+		}
+		else
+			softly.assertThat(r181).as("test data").contains("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
 		String r182 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[5]/td[1]/div/table/tbody/tr[19]/td[2]"))).getText();
 		softly.assertThat(r182).as("test data").contains("不适用");
 		String r183 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[5]/td[1]/div/table/tbody/tr[19]/td[3]/ul/li[1]"))).getText();
@@ -756,7 +782,18 @@ public class HiRCAChinese15 {
 		String r653 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[8]/table/tbody/tr[35]/td[1]"))).getText();
 		softly.assertThat(r653).as("test data").contains("3.7.9 审查不到位");
 		String r654 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[8]/table/tbody/tr[37]/td[1]"))).getText();
-		softly.assertThat(r654).as("test data").contains("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
+		if(browserName.contains("safari"))
+		{
+			softly.assertThat(r654).as("test data").contains("3.7.10 维修不到位:");
+			softly.assertThat(r654).as("test data").contains("(1) 预见性维修不到位 ");
+			softly.assertThat(r654).as("test data").contains("(2) 预防性维修不到位 ");
+			softly.assertThat(r654).as("test data").contains("3) 纠正性维修不到位 ");
+			softly.assertThat(r654).as("test data").contains("(4) 修后试验不到位 ");
+			softly.assertThat(r654).as("test data").contains("(5) 故障查找和根本原因分析不到位 ");
+			softly.assertThat(r654).as("test data").contains("(6) 维修失误");
+		}
+		else
+			softly.assertThat(r654).as("test data").contains("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
 		String r655 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[8]/table/tbody/tr[39]/td[1]"))).getText();
 		softly.assertThat(r655).as("test data").contains("3.8.1 规则编写人经验不足，使用了模糊的或需自行判断的字词（例如，\"根据情况\"、\"根据需要\"、\"必要时\"等等）");
 		String r656 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[8]/table/tbody/tr[41]/td[1]"))).getText();

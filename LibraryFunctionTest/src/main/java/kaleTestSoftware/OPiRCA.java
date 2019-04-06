@@ -731,10 +731,10 @@ public class OPiRCA {
 		for(int i=1;i<apparentCausesAnswers.size();i++)
 		{
 			//Get text of answer in Step 3 under SURE
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+(i+1)+"]/td[1]"))).getText().trim();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+(i+1)+"]/td[1]"))).getText().replaceAll("^( )*|( )*$", "");
 			if(ac.contains(s)==false)
 			{
-				System.out.println("Step 3: not present: "+s+"\n"+ac.contains(s));
+				System.out.println("Step 3: not present: "+s+"\n"+ac.contains(s.replaceAll("^( )*|( )*$", "")));
 				softly.fail("Apparent cause selected not present: "+s);
 			}
 		}
@@ -1214,8 +1214,8 @@ public class OPiRCA {
 		while (true)
 		{
 			try{
-				String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[1]")).getText().trim();
-				list1.add(s);
+				String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+5)+"]/table/tbody/tr[2]/td/div/table/tbody/tr["+i+"]/td[1]")).getText().replaceAll("^( )*|( )*$", "");
+				list1.add(s.replaceAll("^( )*|( )*$", ""));
 				i=i+1;
 			}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
 			{
@@ -1229,8 +1229,8 @@ public class OPiRCA {
 			int m = apparentCausesSelected.get(j).indexOf(":");
 			if(m<apparentCausesSelected.get(j).length())
 			{
-				String s = apparentCausesSelected.get(j).substring(0,m)+apparentCausesSelected.get(j).substring(m+1,apparentCausesSelected.get(j).length());
-				removeColon.add(s);
+				String s = apparentCausesSelected.get(j).substring(0,m)+apparentCausesSelected.get(j).substring(m+1,apparentCausesSelected.get(j).length()).replaceAll("^( )*|( )*$", "");
+				removeColon.add(s.replaceAll("^( )*|( )*$", ""));
 			}
 			else
 				removeColon.add(apparentCausesSelected.get(j));
@@ -1456,7 +1456,7 @@ public class OPiRCA {
 			i=i+1;
 			//Increase i for changing corrective actions
 			i=i+1;
-			tbr.sizeCheck(driver, By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td/textarea"),softly);
+			//tbr.sizeCheck(driver, By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td/textarea"),softly);
 			//Increase i for next root cause
 			i=i+1;
 		}
@@ -1569,13 +1569,13 @@ public class OPiRCA {
 		for(int i=0;i<apparentCausesNew.size();i++)
 		{
 			//Get title of page
-			String title = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText().trim();
-			if(title.endsWith(" "))
+			String title = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText().replaceAll("^( )*|( )*$", "");
+			if(title.charAt(title.length()-1)==' ')
 			{ 
 				if(title.endsWith("  "))
-					softly.assertThat(ac).contains(title.substring(0, title.length()-2));
+					softly.assertThat(ac).contains(title.substring(0, title.length()-2).replaceAll("^( )*|( )*$", ""));
 				else
-					softly.assertThat(ac).contains(title.substring(0, title.length()-1));
+					softly.assertThat(ac).contains(title.substring(0, title.length()-1).replaceAll("^( )*|( )*$", ""));
 			}
 			else softly.assertThat(ac).contains(title.trim());
 			//Store selected apparent cause answers
@@ -1632,8 +1632,8 @@ public class OPiRCA {
 		for(int i=2; i<=(apparentCausesSelected.size()+1); i++)
 		{
 			System.out.println("i = "+i+", n = "+n);
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
-			softly.assertThat(s).as("test data").isEqualTo(apparentCausesSelected.get(n));
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().replaceAll("^( )*|( )*$", "");
+			softly.assertThat(s.replaceAll("^( )*|( )*$", "")).as("test data").isEqualTo(apparentCausesSelected.get(n).replaceAll("^( )*|( )*$", ""));
 			System.out.println(s+"\n"+apparentCausesSelected.get(n));
 			n = n+1;
 		}
@@ -1932,5 +1932,4 @@ public class OPiRCA {
 		softly.assertAll();
 		System.gc();
 	}
-
 }

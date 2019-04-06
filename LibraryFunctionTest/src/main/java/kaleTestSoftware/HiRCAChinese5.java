@@ -2,7 +2,9 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -243,6 +245,8 @@ public class HiRCAChinese5 {
 	public void chineseLevel3SelectionsStep4_6th(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Verify all selections here
 		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
 		softly.assertThat(tr).as("test data").isEqualTo("3.6.1: 要求有遗漏");
@@ -389,7 +393,18 @@ public class HiRCAChinese5 {
 		String tr71 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[55]/td[1]/textarea"))).getText();
 		softly.assertThat(tr71).as("test data").isEqualTo("建立关于\"偏差控制\"的规则编写标准或指导文件\", \"规则审查人的培训、授权和问责");
 		String tr72 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[56]/td[1]"))).getText();
-		softly.assertThat(tr72).as("test data").isEqualTo("3.7.10: 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
+		if(browserName.contains("safari"))
+		{
+			softly.assertThat(tr72).as("test data").contains("3.7.10: 维修不到位:");
+			softly.assertThat(tr72).as("test data").contains("(1) 预见性维修不到位 ");
+			softly.assertThat(tr72).as("test data").contains("(2) 预防性维修不到位 ");
+			softly.assertThat(tr72).as("test data").contains("3) 纠正性维修不到位 ");
+			softly.assertThat(tr72).as("test data").contains("(4) 修后试验不到位 ");
+			softly.assertThat(tr72).as("test data").contains("(5) 故障查找和根本原因分析不到位 ");
+			softly.assertThat(tr72).as("test data").contains("(6) 维修失误");
+		}
+		else
+			softly.assertThat(tr72).as("test data").isEqualTo("3.7.10: 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
 		String tr73 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/label"))).getText();
 		softly.assertThat(tr73).as("test data").contains("纠正行动:");
 		String tr74 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]/label/small"))).getText();

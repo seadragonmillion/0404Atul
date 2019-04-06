@@ -42,6 +42,7 @@ public class ErrorMeter {
 
 		List<String> text=em2.error100Data(driver);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		String browserName = getBrowser(driver);
 		int i;
 		int j=text.size()-1;
 		//Closes any warning from server
@@ -59,15 +60,27 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox1)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEEnvironmentCheckBox1);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEEnvironmentCheckBox1);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox2)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEEnvironmentCheckBox2);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEEnvironmentCheckBox2);
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox3)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEEnvironmentCheckBox3);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEEnvironmentCheckBox3);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox4)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEEnvironmentCheckBox4);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEEnvironmentCheckBox4);
 
 		//Fill in texts in Supporting reasons 
@@ -172,7 +185,10 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox1)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEPeopleCheckBox1);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEPeopleCheckBox1);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -182,7 +198,10 @@ public class ErrorMeter {
 			softly.assertThat("15%").as("test data").isEqualTo(meterText.trim());
 		else
 			softly.assertThat("31%").as("test data").isEqualTo(meterText.trim());
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox2)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEPeopleCheckBox2);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEPeopleCheckBox2);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -194,7 +213,10 @@ public class ErrorMeter {
 			softly.assertThat("38%").as("test data").isEqualTo(meterText.trim());
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox3)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEPeopleCheckBox3);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEPeopleCheckBox3);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -204,7 +226,10 @@ public class ErrorMeter {
 			softly.assertThat("45%").as("test data").isEqualTo(meterText.trim());
 		else
 			softly.assertThat("44%").as("test data").isEqualTo(meterText.trim());
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox4)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEPeopleCheckBox4);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEPeopleCheckBox4);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -306,7 +331,10 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityTab)).click();
 		//Clicks on checkboxes in Activity Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox1)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEActivityCheckBox1);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox1);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -316,8 +344,11 @@ public class ErrorMeter {
 			softly.assertThat("65%").as("test data").isEqualTo(meterText.trim());
 		else
 			softly.assertThat("56%").as("test data").isEqualTo(meterText.trim());
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox2)).click();
-		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox3);
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEActivityCheckBox2);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox2)).click();
+		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox2);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
@@ -328,7 +359,10 @@ public class ErrorMeter {
 			softly.assertThat("63%").as("test data").isEqualTo(meterText.trim());
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox3)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEActivityCheckBox3);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox3);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -338,7 +372,10 @@ public class ErrorMeter {
 			softly.assertThat("75%").as("test data").isEqualTo(meterText.trim());
 		else
 			softly.assertThat("69%").as("test data").isEqualTo(meterText.trim());
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox4)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEActivityCheckBox4);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox4);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -439,7 +476,10 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureTab)).click();
 		//Clicks on checkboxes in Procedure Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox1)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEProcedureCheckBox1);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEProcedureCheckBox1);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -449,7 +489,10 @@ public class ErrorMeter {
 			softly.assertThat("85%").as("test data").isEqualTo(meterText.trim());
 		else
 			softly.assertThat("81%").as("test data").isEqualTo(meterText.trim());
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox2)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEProcedureCheckBox2);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEProcedureCheckBox2);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -461,7 +504,10 @@ public class ErrorMeter {
 			softly.assertThat("88%").as("test data").isEqualTo(meterText.trim());
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox3)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEProcedureCheckBox3);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -471,7 +517,10 @@ public class ErrorMeter {
 			softly.assertThat("95%").as("test data").isEqualTo(meterText.trim());
 		else
 			softly.assertThat("94%").as("test data").isEqualTo(meterText.trim());
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox4)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEProcedureCheckBox4);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEProcedureCheckBox4);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -580,12 +629,12 @@ public class ErrorMeter {
 
 		List<String> text = em2.error50Data(driver);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		String browserName = getBrowser(driver);
 		int i;
 		int j=text.size()-1;
 		//Closes any warning from server
 		try{
-
-			//CLoses server warning
+			//Closes server warning
 			String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText().trim();
 			System.out.println(s);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
@@ -597,11 +646,17 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox1)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEEnvironmentCheckBox1);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEEnvironmentCheckBox1);
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox4)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEEnvironmentCheckBox4);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEEnvironmentCheckBox4);
 
 		//Fill in texts in Supporting reasons 
@@ -668,7 +723,10 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox2)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEPeopleCheckBox2);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEPeopleCheckBox2);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -680,7 +738,10 @@ public class ErrorMeter {
 			softly.assertThat("19%").as("test data").isEqualTo(meterText.trim());
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox3)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEPeopleCheckBox3);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEPeopleCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEPeopleCheckBox3);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -749,7 +810,10 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityTab)).click();
 		//Clicks on checkboxes in Activity Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox2)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEActivityCheckBox2);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox2);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -761,7 +825,10 @@ public class ErrorMeter {
 			softly.assertThat("31%").as("test data").isEqualTo(meterText.trim());
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox4)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEActivityCheckBox4);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEActivityCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEActivityCheckBox4);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -827,7 +894,10 @@ public class ErrorMeter {
 		share.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureTab)).click();
 		//Clicks on checkboxes in Procedure Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox1)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEProcedureCheckBox1);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEProcedureCheckBox1);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -839,7 +909,10 @@ public class ErrorMeter {
 			softly.assertThat("44%").as("test data").isEqualTo(meterText.trim());
 
 		share.scrollToAPoint(driver, 800);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox3)).click();
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, em2.ErrorMeterPAPEProcedureCheckBox3);
+		else 
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPAPEProcedureCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, em2.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(1000);
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(em2.ErrorMeterPercentageBar));
@@ -1627,12 +1700,7 @@ public class ErrorMeter {
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
-		try{
-			System.out.println(lastFilePath.get());
-		}catch(java.util.NoSuchElementException t)
-		{
-			
-		}
+		System.out.println(lastFilePath.get());
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
 		File oldfile = new File(fileName);

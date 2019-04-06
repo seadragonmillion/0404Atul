@@ -81,6 +81,8 @@ public class EiRCAPageObj {
 	public By WhatHappenedField = By.id("pii-ircam-newevent-descr");
 	public By WhatIsSupposedToHappenField = By.id("pii-ircam-newevent-trigevt");
 	public By EventAddSign = By.id("pii-ircam-newevent-add");
+	public By DateField = By.id("pii-ircam-tab-1-newevent-date");
+	public By TimeField = By.id("pii-ircam-tab-1-newevent-time");
 	public By Date1stEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[2]/div/div/input");
 	public By Time1stEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[3]/div/div/input");
 	public By WhatHappened1stEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[4]/textarea");
@@ -107,6 +109,10 @@ public class EiRCAPageObj {
 	public By TableTimeHeader = By.xpath(".//*[@id='pii-ircam-events-table']/thead/tr[1]/th[3]");
 	public By TableWhatHappenedHeader = By.xpath(".//*[@id='pii-ircam-events-table']/thead/tr[1]/th[4]");
 	public By TableWhatIsSupposedToHappenHeader = By.xpath(".//*[@id='pii-ircam-events-table']/thead/tr[1]/th[5]");
+	//First Sequence of event
+	public By ClockSignTime1stEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[3]/div/div/a");
+	public By CalenderSignTime1stEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[1]/td[2]/div/div/a");
+	public By CalendarPlusSign = By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/a");
 
 	//Step 1
 	public By EiRCAStep1Q11AnswerSelected = By.xpath(".//*[@id='pii-ircam-tab-2']/div[4]/div/span");
@@ -124,6 +130,7 @@ public class EiRCAPageObj {
 
 	//Step 3
 	public By Step3FailureCollapsibleFailureMode2 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[4]");
+	public By Step3TableOption31CheckBoxFM2 = By.xpath(".//*[@id='pii-ircam-tab-4']/div[4]/div/table/tbody/tr[1]/td[2]/div/input");
 	public By Step3TableOption31Textbox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[1]/td[4]/textarea");
 	public By Step3TableOption32Textbox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[2]/td[4]/textarea");
 	public By Step3TableOption33Textbox = By.xpath(".//*[@id='pii-ircam-tab-4']/div[3]/div/table/tbody/tr[3]/td[4]/textarea");
@@ -169,6 +176,17 @@ public class EiRCAPageObj {
 	public By Step7SUEPTableRow4CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[6]/textarea");
 	public By Step7SUEPTableRow5CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[6]/textarea");
 
+	//Report Tab
+	//Table 1
+	public By ReportTabTable1EventTitle = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[1]/td[2]");
+	public By ReportTabTable1LocationOfEvent = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[3]/td[2]");
+	public By ReportTabTable1WhoDiscovered = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[5]/td[2]");
+	public By ReportTabTable1Investigators = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[8]/td[2]");
+	public By ReportTabTable1Reviewers = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[9]/td[2]");
+	public By ReportTabTable1ManagementSponsors = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[10]/td[2]");
+	public By ReportTabTable1ProblemStatement = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[11]/td[2]");
+	public By ReportTabTable1SuspectedFailedComponent = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[12]/td[2]");
+	
 	//HTML
 	//Table 1
 	public By HTMLTable1EventTitle = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[1]/td[2]");
@@ -230,7 +248,7 @@ public class EiRCAPageObj {
 	//Skipped steps 4,5,6,7
 	public By HTMLStep4SkippedRCA = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]");
 	public By HTMLStep4SkippedRCA2 = By.xpath(".//*[@id='mirca-rpt']/div[8]");
-	public By HTMLStep4SkippedTr = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[1]");
+	public By HTMLStep4SkippedTr = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]");
 	public By HTMLStep4SkippedTr1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[2]");
 	public By HTMLStep5Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]");
 	public By HTMLStep5Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[9]");
@@ -647,7 +665,7 @@ public class EiRCAPageObj {
 	public By Path2ReportTabTable6Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
 	public By Path2ReportTabTable6Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
 	public By Path2ReportTabTable6Row6Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[3]");
-	public By Path3ReportTabTable6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[1]");
+	public By Path3ReportTabTable6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]");/*
 	public By Path3ReportTabTable6SubTitle1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[1]/span[1]");
 	public By Path3ReportTabTable6SubTitle2Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[2]/span[1]");
 	public By Path3ReportTabTable6SubTitle2Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/div[2]/span[2]");
@@ -660,7 +678,7 @@ public class EiRCAPageObj {
 	public By Path3ReportTabTable6Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[1]");
 	public By Path3ReportTabTable6Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
 	public By Path3ReportTabTable6Row5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
-	public By Path3ReportTabTable6Row6 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	public By Path3ReportTabTable6Row6 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");*/
 
 	public By ReportTabTable7Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[1]");
 	public By ReportTabTable7SubTitle1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/div[1]/span[1]");
@@ -721,89 +739,91 @@ public class EiRCAPageObj {
 	public By ReportTabTable8Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
 	public By ReportTabTable8Row7Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
 	public By ReportTabTable8Row7Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
-	public By Path3ReportTabTable8Title1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[1]");
-	public By Path3ReportTabTable8Title2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[1]/span[1]");
-	public By Path3ReportTabTable8Title3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[2]/span[1]");
-	public By Path3ReportTabTable8Title3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[2]/span[2]");
-	public By Path3ReportTabTable8Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable8Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable8Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[3]/table/tbody[1]/tr/td");
+	public By Path3ReportTabTable8Title1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[1]");
+	public By Path3ReportTabTable8Title2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[1]/span[1]");
+	public By Path3ReportTabTable8Title3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[2]/span[1]");
+	public By Path3ReportTabTable8Title3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[2]/span[2]");
+	public By Path3ReportTabTable8Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[3]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable8Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[3]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable8Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[3]/table/tbody[1]/tr/td");
 
-	public By Path3ReportTabTable9Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable9Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable9Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[4]/table/tbody[1]/tr/td");
+	public By Path3ReportTabTable9Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[4]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable9Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[4]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable9Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[4]/table/tbody[1]/tr/td");
 
-	public By Path3ReportTabTable10Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable10Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable10Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[5]/table/tbody[1]/tr/td");
+	public By Path3ReportTabTable10Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[5]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable10Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[5]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable10Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[5]/table/tbody[1]/tr/td");
 
-	public By Path3ReportTabTable11Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable11Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable11Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[6]/table/tbody[1]/tr/td");
+	public By Path3ReportTabTable11Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[6]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable11Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[6]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable11Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[6]/table/tbody[1]/tr/td");
 
-	public By Path3ReportTabTable12Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable12Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable12Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[3]");
-	public By Path3ReportTabTable12Row1Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]");
-	public By Path3ReportTabTable12Row1Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]/div");
-	public By Path3ReportTabTable12Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[2]/strong");
+	public By Path3ReportTabTable12Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[7]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable12Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[7]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable12Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[7]/table/thead/tr/th[3]");
+	public By Path3ReportTabTable12Row1Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[7]/table/tbody/tr/td[1]");
+	public By Path3ReportTabTable12Row1Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[7]/table/tbody/tr/td[1]/div");
+	public By Path3ReportTabTable12Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[7]/table/tbody/tr/td[2]/strong");
 
-	public By Path3ReportTabTable13Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable13Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable13Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[3]");
-	public By Path3ReportTabTable13Row1Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]");
-	public By Path3ReportTabTable13Row1Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]/div");
-	public By Path3ReportTabTable13Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[2]/strong");
+	public By Path3ReportTabTable13Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[8]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable13Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[8]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable13Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[8]/table/thead/tr/th[3]");
+	public By Path3ReportTabTable13Row1Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[8]/table/tbody/tr/td[1]");
+	public By Path3ReportTabTable13Row1Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[8]/table/tbody/tr/td[1]/div");
+	public By Path3ReportTabTable13Row1Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[2]/div[8]/table/tbody/tr/td[2]/strong");
 
-	public By Path3ReportTabTable14Title1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[1]");
-	public By Path3ReportTabTable14Title2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/div[1]/span[1]");
-	public By Path3ReportTabTable14Title3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/div[2]/span[1]");
-	public By Path3ReportTabTable14Title3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/div[2]/span[2]");
-	public By Path3ReportTabTable14Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable14Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[2]");
-	public By Path3ReportTabTable14Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[3]");
-	public By Path3ReportTabTable14Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[1]/td");
-	public By Path3ReportTabTable14Row2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[2]/td");
-	public By Path3ReportTabTable14Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[3]/td");
-	public By Path3ReportTabTable14Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[4]/td");
-	public By Path3ReportTabTable14Row5Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
-	public By Path3ReportTabTable14Row5Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]/div");
-	public By Path3ReportTabTable14Row5Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
-	public By Path3ReportTabTable14Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
-	public By Path3ReportTabTable14Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
-	public By Path3ReportTabTable14Row6Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[3]/strong");
-	public By Path3ReportTabTable14Row7Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[1]");
-	public By Path3ReportTabTable14Row7Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
-	public By Path3ReportTabTable14Row7Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[3]/strong");
-	public By Path3ReportTabTable14Row8Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[1]");
-	public By Path3ReportTabTable14Row8Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
-	public By Path3ReportTabTable14Row8Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[3]/strong");
+	public By Path3ReportTabTable14Title1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[1]");
+	public By Path3ReportTabTable14Title2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/div[1]/span[1]");
+	public By Path3ReportTabTable14Title3Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/div[2]/span[1]");
+	public By Path3ReportTabTable14Title3Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/div[2]/span[2]");
+	public By Path3ReportTabTable14Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable14Column2Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/thead/tr/th[2]");
+	public By Path3ReportTabTable14Column3Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/thead/tr/th[3]");
+	public By Path3ReportTabTable14Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[1]/td");
+	public By Path3ReportTabTable14Row2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[2]/td");
+	public By Path3ReportTabTable14Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[3]/td");
+	public By Path3ReportTabTable14Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[4]/td");
+	public By Path3ReportTabTable14Row5Column1Part1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	public By Path3ReportTabTable14Row5Column1Part2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[1]/div");
+	public By Path3ReportTabTable14Row5Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
+	public By Path3ReportTabTable14Row6Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	public By Path3ReportTabTable14Row6Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
+	public By Path3ReportTabTable14Row6Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[3]/strong");
+	public By Path3ReportTabTable14Row7Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[7]/td[1]");
+	public By Path3ReportTabTable14Row7Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
+	public By Path3ReportTabTable14Row7Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[7]/td[3]/strong");
+	public By Path3ReportTabTable14Row8Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[8]/td[1]");
+	public By Path3ReportTabTable14Row8Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
+	public By Path3ReportTabTable14Row8Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]/div[2]/table/tbody/tr[8]/td[3]/strong");
 
-	public By Path3ReportTabTable15SUEPTitle = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[1]");
-	public By Path3ReportTabTable15SUEP_S = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[2]/span[2]");
-	public By Path3ReportTabTable15SUEP_U = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[3]/span[2]");
-	public By Path3ReportTabTable15SUEP_E = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[4]/span[2]");
-	public By Path3ReportTabTable15SUEP_P = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[5]/span[2]");
-	public By Path3ReportTabTable15Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[1]");
-	public By Path3ReportTabTable15Column6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[6]");
-	public By Path3ReportTabTable15Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[1]/td/strong");
-	public By Path3ReportTabTable15Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[1]");
-	public By Path3ReportTabTable15Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]/strong");
-	public By Path3ReportTabTable15Row2Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[3]/strong");
-	public By Path3ReportTabTable15Row2Column4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[4]/strong");
-	public By Path3ReportTabTable15Row2Column5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[5]/strong");
-	public By Path3ReportTabTable15Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[3]/td[1]");
-	public By Path3ReportTabTable15Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[4]/td[1]");
-	public By Path3ReportTabTable15Row5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[5]/td[1]");
+	public By Path3ReportTabTable15SUEPTitle = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[1]");
+	public By Path3ReportTabTable15SUEP_S = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[2]/span[2]");
+	public By Path3ReportTabTable15SUEP_U = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[3]/span[2]");
+	public By Path3ReportTabTable15SUEP_E = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[4]/span[2]");
+	public By Path3ReportTabTable15SUEP_P = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[5]/span[2]");
+	public By Path3ReportTabTable15Column1Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/thead/tr/th[1]");
+	public By Path3ReportTabTable15Column6Title = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/thead/tr/th[6]");
+	public By Path3ReportTabTable15Row1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[1]/td/strong");
+	public By Path3ReportTabTable15Row2Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[1]");
+	public By Path3ReportTabTable15Row2Column2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[2]/strong");
+	public By Path3ReportTabTable15Row2Column3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[3]/strong");
+	public By Path3ReportTabTable15Row2Column4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[4]/strong");
+	public By Path3ReportTabTable15Row2Column5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[5]/strong");
+	public By Path3ReportTabTable15Row3 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[3]/td[1]");
+	public By Path3ReportTabTable15Row4 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[4]/td[1]");
+	public By Path3ReportTabTable15Row5 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]/div[6]/table/tbody/tr[5]/td[1]");
 
+	public By ReportTabSkippedStep3Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[3]");
+	public By ReportTabSkippedStep4Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[4]");
 	public By ReportTabSkippedStep5Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[5]");
 	public By ReportTabSkippedStep6Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[6]");
 	public By ReportTabSkippedStep7Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[7]");
-	public By Path2ReportTabSkippedStep4MessagePart1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[1]");
-	public By Path2ReportTabSkippedStep4MessagePart2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[2]");
-	public By Path2ReportTabSkippedStep5Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[5]");
-	public By Path2ReportTabSkippedStep6Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[6]");
-	public By Path2ReportTabSkippedStep7Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[7]");
+	public By Path2ReportTabSkippedStep4MessagePart1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]");
+	//public By Path2ReportTabSkippedStep4MessagePart2 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[6]/div[4]/div[2]");
+	public By Path2ReportTabSkippedStep5Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[8]");
+	public By Path2ReportTabSkippedStep6Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[9]");
+	public By Path2ReportTabSkippedStep7Message = By.xpath(".//*[@id='pii-ircam-tab-9']/div[10]");
 
 	public By ReportTabTable9Heading = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/div");
 	public By ReportTabTable9Row1Column1 = By.xpath(".//*[@id='pii-ircam-tab-9']/div[7]/div[8]/table/tbody/tr[1]/td[1]");
@@ -920,7 +940,7 @@ public class EiRCAPageObj {
 	public By Path2HTMLTable6Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
 	public By Path2HTMLTable6Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
 	public By Path2HTMLTable6Row6Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[3]");
-	public By Path3HTMLTable6Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[1]");
+	public By Path3HTMLTable6Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]");/*
 	public By Path3HTMLTable6SubTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[1]/span[1]");
 	public By Path3HTMLTable6SubTitle2Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[2]/span[1]");
 	public By Path3HTMLTable6SubTitle2Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/div[2]/span[2]");
@@ -933,7 +953,7 @@ public class EiRCAPageObj {
 	public By Path3HTMLTable6Row3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[3]/td[1]");
 	public By Path3HTMLTable6Row4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[4]/td[1]");
 	public By Path3HTMLTable6Row5 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
-	public By Path3HTMLTable6Row6 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	public By Path3HTMLTable6Row6 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[3]/div[2]/table/tbody/tr[6]/td[1]");*/
 
 	public By HTMLTable7Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[1]");
 	public By HTMLTable7SubTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/div[1]/span[1]");
@@ -994,89 +1014,91 @@ public class EiRCAPageObj {
 	public By HTMLTable8Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[6]/td[2]");
 	public By HTMLTable8Row7Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[1]");
 	public By HTMLTable8Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/table/tbody/tr[7]/td[2]");
-	public By Path3HTMLTable8Title1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[1]");
-	public By Path3HTMLTable8Title2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[1]/span[1]");
-	public By Path3HTMLTable8Title3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[2]/span[1]");
-	public By Path3HTMLTable8Title3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[2]/span[2]");
-	public By Path3HTMLTable8Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[1]");
-	public By Path3HTMLTable8Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[3]/table/thead/tr/th[2]");
-	public By Path3HTMLTable8Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[3]/table/tbody[1]/tr/td");
+	public By Path3HTMLTable8Title1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[1]");
+	public By Path3HTMLTable8Title2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[1]/span[1]");
+	public By Path3HTMLTable8Title3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[2]/span[1]");
+	public By Path3HTMLTable8Title3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[2]/span[2]");
+	public By Path3HTMLTable8Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[3]/table/thead/tr/th[1]");
+	public By Path3HTMLTable8Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[3]/table/thead/tr/th[2]");
+	public By Path3HTMLTable8Row1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[3]/table/tbody[1]/tr/td");
 
-	public By Path3HTMLTable9Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[1]");
-	public By Path3HTMLTable9Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[4]/table/thead/tr/th[2]");
-	public By Path3HTMLTable9Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[4]/table/tbody[1]/tr/td");
+	public By Path3HTMLTable9Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[4]/table/thead/tr/th[1]");
+	public By Path3HTMLTable9Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[4]/table/thead/tr/th[2]");
+	public By Path3HTMLTable9Row1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[4]/table/tbody[1]/tr/td");
 
-	public By Path3HTMLTable10Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[1]");
-	public By Path3HTMLTable10Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[5]/table/thead/tr/th[2]");
-	public By Path3HTMLTable10Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[5]/table/tbody[1]/tr/td");
+	public By Path3HTMLTable10Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[5]/table/thead/tr/th[1]");
+	public By Path3HTMLTable10Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[5]/table/thead/tr/th[2]");
+	public By Path3HTMLTable10Row1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[5]/table/tbody[1]/tr/td");
 
-	public By Path3HTMLTable11Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[1]");
-	public By Path3HTMLTable11Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[6]/table/thead/tr/th[2]");
-	public By Path3HTMLTable11Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[6]/table/tbody[1]/tr/td");
+	public By Path3HTMLTable11Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[6]/table/thead/tr/th[1]");
+	public By Path3HTMLTable11Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[6]/table/thead/tr/th[2]");
+	public By Path3HTMLTable11Row1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[6]/table/tbody[1]/tr/td");
 
-	public By Path3HTMLTable12Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[1]");
-	public By Path3HTMLTable12Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[2]");
-	public By Path3HTMLTable12Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/thead/tr/th[3]");
-	public By Path3HTMLTable12Row1Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]");
-	public By Path3HTMLTable12Row1Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[1]/div");
-	public By Path3HTMLTable12Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[7]/table/tbody/tr/td[2]/strong");
+	public By Path3HTMLTable12Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[7]/table/thead/tr/th[1]");
+	public By Path3HTMLTable12Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[7]/table/thead/tr/th[2]");
+	public By Path3HTMLTable12Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[7]/table/thead/tr/th[3]");
+	public By Path3HTMLTable12Row1Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[7]/table/tbody/tr/td[1]");
+	public By Path3HTMLTable12Row1Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[7]/table/tbody/tr/td[1]/div");
+	public By Path3HTMLTable12Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[7]/table/tbody/tr/td[2]/strong");
 
-	public By Path3HTMLTable13Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[1]");
-	public By Path3HTMLTable13Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[2]");
-	public By Path3HTMLTable13Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/thead/tr/th[3]");
-	public By Path3HTMLTable13Row1Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]");
-	public By Path3HTMLTable13Row1Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[1]/div");
-	public By Path3HTMLTable13Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[2]/div[8]/table/tbody/tr/td[2]/strong");
+	public By Path3HTMLTable13Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[8]/table/thead/tr/th[1]");
+	public By Path3HTMLTable13Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[8]/table/thead/tr/th[2]");
+	public By Path3HTMLTable13Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[8]/table/thead/tr/th[3]");
+	public By Path3HTMLTable13Row1Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[8]/table/tbody/tr/td[1]");
+	public By Path3HTMLTable13Row1Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[8]/table/tbody/tr/td[1]/div");
+	public By Path3HTMLTable13Row1Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[2]/div[8]/table/tbody/tr/td[2]/strong");
 
-	public By Path3HTMLTable14Title1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[1]");
-	public By Path3HTMLTable14Title2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/div[1]/span[1]");
-	public By Path3HTMLTable14Title3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/div[2]/span[1]");
-	public By Path3HTMLTable14Title3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/div[2]/span[2]");
-	public By Path3HTMLTable14Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[1]");
-	public By Path3HTMLTable14Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[2]");
-	public By Path3HTMLTable14Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/thead/tr/th[3]");
-	public By Path3HTMLTable14Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[1]/td");
-	public By Path3HTMLTable14Row2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[2]/td");
-	public By Path3HTMLTable14Row3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[3]/td");
-	public By Path3HTMLTable14Row4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[4]/td");
-	public By Path3HTMLTable14Row5Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
-	public By Path3HTMLTable14Row5Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[1]/div");
-	public By Path3HTMLTable14Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
-	public By Path3HTMLTable14Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
-	public By Path3HTMLTable14Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
-	public By Path3HTMLTable14Row6Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[3]/strong");
-	public By Path3HTMLTable14Row7Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[1]");
-	public By Path3HTMLTable14Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
-	public By Path3HTMLTable14Row7Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[3]/strong");
-	public By Path3HTMLTable14Row8Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[1]");
-	public By Path3HTMLTable14Row8Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
-	public By Path3HTMLTable14Row8Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[3]/strong");
+	public By Path3HTMLTable14Title1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[1]");
+	public By Path3HTMLTable14Title2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/div[1]/span[1]");
+	public By Path3HTMLTable14Title3Part1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/div[2]/span[1]");
+	public By Path3HTMLTable14Title3Part2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/div[2]/span[2]");
+	public By Path3HTMLTable14Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/thead/tr/th[1]");
+	public By Path3HTMLTable14Column2Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/thead/tr/th[2]");
+	public By Path3HTMLTable14Column3Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/thead/tr/th[3]");
+	public By Path3HTMLTable14Row1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[1]/td");
+	public By Path3HTMLTable14Row2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[2]/td");
+	public By Path3HTMLTable14Row3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[3]/td");
+	public By Path3HTMLTable14Row4 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[4]/td");
+	public By Path3HTMLTable14Row5Column1Part1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[1]");
+	public By Path3HTMLTable14Row5Column1Part2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[1]/div");
+	public By Path3HTMLTable14Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[5]/td[2]/strong");
+	public By Path3HTMLTable14Row6Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[1]");
+	public By Path3HTMLTable14Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[2]/strong");
+	public By Path3HTMLTable14Row6Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[6]/td[3]/strong");
+	public By Path3HTMLTable14Row7Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[7]/td[1]");
+	public By Path3HTMLTable14Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[7]/td[2]/strong");
+	public By Path3HTMLTable14Row7Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[7]/td[3]/strong");
+	public By Path3HTMLTable14Row8Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[8]/td[1]");
+	public By Path3HTMLTable14Row8Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[8]/td[2]/strong");
+	public By Path3HTMLTable14Row8Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]/div[2]/table/tbody/tr[8]/td[3]/strong");
 
-	public By Path3HTMLTable15SUEPTitle = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[1]");
-	public By Path3HTMLTable15SUEP_S = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[2]/span[2]");
-	public By Path3HTMLTable15SUEP_U = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[3]/span[2]");
-	public By Path3HTMLTable15SUEP_E = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[4]/span[2]");
-	public By Path3HTMLTable15SUEP_P = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[5]/span[2]");
-	public By Path3HTMLTable15Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[1]");
-	public By Path3HTMLTable15Column6Title = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/thead/tr/th[6]");
-	public By Path3HTMLTable15Row1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[1]/td/strong");
-	public By Path3HTMLTable15Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[1]");
-	public By Path3HTMLTable15Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]/strong");
-	public By Path3HTMLTable15Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[3]/strong");
-	public By Path3HTMLTable15Row2Column4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[4]/strong");
-	public By Path3HTMLTable15Row2Column5 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[5]/strong");
-	public By Path3HTMLTable15Row3 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[3]/td[1]");
-	public By Path3HTMLTable15Row4 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[4]/td[1]");
-	public By Path3HTMLTable15Row5 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]/div[4]/div[6]/table/tbody/tr[5]/td[1]");
+	public By Path3HTMLTable15SUEPTitle = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[1]");
+	public By Path3HTMLTable15SUEP_S = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[2]/span[2]");
+	public By Path3HTMLTable15SUEP_U = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[3]/span[2]");
+	public By Path3HTMLTable15SUEP_E = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[4]/span[2]");
+	public By Path3HTMLTable15SUEP_P = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[5]/span[2]");
+	public By Path3HTMLTable15Column1Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/thead/tr/th[1]");
+	public By Path3HTMLTable15Column6Title = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/thead/tr/th[6]");
+	public By Path3HTMLTable15Row1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[1]/td/strong");
+	public By Path3HTMLTable15Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[1]");
+	public By Path3HTMLTable15Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[2]/strong");
+	public By Path3HTMLTable15Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[3]/strong");
+	public By Path3HTMLTable15Row2Column4 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[4]/strong");
+	public By Path3HTMLTable15Row2Column5 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[2]/td[5]/strong");
+	public By Path3HTMLTable15Row3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[3]/td[1]");
+	public By Path3HTMLTable15Row4 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[4]/td[1]");
+	public By Path3HTMLTable15Row5 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[6]/table/tbody/tr[5]/td[1]");
 
+	public By HTMLSkippedStep3Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[3]");
+	public By HTMLSkippedStep4Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]");
 	public By HTMLSkippedStep5Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]");
 	public By HTMLSkippedStep6Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[6]");
 	public By HTMLSkippedStep7Message = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]");
-	public By Path2HTMLSkippedStep4MessagePart1 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[1]");
-	public By Path2HTMLSkippedStep4MessagePart2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[2]");
-	public By Path2HTMLSkippedStep5Message = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[5]");
-	public By Path2HTMLSkippedStep6Message = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[6]");
-	public By Path2HTMLSkippedStep7Message = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[7]");
+	public By Path2HTMLSkippedStep4MessagePart1 = By.xpath(".//*[@id='mirca-rpt']/div[7]");
+	//public By Path2HTMLSkippedStep4MessagePart2 = By.xpath(".//*[@id='mirca-rpt']/div[6]/div[4]/div[2]");
+	public By Path2HTMLSkippedStep5Message = By.xpath(".//*[@id='mirca-rpt']/div[8]");
+	public By Path2HTMLSkippedStep6Message = By.xpath(".//*[@id='mirca-rpt']/div[9]");
+	public By Path2HTMLSkippedStep7Message = By.xpath(".//*[@id='mirca-rpt']/div[10]");
 
 	public By HTMLTable9Heading = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/div");
 	public By HTMLTable9Row1Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[8]/table/tbody/tr[1]/td[1]");

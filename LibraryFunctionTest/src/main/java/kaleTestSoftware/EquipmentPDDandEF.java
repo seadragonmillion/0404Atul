@@ -33,7 +33,7 @@ public class EquipmentPDDandEF {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	CaseBrowseObj cb = new CaseBrowseObj();
-	
+
 	public String keywordPDD = "QAAPDDTestSlides";
 	public String keywordEF = "QAAEFTestSlides";
 	public String key1PDD = "QAAzebraPDD";
@@ -83,7 +83,7 @@ public class EquipmentPDDandEF {
 	public String keywordEFDevPercent ="SanityEF%";
 	public String keywordEFDevSpcl ="SanityEF./";
 	public String keywordPDDProd = "packing friction force";
-	public String keywordPDDProdPercent = "90%";
+	public String keywordPDDProdPercent = "10%";
 	public String keywordEFProd = "Ampere Electromagnetism Law";
 	public String keywordEFProdSpcl = "PM2.5 meter";
 	public String caseEFDev = "7450";
@@ -91,7 +91,7 @@ public class EquipmentPDDandEF {
 	public String caseEFProd = "2014";
 	public String casePDDProd = "3005";
 	public String caseEFProdSpcl = "2017";
-	public String casePDDProdPercent = "3037";
+	public String casePDDProdPercent = "4034";
 	public String titleEFDev = "Sanity: QAA Test (DO NOT DELETE)";
 	public String titlePDDDev = "Sanity: QAA Test (DO NOT DELETE)";
 	public String titleEFProd = "What is Faraday’s Law and Ampere’s Law?"+"\n";
@@ -721,6 +721,9 @@ public class EquipmentPDDandEF {
 	public void browseCaseNonAdmin(WebDriver driver, String keyword, String identifier, String title) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Types in the keyword to get slide
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).clear();
 		Thread.sleep(4000);
@@ -821,26 +824,40 @@ public class EquipmentPDDandEF {
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 			//Moves out of the slideshow and checks for security
 			Thread.sleep(1000);
-			//Clicks on copyright
-			if(i==2)
-				driver.findElement(By.xpath(copyright_xpath)).click();
-			//Clicks on logo
-			if(i==3)
-				driver.findElement(By.xpath(image_xpath)).click();
-			//Clicks outside
-			if(i==4)
+			if(browserName.contains("safari"))
 			{
-				Actions act2 = new Actions(driver);
-				Point coordinates = driver.findElement(cb.SlideNextButton).getLocation();
-				Robot robot = new Robot();
-				robot.mouseMove(coordinates.getX()+100,coordinates.getY());
-				Thread.sleep(2000);
-				act2.click().build().perform();
+				while(true)
+				{
+					Actions act2 = new Actions(driver);
+					act2.click(driver.findElement(By.xpath(title_xpath))).build().perform();
+					Thread.sleep(1000);
+					if(driver.findElement(By.id("pii-slideshow-equip-show-F"+identifier)).isDisplayed())
+						break;
+				}
 			}
-			//Clicks on title
-			else 
-				driver.findElement(By.xpath(title_xpath)).click();
-			Thread.sleep(3000);
+			else
+			{
+				//Clicks on copyright
+				if(i==2)
+					driver.findElement(By.xpath(copyright_xpath)).click();
+				//Clicks on logo
+				if(i==3)
+					driver.findElement(By.xpath(image_xpath)).click();
+				//Clicks outside
+				if(i==4)
+				{
+					Actions act2 = new Actions(driver);
+					Point coordinates = driver.findElement(cb.SlideNextButton).getLocation();
+					Robot robot = new Robot();
+					robot.mouseMove(coordinates.getX()+100,coordinates.getY());
+					Thread.sleep(2000);
+					act2.click().build().perform();
+				}
+				//Clicks on title
+				else 
+					driver.findElement(By.xpath(title_xpath)).click();
+				Thread.sleep(3000);
+			}
 			//Show slides
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-equip-show-F"+identifier))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)).click();
@@ -1064,7 +1081,7 @@ public class EquipmentPDDandEF {
 	public void selectTypeEFPDD(WebDriver driver, String keyword) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		
+
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -1120,7 +1137,7 @@ public class EquipmentPDDandEF {
 	public void selectDisciplineEFPDD(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		
+
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -1541,7 +1558,7 @@ public class EquipmentPDDandEF {
 			share.scrollToElement(driver, l);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField));
 			try{
-			jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
+				jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
 			}catch(org.openqa.selenium.ScriptTimeoutException r)
 			{
 				Thread.sleep(2000);

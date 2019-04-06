@@ -16,14 +16,14 @@ public class HiRCAFunctionsForLevel1_2_3 {
 	OPiRCA op = new OPiRCA();
 	OPiRCA3 op3 = new OPiRCA3();
 	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
+	HiRCAObj hirca = new HiRCAObj();
 	
 	public String getNoteShowingPreviousAnswer(WebDriver driver) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,1);
-		HiRCAHumanError hhe = new HiRCAHumanError();
 		//Get question text
-		String question = wait.until(ExpectedConditions.visibilityOfElementLocated(hhe.PageQuestion)).getText().trim();
+		String question = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText().trim();
 		//remove [ and ] 
 		int indexOfQuestionMark = question.lastIndexOf("?");
 		String r = question.substring(0, indexOfQuestionMark+1).replace("]", "").replace("[", "");

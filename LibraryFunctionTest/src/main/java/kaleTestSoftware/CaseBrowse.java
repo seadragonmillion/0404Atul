@@ -25,7 +25,7 @@ public class CaseBrowse {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	CaseBrowseObj cb = new CaseBrowseObj();
-	
+
 	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
 	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
 	public String caseEquipALProd = "1545";
@@ -1383,6 +1383,9 @@ public class CaseBrowse {
 	public void nextBrowseEquipNonAdmin(WebDriver driver, int n, String expected_title, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Click Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)).click();
 		for(int i=2;i<=n;i++)
@@ -1414,25 +1417,42 @@ public class CaseBrowse {
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 			//Moves out of the slideshow and checks for security
 			Thread.sleep(1000);
-			//Clicks on copyright
-			if(i==2)
-				driver.findElement(By.xpath(copyright_xpath)).click();
-			//Clicks on logo
-			if(i==3)
-				driver.findElement(By.xpath(image_xpath)).click();
-			//Clicks outside
-			if(i==4)
+			if(browserName.contains("safari"))
 			{
-				Actions act2 = new Actions(driver);
-				Point coordinates = driver.findElement(cb.SlideNextButton).getLocation();
-				Robot robot = new Robot();
-				robot.mouseMove(coordinates.getX()+100,coordinates.getY());
-				Thread.sleep(2000);
-				act2.click().build().perform();
+				while(true)
+				{
+					Actions act2 = new Actions(driver);
+					act2.click(driver.findElement(By.xpath(title_xpath))).build().perform();
+					Thread.sleep(1000);
+					if(driver.findElement(By.id("pii-slideshow-equip-show-F"+identifier)).isDisplayed())
+						break;
+				}
 			}
-			//Clicks on title
-			else 
-				driver.findElement(By.xpath(title_xpath)).click();
+			else
+			{
+				//Clicks on copyright
+				if(i==2)
+					driver.findElement(By.xpath(copyright_xpath)).click();
+				//Clicks on logo
+				if(i==3)
+					driver.findElement(By.xpath(image_xpath)).click();
+				//Clicks outside
+			/*	if(browserName.contains("chrome")==false)
+				{
+					if(i==4)
+					{
+						Actions act2 = new Actions(driver);
+						Point coordinates = driver.findElement(cb.SlideNextButton).getLocation();
+						Robot robot = new Robot();
+						robot.mouseMove(coordinates.getX()+100,coordinates.getY());
+						Thread.sleep(2000);
+						act2.click().build().perform();
+					}
+				}*/
+				//Clicks on title
+				else 
+					driver.findElement(By.xpath(title_xpath)).click();
+			}
 			Thread.sleep(3000);
 			//Show slides
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-equip-show-F"+identifier))).click();
@@ -1442,7 +1462,10 @@ public class CaseBrowse {
 
 	public void nextBrowseHumanNonAdmin(WebDriver driver, int n, String expected_title, String identifier) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,20);		
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Click Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)).click();
 		for(int i=2;i<=n;i++)
@@ -1474,25 +1497,42 @@ public class CaseBrowse {
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 			//Moves out of the slideshow and checks for security
 			Thread.sleep(1000);
-			//Clicks on copyright
-			if(i==2)
-				driver.findElement(By.xpath(copyright_xpath)).click();
-			//Clicks on logo
-			if(i==3)
-				driver.findElement(By.xpath(image_xpath)).click();
-			//Clicks outside
-			if(i==4)
+			if(browserName.contains("safari"))
 			{
-				Actions act2 = new Actions(driver);
-				Point coordinates = driver.findElement(cb.SlideNextButton).getLocation();
-				Robot robot = new Robot();
-				robot.mouseMove(coordinates.getX()+100,coordinates.getY());
-				Thread.sleep(2000);
-				act2.click().build().perform();
+				while(true)
+				{
+					Actions act2 = new Actions(driver);
+					act2.click(driver.findElement(By.xpath(title_xpath))).build().perform();
+					Thread.sleep(1000);
+					if(driver.findElement(By.id("pii-slideshow-show-Q"+identifier)).isDisplayed())
+						break;
+				}
 			}
-			//Clicks on title
-			else 
-				driver.findElement(By.xpath(title_xpath)).click();
+			else
+			{
+				//Clicks on copyright
+				if(i==2)
+					driver.findElement(By.xpath(copyright_xpath)).click();
+				//Clicks on logo
+				if(i==3)
+					driver.findElement(By.xpath(image_xpath)).click();
+				//Clicks outside
+				if(browserName.contains("chrome")==false)
+				{
+					if(i==4)
+					{						
+						Actions act2 = new Actions(driver);
+						Point coordinates = driver.findElement(cb.SlideNextButton).getLocation();
+						Robot robot = new Robot();
+						robot.mouseMove(coordinates.getX()+100,coordinates.getY());
+						Thread.sleep(2000);
+						act2.click().build().perform();
+					}
+				}
+				//Clicks on title
+				else 
+					driver.findElement(By.xpath(title_xpath)).click();
+			}
 			Thread.sleep(3000);
 			//Show slides
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-show-Q"+identifier))).click();

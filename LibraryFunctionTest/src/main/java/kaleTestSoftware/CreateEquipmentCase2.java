@@ -153,14 +153,17 @@ public class CreateEquipmentCase2 {
 			if(s.contains(keywordDecide(driver)))
 			{
 				//click on it
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li["+i+"]/a"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li["+i+"]/a"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-keyword-form']/div/ul/li["+i+"]/a"))));
+				Thread.sleep(2000);
 				break;
 			}
 		}
 		Thread.sleep(2000);
 		//Clicks on remove keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);

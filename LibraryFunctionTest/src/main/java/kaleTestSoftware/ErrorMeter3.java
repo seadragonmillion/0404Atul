@@ -12,6 +12,14 @@ public class ErrorMeter3 {
 
 	ErrorMeter2 em2 = new ErrorMeter2 ();
 
+	public void clickElementForSafariBrowser (WebDriver driver, By locator) throws Exception {		
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+	}
+	
 	public void verifyCheckBoxChecked (WebDriver driver, By locator) throws Exception {		
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -19,17 +27,10 @@ public class ErrorMeter3 {
 		while(true)
 		{
 			Thread.sleep(500);
-			String check = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("data-cacheval");
-			System.out.println(check);
 			if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 				break;
-			/*
-			if(Strings.isNullOrEmpty(check)==false)
-			{
-				if(check.contains("false"))
-					break;
-			}*/
 			Thread.sleep(1000);
+			executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 			Thread.sleep(1000);
 		}	
@@ -43,12 +44,9 @@ public class ErrorMeter3 {
 		while(true)
 		{
 			Thread.sleep(500);
-			//String check = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("data-cacheval");
 			if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected()==false)
 				break;
-		/*	if(check.contains("true"))
-				break;
-			Thread.sleep(1000);*/
+			executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 			Thread.sleep(1000);
 		}		
@@ -164,6 +162,5 @@ public class ErrorMeter3 {
 			String sharer ="QAA (qaasharernonadminusie11)";
 			return sharer;
 		}
-
 	}
 }

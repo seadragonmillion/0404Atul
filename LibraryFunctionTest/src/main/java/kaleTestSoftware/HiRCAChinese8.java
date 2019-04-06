@@ -15,6 +15,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +48,7 @@ public class HiRCAChinese8 {
 	public void chineseLevel3SelectionsStep4_2nd(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Verify all selections here
 		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
 		System.out.println(tr);
@@ -149,17 +151,20 @@ public class HiRCAChinese8 {
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[6]/td[3]/fieldset/div/div[1]/label")));
 		share.scrollToElement(driver, l);
 		//Click H
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
 		//Medium for 3.17.3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[9]/td[3]/fieldset/div/div[2]/label")));
 		share.scrollToElement(driver, l);
 		//Click M
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
 		//Low for 3.17.4
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[12]/td[3]/fieldset/div/div[3]/label")));
 		share.scrollToElement(driver, l);
 		//Click L
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
 		//Scroll up
 		share.scrollToTop(driver);
 	}

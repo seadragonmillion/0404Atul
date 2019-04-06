@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,7 +24,7 @@ public class CreateEquipmentCase3 {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	CaseBrowseObj cb = new CaseBrowseObj();
-	
+
 	public void clickTypesDisciplineIE(WebDriver driver, By element) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -38,7 +40,7 @@ public class CreateEquipmentCase3 {
 			Thread.sleep(1000);
 		}
 	}
-	
+
 	public void lookForCases(WebDriver driver, List<String> cases) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -48,7 +50,7 @@ public class CreateEquipmentCase3 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(j))));
 		}
 	}
-	
+
 	public List<By> disciplineCaseSearchList()  throws Exception{
 
 		List<By> dl = new ArrayList<By>();
@@ -64,7 +66,7 @@ public class CreateEquipmentCase3 {
 		Collections.addAll(fl, cb.EquipCaseSearchListFieldAuto, cb.EquipCaseSearchListFieldNuclear, cb.EquipCaseSearchListFieldOther, cb.EquipCaseSearchListFieldPharmaceutical, cb.EquipCaseSearchListFieldWelding);
 		return fl;
 	}
-	
+
 	public void selectFieldsForComboTest(WebDriver driver, By element, String browserName, String v) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -99,7 +101,7 @@ public class CreateEquipmentCase3 {
 			driver.findElement(equipObj.EquipListBoxFieldsCrossSymbol).click();
 		}
 	}
-	
+
 	public void selectDisciplineForComboTest(WebDriver driver, By element, String browserName, String v) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -142,6 +144,9 @@ public class CreateEquipmentCase3 {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		CreateHumanCase obj3 = new CreateHumanCase();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -194,7 +199,15 @@ public class CreateEquipmentCase3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 		share2.loadingServer(driver);
 		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+		if(browserName.contains("safari")||browserName.contains("firefox"))
+		{
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
+		}
+		else
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+		}
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);

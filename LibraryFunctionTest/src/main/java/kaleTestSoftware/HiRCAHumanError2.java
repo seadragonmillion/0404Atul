@@ -19,11 +19,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAHumanError2 {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	HiRCAObj hirca = new HiRCAObj();
 
 	public void verify31 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -87,7 +87,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.1.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.1.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.1.3] Mismatch of personality and task");
 		//2nd collapsible for 3.1.3
@@ -111,7 +111,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.1.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();		
 		//3.1.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.1.4] Inexperience in subject matter");
 		//2nd collapsible for 3.1.4
@@ -137,7 +137,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.1.4
 		////wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.1.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.1.5] Inadequate knowledge of and compensation for self-weakness");
 		//2nd collapsible for 3.1.5
@@ -166,7 +166,7 @@ public class HiRCAHumanError2 {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//share.scrollToAPoint(driver, 1200);
 		//3.1.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer6)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();		
 		softly.assertThat(q396).as("test data").contains("[3.1.6] Unfit for work (sick, ill, preoccupied, etc.)");
 		//2nd collapsible for 3.1.6
@@ -197,7 +197,6 @@ public class HiRCAHumanError2 {
 	public void verify311 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -269,7 +268,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.11.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.11.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.11.3] Inadequate penalty/reward system for performance control");
 		//2nd collapsible for 3.11.3
@@ -297,7 +296,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.11.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.11.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.11.4] Inadequate problem reporting, RCA and corrective actions and feedback to staff");
 		//2nd collapsible for 3.11.4
@@ -326,7 +325,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.11.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.11.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.11.5] Inadequate field observation and feedback to staff");
 		//2nd collapsible for 3.11.5
@@ -362,7 +361,6 @@ public class HiRCAHumanError2 {
 	public void verify310 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -424,7 +422,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.10.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.10.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.10.3] Inadequate qualification of vendors' services (QA/QC, source inspection)");
 		//2nd collapsible for 3.10.3
@@ -448,7 +446,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.10.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.10.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.10.4] Inadequate qualification of vendors' employees working on site");
 		//2nd collapsible for 3.10.4
@@ -472,7 +470,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.10.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.10.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.10.5] Inadequate qualification of training instructors");
 		//2nd collapsible for 3.10.5
@@ -502,7 +500,6 @@ public class HiRCAHumanError2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
 		softly.assertThat(heading).as("test data").contains("Inadequate training");
@@ -569,7 +566,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.9.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.9.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.9.3] Inadequate line management participation in training materials, development, and delivery");
 		//2nd collapsible for 3.9.3
@@ -595,7 +592,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.9.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();		
 		//3.9.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.9.4] Inadequate inclusion of lessons learned into training");
 		//2nd collapsible for 3.9.4
@@ -619,7 +616,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.9.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.9.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.9.5] Inadequate provision of needed training (off-the-job)");
 		//2nd collapsible for 3.9.5
@@ -648,7 +645,7 @@ public class HiRCAHumanError2 {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//share.scrollToAPoint(driver, 1200);
 		//3.9.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer6)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.9.6] Inadequate provision of needed training (on-the-job)");
 		//2nd collapsible for 3.9.6
@@ -681,7 +678,6 @@ public class HiRCAHumanError2 {
 	public void verify32 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -747,7 +743,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.2.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.2.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.2.3] Inadequate supervisor practice in holding lessons learned meetings");
 		//2nd collapsible for 3.2.3
@@ -773,7 +769,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.2.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.2.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.2.4] Inadequate supervisor capabilities in providing on-the-job training");
 		//2nd collapsible for 3.2.4
@@ -799,7 +795,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.2.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.2.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.2.5] Inadequate supervisor knowledge of and compensation for team weaknesses");
 		//2nd collapsible for 3.2.5
@@ -826,7 +822,7 @@ public class HiRCAHumanError2 {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		share.scrollToAPoint(driver, 1200);
 		//3.2.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer6)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.2.6] Inadequate supervisor communication and coordination skills in giving instructions and follow-through");
 		//2nd collapsible for 3.2.6
@@ -856,7 +852,6 @@ public class HiRCAHumanError2 {
 	public void verify321 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();		
@@ -925,7 +920,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.21.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.21.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.21.3] Person related high risk situations not identified and mitigated such as inadequate capabilities, attitude, personality, and experience of interfacing people.");
 		//2nd collapsible for 3.21.3
@@ -951,7 +946,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.21.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.21.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.21.4] Environment related high risk situations not identified and mitigated such as harsh working conditions (temperature, lights, noise, high radiation, etc.), and human-machine interfaces (labels, displays, controls, etc.)");
 		//2nd collapsible for 3.21.4
@@ -982,7 +977,6 @@ public class HiRCAHumanError2 {
 	public void verify35 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -1049,7 +1043,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.5.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.5.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.5.3] Inadequate human performance observation techniques");
 		//2nd collapsible for 3.5.3
@@ -1073,7 +1067,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.5.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.5.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.5.4] Inadequate equipment performance observation techniques");
 		//2nd collapsible for 3.5.4
@@ -1104,7 +1098,6 @@ public class HiRCAHumanError2 {
 	public void verify33 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -1168,7 +1161,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.3.3] Inadequate accountability system in the manager's group, by the manager");
 		//2nd collapsible for 3.3.3
@@ -1198,7 +1191,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.3.4] Inadequate prioritization and planning of work in the manager's group, by the manager");
 		//2nd collapsible for 3.3.4
@@ -1224,7 +1217,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.3.5] Inadequate standard setting by the manager in (1) behavior (2) procedure and LOPs");
 		//2nd collapsible for 3.3.5
@@ -1254,7 +1247,7 @@ public class HiRCAHumanError2 {
 		//Scroll to the end
 		//share.scrollToAPoint(driver, 1300);
 		//3.3.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer6)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.3.6] Inadequate performance monitoring and trending in the manager's group");
 		//2nd collapsible for 3.3.6
@@ -1286,7 +1279,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer7)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-6']"))).getText();
 		softly.assertThat(q367).as("test data").contains("[3.3.7] Inadequate establishment of common goals, common interests, and common accountability for team work in the manager's group");
 		//2nd collapsible for 3.3.7
@@ -1316,7 +1309,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer8)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-7']"))).getText();
 		softly.assertThat(q368).as("test data").contains("[3.3.8] Inadequate corrective actions program in the manager's group");
 		//2nd collapsible for 3.3.8
@@ -1348,7 +1341,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.3.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.9 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer9)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-8']"))).getText();
 		softly.assertThat(q369).as("test data").contains("[3.3.9] Inadequate vertical communication system in the manager's group");
 		//2nd collapsible for 3.3.9
@@ -1378,7 +1371,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.6.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.10 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer10)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
 		String q3310 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-9']"))).getText();
 		softly.assertThat(q3310).as("test data").contains("[3.3.10] Inadequate lateral communication in the manager's group");
 		//2nd collapsible for 3.3.10
@@ -1412,7 +1405,6 @@ public class HiRCAHumanError2 {
 	public void verify322 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj1 = new HiRCAHumanError();
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -1476,7 +1468,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.22.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.22.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer3)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.22.3] Blind trust of the incorrect rules");
 		//2nd collapsible for 3.22.3
@@ -1500,7 +1492,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.22.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.22.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer4)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.22.4] Inadequate review of rules");
 		//2nd collapsible for 3.22.4
@@ -1524,7 +1516,7 @@ public class HiRCAHumanError2 {
 		//Click on 3rd collapsible for 3.22.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.22.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.Answer5)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.22.5] Inadequate rules for PJB, MJB, PSM, TO");
 		//2nd collapsible for 3.22.5
@@ -1553,7 +1545,6 @@ public class HiRCAHumanError2 {
 	public void stepOneq16 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1562,32 +1553,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.3 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.6] When the error-maker violated the established standards or policies, was there other staff looking on?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Unknown");
 	}
 
 	public void stepOneq17 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1596,32 +1586,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.3 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.7] Could the error have been prevented by self check or independent check?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("No");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Yes, as required by procedure but it wasn't done");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Yes, but not required by procedure");
 	}
 
 	public void stepOneq18 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1630,32 +1619,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.3 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.8] Was the error-maker trained to manage error-prone mental states and high risk situations?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("No");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Yes, but more than 2 years ago");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Yes, trained less than 2 years ago");
 	}
 
 	public void stepOneq19 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1664,32 +1652,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.9] Was the error-maker held accountable after the event by his or her supervisor or by management?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("No, not at all");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Yes");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Unknown");
 	}
 	
 	public void stepOneq110 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1698,29 +1685,28 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.3 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.10] If a PJB (or PSM, TO, MJB) was held, why was the participant not aware so that he or she could mitigate the risk?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Not fully engaged");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("The risks were not discussed due to lack of knowledge");
 	}
 	
 	public void stepOneq111 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1729,32 +1715,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.11] Why did this error occur now, and not before?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Due to new procedures without adequate training");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Due to new or infrequent task(s) for the error-maker");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Actually, similar errors have occurred before");
 	}
 	
 	public void stepOneq112 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1763,32 +1748,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.12] If PJB (or PSM, TO, MJB) was not performed, why?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Not performed due to intentional violation");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Not performed due to unintentional violation (inadequate rules or requirements for PJB)");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Not performed because PJB is not required");
 	}
 	
 	public void stepOneq113 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1797,29 +1781,28 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.13 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.13] Was the error contributed to by error-prone mental states and/or high risk situations?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("No. WARNING: Please re-think the answer.");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Yes");
 	}
 	
 	public void stepOneq114 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1828,32 +1811,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.14] Did the supervisor conduct routine meetings to discuss lessons learned?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("No, most of his peers conduct routine meetings");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No, but it is common among his peers not to conduct routine meetings");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Yes");
 	}
 
 	public void stepOneq115 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1862,32 +1844,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.15] Did the event involve a single-point-vulnerability item?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes, but not identified ahead of time");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Yes, identified but without mitigation actions");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("No");
 	}
 	
 	public void stepOneq116 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1896,32 +1877,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.16] Was the error related to inadequate supervision?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes, as compared to other supervisory groups with similar functions");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Unknown");
 	}
 	
 	public void stepOneq117 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1930,32 +1910,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.17] Did inadequate management by the manager contribute to this error?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes, as compared to other groups with similar functions");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("Unknown");
 	}
 	
 	public void stepOneq118 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1964,29 +1943,28 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.18] Was the error caused by incorrect rules?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No");
 	}
 	
 	public void stepOneq119 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -1995,32 +1973,31 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.19] Was there a rising trend of similar errors?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No, decreasing trend");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("No trend");
 	}
 	
 	public void stepOneq120 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCAHumanError obj = new HiRCAHumanError();
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
@@ -2029,25 +2006,25 @@ public class HiRCAHumanError2 {
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageTitle)).getText();		
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.9 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.PageQuestion)).getText();		
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.20] Was the error contributed to by changes during jobs?");
 		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryLabel)).getText();		
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ReasonEntryField)).getAttribute("placeholder");
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
 		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer1)).getText();		
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
 		//Answer 2
-		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer2)).getText();		
+		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("Yes, it is an unpredicted natural event");
 		//Answer 3
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.Answer3)).getText();
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("No");
 	}
 	

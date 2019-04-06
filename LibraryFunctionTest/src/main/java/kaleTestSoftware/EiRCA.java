@@ -44,6 +44,7 @@ public class EiRCA {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	LoginPageObj login = new LoginPageObj();
 	EiRCA2 eirca2 = new EiRCA2();
+	EiRCA3 eirca3 = new EiRCA3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 
@@ -99,7 +100,7 @@ public class EiRCA {
 			//Click on step 2
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2Tab)).click();
 			//Enter text in 2nd row failure 
-			tbr.sizeCheck(driver, eirca.Step2Row21stTextBoxField,softly);
+			//tbr.sizeCheck(driver, eirca.Step2Row21stTextBoxField,softly);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row21stTextBoxField)).sendKeys(text);
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
@@ -428,8 +429,8 @@ public class EiRCA {
 			if(ans1.contains("Root Cause Analysis"))
 				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions (skipped)");
 			else{
-				softly.assertThat(s12).as("test data").contains("Step 4 - Probability of Occurrence and Actions");
-				softly.assertThat(s12).as("test data").contains("Unrefuted failure modes are shown from highest to lowest probability of occurence.");
+				softly.assertThat(s12).as("test data").contains("Step 4 - Probability of Occurrence and Actions (skipped)");
+				//softly.assertThat(s12).as("test data").contains("Unrefuted failure modes are shown from highest to lowest probability of occurence.");
 			}
 			try{
 				ele = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep5Skipped));
@@ -533,8 +534,13 @@ public class EiRCA {
 			{
 				String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedTr)).getText();
 				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions");
-				String s12a = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedTr1)).getText();
+			/*	try{
+				String s12a = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedTr1)).getText();
 				softly.assertThat(s12a).as("test data").isEqualTo("Unrefuted failure modes are shown from highest to lowest probability of occurence.");
+				}catch(org.openqa.selenium.TimeoutException t)
+				{
+					
+				}*/
 				//Verify step5 skipped
 				if(y==0)
 				{
@@ -1588,7 +1594,7 @@ public class EiRCA {
 		//Save report
 		saveEiRCAReport(driver);
 		//Verify no text is visible in step 3 table
-		try{
+	/*	try{
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Row1Column4)).getText();
 			softly.assertThat(s6).as("test data").isEmpty();
 			String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Row2Column4)).getText();
@@ -1602,10 +1608,10 @@ public class EiRCA {
 			String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Row6Column4)).getText();
 			softly.assertThat(s11).as("test data").isEmpty();
 		}catch(org.openqa.selenium.TimeoutException t)
-		{
+		{*/
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Skipped)).getText();
 			softly.assertThat(s6).as("test data").isEqualTo("Step 3 - Statements of Refutability (skipped)");
-		}
+	//	}
 		//Open Report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
@@ -1642,11 +1648,11 @@ public class EiRCA {
 			//Save report
 			saveEiRCAReport(driver);
 			//Verify text is gone
-			try{
+		/*	try{
 				String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4Table1Row4Column3)).getText();
 				softly.assertThat(s14).as("test data").isEmpty();
 			}catch(org.openqa.selenium.TimeoutException y)
-			{
+			{*/
 				WebElement ele;
 				try{
 					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedRCA));
@@ -1656,15 +1662,22 @@ public class EiRCA {
 				}
 				String s14 = ele.getText();
 				softly.assertThat(s14).as("test data").contains("Step 4 - Probability of Occurrence and Actions (skipped)");
-			}
+			//}
 			//Open Report
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();		
 		}
 		//Click on Step 5
 		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep5Tab)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep5Tab)).click();
-		try{
+		if(driver.findElement(eirca.EiRCAStep5Tab).isEnabled()==false)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep4Tab)).click();			
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();			
+		}
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep5Tab)).click();
+	//	try{
 			//Click on collapsible
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)).click();
 			//Check any boxes
@@ -1683,10 +1696,10 @@ public class EiRCA {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55Textbox)).sendKeys(textToVerifyClearTextBox);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56Textbox)).clear();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56Textbox)).sendKeys(textToVerifyClearTextBox);
-		}catch(org.openqa.selenium.TimeoutException r)
+	/*	}catch(org.openqa.selenium.TimeoutException r)
 		{
 
-		}
+		}*/
 		//Save report
 		saveEiRCAReport(driver);
 		//Verify text
@@ -1703,11 +1716,11 @@ public class EiRCA {
 		//Click on collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)).click();
 		//Check any boxes
-		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox));
 		share.scrollToElement(driver, l);
 		//Click on 5.5
 		l.click();
-		WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56CheckBox));
+		l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56CheckBox));
 		share.scrollToElement(driver, l1);
 		//Click on 5.6
 		l1.click();
@@ -1769,11 +1782,11 @@ public class EiRCA {
 		String desc = "The sequence of events is a series of related situations occurring prior to and after the triggering error. "
 				+ "It is composed of a series of time-specific events of facts and data. The time-specific events are presented in a timeline to describe how"
 				+ " the final failure (or event or unacceptable consequence) occurred. The purpose of developing the sequence of events is to determine the "
-				+ "triggering error(s) that provoked the chain of events leading to the final failure (or unacceptable consequence)."
-				+"\n"+"\n"
-				+"Add and describe each time-specific event (or step) leading up to the final failure or unacceptable consequence. In the column to the right, "
+				+ "triggering error(s) that provoked the chain of events leading to the final failure (or unacceptable consequence).";
+		String desc1 = "Add and describe each time-specific event (or step) leading up to the final failure or unacceptable consequence. In the column to the right, "
 				+ "describe what should have happened instead of what actually occurred. This will help point out where any abnormal condition occurred.";
-		softly.assertThat(s1).as("test data").isEqualTo(desc);
+		softly.assertThat(s1).as("test data").contains(desc);
+		softly.assertThat(s1).as("test data").contains(desc1);
 		//Click on Description again
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.DescriptionPlusSign)).click();
 		//Verify description text not visible
@@ -1882,104 +1895,7 @@ public class EiRCA {
 		return hm;
 	}
 
-	public HashMap<String,String> verifyOrderOfEvents(WebDriver driver) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Get date from 1st row
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Date1stEvent)).getAttribute("value");
-		//Get date from 2nd row
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Date2ndEvent)).getAttribute("value");
-		//Get date from 3rd row
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Date3rdEvent)).getAttribute("value");
-		//Get time from 1st row
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Time1stEvent)).getAttribute("value");
-		//Get time from 2nd row
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Time2ndEvent)).getAttribute("value");
-		//Get time from 3rd row
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Time3rdEvent)).getAttribute("value");
-		//Store date and time in HashMap
-		HashMap <String,String> hm = new HashMap<String,String>();
-		hm.put("Date 1st row", s);
-		hm.put("Date 2nd row", s1);
-		hm.put("Date 3rd row", s4);
-		hm.put("Time 1st row", s2);
-		hm.put("Time 2nd row", s3);
-		hm.put("Time 3rd row", s5);
-		//Compare date and time
-		String year1 = s.substring(0, 4);
-		String year2 = s1.substring(0, 4);
-		String year3 = s4.substring(0, 4);
-		String month1 = s.substring(5, 7);
-		String month2 = s1.substring(5, 7);
-		String month3 = s4.substring(5, 7);
-		String day1 = s.substring(8, 10);
-		String day2 = s1.substring(8, 10);	
-		String day3 = s4.substring(8, 10);
-		String hour1 = s2.substring(0, 2);
-		String hour2 = s3.substring(0, 2);
-		String hour3 = s5.substring(0, 2);
-		String minute1 = s2.substring(3, 5);
-		String minute2 = s3.substring(3, 5);
-		String minute3 = s5.substring(3, 5);
-		//Verify order of 1st and 2nd event
-		compareDateTime(year1,year2,month1,month2,day1,day2,hour1,hour2,minute1,minute2);
-		//Verify order of 2nd and 3rd event
-		compareDateTime(year2,year3,month2,month3,day2,day3,hour2,hour3,minute2,minute3);
-		return hm;
-	}
-
-	public void compareDateTime (String year1, String year2, String month1, String month2, String day1, String day2, String hour1, String hour2, String minute1, String minute2) throws Exception {
-
-		//Compare year
-		int n1 = Integer.parseInt(year1);
-		int n2 = Integer.parseInt(year2);
-		if(n1>n2)
-		{
-			softly.fail("Year: Order wrong as later date "+n1+ " event appears before previous date event"+n2);
-		}
-		if(n1==n2)
-		{
-			//Compare month
-			n1 = Integer.parseInt(month1);
-			n2 = Integer.parseInt(month2);
-			if(n1>n2)
-			{
-				softly.fail("Month: Order wrong as later date "+n1+ " event appears before previous date event"+n2);
-			}
-			if(n1==n2)
-			{
-				//Compare day
-				n1 = Integer.parseInt(day1);
-				n2 = Integer.parseInt(day2);
-				if(n1>n2)
-				{
-					softly.fail("Day: Order wrong as later date "+n1+ " event appears before previous date event"+n2);
-				}
-				if(n1==n2)
-				{
-					//Compare time
-					//Minute
-					n1 = Integer.parseInt(hour1);
-					n2 = Integer.parseInt(hour2);
-					if(n1>n2)
-					{
-						softly.fail("Minute: Order wrong as later date and time"+n1+ " event appears before previous date and time event"+n2);
-					}
-					if(n1==n2)
-					{
-						//Compare time
-						//Second
-						n1 = Integer.parseInt(minute1);
-						n2 = Integer.parseInt(minute2);
-						if(n1>n2)
-						{
-							softly.fail("Second: Order wrong as later date and time"+n1+ " event appears before previous date and time event"+n2);
-						}
-					}
-				}
-			}
-		}
-	}
 
 	public void changeDate(WebDriver driver, By CalendarIcon) throws Exception {
 
@@ -2088,13 +2004,13 @@ public class EiRCA {
 		//Create another new event
 		eirca2.createNewEvent(driver, iter.next(),softly);
 		//Verify the events are organised as per date and time
-		HashMap<String,String> hm = verifyOrderOfEvents(driver);
+		HashMap<String,String> hm = eirca3.verifyOrderOfEvents(driver,softly,3);
 		System.out.println(hm);
 		//Change date on 2nd row
 		changeDate(driver,eirca.CalendarIcon2ndEvent);
 		Thread.sleep(1000);
 		//Verify the events are organised as per date and time
-		HashMap<String,String> hm1 = verifyOrderOfEvents(driver);
+		HashMap<String,String> hm1 = eirca3.verifyOrderOfEvents(driver,softly,3);
 		System.out.println(hm1);
 		//Verify changes have been saved
 		verifyChangesSavedSequenceOfEvents(driver,hm1, username,0);
@@ -2102,7 +2018,7 @@ public class EiRCA {
 		changeDate(driver,eirca.CalendarIcon3rdEvent);
 		Thread.sleep(1000);
 		//Verify the events are organised as per date and time
-		HashMap<String,String> hm4 = verifyOrderOfEvents(driver);
+		HashMap<String,String> hm4 = eirca3.verifyOrderOfEvents(driver,softly,3);
 		System.out.println(hm4);
 		//Verify changes have been saved
 		verifyChangesSavedSequenceOfEvents(driver,hm4, username,1);
@@ -2120,7 +2036,7 @@ public class EiRCA {
 		changeTime(driver,eirca.ClockIcon2ndEvent);
 		Thread.sleep(1000);
 		//Verify the events are organised as per date and time
-		HashMap<String,String> hm2 = verifyOrderOfEvents(driver);
+		HashMap<String,String> hm2 = eirca3.verifyOrderOfEvents(driver,softly,3);
 		System.out.println(hm2);
 		//Verify changes have been saved
 		verifyChangesSavedSequenceOfEvents(driver,hm2, username,1);
@@ -2147,7 +2063,7 @@ public class EiRCA {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
 		//Verify the events are organised as per date and time
-		HashMap<String,String> hm = verifyOrderOfEvents(driver);
+		HashMap<String,String> hm = eirca3.verifyOrderOfEvents(driver, softly,3);
 		System.out.println(hm);
 		Thread.sleep(1000);
 		//boolean b = hm.entrySet().stream().filter(value -> hm1.entrySet().stream().anyMatch(value1 -> (value1.getKey() == value.getKey() && value1.getValue() == value.getValue()))).findAny().isPresent();
@@ -2200,24 +2116,21 @@ public class EiRCA {
 		if(driver.findElement(eirca.EiRCANextButton).isDisplayed()==true)
 			softly.fail("Next button visible in Step 2 without adding a failure mode");
 		//Fill text in 1st box 1st row
-		tbr.sizeCheck(driver, eirca.Step2Row11stTextBoxField,softly);
+		//tbr.sizeCheck(driver, eirca.Step2Row11stTextBoxField,softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row11stTextBoxField)).sendKeys(eirca2.textCreate(driver));
-		tbr.sizeCheck(driver, eirca.Step2Row12ndTextBoxField,softly);
+		//tbr.sizeCheck(driver, eirca.Step2Row12ndTextBoxField,softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row12ndTextBoxField)).sendKeys(eirca2.textCreate(driver));
 		//Verify next button is visible after mandatory dropdowns are selected
 		if(driver.findElement(eirca.EiRCANextButton).isDisplayed()==false)
 			softly.fail("Next button not visible in Step 2 after adding failure mode");
 		//Click on add failure mode button
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)).click();
 		while(true)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)).click();
-			try{
 			if(driver.findElement(eirca.Step2Row21stTextBoxField).isDisplayed())
 				break;
-			}catch(org.openqa.selenium.NoSuchElementException t)
-			{
-				break;
-			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)).click();
 		}
 		//Verify visibility of 2nd row of boxes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row21stTextBoxField));

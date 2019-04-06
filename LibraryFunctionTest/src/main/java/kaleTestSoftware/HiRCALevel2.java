@@ -867,6 +867,7 @@ public class HiRCALevel2 {
 	public List<Integer> selectStep5(WebDriver driver) throws Exception {
 
 		OPiRCA2 obj = new OPiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<Integer> a = new ArrayList<Integer>();
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Choose a number between 1 to 20
@@ -895,7 +896,8 @@ public class HiRCALevel2 {
 				WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+(y+1)+"]/td[3]/div/input")));
 				//Scroll to element
 				share.scrollToElement(driver, e);
-				e.click();
+				jse.executeScript("arguments[0].focus();", e);
+				jse.executeScript("arguments[0].click();", e);
 				//add number to list
 				a.add(y);	
 			}

@@ -2363,10 +2363,12 @@ public class HiRCALevel1 {
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
+			//Click on H
+			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));			
 			if(y==1)
 			{
 				//Click on H
-				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+			//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -2386,7 +2388,7 @@ public class HiRCALevel1 {
 			if(y==2)
 			{
 				//Click on M
-				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+			//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -2406,7 +2408,7 @@ public class HiRCALevel1 {
 			if(y==3)
 			{
 				//Click on L
-				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+				//share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)

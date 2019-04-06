@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -78,6 +80,8 @@ public class HiRCAChinese11 {
 	public void chineseLevel3SelectionsSUEP6th(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Verify all selections here
 		String tr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
 		softly.assertThat(tr).as("test data").isEqualTo("3.6.1 要求有遗漏");
@@ -116,7 +120,18 @@ public class HiRCAChinese11 {
 		String tr17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[36]/td[1]"))).getText();
 		softly.assertThat(tr17).as("test data").isEqualTo("3.7.9 审查不到位");
 		String tr18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[38]/td[1]"))).getText();
-		softly.assertThat(tr18).as("test data").isEqualTo("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
+		if(browserName.contains("safari"))
+		{
+			softly.assertThat(tr18).as("test data").contains("3.7.10 维修不到位:");
+			softly.assertThat(tr18).as("test data").contains("(1) 预见性维修不到位 ");
+			softly.assertThat(tr18).as("test data").contains("(2) 预防性维修不到位 ");
+			softly.assertThat(tr18).as("test data").contains("3) 纠正性维修不到位 ");
+			softly.assertThat(tr18).as("test data").contains("(4) 修后试验不到位 ");
+			softly.assertThat(tr18).as("test data").contains("(5) 故障查找和根本原因分析不到位 ");
+			softly.assertThat(tr18).as("test data").contains("(6) 维修失误");
+		}
+		else
+			softly.assertThat(tr18).as("test data").isEqualTo("3.7.10 维修不到位: (1) 预见性维修不到位 (2) 预防性维修不到位 3) 纠正性维修不到位 (4) 修后试验不到位 (5) 故障查找和根本原因分析不到位 (6) 维修失误");
 		String tr19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]"))).getText();
 		softly.assertThat(tr19).as("test data").isEqualTo("3.8.1 规则编写人经验不足，使用了模糊的或需自行判断的字词（例如，\"根据情况\"、\"根据需要\"、\"必要时\"等等）");
 		String tr20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[42]/td[1]"))).getText();
@@ -175,197 +190,199 @@ public class HiRCAChinese11 {
 		softly.assertThat(tr).as("test data").isEqualTo("3.2.1 组长强化标准方面的管理能力不足");
 		String tr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[4]/td[1]"))).getText();
 		System.out.println(tr1);
-		softly.assertThat(tr1).as("test data").isEqualTo("3.2.2 组长绩效反馈方面的管理能力不足");
+		softly.assertThat(tr1).as("test data").isEqualTo("3.2.1 组长强化标准方面的管理能力不足");//"3.2.2 组长绩效反馈方面的管理能力不足"
 		String tr2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[6]/td[1]"))).getText();
 		System.out.println(tr2);
-		softly.assertThat(tr2).as("test data").isEqualTo("3.2.3 组长召开经验反馈的管理技能不足");
+		softly.assertThat(tr2).as("test data").isEqualTo("3.2.1 组长强化标准方面的管理能力不足");//"3.2.3 组长召开经验反馈的管理技能不足"
 		String tr3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[8]/td[1]"))).getText();
 		System.out.println(tr3);
-		softly.assertThat(tr3).as("test data").isEqualTo("3.2.4 组长在岗培训方面管理能力不足");
+		softly.assertThat(tr3).as("test data").isEqualTo("3.2.2 组长绩效反馈方面的管理能力不足");//"3.2.4 组长在岗培训方面管理能力不足"
 		String tr4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[10]/td[1]"))).getText();
 		System.out.println(tr4);
-		softly.assertThat(tr4).as("test data").isEqualTo("3.2.5 组长对团队缺点认识不足，缺乏相应弥补措施");
+		softly.assertThat(tr4).as("test data").isEqualTo("3.2.2 组长绩效反馈方面的管理能力不足");//"3.2.5 组长对团队缺点认识不足，缺乏相应弥补措施"
 		String tr5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[12]/td[1]"))).getText();
 		System.out.println(tr5);
-		softly.assertThat(tr5).as("test data").isEqualTo("3.2.6 组长发出指令和后续贯彻的沟通及协调能力不足");
+		softly.assertThat(tr5).as("test data").isEqualTo("3.2.2 组长绩效反馈方面的管理能力不足");//"3.2.6 组长发出指令和后续贯彻的沟通及协调能力不足"
 		String tr6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[14]/td[1]"))).getText();
 		System.out.println(tr6);
-		softly.assertThat(tr6).as("test data").isEqualTo("3.3.1 经理团队资源分配不到位");
+		softly.assertThat(tr6).as("test data").isEqualTo("3.2.3 组长召开经验反馈的管理技能不足");//"3.3.1 经理团队资源分配不到位"
 		String tr7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[16]/td[1]"))).getText();
 		System.out.println(tr7);
-		softly.assertThat(tr7).as("test data").isEqualTo("3.3.2 经理团队所需培训开展不充分");
+		softly.assertThat(tr7).as("test data").isEqualTo("3.2.3 组长召开经验反馈的管理技能不足");//"3.3.2 经理团队所需培训开展不充分"
 		String tr8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[18]/td[1]"))).getText();
 		System.out.println(tr8);
-		softly.assertThat(tr8).as("test data").isEqualTo("3.3.3 经理团队问责制不到位");
+		softly.assertThat(tr8).as("test data").isEqualTo("3.2.3 组长召开经验反馈的管理技能不足");//"3.3.3 经理团队问责制不到位"
 		String tr9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[20]/td[1]"))).getText();
 		System.out.println(tr9);
-		softly.assertThat(tr9).as("test data").isEqualTo("3.3.4 经理团队对确定工作优先级和计划方面不到位");
+		softly.assertThat(tr9).as("test data").isEqualTo("3.2.4 组长在岗培训方面管理能力不足");//"3.3.4 经理团队对确定工作优先级和计划方面不到位"
 		String tr10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[22]/td[1]"))).getText();
 		System.out.println(tr10);
-		softly.assertThat(tr10).as("test data").isEqualTo("3.3.5 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障");
+		softly.assertThat(tr10).as("test data").isEqualTo("3.2.4 组长在岗培训方面管理能力不足");//"3.3.5 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障"
 		String tr11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[24]/td[1]"))).getText();
 		System.out.println(tr11);
-		softly.assertThat(tr11).as("test data").isEqualTo("3.3.6 经理团队绩效跟踪与趋势分析不到位");
+		softly.assertThat(tr11).as("test data").isEqualTo("3.2.4 组长在岗培训方面管理能力不足");//"3.3.6 经理团队绩效跟踪与趋势分析不到位"
 		String tr12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[26]/td[1]"))).getText();
 		System.out.println(tr12);
-		softly.assertThat(tr12).as("test data").isEqualTo("3.3.7 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任");
+		softly.assertThat(tr12).as("test data").isEqualTo("3.2.5 组长对团队缺点认识不足，缺乏相应弥补措施");//"3.3.7 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任"
 		String tr13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[28]/td[1]"))).getText();
 		System.out.println(tr13);
-		softly.assertThat(tr13).as("test data").isEqualTo("3.3.8 经理团队纠正行动不足");
+		softly.assertThat(tr13).as("test data").isEqualTo("3.2.5 组长对团队缺点认识不足，缺乏相应弥补措施");//"3.3.8 经理团队纠正行动不足"
 		String tr14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[30]/td[1]"))).getText();
 		System.out.println(tr14);
-		softly.assertThat(tr14).as("test data").isEqualTo("3.3.9 经理团队垂直沟通体系不完善");
+		softly.assertThat(tr14).as("test data").isEqualTo("3.2.5 组长对团队缺点认识不足，缺乏相应弥补措施");//"3.3.9 经理团队垂直沟通体系不完善"
 		String tr15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[32]/td[1]"))).getText();
 		System.out.println(tr15);
-		softly.assertThat(tr15).as("test data").isEqualTo("3.3.10 经理团队横向沟通体系不完善");
+		softly.assertThat(tr15).as("test data").isEqualTo("3.2.6 组长发出指令和后续贯彻的沟通及协调能力不足");//"3.3.10 经理团队横向沟通体系不完善"
 		String tr16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[34]/td[1]"))).getText();
 		System.out.println(tr16);
-		softly.assertThat(tr16).as("test data").isEqualTo("3.4.1 采取行动前没有思考如何规划（如优先顺序、机会、沟通、时间管理等）");
+		softly.assertThat(tr16).as("test data").isEqualTo("3.2.6 组长发出指令和后续贯彻的沟通及协调能力不足");//"3.4.1 采取行动前没有思考如何规划（如优先顺序、机会、沟通、时间管理等）"
 		String tr17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[36]/td[1]"))).getText();
 		System.out.println(tr17);
-		softly.assertThat(tr17).as("test data").isEqualTo("3.4.2 采取行动前没有考虑易出错的心理状况");
+		softly.assertThat(tr17).as("test data").isEqualTo("3.2.6 组长发出指令和后续贯彻的沟通及协调能力不足");//"3.4.2 采取行动前没有考虑易出错的心理状况"
 		String tr18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[38]/td[1]"))).getText();
 		System.out.println(tr18);
-		softly.assertThat(tr18).as("test data").isEqualTo("3.4.3 采取行动前没有考虑高风险情境（如单项弱点）");
+		softly.assertThat(tr18).as("test data").isEqualTo("3.3.1 经理团队资源分配不到位");//"3.4.3 采取行动前没有考虑高风险情境（如单项弱点）"
 		String tr19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[40]/td[1]"))).getText();
 		System.out.println(tr19);
-		softly.assertThat(tr19).as("test data").isEqualTo("3.4.4 感到疑惑时质疑不充分");
+		softly.assertThat(tr19).as("test data").isEqualTo("3.3.1 经理团队资源分配不到位");//"3.4.4 感到疑惑时质疑不充分"
 		String tr20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[42]/td[1]"))).getText();
 		System.out.println(tr20);
-		softly.assertThat(tr20).as("test data").isEqualTo("3.4.5 任务准备过程中质疑不充分");
+		softly.assertThat(tr20).as("test data").isEqualTo("3.3.2 经理团队所需培训开展不充分");//"3.4.5 任务准备过程中质疑不充分"
 		String tr21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[44]/td[1]"))).getText();
 		System.out.println(tr21);
-		softly.assertThat(tr21).as("test data").isEqualTo("3.5.1 作业前情况警觉（如易出错的精神状态和高风险情况）不充分");
+		softly.assertThat(tr21).as("test data").isEqualTo("3.3.2 经理团队所需培训开展不充分");//"3.5.1 作业前情况警觉（如易出错的精神状态和高风险情况）不充分"
 		String tr22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[46]/td[1]"))).getText();
 		System.out.println(tr22);
-		softly.assertThat(tr22).as("test data").isEqualTo("3.5.2 作业过程中情况警觉（如易出错的精神状态和高风险情况）不充分");
+		softly.assertThat(tr22).as("test data").isEqualTo("3.3.3 经理团队问责制不到位");//"3.5.2 作业过程中情况警觉（如易出错的精神状态和高风险情况）不充分"
 		String tr23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[48]/td[1]"))).getText();
 		System.out.println(tr23);
-		softly.assertThat(tr23).as("test data").isEqualTo("3.5.3 对人员表现的观察技能不足");
+		softly.assertThat(tr23).as("test data").isEqualTo("3.3.3 经理团队问责制不到位");//"3.5.3 对人员表现的观察技能不足"
 		String tr24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[50]/td[1]"))).getText();
 		System.out.println(tr24);
-		softly.assertThat(tr24).as("test data").isEqualTo("3.5.4 对设备性能的观察技能不足");
+		softly.assertThat(tr24).as("test data").isEqualTo("3.3.4 经理团队对确定工作优先级和计划方面不到位");//"3.5.4 对设备性能的观察技能不足"
 		String tr25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[52]/td[1]"))).getText();
 		System.out.println(tr25);
-		softly.assertThat(tr25).as("test data").isEqualTo("3.6.1 要求有遗漏");
+		softly.assertThat(tr25).as("test data").isEqualTo("3.3.4 经理团队对确定工作优先级和计划方面不到位");//"3.6.1 要求有遗漏"
 		String tr26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[54]/td[1]"))).getText();
 		System.out.println(tr26);
-		softly.assertThat(tr26).as("test data").isEqualTo("3.6.2 运行条件有遗漏");
+		softly.assertThat(tr26).as("test data").isEqualTo("3.3.5 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障");//"3.6.2 运行条件有遗漏"
 		String tr27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[56]/td[1]"))).getText();
 		System.out.println(tr27);
-		softly.assertThat(tr27).as("test data").isEqualTo("3.6.3 假设有遗漏");
+		softly.assertThat(tr27).as("test data").isEqualTo("3.3.5 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障");//"3.6.3 假设有遗漏"
 		String tr28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[58]/td[1]"))).getText();
 		System.out.println(tr28);
-		softly.assertThat(tr28).as("test data").isEqualTo("3.6.4 范围有遗漏");
+		softly.assertThat(tr28).as("test data").isEqualTo("3.3.6 经理团队绩效跟踪与趋势分析不到位");//"3.6.4 范围有遗漏"
 		String tr29 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[60]/td[1]"))).getText();
 		System.out.println(tr29);
-		softly.assertThat(tr29).as("test data").isEqualTo("3.6.5 试验或测量有遗漏");
+		softly.assertThat(tr29).as("test data").isEqualTo("3.3.6 经理团队绩效跟踪与趋势分析不到位");//"3.6.5 试验或测量有遗漏"
 		String tr30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[62]/td[1]"))).getText();
 		System.out.println(tr30);
-		softly.assertThat(tr30).as("test data").contains("3.6.6 遗漏以下信息: (1) 目的; (2) 先决条件; (3) 定义; (4) 经验反馈用");
-		softly.assertThat(tr30).as("test data").contains("不准做清单");
-		softly.assertThat(tr30).as("test data").contains("体现; (5) 参考资料; (6) 要求使用者反馈");
+		softly.assertThat(tr30).as("test data").contains("3.3.7 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任");//"3.6.6 遗漏以下信息: (1) 目的; (2) 先决条件; (3) 定义; (4) 经验反馈用"
+	//	softly.assertThat(tr30).as("test data").contains("不准做清单");
+	//	softly.assertThat(tr30).as("test data").contains("体现; (5) 参考资料; (6) 要求使用者反馈");
 		String tr31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[64]/td[1]"))).getText();
 		System.out.println(tr31);
-		softly.assertThat(tr31).as("test data").isEqualTo("3.6.7 审查不到位导致制度有遗漏项");
+		softly.assertThat(tr31).as("test data").isEqualTo("3.3.7 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任");//"3.6.7 审查不到位导致制度有遗漏项"
 		String tr32 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[66]/td[1]"))).getText();
 		System.out.println(tr32);
-		softly.assertThat(tr32).as("test data").isEqualTo("3.6.8 根本原因分析不到位导致制度有遗漏项");
+		softly.assertThat(tr32).as("test data").isEqualTo("3.3.8 经理团队纠正行动不足");//"3.6.8 根本原因分析不到位导致制度有遗漏项"
 		String tr33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[68]/td[1]"))).getText();
 		System.out.println(tr33);
-		softly.assertThat(tr33).as("test data").isEqualTo("3.6.9 纠正措施执行不到位导致制度有遗漏项");
+		softly.assertThat(tr33).as("test data").isEqualTo("3.3.8 经理团队纠正行动不足");//"3.6.9 纠正措施执行不到位导致制度有遗漏项"
 		String tr34 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[70]/td[1]"))).getText();
 		System.out.println(tr34);
-		softly.assertThat(tr34).as("test data").isEqualTo("3.9.1 培训材料在适用性、及时性或实用性方面有所欠缺");
+		softly.assertThat(tr34).as("test data").isEqualTo("3.3.9 经理团队垂直沟通体系不完善");//"3.9.1 培训材料在适用性、及时性或实用性方面有所欠缺"
 		String tr35 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[72]/td[1]"))).getText();
 		System.out.println(tr35);
-		softly.assertThat(tr35).as("test data").isEqualTo("3.9.2 复训频率不高(>> 一年)");
+		softly.assertThat(tr35).as("test data").isEqualTo("3.3.9 经理团队垂直沟通体系不完善");//"3.9.2 复训频率不高(>> 一年)"
 		String tr36 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[74]/td[1]"))).getText();
 		System.out.println(tr36);
-		softly.assertThat(tr36).as("test data").isEqualTo("3.9.3 部门管理层未充分参与培训材料的编写和培训的实施");
+		softly.assertThat(tr36).as("test data").isEqualTo("3.3.10 经理团队横向沟通体系不完善");//"3.9.3 部门管理层未充分参与培训材料的编写和培训的实施"
 		String tr37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[76]/td[1]"))).getText();
 		System.out.println(tr37);
-		softly.assertThat(tr37).as("test data").isEqualTo("3.9.4 未将经验教训充分包含到培训中");
+		softly.assertThat(tr37).as("test data").isEqualTo("3.3.10 经理团队横向沟通体系不完善");//"3.9.4 未将经验教训充分包含到培训中"
 		String tr38 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[78]/td[1]"))).getText();
 		System.out.println(tr38);
-		softly.assertThat(tr38).as("test data").isEqualTo("3.9.5 所需培训开展不充分（脱岗）");
+		softly.assertThat(tr38).as("test data").isEqualTo("3.4.1 采取行动前没有思考如何规划（如优先顺序、机会、沟通、时间管理等）");//"3.9.5 所需培训开展不充分（脱岗）"
 		String tr39 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[80]/td[1]"))).getText();
 		System.out.println(tr39);
-		softly.assertThat(tr39).as("test data").isEqualTo("3.9.6 所需培训开展不充分（在岗）");
+		softly.assertThat(tr39).as("test data").isEqualTo("3.4.2 采取行动前没有考虑易出错的心理状况");//"3.9.6 所需培训开展不充分（在岗）"
 		String tr40 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[82]/td[1]"))).getText();
 		System.out.println(tr40);
-		softly.assertThat(tr40).as("test data").isEqualTo("3.10.1 关键岗位员工的作业授权不充分");
+		softly.assertThat(tr40).as("test data").isEqualTo("3.4.3 采取行动前没有考虑高风险情境（如单项弱点）");//"3.10.1 关键岗位员工的作业授权不充分"
 		String tr41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[84]/td[1]"))).getText();
 		System.out.println(tr41);
-		softly.assertThat(tr41).as("test data").isEqualTo("3.10.2 关键岗位主管和（或）经理授权不充分");
+		softly.assertThat(tr41).as("test data").isEqualTo("3.4.4 感到疑惑时质疑不充分");//"3.10.2 关键岗位主管和（或）经理授权不充分"
 		String tr42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[86]/td[1]"))).getText();
 		System.out.println(tr42);
-		softly.assertThat(tr42).as("test data").isEqualTo("3.10.3 供应商服务（QA/RC、来源检查）授权不充分");
+		softly.assertThat(tr42).as("test data").isEqualTo("3.4.5 任务准备过程中质疑不充分");//"3.10.3 供应商服务（QA/RC、来源检查）授权不充分"
 		String tr43 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[88]/td[1]"))).getText();
 		System.out.println(tr43);
-		softly.assertThat(tr43).as("test data").isEqualTo("3.10.4 现场供应商人员授权不充分");
+		softly.assertThat(tr43).as("test data").isEqualTo("3.5.1 作业前情况警觉（如易出错的精神状态和高风险情况）不充分");//"3.10.4 现场供应商人员授权不充分"
 		String tr44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[90]/td[1]"))).getText();
 		System.out.println(tr44);
-		softly.assertThat(tr44).as("test data").isEqualTo("3.10.5 培训教员授权不充分");
+		softly.assertThat(tr44).as("test data").isEqualTo("3.5.1 作业前情况警觉（如易出错的精神状态和高风险情况）不充分");//"3.10.5 培训教员授权不充分"
 		String tr45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[92]/td[1]"))).getText();
 		System.out.println(tr45);
-		softly.assertThat(tr45).as("test data").isEqualTo("3.11.1 绩效跟踪与趋势分析(PM&T)以及给员工的反馈不到位");
+		softly.assertThat(tr45).as("test data").isEqualTo("3.5.2 作业过程中情况警觉（如易出错的精神状态和高风险情况）不充分");//"3.11.1 绩效跟踪与趋势分析(PM&T)以及给员工的反馈不到位"
 		String tr46 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[94]/td[1]"))).getText();
 		System.out.println(tr46);
-		softly.assertThat(tr46).as("test data").isEqualTo("3.11.2 即时反馈和持续强化(IF&CR)的管理技能不到位");
+		softly.assertThat(tr46).as("test data").isEqualTo("3.5.2 作业过程中情况警觉（如易出错的精神状态和高风险情况）不充分");//"3.11.2 即时反馈和持续强化(IF&CR)的管理技能不到位"
 		String tr47 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[96]/td[1]"))).getText();
 		System.out.println(tr47);
-		softly.assertThat(tr47).as("test data").isEqualTo("3.11.3 用于绩效控制的奖惩制度不到位");
+		softly.assertThat(tr47).as("test data").isEqualTo("3.5.3 对人员表现的观察技能不足");//"3.11.3 用于绩效控制的奖惩制度不到位"
 		String tr48 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[98]/td[1]"))).getText();
 		System.out.println(tr48);
-		softly.assertThat(tr48).as("test data").isEqualTo("3.11.4 问题报告、RCA和纠正行动不到位，给员工的反馈不到位");
+		softly.assertThat(tr48).as("test data").isEqualTo("3.5.3 对人员表现的观察技能不足");//"3.11.4 问题报告、RCA和纠正行动不到位，给员工的反馈不到位"
 		String tr49 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[100]/td[1]"))).getText();
 		System.out.println(tr49);
-		softly.assertThat(tr49).as("test data").isEqualTo("3.11.5 现场观察不充分，给员工的反馈不到位");
+		softly.assertThat(tr49).as("test data").isEqualTo("3.5.4 对设备性能的观察技能不足");//"3.11.5 现场观察不充分，给员工的反馈不到位"
 		String tr50 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[102]/td[1]"))).getText();
 		System.out.println(tr50);
-		softly.assertThat(tr50).as("test data").isEqualTo("3.15.1 员工未经过相互指导的培训，或纠正他人违规情况的培训");
+		softly.assertThat(tr50).as("test data").isEqualTo("3.5.4 对设备性能的观察技能不足");//"3.15.1 员工未经过相互指导的培训，或纠正他人违规情况的培训"
 		String tr51 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[104]/td[1]"))).getText();
 		System.out.println(tr51);
-		softly.assertThat(tr51).as("test data").isEqualTo("3.15.2 未要求员工对纠正他人违规的情况承担责任");
+		softly.assertThat(tr51).as("test data").isEqualTo("3.6.1 要求有遗漏");//"3.15.2 未要求员工对纠正他人违规的情况承担责任"
 		String tr52 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[106]/td[1]"))).getText();
 		System.out.println(tr52);
-		softly.assertThat(tr52).as("test data").isEqualTo("3.15.3 员工未充分理解相关行为规范");
+		softly.assertThat(tr52).as("test data").isEqualTo("3.6.2 运行条件有遗漏");//"3.15.3 员工未充分理解相关行为规范"
 		String tr53 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[108]/td[1]"))).getText();
 		System.out.println(tr53);
-		softly.assertThat(tr53).as("test data").contains("3.15.4 主管未到现场强化");
-		softly.assertThat(tr53).as("test data").contains("同事指导");
+		softly.assertThat(tr53).as("test data").contains("3.6.3 假设有遗漏");//"3.15.4 主管未到现场强化"
+		//softly.assertThat(tr53).as("test data").contains("同事指导");
 		String tr54 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[110]/td[1]"))).getText();
 		System.out.println(tr54);
-		softly.assertThat(tr54).as("test data").contains("3.18.1 盲目信任: 关键信息使用质疑的态度");
-		softly.assertThat(tr54).as("test data").contains("不到位");
+		softly.assertThat(tr54).as("test data").contains("3.6.4 范围有遗漏");//"3.18.1 盲目信任: 关键信息使用质疑的态度"
+		//softly.assertThat(tr54).as("test data").contains("不到位");
 		String tr55 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[112]/td[1]"))).getText();
 		System.out.println(tr55);
-		softly.assertThat(tr55).as("test data").isEqualTo("3.18.2 过度自信: (1) 高估自我效能; (2) 未意识到影响变化; (3) 未寻求他人智慧; (4) 没有从过去中学习; (5) 缺少屏障预防错误发生");
+		softly.assertThat(tr55).as("test data").isEqualTo("3.6.5 试验或测量有遗漏");//"3.18.2 过度自信: (1) 高估自我效能; (2) 未意识到影响变化; (3) 未寻求他人智慧; (4) 没有从过去中学习; (5) 缺少屏障预防错误发生"
 		String tr56 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[114]/td[1]"))).getText();
 		System.out.println(tr56);
-		softly.assertThat(tr56).as("test data").isEqualTo("3.18.3 眼不见心不想: (1) 对低概率/高风险事件的风险控制不到位; (2) 忽略与绩效指标或激励无关的问题; (3) 因忽略相关风险而未设置屏障");
+		softly.assertThat(tr56).as("test data").contains("3.6.6 遗漏以下信息: (1) 目的; (2) 先决条件; (3) 定义; (4) 经验反馈用");//"3.18.3 眼不见心不想: (1) 对低概率/高风险事件的风险控制不到位; (2) 忽略与绩效指标或激励无关的问题; (3) 因忽略相关风险而未设置屏障"
+		softly.assertThat(tr56).as("test data").contains("不准做清单");
+		softly.assertThat(tr56).as("test data").contains("体现; (5) 参考资料; (6) 要求使用者反馈");
 		String tr57 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[116]/td[1]"))).getText();
 		System.out.println(tr57);
-		softly.assertThat(tr57).as("test data").isEqualTo("3.18.4 未能及时止损: (1) 因自满和（或）无知，捍卫过去错误的决定或犹豫不决; (2) 期望通过重复同样的问题处理方法、标准或策略来实现不同的结果");
+		softly.assertThat(tr57).as("test data").isEqualTo("3.6.7 审查不到位导致制度有遗漏项");//"3.18.4 未能及时止损: (1) 因自满和（或）无知，捍卫过去错误的决定或犹豫不决; (2) 期望通过重复同样的问题处理方法、标准或策略来实现不同的结果"
 		String tr58 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[118]/td[1]"))).getText();
 		System.out.println(tr58);
-		softly.assertThat(tr58).as("test data").isEqualTo("3.18.5 陷入两选一的陷阱: 决策、问题解决或计划不充分，未能确保全面考虑多个选择方案进行分析");
+		softly.assertThat(tr58).as("test data").isEqualTo("3.6.8 根本原因分析不到位导致制度有遗漏项");//"3.18.5 陷入两选一的陷阱: 决策、问题解决或计划不充分，未能确保全面考虑多个选择方案进行分析"
 		String tr59 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[120]/td[1]"))).getText();
 		System.out.println(tr59);
-		softly.assertThat(tr59).as("test data").isEqualTo("3.22.1 对规则的现场试验不充分");
+		softly.assertThat(tr59).as("test data").isEqualTo("3.6.9 纠正措施执行不到位导致制度有遗漏项");//"3.22.1 对规则的现场试验不充分"
 		String tr60 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[122]/td[1]"))).getText();
 		System.out.println(tr60);
-		softly.assertThat(tr60).as("test data").isEqualTo("3.22.2 给规则编写人的反馈不充分，从而使其纠正错误规则");
+		softly.assertThat(tr60).as("test data").isEqualTo("3.9.1 培训材料在适用性、及时性或实用性方面有所欠缺");//"3.22.2 给规则编写人的反馈不充分，从而使其纠正错误规则"
 		String tr61 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[124]/td[1]"))).getText();
 		System.out.println(tr61);
-		softly.assertThat(tr61).as("test data").isEqualTo("3.22.3 盲目信任错误规则");
+		softly.assertThat(tr61).as("test data").isEqualTo("3.9.1 培训材料在适用性、及时性或实用性方面有所欠缺");//"3.22.3 盲目信任错误规则"
 		String tr62 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[126]/td[1]"))).getText();
 		System.out.println(tr62);
-		softly.assertThat(tr62).as("test data").isEqualTo("3.22.4 规则审核不到位");
+		softly.assertThat(tr62).as("test data").isEqualTo("3.9.2 复训频率不高(>> 一年)");//"3.22.4 规则审核不到位"
 		String tr63 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[128]/td[1]"))).getText();
 		System.out.println(tr63);
-		softly.assertThat(tr63).as("test data").isEqualTo("3.22.5 工前会、班前会、交底会的规则不充分");
+		softly.assertThat(tr63).as("test data").isEqualTo("3.9.2 复训频率不高(>> 一年)");//"3.22.5 工前会、班前会、交底会的规则不充分"
 	}
 	
 	public List<String> chineseHTMLReport3rdPath (WebDriver driver, SoftAssertions softly) throws Exception {

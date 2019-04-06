@@ -12,8 +12,8 @@ public class deleteNotifications {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 
-	String urlDev= "https://kaleqa.error-free.com/";
-	String urlUS= "https://kale.error-free.com/";
+	public String urlDev= "https://kaleqa.error-free.com/";
+	public String urlUS= "https://kale.error-free.com/";
 
 	public By IFrame = By.xpath("//iframe[@name='pii-iframe-main']");
 	public By StickyPopUp = By.cssSelector(".sticky.border-top-right.sticky-error");

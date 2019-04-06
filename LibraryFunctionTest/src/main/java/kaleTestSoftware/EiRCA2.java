@@ -1,5 +1,7 @@
 package kaleTestSoftware;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
@@ -28,6 +30,49 @@ public class EiRCA2 {
 
 		return("Sanity Test");
 	}
+	
+	public void verifyAdditionalBoxDisappearsWhenAnswerNotChosen(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Q1.2
+		//Select Other mechanical
+		WebElement dropdown1 = driver.findElement(eirca.Step1Q12Answer);
+		Select s1 = new Select(dropdown1);
+		s1.selectByIndex(14);
+		//detect additional box
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox));
+		//Select Choose answer
+		s1.selectByIndex(0);
+		//Detect no extra box
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox));
+		//Select Other elecrical
+		s1.selectByIndex(28);
+		//detect additional box
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox));
+		//Select Choose answer
+		s1.selectByIndex(0);
+		//Detect no extra box
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox));
+		//Q1.3
+		//Select Other mechanical
+		WebElement dropdown2 = driver.findElement(eirca.Step1Q13Answer);
+		Select s2 = new Select(dropdown2);
+		s2.selectByIndex(17);
+		//detect additional box
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox));
+		//Select Choose answer
+		s2.selectByIndex(0);
+		//Detect no extra box
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox));
+		//Select Other elecrical
+		s2.selectByIndex(33);
+		//detect additional box
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox));
+		//Select Choose answer
+		s2.selectByIndex(0);
+		//Detect no extra box
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox));
+	}
 
 	public void detectAdditionalBoxStep1(WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -39,13 +84,13 @@ public class EiRCA2 {
 		//1.2 extra box
 		if(s.contains("Other MECHANICAL related components")||s.contains("Other ELECTRICAL related components"))
 		{
-			tbr.sizeCheck(driver, eirca.EiRCAStep1Q12AnswerTextBox, softly);
+			//tbr.sizeCheck(driver, eirca.EiRCAStep1Q12AnswerTextBox, softly);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox)).sendKeys(textCreate(driver));
 		}
 		//1.3 extra box
 		if(s1.contains("Other MECHANICAL related symptoms")||s1.contains("Other ELECTRICAL related symptoms"))
 		{
-			tbr.sizeCheck(driver, eirca.EiRCAStep1Q13AnswerTextBox, softly);
+			//tbr.sizeCheck(driver, eirca.EiRCAStep1Q13AnswerTextBox, softly);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox)).sendKeys(textCreate(driver));
 		}
 	}
@@ -93,6 +138,7 @@ public class EiRCA2 {
 		//Verify no next button without mandatory dropdowns selected
 		if(driver.findElement(eirca.EiRCANextButton).isDisplayed()==true)
 			softly.fail("Next button visible in Step 1 without selecting 1.1, 1.2, 1.3");
+		verifyAdditionalBoxDisappearsWhenAnswerNotChosen(driver,softly);
 		//Select 1.1 
 		selectDropdown11(driver);
 		Thread.sleep(1000);
@@ -115,11 +161,12 @@ public class EiRCA2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q16AnswerTextBox)).sendKeys(text);
 	}
 	
-	public void createNewEvent(WebDriver driver, String text, SoftAssertions softly) throws Exception {
+	public List<String> createNewEvent(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		WebDriverWait wait1 = new WebDriverWait(driver,3);
-		//Select date
+		WebDriverWait wait1 = new WebDriverWait(driver,1);
+		List<String> dateTime = new ArrayList<String>();
+ 		//Select date
 		//Click on calendar icon
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarIconAddEvent)).click();
 		//Click on - sign
@@ -134,6 +181,7 @@ public class EiRCA2 {
 		{
 
 		}
+		dateTime.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.DateField)).getAttribute("value"));
 		//Select time
 		//Click on clock icon
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockIconAddEvent)).click();
@@ -147,6 +195,7 @@ public class EiRCA2 {
 		{
 
 		}
+		dateTime.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.TimeField)).getAttribute("value"));
 		//Enter text in what happened
 		tbr.sizeCheck(driver, eirca.WhatHappenedField, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.WhatHappenedField)).sendKeys(text);
@@ -155,6 +204,7 @@ public class EiRCA2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.WhatIsSupposedToHappenField)).sendKeys(text);
 		//Click on add sign
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EventAddSign)).click();
+		return dateTime;
 	}
 	
 	public void verifyStickySaveReport(WebDriver driver, SoftAssertions softly, String username, String reportTitle, int n) throws Exception {

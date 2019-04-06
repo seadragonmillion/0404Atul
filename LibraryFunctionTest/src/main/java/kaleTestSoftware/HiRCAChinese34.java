@@ -2,7 +2,9 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,7 +18,13 @@ public class HiRCAChinese34 {
 		//Scroll down
 		share.scrollToAPoint(driver, 1300);
 		//Click on add contributing factor
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).click();
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button")));
+		//Scroll to element
+		share.scrollToElement(driver, l);
+		//Click on add new contributing factor
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].focus();", l);
+		executor.executeScript("arguments[0].click();", l);
 		//Scroll down
 		share.scrollToAPoint(driver, 1400);
 		//Verify all labels

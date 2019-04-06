@@ -702,7 +702,7 @@ public class EiRCAChinese {
 		softly.assertThat(s19).as("test data").contains("1.2: 故障部件是什么？");
 		c.add(s19);
 		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable4Row2Column2)).getText();
-		softly.assertThat(s20).as("test data").contains("---- 其他机械相关部件 ----");
+		softly.assertThat(s20).as("test data").contains("---- 其他电气与仪控相关部件");
 		c.add(s20);
 		//Row 3
 		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable4Row3Column1)).getText();
@@ -743,7 +743,7 @@ public class EiRCAChinese {
 		//Heading before Table 6
 		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable6Title)).getText();
 		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
-		c.add(s30);
+		c.add(s30);/*
 		//Subtitle before Table 6
 		String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable6SubTitle1)).getText();
 		softly.assertThat(s31).as("test data").contains("1. 失效模式:");
@@ -793,7 +793,7 @@ public class EiRCAChinese {
 		//Row 6
 		String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable6Row6)).getText();
 		softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
-		c.add(s43);
+		c.add(s43);*/
 		//Heading before Table 7
 		String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable7Title)).getText();
 		softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");
@@ -1204,7 +1204,7 @@ public class EiRCAChinese {
 		softly.assertThat(s19).as("test data").contains("1.2: 故障部件是什么？");
 		c.add(s19);
 		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable5Row2Column2)).getText();
-		softly.assertThat(s20).as("test data").contains("---- 其他机械相关部件 ----");
+		softly.assertThat(s20).as("test data").contains("---- 其他电气与仪控相关部件");
 		c.add(s20);
 		//Row 3
 		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable5Row3Column1)).getText();
@@ -1242,8 +1242,8 @@ public class EiRCAChinese {
 		String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable6Row1Column2)).getText();
 		softly.assertThat(s29).as("test data").contains("不适用");
 		//Heading before Table 7
-		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Title)).getText();
-		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
+		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLSkippedStep3Message)).getText();
+		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");/*
 		c.add(s30);
 		//Subtitle before Table 7
 		String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7SubTitle1)).getText();
@@ -1294,11 +1294,11 @@ public class EiRCAChinese {
 		//Row 6
 		String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Row6)).getText();
 		softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
-		c.add(s43);
+		c.add(s43);*/
 		//Heading before Table 8
-		String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable8Title)).getText();
+		String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLSkippedStep4Message)).getText();
 		softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");
-		c.add(s44);
+		c.add(s44);/*
 		//Subtitle before Table 8
 		String s45 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable8SubTitle1)).getText();
 		softly.assertThat(s45).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
@@ -1364,7 +1364,7 @@ public class EiRCAChinese {
 		softly.assertThat(s64).as("test data").contains("4.7: 能否获得更多的数据来排除该故障模式？");
 		c.add(s64);
 		String s65 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable8Row7Column2)).getText();
-		softly.assertThat(s65).as("test data").contains("不适用");
+		softly.assertThat(s65).as("test data").contains("不适用");*/
 		//Skipped Step 5 message
 		String s66 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLSkippedStep5Message)).getText();
 		softly.assertThat(s66).as("test data").contains("第五步 - 识别可能的促成因素 (skipped)");
@@ -1552,7 +1552,7 @@ public class EiRCAChinese {
 		softly.assertThat(s15).as("test data").contains("1.2: 故障部件是什么？");
 		c.add(s15);
 		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable4Row2Column2)).getText();
-		softly.assertThat(s16).as("test data").contains("---- 其他机械相关部件 ----");
+		softly.assertThat(s16).as("test data").contains("---- 其他电气与仪控相关部件");
 		c.add(s16);
 		//Row 3
 		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable4Row3Column1)).getText();
@@ -1596,7 +1596,7 @@ public class EiRCAChinese {
 		c.add(s26);
 		//Text before Table 6
 		String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2HTMLTable6SubTitle1Part1)).getText();
-		softly.assertThat(s31).as("test data").contains("1. 失效模式:");
+		softly.assertThat(s31).as("test data").contains("失效模式:");
 		c.add(s31);
 		String s32 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2HTMLTable6SubTitle1Part2)).getText();
 		softly.assertThat(s32).as("test data").contains("[排除]");
@@ -1673,10 +1673,10 @@ public class EiRCAChinese {
 		//Skipped Step 4 message
 		String s56 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2HTMLSkippedStep4MessagePart1)).getText();
 		softly.assertThat(s56).as("test data").contains("第四步 - 发生概率和行动");
-		c.add(s56);
+		c.add(s56);/*
 		String s57 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2HTMLSkippedStep4MessagePart2)).getText();
 		softly.assertThat(s57).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
-		c.add(s57);
+		c.add(s57);*/
 		//Skipped Step 5 message
 		String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2HTMLSkippedStep5Message)).getText();
 		softly.assertThat(s58).as("test data").contains("第五步 - 识别可能的促成因素 (skipped)");
@@ -1751,7 +1751,7 @@ public class EiRCAChinese {
 		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable4Row2Column1)).getText();
 		softly.assertThat(s19).as("test data").contains("1.2: 故障部件是什么？");
 		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable4Row2Column2)).getText();
-		softly.assertThat(s20).as("test data").contains("---- 其他机械相关部件 ----");
+		softly.assertThat(s20).as("test data").contains("---- 其他电气与仪控相关部件");
 		//Row 3
 		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable4Row3Column1)).getText();
 		softly.assertThat(s21).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
@@ -1781,7 +1781,7 @@ public class EiRCAChinese {
 		softly.assertThat(s29).as("test data").contains("不适用");
 		//Heading before Table 6
 		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable6Title)).getText();
-		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
+		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");/*
 		//Subtitle before Table 6
 		String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable6SubTitle1)).getText();
 		softly.assertThat(s31).as("test data").contains("1. 失效模式:");
@@ -1819,7 +1819,7 @@ public class EiRCAChinese {
 		softly.assertThat(s42).as("test data").contains("3.5: 该故障模式可以因为缺乏必要的环境来影响故障机理而被排除");
 		//Row 6
 		String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable6Row6)).getText();
-		softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
+		softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");*/
 		//Heading before Table 7
 		String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable7Title)).getText();
 		softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");
@@ -2108,7 +2108,7 @@ public class EiRCAChinese {
 		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable4Row2Column1)).getText();
 		softly.assertThat(s15).as("test data").contains("1.2: 故障部件是什么？");
 		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable4Row2Column2)).getText();
-		softly.assertThat(s16).as("test data").contains("---- 其他机械相关部件 ----");
+		softly.assertThat(s16).as("test data").contains("---- 其他电气与仪控相关部件");
 		//Row 3
 		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable4Row3Column1)).getText();
 		softly.assertThat(s17).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
@@ -2141,7 +2141,7 @@ public class EiRCAChinese {
 		softly.assertThat(s26).as("test data").contains("第三步 - 排除失效模式");
 		//Text before Table 6
 		String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2ReportTabTable6SubTitle1Part1)).getText();
-		softly.assertThat(s31).as("test data").contains("1. 失效模式:");
+		softly.assertThat(s31).as("test data").contains("失效模式:");
 		String s32 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2ReportTabTable6SubTitle1Part2)).getText();
 		softly.assertThat(s32).as("test data").contains("[排除]");
 		String s33 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2ReportTabTable6SubTitle2)).getText();
@@ -2203,9 +2203,9 @@ public class EiRCAChinese {
 		softly.assertThat(s55).as("test data").contains("是");
 		//Skipped Step 4 message
 		String s56 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2ReportTabSkippedStep4MessagePart1)).getText();
-		softly.assertThat(s56).as("test data").contains("第四步 - 发生概率和行动");
+		softly.assertThat(s56).as("test data").contains("第四步 - 发生概率和行动");/*
 		String s57 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2ReportTabSkippedStep4MessagePart2)).getText();
-		softly.assertThat(s57).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
+		softly.assertThat(s57).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");*/
 		//Skipped Step 5 message
 		String s58 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path2ReportTabSkippedStep5Message)).getText();
 		softly.assertThat(s58).as("test data").contains("第五步 - 识别可能的促成因素 (skipped)");
@@ -2281,7 +2281,7 @@ public class EiRCAChinese {
 		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable5Row2Column1)).getText();
 		softly.assertThat(s19).as("test data").contains("1.2: 故障部件是什么？");
 		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable5Row2Column2)).getText();
-		softly.assertThat(s20).as("test data").contains("---- 其他机械相关部件 ----");
+		softly.assertThat(s20).as("test data").contains("---- 其他电气与仪控相关部件");
 		//Row 3
 		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable5Row3Column1)).getText();
 		softly.assertThat(s21).as("test data").contains("1.3: 故障部件的主要故障症状是什么？");
@@ -2310,8 +2310,8 @@ public class EiRCAChinese {
 		String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable6Row1Column2)).getText();
 		softly.assertThat(s29).as("test data").contains("不适用");
 		//Heading before Table 7
-		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable7Title)).getText();
-		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
+		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabSkippedStep3Message)).getText();
+		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");/*
 		//Subtitle before Table 7
 		String s31 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable7SubTitle1)).getText();
 		softly.assertThat(s31).as("test data").contains("1. 失效模式:");
@@ -2349,10 +2349,10 @@ public class EiRCAChinese {
 		softly.assertThat(s42).as("test data").contains("3.5: 该故障模式可以因为缺乏必要的环境来影响故障机理而被排除");
 		//Row 6
 		String s43 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable7Row6)).getText();
-		softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");
+		softly.assertThat(s43).as("test data").contains("3.6: 该故障可以因为缺乏某一必要的故障症状而被排除");*/
 		//Heading before Table 8
-		String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable8Title)).getText();
-		softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");
+		String s44 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabSkippedStep4Message)).getText();
+		softly.assertThat(s44).as("test data").contains("第四步 - 发生概率和行动");/*
 		//Subtitle before Table 8
 		String s45 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable8SubTitle1)).getText();
 		softly.assertThat(s45).as("test data").contains("未排除的失效模式是根据最高的可能性到最低可能性显示。");
@@ -2405,7 +2405,7 @@ public class EiRCAChinese {
 		String s64 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable8Row7Column1)).getText();
 		softly.assertThat(s64).as("test data").contains("4.7: 能否获得更多的数据来排除该故障模式？");
 		String s65 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable8Row7Column2)).getText();
-		softly.assertThat(s65).as("test data").contains("不适用");
+		softly.assertThat(s65).as("test data").contains("不适用");*/
 		//Skipped Step 5 message
 		String s66 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabSkippedStep5Message)).getText();
 		softly.assertThat(s66).as("test data").contains("第五步 - 识别可能的促成因素 (skipped)");
@@ -3005,7 +3005,7 @@ public class EiRCAChinese {
 		String s14 = ele.findElement(eirca.AnswerOption12).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("焊接");
 		String s15 = ele.findElement(eirca.AnswerOption13).getText();
-		softly.assertThat(s15).as("test data").isEqualTo("---- 其他机械相关部件 ----");
+		softly.assertThat(s15).as("test data").isEqualTo("---- 其他机械相关部件");
 		String s16 = ele.findElement(eirca.AnswerOption14).getText();
 		softly.assertThat(s16).as("test data").isEqualTo("控制系统");
 		String s17 = ele.findElement(eirca.AnswerOption15).getText();
@@ -3033,7 +3033,7 @@ public class EiRCAChinese {
 		String s28 = ele.findElement(eirca.AnswerOption26).getText();
 		softly.assertThat(s28).as("test data").isEqualTo("可编程逻辑控制器（PLC）");
 		String s29 = ele.findElement(eirca.AnswerOption27).getText();
-		softly.assertThat(s29).as("test data").isEqualTo("---- 其他电气与仪控相关部件 ----");
+		softly.assertThat(s29).as("test data").isEqualTo("---- 其他电气与仪控相关部件");
 	}
 
 	public void chineseStep1Answers11 (WebDriver driver) throws Exception {

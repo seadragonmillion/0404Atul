@@ -329,19 +329,86 @@ public class ShareCheck {
 		System.out.println("Number of notifications: "+count);
 		int n= Integer.parseInt(count);
 		Thread.sleep(2000);
-		//Click on notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
-		Thread.sleep(1000);
-		if(browserName.equals("firefox")==false)
+		//Click on notification bell
+		while(true)
 		{
-			scrollToTop(driver);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+			try{
+				if(driver.findElement(share.NotificationFirstRecord).isDisplayed())
+					break;
+			}catch(org.openqa.selenium.NoSuchElementException r)
+			{
+				continue;
+			}
 		}
+		scrollToTop(driver);
 		//Click on 1st record/notification
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
-		//Wait for loading message to disappear
+		while(true)
+		{
+			if(browserName.equals("safari")||browserName.equals("firefox"))
+			{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			}
+			else
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+			}
+			if(driver.findElement(share.NotificationOpenButton).isEnabled())
+				break;		
+		}
 		share2.loadingServer(driver);
+		//Click on Open Report button
+		while(true)
+		{
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+			}
+			catch(org.openqa.selenium.WebDriverException r)
+			{
+				while(true)
+				{
+					if(browserName.equals("safari")||browserName.equals("firefox"))
+					{
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					}
+					else
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+					}
+					if(driver.findElement(share.NotificationOpenButton).isEnabled())
+						break;		
+				}
+				share2.loadingServer(driver);
+			}
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			try{
+				if(driver.findElement(share.ModuleTitle).isDisplayed())
+					break;
+			}catch(org.openqa.selenium.NoSuchElementException r)
+			{
+				if(driver.findElement(share.NotificationOpenButton).isEnabled())
+					continue;
+				else
+				{
+					while(true)
+					{
+						if(browserName.equals("safari")||browserName.equals("firefox"))
+						{
+							executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+						}
+						else
+						{
+							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						}
+						if(driver.findElement(share.NotificationOpenButton).isEnabled())
+							break;		
+					}
+					share2.loadingServer(driver);
+				}
+			}
+		}
 		share2.loadingServer(driver);
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(share.ModuleTitle)).getText();
 		if(s.contains("iRCA")||s.contains("SPV Error Meter")||s.contains("Remote Verification"))
@@ -363,8 +430,7 @@ public class ShareCheck {
 					downloadReportIE11(driver);
 			}
 		}
-		Thread.sleep(2000);
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		if(browserName.equals("internet explorer"))
 		{
 			Actions act = new Actions (driver);
@@ -403,7 +469,7 @@ public class ShareCheck {
 					{
 						ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 						try{
-						act.click(ele).build().perform();
+							act.click(ele).build().perform();
 						}catch(org.openqa.selenium.WebDriverException w)
 						{
 							continue;
