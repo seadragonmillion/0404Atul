@@ -51,14 +51,15 @@ public class ChromeTest {
 	@Test
 	public void test() throws Exception {
 		Login obj = new Login ();
+		HiRCAStress obj1 = new HiRCAStress();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(7000);
+		//Thread.sleep(7000);
 		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		try{
 			if (login==1)
 			{
@@ -68,19 +69,19 @@ public class ChromeTest {
 		}catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
 			throw e;
 		}
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		//upload 10 images
-		HiRCAStress.HiRCAUpload10Images(driver);
+		obj1.HiRCAUpload10Images(driver);
 		//Logout
 		obj.logout(driver);
-		afterTest();
+		afterTest(obj1);
 	}
 
-	public static void afterTest() throws Exception{
+	public static void afterTest(HiRCAStress obj) throws Exception{
 
 		//Browser closes
 		driver.quit();
-		HiRCAStress.softAssert();
+		obj.softAssert();
 	}
 
 }
