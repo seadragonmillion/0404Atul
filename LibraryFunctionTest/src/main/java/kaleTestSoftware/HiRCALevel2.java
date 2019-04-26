@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -196,9 +194,14 @@ public class HiRCALevel2 {
 		share.scrollToTop(driver);
 		//Decide order of new LOP selected
 		digits.remove(0);
-		digits.add(y);
+		String s = driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label")).getAttribute("for");
+		System.out.println(s);
+		String digit = s.substring(s.length()-1,s.length());
+		digits.add(Integer.parseInt(digit));
 		Collections.sort(digits);
-		int index = digits.indexOf(y);
+		System.out.println(digits);
+		int index = digits.indexOf(Integer.parseInt(digit));
+		System.out.println(index);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		if(index==0)
@@ -224,7 +227,7 @@ public class HiRCALevel2 {
 				//Click next
 				try{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-				}catch(org.openqa.selenium.ElementClickInterceptedException r)
+				}catch(org.openqa.selenium.WebDriverException r)
 				{
 					share.scrollToTop(driver);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -247,7 +250,7 @@ public class HiRCALevel2 {
 				//Click next
 				try{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-				}catch(org.openqa.selenium.ElementClickInterceptedException r)
+				}catch(org.openqa.selenium.WebDriverException r)
 				{
 					share.scrollToTop(driver);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -433,10 +436,16 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
@@ -445,7 +454,7 @@ public class HiRCALevel2 {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		pdfCheckChangeCorrectiveAction(correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 		Thread.sleep(4000);
 		driver.close();
@@ -579,7 +588,7 @@ public class HiRCALevel2 {
 	public void changeCorrectiveAction (WebDriver driver, List<String> level31stLOP, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		List<String> text = em2.error50Data(driver);
+		List<String> text = em2.error50Data(driver,driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(text).iterator();
 		if(level31stLOP.isEmpty()==false)
 		{			
@@ -981,10 +990,16 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
@@ -993,7 +1008,7 @@ public class HiRCALevel2 {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 		Thread.sleep(4000);
 		driver.close();

@@ -24,11 +24,11 @@ public class TermSearchHuman {
 	public String term_human = "animal bite";
 
 	CaseBrowse cb1  = new CaseBrowse();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
 	LoginPageObj lpo = new LoginPageObj();
-	CreateHumanCase human = new CreateHumanCase();
+	CreateHumanCasePageObj human = new CreateHumanCasePageObj();
 	CreateEquipPageObj equip = new CreateEquipPageObj();
 	TermSearchEQ tse = new TermSearchEQ();
 	ShareCheck2 share2 = new ShareCheck2();

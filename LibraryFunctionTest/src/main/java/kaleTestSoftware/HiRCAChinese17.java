@@ -524,7 +524,10 @@ public class HiRCAChinese17 {
 		String b1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText();
 		softly.assertThat(b1).as("test data").contains("开启");
 		String b2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
-		softly.assertThat(b2).as("test data").contains("打印");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(b2).as("test data").contains("下载");
+		else
+			softly.assertThat(b2).as("test data").contains("打印");
 		String b3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText();
 		softly.assertThat(b3).as("test data").contains("删除");
 		String b4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).getText();

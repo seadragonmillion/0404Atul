@@ -25,7 +25,9 @@ public class CreateHumanCase {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
 	ShareCheck share = new ShareCheck();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
+	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
+	CreateHumanCase2 chc2 = new CreateHumanCase2();
 	
 	int numberOfImages=5;
 	public String keyword_same="QAAfive";
@@ -49,82 +51,7 @@ public class CreateHumanCase {
 	public String key3USie11="QAAie11horseUS";
 	public String titleUSie11 ="QAA US IE11 Human Case Upload";
 
-	//User dropdown
-	public By AdminOption = By.id("pii-user-admin");
-
-	public By ErrorFreeBankTopLink = By.xpath(".//*[@id='links']/a[4]");
-
-	//User Management
-	public By ErrorFreeBankAdminLink = By.xpath(".//*[@id='pii-admin-efbank']/h3/a");
-	public By HumanCasesLink = By.id("pii-admin-efsh-manage-button");
-	public By HumanCaseSearchCaseIDAdmin = By.id("pii-admin-efsh-list-input");
-	public By HumanCaseSearchCaseIDDropdownAdmin = By.id("pii-admin-efsh-list-ul");
-	public By HumanCaseDeleteButton = By.id("pii-admin-efsh-button-delete");
-	public By HumanCaseAdminPopupTitle = By.id("pii-admin-efsh-dialog-title");
-	public By HumanCaseAdminPopupConfirmButton = By.id("pii-admin-efsh-dialog-confirmed");
-	public By HumanCaseNewButton = By.id("pii-admin-efsh-button-new");
-	public By HumanCaseIDField = By.id("pii-admin-efsh-id");
-	public By HumanCaseIDFieldError = By.id("pii-admin-efsh-id-error");
-	public By HumanCaseSlideError = By.id("pii-admin-efsh-upload-file-input-error");
-	public By HumanCaseQuestion = By.id("pii-admin-efsh-question");
-	public By HumanCaseAnswer = By.id("pii-admin-efsh-answer");
-	public By HumanCaseKeywordNewField = By.id("pii-admin-efsh-keyword-search-input");
-	public By HumanCaseKeywordNewAddButton = By.id("pii-admin-efsh-keyword-new");
-	public By HumanCaseKeywordExistingList = By.xpath(".//*[@id='pii-admin-efsh-keyword-blocks']/div[2]/ul");
-	public By FirstAndLastChildInList = By.cssSelector(".ui-first-child.ui-last-child");
-	public By HumanCaseTaskNewField = By.id("pii-admin-efsh-task-search-input");
-	public By HumanCaseTaskNewAddButton = By.id("pii-admin-efsh-task-new");
-	public By HumanCaseTaskExistingList = By.xpath(".//*[@id='pii-admin-efsh-task-blocks']/div[2]/ul");
-	public By HumanCasePurposeNewField = By.id("pii-admin-efsh-purpose-search-input");
-	public By HumanCasePurposeNewAddButton = By.id("pii-admin-efsh-purpose-new");
-	public By HumanCasePurposeExistingList = By.xpath(".//*[@id='pii-admin-efsh-purpose-blocks']/div[2]/ul");
-	public By HumanCaseConditionNewField = By.id("pii-admin-efsh-condition-search-input");
-	public By HumanCaseConditionNewAddButton = By.id("pii-admin-efsh-condition-new");
-	public By HumanCaseConditionExistingList = By.xpath(".//*[@id='pii-admin-efsh-condition-blocks']/div[2]/ul");
-	public By HumanCaseImageInputField = By.id("pii-admin-efsh-upload-file-input");
-	public By HumanCaseImageInputCollapsible = By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a");
-	public By HumanCaseSlidesDivContainingErrorDottedLine = By.xpath(".//*[@id='pii-admin-efsh-upload-form']/div[2]/div[1]");
-	public By HumanCaseSaveButton = By.id("pii-admin-efsh-button-save");
-	public By HumanCaseEditButton = By.id("pii-admin-efsh-button-edit");
-	public By HumanCaseExistingKeywordOnlyOne = By.xpath(".//*[@id='pii-admin-efsh-keyword-form']/div/ul/li/a");
-	public By HumanCaseExistingTaskOnlyOne = By.xpath(".//*[@id='pii-admin-efsh-task-form']/div/ul/li/a");
-	public By HumanCaseExistingPurposeOnlyOne = By.xpath(".//*[@id='pii-admin-efsh-purpose-form']/div/ul/li/a");
-	public By HumanCaseExistingConditionOnlyOne = By.xpath(".//*[@id='pii-admin-efsh-condition-form']/div/ul/li/a");
-	public By HumanCasesLink1Title = By.id("pii-admin-efsh-linktitle-0");
-	public By HumanCasesLink1URL = By.id("pii-admin-efsh-linkurl-0");
-	public By HumanCasesLink2Title = By.id("pii-admin-efsh-linktitle-1");
-	public By HumanCasesLink2URL = By.id("pii-admin-efsh-linkurl-1");
-	public By HumanCasesLink3Title = By.id("pii-admin-efsh-linktitle-2");
-	public By HumanCasesLink3URL = By.id("pii-admin-efsh-linkurl-2");
-	public By HumanCasesLink4Title = By.id("pii-admin-efsh-linktitle-3");
-	public By HumanCasesLink4URL = By.id("pii-admin-efsh-linkurl-3");
-	public By HumanCasesLink5Title = By.id("pii-admin-efsh-linktitle-4");
-	public By HumanCasesLink5URL = By.id("pii-admin-efsh-linkurl-4");
-	public By HumanCasesLink6Title = By.id("pii-admin-efsh-linktitle-5");
-	public By HumanCasesLink6URL = By.id("pii-admin-efsh-linkurl-5");
-	public By HumanCasesLink7Title = By.id("pii-admin-efsh-linktitle-6");
-	public By HumanCasesLink7URL = By.id("pii-admin-efsh-linkurl-6");
-	public By HumanCasesLink8Title = By.id("pii-admin-efsh-linktitle-7");
-	public By HumanCasesLink8URL = By.id("pii-admin-efsh-linkurl-7");
-	public By HumanCasesLink9Title = By.id("pii-admin-efsh-linktitle-8");
-	public By HumanCasesLink9URL = By.id("pii-admin-efsh-linkurl-8");
-	public By HumanCasesLink10Title = By.id("pii-admin-efsh-linktitle-9");
-	public By HumanCasesLink10URL = By.id("pii-admin-efsh-linkurl-9");
-	public By HumanCasesLink11Title = By.id("pii-admin-efsh-linktitle-10");
-	public By HumanCasesLink11URL = By.id("pii-admin-efsh-linkurl-10");
-	public By HumanCasesLink12Title = By.id("pii-admin-efsh-linktitle-11");
-	public By HumanCasesLink12URL = By.id("pii-admin-efsh-linkurl-11");
-	public By HumanCasesLink13Title = By.id("pii-admin-efsh-linktitle-12");
-	public By HumanCasesLink13URL = By.id("pii-admin-efsh-linkurl-12");
-	public By HumanCasesLink2VideoCheckbox = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-1']/div[2]/table/tbody/tr[1]/td[1]/div/label");
-	public By HumanCasesLink4VideoCheckbox = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-3']/div[2]/table/tbody/tr[1]/td[1]/div/label");
-	public By HumanCasesLink5VideoCheckbox = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-4']/div[2]/table/tbody/tr[1]/td[1]/div/label");
-	public By HumanCasesLink6VideoCheckbox = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-5']/div[2]/table/tbody/tr[1]/td[1]/div/label");
-	public By HumanCasesLinkTitleOnSide = By.id("pii-admin-efsh-linklabel-0");
-	public By HumanCasesLink1TitleCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-0']/div[1]/div/a");
-	public By HumanCasesLink1URLCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-0']/div[2]/table/tbody/tr[1]/td[2]/div/a");
-	public By HumanCasesLink2TitleCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-1']/div[1]/div/a");
-	public By HumanCasesLink2URLCrossSymbol = By.xpath(".//*[@id='pii-admin-efsh-linkdiv-1']/div[2]/table/tbody/tr[1]/td[2]/div/a");
+	
 	
 	public void checkForErrorWithoutUploadingSlides(WebDriver driver) throws Exception {
 		
@@ -132,14 +59,14 @@ public class CreateHumanCase {
 		//Scroll top
 		share.scrollToTop(driver);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Click ok on error message
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Verify error message on slides
-		String error = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlideError)).getText();
+		String error = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlideError)).getText();
 		softly.assertThat(error).as("test data").isEqualTo("Please select some PNG files with .png extension");
 		//Verify error dotted line present
-		String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
+		String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
 		softly.assertThat(errorDotted).as("test data").contains("error");
 	}
 
@@ -148,7 +75,7 @@ public class CreateHumanCase {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			//Get browser name
 			Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 			String browserName = cap.getBrowserName().toLowerCase();
@@ -156,10 +83,10 @@ public class CreateHumanCase {
 			if (browserName.equals("internet explorer"))
 			{
 				Thread.sleep(2000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			}
 			//Verify the red error message is gone
-			String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
+			String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
 			softly.assertThat(errorDotted).as("test data").doesNotContain("error");
 		}
 	}
@@ -222,43 +149,43 @@ public class CreateHumanCase {
 			//Clicks on admin user name on top right corner
 			wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 			//Clicks on admin option
-			wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 			Thread.sleep(1000);
 			//Clicks on Errorfree bank option
-			if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+			if (driver.findElement(chc.HumanCasesLink).isDisplayed()==false)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 			}
 			//Clicks on Human cases
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share.scrollToTop(driver);
 			//CLick on enter case id
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
 			Thread.sleep(2000);
 			//Clicks on case id
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on delete button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseDeleteButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseDeleteButton)).click();
 			//Clicks on delete case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share.scrollToTop(driver);
 			//Checks if case deleted
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(Keys.ENTER);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(Keys.ENTER);
 			Thread.sleep(1000);
-			if(driver.findElement(HumanCaseSearchCaseIDDropdownAdmin).isDisplayed()==false)
+			if(driver.findElement(chc.HumanCaseSearchCaseIDDropdownAdmin).isDisplayed()==false)
 				System.out.println("Case deleted: "+caseID.get(i));		
 			else softly.fail("Case did not get deleted: "+caseID.get(i) );
 		}
@@ -270,84 +197,84 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
-		if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+		if (driver.findElement(chc.HumanCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to 2nd Link title
-		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title));
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
 		share.scrollToElement(driver, l);
 		//Click on delete link 2 cross symbol of Title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1TitleCrossSymbol)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1TitleCrossSymbol)).click();
 		Thread.sleep(500);
 		//Click on delete link 2 cross symbol of URL
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URLCrossSymbol)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URLCrossSymbol)).click();
 		Thread.sleep(500);
 		//Save case
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to 1st Link title
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
 		share.scrollToElement(driver, l);
 		for(int i=1;i<=12;i++)
 		{
 			//Click on delete link 2 cross symbol of Title
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1TitleCrossSymbol)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1TitleCrossSymbol)).click();
 			//Click on delete link 2 cross symbol of URL
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URLCrossSymbol)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URLCrossSymbol)).click();
 			Thread.sleep(500);
 		}
 		//Save case
@@ -355,23 +282,23 @@ public class CreateHumanCase {
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Verify no text from previous links present in text boxes
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title)).getAttribute("textContent");
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).getAttribute("textContent");
 		softly.assertThat(s).as("test data").isEmpty();
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).getAttribute("textContent");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).getAttribute("textContent");
 		softly.assertThat(s1).as("test data").isEmpty();
 		try{
 			WebDriverWait wait1 = new WebDriverWait(driver,3);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2Title));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2Title));
 			softly.fail("after deleting all links still there is an extra link row visible");
 		}catch(org.openqa.selenium.NoSuchElementException |org.openqa.selenium.TimeoutException r)
 		{
@@ -379,7 +306,7 @@ public class CreateHumanCase {
 		}
 		//Go back to case browse and verify that no Related Links slide
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		//Go to Human Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanPerformanceLink)).click();
@@ -437,56 +364,56 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
-		if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+		if (driver.findElement(chc.HumanCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		//Scroll to 1st Link title
-		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title));
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
 		share.scrollToElement(driver, l);
 		//Edit link title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title)).sendKeys("Edited: "+obj1.videoLinkTitle1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).sendKeys("Edited: "+obj1.videoLinkTitle1);
 		//Save case
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(HumanCaseAdminPopupConfirmButton));
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		//Go to  Human Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanPerformanceLink)).click();
@@ -545,42 +472,42 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
-		if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+		if (driver.findElement(chc.HumanCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Remove old task
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingTaskOnlyOne)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingTaskOnlyOne)).click();
 		Thread.sleep(2000);
 		//Clicks on remove keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
@@ -588,15 +515,15 @@ public class CreateHumanCase {
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Add new task
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewField)).sendKeys(keyword_same+"changed");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewField)).sendKeys(keyword_same+"changed");
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewAddButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewAddButton)).click();
 		//Remove old purpose
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingPurposeOnlyOne)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingPurposeOnlyOne)).click();
 		Thread.sleep(2000);
 		//Clicks on remove keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
@@ -604,18 +531,18 @@ public class CreateHumanCase {
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Add new purpose
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewField)).sendKeys(keyword_same+"changed");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewField)).sendKeys(keyword_same+"changed");
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewAddButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewAddButton)).click();
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Remove old condition
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingConditionOnlyOne)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingConditionOnlyOne)).click();
 		Thread.sleep(4000);
 		//Clicks on remove keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
@@ -623,40 +550,40 @@ public class CreateHumanCase {
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Add new condition
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewField)).sendKeys(keyword_same+"changed");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewField)).sendKeys(keyword_same+"changed");
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewAddButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewAddButton)).click();
 		//Scroll up
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter case id with links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter case id without links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -665,15 +592,15 @@ public class CreateHumanCase {
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -691,15 +618,15 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
-		if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+		if (driver.findElement(chc.HumanCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -711,32 +638,32 @@ public class CreateHumanCase {
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter case id with links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID);
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on new case button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
 		//Clicks on new case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Verify Link title is empty
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title)).getAttribute("textContent");
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).getAttribute("textContent");
 		softly.assertThat(s).as("test data").isEmpty();
 		//Verify Link url is empty
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).getAttribute("textContent");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).getAttribute("textContent");
 		softly.assertThat(s1).as("test data").isEmpty();
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 	}
@@ -745,22 +672,22 @@ public class CreateHumanCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify Link title is empty
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title)).getAttribute("textContent");
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).getAttribute("textContent");
 		softly.assertThat(s).as("test data").isEmpty();
 		//Verify Link url is empty
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).getAttribute("textContent");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).getAttribute("textContent");
 		softly.assertThat(s1).as("test data").isEmpty();
 		//Verify task
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingTaskOnlyOne)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingTaskOnlyOne)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo(keyword_same+"changed");
 		//Verify purpose
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingPurposeOnlyOne)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingPurposeOnlyOne)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo(keyword_same+"changed");
 		//Verify condition
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingConditionOnlyOne)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingConditionOnlyOne)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo(keyword_same+"changed");
 		//Verify keyword
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingKeywordOnlyOne)).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingKeywordOnlyOne)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo(keyword_same);
 	}
 
@@ -769,203 +696,203 @@ public class CreateHumanCase {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CreateEquipmentCase obj = new CreateEquipmentCase();
 		//Scroll to Link element
-		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title));
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 1
 		l.sendKeys(obj.noVideoLinkTitle3);
 		//Scroll to element
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)));
+		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)));
 		//Enter url 3
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).sendKeys(obj.noVideoLink);	
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);	
 		//To make url form appear click on title for link 1
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink1Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to link 2
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 2 banana
 		l.sendKeys(obj.noVideoLinkTitle2);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2URL)).click();
 		//Link 2 becomes Link 1
 		//Enter url 2
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink1Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
 		share.scrollToTop(driver);
 		//Scroll to link 3
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink3Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 1 apple
 		l.sendKeys(obj.noVideoLinkTitle1);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink3URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3URL)).click();
 		//Link 3 becomes Link 1
 		//Enter url 3
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink1Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
 		share.scrollToTop(driver);
 		//Enter title for link 4 : video link 1
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title));
 		share.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4Title)).sendKeys(obj.videoLinkTitle1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title)).sendKeys(obj.videoLinkTitle1);
 		Thread.sleep(1000);
 		//Enter url 4
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink4URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4URL)).sendKeys(obj.videoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink4URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4URL)).sendKeys(obj.videoLink);
 		//Move to video checkbox
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4VideoCheckbox));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox));
 		share.scrollToElement(driver, l);
 		//Click on video checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4VideoCheckbox)).click();
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4VideoCheckbox));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox)).click();
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox));
 		share.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink4VideoCheckbox)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1Title)).getAttribute("value");
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).getAttribute("value");
 		softly.assertThat(s).as("test data").contains(obj.videoLinkTitle1);
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink1URL)).getAttribute("value");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).getAttribute("value");
 		softly.assertThat(s1).as("test data").contains(obj.videoLink);
 		//Enter title for link 5 : video link 2
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title));
 		share.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5Title)).sendKeys(obj.videoLinkTitle2);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title)).sendKeys(obj.videoLinkTitle2);	
 		Thread.sleep(1000);
 		//Enter url 5
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink5URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5URL)).sendKeys(obj.videoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink5URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5URL)).sendKeys(obj.videoLink);
 		//Move to viedo checkbox
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5VideoCheckbox));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox));
 		share.scrollToElement(driver, l);
 		//Click on video checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5VideoCheckbox)).click();
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5VideoCheckbox));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox)).click();
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox));
 		share.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink5VideoCheckbox)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2Title)).getAttribute("value");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2Title)).getAttribute("value");
 		softly.assertThat(s3).as("test data").contains(obj.videoLinkTitle2);
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink2URL)).getAttribute("value");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2URL)).getAttribute("value");
 		softly.assertThat(s4).as("test data").contains(obj.videoLink);
 		//Enter title for link 6 : video link 3
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title));
 		share.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6Title)).sendKeys(obj.videoLinkTitle3);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title)).sendKeys(obj.videoLinkTitle3);	
 		Thread.sleep(1000);
 		//Enter url 6
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink6URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6URL)).sendKeys(obj.videoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink6URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6URL)).sendKeys(obj.videoLink);
 		//Move to viedo checkbox
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6VideoCheckbox));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox));
 		share.scrollToElement(driver, l);
 		//Click on video checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6VideoCheckbox)).click();
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6VideoCheckbox));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox)).click();
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox));
 		share.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink6VideoCheckbox)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink3Title)).getAttribute("value");
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3Title)).getAttribute("value");
 		softly.assertThat(s5).as("test data").contains(obj.videoLinkTitle3);
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink3URL)).getAttribute("value");
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3URL)).getAttribute("value");
 		softly.assertThat(s6).as("test data").contains(obj.videoLink);
 		//Scroll to link 7
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink7Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 7
 		l.sendKeys(obj.noVideoLinkTitle4);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink7URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7URL)).click();
 		//Enter url 7
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink7URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink7URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink7URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink7Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink7Title);
 		share.scrollToTop(driver);
 		//Scroll to link 8
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink8Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 8
 		l.sendKeys(obj.noVideoLinkTitle5);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink8URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8URL)).click();
 		//Enter url 8
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink8URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink8URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink8URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink8Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink8Title);
 		share.scrollToTop(driver);
 		//Scroll to link 9
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink9Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 9
 		l.sendKeys(obj.noVideoLinkTitle6);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink9URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9URL)).click();
 		//Enter url 9
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink9URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink9URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink9URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink9Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink9Title);
 		share.scrollToTop(driver);
 		//Scroll to link 10
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink10Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 10
 		l.sendKeys(obj.noVideoLinkTitle7);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink10URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10URL)).click();
 		//Enter url 10
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink10URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink10URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink10URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink10Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink10Title);
 		share.scrollToTop(driver);
 		//Scroll to link 11
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink11Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 11
 		l.sendKeys(obj.noVideoLinkTitle8);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink11URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11URL)).click();
 		//Enter url 11
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink11URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink11URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink11URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink11Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink11Title);
 		share.scrollToTop(driver);
 		//Scroll to link 12
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink12Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 12
 		l.sendKeys(obj.noVideoLinkTitle9);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink12URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12URL)).click();
 		//Enter url 12
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink12URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink12URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink12URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink12Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink12Title);
 		share.scrollToTop(driver);
 		//Scroll to link 13
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink13Title));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13Title));
 		share.scrollToElement(driver, l);
 		//Enter title for link 11
 		l.sendKeys(obj.noVideoLinkTitle10);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink13URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13URL)).click();
 		//Enter url 11
-		wait.until(ExpectedConditions.elementToBeClickable(HumanCasesLink13URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink13URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink13URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
-		obj.clickToShowNextRowForLink(driver,HumanCasesLink13Title);
+		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink13Title);
 		share.scrollToTop(driver);
 	}
 
@@ -974,7 +901,7 @@ public class CreateHumanCase {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CreateEquipmentCase obj2 = new CreateEquipmentCase();
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		//Go to  FM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanPerformanceLink)).click();
@@ -1105,12 +1032,12 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		//Clicks on Errorfree bank option
 		if(m==0)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Creates 5 cases
 		//Enters mandatory data
 		//Enters case id
@@ -1124,10 +1051,15 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
 			//Clicks on new case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					chc2.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -1135,12 +1067,12 @@ public class CreateHumanCase {
 				if(y<1000)
 					continue;
 				caseId = String.format("%d", y);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).sendKeys(caseId);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).sendKeys(caseId);
 				Thread.sleep(1000);
-				WebElement errorCaseId=driver.findElement(HumanCaseIDFieldError);
+				WebElement errorCaseId=driver.findElement(chc.HumanCaseIDFieldError);
 				if(errorCaseId.isDisplayed()==true)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).clear();
 					continue;
 				}
 				if(errorCaseId.isDisplayed()==false)
@@ -1150,69 +1082,69 @@ public class CreateHumanCase {
 			//Add case id to list
 			caseID.add(caseId);
 			//Enters Question
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseQuestion)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseQuestion)).sendKeys(title);
 			//Enters Answer
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAnswer)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAnswer)).sendKeys(title);
 			Thread.sleep(1000);
 			jse.executeScript("scroll(0,1700)");
 			Thread.sleep(1000);
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key1);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key1);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key2);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key2);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key3);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key3);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
 				//Add keyword with all special characters
 				obj.addKeywordWithAllSpecialCharactersHuman(driver);
 			}
 			else 
 			{
-				WebElement element = driver.findElement(HumanCaseKeywordExistingList);
-				element.findElement(FirstAndLastChildInList).click();
+				WebElement element = driver.findElement(chc.HumanCaseKeywordExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();
 			}		 
 			//Enters task
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseTaskExistingList);
-				element.findElement(FirstAndLastChildInList).click();			  
+				WebElement element = driver.findElement(chc.HumanCaseTaskExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();			  
 			}
 			//Enters purpose
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCasePurposeExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCasePurposeExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			jse.executeScript("scroll(0,2000)");
 			//Enters condition
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			jse.executeScript("scroll(0,2000)");
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseConditionExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCaseConditionExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
@@ -1220,13 +1152,13 @@ public class CreateHumanCase {
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField)).click();
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
 			p.waitFor();
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			if(count==1)
 				checkNoError(driver);
 			Thread.sleep(2000);
@@ -1247,9 +1179,9 @@ public class CreateHumanCase {
 			}
 			if(count==1)
 			{
-				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)));
+				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)));
 				//Click on collapsible
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			}
 			//Add links in case number 3 
 			if(count==3)
@@ -1259,10 +1191,10 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 			//Clicks on create case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
@@ -1279,7 +1211,7 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1287,14 +1219,14 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if(m==0)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1313,15 +1245,20 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
 			//Clicks on new case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					chc2.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -1329,12 +1266,12 @@ public class CreateHumanCase {
 				if(y<1000)
 					continue;
 				caseId = String.format("%d", y);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).sendKeys(caseId);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).sendKeys(caseId);
 				Thread.sleep(1000);
-				WebElement errorCaseId=driver.findElement(HumanCaseIDFieldError);
+				WebElement errorCaseId=driver.findElement(chc.HumanCaseIDFieldError);
 				if(errorCaseId.isDisplayed()==true)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).clear();
 					continue;
 				}
 				if(errorCaseId.isDisplayed()==false)
@@ -1344,69 +1281,69 @@ public class CreateHumanCase {
 			//Add case id to list
 			caseID.add(caseId);
 			//Enters Question
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseQuestion)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseQuestion)).sendKeys(title);
 			//Enters Answer
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAnswer)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAnswer)).sendKeys(title);
 			Thread.sleep(1000);
 			jse.executeScript("scroll(0,1700)");
 			Thread.sleep(1000);
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key1);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key1);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key2);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key2);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key3);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key3);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
 				//Add keyword with all special characters
 				obj.addKeywordWithAllSpecialCharactersHuman(driver);
 			}
 			else 
 			{
-				WebElement element = driver.findElement(HumanCaseKeywordExistingList);
-				element.findElement(FirstAndLastChildInList).click();
+				WebElement element = driver.findElement(chc.HumanCaseKeywordExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();
 			}		 
 			//Enters task
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseTaskExistingList);
-				element.findElement(FirstAndLastChildInList).click();			  
+				WebElement element = driver.findElement(chc.HumanCaseTaskExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();			  
 			}
 			//Enters purpose
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCasePurposeExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCasePurposeExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			jse.executeScript("scroll(0,2000)");
 			//Enters condition
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			jse.executeScript("scroll(0,2000)");
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseConditionExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCaseConditionExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
@@ -1414,15 +1351,16 @@ public class CreateHumanCase {
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField)));
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 			p.waitFor();
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			if(count==1)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();if(count==1)
-				checkNoError(driver);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
+				if(count==1)					
+					checkNoError(driver);
 			}
 			Thread.sleep(2000);
 			int i;
@@ -1448,10 +1386,10 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 			//Clicks on create case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
@@ -1471,7 +1409,7 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
@@ -1480,7 +1418,7 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if(m==0)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1498,7 +1436,7 @@ public class CreateHumanCase {
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			//Clicks on Human cases
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
@@ -1510,11 +1448,11 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
 			Thread.sleep(1000);
 			//Clicks on new case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
@@ -1522,6 +1460,11 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					chc2.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -1529,12 +1472,12 @@ public class CreateHumanCase {
 				if(y<1000)
 					continue;
 				caseId = String.format("%d", y);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).sendKeys(caseId);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).sendKeys(caseId);
 				Thread.sleep(1000);
-				WebElement errorCaseId=driver.findElement(HumanCaseIDFieldError);
+				WebElement errorCaseId=driver.findElement(chc.HumanCaseIDFieldError);
 				if(errorCaseId.isDisplayed()==true)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).clear();
 					continue;
 				}
 				if(errorCaseId.isDisplayed()==false)
@@ -1544,69 +1487,69 @@ public class CreateHumanCase {
 			//Add case id to list
 			caseID.add(caseId);
 			//Enters Question
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseQuestion)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseQuestion)).sendKeys(title);
 			//Enters Answer
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAnswer)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAnswer)).sendKeys(title);
 			Thread.sleep(1000);
 			jse.executeScript("scroll(0,1700)");
 			Thread.sleep(1000);
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key1);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key1);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key2);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key2);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key3);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key3);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
 				//Add keyword with all special characters
 				obj.addKeywordWithAllSpecialCharactersHuman(driver);
 			}
 			else 
 			{
-				WebElement element = driver.findElement(HumanCaseKeywordExistingList);
-				element.findElement(FirstAndLastChildInList).click();
+				WebElement element = driver.findElement(chc.HumanCaseKeywordExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();
 			}		 
 			//Enters task
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseTaskExistingList);
-				element.findElement(FirstAndLastChildInList).click();			  
+				WebElement element = driver.findElement(chc.HumanCaseTaskExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();			  
 			}
 			//Enters purpose
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCasePurposeExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCasePurposeExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			jse.executeScript("scroll(0,2000)");
 			//Enters condition
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			jse.executeScript("scroll(0,2000)");
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseConditionExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCaseConditionExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
@@ -1614,7 +1557,7 @@ public class CreateHumanCase {
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
-			/*  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField));
+			/*  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField));
 		  Actions act= new Actions(driver);
 		  act.doubleClick(ele).build().perform();*/
 			jse.executeScript("return document.getElementById('pii-admin-efsh-upload-file-input').click();");
@@ -1623,7 +1566,7 @@ public class CreateHumanCase {
 			p.waitFor();
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			if(count==1)
 				checkNoError(driver);
 			Thread.sleep(2000);
@@ -1650,11 +1593,11 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 			Thread.sleep(1000);
 			//Clicks on create case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
@@ -1675,7 +1618,7 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1683,7 +1626,7 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if(m==0)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1698,7 +1641,7 @@ public class CreateHumanCase {
 		for(int count=1;count<=5;count++)
 		{
 			//Clicks on Human cases
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
@@ -1710,16 +1653,21 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseNewButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
 			//Clicks on new case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					chc2.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -1727,12 +1675,12 @@ public class CreateHumanCase {
 				if(y<1000)
 					continue;
 				caseId = String.format("%d", y);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).sendKeys(caseId);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).sendKeys(caseId);
 				Thread.sleep(1000);
-				WebElement errorCaseId=driver.findElement(HumanCaseIDFieldError);
+				WebElement errorCaseId=driver.findElement(chc.HumanCaseIDFieldError);
 				if(errorCaseId.isDisplayed()==true)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseIDField)).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).clear();
 					continue;
 				}
 				if(errorCaseId.isDisplayed()==false)
@@ -1742,70 +1690,70 @@ public class CreateHumanCase {
 			//Add case id to list
 			caseID.add(caseId);
 			//Enters Question
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseQuestion)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseQuestion)).sendKeys(title);
 			//Enters Answer
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAnswer)).sendKeys(title);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAnswer)).sendKeys(title);
 			Thread.sleep(1000);
 			jse.executeScript("scroll(0,1700)");
 			Thread.sleep(1000);
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key1);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key1);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key2);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key2);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(key3);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(key3);
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
 				//Add keyword with all special characters
 				obj.addKeywordWithAllSpecialCharactersHuman(driver);
 			}
 			else 
 			{
 				Thread.sleep(1000);
-				WebElement element = driver.findElement(HumanCaseKeywordExistingList);
-				element.findElement(FirstAndLastChildInList).click();
+				WebElement element = driver.findElement(chc.HumanCaseKeywordExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();
 			}		 
 			//Enters task
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseTaskNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseTaskNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseTaskExistingList);
-				element.findElement(FirstAndLastChildInList).click();			  
+				WebElement element = driver.findElement(chc.HumanCaseTaskExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();			  
 			}
 			//Enters purpose
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasePurposeNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasePurposeNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCasePurposeExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCasePurposeExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			jse.executeScript("scroll(0,2000)");
 			//Enters condition
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewField)).sendKeys(keyword_same);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewField)).sendKeys(keyword_same);
 			Thread.sleep(1500);
 			jse.executeScript("scroll(0,2000)");
 			if(count==1)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseConditionNewAddButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewAddButton)).click();
 			else
 			{
-				WebElement element = driver.findElement(HumanCaseConditionExistingList);
-				element.findElement(FirstAndLastChildInList).click();	
+				WebElement element = driver.findElement(chc.HumanCaseConditionExistingList);
+				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
@@ -1813,14 +1761,14 @@ public class CreateHumanCase {
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
-			//wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputField)).click();
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField)).click();
 			jse.executeScript("return document.getElementById('pii-admin-efsh-upload-file-input').click();");
 			Thread.sleep(3000);
 			Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 			p.waitFor();
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseImageInputCollapsible)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			if(count==1)
 				checkNoError(driver);
 			Thread.sleep(2000);
@@ -1847,10 +1795,10 @@ public class CreateHumanCase {
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 			//Clicks on create case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
@@ -1868,42 +1816,42 @@ public class CreateHumanCase {
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
-		if (driver.findElement(HumanCasesLink).isDisplayed()==false)
+		if (driver.findElement(chc.HumanCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Human cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCasesLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(1));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(1));
 		Thread.sleep(2000);
 		//Clicks on case id
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSearchCaseIDDropdownAdmin)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseEditButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
 		//Scroll down
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Click on added existing keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseExistingKeywordOnlyOne)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseExistingKeywordOnlyOne)).click();
 		Thread.sleep(2000);
 		//Clicks on remove keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
@@ -1911,17 +1859,17 @@ public class CreateHumanCase {
 		jse.executeScript("scroll(0,2000)");
 		Thread.sleep(1000);
 		//Add new keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewField)).sendKeys(keyword_same+"changed");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewField)).sendKeys(keyword_same+"changed");
 		Thread.sleep(1500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseKeywordNewAddButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Clicks on create case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(HumanCaseAdminPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1930,7 +1878,7 @@ public class CreateHumanCase {
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -1954,7 +1902,7 @@ public class CreateHumanCase {
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}

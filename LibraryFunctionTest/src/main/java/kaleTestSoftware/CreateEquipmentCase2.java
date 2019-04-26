@@ -23,7 +23,8 @@ public class CreateEquipmentCase2 {
 	CreateEquipmentCase3 equip = new CreateEquipmentCase3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
+	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 
 	public String keyword = "KeywordQAAadded";
 	public String keywordUS = "KeywordUSQAAadded";
@@ -103,16 +104,15 @@ public class CreateEquipmentCase2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		CreateHumanCase obj3 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -350,12 +350,11 @@ public class CreateEquipmentCase2 {
 	public void caseSearchWithDisciplineFieldComboEquipmentDatabank(WebDriver driver, int x, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		//Go to Failure mode
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}

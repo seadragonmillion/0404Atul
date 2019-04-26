@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -338,10 +336,16 @@ public class HiRCAChinese8 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -374,7 +378,7 @@ public class HiRCAChinese8 {
 			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 			q.waitFor();
 			Thread.sleep(7000);
-		}
+		}*/
 		//pdf check
 		pdfCheck(driver,softly,verifyChinese);
 		Thread.sleep(4000);

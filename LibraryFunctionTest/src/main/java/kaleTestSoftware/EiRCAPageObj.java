@@ -99,6 +99,7 @@ public class EiRCAPageObj {
 	public By Calendar1stRow1stDate = By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div[2]/div");
 	public By ClockIconAddEvent = By.xpath(".//*[@id='pii-ircam-tab-1-events']/div/div[2]/div[2]/div/div/a");
 	public By ClockSetTime = By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a");
+	public By ClockTimeHourField = By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input");
 	public By ClockHourMinusSign = By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[3]");
 	public By Date3rdEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[3]/td[2]/div/div/input");
 	public By Time3rdEvent = By.xpath(".//*[@id='pii-ircam-events-table']/tbody/tr[3]/td[3]/div/div/input");

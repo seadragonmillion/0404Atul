@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -534,12 +532,12 @@ public class EiRCA {
 			{
 				String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedTr)).getText();
 				softly.assertThat(s12).as("test data").isEqualTo("Step 4 - Probability of Occurrence and Actions");
-			/*	try{
+				/*	try{
 				String s12a = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedTr1)).getText();
 				softly.assertThat(s12a).as("test data").isEqualTo("Unrefuted failure modes are shown from highest to lowest probability of occurence.");
 				}catch(org.openqa.selenium.TimeoutException t)
 				{
-					
+
 				}*/
 				//Verify step5 skipped
 				if(y==0)
@@ -1174,7 +1172,7 @@ public class EiRCA {
 		softly.assertThat(r3).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
 	}
 
-	public void pdfCheck(WebDriver driver, HashMap<String,String>hm) throws Exception{
+	public void pdfCheck(WebDriver driver, HashMap<String,String>hm, String textTitle) throws Exception{
 
 		// specify your directory
 		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
@@ -1207,7 +1205,7 @@ public class EiRCA {
 		}
 		String newData1 = newData2.replace("  ", " ");
 		//Verify text with html
-		softly.assertThat(newData1).as("test data").contains(eirca2.textCreate(driver));
+		softly.assertThat(newData1).as("test data").contains(textTitle);
 		//Verify Sequence of Events in pdf
 		softly.assertThat(newData1).as("test data").contains("Sequence of Events");
 		softly.assertThat(newData1).as("test data").contains(hm.get("date1")+", "+hm.get("time1"));
@@ -1251,6 +1249,7 @@ public class EiRCA {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String textTitle = eirca2.textCreate(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		String window = driver.getWindowHandle();
@@ -1266,7 +1265,7 @@ public class EiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		pdfCheck(driver,hm);
+		pdfCheck(driver,hm,textTitle);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -1288,6 +1287,7 @@ public class EiRCA {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String textTitle = eirca2.textCreate(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
@@ -1297,16 +1297,23 @@ public class EiRCA {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
+		System.out.println("original window: "+window);
 		//Verify download pop up
 		eirca2.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -1314,8 +1321,8 @@ public class EiRCA {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
-		pdfCheck(driver,hm);
+		p.waitFor();*/
+		pdfCheck(driver,hm,textTitle);
 		Thread.sleep(4000);
 		driver.close();
 		Thread.sleep(4000);
@@ -1336,6 +1343,7 @@ public class EiRCA {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String textTitle = eirca2.textCreate(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
@@ -1363,7 +1371,7 @@ public class EiRCA {
 		}
 		Thread.sleep(7000);
 		//pdf verification
-		pdfCheck(driver,hm);
+		pdfCheck(driver,hm,textTitle);
 		Thread.sleep(4000);
 		//Switch to window    	
 		driver.switchTo().window(window);	   
@@ -1382,6 +1390,7 @@ public class EiRCA {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String textTitle = eirca2.textCreate(driver);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
@@ -1409,7 +1418,7 @@ public class EiRCA {
 		}
 		Thread.sleep(7000);
 		//pdf verification
-		pdfCheck(driver,hm);
+		pdfCheck(driver,hm,textTitle);
 		Thread.sleep(4000);
 		//Switch to window    	
 		driver.switchTo().window(window);
@@ -1445,14 +1454,11 @@ public class EiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();		
 		//Verify share save sticky
 		eirca2.verifyStickyShareSave(driver, softly);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
+		//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 			share2.loadingServer(driver);
 			//Verify Share icon
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAShareIconOrCriticalIcon));
-		}
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on EiRCA side panel
@@ -1478,9 +1484,7 @@ public class EiRCA {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(eirca.EiRCAMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
+		//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 			share2.loadingServer(driver);
 			//Verify Marked critical icon
@@ -1490,7 +1494,6 @@ public class EiRCA {
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 			share2.loadingServer(driver);
-		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Un Mark critical pop up
@@ -1594,7 +1597,7 @@ public class EiRCA {
 		//Save report
 		saveEiRCAReport(driver);
 		//Verify no text is visible in step 3 table
-	/*	try{
+		/*	try{
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Row1Column4)).getText();
 			softly.assertThat(s6).as("test data").isEmpty();
 			String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Row2Column4)).getText();
@@ -1609,9 +1612,9 @@ public class EiRCA {
 			softly.assertThat(s11).as("test data").isEmpty();
 		}catch(org.openqa.selenium.TimeoutException t)
 		{*/
-			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Skipped)).getText();
-			softly.assertThat(s6).as("test data").isEqualTo("Step 3 - Statements of Refutability (skipped)");
-	//	}
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Skipped)).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("Step 3 - Statements of Refutability (skipped)");
+		//	}
 		//Open Report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
@@ -1648,55 +1651,64 @@ public class EiRCA {
 			//Save report
 			saveEiRCAReport(driver);
 			//Verify text is gone
-		/*	try{
+			/*	try{
 				String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4Table1Row4Column3)).getText();
 				softly.assertThat(s14).as("test data").isEmpty();
 			}catch(org.openqa.selenium.TimeoutException y)
 			{*/
-				WebElement ele;
-				try{
-					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedRCA));
-				}catch(org.openqa.selenium.TimeoutException t)
-				{
-					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedRCA2));
-				}
-				String s14 = ele.getText();
-				softly.assertThat(s14).as("test data").contains("Step 4 - Probability of Occurrence and Actions (skipped)");
+			WebElement ele;
+			try{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedRCA));
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4SkippedRCA2));
+			}
+			String s14 = ele.getText();
+			softly.assertThat(s14).as("test data").contains("Step 4 - Probability of Occurrence and Actions (skipped)");
 			//}
 			//Open Report
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();		
 		}
-		//Click on Step 5
+		//Scroll to Tab Step 5
 		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep5Tab)));
-		if(driver.findElement(eirca.EiRCAStep5Tab).isEnabled()==false)
+		//	if(driver.findElement(eirca.EiRCAStep5Tab).isEnabled()==false)
+		//{
+		if(driver.findElement(eirca.EiRCAStep4Tab).getAttribute("class").contains("ui-state-disabled")==false)
 		{
+			//Click on Step 4
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep4Tab)).click();			
-			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();			
 		}
 		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep5Tab)).click();
-	//	try{
-			//Click on collapsible
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)).click();
-			//Check any boxes
-			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox));
-			share.scrollToElement(driver, l);
-			//Click on 5.5
-			if(l.isSelected()==false)
-				l.click();
-			WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56CheckBox));
-			share.scrollToElement(driver, l1);
-			//Click on 5.6
-			if(l1.isSelected()==false)
-				l1.click();
-			//Enter text
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55Textbox)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55Textbox)).sendKeys(textToVerifyClearTextBox);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56Textbox)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56Textbox)).sendKeys(textToVerifyClearTextBox);
-	/*	}catch(org.openqa.selenium.TimeoutException r)
+		{
+			//Click on Step 3
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep3Tab)).click();		
+		}
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();			
+		//}
+		//else
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep5Tab)).click();
+		//	try{
+		//Click on collapsible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)).click();
+		//Check any boxes
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox));
+		share.scrollToElement(driver, l);
+		//Click on 5.5
+		if(l.isSelected()==false)
+			l.click();
+		WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56CheckBox));
+		share.scrollToElement(driver, l1);
+		//Click on 5.6
+		if(l1.isSelected()==false)
+			l1.click();
+		//Enter text
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55Textbox)).sendKeys(textToVerifyClearTextBox);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56Textbox)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56Textbox)).sendKeys(textToVerifyClearTextBox);
+		/*	}catch(org.openqa.selenium.TimeoutException r)
 		{
 
 		}*/
@@ -1975,7 +1987,7 @@ public class EiRCA {
 		//Verify text in Sequence of Events
 		verifySequenceOfEvents(driver);
 		//Get list of text
-		List <String> list1=em2.error50Data(driver);
+		List <String> list1=em2.error50Data(driver,driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(list1).iterator();
 		//Create a new event
 		eirca2.createNewEvent(driver, iter.next(),softly);

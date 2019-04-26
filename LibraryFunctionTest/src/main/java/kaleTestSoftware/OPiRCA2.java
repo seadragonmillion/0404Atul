@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class OPiRCA2 {
-	
+
 	ShareCheck share = new ShareCheck();
 	EiRCAPageObj eirca = new EiRCAPageObj ();
 	EiRCA2 eirca2 = new EiRCA2();
@@ -23,7 +23,7 @@ public class OPiRCA2 {
 	OPiRCA3 op3 = new OPiRCA3();
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
-	
+
 	public void verifyOrderOfRootCausesContributingFactorsInStep4(WebDriver driver,List<String> apparentCausesSelected, SoftAssertions softly, int count, int i, int rc, int start, int num) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -629,10 +629,13 @@ public class OPiRCA2 {
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		Thread.sleep(1000);
-		verifyInfoPageErrorPopup(driver,softly);
-		//Click on ok
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
-		Thread.sleep(1000);
+		if(driver.getCurrentUrl().contains("kaleqa")==false)
+		{
+			verifyInfoPageErrorPopup(driver,softly);
+			//Click on ok
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
+			Thread.sleep(1000);
+		}
 		//Verify errors
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.EventTitleError)).getText().trim();
@@ -738,7 +741,7 @@ public class OPiRCA2 {
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		//if (driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: "+r1+"?");
+		softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: "+r1+"?");
 		/*else
 			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: <br/>"+r1+"?");*/
 		//Verify note under question

@@ -24,7 +24,8 @@ public class CaseBrowse {
 	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
+	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 
 	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
 	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
@@ -238,9 +239,8 @@ public class CaseBrowse {
 	public void chooseDisciplineFailureModeSearch(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj = new CreateHumanCase();
 		//Click on top Error-free bank link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Click on Failure Modes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
 		//Search for keyword
@@ -400,15 +400,14 @@ public class CaseBrowse {
 	public void searchColorKeywordEquip(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj = new CreateHumanCase();
 		//Click on top Error-free bank link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Click on Equipment Data Bank only
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyLink1)).click();
 		//Enter keyword oil color
 		searchColorCasesEquip(driver);
 		//Click on top Error-free bank link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Click on Equipment Data Bank only
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)).click();
 		//Enter keyword oil color
@@ -418,9 +417,8 @@ public class CaseBrowse {
 	public void searchColorKeywordHuman(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj = new CreateHumanCase();
 		//Click on top Error-free bank link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Click on Human Performance only
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanPerformanceLink)).click();
 		//Enter keyword oil color
@@ -1517,7 +1515,7 @@ public class CaseBrowse {
 				if(i==3)
 					driver.findElement(By.xpath(image_xpath)).click();
 				//Clicks outside
-				if(browserName.contains("chrome")==false)
+				if(browserName.contains("safari"))
 				{
 					if(i==4)
 					{						
@@ -1610,7 +1608,7 @@ public class CaseBrowse {
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 			//Click on previous
-			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
+			driver.findElement(cb.SlidePreviousButton).click();
 		}
 	}
 
@@ -1684,7 +1682,7 @@ public class CaseBrowse {
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
 			//Click on previous
-			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
+			driver.findElement(cb.SlidePreviousButton).click();
 		}
 	}
 

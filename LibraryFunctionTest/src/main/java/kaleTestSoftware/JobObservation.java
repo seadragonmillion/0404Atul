@@ -28,6 +28,9 @@ public class JobObservation {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
+	JobObservation2 jo2 = new JobObservation2();
+	JobObservationObj jo = new JobObservationObj();
+	LoginPageObj lpo = new LoginPageObj();
 	
 	SoftAssertions softly = new SoftAssertions();
 
@@ -50,14 +53,14 @@ public class JobObservation {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Select different answers in Step 3 and  verify the path it leads to, change and verify each time
 		//Skill based
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-SB"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3SkillBased)).click();
 		//Verify DDOTA
 		verifyDDOTA(driver);
 		//Click on Step 3 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-3-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Tab)).click();
 		Thread.sleep(500);
 		//Rule based
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-RB"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3RuleBased)).click();
 		//Verify DDOTA
 		verifyDDOTA(driver);
 		//Verify BURP
@@ -67,30 +70,30 @@ public class JobObservation {
 		//Verify TQA		
 		verifyTQA(driver);
 		//Click on Step 3 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-3-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Tab)).click();
 		Thread.sleep(500);
 		//Knowledge based
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3KnowledgeBased)).click();
 		//Verify DDOTA
 		verifyDDOTA(driver);
 		//Verify BOOST
 		verifyBOOST(driver);
 		//Click on Step 3 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-3-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Tab)).click();
 		Thread.sleep(500);
 		//Equipment
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-EQ"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Equipment)).click();
 		//Verify CAD
 		verifyCAD(driver);
 		//Click on Step 3 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-3-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Tab)).click();
 		Thread.sleep(500);
 		//Injury
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-IN"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Injury)).click();
 		//Verify LOSE
 		verifyLOSE(driver);
 		//Click on Step 3 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-3-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -98,10 +101,10 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-L")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-O")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-S")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_L));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_O));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_S));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_E));
 		verifyLOSEStep5(driver);
 	}
 
@@ -109,76 +112,76 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Line of fire
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-L"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_L)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Fall-and-bounce (cutting down poles and trees)");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Rolling down a sloping terrain (poles, trucks, tools)");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Tool-use (knife and hammer)");
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s12).as("test data").isEqualTo("Hit-and-fly (sledge hammering)");
-		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s13).as("test data").isEqualTo("Anchor-failure (load bearing anchors)");
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-5']"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer6)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("Falling object (loose object from the top)");
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-6']"))).getText();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer7)).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("Distraction while-walking");
-		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-7']"))).getText();
+		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer8)).getText();
 		softly.assertThat(s18).as("test data").isEqualTo("Roll-over (welding tractor, etc.)");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Overexertion
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-O"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_O)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Lift beyond limit");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Body position twisted");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Slip/Trip/Fall
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-S"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_S)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Slips/falls from same elevation-unqualified walkways");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Slips/falls from same elevation-sloping terrains");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Fall from elevation-ladder");
-		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Fall from elevation-scaffolding");
-		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s15).as("test data").isEqualTo("Fall from elevation-openings in working areas");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Equipment related
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_E)).click();
 		Thread.sleep(500);
-		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s16).as("test data").isEqualTo("Inadequate PPE or PIPE");
-		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s17).as("test data").isEqualTo("Roll-over");
-		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s19).as("test data").isEqualTo("Roll-down");
-		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s20).as("test data").isEqualTo("Pinch");
-		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s21).as("test data").isEqualTo("Drawing-in");
-		String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-5']"))).getText();
+		String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer6)).getText();
 		softly.assertThat(s22).as("test data").isEqualTo("Malfunction");
-		String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-6']"))).getText();
+		String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer7)).getText();
 		softly.assertThat(s23).as("test data").isEqualTo("Welding");
-		String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-7']"))).getText();
+		String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer8)).getText();
 		softly.assertThat(s24).as("test data").isEqualTo("Back-feeding");
-		String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-8']"))).getText();
+		String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer9)).getText();
 		softly.assertThat(s25).as("test data").isEqualTo("Insulation damage");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -186,9 +189,9 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-C")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-A")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_C));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_A));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_D));
 		verifyCADStep5(driver);
 	}
 
@@ -196,40 +199,40 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Training
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-C"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_C)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Color");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Vibration level");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Geometry");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Qualification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-A"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_A)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Scratch marks");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Surface imperfections");
-		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Small cracks");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Accountability
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_D)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Fractures");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Leak");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Damage");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -237,11 +240,11 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-1")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-2")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-3")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-4")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST1));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST3));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST4));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST5));
 		verifyBOOSTStep5(driver);
 	}
 
@@ -249,60 +252,60 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Blind trust
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-1"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST1)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Information incomplete and without supporting analysis");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Information inconsistent with experience and logic");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("No independent check on information");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Over confidence
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-2"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST2)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Did not recognize differences between the task in hand and the tasks that were successfully performed");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Inadequate capability");
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s12).as("test data").isEqualTo("Inadequate wisdom");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//OOS/OOM
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-3"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST3)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Failed to recognize possible failures");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Did not consider contingency plans for \"What-ifs\"");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Did not mitigate factors for possible failures");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Sunk cost trap
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-4"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST4)).click();
 		Thread.sleep(500);
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("Did not consider future utilization value");
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("Did not consider replacement costs to change over");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Two option trap
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST5)).click();
 		Thread.sleep(500);
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s10).as("test data").isEqualTo("Did not consider more options before making a decision");
-		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s11).as("test data").isEqualTo("Did not consider collecting more information before making a decision");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -310,9 +313,9 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-T")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-Q")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_T));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_Q));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_A));
 		verifyTQAStep5(driver);
 	}
 
@@ -320,54 +323,54 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Training
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-T"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_T)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Inadequate training materials in scope, timeliness, or usefulness");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Inadequate frequency of refresher training (>> one year)");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Inadequate line management participation in training materials, development, and delivery");
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s12).as("test data").isEqualTo("Inadequate inclusion of lessons learned into training");
-		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s13).as("test data").isEqualTo("Inadequate provision of needed training (off-the-job)");
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-5']"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer6)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("Inadequate provision of needed training (on-the-job)");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Qualification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-Q"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_Q)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Inadequate task specific qualification of staff on critical jobs");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Inadequate qualification of supervisors and/or managers of critical jobs");
-		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Inadequate qualification of vendors' services (QA/QC, source inspection)");
-		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s15).as("test data").isEqualTo("Inadequate qualification of vendors' employees working on site");
-		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s20).as("test data").isEqualTo("Inadequate qualification of training instructors");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Accountability
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_A)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Inadequate Performance Monitoring and Trending (PM&T) and feedback to staff");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Inadequate supervisory skills in Instant Feedback and Constant Reinforcement (IF&CR)");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Inadequate penalty/reward system for performance control");
-		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s16).as("test data").isEqualTo("Inadequate problem reporting, RCA and corrective actions and feedback to staff");
-		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s17).as("test data").isEqualTo("Inadequate field observation and feedback to staff");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -375,9 +378,9 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-A")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-B")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_A));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_B));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_C));
 		verifyABCStep5(driver);
 	}
 
@@ -385,76 +388,76 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//All inclusive
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-A"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_A)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Omission of programmatic requirements");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Omission of operating conditions in program(s)");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Omission of assumptions to be called out in program(s)");
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s12).as("test data").isEqualTo("Omission of scope in program(s)");
-		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s13).as("test data").isEqualTo("Omission of testing or measurements in program validation");
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-5']"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer6)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("(1) Description of purpose; (2) Description of prerequisite; (3) Description of terminology; (4) Description of lessons learned in not-to-do lists; (5) References; (6) Request feedback from users");
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-6']"))).getText();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer7)).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("Omission of elements in programs due to inadequate review");
-		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-7']"))).getText();
+		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer8)).getText();
 		softly.assertThat(s18).as("test data").isEqualTo("Omission of elements in programs due to inadequate previous root cause analysis");
-		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-8']"))).getText();
+		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer9)).getText();
 		softly.assertThat(s19).as("test data").isEqualTo("Omission of elements in programs due to corrective action not carried out");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Bypass control
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-B"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_B)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Inadequate guidance for out-of-program or out-of-procedure situations");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Inadequate self-check or independent check of single-point-vulnerability (SPV) steps");
-		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Point-of-no-return (PNR) steps not identified (to provide with review) to ensure past errors are corrected before proceeding");
-		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s15).as("test data").isEqualTo("Place holding \"checks\" not used to prevent skipping steps or pages");
-		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s20 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s20).as("test data").isEqualTo("Likely noncompliance situations not analyzed and mitigated (through symptom verification, over-check, not-to-do warnings, etc.)");
-		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-5']"))).getText();
+		String s21 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer6)).getText();
 		softly.assertThat(s21).as("test data").isEqualTo("Lack of job-site reminders to prevent inattention-to-detail errors for routine work");
-		String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-6']"))).getText();
+		String s22 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer7)).getText();
 		softly.assertThat(s22).as("test data").isEqualTo("Lack of checklists to prevent forgetting-related errors");
-		String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-7']"))).getText();
+		String s23 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer8)).getText();
 		softly.assertThat(s23).as("test data").isEqualTo("Inadequate positive peer pressure amongst employees to encourage and reinforce compliant behavior standards");
-		String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-8']"))).getText();
+		String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer9)).getText();
 		softly.assertThat(s24).as("test data").isEqualTo("Inadequate review");
-		String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-9']"))).getText();
+		String s25 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer10)).getText();
 		softly.assertThat(s25).as("test data").isEqualTo("(1) Inadequate predictive maintenance; (2) Inadequate preventive maintenance; (3) Inadequate corrective maintenance; (4) Inadequate post-maintenance testing; (5) Inadequate troubleshooting and RCA; and (6) Maintenance errors");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Clarity
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_C)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Use of vague or interpretable words (such as appropriate, as required, necessary, etc.) due to inexperienced rule preparers");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Use of non-quantifiable or interpretable conditions (such as reviewing sufficient samples, etc.) to avoid internal QA findings");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Requirement of judgment to execute procedure steps");
-		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s16).as("test data").isEqualTo("Interfaces with other procedures not clearly defined");
-		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s17).as("test data").isEqualTo("Inadequate readability (i.e., greater than 8th grade reading level)");
-		String s26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-5']"))).getText();
+		String s26 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer6)).getText();
 		softly.assertThat(s26).as("test data").isEqualTo("Unclear and inconsistent equipment labeling and identification between equipment and procedure");
-		String s27 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-6']"))).getText();
+		String s27 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer7)).getText();
 		softly.assertThat(s27).as("test data").isEqualTo("Time sensitive steps not called out");
-		String s28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-7']"))).getText();
+		String s28 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer8)).getText();
 		softly.assertThat(s28).as("test data").isEqualTo("Measurement units are not clarified or quantified");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -462,10 +465,10 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-B")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-U")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-R")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_B));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_U));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_R));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_P));
 		verifyBURPStep5(driver);
 	}
 
@@ -473,64 +476,64 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Burden
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-B"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_B)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Perceived burden to obtain tools and equipment");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Perceived burden to obtain documents or procedures");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Perceived burden to obtain and wear PPE");
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s12).as("test data").isEqualTo("Perceived burden to work with an over-complex or burdensome procedure");
-		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s13).as("test data").isEqualTo("Did not go into field and verify in field due to task being too burdensome");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Undue motivation
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-U"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_U)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").contains("Completion of work sooner so that the staff can go home earlier");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Completion of work sooner so that staff could be rewarded with bonus or to avoid penalty");
-		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Completion of work sooner so that staff could start other jobs (especially for contractors who are paid based on number of tasks completed)");
-		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s15 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s15.replace("  ", " ")).as("test data").contains("Completion of work sooner so that the staff could rest in a more comfortable environment (especially working at high temperature, radiation, or humid environment)");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Risk perceived
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-R"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_R)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Supervisors do not provide feedback about job performance");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Violation of established rules is not easily known (especially when working alone)");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("The consequences of violations are perceived to be insignificant due to lack of a clear accountability system");
-		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s16).as("test data").isEqualTo("Risk of injury due to violation is considered to be none or minimal");
-		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-4']"))).getText();
+		String s17 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer5)).getText();
 		softly.assertThat(s17).as("test data").isEqualTo("Feeling of low perceived risk due to peer observation (others are doing it the same way)");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Peer pressure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_P)).click();
 		Thread.sleep(500);
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("Staff is not trained to coach or correct violations of other staff");
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("Staff is not held accountable to correct violations of other staff");
-		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s18 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s18).as("test data").isEqualTo("Staff does not fully understand the behavior standards");
-		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-3']"))).getText();
+		String s19 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer4)).getText();
 		softly.assertThat(s19).as("test data").isEqualTo("Supervisors do not reinforce peer coaching in the field");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -538,11 +541,11 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-1")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-2")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-3")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-4")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT1));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT2));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT3));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT4));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT5));
 		verifyDDOTAStep5(driver);
 	}
 
@@ -550,58 +553,58 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Distraction
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-1"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT1)).click();
 		Thread.sleep(500);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Preoccupation (Blinding frustration)");
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Interruptions");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Multitasking");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Drowsiness
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-2"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT2)).click();
 		Thread.sleep(500);
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Daily Cycle");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Mental fatigue");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Over confidence
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-3"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT3)).click();
 		Thread.sleep(500);
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Not knowing weakness");
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Not seeking compensation for weakness");
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-2']"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer3)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Not addressing change, abnormality & decay");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Time pressure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-4"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT4)).click();
 		Thread.sleep(500);
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("Reducing attention span");
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("Short-cutting");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 		//Attention bank and span insufficiency
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT5)).click();
 		Thread.sleep(500);
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-0']"))).getText();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer1)).getText();
 		softly.assertThat(s10).as("test data").isEqualTo("Working long hours (>10 hours)");
-		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-joa-tab-5-answer-1']"))).getText();
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Answer2)).getText();
 		softly.assertThat(s11).as("test data").isEqualTo("Inadequate frequency of work breaks");
 		//Click on Step 4 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-4-a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4Tab)).click();
 		Thread.sleep(500);
 	}
 
@@ -683,18 +686,18 @@ public class JobObservation {
 		int n = random.nextInt(3);
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-C"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-C"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_C)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_C)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-A"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-A"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_A)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_A)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-CAD-D"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_D)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4CAD_D)).click();
 		}
 		s.add("No6");
 		return s;
@@ -708,23 +711,23 @@ public class JobObservation {
 		int n = random.nextInt(4);
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-L"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-L"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_L)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_L)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-O"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-O"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_O)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_O)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-S"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-S"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_S)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_S)).click();
 		}
 		if(n==3)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-LOSE-E"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_E)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4LOSE_E)).click();
 		}
 		s.add("No6");
 		return s;
@@ -738,28 +741,28 @@ public class JobObservation {
 		int n = random.nextInt(5);
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-1"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-1"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST1)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST1)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-2"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-2"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST2)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST2)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-3"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-3"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST3)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST3)).click();
 		}
 		if(n==3)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-4"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-4"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST4)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST4)).click();
 		}
 		if(n==4)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BOOST-5"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST5)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BOOST5)).click();
 		}
 		s.add("No6");
 		return s;
@@ -773,28 +776,28 @@ public class JobObservation {
 		List<String> s = new ArrayList<String>();
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-1"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-1"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT1)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT1)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-2"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-2"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT2)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT2)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-3"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-3"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT3)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT3)).click();
 		}
 		if(n==3)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-4"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-4"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT4)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT4)).click();
 		}
 		if(n==4)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-DDOT-5"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT5)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4DDOT5)).click();
 		}
 		return s;
 	}
@@ -807,23 +810,23 @@ public class JobObservation {
 		int n = random.nextInt(4);
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-B"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-B"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_B)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_B)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-U"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-U"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_U)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_U)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-R"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-R"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_R)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_R)).click();
 		}
 		if(n==3)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-BURP-P"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_P)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4BURP_P)).click();
 		}
 		return s;
 	}
@@ -836,18 +839,18 @@ public class JobObservation {
 		int n = random.nextInt(3);
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-A"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-A"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_A)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_A)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-B"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-B"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_B)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_B)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-ABC-C"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_C)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4ABC_C)).click();
 		}
 		s.add("No6");
 		return s;
@@ -861,18 +864,18 @@ public class JobObservation {
 		int n = random.nextInt(3);
 		if(n==0)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-T"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-T"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_T)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_T)).click();
 		}
 		if(n==1)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-Q"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-Q"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_Q)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_Q)).click();
 		}
 		if(n==2)
 		{
-			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A"))).getText());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-TQA-A"))).click();
+			s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_A)).getText());
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step4TQA_A)).click();
 		}
 		s.add("No6");
 		return s;
@@ -886,28 +889,28 @@ public class JobObservation {
 		String s = "";
 		if(n==0)
 		{
-			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-SB"))).getText();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-SB"))).click();
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3SkillBased)).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3SkillBased)).click();
 		}
 		if(n==1)
 		{
-			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-RB"))).getText();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-RB"))).click();
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3RuleBased)).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3RuleBased)).click();
 		}
 		if(n==2)
 		{
-			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).getText();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-KB"))).click();
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3KnowledgeBased)).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3KnowledgeBased)).click();
 		}
 		if(n==3)
 		{
-			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-EQ"))).getText();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-EQ"))).click();
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Equipment)).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Equipment)).click();
 		}
 		if(n==4)
 		{
-			s=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-IN"))).getText();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-s3-IN"))).click();
+			s=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Injury)).getText();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step3Injury)).click();
 		}
 		return s;
 	}
@@ -916,41 +919,41 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2NextButton)).click();
 		//Verify Step 3/Step 4/Step 5
 		verifyObservationTypesSelection(driver);
 		//Select Step 3/4/5
 		List<String> k = selectStep3Step4Step5Random(driver);
 		//Enters text 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step5"))).sendKeys(text(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step5Notes)).sendKeys(text(driver));
 		//Clicks on Next
-		driver.findElement(By.id("pii-joa-tab-5-button")).click();
+		driver.findElement(jo.JOStep5NextButton).click();
 		if(k.contains("No6")==false)
 		{
 			//Clicks on both answers in step 6
 			Actions act = new Actions(driver);
-			WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-0")));
+			WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step6Answer1));
 			act.moveToElement(element).click().build().perform();
 			Thread.sleep(1000);
-			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-answer-1")));
+			element=wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step6Answer2));
 			act.moveToElement(element).click().build().perform();
 		}
 		//Enters text
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-notes-step6"))).sendKeys(text1(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step6Notes)).sendKeys(text1(driver));
 		//Clicks on build report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-6-report"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep6BuildReportButton)).click();
 		//Clicks on build report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
 		//Verifies the text entered before
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.ReportTabStep5Notes)).getText();
 		String r = s.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").contains(text(driver));
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.ReportTabStep6Notes)).getText();
 		String r1 = s1.replaceAll("\u00AD", "");
 		softly.assertThat(r1).as("test data").contains(text1(driver));
 		//Verify random selections in report
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[2]/span"))).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.ReportTabStep3And4Answers)).getText();
 		softly.assertThat(s2).as("test data").contains(k.get(0)+"/"+k.get(1));
 		if(k.contains("No6"))
 		{			
@@ -962,80 +965,80 @@ public class JobObservation {
 			softly.assertThat(s3).as("test data").contains(k.get(i));
 		}
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSaveButton)).click();
 		//Clicks on save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
 	}
 
 	public void dateTimeModifyChrome (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Edit Date
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("01");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("01");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("2018");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("2018");
 		Thread.sleep(500);
 		//Edit Time
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.ARROW_LEFT);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.ARROW_LEFT);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("01");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("00");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("00");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("00");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("00");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("AM");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("AM");
 		//Click outside
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-div"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageArea)).click();
 	}
 
 	public void dateTimeModifyFirefox (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//CLick on rotate
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 		//Press tab to get to date
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).sendKeys(Keys.TAB);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).sendKeys(Keys.TAB);
 		//Edit Date
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("01");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("01");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("2018");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("2018");
 		Thread.sleep(500);
 		//Press tab to get to time
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys(Keys.TAB);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys(Keys.TAB);
 		//Edit Time
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("01");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("00");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("00");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("00");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("00");
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("AM");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("AM");
 		//Click outside
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-div"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageArea)).click();
 	}
 
 
@@ -1043,40 +1046,40 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Edit Date
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).clear();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-date"))).sendKeys("2018-01-01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Date)).sendKeys("2018-01-01");
 		Thread.sleep(500);
 		//Edit Time
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).clear();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-time"))).sendKeys("01:01:01");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Time)).sendKeys("01:01:01");
 		Thread.sleep(500);
 		//Click outside
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-div"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageArea)).click();
 	}
 	
 	public void imageUploadSafari(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Uploads a picture on next page in step 2
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide1.jpg");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide1.jpg");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo same photo
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide1.jpg");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide1.jpg");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload different photo
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide2.jpg");		
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("/Users/pamelachiu/Documents/Kale Case Test 1-20/Slide2.jpg");		
 		//Clicks on rotate
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 
 	}
 
@@ -1084,48 +1087,49 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Uploads a picture on next page in step 2
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo same photo
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload different photo
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");		
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");		
 		//Clicks on rotate
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 
 	}
 
 	public void imageUploadFirefox(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		//Uploads a picture on next page in step 2
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(jo.JOStep2ImageUploadButton));
 		Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		p.waitFor();
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(jo.JOStep2ImageUploadButton));
 		Process q =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		q.waitFor();
 		Thread.sleep(3000);
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload different photo
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(jo.JOStep2ImageUploadButton));
 		Process w =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		w.waitFor();
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Clicks on rotate
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 	}
 
 
@@ -1151,12 +1155,12 @@ public class JobObservation {
 			System.out.println ("No unexpected alert for picture 2");
 		}
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo
 		Thread.sleep(1000);/*
-		driver.findElement(By.id("pii-joa-tab-2-photo-input")).click();
+		driver.findElement(jo.JOStep2ImageUploadButton).click();
 		act.doubleClick(element).build().perform();*/
 		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
 		Thread.sleep(3000);
@@ -1174,9 +1178,9 @@ public class JobObservation {
 			System.out.println ("No unexpected alert for picture 2");
 		}
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Clicks on rotate
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 	}
 
 	public void imageUploadIE11(WebDriver driver) throws Exception{
@@ -1185,7 +1189,7 @@ public class JobObservation {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Uploads a picture on next page in step 2
 		Thread.sleep(1000);/*
-		WebElement element =  driver.findElement(By.id("pii-joa-tab-2-photo-input"));
+		WebElement element =  driver.findElement(jo.JOStep2ImageUploadButton);
 		Actions act = new Actions(driver);
 		act.click(element).build().perform();*/
 		jse.executeScript("return document.getElementById('pii-joa-tab-2-photo-input').click();");
@@ -1203,9 +1207,9 @@ public class JobObservation {
 			System.out.println ("No unexpected alert for picture 2");
 		}
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo
 		Thread.sleep(1000);
 		//act.click(element).build().perform();
@@ -1225,9 +1229,9 @@ public class JobObservation {
 			System.out.println ("No unexpected alert for picture 2");
 		}
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-clear"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo
 		Thread.sleep(1000);
 		//act.click(element).build().perform();
@@ -1247,27 +1251,27 @@ public class JobObservation {
 			System.out.println ("No unexpected alert for picture 2");
 		}
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-photo-img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Clicks on rotate
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-rotate"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 	}
 
 
 	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{
 
 		//Clicks on delete button
-		driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a")).click();
+		driver.findElement(jo.JODeleteButton).click();
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		//Clicks on delete report
-		driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		driver.findElement(eirca.ConfirmPopupButton).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		Thread.sleep(2000);
-		driver.findElement(By.id("pii-user-home-panel-btn-joa")).click();
+		driver.findElement(jo.JOSidePanel).click();
 		Thread.sleep(2000);
 		//Verify record deleted
 		//Click on 1st record
-		String name = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).getText();
+		String name = driver.findElement(jo.JOFirstRecord).getText();
 		System.out.println(name);
 		if (name!=recordName)
 			System.out.println("Record deleted");
@@ -1277,9 +1281,9 @@ public class JobObservation {
 		{
 			Thread.sleep(1000);
 			try{
-				if (driver.findElement(By.className("sticky-note")).isDisplayed())
+				if (driver.findElement(lpo.StickyNote).isDisplayed())
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
 
 				}}catch (NoSuchElementException e)
 			{
@@ -1306,10 +1310,10 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Verifies the text entered before
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[1]"))).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.ReportTabStep5Notes)).getText();
 		String r = s.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").contains(text(driver));
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[5]/span/ul/li[2]"))).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.ReportTabStep6Notes)).getText();
 		String r1 = s1.replaceAll("\u00AD", "");
 		softly.assertThat(r1).as("test data").contains(text1(driver));
 	}
@@ -1319,56 +1323,57 @@ public class JobObservation {
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);	    	
 		//CLicks on first newly created record
-		driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a")).click();
+		driver.findElement(jo.JOFirstRecord).click();
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Calls verifyTextReport to check text entered
 		verifyTextReport(driver);
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOShareButton)).click();
 		//Enters username
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(sharer);
+		Thread.sleep(500);
 		//Selects from dropdown
-		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
-		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
+		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+		dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
 		//Clicks on add user
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Verifies user added
-		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
+		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		share.shareTwice (driver,softly);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 			share2.loadingServer(driver);
 			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[1]")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordCriticalShareSign));
 		}
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on Job Observation side panel
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();;
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecord)).click();;
 	}
 
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong"))).getText();
+		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.HTMLMarkedCritical)).getText();
 		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong")).isDisplayed())
+		if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed())
 			System.out.println("Marked critical");
 		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
@@ -1376,20 +1381,20 @@ public class JobObservation {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 			share2.loadingServer(driver);
 			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[1]")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordCriticalShareSign));
 			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a/span[2]")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordSharedWhenCriticalSign));
 			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecord)).click();
 			share2.loadingServer(driver);
 		}
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.findElement(By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong")).isDisplayed()==false)
+		if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed()==false)
 		{
 			System.out.println("Unmarked critical");
 		}
@@ -1397,11 +1402,11 @@ public class JobObservation {
 		String sharer = em3.decideSharer (y);
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on EiRCA side panel
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();	
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecord)).click();	
 	}
 
 	public void imageUpload(WebDriver driver) throws Exception {
@@ -1452,41 +1457,44 @@ public class JobObservation {
 		//Clicks on Analysis 
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
 		//Clicks on Job Observation Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JobObservationLink)).click();
 		//Clicks on new
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-new"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JONewButton)).click();
 		//Click on new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
+		Thread.sleep(500);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			jo2.verifyErrorOnPage(driver,softly);
 		//Fills mandatory details in step1
-		driver.findElement(By.id("pii-joa-tab-1-observer")).sendKeys(text);
-		driver.findElement(By.id("pii-joa-tab-1-location")).sendKeys(text);
-		driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
-		String ev1 = driver.findElement(By.id("pii-joa-tab-1-observer")).getAttribute("value");
-		String ev2 = driver.findElement(By.id("pii-joa-tab-1-location")).getAttribute("value");
-		String ev3 = driver.findElement(By.id("pii-joa-tab-1-job")).getAttribute("value");
+		driver.findElement(jo.Step1Observer).sendKeys(text);
+		driver.findElement(jo.Step1Location).sendKeys(text);
+		driver.findElement(jo.Step1JobObserved).sendKeys(text);
+		String ev1 = driver.findElement(jo.Step1Observer).getAttribute("value");
+		String ev2 = driver.findElement(jo.Step1Location).getAttribute("value");
+		String ev3 = driver.findElement(jo.Step1JobObserved).getAttribute("value");
 		if ((ev1.equals(text)==false))
 		{
-			driver.findElement(By.id("pii-joa-tab-1-observer")).clear();
-			driver.findElement(By.id("pii-joa-tab-1-observer")).sendKeys(text);
+			driver.findElement(jo.Step1Observer).clear();
+			driver.findElement(jo.Step1Observer).sendKeys(text);
 		}
 		if ((ev2.equals(text)==false))
 		{
-			driver.findElement(By.id("pii-joa-tab-1-location")).clear();
-			driver.findElement(By.id("pii-joa-tab-1-location")).sendKeys(text);
+			driver.findElement(jo.Step1Location).clear();
+			driver.findElement(jo.Step1Location).sendKeys(text);
 		}
 		if ((ev3.equals(text)==false))
 		{
-			driver.findElement(By.id("pii-joa-tab-1-job")).clear();
-			driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
+			driver.findElement(jo.Step1JobObserved).clear();
+			driver.findElement(jo.Step1JobObserved).sendKeys(text);
 		}
 		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep1NextButton)).click();
 		//Uploads image, clears it, rotates it
 		imageUpload(driver);
 		//Modify date time
@@ -1494,16 +1502,16 @@ public class JobObservation {
 		//Continues on 
 		path(driver);
 		//Waits for the green popup on the right top corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		share2.loadingServer(driver);
 		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-btn-savedactivities"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSavedActivitiesButton)).click();
 		share2.loadingServer(driver);
 		//Clicks on side panel option for job observation
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		share2.loadingServer(driver);
 		//Gets the name of the record created
-		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"));
+		WebElement record = driver.findElement(jo.JOFirstRecord);
 		String recordName = record.getText();
 		String r = recordName.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").contains(text);

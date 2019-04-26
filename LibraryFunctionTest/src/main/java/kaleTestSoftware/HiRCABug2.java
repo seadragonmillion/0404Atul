@@ -48,10 +48,12 @@ public class HiRCABug2 {
 	public void uploadImageFirefox(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
 		share.scrollToElement(driver, driver.findElement(By.id(id)));
-		driver.findElement(By.id(id)).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id(id)));
+		//driver.findElement(By.id(id)).click();
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));

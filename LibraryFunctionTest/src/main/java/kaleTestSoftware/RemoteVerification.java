@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -120,7 +118,7 @@ public class RemoteVerification {
 		//Creates the expected name of record
 		String creation_date = driver.findElement(rv.RVCreationDate).getText();
 		creation_date= creation_date.substring(22, creation_date.length());
-		String reportName = creation_date +"_"+ username + "_" + rv.eventTitle(driver);
+		String reportName = creation_date +"_"+ username + "_" + rv.eventTitle(driver,driver.getCurrentUrl());
 		//Verify email
 		verifyEmailForVerifier (driver,username,reportName,k);
 	}
@@ -311,8 +309,9 @@ public class RemoteVerification {
 	public void upload1stpictureFirefox(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on browse button of 1st picture
-		driver.findElement(rv.RV1stImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV1stImageField));
 		Thread.sleep(2000);
 		//Uploads picture 1
 		Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
@@ -321,7 +320,7 @@ public class RemoteVerification {
 		//Clears image
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV1stImageClearButton)).click();
 		//Re-uploads same picture 1
-		driver.findElement(rv.RV1stImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV1stImageField));
 		Thread.sleep(2000);
 		Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		p1.waitFor();
@@ -329,7 +328,7 @@ public class RemoteVerification {
 		//Clears image
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV1stImageClearButton)).click();
 		//Re-uploads different picture 1
-		driver.findElement(rv.RV1stImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV1stImageField));
 		Thread.sleep(2000);
 		Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		p2.waitFor();
@@ -487,8 +486,9 @@ public class RemoteVerification {
 	public void upload2ndpictureFirefox(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on browse button of 2nd picture
-		driver.findElement(rv.RV2ndImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV2ndImageField));
 		Thread.sleep(2000);
 		//Uploads picture 2
 		Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
@@ -497,7 +497,7 @@ public class RemoteVerification {
 		//Clears image
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)).click();
 		//Re-uploads same picture 2
-		driver.findElement(rv.RV2ndImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV2ndImageField));
 		Thread.sleep(2000);
 		Process p2=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
 		p2.waitFor();
@@ -505,7 +505,7 @@ public class RemoteVerification {
 		//Clears image
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)).click();
 		//Re-uploads different picture 2
-		driver.findElement(rv.RV2ndImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV2ndImageField));
 		Thread.sleep(2000);
 		Process p1=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
 		p1.waitFor();
@@ -868,6 +868,7 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).clear();
 		Thread.sleep(3000);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(sharer);
+		Thread.sleep(500);
 		//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
 		if(browserName.contains("safari"))
@@ -935,6 +936,7 @@ public class RemoteVerification {
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);	    	
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		String window = driver.getWindowHandle();
@@ -946,7 +948,7 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(7000);
-		pdfCheck(driver,verifier,username);
+		pdfCheck(driver,verifier,username,url);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -962,6 +964,7 @@ public class RemoteVerification {
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);		  
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
@@ -973,10 +976,16 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -984,8 +993,8 @@ public class RemoteVerification {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
-		pdfCheck(driver,verifier,username);
+		p.waitFor();*/
+		pdfCheck(driver,verifier,username,url);
 		Thread.sleep(4000);
 		driver.close();
 		Thread.sleep(4000);
@@ -998,6 +1007,7 @@ public class RemoteVerification {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
+		String url = driver.getCurrentUrl();
 		deleteFiles(file);		  
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
@@ -1023,7 +1033,7 @@ public class RemoteVerification {
 		}
 		Thread.sleep(10000);
 		//pdf verification
-		pdfCheck(driver,verifier,username);
+		pdfCheck(driver,verifier,username,url);
 		Thread.sleep(4000);
 		driver.switchTo().window(window);
 
@@ -1034,6 +1044,7 @@ public class RemoteVerification {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
+		String url = driver.getCurrentUrl();
 		deleteFiles(file);		  
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
@@ -1059,7 +1070,7 @@ public class RemoteVerification {
 		}
 		Thread.sleep(10000);
 		//pdf verification
-		pdfCheck(driver,verifier,username);
+		pdfCheck(driver,verifier,username,url);
 		Thread.sleep(4000);
 		driver.switchTo().window(window);
 
@@ -1078,7 +1089,7 @@ public class RemoteVerification {
 		}
 	}
 
-	public void pdfCheck(WebDriver driver, String verifier, String username) throws Exception {
+	public void pdfCheck(WebDriver driver, String verifier, String username, String url) throws Exception {
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
 		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
@@ -1121,9 +1132,9 @@ public class RemoteVerification {
 		//Checks username
 		softly.assertThat(username).as("test data").isSubstringOf(newData1);
 		//Checks event title
-		softly.assertThat(rv.eventTitle(driver)).as("test data").isSubstringOf(newData1);
+		softly.assertThat(rv.eventTitle(driver,url)).as("test data").isSubstringOf(newData1);
 		//Checks verification details
-		softly.assertThat(rv.details(driver)).as("test data").isSubstringOf(newData1);
+		softly.assertThat(rv.details(driver,url)).as("test data").isSubstringOf(newData1);
 		//Close pdf
 		pddoc.close();
 	}
@@ -1159,11 +1170,11 @@ public class RemoteVerification {
 		//Verify report title
 		String title=wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportTitle)).getText();
 		String r = title.replaceAll("\u00AD", "");
-		softly.assertThat(r).as("test data").contains(rv.eventTitle(driver));
+		softly.assertThat(r).as("test data").contains(rv.eventTitle(driver,driver.getCurrentUrl()));
 		//Verify event details
 		String details=wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportEventDetails)).getText();
 		String r1 = details.replaceAll("\u00AD", "");
-		softly.assertThat(r1).as("test data").contains(rv.details(driver));
+		softly.assertThat(r1).as("test data").contains(rv.details(driver,driver.getCurrentUrl()));
 	}
 
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
@@ -1365,19 +1376,19 @@ public class RemoteVerification {
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
 		//Fills the mandatory fields
-		driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver));
-		driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver));
+		driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
+		driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		String ev1 = driver.findElement(rv.RVEventTitle).getAttribute("value");
 		String ev2 = driver.findElement(rv.RVEventDetails).getAttribute("value");
-		if ((ev1.equals(rv.eventTitle(driver))==false))
+		if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
 		{
 			driver.findElement(rv.RVEventTitle).clear();
-			driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver));
+			driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
 		}
-		if((ev2.equals(rv.details(driver)))==false)
+		if((ev2.equals(rv.details(driver,driver.getCurrentUrl())))==false)
 		{
 			driver.findElement(rv.RVEventDetails).clear();
-			driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver));
+			driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		}
 		//Select verifier
 		verifierSelect(driver,k);
@@ -1402,7 +1413,7 @@ public class RemoteVerification {
 		//Creates the expected name of record
 		String creation_date = driver.findElement(rv.RVCreationDate).getText();
 		creation_date= creation_date.substring(22, creation_date.length());
-		String name = creation_date +"_"+ username + "_" + rv.eventTitle(driver);
+		String name = creation_date +"_"+ username + "_" + rv.eventTitle(driver,driver.getCurrentUrl());
 		System.out.println("Expected name of record: " + name);
 		//Clicks on Remote Verification
 		driver.findElement(rv.RVSidePanel).click();

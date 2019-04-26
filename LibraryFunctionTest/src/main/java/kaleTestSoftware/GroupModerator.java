@@ -23,7 +23,7 @@ public class GroupModerator {
 	HiRCALOPBug hirca = new HiRCALOPBug();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
-	PassReview pr = new PassReview();
+	PassReviewPageObj prObj = new PassReviewPageObj();
 	JobObservation jo = new JobObservation();
 	RemoteVerification2 rv2 = new RemoteVerification2();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
@@ -265,52 +265,52 @@ public class GroupModerator {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on 3 Pass review
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.PassReviewLink)).click();
 		Thread.sleep(2000);
 		//Fills in mandatory details
-		driver.findElement(pr.Reviewer).sendKeys(text);
-		driver.findElement(pr.DocumentTitle).sendKeys(text);
-		driver.findElement(pr.Organisation).sendKeys(text);
-		String ev1 = driver.findElement(pr.Reviewer).getAttribute("value");
-		String ev2 = driver.findElement(pr.DocumentTitle).getAttribute("value");
-		String ev3 = driver.findElement(pr.Organisation).getAttribute("value");
+		driver.findElement(prObj.Reviewer).sendKeys(text);
+		driver.findElement(prObj.DocumentTitle).sendKeys(text);
+		driver.findElement(prObj.Organisation).sendKeys(text);
+		String ev1 = driver.findElement(prObj.Reviewer).getAttribute("value");
+		String ev2 = driver.findElement(prObj.DocumentTitle).getAttribute("value");
+		String ev3 = driver.findElement(prObj.Organisation).getAttribute("value");
 		if ((ev1.equals(text)==false))
 		{
-			driver.findElement(pr.Reviewer).clear();
-			driver.findElement(pr.Reviewer).sendKeys(text);
+			driver.findElement(prObj.Reviewer).clear();
+			driver.findElement(prObj.Reviewer).sendKeys(text);
 		}
 		if ((ev2.equals(text)==false))
 		{
-			driver.findElement(pr.DocumentTitle).clear();
-			driver.findElement(pr.DocumentTitle).sendKeys(text);
+			driver.findElement(prObj.DocumentTitle).clear();
+			driver.findElement(prObj.DocumentTitle).sendKeys(text);
 		}
 		if ((ev3.equals(text)==false))
 		{
-			driver.findElement(pr.Organisation).clear();
-			driver.findElement(pr.Organisation).sendKeys(text);
+			driver.findElement(prObj.Organisation).clear();
+			driver.findElement(prObj.Organisation).sendKeys(text);
 		}
 		//Select Purpose from dropdown
-		WebElement element = driver.findElement(pr.DocumentType);
+		WebElement element = driver.findElement(prObj.DocumentType);
 		Select s = new Select (element);
 		s.selectByVisibleText("Drawing");
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.NextButttonAtBottom)).click();
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SaveButton)).click();
 		Thread.sleep(2000);
 		//Clicks on save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavePopupTitle)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavePopupConfirmButton)).click();
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		//Wait for loading message
 		share2.loadingServer(driver);
 		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
-		return(wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).getText());
+		return(wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.FirstRecord)).getText());
 	}
 
 	public String createJobObsReport(WebDriver driver) throws Exception {
@@ -377,19 +377,19 @@ public class GroupModerator {
 		//Clicks on Remote Verification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).click();
 		//Fills the mandatory fields
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).getAttribute("value");
 		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).getAttribute("value");
-		if ((ev1.equals(rv.eventTitle(driver))==false))
+		if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
 		}
-		if((ev2.equals(rv.details(driver)))==false)
+		if((ev2.equals(rv.details(driver,driver.getCurrentUrl())))==false)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		}
 		//Select verifier
 		driver.findElement(rv.RVVerifierField).sendKeys("qaapaaverifier");
@@ -643,7 +643,7 @@ public class GroupModerator {
 			share2.loadingServer(driver);
 		}
 		//Clicks on 3 Pass review side panel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.PassReviewSidePanel)).click();
 		share2.loadingServer(driver);
 		//Verify if the reports from users under group are visible
 		for(int i=2;i<=n;i++)
@@ -655,7 +655,7 @@ public class GroupModerator {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li["+i+"]/a"))).click();
 			share2.loadingServer(driver);
 			//Clicks on 3 Pass review side panel
-			wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.PassReviewSidePanel)).click();
 			share2.loadingServer(driver);
 		}
 		//Clicks on RV side panel

@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -179,10 +177,16 @@ public class HiRCAStress {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(4000);
+		Thread.sleep(4000);/*
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -190,7 +194,7 @@ public class HiRCAStress {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		pdfCheck();
 		Thread.sleep(4000);
 		driver.close();

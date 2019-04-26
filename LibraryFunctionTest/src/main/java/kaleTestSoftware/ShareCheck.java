@@ -42,6 +42,7 @@ public class ShareCheck {
 	ShareCheck2 share2 = new ShareCheck2();
 	LoginPageObj login = new LoginPageObj();
 	Login loginFunction = new Login();
+	PassReviewPageObj pr = new PassReviewPageObj();
 
 	public void checkColorOfElement(WebDriver driver, By locator,SoftAssertions softly) throws Exception {
 
@@ -171,9 +172,7 @@ public class ShareCheck {
 		Thread.sleep(4000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
-		Thread.sleep(2000);
 		jse.executeScript("scroll(0,0)");
-		Thread.sleep(2000);
 		//Click on 1st record/notification
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 		//Click on Open Report button
@@ -251,32 +250,42 @@ public class ShareCheck {
 			Thread.sleep(2000);
 			//Click on 1st record/notification
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+			scrollToElement(driver,ele);
 			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
 				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 			Thread.sleep(2000);
 			//Click on read
 			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 			if(ele.isEnabled()==false)
+			{
+				scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+			}
+			scrollToElement(driver,ele);
 			ele.click();
 			Thread.sleep(2000);
 			//Click on mark as read
 			try{
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+				scrollToElement(driver,ele);
 				ele.click();
 			}catch(org.openqa.selenium.TimeoutException g)
 			{
 				//Click on 1st record/notification
+				scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				Thread.sleep(2000);
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+				scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				if(ele.isEnabled()==false)
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+				scrollToElement(driver,ele);
 				ele.click();
 				//Mark as read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+				scrollToElement(driver,ele);
 				ele.click();				
 			}
 		}
@@ -351,7 +360,12 @@ public class ShareCheck {
 			}
 			else
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+
+				}
 			}
 			if(driver.findElement(share.NotificationOpenButton).isEnabled())
 				break;		
@@ -374,7 +388,12 @@ public class ShareCheck {
 					}
 					else
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						try{
+							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						}catch(org.openqa.selenium.WebDriverException q)
+						{
+
+						}
 					}
 					if(driver.findElement(share.NotificationOpenButton).isEnabled())
 						break;		
@@ -445,7 +464,7 @@ public class ShareCheck {
 				{
 					String title = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordReportTitle)).getText();
 					System.out.println("Title in rv in sharer notification center: "+title);
-					softly.assertThat(title).as("test data").contains(rv.eventTitle(driver));
+					softly.assertThat(title).as("test data").contains(rv.eventTitle(driver, driver.getCurrentUrl()));
 				}
 				share2.loadingServer(driver);
 				//Click on 1st record/notification
@@ -494,11 +513,20 @@ public class ShareCheck {
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				Thread.sleep(4000);
 				//Click on read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-				if(ele.isEnabled()==false)
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-				ele.click();
-				Thread.sleep(2000);
+				while(true)
+				{
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+					if(ele.isEnabled()==false)
+					{
+						if (browserName.equals("firefox"))
+							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					}
+					if(ele.isEnabled())
+						break;
+				}
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).click();
+				Thread.sleep(2000);			
 				//Click on mark as read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
 				ele.click();
@@ -611,8 +639,14 @@ public class ShareCheck {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
 		Thread.sleep(4000);
 		driver.close();
@@ -866,7 +900,6 @@ public class ShareCheck {
 	public void shareReportMultipleTimesAnalysisModules(WebDriver driver, String username, String password1) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		PassReview obj2 = new PassReview();
 		share2.loadingServer(driver);
 		//Go to Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
@@ -879,7 +912,7 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//HPI
@@ -939,13 +972,13 @@ public class ShareCheck {
 		shareReportToManyUsers(driver,username,password1);
 		//3 Pass Review
 		//Click on side panel 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.PassReviewSidePanel)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
 		share2.loadingServer(driver);
 		//First record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.FirstRecord)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ShareButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//Remote Verification
@@ -1079,13 +1112,22 @@ public class ShareCheck {
 			{
 				Thread.sleep(2000);
 				//Click on 1st record/notification
-				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-				act.click(ele).build().perform();
-				share2.loadingServer(driver);
+				while(true)
+				{
+					try{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						share2.loadingServer(driver);
+					}catch(org.openqa.selenium.WebDriverException r)
+					{
+						continue;
+					}
+					if(driver.findElement(share.NotificationReadButton).isEnabled())
+						break;		
+				}
 				if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).isSelected()==false)
 					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
 				//Click on read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 				if(ele.isEnabled()==false)
 					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
 				act.click(ele).build().perform();
@@ -1100,12 +1142,11 @@ public class ShareCheck {
 		{
 			for(int i=1;i<=n;i++)
 			{
-				Thread.sleep(2000);
 				//Click on 1st record/notification
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
 				if(ele.isSelected()==false)
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-				Thread.sleep(4000);
+				share2.loadingServer(driver);
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 				if(ele.isEnabled()==false)

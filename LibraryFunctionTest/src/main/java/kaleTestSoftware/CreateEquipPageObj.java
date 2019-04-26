@@ -115,6 +115,16 @@ public class CreateEquipPageObj {
 	public By EquipListFieldsPharmaceutical = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[4]/a");
 	public By EquipListFieldsWelding = By.xpath(".//*[@id='pii-admin-efse-field-menu']/li[5]/a");
 
+	//Errors
+	public By CaseIDError = By.id("pii-admin-efse-id-error");
+	public By TypeError = By.id("pii-admin-efse-type-error");
+	public By DisciplineError = By.id("pii-admin-efse-discipline-error");
+	public By FieldError = By.id("pii-admin-efse-field-error");
+	public By QuestionError = By.id("pii-admin-efse-question-error");
+	public By AnswerError = By.id("pii-admin-efse-answer-error");
+	public By PNGFileError = By.id("pii-admin-efse-upload-file-input-error");
+	public By KeywordError = By.id("pii-admin-efse-keyword-list-input-error");
+	
 	//Related links slide
 	//	public By RelatedLinksSlideTitle = By.xpath(".//*[@class='pii-linkslide']/div[1]/div");
 	/*	public By RelatedLinksSlideLink1Title = By.xpath(".//*[@class='pii-linkslide']/div[2]");

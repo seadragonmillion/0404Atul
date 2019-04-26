@@ -275,7 +275,10 @@ public class EiRCA3 {
 		softly.assertThat(s).as("test data").isEqualTo("Share to user");
 		//Verify question on pop up, sharer in format = QAA (ritica_only_nonadmin)
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
-		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want share current activity to user ["+sharer+"]?");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to share current activity to user ["+sharer+"]?");
+		else
+			softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want share current activity to user ["+sharer+"]?");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: report will be shared after you save your changes.");

@@ -2,6 +2,7 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -13,25 +14,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class RemoteVerification2 {
-	
+
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	RemoteVerification rv1 = new RemoteVerification();
+	RemoteVerification3 rv3 = new RemoteVerification3();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
-	
+
 	SoftAssertions softly = new SoftAssertions();
-	
+
 	public String password = "S2FsZWplbmtpbnNAMTIz";
 	public String rejectComment = "Rejected for test";
 	public String passComment = "Passed for test";
-	
 
-	
-	
+
+
+
 	public void upload2ndpictureChrome(WebDriver driver) throws Exception {
 
 		//Uploads picture 2
@@ -41,8 +43,9 @@ public class RemoteVerification2 {
 
 	public void upload2ndpictureFirefox(WebDriver driver) throws Exception {
 
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on browse button of 2nd picture
-		driver.findElement(rv.RV2ndImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV2ndImageField));
 		Thread.sleep(2000);
 		//Uploads picture 2
 		Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
@@ -94,7 +97,7 @@ public class RemoteVerification2 {
 		}
 		Thread.sleep(4000);
 	}
-	
+
 	public void upload2ndPicture(WebDriver driver) throws Exception{
 
 		share.scrollToElement(driver, driver.findElement(rv.RV2ndImageField));
@@ -114,7 +117,7 @@ public class RemoteVerification2 {
 				upload2ndpictureIE11(driver);
 		}
 	}
-	
+
 	public void upload1stpictureChrome(WebDriver driver) throws Exception {
 
 		//Uploads picture 1
@@ -124,8 +127,9 @@ public class RemoteVerification2 {
 
 	public void upload1stpictureFirefox(WebDriver driver) throws Exception {
 
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on browse button of 1st picture
-		driver.findElement(rv.RV1stImageField).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV1stImageField));
 		Thread.sleep(2000);
 		//Uploads picture 1
 		Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
@@ -196,9 +200,9 @@ public class RemoteVerification2 {
 				upload1stpictureIE11(driver);
 		}
 	}
-	
+
 	public void loginToUser(WebDriver driver, String username, String password1) throws Exception{
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//logout
 		login.logout(driver);
@@ -238,10 +242,11 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationBell)).click();
 		share.scrollToTop(driver);
 	}
-	
+
 	public void verifierNotification(WebDriver driver, String verifier, String username, String password1) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -251,7 +256,25 @@ public class RemoteVerification2 {
 		System.out.println("Reason in rv in verifier notification center: "+reason);
 		softly.assertThat(reason).as("test data").contains("Remote Verification Requested - v1");
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+		while(true)
+		{
+			if(browserName.equals("safari")||browserName.equals("firefox"))
+			{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)));
+			}
+			else
+			{
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+
+				}
+			}
+			if(driver.findElement(shareObj.NotificationOpenButton).isEnabled())
+				break;		
+		}
+		share2.loadingServer(driver);
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -269,7 +292,25 @@ public class RemoteVerification2 {
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+		while(true)
+		{
+			if(browserName.equals("safari")||browserName.equals("firefox"))
+			{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)));
+			}
+			else
+			{
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+
+				}
+			}
+			if(driver.findElement(shareObj.NotificationOpenButton).isEnabled())
+				break;		
+		}
+		share2.loadingServer(driver);
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -302,7 +343,25 @@ public class RemoteVerification2 {
 		System.out.println("Reason in rv in verifier notification center: "+reason1);
 		softly.assertThat(reason1).as("test data").contains("Remote Verification Requested - v2");
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+		while(true)
+		{
+			if(browserName.equals("safari")||browserName.equals("firefox"))
+			{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)));
+			}
+			else
+			{
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+
+				}
+			}
+			if(driver.findElement(shareObj.NotificationOpenButton).isEnabled())
+				break;		
+		}
+		share2.loadingServer(driver);
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -321,7 +380,25 @@ public class RemoteVerification2 {
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+		while(true)
+		{
+			if(browserName.equals("safari")||browserName.equals("firefox"))
+			{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)));
+			}
+			else
+			{
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+
+				}
+			}
+			if(driver.findElement(shareObj.NotificationOpenButton).isEnabled())
+				break;		
+		}
+		share2.loadingServer(driver);
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -351,7 +428,25 @@ public class RemoteVerification2 {
 		System.out.println("Reason in rv in creator notification center: "+reason1);
 		softly.assertThat(reason2).as("test data").contains("Remote Verification Accepted - v2");
 		//Click on 1st record/notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+		while(true)
+		{
+			if(browserName.equals("safari")||browserName.equals("firefox"))
+			{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)));
+			}
+			else
+			{
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationFirstRecord)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+
+				}
+			}
+			if(driver.findElement(shareObj.NotificationOpenButton).isEnabled())
+				break;		
+		}
+		share2.loadingServer(driver);
 		//Click on Open Report button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
@@ -366,7 +461,7 @@ public class RemoteVerification2 {
 		String comments1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationComments)).getText();
 		softly.assertThat(comments1).as("test data").contains(passComment);
 	}
-	
+
 	public void deleteReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -379,7 +474,7 @@ public class RemoteVerification2 {
 	}
 
 	public void rvVerifierTest(WebDriver driver, int k, String username, String password1) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -392,20 +487,22 @@ public class RemoteVerification2 {
 		}
 		//Clicks on Remote Verification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			rv3.verifyErrorOnPage(driver, softly);
 		//Fills the mandatory fields
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).getAttribute("value");
 		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).getAttribute("value");
-		if ((ev1.equals(rv.eventTitle(driver))==false))
+		if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
 		}
-		if((ev2.equals(rv.details(driver)))==false)
+		if((ev2.equals(rv.details(driver,driver.getCurrentUrl())))==false)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		}
 		//Select verifier
 		rv1.verifierSelect(driver,k);
@@ -430,7 +527,7 @@ public class RemoteVerification2 {
 		//Delete report
 		deleteReport(driver);
 	}
-	
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

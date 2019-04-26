@@ -47,6 +47,7 @@ public class UserManagement {
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	UserManagement2 um2 = new UserManagement2();
 
 	SoftAssertions softly = new SoftAssertions();
 	public String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
@@ -188,6 +189,8 @@ public class UserManagement {
 		{
 			softly.fail("department is still showing as checked");
 		}
+		//see if user account can be saved
+		//share2.checkIfUserProfileNoFieldsMissing(driver, softly);
 		//Logout
 		Login obj1 = new Login();
 		obj1.logout(driver);
@@ -338,8 +341,6 @@ public class UserManagement {
 		share.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
-
-
 
 	public void userRetrieveAfterProfileView(WebDriver driver, String company_id, String username, String password, Login obj) throws Exception {
 
@@ -492,7 +493,7 @@ public class UserManagement {
 		//Login as new user/admin
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		obj.waitForIframe(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
@@ -505,7 +506,7 @@ public class UserManagement {
 		}catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
 			
 		}
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 	}
 
 	public void changeGroupCompany (WebDriver driver, String company_id, String groupChange, String companyChange) throws Exception {
@@ -529,9 +530,11 @@ public class UserManagement {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Change company id
+		share.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-customerId")));
 		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd1.selectByVisibleText(companyChange);
 		//Select pii group
+		share.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-groups-button")));
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
@@ -615,7 +618,7 @@ public class UserManagement {
 		ele1.findElement(By.xpath(".//*[@class='ui-datebox-gridrow ui-datebox-gridrow-last']/div[1]")).click();
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-group-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
 		//Clicks on Save
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
 		//Wait for loading message to disappear
@@ -844,7 +847,7 @@ public class UserManagement {
 		ele1.findElement(By.xpath(".//*[@class='ui-datebox-gridrow ui-datebox-gridrow-last']/div[5]")).click();
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
 		//Clicks on Save
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
 		try{
@@ -1272,9 +1275,12 @@ public class UserManagement {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 		//Clicks on new company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		//Verify error
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			um2.verifyErrorOnCompanyPage(driver, softly);
 		//Fills all mandatory details
 		driver.findElement(By.id("pii-admin-cust-cid")).sendKeys(company_id);
 		driver.findElement(By.id("pii-admin-cust-name")).sendKeys("Sanity Test");
@@ -1352,7 +1358,7 @@ public class UserManagement {
 		 */
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-cust-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 		//Clicks on create company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		try{
@@ -1413,24 +1419,45 @@ public class UserManagement {
 		//Clicks on create group
 		driver.findElement(By.id("pii-admin-group-create")).click();
 		Thread.sleep(2000);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Clicks on save
+			driver.findElement(By.id("pii-admin-group-button-save")).click();
+			String groupNameError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
+			softly.assertThat(groupNameError).as("test data").contains("Warning - Cannot Save: a group must have a group name specified.");
+		}
 		//Fills all mandatory 
 		driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
-		driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
 		String ev1 = driver.findElement(By.id("pii-admin-group-name")).getAttribute("value");
-		String ev2 = driver.findElement(By.id("pii-admin-group-cases")).getAttribute("value");
 		if ((ev1.equals(company_id)==false))
 		{
 			driver.findElement(By.id("pii-admin-group-name")).clear();
 			driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
 		}
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Clicks on save
+			driver.findElement(By.id("pii-admin-group-button-save")).click();
+			String groupCompError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
+			softly.assertThat(groupCompError).as("test data").contains("Warning - Cannot Save: a group must have a company id specified.");
+		}
+		WebElement element = driver.findElement(By.id("pii-admin-group-cid"));
+		Select dropdown = new Select (element);
+		dropdown.selectByVisibleText(company_id);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Clicks on save
+			driver.findElement(By.id("pii-admin-group-button-save")).click();
+			String groupCaseError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
+			softly.assertThat(groupCaseError).as("test data").contains("Error: Authorized Cases field is required");
+		}
+		driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
+		String ev2 = driver.findElement(By.id("pii-admin-group-cases")).getAttribute("value");		
 		if ((ev2.equals("all")==false))
 		{
 			driver.findElement(By.id("pii-admin-group-cases")).clear();
 			driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
 		}
-		WebElement element = driver.findElement(By.id("pii-admin-group-cid"));
-		Select dropdown = new Select (element);
-		dropdown.selectByVisibleText(company_id);
 		driver.findElement(By.id("pii-admin-group-modules-button")).click();
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
 		//Verify all modules are listed
@@ -1449,7 +1476,7 @@ public class UserManagement {
 		}
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-group-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
 		//Clicks on Save
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
 		try{
@@ -1459,7 +1486,12 @@ public class UserManagement {
 
 		}
 		System.out.println("Group created");
-
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String groupCreated = driver.findElement(By.id("pii-admin-group-messages")).getText();
+			softly.assertThat(groupCreated).as("test data").contains("Group created: "+company_id+".");
+		}
+		softly.assertAll();
 	}
 
 	public void createUserGM(WebDriver driver, String company_id, String password,String email) throws Exception{
@@ -1515,7 +1547,7 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
 		//Clicks on save button
 		driver.findElement(By.id("pii-admin-user-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		try{
@@ -1576,7 +1608,7 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@for='pii-admin-user-customerAdmin-yes']")).click();
 		//Clicks on save button
 		driver.findElement(By.id("pii-admin-user-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		try{
@@ -1689,7 +1721,7 @@ public class UserManagement {
 		dd3.selectByVisibleText("Engineer");		  
 		//Clicks on save button
 		driver.findElement(By.id("pii-admin-user-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		try{
@@ -1719,7 +1751,7 @@ public class UserManagement {
 		//Login
 		int login = obj.LoginUser(driver, company_id, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		try{
 			//Click on agree terms box
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-license-checkbox-div']/fieldset/div/div/label"))).click();
@@ -1741,7 +1773,7 @@ public class UserManagement {
 		try{
 			if (login==1)
 			{
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				WebDriverWait wait2 = new WebDriverWait(driver,20);
 				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
@@ -1811,6 +1843,8 @@ public class UserManagement {
 			}
 
 		}
+		//see if user account can be saved
+		share2.checkIfUserProfileNoFieldsMissing(driver, softly);
 
 	}
 
@@ -1898,6 +1932,8 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		//see if user account can be saved
+		share2.checkIfUserProfileNoFieldsMissing(driver, softly);
 	}
 
 	public List<String> storeDepartmentList(WebDriver driver) throws Exception {
@@ -2280,7 +2316,7 @@ public class UserManagement {
 		Thread.sleep(4000);
 		//Clicks on delete
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-delete"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete user
@@ -2315,7 +2351,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-delete"))).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
 		//Clicks on delete group
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
 		try{
@@ -2347,7 +2383,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-delete"))).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 		//Clicks on delete company
 		driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();
 		Thread.sleep(4000);

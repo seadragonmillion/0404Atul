@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -224,10 +222,16 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);/*
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
@@ -236,7 +240,7 @@ public class OPiRCA {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options,step2);
 		Thread.sleep(4000);
 		driver.close();
@@ -333,7 +337,7 @@ public class OPiRCA {
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
 		{
-			
+
 		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
@@ -548,6 +552,7 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareButton)).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
+		Thread.sleep(500);
 		//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareDropdown));
 		dropdown.findElement(opirca.FirstSelectionUnderDropdown).click();
@@ -644,7 +649,7 @@ public class OPiRCA {
 		int n;
 		while(true)
 		{
-			n = random.nextInt(32);
+			n = random.nextInt(15);
 			if(n==0)
 				continue;
 			break;
@@ -1227,10 +1232,14 @@ public class OPiRCA {
 		for(int j=0;j<apparentCausesSelected.size();j++)
 		{
 			int m = apparentCausesSelected.get(j).indexOf(":");
-			if(m<apparentCausesSelected.get(j).length())
+			if(m!=-1)
 			{
-				String s = apparentCausesSelected.get(j).substring(0,m)+apparentCausesSelected.get(j).substring(m+1,apparentCausesSelected.get(j).length()).replaceAll("^( )*|( )*$", "");
-				removeColon.add(s.replaceAll("^( )*|( )*$", ""));
+				if(m<apparentCausesSelected.get(j).length())
+				{
+					String s = apparentCausesSelected.get(j).substring(0,m)+apparentCausesSelected.get(j).substring(m+1,apparentCausesSelected.get(j).length());
+					System.out.println("***"+s.replaceAll("^( )*|( )*$", "")+"***");
+					removeColon.add(s.replaceAll("^( )*|( )*$", ""));
+				}
 			}
 			else
 				removeColon.add(apparentCausesSelected.get(j));

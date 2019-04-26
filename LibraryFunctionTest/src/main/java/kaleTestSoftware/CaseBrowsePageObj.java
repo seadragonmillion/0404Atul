@@ -3,7 +3,7 @@ package kaleTestSoftware;
 import org.openqa.selenium.By;
 
 
-public class CaseBrowseObj {
+public class CaseBrowsePageObj {
 
 	public By ErrorFreeBankLinkHomePage = By.id("pii-main-menu-button-e");
 	public By HumanPerformanceLink = By.linkText("Human Performance");

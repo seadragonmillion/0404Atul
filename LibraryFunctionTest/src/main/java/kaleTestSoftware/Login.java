@@ -20,6 +20,9 @@ public class Login {
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share = new ShareCheck2();
 
+	public String loginWarningMessage = "Warning: Only one current log in session per user is allowed. Any previous log in on another device or web browser will be automatically disconnected. Please report abnormal account activity and change password immediately.";
+
+
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -108,11 +111,15 @@ public class Login {
 		{
 			waitForIframe(driver);
 		}
+		//Check for login warning message
+		if(username.contains("chinese")==false)
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				checkForWarningMessage(driver,login);
 		return login;
 	}
-	
+
 	public void waitForIframe(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		while(true)
 		{
@@ -125,7 +132,27 @@ public class Login {
 			}
 		}
 	}
-	
+
+	public void checkForWarningMessage(WebDriver driver, int login) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		if(login==1)
+		{
+			driver.switchTo().frame(driver.findElement(lpo.Iframe));
+			try{
+			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote)).getText();
+			SoftAssertions.assertSoftly(softly1 ->{
+				softly1.assertThat(message).as("test data").doesNotContain("<br");
+				softly1.assertThat(message).as("test data").isEqualTo(loginWarningMessage);
+			});
+			}catch(org.openqa.selenium.TimeoutException e)
+			{
+				
+			}
+			driver.switchTo().defaultContent();
+		}
+	}
+
 	public String decodePassword(String pw){
 
 		byte[] decryptedPasswordBytes = Base64.getDecoder().decode(pw);
@@ -144,9 +171,10 @@ public class Login {
 					Thread.sleep(1000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
 
-				}}catch (NoSuchElementException e)
+				}
+			}catch (NoSuchElementException e)
 			{
-					break;
+				break;
 			}
 			catch( org.openqa.selenium.StaleElementReferenceException f)
 			{

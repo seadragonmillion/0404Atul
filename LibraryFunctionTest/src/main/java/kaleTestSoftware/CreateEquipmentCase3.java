@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -23,7 +24,8 @@ public class CreateEquipmentCase3 {
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
+	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 
 	public void clickTypesDisciplineIE(WebDriver driver, By element) throws Exception {
 
@@ -143,19 +145,18 @@ public class CreateEquipmentCase3 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		CreateHumanCase obj3 = new CreateHumanCase();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -206,7 +207,28 @@ public class CreateEquipmentCase3 {
 		}
 		else
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+			}catch(org.openqa.selenium.WebDriverException r)
+			{
+				while(true)
+				{
+					String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).getAttribute("textContent");
+					System.out.println(s);
+					if(s.contains(keyword_same))
+					{
+						share.scrollToAPoint(driver, 2000);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					}
+					else{
+						share.scrollToAPoint(driver, 2000);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
+						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
+						share.scrollToAPoint(driver, 2000);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					}
+				}
+			}
 		}
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
@@ -224,10 +246,37 @@ public class CreateEquipmentCase3 {
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
+	}
+	
+	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Scroll top
+		share.scrollToTop(driver);
+		//Click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		//Verify all errors
+		String idError = driver.findElement(equipObj.CaseIDError).getText();
+		softly.assertThat(idError).as("test data").isEqualTo("ID is required");
+		String typeError = driver.findElement(equipObj.TypeError).getText();
+		softly.assertThat(typeError).as("test data").isEqualTo("Case type is required");
+		String discError = driver.findElement(equipObj.DisciplineError).getText();
+		softly.assertThat(discError).as("test data").isEqualTo("Case discipline is required");
+		String fieldError = driver.findElement(equipObj.FieldError).getText();
+		softly.assertThat(fieldError).as("test data").isEqualTo("Case field is required");
+		String questionError = driver.findElement(equipObj.QuestionError).getText();
+		softly.assertThat(questionError).as("test data").isEqualTo("Case question is required");
+		String answerError = driver.findElement(equipObj.AnswerError).getText();
+		softly.assertThat(answerError).as("test data").isEqualTo("Case answer is required");
+		String imageError = driver.findElement(equipObj.PNGFileError).getText();
+		softly.assertThat(imageError).as("test data").isEqualTo("Please select some PNG files with .png extension");
+		String keywordError = driver.findElement(equipObj.KeywordError).getText();
+		softly.assertThat(keywordError).as("test data").isEqualTo("Please attach some keywords to this case");
+		//softly.assertAll();
 	}
 
 }

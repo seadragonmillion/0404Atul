@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -604,10 +602,43 @@ public class HiRCALevel1 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(4000);/*
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		System.out.println(lastFilePath.get());
+		if(lastFilePath.get().endsWith(".pdf")==false)
+		{
+			driver.close();
+			driver.switchTo().window(window);
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			Thread.sleep(8000);
+			for(String winHandle : driver.getWindowHandles())
+			{
+				System.out.println(winHandle);
+				if(winHandle.isEmpty()==false)
+				{
+					if(winHandle.equals(window)==false)
+						driver.switchTo().window(winHandle);
+				}
+			}
+			Thread.sleep(4000);
+		}
+		/*
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
@@ -616,7 +647,7 @@ public class HiRCALevel1 {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		pdfCheck(driver,lopOptions,hml,options,checklist);
 		Thread.sleep(4000);
 		driver.close();
@@ -763,8 +794,11 @@ public class HiRCALevel1 {
 			if(newData1.contains(modText.get(i)))
 				c2 = c2+1;
 		}
-		if((c2==0) && (c1==0) && (lopOptions.size()>0))
-			softly.fail("pdf doesn't contain any text from Step 4 text boxes");
+		if((c1>0)||(c2>0))
+		{
+			if((c2==0) && (c1==0) && (lopOptions.size()>0))
+				softly.fail("pdf doesn't contain any text from Step 4 text boxes");
+		}
 		//Verify SUEP Yes
 		for (int i= 0; i<lopOptions.size();i++)
 		{
@@ -790,14 +824,17 @@ public class HiRCALevel1 {
 		}
 		//Counts number of times evidence entry was entered
 		int n= lopOptions.size();
-		Pattern p = Pattern.compile(textEvidence(driver));
-		Matcher m = p.matcher(newData1);
-		int count = 0;
-		while (m.find()){
-			count +=1;
+		if(newData1.contains(textEvidence(driver)))
+		{
+			Pattern p = Pattern.compile(textEvidence(driver));
+			Matcher m = p.matcher(newData1);
+			int count = 0;
+			while (m.find()){
+				count +=1;
+			}
+			System.out.println("No. of evidence entries: "+count);
+			softly.assertThat(count).as("test data").isEqualTo(n*2);
 		}
-		System.out.println("No. of evidence entries: "+count);
-		softly.assertThat(count).as("test data").isEqualTo(n*2);
 		System.out.println(options);
 		System.out.println(hml);
 		if(n>0)
@@ -1316,7 +1353,7 @@ public class HiRCALevel1 {
 		List <String>lopOptions1 = new ArrayList<String>();
 		for(int h=0;h<lopOptions.size();h++)
 		{
-			String s = lopOptions.get(h).replace("]", ":");
+			String s = lopOptions.get(h).replace("]", ":").trim();
 			lopOptions1.add(s);
 		}
 		//Get number of Root causes in Level 3 answers
@@ -1347,6 +1384,7 @@ public class HiRCALevel1 {
 			int n = lopOptions1.indexOf(level3);
 			//Get level3 answer from lopOptions
 			String l = lopOptions.get(n).replace("]", "");
+			//String l = level3.substring(0, level3.indexOf(":"))+level3.substring(level3.indexOf(":")+1, level3.length());
 			//Check if it has 4 boxes ticked
 			if(options.get(l)!=4)
 			{
@@ -1374,7 +1412,7 @@ public class HiRCALevel1 {
 			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));
 			String oldValue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
 			System.out.println("old value and new value y: "+oldValue + y);
-			if((y==1)&&(oldValue.contains("H")==false))
+			if((y==1)/*&&(oldValue.contains("H")==false)*/)
 			{
 				//Click on H
 				while(true)
@@ -1382,7 +1420,7 @@ public class HiRCALevel1 {
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals("H"))
 					{
-						if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals(oldValue)==false)
+						//if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals(oldValue)==false)
 						{
 							break;
 						}
@@ -1394,7 +1432,7 @@ public class HiRCALevel1 {
 				//Insert level 3 answer without [, ] , : after the serial no (for eg, 3.17.1)
 				hml.put(l, "High");
 			}
-			if((y==2)&&(oldValue.contains("M")==false))
+			if((y==2)/*&&(oldValue.contains("M")==false)*/)
 			{
 				//Click on M
 				while(true)
@@ -1403,7 +1441,7 @@ public class HiRCALevel1 {
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
 						if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals("M"))
 						{
-							if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals(oldValue)==false)
+							//if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals(oldValue)==false)
 							{
 								break;
 							}
@@ -1415,7 +1453,7 @@ public class HiRCALevel1 {
 				//Insert level 3 answer without [, ] , : after the serial no (for eg, 3.17.1)
 				hml.put(l, "Medium");
 			}
-			if((y==3)&&(oldValue.contains("L")==false))
+			if((y==3)/*&&(oldValue.contains("L")==false)*/)
 			{
 				//Click on L
 				while(true)
@@ -1425,7 +1463,7 @@ public class HiRCALevel1 {
 					{
 						if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals("L"))
 						{
-							if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals(oldValue)==false)
+							//if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue").equals(oldValue)==false)
 							{
 								break;
 							}
@@ -1596,6 +1634,8 @@ public class HiRCALevel1 {
 		Thread.sleep(2000);
 		share.scrollToTop(driver);
 		Thread.sleep(2000);
+		System.out.println("Modify report hml:");
+		System.out.println(hml);
 		return hml;
 	}
 
@@ -2368,7 +2408,7 @@ public class HiRCALevel1 {
 			if(y==1)
 			{
 				//Click on H
-			//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+				//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -2388,7 +2428,7 @@ public class HiRCALevel1 {
 			if(y==2)
 			{
 				//Click on M
-			//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+				//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -3036,7 +3076,10 @@ public class HiRCALevel1 {
 		//Verify Description text
 		String lop3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText().trim();
 		System.out.println(lop3);
-		softly.assertThat(lop3).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(lop3).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assessment on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA");
+		else
+			softly.assertThat(lop3).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA");
 		softly.assertThat(lop3).as("test data").contains(" to do a troubleshooting specifically for equipment failures.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();

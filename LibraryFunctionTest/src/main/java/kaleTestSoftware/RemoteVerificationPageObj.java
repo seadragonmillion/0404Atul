@@ -30,6 +30,13 @@ public class RemoteVerificationPageObj {
 	public By RVEventDetails = By.id("pii-rv-tab-1-details");
 	public By RVVerifierValue = By.id("pii-rv-verifier-name");
 	public By RVTitleCharacterCount = By.id("pii-rv-tab-1-title-count");
+	//Error labels
+	public By RVTitleError = By.id("pii-rv-tab-1-title-error");
+	public By RV1stImageError = By.id("pii-rv-imgwork-photo-input-error");
+	public By RV2ndImageError = By.id("pii-rv-imgperson-photo-input-error");
+	public By RVDetailsError = By.id("pii-rv-tab-1-details-error");
+	public By RVVerifierError = By.id("pii-rv-verifier-name-error");
+	
 
 	public By RVNewlyCreatedFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a");
 	public By RVSidePanel = By.id("pii-user-home-panel-btn-rv");
@@ -66,16 +73,16 @@ public class RemoteVerificationPageObj {
 	public By RVReportVerificationReviseButton = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[7]/div/a");
 	public By RVReportVerificationComments = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[8]");
 	
-	public String eventTitle(WebDriver driver) throws Exception {
+	public String eventTitle(WebDriver driver, String url) throws Exception {
 
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(url.contains("kaleqa"))
 			return ("I think I will <strong> buy the red car, or \"title\" I will lease the blue one.");
 		else return ("I think I will buy the red car, or \"title\" I will lease the blue one.");
 	}
 
-	public String details(WebDriver driver) throws Exception {
+	public String details(WebDriver driver, String url) throws Exception {
 
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(url.contains("kaleqa"))
 			return ("There was no <input> ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
 		else return ("There was no ice cream in the freezer, nor did they have money to go to the store./?.,><';:*-+()@#$%&01234567890");
 	}

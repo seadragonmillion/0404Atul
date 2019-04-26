@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -489,10 +487,16 @@ public class LanguageCheckOfReports {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(12000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(14000);
+		Thread.sleep(14000);/*
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -501,7 +505,7 @@ public class LanguageCheckOfReports {
 		robot.keyRelease(KeyEvent.VK_S);
 		Thread.sleep(8000);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		Thread.sleep(4000);
 		pdfCheck(y);
 		Thread.sleep(4000);
@@ -1006,9 +1010,9 @@ public class LanguageCheckOfReports {
 			System.out.println(s1);
 			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
 			System.out.println(s2);
-			if (s1.contains("download") || (s1.contains("打印")) )
+			if (s1.contains("download") || (s1.contains("打印"))  || (s1.contains("下载")))
 				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));	
-			else if (s2.contains("download")||(s1.contains("打印")))
+			else if (s2.contains("download")||(s1.contains("打印")) || (s1.contains("下载")))
 				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
 			return (element);
 		}

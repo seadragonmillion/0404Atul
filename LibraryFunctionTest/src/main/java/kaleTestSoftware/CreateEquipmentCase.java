@@ -33,7 +33,8 @@ public class CreateEquipmentCase {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
+	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 
 	public String titleCombo = "QAA Type Discipline Field Filters Combo Test";
 	public String titleComboUS = "QAA US Type Discipline Field Filters Combo Test";
@@ -124,7 +125,6 @@ public class CreateEquipmentCase {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		//Login obj3 = new Login();
 		//Create list with discipline By elements
 		List<By> disc_list = disciplineList();
@@ -150,11 +150,11 @@ public class CreateEquipmentCase {
 			//Clicks on admin user name on top right corner
 			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 			//Clicks on admin option
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 			//Clicks on Errorfree bank option
 			if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 			}	
 			//Clicks on Equipment cases
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();	
@@ -176,7 +176,7 @@ public class CreateEquipmentCase {
 					login.closePopUpSticky(driver);
 					while(true)
 					{
-						if(driver.findElement(obj2.AdminOption).isDisplayed()==false)
+						if(driver.findElement(chc.AdminOption).isDisplayed()==false)
 						{
 							//Clicks on admin user name on top right corner
 							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
@@ -184,14 +184,14 @@ public class CreateEquipmentCase {
 						else
 						{
 							//Clicks on admin option
-							wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+							wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 							break;
 						}
 					}
 					//Clicks on Errorfree bank option
 					if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+						wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 					}	
 					//Clicks on Equipment cases
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();	
@@ -286,7 +286,7 @@ public class CreateEquipmentCase {
 					}
 					Thread.sleep(1000);
 					WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-					element.findElement(obj2.FirstAndLastChildInList).click();
+					element.findElement(chc.FirstAndLastChildInList).click();
 				}
 				//Upload images
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
@@ -300,7 +300,7 @@ public class CreateEquipmentCase {
 				}
 				if(browserName.equals("firefox"))
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)));
 					Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 					p.waitFor();
 				}
@@ -436,13 +436,12 @@ public class CreateEquipmentCase {
 	public void caseSearchWithDisciplineFieldCombo(WebDriver driver, int x, String keyword, List<String> electrical, List<String> general, List<String> ic, List<String> mechanical, List<String> software, List<String> structural) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		//CreateEquipmentCase2 obj3 = new CreateEquipmentCase2();
 		//Go to Failure mode
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -744,16 +743,15 @@ public class CreateEquipmentCase {
 	public void deleteLinks (WebDriver driver, List<String> ee_case) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		CreateHumanCase obj1 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -766,6 +764,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(ee_case.get(2)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -800,7 +805,7 @@ public class CreateEquipmentCase {
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -813,6 +818,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList1 = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList1)
+		{
+			if(li.getText().equals(ee_case.get(2)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -901,7 +913,7 @@ public class CreateEquipmentCase {
 		}
 		//Go back to case browse and verify that no Related Links slide
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		/*Actions act = new Actions(driver);
 		act.click(element1).build().perform();*/
 		element1.click();
@@ -957,16 +969,15 @@ public class CreateEquipmentCase {
 	public void editLinks (WebDriver driver, List<String> ee_case) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		CreateHumanCase obj1 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -980,6 +991,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(ee_case.get(2)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -1006,7 +1024,7 @@ public class CreateEquipmentCase {
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		//Go to  FM
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
@@ -1066,16 +1084,15 @@ public class CreateEquipmentCase {
 	public void viewCaseInAdmin(WebDriver driver, List<String> eq_case, List<String> ee_case, String keyword_same_eq) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		CreateHumanCase obj1 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -1089,6 +1106,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(ee_case.get(2)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -1097,6 +1121,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(eq_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList1 = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList1)
+		{
+			if(li.getText().equals(eq_case.get(2)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -1129,16 +1160,15 @@ public class CreateEquipmentCase {
 	public void verifyNewCaseForm(WebDriver driver, String caseID) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		CreateHumanCase obj1 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equip cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -1157,6 +1187,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(caseID))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -1262,16 +1299,15 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		CreateHumanCase obj3 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -1284,6 +1320,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID.get(1));
 		Thread.sleep(2000);
 		//Clicks on case id
+	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(caseID.get(1)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -1351,7 +1394,7 @@ public class CreateEquipmentCase {
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -1444,8 +1487,10 @@ public class CreateEquipmentCase {
 		//Choose a number between 1 and 6 for number of types
 		Random random = new Random ();
 		int y;
-		if(count == 5){
-			if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11)){
+		if(count == 5)
+		{
+			if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+			{
 				while(true)
 				{
 					y = random.nextInt(7);
@@ -1609,12 +1654,11 @@ public class CreateEquipmentCase {
 	public void searchFailurModeCaseWith2Discipline(WebDriver driver, String keyword, String caseId) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		Thread.sleep(1000);
 		try{
@@ -1641,14 +1685,13 @@ public class CreateEquipmentCase {
 	public void searchCaseWithMultipleCategories(WebDriver driver, List<String> categories, String caseId) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		if (categories.contains("Case Studies")||categories.contains("Advanced Learning")||categories.contains("General"))
 		{
 			//Clicks on Error free bank
-			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 			element1.click();
 			Thread.sleep(1000);
 			//Go to Equipment Performance
@@ -1674,7 +1717,7 @@ public class CreateEquipmentCase {
 		if (categories.contains("Failure Mode"))
 		{
 			//Clicks on Error free bank
-			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 			element1.click();
 			Thread.sleep(1000);
 			//Go to  FM
@@ -1692,7 +1735,7 @@ public class CreateEquipmentCase {
 		if (categories.contains("Design"))
 		{
 			//Clicks on Error free bank
-			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 			element1.click();
 			Thread.sleep(1000);
 			//Go to Prevention of Design Deficiencies
@@ -1710,7 +1753,7 @@ public class CreateEquipmentCase {
 		if (categories.contains("Fundamentals"))
 		{
 			//Clicks on Error free bank
-			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+			WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 			element1.click();
 			Thread.sleep(1000);
 			//Go to Engineering Fundamentals
@@ -2178,9 +2221,8 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CaseBrowse obj2 = new CaseBrowse();
-		CreateHumanCase obj = new CreateHumanCase();
 		//Click on Error-free bank link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj.ErrorFreeBankTopLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Go to Equipment Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)).click();
 		Thread.sleep(1000);
@@ -2440,6 +2482,13 @@ public class CreateEquipmentCase {
 		Thread.sleep(2000);
 		//Clicks on case id
 		Thread.sleep(2000);
+	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(caseId))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -2452,16 +2501,15 @@ public class CreateEquipmentCase {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		CaseBrowse obj2 = new CaseBrowse();
-		CreateHumanCase obj3 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -2474,6 +2522,13 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
+/*		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		List<WebElement> casesList = ele.findElements(By.tagName("li"));
+		for(WebElement li : casesList)
+		{
+			if(li.getText().equals(caseID.get(2)))
+				li.click();
+		}*/
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
@@ -2506,7 +2561,7 @@ public class CreateEquipmentCase {
 		}
 		Thread.sleep(1000);
 		WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-		element.findElement(obj3.FirstAndLastChildInList).click();
+		element.findElement(chc.FirstAndLastChildInList).click();
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -2523,7 +2578,7 @@ public class CreateEquipmentCase {
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -2558,9 +2613,8 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CaseBrowse obj1 = new CaseBrowse();
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		//Go to Equipment Databank Only
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyLink1)).click();
@@ -2792,11 +2846,10 @@ public class CreateEquipmentCase {
 	public void changeSlideSecurity(WebDriver driver, String username, int x)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj2 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
 		{
@@ -2850,12 +2903,11 @@ public class CreateEquipmentCase {
 	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases, String title)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		Thread.sleep(1000);
 		share.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		Thread.sleep(1000);
 		try{
@@ -3073,16 +3125,15 @@ public class CreateEquipmentCase {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj1 = new CaseBrowse();
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		List<String> categories = new ArrayList<String>();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}			
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();			
@@ -3104,11 +3155,11 @@ public class CreateEquipmentCase {
 				//Clicks on admin user name on top right corner
 				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 				//Clicks on admin option
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 				//Clicks on Errorfree bank option
 				if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 				}			
 				//Clicks on Equipment cases
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -3122,6 +3173,11 @@ public class CreateEquipmentCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					equip3.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -3216,7 +3272,7 @@ public class CreateEquipmentCase {
 					}
 					Thread.sleep(1000);
 					WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-					element.findElement(obj2.FirstAndLastChildInList).click();
+					element.findElement(chc.FirstAndLastChildInList).click();
 				}}
 			if(count == 5)
 			{
@@ -3308,16 +3364,15 @@ public class CreateEquipmentCase {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj1 = new CaseBrowse();
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		List<String> categories = new ArrayList<String>();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}	
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();	
@@ -3339,11 +3394,11 @@ public class CreateEquipmentCase {
 				//Clicks on admin user name on top right corner
 				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 				//Clicks on admin option
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 				//Clicks on Errorfree bank option
 				if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 				}			
 				//Clicks on Equipment cases
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
@@ -3366,6 +3421,11 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					equip3.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -3460,7 +3520,7 @@ public class CreateEquipmentCase {
 					}
 					Thread.sleep(1000);
 					WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-					element.findElement(obj2.FirstAndLastChildInList).click();
+					element.findElement(chc.FirstAndLastChildInList).click();
 				}}
 			if(count == 5)
 			{
@@ -3497,8 +3557,13 @@ public class CreateEquipmentCase {
 			}
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-			share.scrollToElement(driver, l);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)).click();
+			share.scrollToElement(driver, l);/*
+			String uploadFilePath1 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide1.png";
+			String uploadFilePath2 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide2.png";
+			String uploadFilePath3 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide3.png";
+			String uploadFilePath4 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide4.png";
+			String uploadFilePath5 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide5.png";*/
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)));
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 			p.waitFor();
 			Thread.sleep(3000);
@@ -3562,7 +3627,6 @@ public class CreateEquipmentCase {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		CaseBrowse obj1 = new CaseBrowse();
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		List<String> categories = new ArrayList<String>();
 		//Creates 5 cases
 		int num =5;
@@ -3585,9 +3649,10 @@ public class CreateEquipmentCase {
 						Thread.sleep(1000);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
 
-					}}catch (NoSuchElementException e)
+					}
+				}catch (NoSuchElementException e)
 				{
-						break;
+					break;
 				}
 				catch( StaleElementReferenceException f)
 				{
@@ -3607,11 +3672,10 @@ public class CreateEquipmentCase {
 					Thread.sleep(2000);
 					break;
 				}
-
 			}
 			while(true)
 			{
-				if(driver.findElement(obj2.AdminOption).isDisplayed()==false)
+				if(driver.findElement(chc.AdminOption).isDisplayed()==false)
 				{
 					//Clicks on admin user name on top right corner
 					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
@@ -3619,14 +3683,14 @@ public class CreateEquipmentCase {
 				else
 				{
 					//Clicks on admin option
-					wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 					break;
 				}
 			}
 			//Clicks on Errorfree bank option
 			if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 			}	
 			//Clicks on Equipment cases
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();	
@@ -3651,6 +3715,11 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					equip3.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -3745,7 +3814,7 @@ public class CreateEquipmentCase {
 					}
 					Thread.sleep(1000);
 					WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-					element.findElement(obj2.FirstAndLastChildInList).click();
+					element.findElement(chc.FirstAndLastChildInList).click();
 				}}
 			if(count == 5)
 			{
@@ -3813,16 +3882,19 @@ public class CreateEquipmentCase {
 				Thread.sleep(1000);
 			}
 			//Add links in case number 3 of Electrical FM	
-			if(count==3){
+			if(count==3)
+			{
 				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
 				{
 					addLinks(driver,title,caseId);
-				}}
+				}
+			}
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
 			//Clicks on create case
+			System.out.println(wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).getText());
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 			//Waits for black loading message to disappear
@@ -3849,7 +3921,6 @@ public class CreateEquipmentCase {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj1 = new CaseBrowse();
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		//Login obj3 = new Login();
 		List<String> categories = new ArrayList<String>();
 		//Creates 5 cases
@@ -3869,11 +3940,11 @@ public class CreateEquipmentCase {
 			//Clicks on admin user name on top right corner
 			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 			//Clicks on admin option
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AdminOption)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 			//Clicks on Errorfree bank option
 			if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankAdminLink)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 			}	
 			//Clicks on Equipment cases
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();	
@@ -3900,6 +3971,11 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			share.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					equip3.verifyErrorOnPage(driver, softly);
+			}
 			while (true)
 			{
 				Thread.sleep(1000);
@@ -3994,7 +4070,7 @@ public class CreateEquipmentCase {
 					}
 					Thread.sleep(1000);
 					WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-					element.findElement(obj2.FirstAndLastChildInList).click();
+					element.findElement(chc.FirstAndLastChildInList).click();
 				}}
 			if(count == 5)
 			{
@@ -4080,6 +4156,7 @@ public class CreateEquipmentCase {
 			jse.executeScript("return document.getElementById('pii-admin-efse-button-save').click();");
 			Thread.sleep(1000);
 			//Clicks on create case
+			System.out.println(wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).getText());
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 			//Waits for black loading message to disappear
@@ -4105,10 +4182,9 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		CaseBrowse obj = new CaseBrowse();
-		CreateHumanCase obj1 = new CreateHumanCase ();
 		Thread.sleep(1000);
 		//Clicks on Error free bank
-		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankTopLink));
+		WebElement element1=wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink));
 		element1.click();
 		Thread.sleep(2000);
 		if(y==0){
@@ -4138,12 +4214,11 @@ public class CreateEquipmentCase {
 	public void checkkeyword (WebDriver driver, List<String>caseId, String keyword_same, String key1, String key2, String key3, int y,String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		EquipmentPDDandEF obj3 = new EquipmentPDDandEF ();
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -4244,14 +4319,13 @@ public class CreateEquipmentCase {
 	public void checkCase(WebDriver driver, String eq_caseId, String ee_caseId, String keyword_same_eq, String keyword_same_ee) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		CreateHumanCase obj2 = new CreateHumanCase ();
 		EquipmentPDDandEF obj3 = new EquipmentPDDandEF();
 		//Verify electrical case not in equipment performance
 		obj3.searchCaseInEquipSearchByCaseID(driver, ee_caseId);
 		//Clicks on Error free bank
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.ErrorFreeBankTopLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -4333,16 +4407,15 @@ public class CreateEquipmentCase {
 	public void deleteCase(WebDriver driver, List<String> caseId1) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		CreateHumanCase obj1 = new CreateHumanCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.AdminOption)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 		}		
 		for(int i=0;i<caseId1.size();i++)
 		{
@@ -4356,6 +4429,13 @@ public class CreateEquipmentCase {
 			Thread.sleep(2000);
 			//Clicks on case id
 			Thread.sleep(2000);
+			/*WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+			List<WebElement> casesList = ele.findElements(By.tagName("li"));
+			for(WebElement li : casesList)
+			{
+				if(li.getText().equals(caseId))
+					li.click();
+			}*/
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
@@ -4383,7 +4463,7 @@ public class CreateEquipmentCase {
 			else softly.fail("Case did not get deleted: "+caseId1.get(i) );
 		}		 
 		//Clicks on Errorfree bank option to close the collapsible menu
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.ErrorFreeBankAdminLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
 	}
 
 	public void softAssert() throws Exception {

@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,8 +37,10 @@ public class EiRCAChinese {
 	EiRCA2 e2 = new EiRCA2();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	ShareCheckPageObj shareObj = new ShareCheckPageObj();
 	HiRCAChinese17 hc17 = new HiRCAChinese17();
 	HiRCAChinese hc = new HiRCAChinese();
+	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
 
 	public void EiRCApath (WebDriver driver) throws Exception {
 
@@ -332,10 +332,31 @@ public class EiRCAChinese {
 		List<String> chineseData = chineseHTMLPath2(driver);
 		//Download pdf and verify pdf
 		downloadSelectFunction(driver,chineseData);
+		//Share pop up verify chinese
+		chineseVerifySharePopUp(driver);
 		//Delete 1st report
 		obj2.deleteReport(driver);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.KALEHomePage)).click();
+	}
+	
+	public void chineseVerifySharePopUp(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click on share button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		//Enter a sharer jenkins_1_nonadmin
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys("jenkins_1_nonadmin");
+		Thread.sleep(2000);
+		//Selects from dropdown
+		WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+		dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
+		//Verify chinese pop up
+		ccf.verifyChineseAddSharerPopup(driver, softly);
+		//Click on cancel on pop up
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).click();
+		//Click cancel on share page
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.SharePageCancelButton)).click();
 	}
 
 	public void chinesePopupAfterStep3 (WebDriver driver) throws Exception {
@@ -466,10 +487,16 @@ public class EiRCAChinese {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(4000);
+		Thread.sleep(4000);/*
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
 		robot.keyPress(KeyEvent.VK_CONTROL);
@@ -503,7 +530,7 @@ public class EiRCAChinese {
 			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 			q.waitFor();
 			Thread.sleep(7000);
-		}
+		}*/
 		//pdf check
 		pdfCheck(driver,verifyChinese);
 		Thread.sleep(4000);

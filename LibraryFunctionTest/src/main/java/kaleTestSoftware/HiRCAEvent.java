@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
@@ -472,10 +470,16 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		for(String winHandle : driver.getWindowHandles()){
-			driver.switchTo().window(winHandle);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
 		}
-		Thread.sleep(4000);
+		Thread.sleep(4000);/*
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("viewerContainer"))).sendKeys(Keys.chord(Keys.CONTROL + "s"));
 		Robot robot = new Robot();
 		// press Ctrl+S the Robot's way
@@ -484,7 +488,7 @@ public class HiRCAEvent {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
-		p.waitFor();
+		p.waitFor();*/
 		pdfCheck(get_date,get_time,get_dept,creationDate);
 		Thread.sleep(4000);
 		driver.close();
@@ -791,6 +795,7 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
+		Thread.sleep(500);
 		//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
 		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
@@ -925,10 +930,10 @@ public class HiRCAEvent {
 		String eve_back =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]"))).getText();
 		/*String r6 = eve_back.replaceAll("<­br>", "");
 		String r7 = r6.replaceAll("[]", "");*/
-			if(browserName.contains("safari"))
-				softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background.replace("\n", ""));
-			else
-				softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
+		if(browserName.contains("safari"))
+			softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background.replace("\n", ""));
+		else
+			softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background);
 		//Check for creator
 		String eve_creator =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[8]/td[2]"))).getText();
 		softly.assertThat(username).as("test data").isSubstringOf(eve_creator);
@@ -1627,7 +1632,7 @@ public class HiRCAEvent {
 			WebElement l=driver.findElement(By.id(file));
 			/*act.moveToElement(l).build().perform();*/
 			jse.executeScript("arguments[0].scrollIntoView();", l);
-			l.click();
+			jse.executeScript("arguments[0].click();", l);
 			Thread.sleep(2000);
 			Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			p.waitFor();
@@ -1663,7 +1668,7 @@ public class HiRCAEvent {
 				//re-upload file
 				l=driver.findElement(By.id(file));
 				jse.executeScript("arguments[0].scrollIntoView();", l);
-				l.click();
+				jse.executeScript("arguments[0].click();", l);
 				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 				q.waitFor();
 				Thread.sleep(2000);
@@ -1730,7 +1735,7 @@ public class HiRCAEvent {
 		//Upload image
 		WebElement l=driver.findElement(By.id("pii-irca-event-file-4"));
 		jse.executeScript("arguments[0].scrollIntoView();", l);
-		l.click();
+		jse.executeScript("arguments[0].click();", l);
 		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 		q.waitFor();
 		Thread.sleep(2000);
@@ -1848,8 +1853,7 @@ public class HiRCAEvent {
 					for(int r=0;r<=j;r++)
 					{
 						Thread.sleep(2000);
-						if(j==4)
-							share.scrollToAPoint(driver, 1000);
+						share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))));
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))).click();
 					}
 				}
@@ -1860,8 +1864,13 @@ public class HiRCAEvent {
 				//Clicks on Save
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save")));
 				share.scrollToElement(driver, ele);
-				ele.click();
-				Thread.sleep(3000);
+				while(true)
+				{
+					ele.click();
+					Thread.sleep(3000);
+					if(driver.findElement(obj1.HiRCAPopupConfirmButton).isDisplayed())
+						break;
+				}
 				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton));
 				//Clicks on Save report
 				/* try{
@@ -2212,81 +2221,79 @@ public class HiRCAEvent {
 		}
 		//Clicks on save to get error message
 		driver.findElement(By.id("efi-irca-button-save")).click();
-		obj.verifyInfoPageErrorPopup(driver, softly);
-		WebDriverWait wait1 = new WebDriverWait(driver,30);
-		String error_save = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).getText();
-		if(error_save.equals("Please fix all errors mentioned in red."))
+		if(driver.getCurrentUrl().contains("kaleqa")==false)
 		{
+			obj.verifyInfoPageErrorPopup(driver, softly);
 			//Clicks on ok
 			driver.findElement(By.id("pii-irca-dialog-confirmed")).click();
-			//Checks for the error message on each mandatory check box
-			if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
-			{
-				String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
-				softly.assertThat(error_title).as("test data").isEqualTo("Event title is required");
-				WebElement textbox1=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div"));
-				WebElement error_title_dotted = textbox1.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
-				if (error_title_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on event title textbox");
-			}
-			if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed())
-			{
-				String error_location = driver.findElement(By.id("pii-irca-event-location-error")).getText();
-				softly.assertThat(error_location).as("test data").isEqualTo("Location of event is required");
-				WebElement textbox2=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]"));
-				WebElement error_location_dotted = textbox2.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
-				if (error_location_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on location of event textbox");
-			}
-			if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
-			{
-				String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
-				softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
-				WebElement textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
-				WebElement error_dept_dotted = textbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child.error"));
-				if (error_dept_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on Department textbox");
-			}
-			if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed())
-			{
-				String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
-				softly.assertThat(error_prob).as("test data").isEqualTo("Problem statement is required");
-				WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
-				WebElement error_prob_dotted = textbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				if (error_prob_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on problem statement textbox");
-			}
-			if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed())
-			{
-				String error_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
-				softly.assertThat(error_timeline).as("test data").isEqualTo("Timeline of event is required");
-				WebElement textbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
-				WebElement error_timeline_dotted = textbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				if (error_timeline_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on timeline of event textbox");
-			}
-			if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed())
-			{
-				String error_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
-				softly.assertThat(error_back).as("test data").isEqualTo("Background information is required");
-				WebElement textbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]"));
-				WebElement error_back_dotted = textbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				if (error_back_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on background information textbox");
-			}
-
-			share.scrollToAPoint(driver, 250);
-			if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed())
-			{
-				String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
-				softly.assertThat(error_invest).as("test data").isEqualTo("Investigators is required");
-				WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
-				WebElement error_invest_dotted = textbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
-				if (error_invest_dotted.isDisplayed())
-					System.out.println("Error dotted line displayed on investigators textbox");
-			}
+		}
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		//Checks for the error message on each mandatory check box
+		if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())
+		{
+			String error_title = driver.findElement(By.id("pii-irca-event-title-error")).getText();
+			softly.assertThat(error_title).as("test data").isEqualTo("Event title is required");
+			WebElement textbox1=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div"));
+			WebElement error_title_dotted = textbox1.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
+			if (error_title_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on event title textbox");
+		}
+		if(driver.findElement(By.id("pii-irca-event-location-error")).isDisplayed())
+		{
+			String error_location = driver.findElement(By.id("pii-irca-event-location-error")).getText();
+			softly.assertThat(error_location).as("test data").isEqualTo("Location of event is required");
+			WebElement textbox2=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]"));
+			WebElement error_location_dotted = textbox2.findElement(By.cssSelector(".ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset.ui-input-has-clear.error"));
+			if (error_location_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on location of event textbox");
+		}
+		if(driver.findElement(By.id("pii-irca-event-department-error")).isDisplayed())
+		{
+			String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
+			softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
+			WebElement textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
+			WebElement error_dept_dotted = textbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child.error"));
+			if (error_dept_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on Department textbox");
+		}
+		if(driver.findElement(By.id("pii-irca-event-pbstatement-error")).isDisplayed())
+		{
+			String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
+			softly.assertThat(error_prob).as("test data").isEqualTo("Problem statement is required");
+			WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+			WebElement error_prob_dotted = textbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+			if (error_prob_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on problem statement textbox");
+		}
+		if(driver.findElement(By.id("pii-irca-event-events-error")).isDisplayed())
+		{
+			String error_timeline = driver.findElement(By.id("pii-irca-event-events-error")).getText();
+			softly.assertThat(error_timeline).as("test data").isEqualTo("Timeline of event is required");
+			WebElement textbox5=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]"));
+			WebElement error_timeline_dotted = textbox5.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+			if (error_timeline_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on timeline of event textbox");
+		}
+		if(driver.findElement(By.id("pii-irca-event-bginfos-error")).isDisplayed())
+		{
+			String error_back = driver.findElement(By.id("pii-irca-event-bginfos-error")).getText();
+			softly.assertThat(error_back).as("test data").isEqualTo("Background information is required");
+			WebElement textbox6=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]"));
+			WebElement error_back_dotted = textbox6.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+			if (error_back_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on background information textbox");
 		}
 
+		share.scrollToAPoint(driver, 250);
+		if(driver.findElement(By.id("pii-irca-event-investigators-error")).isDisplayed())
+		{
+			String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
+			softly.assertThat(error_invest).as("test data").isEqualTo("Investigators is required");
+			WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+			WebElement error_invest_dotted = textbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
+			if (error_invest_dotted.isDisplayed())
+				System.out.println("Error dotted line displayed on investigators textbox");
+		}
 		//Checks if after entering text if the error message and dotted line disappears
 		//Investigators
 		driver.findElement(By.id("pii-irca-event-investigators")).sendKeys(paragraph_investigators);

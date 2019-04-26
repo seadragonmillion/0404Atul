@@ -49,7 +49,10 @@ public class HiRCALevel2Text {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionText)).getText();
-		softly.assertThat(desc).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA™ to do a troubleshooting specifically for equipment failures.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(desc).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA™ to do a troubleshooting specifically for equipment failures.");
+		else
+			softly.assertThat(desc).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA™ to do a troubleshooting specifically for equipment failures.");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
 		//3.17.1 question

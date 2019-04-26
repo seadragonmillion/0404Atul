@@ -127,6 +127,7 @@ public class HPI {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
+		Thread.sleep(500);
 		//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul")));
 		dropdown.findElement(By.cssSelector(".ui-first-child")).click();

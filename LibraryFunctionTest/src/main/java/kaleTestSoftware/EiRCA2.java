@@ -17,7 +17,7 @@ public class EiRCA2 {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	LoginPageObj login = new LoginPageObj();
 	TextBoxResizing tbr = new TextBoxResizing ();
-	
+
 	public String textCreate(WebDriver driver) throws Exception {
 
 		if(driver.getCurrentUrl().contains("kaleqa"))
@@ -30,7 +30,7 @@ public class EiRCA2 {
 
 		return("Sanity Test");
 	}
-	
+
 	public void verifyAdditionalBoxDisappearsWhenAnswerNotChosen(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -131,7 +131,7 @@ public class EiRCA2 {
 		s1.selectByIndex(y);
 	}
 
-	
+
 	public void EIRCAStep1Troubleshooting(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -160,13 +160,13 @@ public class EiRCA2 {
 		//Fill text in 1.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q16AnswerTextBox)).sendKeys(text);
 	}
-	
+
 	public List<String> createNewEvent(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,1);
 		List<String> dateTime = new ArrayList<String>();
- 		//Select date
+		//Select date
 		//Click on calendar icon
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarIconAddEvent)).click();
 		//Click on - sign
@@ -206,61 +206,61 @@ public class EiRCA2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EventAddSign)).click();
 		return dateTime;
 	}
-	
+
 	public void verifyStickySaveReport(WebDriver driver, SoftAssertions softly, String username, String reportTitle, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
-		String r = s.replaceAll("\u00AD", "");
-		softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
-		if(n == 0)
-			softly.assertThat(r).as("test data").contains("EiRCA™ Data created for id:");
-		else
-			softly.assertThat(r).as("test data").contains("EiRCA™ Data updated for id:");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+			String r = s.replaceAll("\u00AD", "");
+			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
+			if(n == 0)
+				softly.assertThat(r).as("test data").contains("EiRCA™ Data created for id:");
+			else
+				softly.assertThat(r).as("test data").contains("EiRCA™ Data updated for id:");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find save pop up");
 			Thread.sleep(2000);
 		}
 	}
-	
+
 	public void verifyStickyShareSave(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);		
 		try{
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
-		softly.assertThat(s).as("test data").isEqualTo("Sharing updated successfully.");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+			softly.assertThat(s).as("test data").isEqualTo("Sharing updated successfully.");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find share save pop up");
 		}
 	}
-	
+
 	public void verifyStickyCreatePDF(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);		
 		try{
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
-		softly.assertThat(s).as("test data").isEqualTo("PDF successfully built and downloaded");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+			softly.assertThat(s).as("test data").isEqualTo("PDF successfully built and downloaded");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find pdf create pop up");
 		}
 	}
-	
+
 	public void verifyStickyDeleteReport(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);		
 		try{
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
-		String r = s.replaceAll("\u00AD", "");
-		String r1 = recordName.replaceAll("\u00AD", "");
-		softly.assertThat(r).as("test data").isEqualTo("EiRCA™ data deleted: "+r1);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+			String r = s.replaceAll("\u00AD", "");
+			String r1 = recordName.replaceAll("\u00AD", "");
+			softly.assertThat(r).as("test data").isEqualTo("EiRCA™ data deleted: "+r1);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
 			System.out.println("Couldn't find delete pop up");
@@ -273,10 +273,13 @@ public class EiRCA2 {
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
 		Thread.sleep(1000);
-		verifyInfoPageErrorPopup(driver,softly);
-		//Click on ok
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
-		Thread.sleep(1000);
+		if(driver.getCurrentUrl().contains("kaleqa")==false)
+		{
+			verifyInfoPageErrorPopup(driver,softly);
+			//Click on ok
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+			Thread.sleep(1000);
+		}
 		//Verify errors
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EventTitleError)).getText();
@@ -325,7 +328,7 @@ public class EiRCA2 {
 		//sponsor
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.SponsorError));
 	}
-	
+
 	public void verifySavePopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -342,7 +345,7 @@ public class EiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
 	}
-	
+
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -366,7 +369,7 @@ public class EiRCA2 {
 		//Click on cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).click();
 	}
-	
+
 	public void verifyInfoPageErrorPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -380,7 +383,7 @@ public class EiRCA2 {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("ok");
 	}
-	
+
 	public void verifyOpenReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -405,9 +408,9 @@ public class EiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Open");
 	}
-	
 
-	
+
+
 	public void verifyDownloadReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);		
@@ -419,7 +422,10 @@ public class EiRCA2 {
 		softly.assertThat(s1).as("test data").isEqualTo("Your PDF report is ready.");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("Note: the report will be display in a seperate web browser window.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s4).as("test data").isEqualTo("Note: The report will open in a separate window");
+		else
+			softly.assertThat(s4).as("test data").isEqualTo("Note: the report will be display in a seperate web browser window.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
@@ -427,7 +433,7 @@ public class EiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Open PDF report");
 	}
-	
+
 	public void verifyMarkCriticalPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -447,7 +453,7 @@ public class EiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("confirm change");
 	}
-	
+
 	public void verifyUnMarkCriticalPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -467,7 +473,7 @@ public class EiRCA2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("confirm change");
 	}
-	
+
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		

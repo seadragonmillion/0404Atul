@@ -25,11 +25,11 @@ public class TermSearchEQ {
 	public String term_eq = "Gear Misalignment";
 
 	CaseBrowse cb1  = new CaseBrowse();
-	CaseBrowseObj cb = new CaseBrowseObj();
+	CaseBrowsePageObj cb = new CaseBrowsePageObj();
 	ShareCheck share = new ShareCheck();
 	Login login = new Login();
 	LoginPageObj lpo = new LoginPageObj();
-	CreateHumanCase human = new CreateHumanCase();
+	CreateHumanCasePageObj human = new CreateHumanCasePageObj();
 	CreateEquipPageObj equip = new CreateEquipPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 
