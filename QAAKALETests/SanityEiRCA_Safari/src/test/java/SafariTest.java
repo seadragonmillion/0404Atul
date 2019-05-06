@@ -72,11 +72,11 @@ public class SafariTest {
 		//Add 2nd failure mode
 		obj1.add2ndFailureMode(driver,username);	  
 		//Shares report 0 for admin and 1 for non admin
-		obj1.shareReport(driver, username, password,0);
+		obj1.shareReport(driver, username, password,1);
 		//Mark critical, integer same as shareReport
-		obj1.markCritical(driver,username, password,0);
+		obj1.markCritical(driver,username, password,1);
 		//Deletes the newly created record, integer same as shareReport
-		obj1.deleteNewRecord(driver, recordName,0);
+		obj1.deleteNewRecord(driver, recordName,1);
 		//Logs out
 		obj.logout(driver);	
 		afterTest(obj1);	  
