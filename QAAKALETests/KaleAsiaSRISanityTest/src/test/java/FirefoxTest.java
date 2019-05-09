@@ -1,6 +1,8 @@
-import kaleTestSoftware.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
+
+import kaleTestSoftware.Login;
+import kaleTestSoftware.SRI;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +18,8 @@ import org.openqa.selenium.firefox.ProfilesIni;
 public class FirefoxTest {
 
 	private WebDriver driver;
-	private String username ="qaacfi";
-	private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String username ="ritica";
+	private String password = "S2FsZTQ2MTkxODAyQA==";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
 
@@ -54,13 +56,10 @@ public class FirefoxTest {
 		SRI obj1 = new SRI();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(7000);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		Thread.sleep(5000);
 		if (login==1)
 		{
-
 			while(true)
 			{
 				Thread.sleep(1000);
@@ -73,7 +72,6 @@ public class FirefoxTest {
 				else break;
 			}
 		}	
-		Thread.sleep(4000);
 		//Create report
 		String recordName = obj1.path_SRI(driver);
 		//ShareReport
@@ -88,11 +86,11 @@ public class FirefoxTest {
 		 * 6=admin ie11
 		 * 7=non admin ie11
 		 */
-		obj1.shareReport(driver, username, password, 1);
+		obj1.shareReport(driver, username, password, 0);
 		//Mark critical
-		obj1.markCriticalReport(driver, username, password, 1);
+		obj1.markCriticalReport(driver, username, password, 0);
 		//Delete report
-		obj1.deleteReport(driver, recordName,1);
+		obj1.deleteReport(driver, recordName,0);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);

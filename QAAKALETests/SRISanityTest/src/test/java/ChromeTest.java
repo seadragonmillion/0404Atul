@@ -1,6 +1,8 @@
-import kaleTestSoftware.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
+
+import kaleTestSoftware.Login;
+import kaleTestSoftware.SRI;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ChromeTest {
 
 	private WebDriver driver;
-	private String username ="jenkinsvmnonadmin";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = System.getProperty("qaurl");
@@ -38,10 +40,8 @@ public class ChromeTest {
 		SRI obj1 = new SRI();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(7000);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		Thread.sleep(5000);
 		if (login==1)
 		{
 
@@ -57,7 +57,6 @@ public class ChromeTest {
 				else break;
 			}
 		}	
-		Thread.sleep(4000);
 		//Create report
 		String recordName = obj1.path_SRI(driver);
 		//ShareReport
@@ -72,11 +71,11 @@ public class ChromeTest {
 		 * 6=admin ie11
 		 * 7=non admin ie11
 		 */
-		obj1.shareReport(driver, username, password, 1);
+		obj1.shareReport(driver, username, password, 0);
 		//Mark critical
-		obj1.markCriticalReport(driver, username, password, 1);
+		obj1.markCriticalReport(driver, username, password, 0);
 		//Delete report
-		obj1.deleteReport(driver, recordName,1);
+		obj1.deleteReport(driver, recordName,0);
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);
