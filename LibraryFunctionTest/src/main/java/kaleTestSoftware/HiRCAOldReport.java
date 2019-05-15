@@ -81,7 +81,7 @@ public class HiRCAOldReport {
 		String investigator1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).getAttribute("value");
 		String investigator = investigator1.trim();
 		System.out.println(investigator);
-		share.scrollToTop(driver);/*
+		share2.scrollToTop(driver);/*
 		//Click on Step1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click(); 
 		//Click on next once

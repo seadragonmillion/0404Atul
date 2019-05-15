@@ -14,7 +14,7 @@ public class HiRCAChinese20 {
 	HiRCAChinese6 hc6 = new HiRCAChinese6();
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
-	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void chineseStepOneL38 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -135,7 +135,7 @@ public class HiRCAChinese20 {
 		//Click on 3rd collapsible for 3.8.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		System.out.println(q343);
 		softly.assertThat(q343).as("test data").contains("[3.8.3] 要求判断执行程序步骤");
@@ -198,7 +198,7 @@ public class HiRCAChinese20 {
 		//Click on 3rd collapsible for 3.8.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 
 		softly.assertThat(q344).as("test data").contains("[3.8.4] 没有明确与其他程序之间的接口");
@@ -261,7 +261,7 @@ public class HiRCAChinese20 {
 		//Click on 3rd collapsible for 3.8.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
 		System.out.println(q345);
 		softly.assertThat(q345).as("test data").contains("[3.8.5] 可读性不高（即：高于八年级阅读水平）");
@@ -320,9 +320,9 @@ public class HiRCAChinese20 {
 		//Click on 3rd collapsible for 3.8.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//3.8.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)).getText();
 
 		softly.assertThat(q396).as("test data").contains("[3.8.6] 程序里和设备上出现不明确和不一致的设备标识与识别");
@@ -382,7 +382,7 @@ public class HiRCAChinese20 {
 		//Click on 3rd collapsible for 3.8.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
 
 		softly.assertThat(q367).as("test data").contains("[3.8.7] 时间敏感步骤未明确写出");
@@ -442,7 +442,7 @@ public class HiRCAChinese20 {
 		//Click on 3rd collapsible for 3.8.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)).getText();
 
 		softly.assertThat(q368).as("test data").contains("[3.8.8] 程序未明确量化，使用描述如：稳定、异常");
@@ -509,7 +509,7 @@ public class HiRCAChinese20 {
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 }

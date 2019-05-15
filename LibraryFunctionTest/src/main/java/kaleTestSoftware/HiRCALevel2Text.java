@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCALevel2Text {
 
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAObj hirca = new HiRCAObj();
 	
 	//Question before 2.0
@@ -50,7 +51,7 @@ public class HiRCALevel2Text {
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionText)).getText();
 		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(desc).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA™ to do a troubleshooting specifically for equipment failures.");
+			softly.assertThat(desc).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assessment on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA™ to do a troubleshooting specifically for equipment failures.");
 		else
 			softly.assertThat(desc).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA™ to do a troubleshooting specifically for equipment failures.");
 		//Click on Description
@@ -114,7 +115,7 @@ public class HiRCALevel2Text {
 		//Click on 3rd collapsible for 3.17.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer2)).click();
 		//3.17.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(q343).as("test data").contains("[3.17.3] Inadequate design qualification and/or testing before use");
 		//2nd collapsible for 3.17.3
@@ -143,7 +144,7 @@ public class HiRCALevel2Text {
 		//Click on 3rd collapsible for 3.17.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer3)).click();
 		//3.17.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 		softly.assertThat(q344).as("test data").contains("[3.17.4] Inadequate operation: (1) Inadequate operation procedure; (2) Inadequate operating condition; (3) Operation errors");
 		//2nd collapsible for 3.17.4
@@ -169,9 +170,9 @@ public class HiRCALevel2Text {
 		//Click on 3rd collapsible for 3.17.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer4)).click();
 		//Scroll to the end
-		//share.scrollToAPoint(driver, 1500);
+		//share2.scrollToAPoint(driver, 1500);
 		//3.17.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
 		softly.assertThat(q345).as("test data").contains("[3.17.5] Inadequate periodic surveillance testing");
 		//2nd collapsible for 3.17.5
@@ -195,7 +196,7 @@ public class HiRCALevel2Text {
 		//Click on 3rd collapsible for 3.17.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer5)).click();
 		//3.17.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)).getText();
 		softly.assertThat(q396).as("test data").contains("[3.17.6] Inadequate maintenance");
 		//2nd collapsible for 3.17.6
@@ -223,7 +224,7 @@ public class HiRCALevel2Text {
 		//Click on 3rd collapsible for 3.17.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer6)).click();
 		//3.17.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
 		softly.assertThat(q367).as("test data").contains("[3.17.7] Inadequate equipment labeling and identification");
 		//2nd collapsible for 3.17.7
@@ -247,7 +248,7 @@ public class HiRCALevel2Text {
 		//Click on 3rd collapsible for 3.17.7
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer7)).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 	
 	public void step2q212 (WebDriver driver, SoftAssertions softly) throws Exception {

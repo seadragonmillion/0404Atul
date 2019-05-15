@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreateHumanCase2 {
 
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
-	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Scroll top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Verify all errors

@@ -24,6 +24,7 @@ public class RemoteVerification2 {
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
+	UserManagement um = new UserManagement();
 
 	SoftAssertions softly = new SoftAssertions();
 
@@ -100,7 +101,7 @@ public class RemoteVerification2 {
 
 	public void upload2ndPicture(WebDriver driver) throws Exception{
 
-		share.scrollToElement(driver, driver.findElement(rv.RV2ndImageField));
+		share2.scrollToElement(driver, driver.findElement(rv.RV2ndImageField));
 		//Get browser name and version
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -183,7 +184,7 @@ public class RemoteVerification2 {
 
 	public void upload1stPicture(WebDriver driver) throws Exception{
 
-		share.scrollToElement(driver, driver.findElement(rv.RV1stImageField));
+		share2.scrollToElement(driver, driver.findElement(rv.RV1stImageField));
 		//Get browser name and version
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -215,13 +216,13 @@ public class RemoteVerification2 {
 		{
 			driver.switchTo().defaultContent();
 		}
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		int login1 = login.LoginUser(driver, username, password1);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(lpo.Iframe));
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		if (login1==1)
 		{
 
@@ -237,16 +238,22 @@ public class RemoteVerification2 {
 				else break;
 			}
 		}	
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationBell)).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
-	public void verifierNotification(WebDriver driver, String verifier, String username, String password1) throws Exception {
+	public void verifierNotification(WebDriver driver, String verifier, String username, String password1, int k) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		//Creates the expected name of record
+		String creation_date = driver.findElement(rv.RVCreationDate).getText();
+		creation_date= creation_date.substring(22, creation_date.length());
+		String reportName = creation_date +"_"+ username + "_" + rv.eventTitle(driver,driver.getCurrentUrl());
+		//Verify email
+		rv1.verifyEmailForVerifier (driver,username,reportName,k);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -326,6 +333,11 @@ public class RemoteVerification2 {
 		softly.assertThat(comments).as("test data").contains(rejectComment);
 		//Click on Revise button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationReviseButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
+			softly.assertThat(note).as("test data").isEqualTo("WARNING: Revise report content for acceptance. Rejected verification will be archived.");
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Clicks on Save and Send
 		driver.findElement(rv.RVSaveAndSendButton).click();
@@ -336,6 +348,8 @@ public class RemoteVerification2 {
 		share2.loadingServer(driver);
 		//Mark notification as read
 		share.markNotificationsRead(driver, browserName);
+		//Verify email
+		rv1.verifyEmailForVerifier (driver,username,reportName,k);
 		//Login to verifier
 		loginToUser(driver,verifier,password);
 		//Verify version of report
@@ -476,6 +490,7 @@ public class RemoteVerification2 {
 	public void rvVerifierTest(WebDriver driver, int k, String username, String password1) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		um.emailMarkRead(rv1.selectEmail(k), driver);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Analysis 
@@ -513,7 +528,7 @@ public class RemoteVerification2 {
 		//Uploads picture 1
 		upload1stPicture(driver);
 		//*
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Save and send to verifier
 		//Clicks on Save and Send
 		driver.findElement(rv.RVSaveAndSendButton).click();
@@ -523,7 +538,7 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify if verifier got notification
-		verifierNotification(driver,verifier,username,password1);
+		verifierNotification(driver,verifier,username,password1,k);
 		//Delete report
 		deleteReport(driver);
 	}

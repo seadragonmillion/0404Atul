@@ -56,7 +56,7 @@ public class ErrorMeter {
 
 		}
 		//Click on Environment of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
 		if(browserName.contains("safari"))
@@ -70,7 +70,7 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
 		else 
@@ -83,7 +83,7 @@ public class ErrorMeter {
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 		for (i=0;i<10;i++)
@@ -104,7 +104,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -126,7 +126,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -147,7 +147,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -168,7 +168,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j));
 
 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Checks error meter as 0%
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
@@ -181,7 +181,7 @@ public class ErrorMeter {
 
 
 		//Click on People of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
 		if(browserName.contains("safari"))
@@ -211,7 +211,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("38%").as("test data").isEqualTo(meterText.trim());
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
 		else 
@@ -240,7 +240,7 @@ public class ErrorMeter {
 			softly.assertThat("50%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -261,7 +261,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -282,7 +282,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -303,7 +303,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -327,7 +327,7 @@ public class ErrorMeter {
 
 
 		//Click on Activity of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
 		//Clicks on checkboxes in Activity Tab
 		if(browserName.contains("safari"))
@@ -357,7 +357,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("63%").as("test data").isEqualTo(meterText.trim());
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
 		else 
@@ -386,7 +386,7 @@ public class ErrorMeter {
 			softly.assertThat("75%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -406,7 +406,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -428,7 +428,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -449,7 +449,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -472,7 +472,7 @@ public class ErrorMeter {
 
 
 		//Clicks on Procedure Tab
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureTab)).click();
 		//Clicks on checkboxes in Procedure Tab
 		if(browserName.contains("safari"))
@@ -502,7 +502,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("88%").as("test data").isEqualTo(meterText.trim());
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		else 
@@ -528,7 +528,7 @@ public class ErrorMeter {
 		softly.assertThat("100%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -549,7 +549,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -571,7 +571,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -592,7 +592,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -610,8 +610,8 @@ public class ErrorMeter {
 		}
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).clear();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(text.get(j));
-		share.scrollToTop(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public String getBrowser(WebDriver driver) throws Exception {
@@ -642,7 +642,7 @@ public class ErrorMeter {
 
 		}
 		//Click on Environment of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
 		if(browserName.contains("safari"))
@@ -651,7 +651,7 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 		else 
@@ -659,7 +659,7 @@ public class ErrorMeter {
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
 		for (i=0;i<10;i++)
@@ -683,7 +683,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -706,7 +706,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
 
 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Checks error meter as 0%
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
@@ -719,7 +719,7 @@ public class ErrorMeter {
 
 
 		//Click on People of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
 		if(browserName.contains("safari"))
@@ -736,7 +736,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("19%").as("test data").isEqualTo(meterText.trim());
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
 		else 
@@ -752,7 +752,7 @@ public class ErrorMeter {
 			softly.assertThat("25%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -765,7 +765,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -779,7 +779,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -792,7 +792,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -806,7 +806,7 @@ public class ErrorMeter {
 
 
 		//Click on Activity of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
 		//Clicks on checkboxes in Activity Tab
 		if(browserName.contains("safari"))
@@ -823,7 +823,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("31%").as("test data").isEqualTo(meterText.trim());
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 		else 
@@ -839,7 +839,7 @@ public class ErrorMeter {
 			softly.assertThat("38%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -863,7 +863,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -876,7 +876,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -890,7 +890,7 @@ public class ErrorMeter {
 
 
 		//Clicks on Procedure Tab
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureTab)).click();
 		//Clicks on checkboxes in Procedure Tab
 		if(browserName.contains("safari"))
@@ -907,7 +907,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("44%").as("test data").isEqualTo(meterText.trim());
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		else 
@@ -920,7 +920,7 @@ public class ErrorMeter {
 		softly.assertThat("50%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -933,7 +933,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(text.get(j));
 
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
@@ -945,7 +945,7 @@ public class ErrorMeter {
 		//leave in text
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(text.get(j));
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text.get(j--));
 		for (i=0;i<10;i++)
 		{
@@ -973,6 +973,12 @@ public class ErrorMeter {
 		//Closes any warning from server
 		Login obj1 = new Login();
 		obj1.closePopUpSticky(driver);
+		//Verify mark all instruction
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
+			softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
+		}
 		//Clicks on checkboxes in Procedure Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
@@ -986,7 +992,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
 
-		share.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(500);
@@ -1000,7 +1006,7 @@ public class ErrorMeter {
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		int i;
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text);
@@ -1018,7 +1024,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1036,7 +1042,7 @@ public class ErrorMeter {
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).clear();
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1053,7 +1059,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1076,7 +1082,7 @@ public class ErrorMeter {
 		softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
 
 		//Click on Activity of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
 		//Clicks on checkboxes in Activity Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
@@ -1091,7 +1097,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
 
-		share.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)));
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
 		Thread.sleep(500);
@@ -1105,7 +1111,7 @@ public class ErrorMeter {
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1122,7 +1128,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1140,7 +1146,7 @@ public class ErrorMeter {
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).clear();
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1157,7 +1163,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1180,7 +1186,7 @@ public class ErrorMeter {
 		softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
 
 		//Click on People of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
 		//Clicks on checkboxes in People Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
@@ -1195,7 +1201,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
 
-		share.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)));
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
 		Thread.sleep(500);
@@ -1209,7 +1215,7 @@ public class ErrorMeter {
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1226,7 +1232,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1244,7 +1250,7 @@ public class ErrorMeter {
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).clear();
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1261,7 +1267,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1284,7 +1290,7 @@ public class ErrorMeter {
 		softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
 
 		//Click on Environment of PAPE
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
 		//Clicks on checkboxes in Environment Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
@@ -1299,7 +1305,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
 
-		share.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)));
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
 		Thread.sleep(500);
@@ -1313,7 +1319,7 @@ public class ErrorMeter {
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
 		//Fill in texts in Supporting reasons 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1331,7 +1337,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1351,7 +1357,7 @@ public class ErrorMeter {
 
 
 		//Fill in texts in Corrective Actions
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1369,7 +1375,7 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).clear();
 
-		share.scrollToAPoint(driver, 800);
+		share2.scrollToAPoint(driver, 800);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1386,7 +1392,7 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Checks error meter as 0%
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();

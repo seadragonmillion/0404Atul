@@ -95,7 +95,7 @@ public class OPiRCA {
 		//Choose a random number between 0 to 4
 		Random random = new Random();
 		int n = random.nextInt(5);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		if(n==0)
 		{
 			//Click on Step 1
@@ -676,7 +676,7 @@ public class OPiRCA {
 			}	    		
 			WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+y+"']/a"));
 			//Scroll to element
-			share.scrollToElement(driver, l);			
+			share2.scrollToElement(driver, l);			
 			//Click on option
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();", l);
@@ -686,7 +686,7 @@ public class OPiRCA {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HiRCADropdownMenuCloseButton)).click();	    	
@@ -866,12 +866,12 @@ public class OPiRCA {
 		int n = random.nextInt(hircaL3.size());
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(hircaL3.get(n))));
 		//Scroll to element
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Unselect the chosen HiRCA level 3 option
 		l.click();
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HiRCADropdownMenuCloseButton)).click();
@@ -1308,7 +1308,7 @@ public class OPiRCA {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Scroll to top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Verify SURE
 		verifySURE(driver);
@@ -1338,7 +1338,7 @@ public class OPiRCA {
 			{
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input")));
 				//Scroll to element
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				//Click on checkbox of SURE
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
 				executor.executeScript("arguments[0].click();",l);
@@ -1348,7 +1348,7 @@ public class OPiRCA {
 		options.put("Root causes",r);
 		//System.out.println(options);
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return options;
 	}
@@ -1422,7 +1422,7 @@ public class OPiRCA {
 			//HML random select
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
 			//Scroll to element
-			share.scrollToElement(driver, ele);
+			share2.scrollToElement(driver, ele);
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
@@ -1502,7 +1502,7 @@ public class OPiRCA {
 			//HML random select
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
 			//Scroll to element
-			share.scrollToElement(driver, ele);
+			share2.scrollToElement(driver, ele);
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
@@ -1548,9 +1548,9 @@ public class OPiRCA {
 			i=i+1;
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return hml;
 	}
@@ -1591,7 +1591,7 @@ public class OPiRCA {
 			List<String>a=storeChangedApparentCauseAnswers(driver);
 			//Scroll to top
 			Thread.sleep(2000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Add to master list
 			answers.addAll(a);
@@ -1655,13 +1655,13 @@ public class OPiRCA {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
 		//Scroll down
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Click next
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Scroll top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);	 
+		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on dropdown field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HiRCADropdownMenuButton)).click();
@@ -1715,7 +1715,7 @@ public class OPiRCA {
 		verifyCorrespondingApparentCauses(driver,hircaNewList,apparentCausesNew);
 		//Scroll top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);	 
+		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -1747,7 +1747,7 @@ public class OPiRCA {
 		clickNextSkip(driver);
 		//Scroll to top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save button
 		jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
@@ -1783,6 +1783,9 @@ public class OPiRCA {
 		verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options,apparentCausesSelected, step2QuestionAnswers,step2ApparentCausesAnswers);
 		//Open report
 		openReport(driver,r1);
+		//verify the report rename save popup overflow text
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			op3.verifySavePopupAfterRename(driver, softly);
 		//Download report
 		downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options, step2QuestionAnswers);
 		Thread.sleep(2000);

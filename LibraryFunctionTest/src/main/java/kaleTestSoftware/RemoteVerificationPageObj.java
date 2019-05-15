@@ -12,8 +12,10 @@ public class RemoteVerificationPageObj {
 	//Inside Module
 	public By RVSaveAndSendButton = By.xpath(".//*[@id='pii-rv-tabs']/div[2]/div/a[2]");
 	public By RVSaveButton = By.id("pii-rv-save");
+	public By RVSavePopupNote = By.id("pii-rv-dialog-note");
 	public By RVSavePopupTitle = By.id("pii-rv-dialog-title");
 	public By RVSavePopupComfirmButton = By.id("pii-rv-dialog-confirmed");
+	public By RVSavePopupCancelButton = By.id("pii-rv-dialog-cancel");
 	public By RVSavedAcivitiesButton = By.id("pii-rv-savedactivities");
 	public By RV1stImageField = By.id("pii-rv-imgwork-photo-input");
 	public By RV1stImageClearButton = By.id("pii-rv-imgwork-clear");

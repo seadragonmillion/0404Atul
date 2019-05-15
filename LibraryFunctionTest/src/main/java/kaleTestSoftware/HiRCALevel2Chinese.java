@@ -38,6 +38,7 @@ public class HiRCALevel2Chinese {
 	HiRCAChinese35 hc35 = new HiRCAChinese35();
 	HiRCAChinese39 hc39 = new HiRCAChinese39();
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAObj hirca = new HiRCAObj();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
@@ -457,14 +458,14 @@ public class HiRCALevel2Chinese {
 				//Click on answer
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(j+1)+"]/fieldset/div/div/label")));
 				//Scroll to element
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				executor.executeScript("arguments[0].click();", l);
 				//Get answer name and store in list
 				String s1 = l.getText();
 				ac.add(s1);	
 			}
 		//Scroll to top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return ac;		
 	}
 	
@@ -507,13 +508,13 @@ public class HiRCALevel2Chinese {
 			//System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 			//Click on LOP
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 			a.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText());
 		}
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		return a;

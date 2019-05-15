@@ -31,7 +31,7 @@ public class PassReview {
 	LoginPageObj lpo = new LoginPageObj();
 	PassReviewPageObj pr = new PassReviewPageObj();
 	PassReview2 pr2 = new PassReview2();
-	
+
 	public void pass1Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -63,13 +63,19 @@ public class PassReview {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass1TestingText)).sendKeys(iter.next());
 		}
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		Thread.sleep(1000);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Verify FUSE full form
+			String fuse_abbr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr[5]/td[1]/abbr"))).getAttribute("globtitle");
+			softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");	
+		}
 		//Click on each checkbox twice - check and uncheck it
 		//q1 to q10
 		for(int i=2;i<=11;i++)
 		{
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"));
@@ -100,7 +106,7 @@ public class PassReview {
 			}
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 	}
@@ -131,7 +137,7 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"));
@@ -151,7 +157,7 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"));
@@ -166,7 +172,7 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
@@ -176,7 +182,7 @@ public class PassReview {
 		for(int i=2;i<=5;i++)
 		{
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))));
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))).sendKeys(iter.next());
 		}
@@ -192,7 +198,7 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"));
@@ -212,7 +218,7 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"));
@@ -227,13 +233,13 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			tbr.sizeCheck(driver, By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"),softly);
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 	}
@@ -251,7 +257,7 @@ public class PassReview {
 		for(int i=2;i<=7;i++)
 		{
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
 			//Check it
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"));
@@ -265,7 +271,7 @@ public class PassReview {
 		for(int i=2;i<=7;i=i+2)
 		{
 			//Check it
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"))).click();
 			em3.verifyCheckBoxChecked(driver, By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[2]/div/input"));
 			if(i==2)
@@ -279,7 +285,7 @@ public class PassReview {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 	}
@@ -583,7 +589,7 @@ public class PassReview {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass1TestingText)).sendKeys(iter.next());
 		}
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		Thread.sleep(1000);
 		//Enter text in each text box for q1 to q10
 		for(int i=2;i<=11;i++)
@@ -593,7 +599,7 @@ public class PassReview {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on Pass 2 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass2Tab)).click();
 		//Table 1
@@ -615,7 +621,7 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).clear();
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
@@ -625,7 +631,7 @@ public class PassReview {
 		for(int i=2;i<=5;i++)
 		{
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))).clear();
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[8]/table/tbody/tr["+i+"]/td[2]/textarea"))).sendKeys(iter.next());
@@ -641,13 +647,13 @@ public class PassReview {
 			else
 				m=2;
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+m+"]/div/input"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).clear();
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-3']/div[10]/table/tbody/tr["+i+"]/td["+(m+1)+"]/textarea"))).sendKeys(iter.next());
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on Pass 3 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass3Tab)).click();
 		//Table 1
@@ -660,13 +666,13 @@ public class PassReview {
 		for(int i=2;i<=7;i++)
 		{
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).clear();
 			if(iter.hasNext()) 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-4']/div[5]/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(iter.next());
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void openReport(WebDriver driver) throws Exception{
@@ -702,10 +708,13 @@ public class PassReview {
 		//Clicks on side panel option for 3 pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
 		share2.loadingServer(driver);
+		//Verify the report rename popup overflow text
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			pr2.verifySavePopupAfterRename(driver, softly);
 	}
-	
+
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
-		
+
 		//Get count of characters
 		String s = driver.findElement(pr.DocumentTitleCharacterCount).getText();
 		s=s.substring(1,s.indexOf("/"));
@@ -713,9 +722,9 @@ public class PassReview {
 		System.out.println(s+ " "+count);
 		return count;
 	}
-	
+
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.DocumentTitle)).clear();

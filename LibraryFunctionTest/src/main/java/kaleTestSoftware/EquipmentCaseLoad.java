@@ -301,16 +301,16 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
 		{
@@ -343,7 +343,7 @@ public class EquipmentCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -421,7 +421,7 @@ public class EquipmentCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		//Clicks on new case
@@ -481,16 +481,16 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
 		{
@@ -528,7 +528,7 @@ public class EquipmentCaseLoad {
 			}
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -574,7 +574,7 @@ public class EquipmentCaseLoad {
 				}
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return caseId;
 	}
 
@@ -599,7 +599,7 @@ public class EquipmentCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-new"))).click();
 		//Clicks on new case
@@ -659,16 +659,16 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(4000);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
 		{
@@ -701,7 +701,7 @@ public class EquipmentCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -747,7 +747,7 @@ public class EquipmentCaseLoad {
 				}
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return caseId;
 	}
 
@@ -768,10 +768,10 @@ public class EquipmentCaseLoad {
 		act1.click(button).build().perform();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(6000);
 		//Enters mandatory data
 		//Enters case id
@@ -837,16 +837,16 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(4000);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input")));
 		act1.click(ele).build().perform();
 		Thread.sleep(2000);
@@ -882,7 +882,7 @@ public class EquipmentCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))).click();
 		//Clicks on create case
@@ -928,7 +928,7 @@ public class EquipmentCaseLoad {
 				}
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return caseId;	  
 	}
 
@@ -1012,7 +1012,7 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Checks if case deleted
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-list-input"))).sendKeys(caseId);

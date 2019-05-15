@@ -16,7 +16,7 @@ public class HiRCAChinese19 {
 	HiRCAChinese6 hc6 = new HiRCAChinese6();
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
-	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void chineseStepOneL37 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -141,7 +141,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		System.out.println(q343);
 		softly.assertThat(q343).as("test data").contains("[3.7.3] 未识别出不可逆点(PNR)的操作步骤（予以审查），从而确保继续操作前先前的失误得到纠正");
@@ -198,7 +198,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();		
 		softly.assertThat(q344).as("test data").contains("[3.7.4] 未使用操作标记法来防止跳步或跳页");
 		//Click on 3.7.4 to reveal evidence entry
@@ -258,7 +258,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
 		System.out.println(q345);
 		softly.assertThat(q345).as("test data").contains("[3.7.5] 未分析并缓解很有可能出现违章的情况（通过迹象核实、复核、禁止操作警告等方式）");
@@ -319,9 +319,9 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//3.7.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)).getText();
 		softly.assertThat(q396).as("test data").contains("[3.7.6] 例行作业未有充分的及时提醒标牌预防粗心犯错");
 		//Click on 3.7.6 to reveal evidence entry
@@ -381,7 +381,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
 
 		softly.assertThat(q367).as("test data").contains("[3.7.7] 未使用清单预防遗忘相关错误");
@@ -440,7 +440,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)).getText();
 
 		softly.assertThat(q368).as("test data").contains("[3.7.8] 同事指导的好文化不到位，未能鼓励和强调守规行为标准");
@@ -500,7 +500,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.9 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)).getText();
 		softly.assertThat(q369).as("test data").contains("[3.7.9] 审查不到位");
 		//Click on 3.7.9 to reveal evidence entry
@@ -555,7 +555,7 @@ public class HiRCAChinese19 {
 		//Click on 3rd collapsible for 3.7.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.10 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
 		String q3691 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)).getText();
 		if(browserName.contains("safari"))
 		{
@@ -630,7 +630,7 @@ public class HiRCAChinese19 {
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 }

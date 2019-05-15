@@ -16,14 +16,17 @@ public class PassReviewPageObj {
 	public By PassReviewShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[2]");
 
 	//Basic Info
+	public By InfoTab = By.id("pii-3pr-tab-1-a");
 	public By Reviewer = By.id("pii-3pr-tab-1-reviewer");
 	public By DocumentTitle = By.id("pii-3pr-tab-1-title");
 	public By DocumentTitleCharacterCount = By.id("pii-3pr-tab-1-title-count");
 	public By Organisation = By.id("pii-3pr-tab-1-org");
 	public By DocumentType = By.id("pii-3pr-tab-1-doctype");
 	public By SaveButton = By.id("pii-3pr-save");
+	public By SavePopupNote = By.id("pii-3pr-dialog-note");
 	public By SavePopupTitle = By.id("pii-3pr-dialog-title");
 	public By SavePopupConfirmButton = By.id("pii-3pr-dialog-confirmed");
+	public By SavePopupCancelButton = By.id("pii-3pr-dialog-cancel");
 	public By SavedAcivitiesButton = By.id("pii-3pr-savedactivities");
 	public By NextButttonAtBottom = By.xpath(".//*[@id='pii-3pr-tab-1-form']/div[6]/div/button");
 	//Errors

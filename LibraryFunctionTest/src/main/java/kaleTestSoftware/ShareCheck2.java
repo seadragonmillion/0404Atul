@@ -2,7 +2,9 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -89,12 +91,15 @@ public class ShareCheck2 {
 				act.click(element).build().perform();
 				Thread.sleep(2000);
 			}
+			scrollToTop(driver);
 			while(true)				
 			{
 				Thread.sleep(500);
 				//Clicks on save
 				wait.until(ExpectedConditions.visibilityOfElementLocated(share.UserAccountSaveButton)).click();
 				Thread.sleep(500);
+				if(browserName.contains("safari"))
+					Thread.sleep(2000);
 				if(driver.findElement(share.UserAccountSavePopupTitle).isDisplayed())
 					break;
 			}
@@ -104,5 +109,48 @@ public class ShareCheck2 {
 			//Waits for loading message to disappear
 			loadingServer(driver);
 		}
+	}
+	
+	public void scrollToAPoint(WebDriver driver, int yaxis)throws Exception{
+
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(1000);
+		try{
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}
+		Thread.sleep(1000);
+	}
+
+	public void scrollToElement(WebDriver driver, WebElement l)throws Exception{
+
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Point p = l.getLocation();
+		int yaxis= p.getY()-250;
+		Thread.sleep(1000);
+		try{
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}
+		Thread.sleep(1000);
+	}
+
+	public void scrollToTop(WebDriver driver) throws Exception {
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(1000);
+		try{
+			jse.executeScript("scroll(0,0)");
+		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,0)");
+		}
+		Thread.sleep(1000);
 	}
 }

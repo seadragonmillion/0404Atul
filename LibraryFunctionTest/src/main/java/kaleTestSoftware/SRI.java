@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +27,9 @@ public class SRI {
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	SRIPageObj sri = new SRIPageObj();
+	SRI2 sri2 = new SRI2();
+	SRIAdmin sriA = new SRIAdmin();
+	SRIAdmin2 sriA2 = new SRIAdmin2();
 
 
 
@@ -147,7 +148,7 @@ public class SRI {
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
-		//Open button
+		//delete button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
 	}
@@ -162,6 +163,7 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		share2.loadingServer(driver);
+		sriA.deleteAll(driver);
 		//Verify report not retrieved by shared to person		
 		String sharer = em3.decideSharer (y);
 		share.checkNoReportAfterDelete(driver, sharer, softly);	
@@ -221,9 +223,9 @@ public class SRI {
 		//Verify order of measurements
 		verifyOrderOfMeasurements(driver,storeDataStep2a.get("date1"),storeDataStep2a.get("date2"),storeDataStep2a.get("time1"),storeDataStep2a.get("time2"));	
 		//Verify the current 1st meaurement time is equal to old 2nd measurement time
-		softly.assertThat(storeDataStep2.get("time2")).as("test data").isEqualTo(storeDataStep2a.get("time1"));
+		softly.assertThat(storeDataStep2.get("time1").substring(0, 2)).as("test data").isEqualTo(storeDataStep2a.get("time2").substring(0, 2));
 		//Verify the hour changed in current measurement 2 
-		softly.assertThat(storeDataStep2a.get("time2").substring(0, 2)).as("test data").isEqualTo("05");
+		softly.assertThat(storeDataStep2a.get("time1").substring(0, 2)).as("test data").isEqualTo("05");
 	}
 
 	public void changeDate1stMeasurementAndVerifyOrderOfMeasurements(WebDriver driver) throws Exception {
@@ -284,7 +286,7 @@ public class SRI {
 		eirca3.compareDateTime(year1,year2,month1,month2,day1,day2,hour1,hour2,minute1,minute2,softly);
 	}
 
-	public void step2AddMeasurement(WebDriver driver, String text) throws Exception {
+	public void step2AddMeasurement(WebDriver driver, String text, String measurement, String unit, String value) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
@@ -332,58 +334,59 @@ public class SRI {
 
 		}
 		//Select Measurement
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2MeasurementDropDown)).click();
 		Select s = new Select(driver.findElement(sri.Step2Measurment));
-		//Choose a number between 1 to 14
-		int index = random.nextInt(15);
-		if(index<14)
-			index=index+1;
-		try{
-			s.selectByIndex(index);
-		}catch(org.openqa.selenium.ElementNotInteractableException e)
-		{
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-sri-newentry-measurement']/option["+index+"]")));
-			/*Actions act = new Actions(driver);
-			act.moveToElement(ele).click().build().perform();*/
-			JavascriptExecutor jse = (JavascriptExecutor)driver;
-			jse.executeScript("arguments[0].scrollIntoView();", ele);
-			jse.executeScript("arguments[0].click();", ele);
-		}
+		s.selectByVisibleText(measurement);
+		//Select Unit 
+		Select s1 = new Select(driver.findElement(sri.Step2Unit));
+		s1.selectByVisibleText(unit);
 		//Clear value 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Value)).clear();
 		//Fill value
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Value)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Value)).sendKeys(value);
 		//Fill notes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Notes)).sendKeys(text);
 		//Click on add button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2AddButton)).click();
 	}
+	
+	public void verifyStep1Label(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Event title
+		String placeholder1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).getAttribute("placeholder");
+		softly.assertThat(placeholder1).as("test data").isEqualTo("Fill in Report title");
+		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitleLabel)).getText();
+		softly.assertThat(label1).as("test data").isEqualTo("Report title:");
+	}
 
-	public void step1DataFill(WebDriver driver, String text) throws Exception {
+	public void step1DataFill(WebDriver driver, String text, String component, int y) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys(text);
 		//Inspection staff
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1InspectionStaff)).sendKeys(text);
+		/*Select label mechanical or electrical
+		 *0=mechanical
+		 *1=electrical
+		 */
+		if(y==0)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1MechanicalComponentLabel)).click();
+		}
+		if(y==1)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1ElectricalComponentLabel)).click();
+		}
 		//Component
 		Select s = new Select(driver.findElement(sri.Step1Component));
-		//Choose a number between 1 to 28
-		int index = random.nextInt(29);
-		if(index<28)
-			index=index+1;
-		s.selectByIndex(index);
-		if(index==14||index==28)
-		{
-			//Other
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1ComponentOther)).sendKeys(text);
-		}
+		s.selectByVisibleText(component);
 	}
 
 	public void checkForErrorStep1(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		Thread.sleep(1000);
+		share2.loadingServer(driver);
 		//Click on next step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1NextButton)).click();
 		//Error on Event title
@@ -487,99 +490,200 @@ public class SRI {
 		softly.assertThat(s1).as("test data").isEqualTo(storeDataStep1.get("inspection staff"));
 		//Component
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabComponent)).getText();
-		if(storeDataStep1.containsKey("other"))
-		{
-			softly.assertThat(s2).as("test data").isEqualTo(storeDataStep1.get("other"));
-		}
-		else
-			softly.assertThat(s2).as("test data").isEqualTo(storeDataStep1.get("component"));
+		softly.assertThat(s2).as("test data").isEqualTo(storeDataStep1.get("component"));
 		//Measurements
 		//1
 		//Date
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Date)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo(storeDataStep2.get("date1"));
+		String date1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Date)).getText();
+		softly.assertThat(date1).as("test data").isEqualTo(storeDataStep2.get("date1"));
 		//Time
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Time)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo(storeDataStep2.get("time1"));
+		String time1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Time)).getText();
+		softly.assertThat(time1).as("test data").isEqualTo(storeDataStep2.get("time1"));
 		//Measurement
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Measurement)).getText();
-		softly.assertThat(s5).as("test data").isEqualTo(storeDataStep2.get("measurement1"));
+		String measurement1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Measurement)).getText();
+		softly.assertThat(measurement1).as("test data").isEqualTo(storeDataStep2.get("measurement1"));
+		//unit
+		String unit1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Unit)).getText();
+		softly.assertThat(unit1).as("test data").isEqualTo(storeDataStep2.get("unit1"));
 		//Value
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Value)).getText();
-		softly.assertThat(s6).as("test data").isEqualTo(storeDataStep2.get("value1"));
+		String value1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Value)).getText();
+		softly.assertThat(value1).as("test data").isEqualTo(storeDataStep2.get("value1"));
 		//Notes
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Note)).getText();
-		softly.assertThat(s7).as("test data").isEqualTo(storeDataStep2.get("note1"));
+		String note1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Note)).getText();
+		softly.assertThat(note1).as("test data").isEqualTo(storeDataStep2.get("note1"));
+		//Conclusion
+		String conclusion1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion1, value1, measurement1, softly);
+		String conclusion1a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement1ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion1a,value1,measurement1,softly);
 		//2
 		//Date
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Date)).getText();
-		softly.assertThat(s8).as("test data").isEqualTo(storeDataStep2.get("date2"));
+		String date2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Date)).getText();
+		softly.assertThat(date2).as("test data").isEqualTo(storeDataStep2.get("date2"));
 		//Time
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Time)).getText();
-		softly.assertThat(s9).as("test data").isEqualTo(storeDataStep2.get("time2"));
+		String time2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Time)).getText();
+		softly.assertThat(time2).as("test data").isEqualTo(storeDataStep2.get("time2"));
 		//Measurement
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Measurement)).getText();
-		softly.assertThat(s10).as("test data").isEqualTo(storeDataStep2.get("measurement2"));
+		String measurement2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Measurement)).getText();
+		softly.assertThat(measurement2).as("test data").isEqualTo(storeDataStep2.get("measurement2"));
+		//unit
+		String unit2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Unit)).getText();
+		softly.assertThat(unit2).as("test data").isEqualTo(storeDataStep2.get("unit2"));
 		//Value
-		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Value)).getText();
-		softly.assertThat(s11).as("test data").isEqualTo(storeDataStep2.get("value2"));
+		String value2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Value)).getText();
+		softly.assertThat(value2).as("test data").isEqualTo(storeDataStep2.get("value2"));
 		//Notes
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Note)).getText();
-		softly.assertThat(s12).as("test data").isEqualTo(storeDataStep2.get("note2"));
-	}
-
-	public void verifyHTML(WebDriver driver,  HashMap<String,String> storeDataStep1,  HashMap<String,String> storeDataStep2)throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Verify data in Report tab
-		//Event information
-		//Event title
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLEventTitle)).getText();
-		softly.assertThat(s).as("test data").isEqualTo(storeDataStep1.get("event title"));
-		//Inspection staff
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLInspectionStaff)).getText();
-		softly.assertThat(s1).as("test data").isEqualTo(storeDataStep1.get("inspection staff"));
-		//Component
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLComponent)).getText();
-		if(storeDataStep1.containsKey("other"))
-		{
-			softly.assertThat(s2).as("test data").isEqualTo(storeDataStep1.get("other"));
-		}
-		else
-			softly.assertThat(s2).as("test data").isEqualTo(storeDataStep1.get("component"));
-		//Measurements
-		//1
+		String note2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Note)).getText();
+		softly.assertThat(note2).as("test data").isEqualTo(storeDataStep2.get("note2"));
+		//Conclusion
+		String conclusion2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion2, value2, measurement2, softly);
+		String conclusion2a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement2ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion2a,value2,measurement2,softly);
+		//3
 		//Date
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement1Date)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo(storeDataStep2.get("date1"));
+		String date3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Date)).getText();
+		softly.assertThat(date3).as("test data").isEqualTo(storeDataStep2.get("date3"));
 		//Time
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement1Time)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo(storeDataStep2.get("time1"));
+		String time3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Time)).getText();
+		softly.assertThat(time3).as("test data").isEqualTo(storeDataStep2.get("time3"));
 		//Measurement
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement1Measurement)).getText();
-		softly.assertThat(s5).as("test data").isEqualTo(storeDataStep2.get("measurement1"));
+		String measurement3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Measurement)).getText();
+		softly.assertThat(measurement3).as("test data").isEqualTo(storeDataStep2.get("measurement3"));
+		//unit
+		String unit3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Unit)).getText();
+		softly.assertThat(unit3).as("test data").isEqualTo(storeDataStep2.get("unit3"));
 		//Value
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement1Value)).getText();
-		softly.assertThat(s6).as("test data").isEqualTo(storeDataStep2.get("value1"));
+		String value3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Value)).getText();
+		softly.assertThat(value3).as("test data").isEqualTo(storeDataStep2.get("value3"));
 		//Notes
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement1Note)).getText();
-		softly.assertThat(s7).as("test data").isEqualTo(storeDataStep2.get("note1"));
-		//2
+		String note3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Note)).getText();
+		softly.assertThat(note3).as("test data").isEqualTo(storeDataStep2.get("note3"));
+		//Conclusion
+		String conclusion3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion3, value3, measurement3, softly);
+		String conclusion3a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement3ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion3a,value3,measurement3,softly);
+		//4
 		//Date
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement2Date)).getText();
-		softly.assertThat(s8).as("test data").isEqualTo(storeDataStep2.get("date2"));
+		String date4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Date)).getText();
+		softly.assertThat(date4).as("test data").isEqualTo(storeDataStep2.get("date4"));
 		//Time
-		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement2Time)).getText();
-		softly.assertThat(s9).as("test data").isEqualTo(storeDataStep2.get("time2"));
+		String time4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Time)).getText();
+		softly.assertThat(time4).as("test data").isEqualTo(storeDataStep2.get("time4"));
 		//Measurement
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement2Measurement)).getText();
-		softly.assertThat(s10).as("test data").isEqualTo(storeDataStep2.get("measurement2"));
+		String measurement4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Measurement)).getText();
+		softly.assertThat(measurement4).as("test data").isEqualTo(storeDataStep2.get("measurement4"));
+		//unit
+		String unit4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Unit)).getText();
+		softly.assertThat(unit4).as("test data").isEqualTo(storeDataStep2.get("unit4"));
 		//Value
-		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement2Value)).getText();
-		softly.assertThat(s11).as("test data").isEqualTo(storeDataStep2.get("value2"));
+		String value4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Value)).getText();
+		softly.assertThat(value4).as("test data").isEqualTo(storeDataStep2.get("value4"));
 		//Notes
-		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement2Note)).getText();
-		softly.assertThat(s12).as("test data").isEqualTo(storeDataStep2.get("note2"));
+		String note4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Note)).getText();
+		softly.assertThat(note4).as("test data").isEqualTo(storeDataStep2.get("note4"));
+		//Conclusion
+		String conclusion4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion4, value4, measurement4, softly);
+		String conclusion4a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement4ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion4a,value4,measurement4,softly);
+		//5
+		//Date
+		String date5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Date)).getText();
+		softly.assertThat(date5).as("test data").isEqualTo(storeDataStep2.get("date5"));
+		//Time
+		String time5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Time)).getText();
+		softly.assertThat(time5).as("test data").isEqualTo(storeDataStep2.get("time5"));
+		//Measurement
+		String measurement5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Measurement)).getText();
+		softly.assertThat(measurement5).as("test data").isEqualTo(storeDataStep2.get("measurement5"));
+		//unit
+		String unit5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Unit)).getText();
+		softly.assertThat(unit5).as("test data").isEqualTo(storeDataStep2.get("unit5"));
+		//Value
+		String value5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Value)).getText();
+		softly.assertThat(value5).as("test data").isEqualTo(storeDataStep2.get("value5"));
+		//Notes
+		String note5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Note)).getText();
+		softly.assertThat(note5).as("test data").isEqualTo(storeDataStep2.get("note5"));
+		//Conclusion
+		String conclusion5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion5, value5, measurement5, softly);
+		String conclusion5a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement5ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion5a,value5,measurement5,softly);
+		//6
+		//Date
+		String date6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Date)).getText();
+		softly.assertThat(date6).as("test data").isEqualTo(storeDataStep2.get("date6"));
+		//Time
+		String time6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Time)).getText();
+		softly.assertThat(time6).as("test data").isEqualTo(storeDataStep2.get("time6"));
+		//Measurement
+		String measurement6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Measurement)).getText();
+		softly.assertThat(measurement6).as("test data").isEqualTo(storeDataStep2.get("measurement6"));
+		//unit
+		String unit6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Unit)).getText();
+		softly.assertThat(unit6).as("test data").isEqualTo(storeDataStep2.get("unit6"));
+		//Value
+		String value6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Value)).getText();
+		softly.assertThat(value6).as("test data").isEqualTo(storeDataStep2.get("value6"));
+		//Notes
+		String note6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Note)).getText();
+		softly.assertThat(note6).as("test data").isEqualTo(storeDataStep2.get("note6"));
+		//Conclusion
+		String conclusion6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion6, value6, measurement6, softly);
+		String conclusion6a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement6ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion6a,value6,measurement6,softly);
+		//7
+		//Date
+		String date7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Date)).getText();
+		softly.assertThat(date7).as("test data").isEqualTo(storeDataStep2.get("date7"));
+		//Time
+		String time7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Time)).getText();
+		softly.assertThat(time7).as("test data").isEqualTo(storeDataStep2.get("time7"));
+		//Measurement
+		String measurement7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Measurement)).getText();
+		softly.assertThat(measurement7).as("test data").isEqualTo(storeDataStep2.get("measurement7"));
+		//unit
+		String unit7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Unit)).getText();
+		softly.assertThat(unit7).as("test data").isEqualTo(storeDataStep2.get("unit7"));
+		//Value
+		String value7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Value)).getText();
+		softly.assertThat(value7).as("test data").isEqualTo(storeDataStep2.get("value7"));
+		//Notes
+		String note7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Note)).getText();
+		softly.assertThat(note7).as("test data").isEqualTo(storeDataStep2.get("note7"));
+		//Conclusion
+		String conclusion7 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion7, value7, measurement7, softly);
+		String conclusion7a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement7ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion7a,value7,measurement7,softly);
+		//8
+		//Date
+		String date8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Date)).getText();
+		softly.assertThat(date8).as("test data").isEqualTo(storeDataStep2.get("date8"));
+		//Time
+		String time8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Time)).getText();
+		softly.assertThat(time8).as("test data").isEqualTo(storeDataStep2.get("time8"));
+		//Measurement
+		String measurement8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Measurement)).getText();
+		softly.assertThat(measurement8).as("test data").isEqualTo(storeDataStep2.get("measurement8"));
+		//unit
+		String unit8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Unit)).getText();
+		softly.assertThat(unit8).as("test data").isEqualTo(storeDataStep2.get("unit8"));
+		//Value
+		String value8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Value)).getText();
+		softly.assertThat(value8).as("test data").isEqualTo(storeDataStep2.get("value8"));
+		//Notes
+		String note8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Note)).getText();
+		softly.assertThat(note8).as("test data").isEqualTo(storeDataStep2.get("note8"));
+		//Conclusion
+		String conclusion8 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8Conclusion)).getText();
+		sri2.verifyConclusion(driver, conclusion8, value8, measurement8, softly);
+		String conclusion8a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabMeasurement8ConclusionColorText)).getText();
+		sri2.verifyConclusionColorAndText(driver,conclusion8a,value8,measurement8,softly);
 	}
 
 	public void savePartialReport(WebDriver driver)	throws Exception {
@@ -615,6 +719,29 @@ public class SRI {
 		System.out.println(s+ " "+count);
 		return count;
 	}
+	
+	public void step2Verify(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Verify value is empty
+		String value = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Value)).getAttribute("value");
+		softly.assertThat(value).as("test data").isEmpty();
+		//Verify date is empty
+		String date = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2DateField)).getAttribute("value");
+		softly.assertThat(date).as("test data").isEmpty();
+		//Verify time is empty
+		String time = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2TimeField)).getAttribute("value");
+		softly.assertThat(time).as("test data").isEmpty();
+		//Verify Measurement is empty
+		String meas = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement)).getAttribute("value");
+		softly.assertThat(meas).as("test data").isEmpty();
+		//Verify unit is empty
+		String unit = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Unit)).getAttribute("value");
+		softly.assertThat(unit).as("test data").isEmpty();
+		//Verify notes is empty
+		String notes = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Notes)).getAttribute("value");
+		softly.assertThat(notes).as("test data").isEmpty();
+	}
 
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
 
@@ -640,6 +767,7 @@ public class SRI {
 	public String path_SRI(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		sriA.SRIAdminTest(driver,softly);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hlb.AnalysisLink)).click();
 		//Click on SRI
@@ -648,26 +776,40 @@ public class SRI {
 		checkForErrorStep1(driver);
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
-		//Fill Step 1
-		step1DataFill(driver,text);
+		//Fill Step 1 for mechanical component
+		step1DataFill(driver,text,sriA2.mechanicalComponent1,0);
 		//Get Data from Step 1
 		HashMap<String,String> storeDataStep1 = getStep1Data(driver);
 		//Click on next step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1NextButton)).click();
 		//Step 2 - add 2 measurements
+		step2Verify(driver);
 		//1
-		step2AddMeasurement(driver,text);
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "9");
 		//2
-		step2AddMeasurement(driver,text);
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "-2");
 		//Change date of 1st measurement twice
 		changeDate1stMeasurementAndVerifyOrderOfMeasurements(driver);
 		changeDate1stMeasurementAndVerifyOrderOfMeasurements(driver);
 		//Change time of 1st measurement twice and make date equal with 2nd measurement
 		changeTimeOfMeasurementsAndVerifyOrderOfMeasurements(driver);
+		//Step 2 - add more measurements
+		//3
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "11");
+		//4
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "-0.98");
+		//5
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "22");
+		//6
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "2.5");
+		//7
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "32");
+		//8
+		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "3.5");
 		//get data from step 2
-		HashMap<String,String> storeDataStep2 = getStep2Data(driver);
+		HashMap<String,String> storeDataStep2 = sri2.getStep2AllData(driver);
 		//Verify order of measurements
-		verifyOrderOfMeasurements(driver,storeDataStep2.get("date1"),storeDataStep2.get("date2"),storeDataStep2.get("time1"),storeDataStep2.get("time2"));
+		//verifyOrderOfMeasurements(driver,storeDataStep2.get("date1"),storeDataStep2.get("date2"),storeDataStep2.get("time1"),storeDataStep2.get("time2"));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINextButton)).click();
 		//Verify everything on report
@@ -675,7 +817,10 @@ public class SRI {
 		//Save report and open the report
 		String recordName = saveSRIReport(driver);
 		//Verify data on HTML
-		verifyHTML(driver,storeDataStep1,storeDataStep2);
+		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
+		//Verify rename popup overflow
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			sri2.verifySavePopupAfterRename(driver, softly);
 		return recordName;
 	}
 

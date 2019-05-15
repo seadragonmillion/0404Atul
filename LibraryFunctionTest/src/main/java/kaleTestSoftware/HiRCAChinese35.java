@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HiRCAChinese35 {
 
-	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
 	
@@ -123,7 +123,7 @@ public class HiRCAChinese35 {
 		//Click on 3rd collapsible for 3.12.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.12.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(q343).as("test data").contains("[3.12.3] 觉得获取和穿戴PPE有负担");
 		//Click on 3.12.3 to reveal evidence entry
@@ -178,7 +178,7 @@ public class HiRCAChinese35 {
 		//Click on 3rd collapsible for 3.12.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.12.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 		softly.assertThat(q344).as("test data").contains("[3.12.4] 觉得使用过于复杂或繁琐的程序有负担");
 		//Click on 3.12.4 to reveal evidence entry
@@ -231,7 +231,7 @@ public class HiRCAChinese35 {
 		//Click on 3rd collapsible for 3.12.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.12.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
 		softly.assertThat(q345).as("test data").contains("[3.12.5] 因觉得负担麻烦未到现场核实");
 		//Click on 3.12.5 to reveal evidence entry
@@ -284,12 +284,12 @@ public class HiRCAChinese35 {
 		//Click on 3rd collapsible for 3.12.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1100);
+		share2.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 }

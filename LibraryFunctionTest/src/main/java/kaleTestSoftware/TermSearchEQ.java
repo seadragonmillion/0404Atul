@@ -131,7 +131,7 @@ public class TermSearchEQ {
 		Thread.sleep(1000);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Get the case id loaded
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(equip.EquipCaseIDField)).getAttribute("value").equals(caseID.substring(1, caseID.length())))
 			System.out.println("Correct case loaded: "+ wait.until(ExpectedConditions.visibilityOfElementLocated(equip.EquipCaseIDField)).getAttribute("value"));
@@ -466,7 +466,7 @@ public class TermSearchEQ {
 		share2.loadingServer(driver);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Close sticky
 		login.closePopUpSticky(driver);
 		while(true)

@@ -28,7 +28,6 @@ public class EquipmentPDDandEF {
 	SoftAssertions softly = new SoftAssertions();	
 	LoginPageObj lpo = new LoginPageObj();
 	CreateEquipPageObj equipObj = new CreateEquipPageObj();
-	CreateEquipmentCase equip = new CreateEquipmentCase();
 	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
@@ -1234,12 +1233,12 @@ public class EquipmentPDDandEF {
 			//Select Discipline
 			selectDisciplineEFPDD(driver);
 			//Select Fields
-			equip.selectFields(driver);
+			equip3.selectFields(driver,softly);
 			//Enters Question
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
-			share.scrollToAPoint(driver, 1700);
+			share2.scrollToAPoint(driver, 1700);
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1269,14 +1268,14 @@ public class EquipmentPDDandEF {
 			}
 			else 
 			{
-				share.scrollToAPoint(driver, 1700);
+				share2.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
 				element.findElement(chc.FirstAndLastChildInList).click();
 			}
 			Thread.sleep(2000);
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)).click();
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
 			p.waitFor();
@@ -1285,7 +1284,7 @@ public class EquipmentPDDandEF {
 			if(driver.findElement(equipObj.EquipImageCollapsibleExpanded).isDisplayed()==false)
 			{
 				l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				l.click();
 			}
 			int i;
@@ -1300,7 +1299,7 @@ public class EquipmentPDDandEF {
 
 			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible)).click();
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
@@ -1331,7 +1330,7 @@ public class EquipmentPDDandEF {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		Random random = new Random();
 		String caseId="";
@@ -1378,12 +1377,12 @@ public class EquipmentPDDandEF {
 			//Select Discipline
 			selectDisciplineEFPDD(driver);
 			//Select Fields
-			equip.selectFields(driver);
+			equip3.selectFields(driver,softly);
 			//Enters Question
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
-			share.scrollToAPoint(driver, 1700);
+			share2.scrollToAPoint(driver, 1700);
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1405,14 +1404,14 @@ public class EquipmentPDDandEF {
 			}
 			else 
 			{
-				share.scrollToAPoint(driver, 1700);
+				share2.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
 				element.findElement(chc.FirstAndLastChildInList).click();
 			}
 			Thread.sleep(2000);
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)));
 			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides_Firefox.exe");
 			p.waitFor();
@@ -1421,7 +1420,7 @@ public class EquipmentPDDandEF {
 			if(driver.findElement(equipObj.EquipImageCollapsibleExpanded).isDisplayed()==false)
 			{
 				l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				l.click();
 			}
 			int i;
@@ -1435,7 +1434,7 @@ public class EquipmentPDDandEF {
 
 			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible)).click();
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
@@ -1469,7 +1468,7 @@ public class EquipmentPDDandEF {
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)).click();
@@ -1513,12 +1512,12 @@ public class EquipmentPDDandEF {
 			//Select Discipline
 			selectDisciplineEFPDD(driver);
 			//Select Fields
-			equip.selectFields(driver);
+			equip3.selectFields(driver,softly);
 			//Enters Question
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
-			share.scrollToAPoint(driver, 1700);
+			share2.scrollToAPoint(driver, 1700);
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1541,14 +1540,14 @@ public class EquipmentPDDandEF {
 			else 
 			{
 				Thread.sleep(1000);
-				share.scrollToAPoint(driver, 1700);
+				share2.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
 				element.findElement(chc.FirstAndLastChildInList).click();
 			}
 			Thread.sleep(2000);
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField));
 			try{
 				jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
@@ -1565,7 +1564,7 @@ public class EquipmentPDDandEF {
 			if(driver.findElement(equipObj.EquipImageCollapsibleExpanded).isDisplayed()==false)
 			{
 				l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				l.click();
 			}
 			int i;
@@ -1583,7 +1582,7 @@ public class EquipmentPDDandEF {
 				}
 			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible)).click();
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
@@ -1662,7 +1661,7 @@ public class EquipmentPDDandEF {
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)).click();
@@ -1706,12 +1705,12 @@ public class EquipmentPDDandEF {
 			//Select Discipline
 			selectDisciplineEFPDD(driver);
 			//Select Fields
-			equip.selectFields(driver);
+			equip3.selectFields(driver,softly);
 			//Enters Question
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseQuestion)).sendKeys(title);
 			//Enters Answer
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
-			share.scrollToAPoint(driver, 1700);;
+			share2.scrollToAPoint(driver, 1700);;
 			//Enters Keyword
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
@@ -1733,14 +1732,14 @@ public class EquipmentPDDandEF {
 			}
 			else 
 			{
-				share.scrollToAPoint(driver, 1700);
+				share2.scrollToAPoint(driver, 1700);
 				WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
 				element.findElement(chc.FirstAndLastChildInList).click();
 			}
 			Thread.sleep(2000);
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 			jse.executeScript("return document.getElementById('pii-admin-efse-upload-file-input').click();");
 			Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/UploadHumanCaseSlides_IE10.exe");
 			p.waitFor();
@@ -1749,7 +1748,7 @@ public class EquipmentPDDandEF {
 			if(driver.findElement(equipObj.EquipImageCollapsibleExpanded).isDisplayed()==false)
 			{
 				l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				l.click();
 			}
 			int i;
@@ -1767,7 +1766,7 @@ public class EquipmentPDDandEF {
 				}
 			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible)).click();
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Clicks on save
 			jse.executeScript("return document.getElementById('pii-admin-efse-button-save').click();");

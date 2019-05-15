@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAChinese31 {
 
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
 
@@ -120,7 +121,7 @@ public class HiRCAChinese31 {
 		//Click on 3rd collapsible for 3.16.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.16.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(q343).as("test data").contains("[3.16.3] 过度自信: (1) 首次执行的操作(FTE)，而没有寻求充分帮助；(2) 日常工作，而没有注意到微小变化和新情况；(3) 繁琐任务未定期自检 (如数据输入)；(4) 使用信息数据未审核且核实 (5) 不识别单项弱点也不自检单项弱点；(6) 按记忆中（印象中）的程序作业（未持程序作业）");
 		//Click on 3.16.3 to reveal evidence entry
@@ -175,7 +176,7 @@ public class HiRCAChinese31 {
 		//Click on 3rd collapsible for 3.16.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.16.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 		softly.assertThat(q344).as("test data").contains("[3.16.4] 时间压力: 急着完工");
 		//Click on 3.16.4 to reveal evidence entry
@@ -232,9 +233,9 @@ public class HiRCAChinese31 {
 		//Click on 3rd collapsible for 3.16.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//3.16.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
 		softly.assertThat(q345).as("test data").contains("[3.16.5] 注意不足: 1.长时间工作而没有休息(> 140分钟); 2. 早上10点时做事; 3. 工作超过10小时");
 		//Click on 3.16.5 to reveal evidence entry
@@ -291,7 +292,7 @@ public class HiRCAChinese31 {
 		//Click on 3rd collapsible for 3.16.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.16.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)).getText();
 		softly.assertThat(q396).as("test data").contains("[3.16.6] 学习技能时相关规定有误");
 		//Click on 3.16.6 to reveal evidence entry
@@ -344,7 +345,7 @@ public class HiRCAChinese31 {
 		//Click on 3rd collapsible for 3.16.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.16.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
 		softly.assertThat(q367).as("test data").contains("[3.16.7] 判断出错未能选择正确技能使用");
 		//Click on 3.16.7 to reveal evidence entry
@@ -405,7 +406,7 @@ public class HiRCAChinese31 {
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 }

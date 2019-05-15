@@ -52,7 +52,7 @@ public class HiRCAStress {
 			//Click on Supporting file details
 			Thread.sleep(500);
 			String id = "pii-irca-h-event-report-filecollapsible-"+j;
-			share.scrollToElement(driver, driver.findElement(By.id(id)));
+			share2.scrollToElement(driver, driver.findElement(By.id(id)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
@@ -66,7 +66,7 @@ public class HiRCAStress {
 
 		}
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Downloads record
 		downloadSelectFunction(driver);
 		Thread.sleep(2000);	
@@ -326,10 +326,10 @@ public class HiRCAStress {
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
@@ -340,11 +340,11 @@ public class HiRCAStress {
 			{
 				//Click on attach another file
 				WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
-				share.scrollToElement(driver, add);
+				share2.scrollToElement(driver, add);
 				add.click();
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -382,10 +382,10 @@ public class HiRCAStress {
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
@@ -398,11 +398,11 @@ public class HiRCAStress {
 			{
 				//Click on attach another file
 				WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
-				share.scrollToElement(driver, add);
+				share2.scrollToElement(driver, add);
 				add.click();
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -441,10 +441,10 @@ public class HiRCAStress {
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
@@ -465,11 +465,11 @@ public class HiRCAStress {
 			{
 				//Click on attach another file
 				WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
-				share.scrollToElement(driver, add);
+				share2.scrollToElement(driver, add);
 				add.click();
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -508,10 +508,10 @@ public class HiRCAStress {
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
@@ -532,11 +532,11 @@ public class HiRCAStress {
 			{
 				//Click on attach another file
 				WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
-				share.scrollToElement(driver, add);
+				share2.scrollToElement(driver, add);
 				add.click();
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
@@ -572,7 +572,7 @@ public class HiRCAStress {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		for (int i=0;i<=9;i++)
 		{
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))));
 			//Clicks on collapsible
 			if(driver.findElement(By.id("pii-irca-event-file-img-"+i)).isDisplayed()==false)
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
@@ -582,8 +582,8 @@ public class HiRCAStress {
 			//Clicks on collapsible again
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))).click();
 		}
-		share.scrollToTop(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public  void uploadFiveImages(WebDriver driver) throws Exception {

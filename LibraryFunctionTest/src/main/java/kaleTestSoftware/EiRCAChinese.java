@@ -84,7 +84,7 @@ public class EiRCAChinese {
 		//Verify popup text
 		chinesePopupAfterStep4(driver);
 		//Click on confirm 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Step 5
 		chineseStep5(driver);
 		//Click next
@@ -104,7 +104,7 @@ public class EiRCAChinese {
 		//Save popup
 		chineseSavePopup(driver);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Wait for loading message 
 		share2.loadingServer(driver);
 		//Click on saved activities
@@ -161,22 +161,22 @@ public class EiRCAChinese {
 		//Verify popup text
 		chinesePopupAfterStep4(driver);
 		//Click on confirm 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Step 5
 		chineseStep5(driver);
 		//Scroll to element 5.5 checkbox
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Select yes for 5.5
 		l.click();
 		//Scroll to element 5.6 checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption56CheckBox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Select yes for 5.6	  	
 		l.click();
 		//Scroll to top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
@@ -199,7 +199,7 @@ public class EiRCAChinese {
 		//Save popup
 		chineseSavePopup(driver);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Wait for loading message 
 		share2.loadingServer(driver);
 		//Click on saved activities
@@ -302,14 +302,14 @@ public class EiRCAChinese {
 		//Verify pop up at Step 3
 		chinesePopupAfterStep3(driver);
 		//Click on green button, Preview report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
 		//to accomodate bug
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3Tab)).click();
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		Thread.sleep(1000);
 		//Click on green button, Preview report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
 		//Verify Report Tab
 		chineseReportTabPath2(driver);
 		//Save report
@@ -317,7 +317,7 @@ public class EiRCAChinese {
 		//Save popup
 		chineseSavePopup(driver);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Wait for loading message 
 		share2.loadingServer(driver);
 		//Click on saved activities
@@ -363,19 +363,19 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Title of popup
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("完成排除");
 		//Popup message title
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessageTitle)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("所有可能的失效模式已排除，需要继续新增失效模式或预览报告？");
 		//Popup message
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessage)).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("编辑失效模式：新增失效模式或审核排除证明。");
 		//Confirm button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("编辑失效模式");
 		//Cancel button
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("预览报告");
 	}
 
@@ -414,13 +414,13 @@ public class EiRCAChinese {
 		//Click on check box for 3.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption34CheckBox)).click();
 		//Scroll to the bottom
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Click on check box for 3.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption35CheckBox)).click();
 		//Click on check box for 3.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption36CheckBox)).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 
@@ -1501,16 +1501,16 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Title of popup
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("保存报告");
 		//Popup message title
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessageTitle)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("请确认你要存入现有报告进度?");
 		//Confirm button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("保存报告");
 		//Cancel button
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("取消");
 	}
 
@@ -2723,16 +2723,16 @@ public class EiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Title of popup
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("完成故障排除?");
 		//Popup message title
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessageTitle)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("你要完成故障排除直接列印报告吗？");
 		//Confirm button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("进行RCA");
 		//Cancel button
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("报告");
 	}
 
@@ -2847,18 +2847,19 @@ public class EiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)).click();
 		Thread.sleep(1000);
 		//Title of popup
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpTitle)).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("新增失效模式");
 		//Popup message title
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessageTitle)).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("请使用已存在模版。");
 		//Popup message
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessage)).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("注意：需填入失效模式才能进行下一步分析。");
 		//Click on ok
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Fill text in 1st box 1st row
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row11stTextBoxField)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2Row12ndTextBoxField)).sendKeys(text);
 		//Click on add failure mode button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step2AddFailureButton)).click();
 		//title for first text box
@@ -3321,11 +3322,11 @@ public class EiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventReviewerField)).sendKeys(text);
 		//Sponsor
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventSponsorField)).sendKeys(text);
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfInfoPage)).click();
 		//Scroll top
-		share.scrollToTop(driver);	
+		share2.scrollToTop(driver);	
 	}
 
 	public void softAssert() throws Exception {

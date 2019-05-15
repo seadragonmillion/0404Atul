@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class ErrorMeterPageObj {
 
-	//Firs page of module
+	//First page of module
 	public By JobTitleCharacterCount = By.id("pii-epm-job-title-count");
 
 	//HTML
@@ -60,6 +60,7 @@ public class ErrorMeterPageObj {
 	public By ErrorMeterEnvironmentSPVNonIssue4 = By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr[5]/td[1]");
 
 	//Inside report
+	public By ErrorMeterInstructionText = By.cssSelector(".pii-label.pii-epm-tab-markall-label");
 	public By ErrorMeterPercentageBar = By.xpath(".//*[@id='pii-epm-progbar']/div/div/a");
 	public By ErrorMeterPAPEEnvironmentTab = By.id("pii-epm-taba-e");
 	public By ErrorMeterPAPEEnvironmentCheckBox1 = By.id("pii-epm-tab-e-q1");

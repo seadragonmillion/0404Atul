@@ -191,7 +191,7 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
 		share2.loadingServer(driver);
 		//Clicks on Save Report button			  
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Clicks on Saved activities button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();
@@ -395,7 +395,7 @@ public class GroupModerator {
 		driver.findElement(rv.RVVerifierField).sendKeys("qaapaaverifier");
 		Thread.sleep(1000);
 		//Selects the remote verifier		
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		WebElement select = driver.findElement(rv.RVVerifierDropdown);
 		WebElement option=select.findElement(eirca.FirstSelectionUnderDropdown);
 		option.click();
@@ -404,7 +404,7 @@ public class GroupModerator {
 		//Uploads picture 1
 		rv2.upload1stPicture(driver);
 		//*
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Save and send to verifier
 		//Clicks on Save and Send
 		driver.findElement(rv.RVSaveAndSendButton).click();
@@ -431,7 +431,7 @@ public class GroupModerator {
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		String v = cap.getVersion().toString();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		//Clicks on Save report
@@ -502,9 +502,10 @@ public class GroupModerator {
 
 	public void loginToUsersForTest(WebDriver driver, String username, String password) throws Exception{
 
+		System.out.println(username);
 		int login1 = login.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(8000);		  
+		//Thread.sleep(8000);		  
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{
@@ -516,7 +517,7 @@ public class GroupModerator {
 		}catch (org.openqa.selenium.TimeoutException e){
 			throw e;
 		}
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 	}
 	
 	public void chooseAllUsersUnderUserDropdown(WebDriver driver) throws Exception {

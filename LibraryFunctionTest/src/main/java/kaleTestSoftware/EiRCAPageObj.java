@@ -44,7 +44,8 @@ public class EiRCAPageObj {
 	//Save pop up
 	public By EiRCAPopupHeader = By.id("pii-ircam-dialog-header");
 	public By EiRCAPopupTitle = By.id("pii-ircam-dialog-title");
-	public By EiRCAConfirmButton = By.id("pii-ircam-dialog-confirmed");
+	public By EiRCAPopupConfirmButton = By.id("pii-ircam-dialog-confirmed");
+	public By EiRCAPopUpMessageNote = By.id("pii-ircam-dialog-note");
 	public By EiRCAPopupCancelButton = By.id("pii-ircam-dialog-cancel");
 	public By EiRCANextButton = By.id("pii-ircam-next");
 	public By EiRCASavedActivitiesButton = By.id("pii-ircam-savedactivities");
@@ -253,6 +254,7 @@ public class EiRCAPageObj {
 	public By HTMLStep4SkippedTr1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[4]/div[2]");
 	public By HTMLStep5Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]");
 	public By HTMLStep5Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[9]");
+	public By HTMLStep5Skipped3 = By.xpath(".//*[@id='mirca-rpt']/div[8]");
 	public By HTMLStep6Skipped = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[6]");
 	public By HTMLStep6Skipped2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]");
 	public By HTMLStep6Skipped3 = By.xpath(".//*[@id='mirca-rpt']/div[10]");
@@ -264,12 +266,21 @@ public class EiRCAPageObj {
 	public By HTMLTable14Step5Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[8]/table/tbody/tr[1]/td[2]");
 	public By HTMLTable14Step5Row1Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[7]/table/tbody/tr[1]/td[3]");
 	public By HTMLTable14Step5Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[2]/div[8]/table/tbody/tr[1]/td[3]");
+	public By HTMLTable14Step5Row1Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[2]/div[7]/table/tbody/tr[1]/td[2]");
+	public By HTMLTable14Step5Row2Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[2]/div[8]/table/tbody/tr[1]/td[2]");
+	public By HTMLTable14Step5Row1Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[2]/div[7]/table/tbody/tr[1]/td[3]");
+	public By HTMLTable14Step5Row2Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[2]/div[8]/table/tbody/tr[1]/td[3]");
 	//Step 6
 	public By HTMLStep6Row5Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[2]");
 	public By HTMLStep6Row6Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
 	public By HTMLStep6Row7Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[7]/td[2]");
 	public By HTMLStep6Row8Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[8]/td[2]");
 	public By HTMLStep6Row5Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[3]/div[2]/table/tbody/tr[5]/td[3]");
+	public By HTMLStep6Row5Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[5]/td[2]");
+	public By HTMLStep6Row6Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[6]/td[2]");
+	public By HTMLStep6Row7Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[7]/td[2]");
+	public By HTMLStep6Row8Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[8]/td[2]");
+	public By HTMLStep6Row5Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[5]/td[3]");
 	//Step 7
 	public By HTMLStep7Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]");
 	public By HTMLStep7Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[3]");
@@ -291,6 +302,26 @@ public class EiRCAPageObj {
 	public By HTMLStep7Row3Column6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[3]/td[6]");
 	public By HTMLStep7Row4Column6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[4]/td[6]");
 	public By HTMLStep7Row5Column6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[5]/td[6]");
+	public By HTMLStep7Row2Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[2]");
+	public By HTMLStep7Row2Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[3]");
+	public By HTMLStep7Row2Column4a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[4]");
+	public By HTMLStep7Row2Column5a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[5]");
+	public By HTMLStep7Row3Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[3]/td[2]");
+	public By HTMLStep7Row3Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[3]/td[3]");
+	public By HTMLStep7Row3Column4a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[3]/td[4]");
+	public By HTMLStep7Row3Column5a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[3]/td[5]");
+	public By HTMLStep7Row4Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[2]");
+	public By HTMLStep7Row4Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[3]");
+	public By HTMLStep7Row4Column4a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[4]");
+	public By HTMLStep7Row4Column5a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[5]");
+	public By HTMLStep7Row5Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[2]");
+	public By HTMLStep7Row5Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[3]");
+	public By HTMLStep7Row5Column4a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[4]");
+	public By HTMLStep7Row5Column5a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[5]");
+	public By HTMLStep7Row2Column6a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[6]");
+	public By HTMLStep7Row3Column6a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[3]/td[6]");
+	public By HTMLStep7Row4Column6a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[6]");
+	public By HTMLStep7Row5Column6a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[6]");
 	//RCA
 	public By HTMLStep7Row2Column2RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[2]/td[2]");
 	public By HTMLStep7Row2Column3RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[2]/td[3]");
@@ -407,12 +438,7 @@ public class EiRCAPageObj {
 
 	public By Step2AddFailureButton = By.id("pii-ircam-addnewfmt");
 
-	//Pop up inside report
-	public By PopUpTitle = By.id("pii-ircam-dialog-header");
-	public By PopUpMessageTitle = By.id("pii-ircam-dialog-title");
-	public By PopUpMessage = By.id("pii-ircam-dialog-note");
-	public By PopupConfirmButton = By.id("pii-ircam-dialog-confirmed");
-	public By PopupCancelButton = By.id("pii-ircam-dialog-cancel");
+	
 
 	//Step 3
 	public By Step3Tab = By.id("pii-ircam-tab-4-a");

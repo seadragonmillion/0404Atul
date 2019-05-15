@@ -16,6 +16,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -31,6 +32,8 @@ public class LanguageCheckOfReports {
 	SoftAssertions softly = new SoftAssertions();
 	
 	ShareCheck2 share2 = new ShareCheck2();
+	ShareCheck share = new ShareCheck();
+	ShareCheckPageObj shareObj = new ShareCheckPageObj();
 
 	public boolean containsHanScript(String s) {
 		return s.codePoints().anyMatch(
@@ -235,6 +238,38 @@ public class LanguageCheckOfReports {
 		//Checks language in Remote Verification
 		l=rv(driver,1);
 		downloadSelectFunction(driver, 1, l,browserName,v);
+		//Verify company name in contact page
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			verifyCompanyName(driver);
+	}
+	
+	public void verifyCompanyName (WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Scroll down to contact link
+		share2.scrollToElement(driver, driver.findElement(shareObj.KALEContactPage));
+		//Click on contact page
+		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.KALEContactPage)).click();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		//System.out.println(browserName);
+		String v = cap.getVersion().toString();
+		if((browserName.equals("internet explorer"))&&(v.startsWith("11")))
+		{
+			try{
+				driver.findElement(By.tagName("address"));
+			}catch(org.openqa.selenium.NoSuchElementException t)
+			{
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.KALEContactPage)));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.KALEContactPage)));
+			}
+		}
+		//Verify company name
+		WebElement ele = driver.findElement(By.tagName("address"));
+		String name = ele.findElement(By.tagName("h3")).getText();
+		softly.assertThat(name).as("test data").contains("Error-Free® Inc and Performance Improvement International (PII)");		
 	}
 
 	public void verifyLabelAdminUserAccount(WebDriver driver, SoftAssertions softly) throws Exception {

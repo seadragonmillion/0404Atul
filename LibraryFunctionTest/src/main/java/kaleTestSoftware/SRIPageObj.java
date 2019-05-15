@@ -21,6 +21,7 @@ public class SRIPageObj {
 	public By SRIAdminComponentAddButton = By.id("pii-asri-component-add");
 	//Measurement Tab
 	public By SRIAdminMeasurementTab = By.id("pii-asri-tab-2-a");
+	public By SRIAdminMeasurementNameLabel = By.xpath(".//*[@id='pii-asri-tab-2-data']/div[1]/div[1]/div[1]");
 	public By SRIAdminMeasurementNameFieldEnglish = By.id("pii-asri-meas-name");
 	public By SRIAdminMeasurementTabMechanicalDropdown = By.id("pii-asri-meas-component-mech");
 	public By SRIAdminMeasurementTabElectricalDropdown = By.id("pii-asri-meas-component-elec");
@@ -36,10 +37,12 @@ public class SRIPageObj {
 	public By SRIAdminBaselineTabElectricalDropdown = By.id("pii-asri-baseline-component-elec");
 	public By SRIAdminBaselineTabMeasurementDropdown = By.id("pii-asri-baseline-meas-new");
 	public By SRIAdminBaselineTabUnitDropdown = By.id("pii-asri-baseline-unit-new");
-	public By SRIAdminFS1Field = By.id("pii-asri-baseline-FS1-new");
-	public By SRIAdminFS2Field = By.id("pii-asri-baseline-FS2-new");
-	public By SRIAdminFS3Field = By.id("pii-asri-baseline-FS3-new");
+	public By SRIAdminOPField = By.id("pii-asri-baseline-FS1-new");
+	public By SRIAdminIFS1Field = By.id("pii-asri-baseline-FS2-new");
+	public By SRIAdminIFS2Field = By.id("pii-asri-baseline-FS3-new");
 	public By SRIAdminBaselineAddButton = By.id("pii-asri-baseline-add");
+	//Baseline Errors
+	public By SRIBaselineErrorMessage = By.xpath(".//*[@id='pii-asri-baseline-addnew-message']/ul/li[1]");
 	//Conclusion Tab
 	public By SRIAdminConclusionsTab = By.id("pii-asri-tab-5-a");
 	public By SRIAdminConclusionTabMechanicalDropdown = By.id("pii-asri-conclusion-component-mech");
@@ -52,7 +55,9 @@ public class SRIPageObj {
 	
 	
 	//Step1
+	public By SRIStep1Tab = By.id("pii-sri-tab-1-a");
 	public By SRIStep1NextButton = By.id("pii-sri-tab-1-form-submit");
+	public By Step1EventTitleLabel = By.id("pii-sri-tab-1-title-label");
 	public By Step1TitleCharacterCount = By.id("pii-sri-tab-1-title-count");
 	public By Step1EventTitle = By.id("pii-sri-tab-1-title");
 	public By Step1InspectionStaff = By.id("pii-sri-tab-1-inspection-staff");
@@ -62,35 +67,88 @@ public class SRIPageObj {
 	public By Step1ComponentErrorText = By.id("pii-sri-tab-1-component-error");
 	public By Step1ComponentOther = By.id("pii-sri-tab-1-component-other");
 	public By Step1ReportCreation = By.id("pii-sri-tab-1-repdatetime");
+	public By Step1MechanicalComponentLabel = By.xpath(".//*[@for='pii-sri-tab-1-component-type-mech']");
+	public By Step1ElectricalComponentLabel = By.xpath(".//*[@for='pii-sri-tab-1-component-type-elec']");
 	//Step 2
 	public By Step2Measurement = By.id("pii-sri-newentry-measurement");
-	public By Step2CalendarIconAddMeasurement = By.xpath(".//*[@id='pii-sri-tab-2-measurements']/div/div[1]/div[2]/div/div/a");
-	public By Step2ClockIconAddMeasurement = By.xpath(".//*[@id='pii-sri-tab-2-measurements']/div/div[2]/div[2]/div/div/a");
+	public By Step2Unit = By.id("pii-sri-newentry-unit");
+	public By Step2CalendarIconAddMeasurement = By.xpath(".//*[@id='pii-sri-addnew-div']/div/div[1]/div[2]/div/div/a");
+	public By Step2ClockIconAddMeasurement = By.xpath(".//*[@id='pii-sri-addnew-div']/div/div[2]/div[2]/div/div/a");
+	public By Step2DateField = By.xpath(".//*[@id='pii-sri-addnew-div']/div/div[1]/div[2]/div/div/input");
+	public By Step2TimeField = By.xpath(".//*[@id='pii-sri-addnew-div']/div/div[2]/div[2]/div/div/input");
 	public By Step2Measurment = By.id("pii-sri-newentry-measurement");
 	public By Step2Value = By.id("pii-sri-newentry-value");
 	public By Step2Notes = By.id("pii-sri-newentry-notes");
-	public By Step2AddButton = By.id("pii-sri-newevent-add");
+	public By Step2AddButton = By.id("pii-sri-newentry-add");
+	public By Step2MeasurementDropDown = By.id("pii-sri-newentry-measurement-button");
 	public By Step2Measurement1CalendarIcon = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[2]/div/div/a");
 	public By Step2Measurement1ClockIcon = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[3]/div/div/a");
-	public By Step2Measurement2CalendarIcon = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[2]/td[2]/div/div/a");
-	public By Step2Measurement2ClockIcon = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[2]/td[3]/div/div/a");
+	public By Step2Measurement2CalendarIcon = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[3]/td[2]/div/div/a");
+	public By Step2Measurement2ClockIcon = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[3]/td[3]/div/div/a");
+	//1
 	public By Step2Measurement1Date = By.id("pii-sri-tab-1-event-date");
 	public By Step2Measurement1DateFirefox = By.id("pii-sri-tab-1-event0-date");
-	public By Step2Measurement2Date = By.id("pii-sri-tab-1-event1-date");
 	public By Step2Measurement1Time = By.id("pii-sri-tab-1-event-time");
 	public By Step2Measurement1TimeFirefox = By.id("pii-sri-tab-1-event0-time");
-	public By Step2Measurement2Time = By.id("pii-sri-tab-1-event1-time");
-	public By Step2MeasurementDropDown = By.id("pii-sri-newentry-measurement-button");
 	public By Step2Measurement1Measurement =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/span");
-	public By Step2Measurement2Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[2]/td[4]/div/div/span");
-	public By Step2Measurement1Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[5]/textarea");
-	public By Step2Measurement2Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[2]/td[5]/textarea");
-	public By Step2Measurement1Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[6]/textarea");
-	public By Step2Measurement2Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[2]/td[6]/textarea");
+	public By Step2Measurement1Unit =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[5]/div/div/span");
+	public By Step2Measurement1Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[6]/textarea");
+	public By Step2Measurement1Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[7]/textarea");
+	//2
+	public By Step2Measurement2Date = By.id("pii-sri-tab-1-event1-date");
+	public By Step2Measurement2Time = By.id("pii-sri-tab-1-event1-time");
+	public By Step2Measurement2Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[3]/td[4]/div/div/span");
+	public By Step2Measurement2Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[3]/td[5]/div/div/span");
+	public By Step2Measurement2Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[3]/td[6]/textarea");
+	public By Step2Measurement2Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[3]/td[7]/textarea");
+	//3
+	public By Step2Measurement3Date = By.id("pii-sri-tab-1-event2-date");
+	public By Step2Measurement3Time = By.id("pii-sri-tab-1-event2-time");
+	public By Step2Measurement3Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[5]/td[4]/div/div/span");
+	public By Step2Measurement3Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[5]/td[5]/div/div/span");
+	public By Step2Measurement3Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[5]/td[6]/textarea");
+	public By Step2Measurement3Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[5]/td[7]/textarea");
+	//4
+	public By Step2Measurement4Date = By.id("pii-sri-tab-1-event3-date");
+	public By Step2Measurement4Time = By.id("pii-sri-tab-1-event3-time");
+	public By Step2Measurement4Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[7]/td[4]/div/div/span");
+	public By Step2Measurement4Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[7]/td[5]/div/div/span");
+	public By Step2Measurement4Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[7]/td[6]/textarea");
+	public By Step2Measurement4Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[7]/td[7]/textarea");
+	//5
+	public By Step2Measurement5Date = By.id("pii-sri-tab-1-event4-date");
+	public By Step2Measurement5Time = By.id("pii-sri-tab-1-event4-time");
+	public By Step2Measurement5Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[9]/td[4]/div/div/span");
+	public By Step2Measurement5Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[9]/td[5]/div/div/span");
+	public By Step2Measurement5Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[9]/td[6]/textarea");
+	public By Step2Measurement5Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[9]/td[7]/textarea");
+	//6
+	public By Step2Measurement6Date = By.id("pii-sri-tab-1-event5-date");
+	public By Step2Measurement6Time = By.id("pii-sri-tab-1-event5-time");
+	public By Step2Measurement6Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[11]/td[4]/div/div/span");
+	public By Step2Measurement6Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[11]/td[5]/div/div/span");
+	public By Step2Measurement6Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[11]/td[6]/textarea");
+	public By Step2Measurement6Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[11]/td[7]/textarea");
+	//7
+	public By Step2Measurement7Date = By.id("pii-sri-tab-1-event6-date");
+	public By Step2Measurement7Time = By.id("pii-sri-tab-1-event6-time");
+	public By Step2Measurement7Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[13]/td[4]/div/div/span");
+	public By Step2Measurement7Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[13]/td[5]/div/div/span");
+	public By Step2Measurement7Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[13]/td[6]/textarea");
+	public By Step2Measurement7Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[13]/td[7]/textarea");
+	//8
+	public By Step2Measurement8Date = By.id("pii-sri-tab-1-event7-date");
+	public By Step2Measurement8Time = By.id("pii-sri-tab-1-event7-time");
+	public By Step2Measurement8Measurement = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[15]/td[4]/div/div/span");
+	public By Step2Measurement8Unit = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[15]/td[5]/div/div/span");
+	public By Step2Measurement8Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[15]/td[6]/textarea");
+	public By Step2Measurement8Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[15]/td[7]/textarea");
 			
 	public By SRINextButton = By.id("pii-sri-next");
 	public By SRISaveButton = By.id("pii-sri-save");
+	public By SRISavePopupNote = By.id("pii-sri-dialog-note");
 	public By SRISaveConfirmButton = By.id("pii-sri-dialog-confirmed");
+	public By SRISaveCancelButton = By.id("pii-sri-dialog-cancel");
 	public By SRISavedActivitiesButton = By.id("pii-sri-savedactivities");
 	public By SRINewRecord = By.xpath(".//*[@id='pii-user-home-activities-sri']/ul/li[2]/a");
 	public By SRISidePanel = By.id("pii-user-home-panel-btn-sri");
@@ -102,29 +160,155 @@ public class SRIPageObj {
 	public By ReportTabEventTitle = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[1]/td[2]");
 	public By ReportTabInspectionStaff = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[3]/td[2]");
 	public By ReportTabComponent = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[4]/td[2]");
+	//from step 2
+	//1
 	public By ReportTabMeasurement1Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[2]");
 	public By ReportTabMeasurement1Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[3]");
 	public By ReportTabMeasurement1Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[4]");
-	public By ReportTabMeasurement1Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[5]");
-	public By ReportTabMeasurement1Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[6]");
-	public By ReportTabMeasurement2Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[2]/td[2]");
-	public By ReportTabMeasurement2Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[2]/td[3]");
-	public By ReportTabMeasurement2Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[2]/td[4]");
-	public By ReportTabMeasurement2Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[2]/td[5]");
-	public By ReportTabMeasurement2Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[2]/td[6]");
+	public By ReportTabMeasurement1Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[5]");
+	public By ReportTabMeasurement1Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[1]/td[6]");
+	public By ReportTabMeasurement1Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[2]/td[2]");
+	public By ReportTabMeasurement1ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[3]/td[1]");
+	public By ReportTabMeasurement1Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[4]/td[1]");
+	//2
+	public By ReportTabMeasurement2Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[5]/td[2]");
+	public By ReportTabMeasurement2Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[5]/td[3]");
+	public By ReportTabMeasurement2Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[5]/td[4]");
+	public By ReportTabMeasurement2Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[5]/td[5]");
+	public By ReportTabMeasurement2Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[5]/td[6]");
+	public By ReportTabMeasurement2Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[6]/td[2]");
+	public By ReportTabMeasurement2ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[7]/td[1]");
+	public By ReportTabMeasurement2Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[8]/td[1]");
+	//3
+	public By ReportTabMeasurement3Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[9]/td[2]");
+	public By ReportTabMeasurement3Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[9]/td[3]");
+	public By ReportTabMeasurement3Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[9]/td[4]");
+	public By ReportTabMeasurement3Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[9]/td[5]");
+	public By ReportTabMeasurement3Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[9]/td[6]");
+	public By ReportTabMeasurement3Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[10]/td[2]");
+	public By ReportTabMeasurement3ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[11]/td[1]");
+	public By ReportTabMeasurement3Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[12]/td[1]");
+	//4
+	public By ReportTabMeasurement4Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[13]/td[2]");
+	public By ReportTabMeasurement4Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[13]/td[3]");
+	public By ReportTabMeasurement4Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[13]/td[4]");
+	public By ReportTabMeasurement4Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[13]/td[5]");
+	public By ReportTabMeasurement4Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[13]/td[6]");
+	public By ReportTabMeasurement4Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[14]/td[2]");
+	public By ReportTabMeasurement4ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[15]/td[1]");
+	public By ReportTabMeasurement4Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[16]/td[1]");
+	//5
+	public By ReportTabMeasurement5Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[17]/td[2]");
+	public By ReportTabMeasurement5Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[17]/td[3]");
+	public By ReportTabMeasurement5Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[17]/td[4]");
+	public By ReportTabMeasurement5Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[17]/td[5]");
+	public By ReportTabMeasurement5Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[17]/td[6]");
+	public By ReportTabMeasurement5Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[18]/td[2]");
+	public By ReportTabMeasurement5ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[19]/td[1]");
+	public By ReportTabMeasurement5Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[20]/td[1]");
+	//6
+	public By ReportTabMeasurement6Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[21]/td[2]");
+	public By ReportTabMeasurement6Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[21]/td[3]");
+	public By ReportTabMeasurement6Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[21]/td[4]");
+	public By ReportTabMeasurement6Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[21]/td[5]");
+	public By ReportTabMeasurement6Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[21]/td[6]");
+	public By ReportTabMeasurement6Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[22]/td[2]");
+	public By ReportTabMeasurement6ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[23]/td[1]");
+	public By ReportTabMeasurement6Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[24]/td[1]");
+	//7
+	public By ReportTabMeasurement7Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[25]/td[2]");
+	public By ReportTabMeasurement7Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[25]/td[3]");
+	public By ReportTabMeasurement7Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[25]/td[4]");
+	public By ReportTabMeasurement7Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[25]/td[5]");
+	public By ReportTabMeasurement7Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[25]/td[6]");
+	public By ReportTabMeasurement7Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[26]/td[2]");
+	public By ReportTabMeasurement7ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[27]/td[1]");
+	public By ReportTabMeasurement7Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[28]/td[1]");
+	//8
+	public By ReportTabMeasurement8Date = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[29]/td[2]");
+	public By ReportTabMeasurement8Time = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[29]/td[3]");
+	public By ReportTabMeasurement8Measurement = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[29]/td[4]");
+	public By ReportTabMeasurement8Unit = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[29]/td[5]");
+	public By ReportTabMeasurement8Value = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[29]/td[6]");
+	public By ReportTabMeasurement8Note = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[30]/td[2]");
+	public By ReportTabMeasurement8ConclusionColorText = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[31]/td[1]");
+	public By ReportTabMeasurement8Conclusion = By.xpath(".//*[@id='pii-sri-tab-3']/div[2]/table/tbody/tr[32]/td[1]");
 	//HTML
 	public By HTMLEventTitle = By.xpath(".//*[@id='sri-rpt']/div[1]/table/tbody/tr[1]/td[2]");
 	public By HTMLInspectionStaff = By.xpath(".//*[@id='sri-rpt']/div[1]/table/tbody/tr[3]/td[2]");
 	public By HTMLComponent = By.xpath(".//*[@id='sri-rpt']/div[1]/table/tbody/tr[4]/td[2]");
+	//from step 2
+	//1
 	public By HTMLMeasurement1Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[2]");
 	public By HTMLMeasurement1Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[3]");
 	public By HTMLMeasurement1Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[4]");
-	public By HTMLMeasurement1Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[5]");
-	public By HTMLMeasurement1Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[6]");
-	public By HTMLMeasurement2Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[2]/td[2]");
-	public By HTMLMeasurement2Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[2]/td[3]");
-	public By HTMLMeasurement2Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[2]/td[4]");
-	public By HTMLMeasurement2Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[2]/td[5]");
-	public By HTMLMeasurement2Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[2]/td[6]");
+	public By HTMLMeasurement1Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[5]");
+	public By HTMLMeasurement1Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[1]/td[6]");
+	public By HTMLMeasurement1Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[2]/td[2]");
+	public By HTMLMeasurement1ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[3]/td[1]");
+	public By HTMLMeasurement1Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[4]/td[1]");
+	//2
+	public By HTMLMeasurement2Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[5]/td[2]");
+	public By HTMLMeasurement2Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[5]/td[3]");
+	public By HTMLMeasurement2Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[5]/td[4]");
+	public By HTMLMeasurement2Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[5]/td[5]");
+	public By HTMLMeasurement2Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[5]/td[6]");
+	public By HTMLMeasurement2Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[6]/td[2]");
+	public By HTMLMeasurement2ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[7]/td[1]");
+	public By HTMLMeasurement2Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[8]/td[1]");
+	//3
+	public By HTMLMeasurement3Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[9]/td[2]");
+	public By HTMLMeasurement3Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[9]/td[3]");
+	public By HTMLMeasurement3Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[9]/td[4]");
+	public By HTMLMeasurement3Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[9]/td[5]");
+	public By HTMLMeasurement3Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[9]/td[6]");
+	public By HTMLMeasurement3Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[10]/td[2]");
+	public By HTMLMeasurement3ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[11]/td[1]");
+	public By HTMLMeasurement3Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[12]/td[1]");
+	//4
+	public By HTMLMeasurement4Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[13]/td[2]");
+	public By HTMLMeasurement4Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[13]/td[3]");
+	public By HTMLMeasurement4Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[13]/td[4]");
+	public By HTMLMeasurement4Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[13]/td[5]");
+	public By HTMLMeasurement4Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[13]/td[6]");
+	public By HTMLMeasurement4Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[14]/td[2]");
+	public By HTMLMeasurement4ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[15]/td[1]");
+	public By HTMLMeasurement4Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[16]/td[1]");
+	//5
+	public By HTMLMeasurement5Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[17]/td[2]");
+	public By HTMLMeasurement5Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[17]/td[3]");
+	public By HTMLMeasurement5Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[17]/td[4]");
+	public By HTMLMeasurement5Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[17]/td[5]");
+	public By HTMLMeasurement5Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[17]/td[6]");
+	public By HTMLMeasurement5Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[18]/td[2]");
+	public By HTMLMeasurement5ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[19]/td[1]");
+	public By HTMLMeasurement5Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[20]/td[1]");
+	//6
+	public By HTMLMeasurement6Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[21]/td[2]");
+	public By HTMLMeasurement6Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[21]/td[3]");
+	public By HTMLMeasurement6Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[21]/td[4]");
+	public By HTMLMeasurement6Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[21]/td[5]");
+	public By HTMLMeasurement6Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[21]/td[6]");
+	public By HTMLMeasurement6Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[22]/td[2]");
+	public By HTMLMeasurement6ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[23]/td[1]");
+	public By HTMLMeasurement6Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[24]/td[1]");
+	//7
+	public By HTMLMeasurement7Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[25]/td[2]");
+	public By HTMLMeasurement7Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[25]/td[3]");
+	public By HTMLMeasurement7Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[25]/td[4]");
+	public By HTMLMeasurement7Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[25]/td[5]");
+	public By HTMLMeasurement7Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[25]/td[6]");
+	public By HTMLMeasurement7Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[26]/td[2]");
+	public By HTMLMeasurement7ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[27]/td[1]");
+	public By HTMLMeasurement7Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[28]/td[1]");
+	//8
+	public By HTMLMeasurement8Date = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[29]/td[2]");
+	public By HTMLMeasurement8Time = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[29]/td[3]");
+	public By HTMLMeasurement8Measurement = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[29]/td[4]");
+	public By HTMLMeasurement8Unit = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[29]/td[5]");
+	public By HTMLMeasurement8Value = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[29]/td[6]");
+	public By HTMLMeasurement8Note = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[30]/td[2]");
+	public By HTMLMeasurement8ConclusionColorText = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[31]/td[1]");
+	public By HTMLMeasurement8Conclusion = By.xpath(".//*[@id='sri-rpt']/div[2]/table/tbody/tr[32]/td[1]");
 
 }

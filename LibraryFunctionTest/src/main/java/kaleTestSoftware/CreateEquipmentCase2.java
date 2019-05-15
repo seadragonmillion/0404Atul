@@ -119,7 +119,7 @@ public class CreateEquipmentCase2 {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
@@ -129,7 +129,7 @@ public class CreateEquipmentCase2 {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
@@ -168,7 +168,7 @@ public class CreateEquipmentCase2 {
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
 		//Scroll to top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
@@ -178,7 +178,7 @@ public class CreateEquipmentCase2 {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 	}
 

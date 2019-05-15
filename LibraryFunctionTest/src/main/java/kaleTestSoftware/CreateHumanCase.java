@@ -57,11 +57,12 @@ public class CreateHumanCase {
 		
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Scroll top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
 		//Click ok on error message
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa")==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Verify error message on slides
 		String error = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlideError)).getText();
 		softly.assertThat(error).as("test data").isEqualTo("Please select some PNG files with .png extension");
@@ -160,7 +161,7 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//CLick on enter case id
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
 			Thread.sleep(2000);
@@ -169,7 +170,7 @@ public class CreateHumanCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on delete button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseDeleteButton)).click();
@@ -178,7 +179,7 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Checks if case deleted
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(i));
@@ -209,7 +210,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
@@ -220,16 +221,16 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to 2nd Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on delete link 2 cross symbol of Title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1TitleCrossSymbol)).click();
 		Thread.sleep(500);
@@ -238,7 +239,7 @@ public class CreateHumanCase {
 		Thread.sleep(500);
 		//Save case
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -248,7 +249,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
@@ -259,16 +260,16 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to 1st Link title
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		for(int i=1;i<=12;i++)
 		{
 			//Click on delete link 2 cross symbol of Title
@@ -279,7 +280,7 @@ public class CreateHumanCase {
 		}
 		//Save case
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -289,7 +290,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Verify no text from previous links present in text boxes
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).getAttribute("textContent");
@@ -376,7 +377,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter FM case id with links
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
@@ -387,19 +388,19 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		//Scroll to 1st Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Edit link title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).sendKeys("Edited: "+obj1.videoLinkTitle1);
 		//Save case
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -409,7 +410,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton));
@@ -484,7 +485,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(3));
@@ -494,7 +495,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
@@ -555,7 +556,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseConditionNewAddButton)).click();
 		//Scroll up
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -565,7 +566,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter case id with links
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
@@ -576,7 +577,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter case id without links
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
@@ -587,14 +588,14 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -604,7 +605,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Verify all fields
 		verifyCaseFieldsInAdmin(driver, keyword_same);
@@ -630,12 +631,12 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Enter case id with links
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
@@ -646,7 +647,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
@@ -660,7 +661,7 @@ public class CreateHumanCase {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).getAttribute("textContent");
 		softly.assertThat(s1).as("test data").isEmpty();
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
@@ -697,21 +698,21 @@ public class CreateHumanCase {
 		CreateEquipmentCase obj = new CreateEquipmentCase();
 		//Scroll to Link element
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 1
 		l.sendKeys(obj.noVideoLinkTitle3);
 		//Scroll to element
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)));
 		//Enter url 3
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);	
 		//To make url form appear click on title for link 1
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to link 2
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 2 banana
 		l.sendKeys(obj.noVideoLinkTitle2);
 		Thread.sleep(2000);
@@ -722,10 +723,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 1 apple
 		l.sendKeys(obj.noVideoLinkTitle1);
 		Thread.sleep(2000);
@@ -736,10 +737,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Enter title for link 4 : video link 1
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title)).sendKeys(obj.videoLinkTitle1);
 		Thread.sleep(1000);
 		//Enter url 4
@@ -747,11 +748,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4URL)).sendKeys(obj.videoLink);
 		//Move to video checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on video checkbox
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox)).click();
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
@@ -761,7 +762,7 @@ public class CreateHumanCase {
 		softly.assertThat(s1).as("test data").contains(obj.videoLink);
 		//Enter title for link 5 : video link 2
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title)).sendKeys(obj.videoLinkTitle2);	
 		Thread.sleep(1000);
 		//Enter url 5
@@ -769,11 +770,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5URL)).sendKeys(obj.videoLink);
 		//Move to viedo checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on video checkbox
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox)).click();
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
@@ -783,7 +784,7 @@ public class CreateHumanCase {
 		softly.assertThat(s4).as("test data").contains(obj.videoLink);
 		//Enter title for link 6 : video link 3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title)).sendKeys(obj.videoLinkTitle3);	
 		Thread.sleep(1000);
 		//Enter url 6
@@ -791,11 +792,11 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6URL)).sendKeys(obj.videoLink);
 		//Move to viedo checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on video checkbox
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox)).click();
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
@@ -805,7 +806,7 @@ public class CreateHumanCase {
 		softly.assertThat(s6).as("test data").contains(obj.videoLink);
 		//Scroll to link 7
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 7
 		l.sendKeys(obj.noVideoLinkTitle4);
 		Thread.sleep(2000);
@@ -815,10 +816,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink7Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 8
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 8
 		l.sendKeys(obj.noVideoLinkTitle5);
 		Thread.sleep(2000);
@@ -828,10 +829,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink8Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 9
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 9
 		l.sendKeys(obj.noVideoLinkTitle6);
 		Thread.sleep(2000);
@@ -841,10 +842,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink9Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 10
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 10
 		l.sendKeys(obj.noVideoLinkTitle7);
 		Thread.sleep(2000);
@@ -854,10 +855,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink10Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 11
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 11
 		l.sendKeys(obj.noVideoLinkTitle8);
 		Thread.sleep(2000);
@@ -867,10 +868,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink11Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 12
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 12
 		l.sendKeys(obj.noVideoLinkTitle9);
 		Thread.sleep(2000);
@@ -880,10 +881,10 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink12Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Scroll to link 13
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13Title));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Enter title for link 11
 		l.sendKeys(obj.noVideoLinkTitle10);
 		Thread.sleep(2000);
@@ -893,7 +894,7 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13URL)).sendKeys(obj.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink13Title);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases)throws Exception{
@@ -1048,7 +1049,7 @@ public class CreateHumanCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
@@ -1147,7 +1148,7 @@ public class CreateHumanCase {
 				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
@@ -1179,7 +1180,7 @@ public class CreateHumanCase {
 			}
 			if(count==1)
 			{
-				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)));
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)));
 				//Click on collapsible
 				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
 			}
@@ -1188,7 +1189,7 @@ public class CreateHumanCase {
 			{
 				addLinks(driver,title,caseId);
 			}
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -1215,7 +1216,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if(m==0)
@@ -1223,14 +1224,14 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink)).click();
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Creates 5 cases
 		//Enters mandatory data
@@ -1242,7 +1243,7 @@ public class CreateHumanCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
@@ -1252,7 +1253,7 @@ public class CreateHumanCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 			{
@@ -1346,7 +1347,7 @@ public class CreateHumanCase {
 				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
@@ -1359,8 +1360,6 @@ public class CreateHumanCase {
 			if(count==1)
 			{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
-				if(count==1)					
-					checkNoError(driver);
 			}
 			Thread.sleep(2000);
 			int i;
@@ -1383,7 +1382,7 @@ public class CreateHumanCase {
 			{
 				addLinks(driver,title,caseId);
 			}
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -1394,8 +1393,10 @@ public class CreateHumanCase {
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)					
+				checkNoError(driver);
 		}
 		return caseID;
 	}
@@ -1414,7 +1415,7 @@ public class CreateHumanCase {
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if(m==0)
@@ -1422,7 +1423,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 
 		//Creates 5 cases
@@ -1440,12 +1441,12 @@ public class CreateHumanCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
@@ -1458,7 +1459,7 @@ public class CreateHumanCase {
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 			{
@@ -1552,7 +1553,7 @@ public class CreateHumanCase {
 				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
@@ -1567,8 +1568,7 @@ public class CreateHumanCase {
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
-			if(count==1)
-				checkNoError(driver);
+			
 			Thread.sleep(2000);
 			int i;
 			int n=1000;
@@ -1590,7 +1590,7 @@ public class CreateHumanCase {
 			{
 				addLinks(driver,title,caseId);
 			}
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -1603,8 +1603,10 @@ public class CreateHumanCase {
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+				checkNoError(driver);
 		}
 		return caseID;
 	}
@@ -1622,7 +1624,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Errorfree bank option
 		if(m==0)
@@ -1630,7 +1632,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 
 		//Creates 5 cases
@@ -1645,12 +1647,12 @@ public class CreateHumanCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on new case button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseNewButton)).click();
@@ -1661,7 +1663,7 @@ public class CreateHumanCase {
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 			{
@@ -1756,7 +1758,7 @@ public class CreateHumanCase {
 				element.findElement(chc.FirstAndLastChildInList).click();	
 			}
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
@@ -1769,8 +1771,6 @@ public class CreateHumanCase {
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
-			if(count==1)
-				checkNoError(driver);
 			Thread.sleep(2000);
 			int i;
 			int n=1000;
@@ -1792,7 +1792,7 @@ public class CreateHumanCase {
 			{
 				addLinks(driver,title,caseId);
 			}
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -1803,8 +1803,10 @@ public class CreateHumanCase {
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(1000);
+			if(count==1)
+				checkNoError(driver);
 		}
 		return caseID;
 	}
@@ -1828,7 +1830,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(caseID.get(1));
@@ -1838,7 +1840,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
@@ -1863,7 +1865,7 @@ public class CreateHumanCase {
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseKeywordNewAddButton)).click();
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
@@ -1873,7 +1875,7 @@ public class CreateHumanCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
 		try

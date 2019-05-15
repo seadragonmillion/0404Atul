@@ -210,7 +210,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -223,7 +223,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();			
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -236,7 +236,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -249,7 +249,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -263,19 +263,19 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(9))==3)
 			{
 				//Click next for oo2
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
 				ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 				//Click next for oo3
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
 				ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//Click next
@@ -290,14 +290,14 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(11))==3)
 			{
 				//Click next for p2
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
 				ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//Click next
@@ -312,14 +312,14 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(13))==3)
 			{
 				//Click next for p2
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
 				ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//Click next
@@ -334,7 +334,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -348,7 +348,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -362,27 +362,27 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Click next for op3
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Click next for pp1
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Click next for pp2
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Click next for pp5
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
@@ -396,14 +396,14 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(21))==2)
 			{
 				//Click next for p2
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 				//Select Apparent cause answers
 				ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//Click next
@@ -418,7 +418,7 @@ public class OPiRCA2 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 			//Select Apparent cause answers
 			ac.addAll(op3.selectOptions(driver,getOptionsForStep2(driver),softly));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();

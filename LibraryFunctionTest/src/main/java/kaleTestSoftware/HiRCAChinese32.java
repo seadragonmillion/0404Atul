@@ -13,6 +13,7 @@ public class HiRCAChinese32 {
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void chineseStepOneL35 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -118,7 +119,7 @@ public class HiRCAChinese32 {
 		//Click on 3rd collapsible for 3.5.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.5.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(q343).as("test data").contains("[3.5.3] 对人员表现的观察技能不足");
 		//Click on 3.5.3 to reveal evidence entry
@@ -171,7 +172,7 @@ public class HiRCAChinese32 {
 		//Click on 3rd collapsible for 3.5.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.5.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 		softly.assertThat(q344).as("test data").contains("[3.5.4] 对设备性能的观察技能不足");
 		//Click on 3.5.4 to reveal evidence entry

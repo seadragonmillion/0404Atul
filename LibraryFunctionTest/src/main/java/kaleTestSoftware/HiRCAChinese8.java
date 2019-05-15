@@ -147,24 +147,24 @@ public class HiRCAChinese8 {
 		//Click on HML
 		//High for 3.17.2
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[6]/td[3]/fieldset/div/div[1]/label")));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click H
 		jse.executeScript("arguments[0].focus();", l);
 		jse.executeScript("arguments[0].click();", l);
 		//Medium for 3.17.3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[9]/td[3]/fieldset/div/div[2]/label")));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click M
 		jse.executeScript("arguments[0].focus();", l);
 		jse.executeScript("arguments[0].click();", l);
 		//Low for 3.17.4
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[12]/td[3]/fieldset/div/div[3]/label")));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click L
 		jse.executeScript("arguments[0].focus();", l);
 		jse.executeScript("arguments[0].click();", l);
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 	
 	public void chineseLevel3SelectionsSUEP2nd(WebDriver driver, SoftAssertions softly) throws Exception {

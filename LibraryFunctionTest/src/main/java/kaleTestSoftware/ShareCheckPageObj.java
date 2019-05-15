@@ -26,4 +26,5 @@ public class ShareCheckPageObj {
 	public By UserAccountSavePopupTitle = By.id("pii-admin-user-dialog-title");
 	public By UserAccountSavePopupSaveButton = By.id("pii-admin-user-dialog-confirmed");
 	public By SharePageCancelButton = By.id("pii-uhshare-cancel");
+	public By KALEContactPage = By.linkText("CONTACT");
 }

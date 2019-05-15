@@ -36,7 +36,7 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Scroll top
-		share.scrollToTop(driver);	
+		share2.scrollToTop(driver);	
 		//Click on dropdown field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuButton)).click();
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuPopup));
@@ -57,11 +57,11 @@ public class OPiRCABug {
 		}	    		
 		WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+y+"']/a"));
 		//Scroll to element
-		share.scrollToElement(driver, l);			
+		share2.scrollToElement(driver, l);			
 		//Click on option
 		l.click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuCloseButton)).click();	  
 		//Store apparent causes selected
@@ -88,7 +88,7 @@ public class OPiRCABug {
 			//HML random select
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
 			//Scroll to element
-			share.scrollToElement(driver, ele);
+			share2.scrollToElement(driver, ele);
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
@@ -133,7 +133,7 @@ public class OPiRCABug {
 			//HML random select
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
 			//Scroll to element
-			share.scrollToElement(driver, ele);
+			share2.scrollToElement(driver, ele);
 			//Select a number between 0 to 3 for H,M,L
 			Random random =new Random();
 			int y=random.nextInt(4);
@@ -159,8 +159,8 @@ public class OPiRCABug {
 			i=i+1;
 		}
 		//Scroll up
-		share.scrollToTop(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		System.out.println(hml);
 		return hml;
 	}
@@ -197,8 +197,8 @@ public class OPiRCABug {
 			}
 		}
 		//Scroll up
-		share.scrollToTop(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 	
 	public void verifyStep4 (WebDriver driver, HashMap<String,String> hml, HashMap<String,Integer> options) throws Exception {
@@ -319,8 +319,8 @@ public class OPiRCABug {
 			i=i+1;
 		}
 		//Scroll up
-		share.scrollToTop(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 	
 	public void verifyStep5 (WebDriver driver) throws Exception {
@@ -441,10 +441,10 @@ public class OPiRCABug {
 		//Click on answer
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+(Integer.parseInt(dQuestionAnswer)+1)+"]/fieldset/div/div/label")));
 		//Scroll to element
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		l.click();
 		//Scroll up 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
 		System.out.println(apparentCauseSelected);
@@ -454,7 +454,7 @@ public class OPiRCABug {
 		//Select some apparent cause answers
 		List<String> answers = op3.selectApparentCausesAnswers(driver, onlyOneApparentCause,softly);
 		//Scroll up 
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Skip till Step 3
 		for(int i=dQuestionNumber+1; i<=12;i++)
 		{
@@ -487,21 +487,21 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Scroll top
-		share.scrollToTop(driver);	
+		share2.scrollToTop(driver);	
 		//Click on Step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep1Tab)).click();
 		//Scroll top
-		share.scrollToTop(driver);	
+		share2.scrollToTop(driver);	
 		//Click on dropdown field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuButton)).click();
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuPopup));
 		WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+hircaLevelOption+"']/a"));
 		//Scroll to element
-		share.scrollToElement(driver, l);			
+		share2.scrollToElement(driver, l);			
 		//Click on option
 		l.click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.HiRCADropdownMenuCloseButton)).click();	  
 	}
@@ -594,7 +594,7 @@ public class OPiRCABug {
 		ac.add(s);
 		//Scroll to top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();    	
@@ -755,25 +755,25 @@ public class OPiRCABug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
 		//Wait for popup to disappear
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on Step 3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep3Tab)).click();
 		//Verify Step 3 title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
 		softly.assertThat(s).as("test data").contains("Step 3");
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on Step 4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep4Tab)).click();
 		//Verify Step 4 title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
 		softly.assertThat(s1).as("test data").contains("Step 4");
 		//Click on Step 5
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();
 		//Verify Step 5 title
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
 		softly.assertThat(s2).as("test data").contains("Step 5");
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on Report Tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTab)).click();
 		//Verify Report Tab by looking for finalize button and download button
@@ -781,7 +781,7 @@ public class OPiRCABug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabDownloadButton));
 		//Event information table title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabTable1Heading));
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on Step 5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();
 		//Verify Step 5 title

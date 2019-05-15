@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class HPI {
-	
+
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
@@ -259,7 +259,7 @@ public class HPI {
 		Thread.sleep(500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))));
 
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q6-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q7-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q8-l"))));
@@ -301,7 +301,7 @@ public class HPI {
 
 
 		//Click on O of HOPS
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-2"))));
 		//Click on checkboxes of O in HOPS
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q1-l"))));
@@ -335,7 +335,7 @@ public class HPI {
 		Thread.sleep(500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))));
 
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q6-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q7-l"))));
 		try{
@@ -367,7 +367,7 @@ public class HPI {
 
 
 		//Click on P of HOPS
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-3"))));
 		//Click on checkboxes of P in HOPS
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q1-l"))));
@@ -391,7 +391,7 @@ public class HPI {
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m1-l"))));
 
 
-		share.scrollToAPoint(driver, 500);
+		share2.scrollToAPoint(driver, 500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q6-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q7-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q8-l"))));
@@ -413,7 +413,7 @@ public class HPI {
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))));
 
 
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q11-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q12-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q13-l"))));
@@ -451,7 +451,7 @@ public class HPI {
 
 
 		//Click on S of HOPS
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-4"))));
 		//Click on checkboxes of S in HOPS
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q1-l"))));
@@ -486,7 +486,7 @@ public class HPI {
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))));
 
 
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q7-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q8-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q9-l"))));
@@ -517,7 +517,7 @@ public class HPI {
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))));
 		Thread.sleep(500);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))));
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		WebElement element_id=driver.findElement(By.id("pii-hpi-gauge"));
 		List<WebElement> element =element_id.findElements(By.tagName("text"));
 		Iterator<WebElement> iter = element.iterator();
@@ -537,7 +537,7 @@ public class HPI {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-1"))).click();
 		//Clicks on bottom up on H for HOPS
 		//Corrective action click
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m4-l"))));
 		//Click on other checkboxes
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q13-l"))));
@@ -571,7 +571,7 @@ public class HPI {
 		{
 			softly.fail("Failed: Corrective action checked in Adequate resources, structure, and TQA?");
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Corrective action click
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-m2-l"))));
 		//Click other checkboxes 
@@ -606,11 +606,11 @@ public class HPI {
 
 
 		//Click on O of HOPS
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-2"))).click();
 		//Clicks on bottom up on O for HOPS
 		//Corrective action click
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m4-l"))));
 		//Click other checkboxes
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q9-l"))));
@@ -640,7 +640,7 @@ public class HPI {
 		{
 			softly.fail("Failed: Corrective action checked in Person related operating experience addressed?");
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Corrective action click
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-m2-l"))));
 		//Click other checkboxes
@@ -675,11 +675,11 @@ public class HPI {
 
 
 		//Click on P of HOPS
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-3"))).click();
 		//Clicks on bottom up on P for HOPS
 		//Corrective action click
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m4-l"))));
 		//Click other checkboxes
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-q15-l"))));
@@ -712,7 +712,7 @@ public class HPI {
 		{
 			softly.fail("Failed: Corrective action checked in Adequate single-point-vulnerability (SPV) control?");
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Corrective action click
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-3-m2-l"))));
 		//Click other checkboxes
@@ -752,11 +752,17 @@ public class HPI {
 
 
 		//Click on S of HOPS
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-4"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Verify FUSE full form
+			String fuse_abbr = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-hpi-tab-4-fieldset']/label[2]/abbr"))).getAttribute("globtitle");
+			softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");
+		}		
 		//Clicks on bottom up on S for HOPS
 		//Corrective action click
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m4-l"))));
 		//Click other checkboxes
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-q11-l"))));
@@ -787,7 +793,7 @@ public class HPI {
 		{
 			softly.fail("Failed: Corrective action checked in FUSE items mitigated?");
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Corrective action click
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-4-m2-l"))));
 		//Click other checkboxes

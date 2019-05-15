@@ -116,7 +116,7 @@ public class HiRCAChinese17 {
 		//Click on 3rd collapsible for 3.13.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.13.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(q343).as("test data").contains("[3.13.3] 尽早完成工作，以便开始其他工作（尤其是根据完成的工作量计算价钱的承包商）");
 		//Click on 3.13.3 to reveal evidence entry
@@ -167,7 +167,7 @@ public class HiRCAChinese17 {
 		//Click on 3rd collapsible for 3.13.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.13.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 		softly.assertThat(q344).as("test data").contains("[3.13.4] 尽早完成工作，以便到更为舒适的环境中休息（尤其是在高温、有辐射或潮湿环境下工作）");
 		//Click on 3.13.4 to reveal evidence entry
@@ -220,12 +220,12 @@ public class HiRCAChinese17 {
 		//Click on 3rd collapsible for 3.13.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1100);
+		share2.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
@@ -483,12 +483,12 @@ public class HiRCAChinese17 {
 		//Click on 3rd collapsible for 3.14.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1100);
+		share2.scrollToAPoint(driver, 1100);
 		//Verify Add Contributing factor
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 

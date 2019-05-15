@@ -120,7 +120,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -134,13 +134,13 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		//Enters condition
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
 		if(r==1)
@@ -174,7 +174,7 @@ public class HumanCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 		//Clicks on create case
@@ -278,7 +278,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -292,13 +292,13 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		//Enters condition
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
 		if(r==1)
@@ -332,7 +332,7 @@ public class HumanCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 		//Clicks on create case
@@ -378,7 +378,7 @@ public class HumanCaseLoad {
 				}
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return caseId;		  
 	}
 
@@ -394,7 +394,7 @@ public class HumanCaseLoad {
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efbank']/h3/a"))).click();
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on Human cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 		//Enters mandatory data
@@ -402,10 +402,10 @@ public class HumanCaseLoad {
 		Random random = new Random();
 		String caseId="";
 		List<WebElement> list = new ArrayList<WebElement>();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on new case button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new"))).click();
 		//Clicks on new case
@@ -440,7 +440,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -454,13 +454,13 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		//Enters condition
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
 		if(r==1)
@@ -494,7 +494,7 @@ public class HumanCaseLoad {
 
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 		//Clicks on create case
@@ -518,7 +518,7 @@ public class HumanCaseLoad {
 		}
 		if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
 		{
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 			//Clicks on create case
@@ -541,7 +541,7 @@ public class HumanCaseLoad {
 				}
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return caseId;		  
 	}
 
@@ -559,7 +559,7 @@ public class HumanCaseLoad {
 		}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);		
+		share2.scrollToTop(driver);		
 		//Clicks on Human cases
 		WebElement button1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button")));
 		Actions act2= new Actions(driver);
@@ -571,7 +571,7 @@ public class HumanCaseLoad {
 		List<WebElement> list = new ArrayList<WebElement>();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on new case button
 		WebElement button2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-new")));
 		act2.click(button2).build().perform();
@@ -610,7 +610,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		share.scrollToAPoint(driver, 1700);
+		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -624,14 +624,14 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		//Enters condition
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
-		share.scrollToAPoint(driver, 2000);
+		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
 		Thread.sleep(4000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input")));
 		act2.click(ele).build().perform();
@@ -668,7 +668,7 @@ public class HumanCaseLoad {
 		WebElement plussign=driver.findElement(By.xpath(".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/h5/a"));
 		act2.click(plussign).build().perform();
 		Thread.sleep(3000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 		//Clicks on create case
@@ -692,7 +692,7 @@ public class HumanCaseLoad {
 		}
 		if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).isEnabled()==false)
 		{
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//Clicks on save
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-save"))).click();
 			//Clicks on create case
@@ -715,7 +715,7 @@ public class HumanCaseLoad {
 				}
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return caseId;		  
 	}
 
@@ -783,7 +783,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-manage-button"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on enter case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);
 		Thread.sleep(2000);
@@ -791,7 +791,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-ul"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-button-delete"))).click();
 		//Wait for loading message to disappear
@@ -801,7 +801,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Checks if case deleted
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-list-input"))).sendKeys(caseId);

@@ -11,6 +11,37 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class EiRCA3 {	
 
 	EiRCAPageObj eirca = new EiRCAPageObj();
+	ShareCheck2 share2 = new ShareCheck2();
+	
+	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click on open button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		//Click on Info tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.InfoTab)).click();
+		//Enter a very long name in Event title
+		driver.findElement(eirca.EiRCAEventTitleField).clear();
+		driver.findElement(eirca.EiRCAEventTitleField).sendKeys("Really long text which will make the report name o overflow out of the popup");
+		//click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
+		//Verify the popup
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getText();
+		softly.assertThat(s).as("test data").contains("‑");
+		System.out.println(s);
+		String overflow = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getCssValue("word-wrap");
+		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
+		System.out.println(overflow);
+		//Click on cancel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();
+		share2.loadingServer(driver);
+		//Click on first record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();		
+		share2.loadingServer(driver);
+	}
 
 	public HashMap<String,String> verifyOrderOfEvents(WebDriver driver, SoftAssertions softly, int numberOfEventsAdded) throws Exception {
 

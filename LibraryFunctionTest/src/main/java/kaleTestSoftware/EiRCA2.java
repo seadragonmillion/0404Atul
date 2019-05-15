@@ -277,7 +277,7 @@ public class EiRCA2 {
 		{
 			verifyInfoPageErrorPopup(driver,softly);
 			//Click on ok
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 			Thread.sleep(1000);
 		}
 		//Verify errors
@@ -342,7 +342,7 @@ public class EiRCA2 {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
 	}
 
@@ -352,35 +352,35 @@ public class EiRCA2 {
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NewButton)).click();
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpTitle)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("New Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessageTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Would you like to confirm you want to erase the current report and create a new report?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessage)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//New button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("New Report");
 		//Click on cancel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
 	}
 
 	public void verifyInfoPageErrorPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpTitle)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Invalid Data Entry");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopUpMessageTitle)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Please fix all errors mentioned in red.");
 		//ok button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupConfirmButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("ok");
 	}
 

@@ -16,7 +16,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -65,48 +64,6 @@ public class ShareCheck {
 		softly.assertThat(actualColor).as("test data").isEqualTo("#333333");
 	}
 
-	public void scrollToAPoint(WebDriver driver, int yaxis)throws Exception{
-
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		Thread.sleep(1000);
-		try{
-			jse.executeScript("scroll(0,"+yaxis+")");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
-		{
-			Thread.sleep(3000);
-			jse.executeScript("scroll(0,"+yaxis+")");
-		}
-		Thread.sleep(1000);
-	}
-
-	public void scrollToElement(WebDriver driver, WebElement l)throws Exception{
-
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		Point p = l.getLocation();
-		int yaxis= p.getY()-250;
-		Thread.sleep(1000);
-		try{
-			jse.executeScript("scroll(0,"+yaxis+")");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
-		{
-			Thread.sleep(3000);
-			jse.executeScript("scroll(0,"+yaxis+")");
-		}
-		Thread.sleep(1000);
-	}
-
-	public void scrollToTop(WebDriver driver) throws Exception {
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		Thread.sleep(1000);
-		try{
-			jse.executeScript("scroll(0,0)");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
-		{
-			Thread.sleep(3000);
-			jse.executeScript("scroll(0,0)");
-		}
-		Thread.sleep(1000);
-	}
 
 	public void shareTwice (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -136,161 +93,177 @@ public class ShareCheck {
 	public void checkNoReportAfterDelete (WebDriver driver, String sharer, SoftAssertions softly) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		//LogOut
-		loginFunction.logout(driver);
-		Thread.sleep(2000);
-		//If browser is firefox then switch to default content
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox")||browserName.contains("safari"))
+		if(browserName.contains("safari")==false)
 		{
-			driver.switchTo().defaultContent();
-		}
-		Thread.sleep(8000);
-		int login1 = loginFunction.LoginUser(driver, sharer, password);
-		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(10000);
-		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(login.Iframe));
-		Thread.sleep(8000);
-		if (login1==1)
-		{
-
-			while(true)
+			//LogOut
+			loginFunction.logout(driver);
+			Thread.sleep(2000);
+			//If browser is firefox then switch to default content
+			if(browserName.equals("firefox")||browserName.contains("safari"))
 			{
-				Thread.sleep(1000);
-				if (driver.findElement(share.StickyPopUp).isDisplayed())
-				{
-					WebElement ele =driver.findElement(share.StickyPopUp);
-					ele.findElement(login.StickyClose).click();
-					break;
-				}
-				else break;
+				driver.switchTo().defaultContent();
 			}
-		}	
-		Thread.sleep(4000);
-		//Click on notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
-		jse.executeScript("scroll(0,0)");
-		//Click on 1st record/notification
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-		//Click on Open Report button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
-		//Check in sticky pop up that the report is deleted
-		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
-			softly.assertThat(s).as("test data").contains("not found ");
-			softly.assertThat(s).as("test data").contains("It could have been deleted.");
-		}catch (org.openqa.selenium.TimeoutException e)
-		{
-			System.out.println("Report deleted and yellow pop up suggesting same has disappeared");  
-		}	
-		//Check if open report button is still present on page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton));
+			//Thread.sleep(8000);
+			int login1 = loginFunction.LoginUser(driver, sharer, password);
+			System.out.println("Title after login: "+driver.getTitle());
+			//Thread.sleep(10000);
+			//Switches to the iframe
+			driver.switchTo().frame(driver.findElement(login.Iframe));
+			//Thread.sleep(8000);
+			if (login1==1)
+			{
+				while(true)
+				{
+					Thread.sleep(1000);
+					if (driver.findElement(share.StickyPopUp).isDisplayed())
+					{
+						WebElement ele =driver.findElement(share.StickyPopUp);
+						ele.findElement(login.StickyClose).click();
+						break;
+					}
+					else break;
+				}
+			}	
+			//Thread.sleep(4000);
+			//Click on notification
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+			jse.executeScript("scroll(0,0)");
+			//Click on 1st record/notification
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			//Click on Open Report button
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			//Check in sticky pop up that the report is deleted
+			try{
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+				softly.assertThat(s).as("test data").contains("not found ");
+				softly.assertThat(s).as("test data").contains("It could have been deleted.");
+			}catch (org.openqa.selenium.TimeoutException e)
+			{
+				System.out.println("Report deleted and yellow pop up suggesting same has disappeared");  
+			}	
+			//Check if open report button is still present on page
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton));
+		}
 	}
 
 	public void checkCriticalNotification (WebDriver driver, String sharer, String username, String password1, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		//LogOut
-		loginFunction.logout(driver);
-		Thread.sleep(2000);
-		//If browser is firefox then switch to default content
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox")||browserName.contains("safari"))
+		if(browserName.contains("safari")==false)
 		{
-			driver.switchTo().defaultContent();
-		}
-		Thread.sleep(8000);
-		int login1 = loginFunction.LoginUser(driver, sharer, password);
-		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(10000);
-		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(login.Iframe));
-		Thread.sleep(8000);
-		if (login1==1)
-		{
-
-			while(true)
+			//LogOut
+			loginFunction.logout(driver);
+			Thread.sleep(2000);
+			//If browser is firefox then switch to default content
+			if(browserName.equals("firefox")||browserName.contains("safari"))
 			{
-				Thread.sleep(1000);
-				if (driver.findElement(share.StickyPopUp).isDisplayed())
+				driver.switchTo().defaultContent();
+			}
+			//Thread.sleep(8000);
+			int login1 = loginFunction.LoginUser(driver, sharer, password);
+			System.out.println("Title after login: "+driver.getTitle());
+			//Thread.sleep(10000);
+			//Switches to the iframe
+			driver.switchTo().frame(driver.findElement(login.Iframe));
+			//Thread.sleep(8000);
+			if (login1==1)
+			{
+				while(true)
 				{
-					WebElement ele =driver.findElement(share.StickyPopUp);
-					ele.findElement(login.StickyClose).click();
-					break;
+					Thread.sleep(1000);
+					if (driver.findElement(share.StickyPopUp).isDisplayed())
+					{
+						WebElement ele =driver.findElement(share.StickyPopUp);
+						ele.findElement(login.StickyClose).click();
+						break;
+					}
+					else break;
 				}
-				else break;
-			}
-		}	
-		Thread.sleep(4000);
-		//Get count from notification
-		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationCount)).getText();
-		System.out.println("Number of notifications: "+count);
-		int n = Integer.parseInt(count);
-		Thread.sleep(2000);
-		//Click on notification
-		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
-		scrollToTop(driver);
-		share2.loadingServer(driver);
-		//Click on 1st record/notification
-		//Verify if notification is of marked critical
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordDescriptionText)).getText();
-		softly.assertThat(s).as("test data").contains("Critical");
-		Thread.sleep(2000);
-		Thread.sleep(2000);
-		for(int i=1;i<=n;i++)
-		{
+			}	
+			//Thread.sleep(4000);
+			//Get count from notification
+			String count = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationCount)).getText();
+			System.out.println("Number of notifications: "+count);
+			int n = Integer.parseInt(count);
 			Thread.sleep(2000);
+			//Click on notification
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+			share2.scrollToTop(driver);
+			share2.loadingServer(driver);
 			//Click on 1st record/notification
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-			scrollToElement(driver,ele);
-			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
-				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			//Verify if notification is of marked critical
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordDescriptionText)).getText();
+			softly.assertThat(s).as("test data").contains("Critical");
 			Thread.sleep(2000);
-			//Click on read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-			if(ele.isEnabled()==false)
-			{
-				scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-			}
-			scrollToElement(driver,ele);
-			ele.click();
 			Thread.sleep(2000);
-			//Click on mark as read
-			try{
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-				scrollToElement(driver,ele);
-				ele.click();
-			}catch(org.openqa.selenium.TimeoutException g)
+			for(int i=1;i<=n;i++)
 			{
+				Thread.sleep(2000);
 				//Click on 1st record/notification
-				scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+				share2.scrollToElement(driver,ele);
 				if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				Thread.sleep(2000);
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-				scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 				if(ele.isEnabled()==false)
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-				scrollToElement(driver,ele);
-				ele.click();
-				//Mark as read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-				scrollToElement(driver,ele);
-				ele.click();				
+				{
+					share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+				}
+				share2.scrollToElement(driver,ele);
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).click();
+				}catch(org.openqa.selenium.WebDriverException r)
+				{
+					int j=0;
+					while(j<10)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).isEnabled()==false)
+							break;
+						j=j+1;
+					}
+				}
+				Thread.sleep(2000);
+				//Click on mark as read
+				try{
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+					share2.scrollToElement(driver,ele);
+					ele.click();
+				}catch(org.openqa.selenium.TimeoutException g)
+				{
+					//Click on 1st record/notification
+					share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					Thread.sleep(2000);
+					//Click on read
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+					share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					if(ele.isEnabled()==false)
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					share2.scrollToElement(driver,ele);
+					ele.click();
+					//Mark as read
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+					share2.scrollToElement(driver,ele);
+					ele.click();				
+				}
 			}
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
 		}
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
 		//Log in back to user
 		logInToUser(driver,username,password1);
 	}
@@ -299,242 +272,298 @@ public class ShareCheck {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		//LogOut
-		loginFunction.logout(driver);
-		Thread.sleep(2000);
-		//If browser is firefox then switch to default content
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox")||browserName.contains("safari"))
+		if(browserName.contains("safari")==false)
 		{
-			driver.switchTo().defaultContent();
-		}
-		Thread.sleep(8000);
-		int login1 = loginFunction.LoginUser(driver, sharer, password);
-		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(10000);
-		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(login.Iframe));
-		Thread.sleep(8000);
-		if (login1==1)
-		{
-
-			while(true)
+			//LogOut
+			loginFunction.logout(driver);
+			Thread.sleep(2000);
+			//If browser is firefox then switch to default content
+			if(browserName.equals("firefox")||browserName.contains("safari"))
 			{
-				Thread.sleep(1000);
-				if (driver.findElement(share.StickyPopUp).isDisplayed())
-				{
-					WebElement ele =driver.findElement(share.StickyPopUp);
-					ele.findElement(login.StickyClose).click();
-					break;
-				}
-				else break;
+				driver.switchTo().defaultContent();
 			}
-		}	
-		Thread.sleep(4000);
-		//Get count from notification
-		String count = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationCount)).getText();
-		System.out.println("Number of notifications: "+count);
-		int n= Integer.parseInt(count);
-		Thread.sleep(2000);
-		//Click on notification bell
-		while(true)
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
-			try{
-				if(driver.findElement(share.NotificationFirstRecord).isDisplayed())
-					break;
-			}catch(org.openqa.selenium.NoSuchElementException r)
-			{
-				continue;
-			}
-		}
-		scrollToTop(driver);
-		//Click on 1st record/notification
-		while(true)
-		{
-			if(browserName.equals("safari")||browserName.equals("firefox"))
-			{
-				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-			}
-			else
-			{
-				try{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-				}catch(org.openqa.selenium.WebDriverException r)
-				{
-
-				}
-			}
-			if(driver.findElement(share.NotificationOpenButton).isEnabled())
-				break;		
-		}
-		share2.loadingServer(driver);
-		//Click on Open Report button
-		while(true)
-		{
-			try
-			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
-			}
-			catch(org.openqa.selenium.WebDriverException r)
+			//Thread.sleep(8000);
+			int login1 = loginFunction.LoginUser(driver, sharer, password);
+			System.out.println("Title after login: "+driver.getTitle());
+			//Thread.sleep(10000);
+			//Switches to the iframe
+			driver.switchTo().frame(driver.findElement(login.Iframe));
+			//Thread.sleep(8000);
+			if (login1==1)
 			{
 				while(true)
 				{
-					if(browserName.equals("safari")||browserName.equals("firefox"))
+					Thread.sleep(1000);
+					if (driver.findElement(share.StickyPopUp).isDisplayed())
 					{
+						WebElement ele =driver.findElement(share.StickyPopUp);
+						ele.findElement(login.StickyClose).click();
+						break;
+					}
+					else break;
+				}
+			}	
+			//Thread.sleep(4000);
+			//Get count from notification
+			String count = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationCount)).getText();
+			System.out.println("Number of notifications: "+count);
+			int n= Integer.parseInt(count);
+			Thread.sleep(2000);
+			//Click on notification bell
+			int j=0;
+			while(j<10)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+				try{
+					if(driver.findElement(share.NotificationFirstRecord).isDisplayed())
+						break;
+				}catch(org.openqa.selenium.NoSuchElementException r)
+				{
+					j=j+1;
+					continue;
+				}
+			}
+			share2.scrollToTop(driver);
+			//Click on 1st record/notification
+			j=0;
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			while(j<10)
+			{
+				if(/*browserName.equals("safari")||*/browserName.equals("firefox"))
+				{
+					if(j%2==0)
+					{
+						executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 					}
 					else
 					{
-						try{
-							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-						}catch(org.openqa.selenium.WebDriverException q)
-						{
-
-						}
+						executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
 					}
-					if(driver.findElement(share.NotificationOpenButton).isEnabled())
-						break;		
 				}
-				share2.loadingServer(driver);
-			}
-			//Wait for loading message to disappear
-			share2.loadingServer(driver);
-			try{
-				if(driver.findElement(share.ModuleTitle).isDisplayed())
-					break;
-			}catch(org.openqa.selenium.NoSuchElementException r)
-			{
-				if(driver.findElement(share.NotificationOpenButton).isEnabled())
-					continue;
 				else
 				{
-					while(true)
+					try{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+					}catch(org.openqa.selenium.WebDriverException r)
 					{
-						if(browserName.equals("safari")||browserName.equals("firefox"))
+
+					}
+				}
+				if(driver.findElement(share.NotificationOpenButton).isEnabled())
+					break;	
+				j=j+1;
+			}
+			share2.loadingServer(driver);
+			//Click on Open Report button
+			j=0;
+			while(j<10)
+			{
+				try
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
+				}
+				catch(org.openqa.selenium.WebDriverException r)
+				{
+					int k=0;
+					while(k<10)
+					{
+						if(/*browserName.equals("safari")||*/browserName.equals("firefox"))
 						{
-							executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+
+							if(k%2==0)
+							{
+								executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+								executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+							}
+							else
+							{
+								executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+								wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+							}
 						}
 						else
 						{
-							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+							try{
+								wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+							}catch(org.openqa.selenium.WebDriverException q)
+							{
+
+							}
 						}
 						if(driver.findElement(share.NotificationOpenButton).isEnabled())
 							break;		
+						k=k+1;
 					}
 					share2.loadingServer(driver);
 				}
-			}
-		}
-		share2.loadingServer(driver);
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(share.ModuleTitle)).getText();
-		if(s.contains("iRCA")||s.contains("SPV Error Meter")||s.contains("Remote Verification"))
-		{
-			//Click on Download report
-			//Get version
-			String v = cap.getVersion().toString();
-			System.out.println(v);
-			//Download report to check pdf
-			if (browserName.equals("chrome"))
-				downloadReportChrome(driver);
-			if (browserName.equals("firefox"))
-				downloadReportFirefox(driver);
-			if (browserName.equals("internet explorer"))
-			{
-				if (v.startsWith("10"))
-					downloadReportIE(driver);
-				if (v.startsWith("11"))
-					downloadReportIE11(driver);
-			}
-		}
-		Thread.sleep(4000);
-		if(browserName.equals("internet explorer"))
-		{
-			Actions act = new Actions (driver);
-			//Go back to notifications
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell));
-			act.click(ele).build().perform();
-			Thread.sleep(4000);
-			for(int i=1;i<=n;i++)
-			{
-				//verify the title in remote verification title
-				if(s.contains("Remote Verification"))
-				{
-					String title = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordReportTitle)).getText();
-					System.out.println("Title in rv in sharer notification center: "+title);
-					softly.assertThat(title).as("test data").contains(rv.eventTitle(driver, driver.getCurrentUrl()));
-				}
+				//Wait for loading message to disappear
 				share2.loadingServer(driver);
-				//Click on 1st record/notification
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-				Thread.sleep(4000);
-				if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
-					act.click(ele).build().perform();
-				//Click on read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-				if(ele.isEnabled()==false)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-				act.click(ele).build().perform();
-				Thread.sleep(2000);
-				//Click on mark as read
-				while(true)
-				{
-					try{
-						ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+				try{
+					if(driver.findElement(share.ModuleTitle).isDisplayed())
 						break;
-					}catch(org.openqa.selenium.TimeoutException t)
+				}catch(org.openqa.selenium.NoSuchElementException r)
+				{
+					if(driver.findElement(share.NotificationOpenButton).isEnabled())
 					{
-						ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-						try{
-							act.click(ele).build().perform();
-						}catch(org.openqa.selenium.WebDriverException w)
+						j=j+1;
+						continue;
+					}
+					else
+					{
+						int k=0;
+						while(k<10)
 						{
-							continue;
+							if(/*browserName.equals("safari")||*/browserName.equals("firefox"))
+							{
+								if(k%2==0)
+								{
+									executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+									executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+								}
+								else
+								{
+									executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+									wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+								}
+							}
+							else
+							{
+								wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+							}
+							if(driver.findElement(share.NotificationOpenButton).isEnabled())
+								break;		
+							k=k+1;
 						}
+						share2.loadingServer(driver);
 					}
 				}
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-				act.click(ele).build().perform();
-				Thread.sleep(2000);
+				j=j+1;
 			}
-		}
-		else{
-			//Go back to notifications
-			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
-			Thread.sleep(2000);
-			for(int i=1;i<=n;i++)
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(share.ModuleTitle)).getText();
+			if(s.contains("iRCA")||s.contains("SPV Error Meter")||s.contains("Remote Verification"))
 			{
-				Thread.sleep(2000);
-				//Click on 1st record/notification
-				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-				if(ele.isSelected()==false)
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-				Thread.sleep(4000);
-				//Click on read
-				while(true)
+				//Click on Download report
+				//Get version
+				String v = cap.getVersion().toString();
+				System.out.println(v);
+				//Download report to check pdf
+				if (browserName.equals("chrome"))
+					downloadReportChrome(driver);
+				if (browserName.equals("firefox"))
+					downloadReportFirefox(driver);
+				if (browserName.equals("internet explorer"))
 				{
+					if (v.startsWith("10"))
+						downloadReportIE(driver);
+					if (v.startsWith("11"))
+						downloadReportIE11(driver);
+				}
+			}
+			Thread.sleep(4000);
+			if(browserName.equals("internet explorer"))
+			{
+				Actions act = new Actions (driver);
+				//Go back to notifications
+				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell));
+				act.click(ele).build().perform();
+				Thread.sleep(4000);
+				for(int i=1;i<=n;i++)
+				{
+					//verify the title in remote verification title
+					if(s.contains("Remote Verification"))
+					{
+						String title = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecordReportTitle)).getText();
+						System.out.println("Title in rv in sharer notification center: "+title);
+						softly.assertThat(title).as("test data").contains(rv.eventTitle(driver, driver.getCurrentUrl()));
+					}
+					share2.loadingServer(driver);
+					//Click on 1st record/notification
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+					Thread.sleep(4000);
+					if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
+						act.click(ele).build().perform();
+					//Click on read
 					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 					if(ele.isEnabled()==false)
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+					act.click(ele).build().perform();
+					Thread.sleep(2000);
+					//Click on mark as read
+					int k = 0;
+					while(k<10)
 					{
-						if (browserName.equals("firefox"))
-							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-						else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+						try{
+							ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+							break;
+						}catch(org.openqa.selenium.TimeoutException t)
+						{
+							ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+							try{
+								act.click(ele).build().perform();
+							}catch(org.openqa.selenium.WebDriverException w)
+							{
+								k=k+1;
+								continue;
+							}
+						}
 					}
-					if(ele.isEnabled())
-						break;
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+					act.click(ele).build().perform();
+					Thread.sleep(2000);
 				}
-				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).click();
-				Thread.sleep(2000);			
-				//Click on mark as read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-				ele.click();
-				Thread.sleep(2000);
 			}
-		}		
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
+			else{
+				//Go back to notifications
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+				Thread.sleep(2000);
+				for(int i=1;i<=n;i++)
+				{
+					Thread.sleep(2000);
+					//Click on 1st record/notification
+					WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+					if(ele.isSelected()==false)
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					Thread.sleep(4000);
+					//Click on read
+					int k=0;
+					while(k<10)
+					{
+						ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+						if(ele.isEnabled()==false)
+						{
+							if (browserName.equals("firefox"))
+							{
+								try{
+									wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+								}catch (org.openqa.selenium.ElementNotInteractableException r)
+								{
+									executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+								}
+							}
+							else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+						}
+						if(ele.isEnabled())
+							break;
+						k=k+1;
+					}
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).click();
+					Thread.sleep(2000);			
+					//Click on mark as read
+					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+					ele.click();
+					Thread.sleep(2000);
+				}
+			}		
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+		}
 		//Log in back to user
 		logInToUser(driver,username,password1);
 	}
@@ -545,35 +574,37 @@ public class ShareCheck {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		//LogOut
-		loginFunction.logout(driver);
-		if(browserName.equals("firefox")||browserName.contains("safari"))
+		if(browserName.contains("safari")==false)
 		{
-			driver.switchTo().defaultContent();
-		}
-		Thread.sleep(6000);
-		int login1 = loginFunction.LoginUser(driver, username, password1);
-		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(5000);
-		//Switches to the iframe
-		driver.switchTo().frame(driver.findElement(login.Iframe));
-		Thread.sleep(8000);
-		if (login1==1)
-		{
-
-			while(true)
+			//LogOut
+			loginFunction.logout(driver);
+			if(browserName.equals("firefox")||browserName.contains("safari"))
 			{
-				Thread.sleep(1000);
-				if (driver.findElement(share.StickyPopUp).isDisplayed())
-				{
-					WebElement ele =driver.findElement(share.StickyPopUp);
-					ele.findElement(login.StickyClose).click();
-					break;
-				}
-				else break;
+				driver.switchTo().defaultContent();
 			}
-		}	
-		Thread.sleep(3000);
+			//Thread.sleep(6000);
+			int login1 = loginFunction.LoginUser(driver, username, password1);
+			System.out.println("Title after login: "+driver.getTitle());
+			//Thread.sleep(5000);
+			//Switches to the iframe
+			driver.switchTo().frame(driver.findElement(login.Iframe));
+			//Thread.sleep(8000);
+			if (login1==1)
+			{
+				while(true)
+				{
+					Thread.sleep(1000);
+					if (driver.findElement(share.StickyPopUp).isDisplayed())
+					{
+						WebElement ele =driver.findElement(share.StickyPopUp);
+						ele.findElement(login.StickyClose).click();
+						break;
+					}
+					else break;
+				}
+			}	
+		}
+		//Thread.sleep(3000);
 		Actions act = new Actions(driver);
 		if(browserName.equals("firefox"))
 		{
@@ -745,7 +776,7 @@ public class ShareCheck {
 		share2.loadingServer(driver);
 		//Scroll to contact
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(share.PIIContactButton));
-		scrollToElement(driver,l);
+		share2.scrollToElement(driver,l);
 		//Click on contact
 		l.click();
 		//Wait for loading server message
@@ -1065,16 +1096,15 @@ public class ShareCheck {
 		{
 			driver.switchTo().defaultContent();
 		}
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		int login1 = loginFunction.LoginUser(driver, sharer, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(login.Iframe));
-		Thread.sleep(8000);
+		//Thread.sleep(8000);
 		if (login1==1)
 		{
-
 			while(true)
 			{
 				Thread.sleep(1000);
@@ -1087,7 +1117,7 @@ public class ShareCheck {
 				else break;
 			}
 		}	
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		//Mark read all notifications
 		markNotificationsRead(driver,browserName);
 	}
@@ -1104,7 +1134,7 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
 		Thread.sleep(1000);
 		if(browserName.equals("firefox")==false)
-			scrollToTop(driver);
+			share2.scrollToTop(driver);
 		if(browserName.equals("internet explorer"))
 		{
 			Actions act = new Actions (driver);
@@ -1112,13 +1142,15 @@ public class ShareCheck {
 			{
 				Thread.sleep(2000);
 				//Click on 1st record/notification
-				while(true)
+				int k=0;
+				while(k<10)
 				{
 					try{
 						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
 						share2.loadingServer(driver);
 					}catch(org.openqa.selenium.WebDriverException r)
 					{
+						k=k+1;
 						continue;
 					}
 					if(driver.findElement(share.NotificationReadButton).isEnabled())

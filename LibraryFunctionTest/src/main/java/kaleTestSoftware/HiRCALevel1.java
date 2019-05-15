@@ -1370,7 +1370,7 @@ public class HiRCALevel1 {
 		//Verify if any root causes are appearing
 		while(i<=((count*4)+1))
 		{
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))));
 			//Get name of level 3 answer
 			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
 			System.out.println(level3);
@@ -1409,7 +1409,7 @@ public class HiRCALevel1 {
 					continue;
 				else break;
 			}	
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));
 			String oldValue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
 			System.out.println("old value and new value y: "+oldValue + y);
 			if((y==1)/*&&(oldValue.contains("H")==false)*/)
@@ -1501,7 +1501,7 @@ public class HiRCALevel1 {
 			if(iter.hasNext()) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).sendKeys(iter.next());
 			}
-			share.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))));
+			share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).clear();
 			Thread.sleep(2000);
 			if(iter.hasNext()) {
@@ -1533,7 +1533,7 @@ public class HiRCALevel1 {
 		int x=4;
 		while(i<=((count1*x)+start))
 		{
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))));
 			//Get name of level 3 answer
 			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
 			System.out.println(level3);
@@ -1630,9 +1630,9 @@ public class HiRCALevel1 {
 			jse.executeScript("scroll(0,"+scroll+")");*/
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		System.out.println("Modify report hml:");
 		System.out.println(hml);
@@ -1662,11 +1662,11 @@ public class HiRCALevel1 {
 		//Count for root causes
 		int r=0;
 		//Scroll down
-		//share.scrollToAPoint(driver, 1100);
+		//share2.scrollToAPoint(driver, 1100);
 		int k=3;
 		while(i<=((n*k)+1))
 		{
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))));
 			//Get text of option of 3.17
 			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
 			if(lopOptions1.contains(s5)==false)
@@ -1689,7 +1689,7 @@ public class HiRCALevel1 {
 			{
 				for (int j=1;j<=optionsOriginal.get(s5);j++)
 				{
-					share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))));
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))));
 					//Click on checkbox of SUEP
 					try{
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))).click();
@@ -1703,7 +1703,7 @@ public class HiRCALevel1 {
 				r=r+1;
 			for (int j=1;j<=num;j++)
 			{
-				share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))));
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td["+(j+1)+"]/div/input"))));
 				//Click on checkbox of SUEP
 				while(true)
 				{
@@ -1759,7 +1759,7 @@ public class HiRCALevel1 {
 		options.put("Root causes",r);
 		System.out.println(options);
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return options;
 	}
 
@@ -1837,7 +1837,7 @@ public class HiRCALevel1 {
 		String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 		System.out.println(get_dept);
 		//scroll down
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
 		Thread.sleep(2000);
@@ -1967,7 +1967,7 @@ public class HiRCALevel1 {
 				share2.loadingServer(driver);
 			}
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Clicks on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		//Create an expected name
@@ -2404,11 +2404,11 @@ public class HiRCALevel1 {
 			Random random =new Random();
 			int y=random.nextInt(4);
 			//Click on H
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));			
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));			
 			if(y==1)
 			{
 				//Click on H
-				//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+				//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -2428,7 +2428,7 @@ public class HiRCALevel1 {
 			if(y==2)
 			{
 				//Click on M
-				//	share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+				//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -2448,7 +2448,7 @@ public class HiRCALevel1 {
 			if(y==3)
 			{
 				//Click on L
-				//share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+				//share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
 					if(browserName.contains("safari")==false)
@@ -2580,7 +2580,7 @@ public class HiRCALevel1 {
 			//Select a number between 0 to 3 for H,M,L
 			Random random = new Random();
 			int y=random.nextInt(4);
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div[1]/label"))));
 			if(y==1)
 			{
 				//Click on H
@@ -2658,7 +2658,7 @@ public class HiRCALevel1 {
 			{
 				System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
 			}
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))));
 			//Click on Evidence Entry
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))));
 			//Verify the text
@@ -2691,9 +2691,9 @@ public class HiRCALevel1 {
 			i=i+1;
 		}
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return hml;
 	}
@@ -2825,7 +2825,7 @@ public class HiRCALevel1 {
 			//Store no of SUEP checkboxes in hashmap: key=level 3 answer, value = no of suep checks
 			options.put(s5.trim(), num);
 			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]"))));
 			for (int j=1;j<=num;j++)
 			{
 				Thread.sleep(1000);
@@ -2908,7 +2908,7 @@ public class HiRCALevel1 {
 		options.put("Root causes",r);
 		System.out.println(options);
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return options;
 	}
@@ -3000,7 +3000,7 @@ public class HiRCALevel1 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Scroll to the bottom
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		Random random = new Random();
 		//Choose a number between 1 and 3 for number of selections
 		int n;
@@ -3035,7 +3035,7 @@ public class HiRCALevel1 {
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
@@ -3109,7 +3109,7 @@ public class HiRCALevel1 {
 			System.out.println("Picked a no");
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 			//Click on a lop inquiry in 3.17
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
@@ -3160,7 +3160,7 @@ public class HiRCALevel1 {
 		}
 		//Add contributing factor
 		lopOptions1.add(addContributingFactor(driver).trim());
-		share.scrollToTop(driver);	
+		share2.scrollToTop(driver);	
 		System.out.println(lopOptions1);
 		return lopOptions1;
 	}
@@ -3187,12 +3187,12 @@ public class HiRCALevel1 {
 		//Click on answer
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button")));
 		//Scroll to element
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on add new contributing factor
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", l);
 		//Enter contributing factor
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))).sendKeys("contributing factor");
 		Thread.sleep(1000);
 		//Click on save

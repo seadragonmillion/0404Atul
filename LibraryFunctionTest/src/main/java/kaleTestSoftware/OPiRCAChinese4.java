@@ -334,13 +334,13 @@ public class OPiRCAChinese4 {
 			//Click on answer
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
 			//Scroll to element
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 			l.click();
 			ac.add(l.getText());
 		}
 		//Scroll to top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();   
@@ -749,7 +749,7 @@ public class OPiRCAChinese4 {
 		softly.assertThat(c10).as("test data").contains("纠正制度-制度接口问题");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//P5.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[PP2.6] 制度与制度的接口不明确或模糊");
@@ -799,7 +799,7 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(1)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D2: integer is total no of answers in d2
 		d1.addAll(obj2.selectStep2D(driver,5,1,softly));
@@ -814,7 +814,7 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(3)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D3: integer is total no of answers in d3
 		d1.addAll(obj2.selectStep2D(driver,6,1,softly));
@@ -829,7 +829,7 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(5)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D4: integer is total no of answers in d4
 		d1.addAll(obj2.selectStep2D(driver,5,1,softly));
@@ -844,7 +844,7 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(7)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D5: integer is total no of answers in d5
 		d1.addAll(obj2.selectStep2D(driver,4,1,softly));
@@ -859,19 +859,19 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(9)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(9))==3)
 			{
 				//oo2
 				obj3.chineseApparentCauseOO2(driver);
 				//Select Apparent cause answers
 				ac.addAll(selectAllApparentCausesAnswers(driver));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 				//oo3
 				obj3.chineseApparentCauseOO3(driver);
 				//Select Apparent cause answers
 				ac.addAll(selectAllApparentCausesAnswers(driver));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//D6: integer is total no of answers in d6
@@ -887,14 +887,14 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(11)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(11))==3)
 			{
 				//p2
 				obj3.chineseApparentCauseP2(driver);
 				//Select Apparent cause answers
 				ac.addAll(selectAllApparentCausesAnswers(driver));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//D7: integer is total no of answers in d7
@@ -910,14 +910,14 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(13)),s);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(13))==3)
 			{
 				//p2
 				obj3.chineseApparentCauseP2(driver);
 				//Select Apparent cause answers
 				ac.addAll(selectAllApparentCausesAnswers(driver));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//D8
@@ -936,7 +936,7 @@ public class OPiRCAChinese4 {
 			chineseApparentCauseO2(driver, softly);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D9: integer is total no of answers in d9
 		d1.addAll(obj2.selectStep2D(driver,5,1,softly));
@@ -951,7 +951,7 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(17)),s1);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D10
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer1)).click();
@@ -968,27 +968,27 @@ public class OPiRCAChinese4 {
 			obj3.chineseApparentCauseOP2(driver);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//op3
 			obj3.chineseApparentCauseOP3(driver);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//pp1
 			chineseApparentCausePP1(driver,softly);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//pp2
 			chineseApparentCausePP2(driver,softly);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			//o5
 			obj3.chineseApparentCauseO5(driver);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//D11: integer is total no of answers in d11
 		d1.addAll(obj2.selectStep2D(driver,3,1,softly));
@@ -1003,14 +1003,14 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(21)),s2);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			if(Integer.parseInt(d1.get(21))==2)
 			{
 				//p2
 				obj3.chineseApparentCauseP2(driver);
 				//Select Apparent cause answers
 				ac.addAll(selectAllApparentCausesAnswers(driver));
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			}
 		}
 		//D12: integer is total no of answers in d12
@@ -1026,7 +1026,7 @@ public class OPiRCAChinese4 {
 			verifyChineseApparentCausesStep2(driver,Integer.parseInt(d1.get(23)),s2);
 			//Select Apparent cause answers
 			ac.addAll(selectAllApparentCausesAnswers(driver));
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 		}
 		//Create a list to combine d1 and d12 answers and apparent causes selected 
 		List<String> combinedStep2 = new ArrayList<String>();

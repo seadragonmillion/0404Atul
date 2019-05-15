@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HiRCAChinese30 {
 
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
 	
@@ -116,7 +117,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(q343).as("test data").contains("[3.3.3] 经理团队问责制不到位");
 		//Click on 3.3.3 to reveal evidence entry
@@ -183,7 +184,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
 
 		softly.assertThat(q344).as("test data").contains("[3.3.4] 经理团队对确定工作优先级和计划方面不到位");
@@ -245,7 +246,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
 		System.out.println(q345);
 		softly.assertThat(q345).as("test data").contains("[3.3.5] 经理管理人员对以下标准制定不充分：(1) 行为规范 (2) 程序和屏障");
@@ -311,9 +312,9 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		share.scrollToAPoint(driver, 1300);
+		share2.scrollToAPoint(driver, 1300);
 		//3.3.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)).getText();
 
 		softly.assertThat(q396).as("test data").contains("[3.3.6] 经理团队绩效跟踪与趋势分析不到位");
@@ -382,7 +383,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
 
 		softly.assertThat(q367).as("test data").contains("[3.3.7] 经理团队内未充分建立关于团队合作的共同目标、共同利益和共同责任");
@@ -451,7 +452,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)).getText();
 
 		softly.assertThat(q368).as("test data").contains("[3.3.8] 经理团队纠正行动不足");
@@ -523,7 +524,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.3.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.9 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)).getText();
 
 		softly.assertThat(q369).as("test data").contains("[3.3.9] 经理团队垂直沟通体系不完善");
@@ -591,7 +592,7 @@ public class HiRCAChinese30 {
 		//Click on 3rd collapsible for 3.6.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.3.10 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
 		String q3310 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)).getText();
 		System.out.println(q3310);
 		softly.assertThat(q3310).as("test data").contains("[3.3.10] 经理团队横向沟通体系不完善");
@@ -657,7 +658,7 @@ public class HiRCAChinese30 {
 		hc34.chineseAddContributingFactor(driver, softly);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 }

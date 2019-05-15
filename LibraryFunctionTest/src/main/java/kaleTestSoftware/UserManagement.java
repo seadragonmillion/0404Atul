@@ -43,11 +43,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 public class UserManagement {
-	
+
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	UserManagement2 um2 = new UserManagement2();
+	UserManagementPageObj um = new UserManagementPageObj();
 
 	SoftAssertions softly = new SoftAssertions();
 	public String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
@@ -116,7 +117,7 @@ public class UserManagement {
 		l.click();
 		//Scroll up
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
@@ -144,7 +145,7 @@ public class UserManagement {
 		l.click();
 		//Scroll up
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
@@ -173,7 +174,7 @@ public class UserManagement {
 		l.click();
 		//Scroll up
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
@@ -223,7 +224,7 @@ public class UserManagement {
 		}
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify Group moderator list is empty
@@ -240,7 +241,7 @@ public class UserManagement {
 		Select dd = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd.selectByVisibleText(company_id1);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on Select group dropdown
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
@@ -264,7 +265,7 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id1)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify group moderator list
@@ -290,7 +291,7 @@ public class UserManagement {
 		//Change to company 2
 		dd.selectByVisibleText(company_id2);
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on Select group dropdown
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
@@ -314,7 +315,7 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id2)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
 		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify group2 moderator list
@@ -338,7 +339,7 @@ public class UserManagement {
 		//Close group moderator pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
@@ -504,7 +505,7 @@ public class UserManagement {
 				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
 		}catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
-			
+
 		}
 		//Thread.sleep(5000);
 	}
@@ -530,14 +531,14 @@ public class UserManagement {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Change company id
-		share.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-customerId")));
+		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-customerId")));
 		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd1.selectByVisibleText(companyChange);
 		//Select pii group
-		share.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-groups-button")));
+		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-groups-button")));
 		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(3000);
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		ele1.findElement(By.linkText(groupChange)).click();
@@ -679,7 +680,7 @@ public class UserManagement {
 		{
 			if(num.get(m)>=16)
 			{
-				share.scrollToAPoint(driver, 1500);
+				share2.scrollToAPoint(driver, 1500);
 			}
 			if(num.get(m)==1)
 			{
@@ -743,7 +744,7 @@ public class UserManagement {
 			}
 			if(num.get(m)==16)
 			{
-				share.scrollToAPoint(driver, 1500);
+				share2.scrollToAPoint(driver, 1500);
 				op[m]="eLearning";
 			}
 			if(num.get(m)==17)
@@ -774,7 +775,7 @@ public class UserManagement {
 			if(at.contains("ui-checkbox-on")==false)
 				op[m]=op[m]+"**";				
 		}
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		return op;
 	}
 
@@ -1164,6 +1165,8 @@ public class UserManagement {
 	public void deletesPreviousGroup (WebDriver driver, String group2) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			um2.verifyNoCompanyIdError(driver,softly);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -1353,7 +1356,7 @@ public class UserManagement {
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		  //Scroll top
 		  Thread.sleep(2000);
-		  share.scrollToTop(driver);
+		  share2.scrollToTop(driver);
 		  Thread.sleep(2000);
 		 */
 		//Clicks on save
@@ -1665,7 +1668,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Scroll top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-cust-button-save")).click();
@@ -1758,7 +1761,7 @@ public class UserManagement {
 			//Click on next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-license-next"))).click();
 			//Scroll to end and click on I accept
-			share.scrollToAPoint(driver, 2000);
+			share2.scrollToAPoint(driver, 2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-license-accept"))).click();
 			Thread.sleep(2000);
 		}catch (org.openqa.selenium.TimeoutException e)
@@ -1778,7 +1781,7 @@ public class UserManagement {
 				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}
 		}catch (NoSuchElementException e){
-			
+
 		}catch(org.openqa.selenium.TimeoutException t){
 
 		}
@@ -1926,7 +1929,7 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		dept1.add("QAA sample department");
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Save company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
@@ -1979,7 +1982,7 @@ public class UserManagement {
 		outputStream.close();
 	}
 
-	
+
 	public void checkAccess(WebDriver driver, int login, String[]op) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		share2.loadingServer(driver);
@@ -1991,7 +1994,7 @@ public class UserManagement {
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 			}catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException r){
-				
+
 			}
 		}
 		List<String>f = Arrays.asList(op);
@@ -2304,6 +2307,17 @@ public class UserManagement {
 		//Clicks on Edit user
 		driver.findElement(By.id("pii-admin-user-edit")).click();
 		Thread.sleep(4000);
+		//Verify the message on top in edit user page
+		if (driver.getCurrentUrl().contains("kaleqa"))
+		{
+			try{
+				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
+				softly.assertThat(message).as("test data").isEqualTo("Update a selected user...");
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+
+			}
+		}
 		//Searches for newly created user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
 		Thread.sleep(2000);
@@ -2337,6 +2351,17 @@ public class UserManagement {
 		//Clicks on Edit group
 		driver.findElement(By.id("pii-admin-group-edit")).click();
 		Thread.sleep(4000);
+		//Verify the message on top in edit group page
+		if (driver.getCurrentUrl().contains("kaleqa"))
+		{
+			try{
+				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditGroupMessageOnTop)).getText().trim();
+				softly.assertThat(message).as("test data").isEqualTo("Update a selected group...");
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+
+			}
+		}
 		//Searches for newly created group
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).clear();
 		Thread.sleep(2000);

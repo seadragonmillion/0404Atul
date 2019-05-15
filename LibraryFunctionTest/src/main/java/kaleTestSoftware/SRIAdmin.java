@@ -14,37 +14,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SRIAdmin {
 
-	SoftAssertions softly = new SoftAssertions();
+	//SoftAssertions softly = new SoftAssertions();
 
 	SRIPageObj sri = new SRIPageObj();
+	SRIAdmin2 sriA2 = new SRIAdmin2();
 	ShareCheck2 share2 = new ShareCheck2();
 	Login login = new Login();
 	ShareCheck share = new ShareCheck();
+	CreateEquipPageObj equipObj = new CreateEquipPageObj();
 
-	//Mechanical
-	public String mechanicalComponent1 = "QAA Mechanical Component 1";
-	public String mechanicalMeasurement1 = "QAA Mechanical Measurement 1";
-	public String mechanicalUnit1 = "QAA Mechanical Unit 1";
-	public String mechanicalFSIBaseline1 = "10";
-	public String mechanicalFSIBaseline2 = "20";
-	public String mechanicalFSIBaseline3 = "30";
-	public String mechanicalFSIConclusion1 = "Mechanical Conclusion 1";
-	public String mechanicalFSIConclusion2 = "Mechanical Conclusion 2";
-	public String mechanicalFSIConclusion3 = "Mechanical Conclusion 3";
 
-	//Electrical
-	public String electricalComponent1 = "QAA Electrical Component 1";
-	public String electricalMeasurement1 = "QAA Electrical Measurement 1";
-	public String electricalUnit1 = "QAA Electrical Unit 1";
-	public String electricalFSIBaseline1 = "10";
-	public String electricalFSIBaseline2 = "20";
-	public String electricalFSIBaseline3 = "30";
-	public String electricalFSIConclusion1 = "Electrical Conclusion 1";
-	public String electricalFSIConclusion2 = "Electrical Conclusion 2";
-	public String electricalFSIConclusion3 = "Electrical Conclusion 3";
 
-	public void SRIAdminTest(WebDriver driver, String username, String password) throws Exception {
+	public void SRIAdminTest(WebDriver driver, SoftAssertions softly) throws Exception {
 
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Get to SRI Admin part
 		getToSRIAdmin(driver);
 		/* 0 = Mechanical
@@ -53,83 +36,141 @@ public class SRIAdmin {
 		//Delete all previous
 		//Delete all mechanical
 		//Click on SRI
-		int sum = deleteConclusionAdded(driver,0,mechanicalComponent1,mechanicalMeasurement1);
-		sum = sum + deleteBaselineAdded(driver,0,mechanicalComponent1,mechanicalMeasurement1,mechanicalUnit1);
-		sum = sum + deleteUnitAdded(driver,mechanicalMeasurement1,mechanicalUnit1);
-		sum = sum + deleteMeasurementAdded(driver,mechanicalComponent1,mechanicalMeasurement1,0);
-		sum = sum + deleteComponentAdded(driver,mechanicalComponent1,0);
+		int sum = deleteConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1);
+		sum = sum + deleteConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2);
+		sum = sum + deleteBaselineAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1);
+		sum = sum + deleteBaselineAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2);
+		sum = sum + deleteUnitAdded(driver,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1);
+		sum = sum + deleteUnitAdded(driver,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2);
+		sum = sum + deleteMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,0);
+		sum = sum + deleteMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,0);
+		sum = sum + deleteComponentAdded(driver,sriA2.mechanicalComponent1,0);
 		//Save
 		if(sum>0)
 			saveChangedValues(driver);
 		sum = 0;
 		//Delete all elecrical
-		sum = sum + deleteConclusionAdded(driver,1,electricalComponent1,electricalMeasurement1);
-		sum = sum + deleteBaselineAdded(driver,1,electricalComponent1,electricalMeasurement1,electricalUnit1);
-		sum = sum + deleteUnitAdded(driver,electricalMeasurement1,electricalUnit1);
-		sum = sum + deleteMeasurementAdded(driver,electricalComponent1,electricalMeasurement1,1);
-		sum = sum + deleteComponentAdded(driver,electricalComponent1,1);
+		sum = sum + deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1);
+		sum = sum + deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2);
+		sum = sum + deleteBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
+		sum = sum + deleteBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalUnit2);
+		sum = sum + deleteUnitAdded(driver,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
+		sum = sum + deleteUnitAdded(driver,sriA2.electricalMeasurement2,sriA2.electricalUnit2);
+		sum = sum + deleteMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement1,1);
+		sum = sum + deleteMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement2,1);
+		sum = sum + deleteComponentAdded(driver,sriA2.electricalComponent1,1);
 		//Save
 		if(sum>0)
 			saveChangedValues(driver);
 		//Mechanical
 		//Add a component
-		addSRIComponentInAdmin(driver,0,mechanicalComponent1);
+		addSRIComponentInAdmin(driver,0,sriA2.mechanicalComponent1);
 		//Add a measurement
-		addSRIMeasurementInAdmin(driver,0,mechanicalComponent1,mechanicalMeasurement1);
+		addSRIMeasurementInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,softly);
+		//Add 2nd measurement
+		addSRIMeasurementInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,softly);
 		//Add a unit
-		addSRIUnitInAdmin(driver,mechanicalMeasurement1,mechanicalUnit1);
+		addSRIUnitInAdmin(driver,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1);
+		//Add 2nd unit
+		addSRIUnitInAdmin(driver,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2);
+		//Verify errors on baseline tab
+		sriA2.verifyErrorMessagesWhileAddingBaselines(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2,softly);
 		//Add a baseline
-		addSRIBaselineInAdmin(driver,0,mechanicalComponent1,mechanicalMeasurement1,mechanicalUnit1,mechanicalFSIBaseline1,mechanicalFSIBaseline2,mechanicalFSIBaseline3);
+		addSRIBaselineInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1,sriA2.mechanicalFSIBaseline1,sriA2.mechanicalFSIBaseline2,sriA2.mechanicalFSIBaseline3);
+		//Add 2nd baseline
+		addSRIBaselineInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2,sriA2.mechanicalFSIBaseline4,sriA2.mechanicalFSIBaseline5,sriA2.mechanicalFSIBaseline6);
 		//Add a conclusion
-		addSRIConclusionInAdmin(driver,0,mechanicalComponent1,mechanicalMeasurement1,mechanicalFSIConclusion1,mechanicalFSIConclusion2,mechanicalFSIConclusion3);
+		addSRIConclusionInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalFSIConclusion1,sriA2.mechanicalFSIConclusion2,sriA2.mechanicalFSIConclusion3);
+		//Add 2nd conclusion
+		addSRIConclusionInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalFSIConclusion1,sriA2.mechanicalFSIConclusion2,sriA2.mechanicalFSIConclusion3);
 		//Save
 		saveChangedValues(driver);
 		//Verify all added values
-		verifyComponentAdded(driver,mechanicalComponent1,0);
-		verifyMeasurementAdded(driver,mechanicalComponent1,mechanicalMeasurement1,0);
-		verifyUnitAdded(driver,mechanicalMeasurement1,mechanicalUnit1);
-		verifyBaselineAdded(driver,0,mechanicalComponent1,mechanicalMeasurement1,mechanicalUnit1,mechanicalFSIBaseline1,mechanicalFSIBaseline2,mechanicalFSIBaseline3);
-		verifyConclusionAdded(driver,0,mechanicalComponent1,mechanicalMeasurement1,mechanicalFSIConclusion1,mechanicalFSIConclusion2,mechanicalFSIConclusion3);
+		verifyComponentAdded(driver,sriA2.mechanicalComponent1,0,softly);
+		verifyMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,0,softly);
+		verifyMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,0,softly);
+		verifyUnitAdded(driver,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1,softly);
+		verifyUnitAdded(driver,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2,softly);
+		sriA2.verifyBaselineAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1,sriA2.mechanicalFSIBaseline1,sriA2.mechanicalFSIBaseline2,sriA2.mechanicalFSIBaseline3,softly);
+		sriA2.verifyBaselineAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2,sriA2.mechanicalFSIBaseline4,sriA2.mechanicalFSIBaseline5,sriA2.mechanicalFSIBaseline6,softly);
+		//Verify the numbering in baselines
+		sriA2.verifyNumberingOnBaselines(driver, softly);
+		sriA2.verifyConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalFSIConclusion1,sriA2.mechanicalFSIConclusion2,sriA2.mechanicalFSIConclusion3,softly);
+		sriA2.verifyConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalFSIConclusion1,sriA2.mechanicalFSIConclusion2,sriA2.mechanicalFSIConclusion3,softly);
+		//Verify the numbering in conclusions
+		sriA2.verifyNumberingOnConclusion(driver, softly);
 		//Electrical
 		//Add a component
-		addSRIComponentInAdmin(driver,1,electricalComponent1);
+		addSRIComponentInAdmin(driver,1,sriA2.electricalComponent1);
 		//Add a measurement
-		addSRIMeasurementInAdmin(driver,1,electricalComponent1,electricalMeasurement1);
+		addSRIMeasurementInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,softly);
+		//Add 2nd measurement
+		addSRIMeasurementInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,softly);
 		//Add a unit
-		addSRIUnitInAdmin(driver,electricalMeasurement1,electricalUnit1);
+		addSRIUnitInAdmin(driver,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
+		//Add 2nd unit
+		addSRIUnitInAdmin(driver,sriA2.electricalMeasurement2,sriA2.electricalUnit2);
 		//Add a baseline
-		addSRIBaselineInAdmin(driver,1,electricalComponent1,electricalMeasurement1,electricalUnit1,electricalFSIBaseline1,electricalFSIBaseline2,electricalFSIBaseline3);
+		addSRIBaselineInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalUnit1,sriA2.electricalFSIBaseline1,sriA2.electricalFSIBaseline2,sriA2.electricalFSIBaseline3);
+		//Add 2nd baseline
+		addSRIBaselineInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalUnit2,sriA2.electricalFSIBaseline4,sriA2.electricalFSIBaseline5,sriA2.electricalFSIBaseline6);
 		//Add a conclusion
-		addSRIConclusionInAdmin(driver,1,electricalComponent1,electricalMeasurement1,electricalFSIConclusion1,electricalFSIConclusion2,electricalFSIConclusion3);
+		addSRIConclusionInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalFSIConclusion1,sriA2.electricalFSIConclusion2,sriA2.electricalFSIConclusion3);
+		//Add 2nd conclusion
+		addSRIConclusionInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalFSIConclusion1,sriA2.electricalFSIConclusion2,sriA2.electricalFSIConclusion3);
 		//Save
 		saveChangedValues(driver);
 		//Verify all added values
-		verifyComponentAdded(driver,electricalComponent1,1);
-		verifyMeasurementAdded(driver,electricalComponent1,electricalMeasurement1,1);
-		verifyUnitAdded(driver,electricalMeasurement1,electricalUnit1);
-		verifyBaselineAdded(driver,1,electricalComponent1,electricalMeasurement1,electricalUnit1,electricalFSIBaseline1,electricalFSIBaseline2,electricalFSIBaseline3);
-		verifyConclusionAdded(driver,1,electricalComponent1,electricalMeasurement1,electricalFSIConclusion1,electricalFSIConclusion2,electricalFSIConclusion3);
-		//bug needs to be fixed
+		verifyComponentAdded(driver,sriA2.electricalComponent1,1,softly);
+		verifyMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement1,1,softly);
+		verifyMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement2,1,softly);
+		verifyUnitAdded(driver,sriA2.electricalMeasurement1,sriA2.electricalUnit1,softly);
+		verifyUnitAdded(driver,sriA2.electricalMeasurement2,sriA2.electricalUnit2,softly);
+		sriA2.verifyBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalUnit1,sriA2.electricalFSIBaseline1,sriA2.electricalFSIBaseline2,sriA2.electricalFSIBaseline3,softly);
+		sriA2.verifyBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalUnit2,sriA2.electricalFSIBaseline4,sriA2.electricalFSIBaseline5,sriA2.electricalFSIBaseline6,softly);
+		//Verify the numbering in baselines
+		sriA2.verifyNumberingOnBaselines(driver, softly);
+		sriA2.verifyConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalFSIConclusion1,sriA2.electricalFSIConclusion2,sriA2.electricalFSIConclusion3,softly);
+		sriA2.verifyConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalFSIConclusion1,sriA2.electricalFSIConclusion2,sriA2.electricalFSIConclusion3,softly);
+		//Verify the numbering in conclusions
+		sriA2.verifyNumberingOnConclusion(driver, softly);
+		//Verify the previous data is shown when the componen is changed in Conclusion and baseline tabs
+		sriA2.verifyBaslineConclusionTabsViewWhenComponentChanged(driver, softly);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.KaleHomePage)).click();
+	/*	//bug needs to be fixed
 		login.logout(driver);
 		driver.switchTo().defaultContent();
 		login.LoginUser(driver, username, password);
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));*/
+	}
+	
+	public void deleteAll(WebDriver driver) throws Exception {
+		
 		//Get to SRI Admin part
 		getToSRIAdmin(driver);
 		//Delete all mechanical
-		deleteConclusionAdded(driver,0,mechanicalComponent1,mechanicalMeasurement1);
-		deleteBaselineAdded(driver,0,mechanicalComponent1,mechanicalMeasurement1,mechanicalUnit1);
-		deleteUnitAdded(driver,mechanicalMeasurement1,mechanicalUnit1);
-		deleteMeasurementAdded(driver,mechanicalComponent1,mechanicalMeasurement1,0);
-		deleteComponentAdded(driver,mechanicalComponent1,0);
+		deleteConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1);
+		deleteConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2);
+		deleteBaselineAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1);
+		deleteBaselineAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2);
+		deleteUnitAdded(driver,sriA2.mechanicalMeasurement1,sriA2.mechanicalUnit1);
+		deleteUnitAdded(driver,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2);
+		deleteMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,0);
+		deleteMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,0);
+		deleteComponentAdded(driver,sriA2.mechanicalComponent1,0);
 		//Save
 		saveChangedValues(driver);
-		//Delete all elecrical
-		deleteConclusionAdded(driver,1,electricalComponent1,electricalMeasurement1);
-		deleteBaselineAdded(driver,1,electricalComponent1,electricalMeasurement1,electricalUnit1);
-		deleteUnitAdded(driver,electricalMeasurement1,electricalUnit1);
-		deleteMeasurementAdded(driver,electricalComponent1,electricalMeasurement1,1);
-		deleteComponentAdded(driver,electricalComponent1,1);
+		//Delete all electrical
+		deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1);
+		deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2);
+		deleteBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
+		deleteBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalUnit2);
+		deleteUnitAdded(driver,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
+		deleteUnitAdded(driver,sriA2.electricalMeasurement2,sriA2.electricalUnit2);
+		deleteMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement1,1);
+		deleteMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement2,1);
+		deleteComponentAdded(driver,sriA2.electricalComponent1,1);
 		//Save
 		saveChangedValues(driver);
 	}
@@ -137,6 +178,7 @@ public class SRIAdmin {
 	public int deleteComponentAdded(WebDriver driver, String component, int mechOrElec) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI components tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
 		/* 0 = Mechanical
@@ -163,7 +205,7 @@ public class SRIAdmin {
 				if(componentName.equals(component))
 				{
 					//delete measurement
-					share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-components-table']/tbody/tr["+count+"]/td[4]/a"))));
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-components-table']/tbody/tr["+count+"]/td[4]/a"))));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-components-table']/tbody/tr["+count+"]/td[4]/a"))).click();
 					//Delete confirm button
 					wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
@@ -174,7 +216,7 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		if(deleted == 1)
 			return 1;
@@ -184,6 +226,7 @@ public class SRIAdmin {
 	public int deleteMeasurementAdded(WebDriver driver, String component, String measurement, int mechOrElec) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI measurement tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementTab)).click();
 		/* 0 = Mechanical
@@ -226,7 +269,7 @@ public class SRIAdmin {
 					if(driver.findElement(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input")).isSelected())
 					{
 						//delete measurement
-						share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))));
+						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))));
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))).click();
 						//Delete confirm button
 						wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
@@ -237,7 +280,7 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		return 1;
 	}
@@ -245,6 +288,7 @@ public class SRIAdmin {
 	public int deleteUnitAdded(WebDriver driver, String measurement, String unit) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI units tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
 		//Select measurement
@@ -269,7 +313,7 @@ public class SRIAdmin {
 					if(driver.findElement(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input")).isSelected())
 					{
 						//delete unit
-						share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))));
+						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))));
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))).click();
 						//Delete confirm button
 						wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
@@ -280,7 +324,7 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		return 1;
 	}
@@ -333,7 +377,7 @@ public class SRIAdmin {
 					if(unitName.equals(unit))
 					{
 						//delete baseline
-						share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a"))));
+						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a"))));
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a"))).click();
 						//Delete confirm button
 						wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
@@ -344,7 +388,7 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		return 1;
 	}
@@ -413,7 +457,7 @@ public class SRIAdmin {
 				if(measurementName.equals(measurement))
 				{
 					//delete conclusion
-					share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[6]/a"))));
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[6]/a"))));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[6]/a"))).click();
 					//Delete confirm button
 					wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
@@ -423,12 +467,12 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		return 1;
 	}
 
-	public void verifyComponentAdded(WebDriver driver, String component, int mechOrElec) throws Exception {
+	public void verifyComponentAdded(WebDriver driver, String component, int mechOrElec, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		List<String> componentList = new ArrayList<String>();
@@ -459,13 +503,13 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		//Go through all components to check if added component is present
 		softly.assertThat(component).as("test data").isIn(componentList);
 	}
 
-	public void verifyMeasurementAdded(WebDriver driver, String component, String measurement, int mechOrElec) throws Exception {
+	public void verifyMeasurementAdded(WebDriver driver, String component, String measurement, int mechOrElec, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		List<String> measurementList = new ArrayList<String>();
@@ -500,7 +544,7 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		//Go through all measurements to check if added component is present
 		softly.assertThat(measurement).as("test data").isIn(measurementList);
@@ -522,12 +566,12 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		
 	}
 
-	public void verifyUnitAdded(WebDriver driver, String measurement, String unit) throws Exception {
+	public void verifyUnitAdded(WebDriver driver, String measurement, String unit, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		List<String> unitList = new ArrayList<String>();
@@ -549,7 +593,7 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 		//Go through all units to check if added component is present
 		softly.assertThat(unit).as("test data").isIn(unitList);
@@ -571,124 +615,9 @@ public class SRIAdmin {
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 
-	}
-
-	public void verifyBaselineAdded(WebDriver driver, int mechOrElec, String component, String measurement, String unit, String fs1, String fs2, String fs3) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		List<String> unitList = new ArrayList<String>();
-		List<String> measurementList = new ArrayList<String>();
-		//Click on SRI baseline tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
-		/* 0 = Mechanical
-		 * 1 = Electrical
-		 */
-		if(mechOrElec==0)
-		{
-			//Select mechanical component
-			WebElement element = driver.findElement(sri.SRIAdminBaselineTabMechanicalDropdown);
-			Select s = new Select (element);
-			s.selectByVisibleText(component);		
-		}
-		else
-		{
-			//Select elecrtical component
-			WebElement element = driver.findElement(sri.SRIAdminBaselineTabElectricalDropdown);
-			Select s = new Select (element);
-			s.selectByVisibleText(component);
-		}
-		//Count number of baselines
-		int count=1;
-		while(true)
-		{
-			try{
-				driver.findElement(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]"));
-				//Get unit name
-				String unitName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[3]/div/div/span"))).getText();
-				unitList.add(unitName);
-				//Get Measurement name
-				String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[2]/div/div/span"))).getText();
-				measurementList.add(measurementName);
-			}catch(org.openqa.selenium.NoSuchElementException e)
-			{
-				break;
-			}
-			count=count+1;
-		}
-		//Go through all measurements and units to check if added component is present
-		softly.assertThat(unit).as("test data").isIn(unitList);
-		softly.assertThat(measurement).as("test data").isIn(measurementList);
-		//Get the index of the baseline which matches both measurement and unit
-		int index = 0;
-		for (int i=0;i<unitList.size();i++)
-		{
-			if(unitList.get(i).equals(unit))
-				if(measurementList.get(i).equals(measurement))
-				{
-					index = i+1;
-					break;
-				}
-		}
-		String fs1Value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+index+"]/td[4]/div/input"))).getAttribute("value");
-		String fs2Value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+index+"]/td[5]/div/input"))).getAttribute("value");
-		String fs3Value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+index+"]/td[6]/div/input"))).getAttribute("value");
-		softly.assertThat(fs1Value).as("test data").isEqualTo(fs1);
-		softly.assertThat(fs2Value).as("test data").isEqualTo(fs2);
-		softly.assertThat(fs3Value).as("test data").isEqualTo(fs3);
-	}
-
-	public void verifyConclusionAdded(WebDriver driver, int mechOrElec, String component, String measurement, String fs1, String fs2, String fs3) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		List<String> measurementList = new ArrayList<String>();
-		//Click on SRI conclusion tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
-		/* 0 = Mechanical
-		 * 1 = Electrical
-		 */
-		if(mechOrElec==0)
-		{
-			//Select mechanical component
-			WebElement element = driver.findElement(sri.SRIAdminConclusionTabMechanicalDropdown);
-			Select s = new Select (element);
-			s.selectByVisibleText(component);		
-		}
-		else
-		{
-			//Select elecrtical component
-			WebElement element = driver.findElement(sri.SRIAdminConclusionTabElectricalDropdown);
-			Select s = new Select (element);
-			s.selectByVisibleText(component);
-		}
-		//Count number of conclusions
-		int count=1;
-		while(true)
-		{
-			try{
-				driver.findElement(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]"));
-				//Get Measurement name
-				String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[2]/div/div/span"))).getText();
-				measurementList.add(measurementName);
-			}catch(org.openqa.selenium.NoSuchElementException e)
-			{
-				break;
-			}
-			count=count+1;
-		}
-		//Go through all measurements to check if added measurement is present
-		softly.assertThat(measurement).as("test data").isIn(measurementList);
-		//Get the index of the conclusion which matches measurement
-		int index = measurementList.indexOf(measurement)+1;
-		//Verify conclusions
-		String fs1Value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+index+"]/td[3]/textarea"))).getAttribute("value");
-		String fs2Value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+index+"]/td[4]/textarea"))).getAttribute("value");
-		String fs3Value = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+index+"]/td[5]/textarea"))).getAttribute("value");
-		softly.assertThat(fs1Value).as("test data").isEqualTo(fs1);
-		softly.assertThat(fs2Value).as("test data").isEqualTo(fs2);
-		softly.assertThat(fs3Value).as("test data").isEqualTo(fs3);
 	}
 
 	public void getToSRIAdmin(WebDriver driver) throws Exception {
@@ -719,6 +648,7 @@ public class SRIAdmin {
 	public void addSRIComponentInAdmin(WebDriver driver, int mechOrElec, String component) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI components tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
 		/* 0 = Mechanical
@@ -742,11 +672,14 @@ public class SRIAdmin {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentAddButton)).click();		
 	}
 
-	public void addSRIMeasurementInAdmin(WebDriver driver, int mechOrElec, String component, String measurement) throws Exception {
+	public void addSRIMeasurementInAdmin(WebDriver driver, int mechOrElec, String component, String measurement, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI measurement tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementTab)).click();
+		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameLabel)).getText();
+		softly.assertThat(label1).as("test data").isEqualTo("Measurement name:");
 		/* 0 = Mechanical
 		 * 1 = Electrical
 		 */
@@ -779,20 +712,21 @@ public class SRIAdmin {
 				String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[3]/div/input"))).getAttribute("value");
 				if(measurementName.equals(measurement))
 				{
-					share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input"))));
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input"))));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input"))).click();
 				}
 			}catch(org.openqa.selenium.NoSuchElementException e)
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 	}
 
 	public void addSRIUnitInAdmin(WebDriver driver, String measurement, String unit) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI units tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
 		//Enter unit
@@ -812,20 +746,21 @@ public class SRIAdmin {
 				String unitName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[3]/div/input"))).getAttribute("value");
 				if(unitName.equals(unit))
 				{
-					share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input"))));
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input"))));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input"))).click();
 				}
 			}catch(org.openqa.selenium.NoSuchElementException e)
 			{
 				break;
 			}
-			count=count+1;
+			count=count+2;
 		}
 	}
 
 	public void addSRIBaselineInAdmin(WebDriver driver, int mechOrElec, String component, String measurement, String unit, String fs1, String fs2, String fs3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI baselines tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
 		/* 0 = Mechanical
@@ -854,11 +789,14 @@ public class SRIAdmin {
 		Select s1 = new Select (element1);
 		s1.selectByVisibleText(unit);	
 		//Enter FS1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminFS1Field)).sendKeys(fs1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminOPField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminOPField)).sendKeys(fs1);
 		//Enter FS2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminFS2Field)).sendKeys(fs2);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminIFS1Field)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminIFS1Field)).sendKeys(fs2);
 		//Enter FS3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminFS3Field)).sendKeys(fs3);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminIFS2Field)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminIFS2Field)).sendKeys(fs3);
 		//Click on add button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselineAddButton)).click();		
 	}
@@ -866,6 +804,7 @@ public class SRIAdmin {
 	public void addSRIConclusionInAdmin(WebDriver driver, int mechOrElec, String component, String measurement, String fs1Conclusion, String fs2Conclusion, String fs3Conclusion) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
 		//Click on SRI conclusion tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
 		/* 0 = Mechanical
@@ -899,8 +838,4 @@ public class SRIAdmin {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionAddButton)).click();		
 	}
 
-	public void softAssert() throws Exception {
-		softly.assertAll();
-		System.gc();
-	}
 }

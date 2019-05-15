@@ -14,5 +14,8 @@ public class UserManagementPageObj {
 	public By CompanyPhoneError = By.id("pii-admin-cust-tel-error");
 	public By CompanyBusinessContactError = By.id("pii-admin-cust-busCts-error");
 	public By CompanyTechnicalContactError = By.id("pii-admin-cust-tecCts-error");
-	
+	//Edit user
+	public By EditUserMessageOnTop = By.xpath(".//*[@id='pii-admin-user-messages']/div");
+	//Edit group
+	public By EditGroupMessageOnTop = By.xpath(".//*[@id='pii-admin-group-messages']/div");
 }

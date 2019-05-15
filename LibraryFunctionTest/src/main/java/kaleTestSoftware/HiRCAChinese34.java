@@ -10,23 +10,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HiRCAChinese34 {
 
-	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	
 	public void chineseAddContributingFactor(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Scroll down
-		share.scrollToAPoint(driver, 1300);
+		share2.scrollToAPoint(driver, 1300);
 		//Click on add contributing factor
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button")));
 		//Scroll to element
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on add new contributing factor
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].focus();", l);
 		executor.executeScript("arguments[0].click();", l);
 		//Scroll down
-		share.scrollToAPoint(driver, 1400);
+		share2.scrollToAPoint(driver, 1400);
 		//Verify all labels
 		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-cf']"))).getText();
 		softly.assertThat(label1).as("test data").contains("促成因素:");
@@ -49,7 +49,7 @@ public class HiRCAChinese34 {
 		softly.assertThat(save).as("test data").contains("保存");
 		//Scroll up
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 }

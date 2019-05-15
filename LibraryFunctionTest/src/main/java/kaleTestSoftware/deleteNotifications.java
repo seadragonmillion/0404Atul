@@ -153,7 +153,7 @@ public class deleteNotifications {
 		Thread.sleep(4000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on check box for selecting all noifications
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationAllCheckBox)).click();
 		Thread.sleep(2000);

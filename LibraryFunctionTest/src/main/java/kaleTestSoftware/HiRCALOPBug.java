@@ -38,7 +38,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		fillPage(driver,text);
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
 		//Clicks on next
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -102,7 +102,7 @@ public class HiRCALOPBug {
 		//Investigators
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
 		//Scroll top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		//Clicks on Save report
@@ -131,7 +131,7 @@ public class HiRCALOPBug {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		}catch(org.openqa.selenium.WebDriverException t)
 		{
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))));
 		}
@@ -175,13 +175,13 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		Thread.sleep(1000);//Select number of LOPs and LOPs randomly
 		int y = selectNumberOfLOPs(driver);
 		System.out.println(y);
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -229,14 +229,14 @@ public class HiRCALOPBug {
 		//Select RC from pop up
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Go to Step 2
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2")));
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
 		}catch(org.openqa.selenium.WebDriverException t)
 		{
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))));
 		}
 		//Verify Step 2 page of question 2.0
@@ -310,7 +310,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Select 3 LOPs randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -339,7 +339,7 @@ public class HiRCALOPBug {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -425,7 +425,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Select 1 LOP randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -451,7 +451,7 @@ public class HiRCALOPBug {
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -568,7 +568,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
 		Thread.sleep(2000);
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Select 2 LOPs randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -597,7 +597,7 @@ public class HiRCALOPBug {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -940,7 +940,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Select no of LOPs randomly 1 to 3
 		Random random = new Random();
 		int y;
@@ -975,7 +975,7 @@ public class HiRCALOPBug {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return y;
 	}
@@ -1088,7 +1088,7 @@ public class HiRCALOPBug {
 		if(s2.contains("ui-checkbox-on")==false)
 			softly.fail("LOP is not selected in 2.21");
 		//Click next
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 	}
@@ -1104,13 +1104,13 @@ public class HiRCALOPBug {
 		Thread.sleep(1000);
 		if(y>6)
 		{
-			share.scrollToAPoint(driver, 1100);
+			share2.scrollToAPoint(driver, 1100);
 		}
 		//Click on a lop
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+y+"']"))));		
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return y;
 	}
@@ -1319,7 +1319,7 @@ public class HiRCALOPBug {
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
@@ -1357,16 +1357,16 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			if(y>5)
-				share.scrollToAPoint(driver, 1200);
+				share2.scrollToAPoint(driver, 1200);
 			if(y<=5)
-				share.scrollToTop(driver);
+				share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Click on a lop inquiry in 3.17
 			JavascriptExecutor executor = (JavascriptExecutor)driver;
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
@@ -1374,7 +1374,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Select on LOP randomly
 		//Choose a number between 2 and 13 for LOPs
 		Random random = new Random();
@@ -1398,7 +1398,7 @@ public class HiRCALOPBug {
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		return y;
 	}
@@ -1433,7 +1433,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Scroll down 
 		//Scroll to the top
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Click on same LOP
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
@@ -1442,7 +1442,7 @@ public class HiRCALOPBug {
 		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Make selections from 2.1, 2.2 , 2.9-2.12
 		makeSelections(driver);
@@ -1615,14 +1615,14 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Scroll down 
 		//Scroll to the top
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Click on same LOP
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Click on modify
 		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Make selections from 2.1, 2.2 , 2.9-2.12
 		makeSelections(driver);
@@ -1640,7 +1640,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);
 		//Select 2nd LOP
 		//Scroll down
-		share.scrollToAPoint(driver, 1200);
+		share2.scrollToAPoint(driver, 1200);
 		//Select on LOP randomly
 		int y;
 		Random random = new Random();
@@ -1666,7 +1666,7 @@ public class HiRCALOPBug {
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();

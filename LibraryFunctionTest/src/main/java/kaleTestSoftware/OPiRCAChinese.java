@@ -36,12 +36,12 @@ public class OPiRCAChinese {
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);	 
+		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Verify everything on Event Information page is in 
 		chineseInfoPage(driver);
@@ -166,7 +166,7 @@ public class OPiRCAChinese {
 		markSUREcheckboxes(driver);
 		//Scroll top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);	 
+		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();    
@@ -177,7 +177,7 @@ public class OPiRCAChinese {
 		obj2.checkStep4HMLBoxes(driver);
 		//Scroll top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);	 
+		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();  
@@ -263,7 +263,7 @@ public class OPiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		//Scroll to top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on all 4 boxes for 1st Apparent cause
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep3SURETableEntry1Checkbox1)).click();
@@ -271,7 +271,7 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep3SURETableEntry1Checkbox3)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep3SURETableEntry1Checkbox4)).click();
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 	}
 
@@ -1051,7 +1051,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("组织改组以提高效率和绩效");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//P5.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[P5.6] 为执行要求而开展不必要的工作，例如长途驱车至场外仓库取用常用工具，填写冗长的表格等");
@@ -1218,7 +1218,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c35).as("test data").contains("改进程序审查流程");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//P4.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[P4.6] 导则或说明存在错误: (1) 过时的导则; (2) 错误的导则或说明; (3) 程序中存在错误的步骤");
@@ -1358,7 +1358,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c27).as("test data").contains("改进存在缺陷的导则或程序");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//P3.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[P3.6] 由于程序编写导则存在不足，造成使用工作现场提示信息防止例行工作出现粗心犯错方面存在不足");
@@ -1537,7 +1537,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c23).as("test data").contains("改进存在缺陷的导则或程序");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//P2.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[P2.6] 缺少以下部分: (1) 目的说明; (2) 先决条件; (3) 术语定义; (4) 不准做清单经验反馈说明; (5) 参考文件; (6) 用户反馈请求");
@@ -1845,7 +1845,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("改进执行组织事件根本原因分析的质量、数据收集和启动调查条件");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//OP3.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[OP3.6] 对组织事件的共因分析没有定期执行（不够频繁）或是共因分析质量差");
@@ -1952,7 +1952,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c16).as("test data").contains(" 共因培训");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//OP2.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[OP2.6] 在使用现场观察结果作为监督工具方面存在不足");
@@ -2317,7 +2317,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("培训");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//O5.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[O5.6] 设备性能管理方面的管理知识不足");
@@ -2415,7 +2415,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("改进垂直沟通方式");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//O4.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[O4.6] 向工作人员传达管理层期望和经验反馈方面存在不足");
@@ -2528,7 +2528,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("制定程序编写导则");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//O3.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[O3.6] 发展流程设计和改进能力方面存在不足: (1) 流程的失效模式与影响分析; (2) 功能设计; (3) 效率和可靠性优化; (4) 教学准备; (5) 流程试验和验证");
@@ -2646,7 +2646,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("改进监督组织结构");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		//Scroll down
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//O1.6 question
 		String q6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer6)).getText();
 		softly.assertThat(q6).as("test data").contains("[O1.6] 管理支持组织结构不足，例如: (1) 招聘结构不足; (2) 继任计划不足; (3) 培训或授权不足");
@@ -2734,7 +2734,7 @@ public class OPiRCAChinese {
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		//Scroll down
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAAddContributingFactorButton));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Chinese verification of contributing factor
 		String s = l.getText();
 		softly.assertThat(s).as("test data").isEqualTo("新增促成因素");
@@ -2774,11 +2774,11 @@ public class OPiRCAChinese {
 			//Click on answer
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
 			//Scroll to element
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 		}
 		//Scroll to top
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();    	  	
@@ -2931,7 +2931,7 @@ public class OPiRCAChinese {
 			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HiRCADropdownMenuPopup));
 			WebElement l = ele.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a"));
 			//Scroll to element
-			share.scrollToElement(driver, l);
+			share2.scrollToElement(driver, l);
 			//Click on option
 			l.click();
 			//Store selection name in list
@@ -2940,7 +2940,7 @@ public class OPiRCAChinese {
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Close the pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HiRCADropdownMenuCloseButton)).click();	
@@ -2979,12 +2979,12 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCATimelineOfEventField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCABackgroundInfoField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInvestigatorsField)).sendKeys(text);
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		Thread.sleep(2000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(2000);		
 	}
 

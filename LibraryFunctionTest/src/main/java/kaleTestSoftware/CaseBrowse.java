@@ -1,6 +1,8 @@
 package kaleTestSoftware;
 
 import java.awt.Robot;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
@@ -34,8 +36,10 @@ public class CaseBrowse {
 	public String caseEquipCSDev = "1985";
 	public String keywordEquipALDev = "QAA oil color";
 	public String keywordEquipCSDev = "QAACaseStudiesEquipment";
+	public String keywordEquipDevMK = "M/K";
 	public String keywordEquipALProd = "bolted flange";
 	public String keywordEquipGProd = "positive sequence";
+	public String keywordEquipProdLD = "L/D";
 	public String caseHumanColor = "Q1516";
 	public String caseEquipColor = "F1516";
 	public String caseHumanDev = "1459";
@@ -48,6 +52,7 @@ public class CaseBrowse {
 	public String caseEquipProdPercent = "1754";
 	public String caseElecProd = "1260";
 	public String caseMechProd = "1638";
+	public String caseEquipProdLD = "274";
 	public String keywordHumanDev = "test data";
 	public String keywordHumanDevSpcl = "test.1/1";
 	public String keywordHumanDevPercent = "Testpercentage%";
@@ -83,6 +88,43 @@ public class CaseBrowse {
 
 
 
+	public void caseSearchWithLD(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		List<String> keywordID = new ArrayList<String>();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			if(driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))
+			{
+				keywordID.add(keywordEquipProdLD);
+				keywordID.add(caseEquipProdLD);
+			}
+			else
+			{
+				keywordID.add(keywordEquipDevMK);
+				keywordID.add(caseEquipDev);
+			}
+		}
+		String keyword = keywordID.get(0);
+		String identifier = keywordID.get(1);
+		//Enters the term and check the search by enter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		//Waits for case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		Thread.sleep(2000);
+		//Checks for search method with dropdown
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
+		Thread.sleep(2000);
+		clickDropdownEquip(driver);
+		//Waits for case
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+	}
 
 	public void caseSearchEquipmentDatabank(WebDriver driver) throws Exception {
 
@@ -99,6 +141,9 @@ public class CaseBrowse {
 		{
 			searchWithTypeFilter(driver, keywordEquipALDev, keywordEquipCSDev, keywordEquipDev, obj.keywordPDDDev, obj.keywordEFDev, keywordElecDev, obj.caseEFDev, obj.casePDDDev, caseEquipColor1, caseEquipCSDev, caseEquipDev, caseElecDev);
 		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			caseSearchWithLD(driver);
 	}
 
 	public void searchWithTypeFilter(WebDriver driver, String keywordAL, String keywordCS, String keywordG, String keywordPDD, String keywordEF, String keywordFM, String caseEF, String casePDD, String caseAL, String caseCS, String caseG, String caseFM) throws Exception {
@@ -503,7 +548,7 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Scroll to case
 		WebElement l = driver.findElement(By.id("pii-collapsible-"+caseID));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on case collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+caseID))).click();
 		//Wait for loading message to disappear
@@ -612,7 +657,7 @@ public class CaseBrowse {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Scroll to case
 		WebElement l = driver.findElement(By.id("pii-collapsible-equip-"+caseID));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on case collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))).click();
 		//Wait for loading message to disappear
@@ -1435,7 +1480,7 @@ public class CaseBrowse {
 				if(i==3)
 					driver.findElement(By.xpath(image_xpath)).click();
 				//Clicks outside
-			/*	if(browserName.contains("chrome")==false)
+				/*	if(browserName.contains("chrome")==false)
 				{
 					if(i==4)
 					{

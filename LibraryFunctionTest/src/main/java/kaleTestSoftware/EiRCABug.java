@@ -17,7 +17,7 @@ public class EiRCABug {
 
 	EiRCA2 eirca2 = new EiRCA2();
 	EiRCA3 eirca3 = new EiRCA3();
-	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 
 	public String textFillBug = "EiRCA bug";
@@ -43,11 +43,11 @@ public class EiRCABug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventReviewerField)).sendKeys(text);
 		//Sponsor
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventSponsorField)).sendKeys(text);
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfInfoPage)).click();
 		//Scroll top
-		share.scrollToTop(driver);	
+		share2.scrollToTop(driver);	
 	}
 
 	public void addOneFailureModes(WebDriver driver) throws Exception {
@@ -104,7 +104,7 @@ public class EiRCABug {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
 		//Click on continue
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		Thread.sleep(1000);
 		//Click on Step 3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep3Tab)).click();
@@ -127,7 +127,7 @@ public class EiRCABug {
 		if(driver.findElement(eirca.Step4FailureMode1Option44TextBox).isDisplayed()==true)
 			softly.fail("Textbox for 4.4 is visible for FM 1");
 		//Click on collapsible for FM 1
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsible)).click();
 		Thread.sleep(500);
 		//Click on collapsible for FM 2
@@ -143,10 +143,10 @@ public class EiRCABug {
 		if(driver.findElement(eirca.Step4FailureMode2Option44TextBox).isDisplayed()==true)
 			softly.fail("Textbox for 4.4 is visible for FM 2");
 		//Click on collapsible for FM 2
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsibleFailureMode2)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsibleFailureMode2)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureCollapsibleFailureMode2)).click();
 		//scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verifyReportTab(WebDriver driver, String text) throws Exception {
@@ -191,7 +191,7 @@ public class EiRCABug {
 		WebDriverWait wait = new WebDriverWait(driver,30);		
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NewButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		Thread.sleep(2000);
 		//Fill info page and clicks next
 		EiRCAInfoPageFill(driver, textFillBug);
@@ -217,7 +217,7 @@ public class EiRCABug {
 			//Click on 3.1 for FM 1
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption31CheckBox)).click();
 			//Click on collapsible 2
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FailureCollapsibleFailureMode2)));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FailureCollapsibleFailureMode2)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FailureCollapsibleFailureMode2)).click();
 			//Click on 3.1 for FM 2
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableOption31CheckBoxFM2)).click();
@@ -232,7 +232,7 @@ public class EiRCABug {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();		
 		//Click on see report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.PopupCancelButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
 		//Verify the page is the Report tab
 		verifyReportTab(driver,textFillBug);
 	}
@@ -242,7 +242,7 @@ public class EiRCABug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NewButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		Thread.sleep(2000);
 		//Fill info page and clicks next
 		EiRCAInfoPageFill(driver, textFillBug);
@@ -258,7 +258,7 @@ public class EiRCABug {
 		eirca3.verify2ndEventTimeAndDate(driver, dateExpected, timeExpected, softly);		
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NewButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		Thread.sleep(2000);
 		//Fill info page and clicks next
 		EiRCAInfoPageFill(driver, textFillBug);
@@ -275,7 +275,7 @@ public class EiRCABug {
 		eirca3.verify2ndEventTimeAndDate(driver, date, timeChanged, softly);
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.NewButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		Thread.sleep(2000);
 		//Fill info page and clicks next
 		EiRCAInfoPageFill(driver, textFillBug);

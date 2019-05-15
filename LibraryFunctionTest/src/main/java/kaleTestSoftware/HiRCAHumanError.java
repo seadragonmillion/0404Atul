@@ -178,63 +178,63 @@ public class HiRCAHumanError {
 		int n=random.nextInt(m);
 		int y;
 		outer:
-		for (int i=1;i<=n;i++)
-		{
-			//Choose a number between 2 and m+1
-			while(true)
+			for (int i=1;i<=n;i++)
 			{
-				y=random.nextInt(m+1);
-				if(y==0||y==1)
-					continue;
-				if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset"))).getAttribute("class").contains("ui-state-disabled"))
+				//Choose a number between 2 and m+1
+				while(true)
 				{
-					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText().contains("3.16"))
+					y=random.nextInt(m+1);
+					if(y==0||y==1)
 						continue;
-				}
-				WebElement e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/input")));
-				if(e.isSelected())
-					continue outer;
-				break;
-			}
-			//Scroll to element
-			share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
-			//Click on a lop answer
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
-			Thread.sleep(500);
-			//Click on Evidence Entry
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
-			while (true)
-			{
-				if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea")).isDisplayed()==true)
+					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset"))).getAttribute("class").contains("ui-state-disabled"))
+					{
+						if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText().contains("3.16"))
+							continue;
+					}
+					WebElement e=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/input")));
+					if(e.isSelected())
+						continue outer;
 					break;
-				else
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click(); 
+				}
+				//Scroll to element
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+				//Click on a lop answer
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).click();
+				Thread.sleep(500);
+				//Click on Evidence Entry
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
+				while (true)
+				{
+					if(driver.findElement(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea")).isDisplayed()==true)
+						break;
+					else
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click(); 
+				}
+				//Evidence entry
+				String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-"+(y-2)+"']/h4/a"))).getText();
+				softly.assertThat(ev1).as("test data").contains("Evidence Entry");
+				//Evidence entry place holder
+				String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-"+(y-2)))).getAttribute("placeholder");
+				softly.assertThat(ph1).as("test data").contains("Fill in Evidence Entry (optional)");
+				//Fill in evidence entry text
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(obj.textEvidence(driver));
+				Thread.sleep(500);
+				//Click on Evidence Entry
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText();
+				lopOptions1.add(s);
 			}
-			//Evidence entry
-			String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-"+(y-2)+"']/h4/a"))).getText();
-			softly.assertThat(ev1).as("test data").contains("Evidence Entry");
-			//Evidence entry place holder
-			String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-evidence-text-"+(y-2)))).getAttribute("placeholder");
-			softly.assertThat(ph1).as("test data").contains("Fill in Evidence Entry (optional)");
-			//Fill in evidence entry text
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/div/textarea"))).sendKeys(obj.textEvidence(driver));
-			Thread.sleep(500);
-			//Click on Evidence Entry
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div[2]/div/h4/a"))).click();
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText();
-			lopOptions1.add(s);
-		}
 		//Add contributing factor
 		lopOptions1.add(obj.addContributingFactor(driver));
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		if(browserName.equals("chrome"))
-			share.scrollToTop(driver);	
+			share2.scrollToTop(driver);	
 		System.out.println(lopOptions1);
 		//Click next
 		//Scroll to element
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)).click();
 		return lopOptions1;
 	}
@@ -311,7 +311,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.12.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.12.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.12.3] Perceived burden to obtain and wear PPE");
 		//2nd collapsible for 3.12.3
@@ -337,7 +337,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.12.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.12.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.12.4] Perceived burden to work with an over-complex or burdensome procedure");
 		//2nd collapsible for 3.12.4
@@ -361,7 +361,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.12.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.12.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.12.5] Did not go into field and verify in field due to task being too burdensome");
 		//2nd collapsible for 3.12.5
@@ -384,7 +384,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c21).as("test data").contains("Add bypass control methods such as pictures to record physical field inspection");
 		//Click on 3rd collapsible for 3.12.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify313 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -453,7 +453,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.13.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.13.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.13.3] Completion of work sooner so that staff could start other jobs (especially for contractors who are paid based on number of tasks completed)");
 		//2nd collapsible for 3.13.3
@@ -477,7 +477,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.13.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.13.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.13.4] Completion of work sooner so that the staff could rest in a more comfortable environment (especially working at high temperature, radiation, or humid environment)");
 		//2nd collapsible for 3.13.4
@@ -503,7 +503,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.13.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify314 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -573,7 +573,7 @@ public class HiRCAHumanError {
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.14.3] The consequences of violations are perceived to be insignificant due to lack of a clear accountability system");
 		//2nd collapsible for 3.14.3
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 		softly.assertThat(c7).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.14.3
@@ -594,7 +594,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.14.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.14.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.14.4] Risk of injury due to violation is considered to be none or minimal");
 		//2nd collapsible for 3.14.4
@@ -618,7 +618,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.14.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.14.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.14.5] Feeling of low perceived risk due to peer observation (others are doing it the same way)");
 		//2nd collapsible for 3.14.5
@@ -646,7 +646,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.14.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify315 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -713,7 +713,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.15.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.15.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.15.3] Staff does not fully understand the behavior standards");
 		//2nd collapsible for 3.15.3
@@ -741,7 +741,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.15.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.18.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.15.4] Supervisors do not reinforce peer coaching in the field");
 		//2nd collapsible for 3.15.4
@@ -766,7 +766,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c15).as("test data").contains("Accountability of supervisory reinforcement by the management");
 		//Click on 3rd collapsible for 3.15.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify316 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -774,209 +774,209 @@ public class HiRCAHumanError {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		try{
-		//question
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();
-		softly.assertThat(heading).as("test data").contains("Contributing factor for inattention-to-detail");
-		//text under description 
-		String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
-		softly.assertThat(textD).as("test data").contains("If not applicable, click \"skip\". User can also add new contributing factor at the end of the page.");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//Description text
-		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-		softly.assertThat(desc).as("test data").contains("Inattention-to-detail is an error-prone behavior. It is characterized by errors resulting from not paying full attention to the task at hand. One or more error-prone mental states can cause inattention-to-detail errors. These five error-prone mental states are (1) existing drowsiness (2) distractions and preoccupation, (3) overconfidence, (4) time pressure, and (5) attention bank and span insufficiency.");
-		//Click on Description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
-		//3.16.1 question
-		String q341 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();
-		softly.assertThat(q341).as("test data").contains("[3.16.1] Drowsiness: (1) Occurs at about 3-4 am; (2) Occurs at about 2-3 pm; (3) Long working hours");
-		//2nd collapsible for 3.16.1
-		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c1).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.1
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c2).as("test data").contains("Examine past events");
-		//Click on 2nd collapsible for 3.16.1
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.1
-		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c10).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.1
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c3).as("test data").contains("Rest break management");
-		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-		softly.assertThat(c26).as("test data").contains("Error-Free® behavior training (BEDS");
-		//Click on 3rd collapsible for 3.16.1
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.16.2 question
-		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
-		softly.assertThat(q342).as("test data").contains("[3.16.2] Distractions: (1) Multi-tasking; (2) Interruption; (3) Preoccupation");
-		//2nd collapsible for 3.16.2
-		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c4).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.2
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c5).as("test data").contains("Interview the error-maker");
-		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-		softly.assertThat(c22).as("test data").contains("Interview co-workers");
-		//Click on 2nd collapsible for 3.16.2
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.2
-		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c11).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.2
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c6).as("test data").contains("Error-Free® behavior training (MIND");
-		//Click on 3rd collapsible for 3.16.2
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.16.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
-		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
-		softly.assertThat(q343).as("test data").contains("[3.16.3] Overconfidence: (1) First-time evolution without seeking adequate help; (2) Routine work without noticing small changes and new situations; (3) Tedious work without periodic self-check (such as data entry); (4) Using information or data without QV&V℠; (5) Failure to check for SPV(s) and perform self-checks on SPV(s) found; (6) Recalling steps by operating from memory (working without procedure at hand)");
-		//2nd collapsible for 3.16.3
-		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c7).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.3
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c8).as("test data").contains("Interview the error-maker");
-		//Click on 2nd collapsible for 3.16.3
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.3
-		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c12).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.3
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c9).as("test data").contains("SPV and FTE discussions at PJB, MJB, TO, or PSM");
-		String c36 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-		softly.assertThat(c36).as("test data").contains("Error-Free® behavior training");
-		//Click on 3rd collapsible for 3.16.3
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.16.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
-		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
-		softly.assertThat(q344).as("test data").contains("[3.16.4] Time pressure: Rushing to complete job");
-		//2nd collapsible for 3.16.4
-		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c13).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.4
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c14).as("test data").contains("Field observation");
-		String c38 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-		softly.assertThat(c38).as("test data").contains("Interview co-workers");
-		//Click on 2nd collapsible for 3.16.4
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.4
-		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c16).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.4
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c17).as("test data").contains("Error-Free® behavior training (PRSM");
-		String c37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-		softly.assertThat(c37).as("test data").contains("Improvement in scheduling and planning system");
-		//Click on 3rd collapsible for 3.16.4
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//Scroll to the end
-		//share.scrollToAPoint(driver, 1500);
-		//3.16.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
-		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
-		softly.assertThat(q345).as("test data").contains("[3.16.5] Attention bank and span insufficiency: 1. working without break > 140 minutes; 2. Work around 10am; 3. Work over 10 hours");
-		//2nd collapsible for 3.16.5
-		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c18).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.5
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c19).as("test data").contains("Field observation");
-		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
-		softly.assertThat(c23).as("test data").contains("Interview co-workers");
-		//Click on 2nd collapsible for 3.16.5
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.5
-		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c20).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.5
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c21).as("test data").contains("Taking appropriate rest breaks");
-		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-		softly.assertThat(c24).as("test data").contains("Minimizing distractions");
-		//Click on 3rd collapsible for 3.16.5
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.16.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
-		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
-		softly.assertThat(q396).as("test data").contains("[3.16.6] Inadequate rules to develop skills");
-		//2nd collapsible for 3.16.6
-		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c15).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.6
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c28).as("test data").contains("Review the original rules");
-		//Click on 2nd collapsible for 3.16.6
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.6
-		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c30).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.6
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c31).as("test data").contains("Retaining of right skills");
-		//Click on 3rd collapsible for 3.16.6
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		//3.16.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
-		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-6']"))).getText();
-		softly.assertThat(q367).as("test data").contains("[3.16.7] Inadequate knowledge to select right skills to apply");
-		//2nd collapsible for 3.16.7
-		String c41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
-		softly.assertThat(c41).as("test data").contains("Further Investigation");
-		//Click on 2nd collapsible for 3.16.7
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))));
-		//text inside
-		String c42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
-		softly.assertThat(c42).as("test data").contains("Interview error maker");
-		//Click on 2nd collapsible for 3.16.7
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		//3rd collapsible 3.16.7
-		String c44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
-		softly.assertThat(c44).as("test data").contains("Possible Corrective Action(s)");
-		//Click on 3rd collapsible for 3.16.7
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))));
-		//text inside
-		String c45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
-		softly.assertThat(c45).as("test data").contains("Training in selection of skills");
-		String c34 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
-		softly.assertThat(c34).as("test data").contains("Elimination of selection options through specific rules");
-		//Click on 3rd collapsible for 3.16.7
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//question
+			String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();
+			softly.assertThat(heading).as("test data").contains("Contributing factor for inattention-to-detail");
+			//text under description 
+			String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
+			softly.assertThat(textD).as("test data").contains("If not applicable, click \"skip\". User can also add new contributing factor at the end of the page.");
+			//Click on Description
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			//Description text
+			String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
+			softly.assertThat(desc).as("test data").contains("Inattention-to-detail is an error-prone behavior. It is characterized by errors resulting from not paying full attention to the task at hand. One or more error-prone mental states can cause inattention-to-detail errors. These five error-prone mental states are (1) existing drowsiness (2) distractions and preoccupation, (3) overconfidence, (4) time pressure, and (5) attention bank and span insufficiency.");
+			//Click on Description
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
+			//3.16.1 question
+			String q341 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();
+			softly.assertThat(q341).as("test data").contains("[3.16.1] Drowsiness: (1) Occurs at about 3-4 am; (2) Occurs at about 2-3 pm; (3) Long working hours");
+			//2nd collapsible for 3.16.1
+			String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c1).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.1
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c2).as("test data").contains("Examine past events");
+			//Click on 2nd collapsible for 3.16.1
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.1
+			String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c10).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.1
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c3).as("test data").contains("Rest break management");
+			String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+			softly.assertThat(c26).as("test data").contains("Error-Free® behavior training (BEDS");
+			//Click on 3rd collapsible for 3.16.1
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//3.16.2 question
+			String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
+			softly.assertThat(q342).as("test data").contains("[3.16.2] Distractions: (1) Multi-tasking; (2) Interruption; (3) Preoccupation");
+			//2nd collapsible for 3.16.2
+			String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c4).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.2
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c5).as("test data").contains("Interview the error-maker");
+			String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+			softly.assertThat(c22).as("test data").contains("Interview co-workers");
+			//Click on 2nd collapsible for 3.16.2
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.2
+			String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c11).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.2
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c6).as("test data").contains("Error-Free® behavior training (MIND");
+			//Click on 3rd collapsible for 3.16.2
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//3.16.3 question
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+			String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
+			softly.assertThat(q343).as("test data").contains("[3.16.3] Overconfidence: (1) First-time evolution without seeking adequate help; (2) Routine work without noticing small changes and new situations; (3) Tedious work without periodic self-check (such as data entry); (4) Using information or data without QV&V℠; (5) Failure to check for SPV(s) and perform self-checks on SPV(s) found; (6) Recalling steps by operating from memory (working without procedure at hand)");
+			//2nd collapsible for 3.16.3
+			String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c7).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.3
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c8).as("test data").contains("Interview the error-maker");
+			//Click on 2nd collapsible for 3.16.3
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.3
+			String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c12).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.3
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c9).as("test data").contains("SPV and FTE discussions at PJB, MJB, TO, or PSM");
+			String c36 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+			softly.assertThat(c36).as("test data").contains("Error-Free® behavior training");
+			//Click on 3rd collapsible for 3.16.3
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//3.16.4 question
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+			String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
+			softly.assertThat(q344).as("test data").contains("[3.16.4] Time pressure: Rushing to complete job");
+			//2nd collapsible for 3.16.4
+			String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c13).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.4
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c14).as("test data").contains("Field observation");
+			String c38 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+			softly.assertThat(c38).as("test data").contains("Interview co-workers");
+			//Click on 2nd collapsible for 3.16.4
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.4
+			String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c16).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.4
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c17).as("test data").contains("Error-Free® behavior training (PRSM");
+			String c37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+			softly.assertThat(c37).as("test data").contains("Improvement in scheduling and planning system");
+			//Click on 3rd collapsible for 3.16.4
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//Scroll to the end
+			//share2.scrollToAPoint(driver, 1500);
+			//3.16.5 question
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+			String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
+			softly.assertThat(q345).as("test data").contains("[3.16.5] Attention bank and span insufficiency: 1. working without break > 140 minutes; 2. Work around 10am; 3. Work over 10 hours");
+			//2nd collapsible for 3.16.5
+			String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c18).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.5
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c19).as("test data").contains("Field observation");
+			String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
+			softly.assertThat(c23).as("test data").contains("Interview co-workers");
+			//Click on 2nd collapsible for 3.16.5
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.5
+			String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c20).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.5
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c21).as("test data").contains("Taking appropriate rest breaks");
+			String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+			softly.assertThat(c24).as("test data").contains("Minimizing distractions");
+			//Click on 3rd collapsible for 3.16.5
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//3.16.6 question
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+			String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
+			softly.assertThat(q396).as("test data").contains("[3.16.6] Inadequate rules to develop skills");
+			//2nd collapsible for 3.16.6
+			String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c15).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.6
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c28).as("test data").contains("Review the original rules");
+			//Click on 2nd collapsible for 3.16.6
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.6
+			String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c30).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.6
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c31).as("test data").contains("Retaining of right skills");
+			//Click on 3rd collapsible for 3.16.6
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+			//3.16.7 question
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+			String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-6']"))).getText();
+			softly.assertThat(q367).as("test data").contains("[3.16.7] Inadequate knowledge to select right skills to apply");
+			//2nd collapsible for 3.16.7
+			String c41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+			softly.assertThat(c41).as("test data").contains("Further Investigation");
+			//Click on 2nd collapsible for 3.16.7
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))));
+			//text inside
+			String c42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+			softly.assertThat(c42).as("test data").contains("Interview error maker");
+			//Click on 2nd collapsible for 3.16.7
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+			//3rd collapsible 3.16.7
+			String c44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
+			softly.assertThat(c44).as("test data").contains("Possible Corrective Action(s)");
+			//Click on 3rd collapsible for 3.16.7
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))));
+			//text inside
+			String c45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
+			softly.assertThat(c45).as("test data").contains("Training in selection of skills");
+			String c34 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
+			softly.assertThat(c34).as("test data").contains("Elimination of selection options through specific rules");
+			//Click on 3rd collapsible for 3.16.7
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		}catch(org.openqa.selenium.WebDriverException r)
 		{
-			
+
 		}
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify36 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -1055,7 +1055,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.6.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.6.3] Omission of assumptions to be called out in program(s)");
 		//2nd collapsible for 3.6.3
@@ -1085,7 +1085,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.6.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.6.4] Omission of scope in program(s)");
 		//2nd collapsible for 3.6.4
@@ -1115,7 +1115,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.6.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.6.5] Omission of testing or measurements in program validation");
 		//2nd collapsible for 3.6.5
@@ -1141,9 +1141,9 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		//share.scrollToAPoint(driver, 1200);
+		//share2.scrollToAPoint(driver, 1200);
 		//3.6.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.6.6] Missing sections in: (1) Description of purpose; (2) Description of prerequisite; (3) Description of terminology; (4) Description of lessons learned in not-to-do lists; (5) References; (6) Request feedback from users");
 		//2nd collapsible for 3.6.6
@@ -1171,7 +1171,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.6.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-6']"))).getText();
 		softly.assertThat(q367).as("test data").contains("[3.6.7] Omission of elements in programs due to inadequate review");
 		//2nd collapsible for 3.6.7
@@ -1197,7 +1197,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.6.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-7']"))).getText();		
 		softly.assertThat(q368).as("test data").contains("[3.6.8] Omission of elements in programs due to inadequate previous root cause analysis");
 		//2nd collapsible for 3.6.8
@@ -1223,7 +1223,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.6.9 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-8']"))).getText();
 		softly.assertThat(q369).as("test data").contains("[3.6.9] Omission of elements in programs due to corrective action not carried out");
 		//2nd collapsible for 3.6.9
@@ -1249,7 +1249,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.6.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify38 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -1322,7 +1322,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.8.3] Requirement of judgment to execute procedure steps");
 		//2nd collapsible for 3.8.3
@@ -1348,7 +1348,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.8.4] Interfaces with other procedures not clearly defined");
 		//2nd collapsible for 3.8.4
@@ -1374,7 +1374,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.8.5] Inadequate readability (i.e., greater than 8th grade reading level)");
 		//2nd collapsible for 3.8.5
@@ -1400,9 +1400,9 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		//share.scrollToAPoint(driver, 1200);
+		//share2.scrollToAPoint(driver, 1200);
 		//3.8.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.8.6] Unclear and inconsistent equipment labeling and identification between equipment and procedure");
 		//2nd collapsible for 3.8.6
@@ -1426,7 +1426,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-6']"))).getText();
 		softly.assertThat(q367).as("test data").contains("[3.8.7] Time sensitive steps not called out");
 		//2nd collapsible for 3.8.7
@@ -1450,7 +1450,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.8.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-7']"))).getText();
 		softly.assertThat(q368).as("test data").contains("[3.8.8] Measurement units are not clarified or quantified");
 		//2nd collapsible for 3.8.8
@@ -1474,7 +1474,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.8.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify37 (WebDriver driver,SoftAssertions softly) throws Exception {
@@ -1549,7 +1549,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.7.3] Point-of-no-return (PNR) steps not identified (to provide with review) to ensure past errors are corrected before proceeding");
 		//2nd collapsible for 3.7.3
@@ -1577,7 +1577,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();		
 		softly.assertThat(q344).as("test data").contains("[3.7.4] Place holding \"checks\" not used to prevent skipping steps or pages");
 		//2nd collapsible for 3.7.4
@@ -1605,7 +1605,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.7.5] Likely noncompliance situations not analyzed and mitigated (through symptom verification, over-check, not-to-do warnings, etc.)");
 		//2nd collapsible for 3.7.5
@@ -1633,9 +1633,9 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the end
-		//share.scrollToAPoint(driver, 1200);
+		//share2.scrollToAPoint(driver, 1200);
 		//3.7.6 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-5']"))).getText();
 		softly.assertThat(q396).as("test data").contains("[3.7.6] Lack of job-site reminders to prevent inattention-to-detail errors for routine work");
 		//2nd collapsible for 3.7.6
@@ -1663,7 +1663,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.7 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-6']"))).getText();
 		softly.assertThat(q367).as("test data").contains("[3.7.7] Lack of checklists to prevent forgetting-related errors");
 		//2nd collapsible for 3.7.7
@@ -1691,7 +1691,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.8 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-7']"))).getText();
 		softly.assertThat(q368).as("test data").contains("[3.7.8] Inadequate positive peer pressure amongst employees to encourage and reinforce compliant behavior standards");
 		//2nd collapsible for 3.7.8
@@ -1719,7 +1719,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.9 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-8']"))).getText();
 		softly.assertThat(q369).as("test data").contains("[3.7.9] Inadequate review");
 		//2nd collapsible for 3.7.9
@@ -1747,7 +1747,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.7.10 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer10)));
 		String q3691 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-9']"))).getText();
 		softly.assertThat(q3691).as("test data").contains("[3.7.10] Inadequate maintenance: (1) Inadequate predictive maintenance; (2) Inadequate preventive maintenance; (3) Inadequate corrective maintenance; (4) Inadequate post-maintenance testing; (5) Inadequate troubleshooting and RCA; and (6) Maintenance errors");
 		//2nd collapsible for 3.7.10
@@ -1775,7 +1775,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.7.10
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//Scroll to the top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify318 (WebDriver driver) throws Exception {
@@ -1848,7 +1848,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.18.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.18.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.18.3] Out of sight, out of mind (OOS/OOM): (1) Inadequate risk control of low probability/high risk events; (2) Ignoring issues not relating to performance indicators or incentives; (3) missing LOP due to overlooking associated risks");
 		//2nd collapsible for 3.18.3
@@ -1871,12 +1871,17 @@ public class HiRCAHumanError {
 		//text inside
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();		
 		softly.assertThat(c9).as("test data").contains("Improvement of risk control program (FUSE");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String fuse_abbr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]/abbr"))).getAttribute("globtitle");
+			softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");
+		}
 		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
 		softly.assertThat(c26).as("test data").contains("Improvement of performance monitoring & trending system");
 		//Click on 3rd collapsible for 3.18.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.18.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
 		softly.assertThat(q344).as("test data").contains("[3.18.4] Sunk-cost bias: (1) Defending past incorrect decisions or indecisions due to complacency and/or ignorance; (2) Expecting different results by repeating same problematic practices, standards, or strategies");
 		//2nd collapsible for 3.18.4
@@ -1900,7 +1905,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.18.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.18.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.18.5] Two-option bias: Inadequate decision, problem solving, or planning to ensure multiple options are analyzed");
 		//2nd collapsible for 3.18.5
@@ -1923,7 +1928,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c21).as("test data").contains("Enhancing decision making, problem solving, and planning structure (committees) and process");
 		//Click on 3rd collapsible for 3.18.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void verify34 (WebDriver driver) throws Exception {
@@ -1990,7 +1995,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.4.2
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.4.3 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
 		softly.assertThat(q343).as("test data").contains("[3.4.3] Not thinking about high risk situations (such as SPVs) before actions");
 		//2nd collapsible for 3.4.3
@@ -2014,7 +2019,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.4.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.4.4 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();		
 		softly.assertThat(q344).as("test data").contains("[3.4.4] Inadequate questioning when confused");
 		//2nd collapsible for 3.4.4
@@ -2040,7 +2045,7 @@ public class HiRCAHumanError {
 		//Click on 3rd collapsible for 3.4.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
 		//3.4.5 question
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q345).as("test data").contains("[3.4.5] Inadequate questioning to prepare for tasks");
 		//2nd collapsible for 3.4.5
@@ -2063,7 +2068,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c21).as("test data").contains("Training in critical thinking and questioning");
 		//Click on 3rd collapsible for 3.4.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void pathHiRCA(WebDriver driver, String username) throws Exception {
@@ -2085,7 +2090,7 @@ public class HiRCAHumanError {
 		//Go to hirca and fill mandatory details on event info
 		obj1.fillUpHiRCAEventInfo(driver,obj4.text(driver));		
 		//Scroll up
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Verify text on 1.1
 		stepOneq11(driver);
 		//Enter reason entry
@@ -2572,7 +2577,7 @@ public class HiRCAHumanError {
 		//Verify selections made in Step 3/4/5 and report
 		obj2.verifySelections(driver, level3, softly, username, obj4.text(driver),hircaNoteLopSURE,hircaNoteLopStep4);	
 	}
-	
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

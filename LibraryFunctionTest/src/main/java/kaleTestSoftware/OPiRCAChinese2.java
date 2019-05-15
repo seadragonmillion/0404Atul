@@ -16,6 +16,7 @@ public class OPiRCAChinese2 {
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	HiRCAChinese8 hc8 = new HiRCAChinese8();
 	ShareCheck share = new ShareCheck();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public void downloadReport(WebDriver driver, List <String> verifyChinese, SoftAssertions softly) throws Exception{
 
@@ -2223,19 +2224,19 @@ public class OPiRCAChinese2 {
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		//Scroll down
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow1HighBox));
-		share.scrollToElement(driver,l);
+		share2.scrollToElement(driver,l);
 		//H on 1st root cause
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow1HighBox)).click();   
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow4MediumBox));
-		share.scrollToElement(driver,l);
+		share2.scrollToElement(driver,l);
 		//M on 1st contributing factor
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow4MediumBox)).click();
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow6LowBox));
-		share.scrollToElement(driver,l);
+		share2.scrollToElement(driver,l);
 		//L on 2nd contributing factor
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow6LowBox)).click();
 		//Scroll to top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 	}
 
 	public void chineseStep4(WebDriver driver, SoftAssertions softly) throws Exception{

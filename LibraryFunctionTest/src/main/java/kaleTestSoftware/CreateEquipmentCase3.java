@@ -3,6 +3,7 @@ package kaleTestSoftware;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -26,6 +27,102 @@ public class CreateEquipmentCase3 {
 	ShareCheck share = new ShareCheck();
 	CaseBrowsePageObj cb = new CaseBrowsePageObj();
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
+	
+	public void verifyPaddingOnRelatedLinksSlide(WebDriver driver, SoftAssertions softly, By locator) throws Exception {
+
+		//Get css value padding-right
+		String paddingRight = driver.findElement(locator).getCssValue("padding-right");
+		softly.assertThat(paddingRight).as("test data").isEqualTo("50px");
+		//Get css value padding-left
+		String paddingLeft = driver.findElement(locator).getCssValue("padding-left");
+		softly.assertThat(paddingLeft).as("test data").isEqualTo("60px");
+		System.out.println("***"+paddingRight+"***");
+		System.out.println("***"+paddingLeft+"***");
+	}
+	
+	public void selectFields(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if (browserName.contains("internet")==true)
+		{
+			if (v.startsWith("10")==true)
+			{
+				//Fields
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).sendKeys(Keys.ENTER);
+			}
+			if (v.startsWith("11")==true)
+			{
+				//Fields
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).click();
+			}
+		}
+		else{
+			//Fields
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseFields)).click();
+		}
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxFields));	
+		//Verify fields list
+		verifyFieldsList(driver, softly);
+		//Choose a number between 1 and 5 for number of Fields
+		Random random = new Random ();
+		int x;
+		//Choose a number between 1 and 5
+		while(true)
+		{
+			x = random.nextInt(6);
+			if(x==0)
+				continue;
+			break;
+		}
+		if(x==1)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsAuto)).click();			
+		}
+		if(x==2)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsNuclear)).click();				
+		}
+		if(x==3)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsOther)).click();			
+		}
+		if(x==4)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsPharmaceutical)).click();			
+		}
+		if(x==5)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsWelding)).click();			
+		}
+		try{
+			driver.findElement(equipObj.ListCrossSymbol).click();
+		}catch (NoSuchElementException | ElementNotInteractableException e)
+		{
+			driver.findElement(equipObj.EquipListBoxFieldsCrossSymbol).click();
+		}
+	}
+	
+	public void verifyFieldsList(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verifies that list contains the required options
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsAuto)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Auto");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsNuclear)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Nuclear");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsOther)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Other");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsPharmaceutical)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Pharmaceutical");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListFieldsWelding)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Welding");
+	}
 
 	public void clickTypesDisciplineIE(WebDriver driver, By element) throws Exception {
 
@@ -163,7 +260,7 @@ public class CreateEquipmentCase3 {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//CLick on enter case id
 		try{
@@ -171,7 +268,7 @@ public class CreateEquipmentCase3 {
 		}catch(org.openqa.selenium.WebDriverException t)
 		{
 			Thread.sleep(1000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
 		}
 		Thread.sleep(2000);
@@ -180,7 +277,7 @@ public class CreateEquipmentCase3 {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
@@ -199,7 +296,7 @@ public class CreateEquipmentCase3 {
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 		share2.loadingServer(driver);
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 		if(browserName.contains("safari")||browserName.contains("firefox"))
 		{
 			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
@@ -217,21 +314,21 @@ public class CreateEquipmentCase3 {
 					System.out.println(s);
 					if(s.contains(keyword_same))
 					{
-						share.scrollToAPoint(driver, 2000);
+						share2.scrollToAPoint(driver, 2000);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
 					}
 					else{
-						share.scrollToAPoint(driver, 2000);
+						share2.scrollToAPoint(driver, 2000);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
-						share.scrollToAPoint(driver, 2000);
+						share2.scrollToAPoint(driver, 2000);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
 					}
 				}
 			}
 		}
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
@@ -241,7 +338,7 @@ public class CreateEquipmentCase3 {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Error free bank
 		try
@@ -256,7 +353,7 @@ public class CreateEquipmentCase3 {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Scroll top
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
 		//Verify all errors

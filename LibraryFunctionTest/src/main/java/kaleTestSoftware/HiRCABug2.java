@@ -30,7 +30,7 @@ public class HiRCABug2 {
 		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
 		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
-		share.scrollToElement(driver, driver.findElement(By.id(id)));
+		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
@@ -51,13 +51,13 @@ public class HiRCABug2 {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
-		share.scrollToElement(driver, driver.findElement(By.id(id)));
+		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		jse.executeScript("arguments[0].click();", driver.findElement(By.id(id)));
 		//driver.findElement(By.id(id)).click();
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		Thread.sleep(2000);
 		Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 		p.waitFor();
@@ -77,12 +77,12 @@ public class HiRCABug2 {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
-		share.scrollToElement(driver, driver.findElement(By.id(id)));
+		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		jse.executeScript("return document.getElementById('"+file+"').click();");
 		Thread.sleep(8000);
 		try {
@@ -110,12 +110,12 @@ public class HiRCABug2 {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
-		share.scrollToElement(driver, driver.findElement(By.id(id)));
+		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		jse.executeScript("return document.getElementById('"+file+"').click();");
 		Thread.sleep(2000);
 		try {
@@ -164,13 +164,13 @@ public class HiRCABug2 {
 		uploadImage(driver);
 		//Click on add supporting file
 		WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
-		share.scrollToElement(driver, add);
+		share2.scrollToElement(driver, add);
 		add.click();
 		//save hirca report and open report
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		hircaL2.saveHiRCAReport(driver);
 		//Scroll down
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))));
 		//Click on collapsible of image
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))).click();
 		//Wait for loading message to disappear
@@ -183,7 +183,7 @@ public class HiRCABug2 {
 		{
 			
 		}*/
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Delete report
 		hircaL1.deleteReport(driver);
 	}

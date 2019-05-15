@@ -279,4 +279,16 @@ public class HiRCA2 {
 		//Verify the language as chinese in test		
 		share2.loadingServer(driver);
 	}	
+	
+	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verify the popup
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getText();
+		softly.assertThat(s).as("test data").contains("‑");
+		System.out.println(s);
+		String overflow = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getCssValue("word-wrap");
+		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
+		System.out.println(overflow);
+	}
 }

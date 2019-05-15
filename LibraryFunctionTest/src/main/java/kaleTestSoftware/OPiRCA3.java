@@ -23,6 +23,36 @@ public class OPiRCA3 {
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
 	
+	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click on open button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
+		//Click on Info tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)).click();
+		//Enter a very long name in Event title
+		driver.findElement(opirca.OPiRCAEventTitleField).clear();
+		driver.findElement(opirca.OPiRCAEventTitleField).sendKeys("Really long text which will make the report name o overflow out of the popup");
+		//click on save
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
+		//Verify the popup
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAPopupNote)).getText();
+		softly.assertThat(s).as("test data").contains("‑");
+		System.out.println(s);
+		String overflow = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAPopupNote)).getCssValue("word-wrap");
+		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
+		System.out.println(overflow);
+		//Click on cancel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveCancelButton)).click();
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
+		share2.loadingServer(driver);
+		//Click on first record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();		
+		share2.loadingServer(driver);
+	}
+	
 	public List<String> modifyList(List<String> apparentCausesAnswers)  throws Exception{
 
 		List<String> ac = new ArrayList<String>();
@@ -112,7 +142,7 @@ public class OPiRCA3 {
 				//Click on answer
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div/label")));
 				//Scroll to element
-				share.scrollToElement(driver, l);
+				share2.scrollToElement(driver, l);
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
 				executor.executeScript("arguments[0].click();",l);
 				//Get answer name and store in list
@@ -204,12 +234,12 @@ public class OPiRCA3 {
 		//Click on answer
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAAddContributingFactorButton));
 		//Scroll to element
-		share.scrollToElement(driver, l);
+		share2.scrollToElement(driver, l);
 		//Click on add new contributing factor
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", l);
 		//Enter contributing factor
-		share.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField)));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField)));
 		String sendKeys1 = ("contributing factor");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField)).sendKeys(sendKeys1);
 		Thread.sleep(1000);
@@ -255,7 +285,7 @@ public class OPiRCA3 {
 			ac.add(s);
 			//Scroll to top
 			Thread.sleep(2000);
-			share.scrollToTop(driver);
+			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Click on next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();

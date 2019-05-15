@@ -62,11 +62,14 @@ public class RemoteVerification {
 
 	SoftAssertions softly = new SoftAssertions();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
+	RemoteVerification3 rv3 = new RemoteVerification3();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	LoginPageObj lpo = new LoginPageObj();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
+	
+	public String testBugEmail = "testverifierusemail@gmail.com";
 
 
 	public void checkStatusReport (WebDriver driver, String username, int k) throws Exception {
@@ -98,6 +101,9 @@ public class RemoteVerification {
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
+		//Verify the report rename popup overflow text
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			rv3.verifySavePopupAfterRename(driver, softly);
 		//Clicks on Save and Send
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -174,7 +180,8 @@ public class RemoteVerification {
 		//us nonadmin
 		if(k==10)
 		{
-			return obj.emailUS;
+			//return obj.emailUS;
+			return testBugEmail;
 		}
 		//us admin ie11
 		if(k==11)
@@ -252,10 +259,13 @@ public class RemoteVerification {
 			System.out.println("Mail Subject:- " + messages1[i].getSubject());
 			System.out.println("From: " + message1.getFrom());
 			System.out.println("Text: " + message1.getContent().toString());
+			System.out.println("Date of email: " + message1.getReceivedDate());
 			sb = new StringBuffer( message1.getContent().toString());
 		}
+		System.out.println("**********************************************************************************************************************");
+		System.out.println(messages1[messageCount1 -1].getReceivedDate());
 		String emailText=sb.toString();
-		System.out.println("\n ******** \n"+emailText+"\n ******** \n");
+		System.out.println(emailText);
 		//Verify content of email
 		softly.assertThat(emailText).as("test data").contains(username);        
 		//Modify reportname
@@ -266,6 +276,7 @@ public class RemoteVerification {
 		System.out.println(s2);
 		softly.assertThat(emailText).as("test data").contains(s2);
 	}
+	
 	public void upload1stpictureSafari(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
@@ -709,7 +720,7 @@ public class RemoteVerification {
 			driver.findElement(rv.RVVerifierField).sendKeys("qaausie11rvverifiernonadmin");
 		}
 		//Selects the remote verifier		
-		share.scrollToAPoint(driver, 1500);
+		share2.scrollToAPoint(driver, 1500);
 		WebElement select = driver.findElement(rv.RVVerifierDropdown);
 		WebElement option=select.findElement(eirca.FirstSelectionUnderDropdown);		
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -1397,12 +1408,12 @@ public class RemoteVerification {
 		//Uploads picture 2
 		upload2ndPicture(driver);
 		//*
-		share.scrollToAPoint(driver, 250);
+		share2.scrollToAPoint(driver, 250);
 		Thread.sleep(3000);
 		//Uploads picture 1
 		upload1stPicture(driver);
 		//*
-		share.scrollToTop(driver);
+		share2.scrollToTop(driver);
 		//Verifies Date and time
 		verifyDateTime(driver);
 		//Verifies location of office

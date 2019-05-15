@@ -75,7 +75,7 @@ public class HiRCAChinese {
 		//Gets value of department
 		String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 		System.out.println(get_dept);
-		share.scrollToAPoint(driver, 6500);
+		share2.scrollToAPoint(driver, 6500);
 		//Clicks on next
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
