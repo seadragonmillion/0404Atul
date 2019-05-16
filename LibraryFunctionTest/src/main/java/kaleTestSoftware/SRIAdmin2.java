@@ -49,6 +49,25 @@ public class SRIAdmin2 {
 	public String electricalFSIConclusion2 = "Electrical Conclusion 2";
 	public String electricalFSIConclusion3 = "Electrical Conclusion 3";
 
+	public void verifyBaselineText(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Verify the explanation
+		String msg1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselineMessageLine2)).getText().trim();
+		softly.assertThat(msg1).as("test data").isEqualTo("Incipient Failure Stage 1: Between OP (Normal Operation) limit and IFS1 limit");
+		String msg2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselineMessageLine3)).getText().trim();
+		softly.assertThat(msg2).as("test data").isEqualTo("Incipient Failure Stage 2: Above IFS1 limit and upto IFS2 limit");
+		String msg3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselineMessageLine4)).getText().trim();
+		softly.assertThat(msg3).as("test data").isEqualTo("Incipient Failure Stage 3: Above IFS2 limit");
+		//Verify the label
+		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselienOPLimitLabel)).getText().trim();
+		softly.assertThat(label1).as("test data").isEqualTo("OP limit:");
+		String label2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselienIFS1LimitLabel)).getText().trim();
+		softly.assertThat(label2).as("test data").isEqualTo("IFS1 limit:");
+		String label3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselienIFS2LimitLabel)).getText().trim();
+		softly.assertThat(label3).as("test data").isEqualTo("IFS2 limit:");
+	}
+
 	public void verifyBaselineAdded(WebDriver driver, int mechOrElec, String component, String measurement, String unit, String fs1, String fs2, String fs3, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -118,8 +137,79 @@ public class SRIAdmin2 {
 		softly.assertThat(fs1Value).as("test data").isEqualTo(fs1);
 		softly.assertThat(fs2Value).as("test data").isEqualTo(fs2);
 		softly.assertThat(fs3Value).as("test data").isEqualTo(fs3);
+		verifyBaselineText(driver,softly);
 	}
 
+	public void changeConclusion(WebDriver driver, String component, String measurement) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Click on SRI conclusion tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
+		try{
+			if(driver.findElement(sri.SRIAdminConclusionTabMechanicalDropdown).isDisplayed()==false)
+			{
+				//Click on SRI side link
+				wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISideLink)).click();
+				//Click on SRI conclusion tab
+				wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
+			}
+		}catch(org.openqa.selenium.NoSuchElementException r)
+		{
+			//Click on SRI side link
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISideLink)).click();
+			//Click on SRI conclusion tab
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
+		}
+		Thread.sleep(500);
+		//Select mechanical component
+			try{
+				WebElement element = driver.findElement(sri.SRIAdminConclusionTabMechanicalDropdown);
+				Select s = new Select (element);
+				s.selectByVisibleText(component);	
+			}catch(org.openqa.selenium.NoSuchElementException r)
+			{
+				
+			}
+		Thread.sleep(500);
+		//Select measurement
+		WebElement element = driver.findElement(sri.SRIAdminConclusionTabMeasurementDropdown);
+		Select s = new Select (element);
+		s.selectByVisibleText(measurement);	
+		Thread.sleep(500);
+		//Delete all conclusions under the component+measurement combination
+		int count=1;
+		while(true)
+		{
+			try{
+				driver.findElement(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]"));
+				String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[2]/div/div/span"))).getText();
+				if(measurementName.equals(measurement))
+				{
+					//change conclusion
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[3]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[3]/textarea"))).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[3]/textarea"))).sendKeys("conclusion changed");
+				}
+			}catch(org.openqa.selenium.NoSuchElementException e)
+			{
+				break;
+			}
+			count=count+2;
+		}
+		//Click on Save
+		saveChangedValues(driver);
+	}
+	
+	public void saveChangedValues(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Click on Save button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)).click();
+		//Click on save button on popup
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+		share2.loadingServer(driver);
+	}
+	
 	public void verifyConclusions(WebDriver driver, String measurement, String fs1, String fs2, String fs3, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);

@@ -34,9 +34,9 @@ public class ErrorMeter {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
-	
+
 	SoftAssertions softly = new SoftAssertions();
-	
+
 	public void papeError100(WebDriver driver) throws Exception{
 
 		List<String> text=em2.error100Data(driver,driver.getCurrentUrl());
@@ -974,11 +974,8 @@ public class ErrorMeter {
 		Login obj1 = new Login();
 		obj1.closePopUpSticky(driver);
 		//Verify mark all instruction
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
-			softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
-		}
+		String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
+		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
 		//Clicks on checkboxes in Procedure Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
@@ -1611,7 +1608,7 @@ public class ErrorMeter {
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
 		{
-			
+
 		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
@@ -1661,7 +1658,7 @@ public class ErrorMeter {
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
 		{
-			
+
 		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
@@ -1890,7 +1887,7 @@ public class ErrorMeter {
 		String textsp8=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentSPVNonIssue4)).getText().trim();
 		softly.assertThat(textsp8).as("test data").isEqualTo("Non-Issue");
 	}
-	
+
 	public void checkTitleCount(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -1908,7 +1905,7 @@ public class ErrorMeter {
 		share2.loadingServer(driver);
 	}
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
-		
+
 		//Get count of characters
 		String s = driver.findElement(emObj.JobTitleCharacterCount).getText().trim();
 		s=s.substring(1,s.indexOf("/"));
@@ -1916,9 +1913,9 @@ public class ErrorMeter {
 		System.out.println(s+ " "+count);
 		return count;
 	}
-	
+
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-job-title"))).clear();
@@ -2331,14 +2328,11 @@ public class ErrorMeter {
 		String sharedText = shared.getText().trim();
 		System.out.println(sharedText);
 		softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText.trim());
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on Error Meter side panel
@@ -2362,19 +2356,16 @@ public class ErrorMeter {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong")).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[2]")));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
-			share2.loadingServer(driver);
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[2]")));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change

@@ -771,7 +771,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column2)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column2a)).getText();
@@ -789,7 +789,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column3)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column3a)).getText();
@@ -806,7 +806,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column4)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column4a)).getText();
@@ -823,7 +823,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column5)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column5a)).getText();
@@ -843,8 +843,8 @@ public class EiRCA {
 				{
 					try{
 						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column6)).getText();
-					String r1 = s.replaceAll("\u00AD", "");
-					softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
+						String r1 = s.replaceAll("\u00AD", "");
+						softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
 					}catch(org.openqa.selenium.TimeoutException q)
 					{
 						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column6a)).getText();
@@ -861,7 +861,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column2)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column2a)).getText();
@@ -878,7 +878,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column3)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column3a)).getText();
@@ -895,7 +895,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column4)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column4a)).getText();
@@ -912,7 +912,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column5)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column5a)).getText();
@@ -932,8 +932,8 @@ public class EiRCA {
 				{
 					try{
 						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column6)).getText();
-					String r1 = s.replaceAll("\u00AD", "");
-					softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
+						String r1 = s.replaceAll("\u00AD", "");
+						softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
 					}catch(org.openqa.selenium.TimeoutException q)
 					{
 						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column6a)).getText();
@@ -950,7 +950,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column2)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column2a)).getText();
@@ -967,7 +967,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column3)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column3a)).getText();
@@ -984,7 +984,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column4)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column4a)).getText();
@@ -1001,7 +1001,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column5)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column5a)).getText();
@@ -1021,8 +1021,8 @@ public class EiRCA {
 				{
 					try{
 						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column6)).getText();
-					String r1 = s.replaceAll("\u00AD", "");
-					softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
+						String r1 = s.replaceAll("\u00AD", "");
+						softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
 					}catch(org.openqa.selenium.TimeoutException q)
 					{
 						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column6a)).getText();
@@ -1039,7 +1039,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column2)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column2a)).getText();
@@ -1056,7 +1056,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column3)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column3a)).getText();
@@ -1073,7 +1073,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column4)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column4a)).getText();
@@ -1090,7 +1090,7 @@ public class EiRCA {
 					{
 						try{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column5)).getText();
-						softly.assertThat(s).as("test data").isEqualTo("Yes");
+							softly.assertThat(s).as("test data").isEqualTo("Yes");
 						}catch(org.openqa.selenium.TimeoutException q)
 						{
 							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column5a)).getText();
@@ -1463,7 +1463,6 @@ public class EiRCA {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 			share2.loadingServer(driver);
 			//Open eirca report and uncheck the checkboxes
-			//if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
 			editEiRCAReport(driver);
 		}
 	}
@@ -1502,7 +1501,6 @@ public class EiRCA {
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		//Open eirca report and uncheck the checkboxes
-		//if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
 		editEiRCAReport(driver);
 	}
 
@@ -1558,7 +1556,6 @@ public class EiRCA {
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		//Open eirca report and uncheck the checkboxes
-		//if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
 		editEiRCAReport(driver);
 	}
 
@@ -1605,7 +1602,6 @@ public class EiRCA {
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		//Open eirca report and uncheck the checkboxes
-		//if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
 		editEiRCAReport(driver);
 	}
 
@@ -1652,7 +1648,6 @@ public class EiRCA {
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		//Open eirca report and uncheck the checkboxes
-		//if((driver.getCurrentUrl().contains("kaleasia")==false)&&(driver.getCurrentUrl().contains("kale.")==false))
 		editEiRCAReport(driver);
 	}
 
@@ -2000,8 +1995,7 @@ public class EiRCA {
 			softly.assertThat(s17).as("test data").isEqualTo("Step 5 - Identify Possible Contributing Factors (skipped)");
 		}
 		//Verify save popup overflow text for rename report
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			eirca3.verifySavePopupAfterRename(driver, softly);
+		eirca3.verifySavePopupAfterRename(driver, softly);
 	}
 
 	public void saveEiRCAReport(WebDriver driver) throws Exception {

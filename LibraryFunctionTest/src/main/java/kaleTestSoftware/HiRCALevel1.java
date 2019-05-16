@@ -3076,10 +3076,7 @@ public class HiRCALevel1 {
 		//Verify Description text
 		String lop3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText().trim();
 		System.out.println(lop3);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(lop3).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assessment on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA");
-		else
-			softly.assertThat(lop3).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assess on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA");
+		softly.assertThat(lop3).as("test data").contains("If the triggering event is caused by equipment, the user can do a preliminary assessment on the equipment's design spec qualification, testing and maintenance. It is recommended to use EiRCA");
 		softly.assertThat(lop3).as("test data").contains(" to do a troubleshooting specifically for equipment failures.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();

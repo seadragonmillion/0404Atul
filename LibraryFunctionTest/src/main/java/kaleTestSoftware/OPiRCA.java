@@ -574,14 +574,11 @@ public class OPiRCA {
 		String creatorUsername= creator.getText().trim();
 		System.out.println(creatorUsername);
 		softly.assertThat(creatorUsername).as("test data").isEqualTo(username);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAShareIconOrCriticalIcon));
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAShareIconOrCriticalIcon));
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on OPiRCA side panel
@@ -607,19 +604,16 @@ public class OPiRCA {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(opirca.OPIRCAMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAShareIconOrCriticalIcon));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAShareIconWhenAlsoMarkedCritical));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
-			share2.loadingServer(driver);
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Un-mark critical pop up
@@ -1784,8 +1778,7 @@ public class OPiRCA {
 		//Open report
 		openReport(driver,r1);
 		//verify the report rename save popup overflow text
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			op3.verifySavePopupAfterRename(driver, softly);
+		op3.verifySavePopupAfterRename(driver, softly);
 		//Download report
 		downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options, step2QuestionAnswers);
 		Thread.sleep(2000);

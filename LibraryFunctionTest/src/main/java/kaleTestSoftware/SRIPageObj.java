@@ -41,6 +41,13 @@ public class SRIPageObj {
 	public By SRIAdminIFS1Field = By.id("pii-asri-baseline-FS2-new");
 	public By SRIAdminIFS2Field = By.id("pii-asri-baseline-FS3-new");
 	public By SRIAdminBaselineAddButton = By.id("pii-asri-baseline-add");
+	public By SRIAdminBaselineMessageLine1 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[1]");
+	public By SRIAdminBaselineMessageLine2 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[2]");
+	public By SRIAdminBaselineMessageLine3 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[3]");
+	public By SRIAdminBaselineMessageLine4 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[4]");
+	public By SRIAdminBaselienOPLimitLabel = By.xpath(".//*[@id='pii-asri-baseline-addnew-div']/div[1]/div[3]/div[1]");
+	public By SRIAdminBaselienIFS1LimitLabel = By.xpath(".//*[@id='pii-asri-baseline-addnew-div']/div[1]/div[4]/div[1]");
+	public By SRIAdminBaselienIFS2LimitLabel = By.xpath(".//*[@id='pii-asri-baseline-addnew-div']/div[1]/div[5]/div[1]");
 	//Baseline Errors
 	public By SRIBaselineErrorMessage = By.xpath(".//*[@id='pii-asri-baseline-addnew-message']/ul/li[1]");
 	//Conclusion Tab

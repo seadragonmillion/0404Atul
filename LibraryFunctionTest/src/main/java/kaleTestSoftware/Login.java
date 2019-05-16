@@ -113,8 +113,7 @@ public class Login {
 		}
 		//Check for login warning message
 		if(username.contains("chinese")==false)
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				checkForWarningMessage(driver,login);
+			checkForWarningMessage(driver,login);
 		return login;
 	}
 
@@ -140,14 +139,14 @@ public class Login {
 		{
 			driver.switchTo().frame(driver.findElement(lpo.Iframe));
 			try{
-			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote)).getText();
-			SoftAssertions.assertSoftly(softly1 ->{
-				softly1.assertThat(message).as("test data").doesNotContain("<br");
-				softly1.assertThat(message).as("test data").isEqualTo(loginWarningMessage);
-			});
+				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote)).getText();
+				SoftAssertions.assertSoftly(softly1 ->{
+					softly1.assertThat(message).as("test data").doesNotContain("<br");
+					softly1.assertThat(message).as("test data").isEqualTo(loginWarningMessage);
+				});
 			}catch(org.openqa.selenium.TimeoutException e)
 			{
-				
+
 			}
 			driver.switchTo().defaultContent();
 		}

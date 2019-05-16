@@ -192,8 +192,7 @@ public class EquipmentPDDandEF {
 			//Verifies warning message
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipSearchMessage)).getText();
 			softly.assertThat(s).as("test data").contains("Warning: No Prevention of Design Deficiencies case found");	
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				softly.assertThat(s).as("test data").doesNotEndWith("..");
+			softly.assertThat(s).as("test data").doesNotEndWith("..");
 			System.out.println(s);
 			//Verify case in link in error message
 			verifyErrorModuleLinkWithCaseId(driver,identifier);
@@ -279,8 +278,7 @@ public class EquipmentPDDandEF {
 			//Verifies warning message
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipSearchMessage)).getText();
 			softly.assertThat(s).as("test data").contains("Warning: No Engineering Fundamentals case found");	
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				softly.assertThat(s).as("test data").doesNotEndWith("..");
+			softly.assertThat(s).as("test data").doesNotEndWith("..");
 			System.out.println(s);
 			//Verify case in link in error message
 			verifyErrorModuleLinkWithCaseId(driver,identifier);
@@ -324,8 +322,7 @@ public class EquipmentPDDandEF {
 			//Verifies warning message
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipSearchMessage)).getText();
 			softly.assertThat(s).as("test data").contains("Warning: No Failure Modes case found");	
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				softly.assertThat(s).as("test data").doesNotEndWith("..");
+			softly.assertThat(s).as("test data").doesNotEndWith("..");
 			System.out.println(s);
 			//Verify case in link in error message
 			verifyErrorModuleLinkWithCaseId(driver,identifier);
@@ -413,8 +410,8 @@ public class EquipmentPDDandEF {
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 			System.out.println("case found in url:" + driver.getCurrentUrl());
-			if((driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))==false)
-				softly.fail("Case found in Equipment Search: "+identifier);
+			//if((driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))==false)
+			softly.fail("Case found in Equipment Search: "+identifier);
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Case not found in Equipment Search");
@@ -472,8 +469,8 @@ public class EquipmentPDDandEF {
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
 			System.out.println("case found in url:" + driver.getCurrentUrl());
-			if((driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))==false)
-				softly.fail("Case found in Equipment Search: "+identifier);
+			//if((driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))==false)
+			softly.fail("Case found in Equipment Search: "+identifier);
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Case not found in Equipment Search");

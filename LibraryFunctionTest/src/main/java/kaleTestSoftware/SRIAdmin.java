@@ -47,9 +47,9 @@ public class SRIAdmin {
 		sum = sum + deleteComponentAdded(driver,sriA2.mechanicalComponent1,0);
 		//Save
 		if(sum>0)
-			saveChangedValues(driver);
+			sriA2.saveChangedValues(driver);
 		sum = 0;
-		//Delete all elecrical
+		//Delete all elecrtical
 		sum = sum + deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1);
 		sum = sum + deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2);
 		sum = sum + deleteBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
@@ -61,7 +61,7 @@ public class SRIAdmin {
 		sum = sum + deleteComponentAdded(driver,sriA2.electricalComponent1,1);
 		//Save
 		if(sum>0)
-			saveChangedValues(driver);
+			sriA2.saveChangedValues(driver);
 		//Mechanical
 		//Add a component
 		addSRIComponentInAdmin(driver,0,sriA2.mechanicalComponent1);
@@ -84,7 +84,7 @@ public class SRIAdmin {
 		//Add 2nd conclusion
 		addSRIConclusionInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalFSIConclusion1,sriA2.mechanicalFSIConclusion2,sriA2.mechanicalFSIConclusion3);
 		//Save
-		saveChangedValues(driver);
+		sriA2.saveChangedValues(driver);
 		//Verify all added values
 		verifyComponentAdded(driver,sriA2.mechanicalComponent1,0,softly);
 		verifyMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,0,softly);
@@ -119,7 +119,7 @@ public class SRIAdmin {
 		//Add 2nd conclusion
 		addSRIConclusionInAdmin(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2,sriA2.electricalFSIConclusion1,sriA2.electricalFSIConclusion2,sriA2.electricalFSIConclusion3);
 		//Save
-		saveChangedValues(driver);
+		sriA2.saveChangedValues(driver);
 		//Verify all added values
 		verifyComponentAdded(driver,sriA2.electricalComponent1,1,softly);
 		verifyMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement1,1,softly);
@@ -149,6 +149,8 @@ public class SRIAdmin {
 		
 		//Get to SRI Admin part
 		getToSRIAdmin(driver);
+		//Change conclusion and verify save
+		sriA2.changeConclusion(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1);
 		//Delete all mechanical
 		deleteConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1);
 		deleteConclusionAdded(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2);
@@ -160,7 +162,7 @@ public class SRIAdmin {
 		deleteMeasurementAdded(driver,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,0);
 		deleteComponentAdded(driver,sriA2.mechanicalComponent1,0);
 		//Save
-		saveChangedValues(driver);
+		sriA2.saveChangedValues(driver);
 		//Delete all electrical
 		deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1);
 		deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2);
@@ -172,7 +174,7 @@ public class SRIAdmin {
 		deleteMeasurementAdded(driver,sriA2.electricalComponent1,sriA2.electricalMeasurement2,1);
 		deleteComponentAdded(driver,sriA2.electricalComponent1,1);
 		//Save
-		saveChangedValues(driver);
+		sriA2.saveChangedValues(driver);
 	}
 
 	public int deleteComponentAdded(WebDriver driver, String component, int mechOrElec) throws Exception {
@@ -632,16 +634,6 @@ public class SRIAdmin {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.AnalysisSideLink)).click();
 		//Click on SRI
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISideLink)).click();
-		share2.loadingServer(driver);
-	}
-
-	public void saveChangedValues(WebDriver driver) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Click on Save button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)).click();
-		//Click on save button on popup
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 	}
 

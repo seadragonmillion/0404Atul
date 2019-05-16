@@ -762,7 +762,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -816,7 +816,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList1 = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList1)
 		{
@@ -989,7 +989,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -1074,8 +1074,7 @@ public class CreateEquipmentCase {
 		softly.assertThat(s1).as("test data").contains("1. Video");
 		softly.assertThat(s1).as("test data").contains("Edited: "+videoLinkTitle1);
 		//Verify padding on slide
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+ee_case.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"));
+		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+ee_case.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"));
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+ee_case.get(2)+"']/a"))).click();
 		//Click on clear
@@ -1107,7 +1106,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(ee_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -1122,7 +1121,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(eq_case.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList1 = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList1)
 		{
@@ -1188,7 +1187,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID);
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -1321,7 +1320,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID.get(1));
 		Thread.sleep(2000);
 		//Clicks on case id
-	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -2398,7 +2397,7 @@ public class CreateEquipmentCase {
 		Thread.sleep(2000);
 		//Clicks on case id
 		Thread.sleep(2000);
-	/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*	WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -2438,7 +2437,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseID.get(2));
 		Thread.sleep(2000);
 		//Clicks on case id
-/*		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
+		/*		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin));
 		List<WebElement> casesList = ele.findElements(By.tagName("li"));
 		for(WebElement li : casesList)
 		{
@@ -2707,8 +2706,6 @@ public class CreateEquipmentCase {
 		}
 		int number1 = Integer.parseInt(number)-1;
 		//Verify padding on slide
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[3]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[4]"));
@@ -2718,7 +2715,6 @@ public class CreateEquipmentCase {
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[8]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[9]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[10]"));
-		}
 		//Verify title of Related Links slide
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[1]/div"))).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Related Links");
@@ -2888,13 +2884,10 @@ public class CreateEquipmentCase {
 		//Click on previous
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
 		//Verify padding on related links slide
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[2]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[3]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[4]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[5]"));
-		}
 		//Verify title of Related Links slide
 		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div/div"))).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Related Links");
@@ -2926,8 +2919,6 @@ public class CreateEquipmentCase {
 		int number1 = (Integer.parseInt(number))-1;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
 		//Verify padding on related links slide
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[3]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[4]"));
@@ -2937,7 +2928,6 @@ public class CreateEquipmentCase {
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[8]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[9]"));
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[10]"));
-		}
 		//Verify title of Related Links slide
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div/div"))).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Related Links");
@@ -3125,8 +3115,7 @@ public class CreateEquipmentCase {
 			share2.loadingServer(driver);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					equip3.verifyErrorOnPage(driver, softly);
+				equip3.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{
@@ -3373,8 +3362,7 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					equip3.verifyErrorOnPage(driver, softly);
+				equip3.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{
@@ -3667,8 +3655,7 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					equip3.verifyErrorOnPage(driver, softly);
+				equip3.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{
@@ -3922,8 +3909,7 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					equip3.verifyErrorOnPage(driver, softly);
+				equip3.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{

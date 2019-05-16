@@ -155,14 +155,11 @@ public class HPI {
 		String sharedText = shared.getText();
 		System.out.println(sharedText);
 		softly.assertThat("Shared to:").as("test data").isSubstringOf(sharedText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));		
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));		
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on HPI side panel
@@ -186,19 +183,16 @@ public class HPI {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='hpi-rpt']/div/span[4]/strong")).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[2]")));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
-			share2.loadingServer(driver);
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[1]")));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a/span[2]")));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
@@ -754,12 +748,9 @@ public class HPI {
 		//Click on S of HOPS
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-4"))).click();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Verify FUSE full form
-			String fuse_abbr = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-hpi-tab-4-fieldset']/label[2]/abbr"))).getAttribute("globtitle");
-			softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");
-		}		
+		//Verify FUSE full form
+		String fuse_abbr = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-hpi-tab-4-fieldset']/label[2]/abbr"))).getAttribute("globtitle");
+		softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");
 		//Clicks on bottom up on S for HOPS
 		//Corrective action click
 		share2.scrollToAPoint(driver, 2000);

@@ -239,8 +239,7 @@ public class LanguageCheckOfReports {
 		l=rv(driver,1);
 		downloadSelectFunction(driver, 1, l,browserName,v);
 		//Verify company name in contact page
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			verifyCompanyName(driver);
+		verifyCompanyName(driver);
 	}
 	
 	public void verifyCompanyName (WebDriver driver) throws Exception {

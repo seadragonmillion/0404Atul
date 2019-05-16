@@ -59,14 +59,11 @@ public class SRI {
 		eirca2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconOrCriticalIcon));
-		}
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconOrCriticalIcon));
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on 3 Pass Review side panel
@@ -94,19 +91,16 @@ public class SRI {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconOrCriticalIcon));
-			//Verify presence of shared icon 
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconWhenAlsoMarkedCritical));
-			//Clicks on first newly created record
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
-			share2.loadingServer(driver);
-		}
+		//Click back
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Un-mark critical pop up
@@ -348,9 +342,9 @@ public class SRI {
 		//Click on add button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2AddButton)).click();
 	}
-	
+
 	public void verifyStep1Label(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Event title
 		String placeholder1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).getAttribute("placeholder");
@@ -719,7 +713,7 @@ public class SRI {
 		System.out.println(s+ " "+count);
 		return count;
 	}
-	
+
 	public void step2Verify(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -733,14 +727,15 @@ public class SRI {
 		String time = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2TimeField)).getAttribute("value");
 		softly.assertThat(time).as("test data").isEmpty();
 		//Verify Measurement is empty
-		String meas = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement)).getAttribute("value");
-		softly.assertThat(meas).as("test data").isEmpty();
+		String meas = driver.findElement(sri.Step2Measurement).getAttribute("value");
+		softly.assertThat(meas).as("test data").isEqualTo("0");
 		//Verify unit is empty
-		String unit = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Unit)).getAttribute("value");
-		softly.assertThat(unit).as("test data").isEmpty();
+		String unit = driver.findElement(sri.Step2Unit).getAttribute("value");
+		softly.assertThat(unit).as("test data").isEqualTo("0");
 		//Verify notes is empty
 		String notes = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Notes)).getAttribute("value");
 		softly.assertThat(notes).as("test data").isEmpty();
+		//softly.assertAll();
 	}
 
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
@@ -819,8 +814,7 @@ public class SRI {
 		//Verify data on HTML
 		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
 		//Verify rename popup overflow
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			sri2.verifySavePopupAfterRename(driver, softly);
+		sri2.verifySavePopupAfterRename(driver, softly);
 		return recordName;
 	}
 

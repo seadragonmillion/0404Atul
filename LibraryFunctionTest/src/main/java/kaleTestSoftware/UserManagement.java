@@ -1165,8 +1165,7 @@ public class UserManagement {
 	public void deletesPreviousGroup (WebDriver driver, String group2) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			um2.verifyNoCompanyIdError(driver,softly);
+		um2.verifyNoCompanyIdError(driver,softly);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -1282,8 +1281,7 @@ public class UserManagement {
 		//Clicks on new company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Verify error
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			um2.verifyErrorOnCompanyPage(driver, softly);
+		um2.verifyErrorOnCompanyPage(driver, softly);
 		//Fills all mandatory details
 		driver.findElement(By.id("pii-admin-cust-cid")).sendKeys(company_id);
 		driver.findElement(By.id("pii-admin-cust-name")).sendKeys("Sanity Test");
@@ -1422,13 +1420,10 @@ public class UserManagement {
 		//Clicks on create group
 		driver.findElement(By.id("pii-admin-group-create")).click();
 		Thread.sleep(2000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Clicks on save
-			driver.findElement(By.id("pii-admin-group-button-save")).click();
-			String groupNameError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
-			softly.assertThat(groupNameError).as("test data").contains("Warning - Cannot Save: a group must have a group name specified.");
-		}
+		//Clicks on save
+		driver.findElement(By.id("pii-admin-group-button-save")).click();
+		String groupNameError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
+		softly.assertThat(groupNameError).as("test data").contains("Warning - Cannot Save: a group must have a group name specified.");
 		//Fills all mandatory 
 		driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
 		String ev1 = driver.findElement(By.id("pii-admin-group-name")).getAttribute("value");
@@ -1437,23 +1432,17 @@ public class UserManagement {
 			driver.findElement(By.id("pii-admin-group-name")).clear();
 			driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
 		}
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Clicks on save
-			driver.findElement(By.id("pii-admin-group-button-save")).click();
-			String groupCompError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
-			softly.assertThat(groupCompError).as("test data").contains("Warning - Cannot Save: a group must have a company id specified.");
-		}
+		//Clicks on save
+		driver.findElement(By.id("pii-admin-group-button-save")).click();
+		String groupCompError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
+		softly.assertThat(groupCompError).as("test data").contains("Warning - Cannot Save: a group must have a company id specified.");
 		WebElement element = driver.findElement(By.id("pii-admin-group-cid"));
 		Select dropdown = new Select (element);
 		dropdown.selectByVisibleText(company_id);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Clicks on save
-			driver.findElement(By.id("pii-admin-group-button-save")).click();
-			String groupCaseError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
-			softly.assertThat(groupCaseError).as("test data").contains("Error: Authorized Cases field is required");
-		}
+		//Clicks on save
+		driver.findElement(By.id("pii-admin-group-button-save")).click();
+		String groupCaseError = driver.findElement(By.xpath(".//*[@id='pii-admin-group-messages']/div")).getText();
+		softly.assertThat(groupCaseError).as("test data").contains("Error: Authorized Cases field is required");
 		driver.findElement(By.id("pii-admin-group-cases")).sendKeys("all");
 		String ev2 = driver.findElement(By.id("pii-admin-group-cases")).getAttribute("value");		
 		if ((ev2.equals("all")==false))
@@ -1489,12 +1478,9 @@ public class UserManagement {
 
 		}
 		System.out.println("Group created");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String groupCreated = driver.findElement(By.id("pii-admin-group-messages")).getText();
-			softly.assertThat(groupCreated).as("test data").contains("Group created: "+company_id+".");
-		}
-		softly.assertAll();
+		String groupCreated = driver.findElement(By.id("pii-admin-group-messages")).getText();
+		softly.assertThat(groupCreated).as("test data").contains("Group created: "+company_id+".");
+		//softly.assertAll();
 	}
 
 	public void createUserGM(WebDriver driver, String company_id, String password,String email) throws Exception{
@@ -2308,15 +2294,12 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-user-edit")).click();
 		Thread.sleep(4000);
 		//Verify the message on top in edit user page
-		if (driver.getCurrentUrl().contains("kaleqa"))
+		try{
+			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
+			softly.assertThat(message).as("test data").isEqualTo("Update a selected user...");
+		}catch(org.openqa.selenium.TimeoutException t)
 		{
-			try{
-				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-				softly.assertThat(message).as("test data").isEqualTo("Update a selected user...");
-			}catch(org.openqa.selenium.TimeoutException t)
-			{
 
-			}
 		}
 		//Searches for newly created user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
@@ -2352,15 +2335,12 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-group-edit")).click();
 		Thread.sleep(4000);
 		//Verify the message on top in edit group page
-		if (driver.getCurrentUrl().contains("kaleqa"))
+		try{
+			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditGroupMessageOnTop)).getText().trim();
+			softly.assertThat(message).as("test data").isEqualTo("Update a selected group...");
+		}catch(org.openqa.selenium.TimeoutException t)
 		{
-			try{
-				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditGroupMessageOnTop)).getText().trim();
-				softly.assertThat(message).as("test data").isEqualTo("Update a selected group...");
-			}catch(org.openqa.selenium.TimeoutException t)
-			{
 
-			}
 		}
 		//Searches for newly created group
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-list']/form/div/input"))).clear();

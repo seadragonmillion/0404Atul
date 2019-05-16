@@ -31,7 +31,7 @@ public class JobObservation {
 	JobObservation2 jo2 = new JobObservation2();
 	JobObservationObj jo = new JobObservationObj();
 	LoginPageObj lpo = new LoginPageObj();
-	
+
 	SoftAssertions softly = new SoftAssertions();
 
 	public String text(WebDriver driver) throws Exception {
@@ -1062,7 +1062,7 @@ public class JobObservation {
 		//Click outside
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageArea)).click();
 	}
-	
+
 	public void imageUploadSafari(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -1344,14 +1344,11 @@ public class JobObservation {
 		share.shareTwice (driver,softly);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordCriticalShareSign));
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordCriticalShareSign));
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on Job Observation side panel
@@ -1375,19 +1372,16 @@ public class JobObservation {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordCriticalShareSign));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordSharedWhenCriticalSign));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecord)).click();
-			share2.loadingServer(driver);
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordCriticalShareSign));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecordSharedWhenCriticalSign));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecord)).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
@@ -1469,8 +1463,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
 		Thread.sleep(500);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			jo2.verifyErrorOnPage(driver,softly);
+		jo2.verifyErrorOnPage(driver,softly);
 		//Fills mandatory details in step1
 		driver.findElement(jo.Step1Observer).sendKeys(text);
 		driver.findElement(jo.Step1Location).sendKeys(text);

@@ -1871,11 +1871,8 @@ public class HiRCAHumanError {
 		//text inside
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();		
 		softly.assertThat(c9).as("test data").contains("Improvement of risk control program (FUSE");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String fuse_abbr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]/abbr"))).getAttribute("globtitle");
-			softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");
-		}
+		String fuse_abbr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[1]/abbr"))).getAttribute("globtitle");
+		softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");
 		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/div/ul/li[2]"))).getText();
 		softly.assertThat(c26).as("test data").contains("Improvement of performance monitoring & trending system");
 		//Click on 3rd collapsible for 3.18.3

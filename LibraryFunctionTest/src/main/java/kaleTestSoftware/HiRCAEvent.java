@@ -172,8 +172,7 @@ public class HiRCAEvent {
 		//Clicks on Save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		//verify the popup overflow text
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			obj2.verifySavePopupAfterRename(driver, softly);
+		obj2.verifySavePopupAfterRename(driver, softly);
 		//Save pop verify
 		obj2.verifySavePopup(driver, softly);
 		//Clicks on Save report
@@ -813,14 +812,11 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Verify share save sticky
 		eirca2.verifyStickyShareSave(driver, softly);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
+		//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 			share2.loadingServer(driver);
 			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));		
-		}
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));	
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on HiRCA side panel
@@ -846,9 +842,7 @@ public class HiRCAEvent {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
+		//Click back
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 			share2.loadingServer(driver);
 			//Verify Marked critical icon
@@ -858,7 +852,6 @@ public class HiRCAEvent {
 			//Clicks on first newly created record
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 			share2.loadingServer(driver);
-		}
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
@@ -2224,12 +2217,7 @@ public class HiRCAEvent {
 		}
 		//Clicks on save to get error message
 		driver.findElement(By.id("efi-irca-button-save")).click();
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
-		{
-			obj.verifyInfoPageErrorPopup(driver, softly);
-			//Clicks on ok
-			driver.findElement(By.id("pii-irca-dialog-confirmed")).click();
-		}
+		obj.verifyInfoPageErrorPopup(driver, softly);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Checks for the error message on each mandatory check box
 		if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())

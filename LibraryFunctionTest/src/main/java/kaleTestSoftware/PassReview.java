@@ -65,12 +65,9 @@ public class PassReview {
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		Thread.sleep(1000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Verify FUSE full form
-			String fuse_abbr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr[5]/td[1]/abbr"))).getAttribute("globtitle");
-			softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");	
-		}
+		//Verify FUSE full form
+		String fuse_abbr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr[5]/td[1]/abbr"))).getAttribute("globtitle");
+		softly.assertThat(fuse_abbr).as("test data").isEqualTo("First Time Evolution, Unbalanced Interests, SPV, Expertise Deficiency");	
 		//Click on each checkbox twice - check and uncheck it
 		//q1 to q10
 		for(int i=2;i<=11;i++)
@@ -437,19 +434,16 @@ public class PassReview {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(pr.PassReviewMarkCriticalIndicatorText).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewShareIconOrCriticalIcon));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewShareIconWhenAlsoMarkedCritical));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
-			share2.loadingServer(driver);
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Un-mark critical pop up
@@ -502,14 +496,11 @@ public class PassReview {
 		eirca2.verifyStickyShareSave(driver, softly);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewShareIconOrCriticalIcon));
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewShareIconOrCriticalIcon));
 		//see if user account can be saved
 		share2.checkIfUserProfileNoFieldsMissing(driver, softly);
 		//Calls the Share check function
@@ -709,8 +700,7 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
 		share2.loadingServer(driver);
 		//Verify the report rename popup overflow text
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			pr2.verifySavePopupAfterRename(driver, softly);
+		pr2.verifySavePopupAfterRename(driver, softly);
 	}
 
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
@@ -764,8 +754,7 @@ public class PassReview {
 		//Clicks on 3 Pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewLink)).click();
 		Thread.sleep(2000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			pr2.verifyErrorOnInfoPage(driver,softly);
+		pr2.verifyErrorOnInfoPage(driver,softly);
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
 		//Fills in mandatory details

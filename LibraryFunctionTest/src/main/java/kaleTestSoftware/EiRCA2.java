@@ -273,13 +273,10 @@ public class EiRCA2 {
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
 		Thread.sleep(1000);
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
-		{
-			verifyInfoPageErrorPopup(driver,softly);
-			//Click on ok
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
-			Thread.sleep(1000);
-		}
+		verifyInfoPageErrorPopup(driver,softly);
+		//Click on ok
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		Thread.sleep(1000);
 		//Verify errors
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EventTitleError)).getText();
@@ -394,7 +391,6 @@ public class EiRCA2 {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
-		//if (driver.getCurrentUrl().contains("kaleqa"))
 		softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open EiRCA™ report referenced as: "+r1+"?");
 		/*else
 			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open EiRCA™ report referenced as: <br/>"+r1+"?");*/
@@ -422,10 +418,7 @@ public class EiRCA2 {
 		softly.assertThat(s1).as("test data").isEqualTo("Your PDF report is ready.");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s4).as("test data").isEqualTo("Note: The report will open in a separate window");
-		else
-			softly.assertThat(s4).as("test data").isEqualTo("Note: the report will be display in a seperate web browser window.");
+		softly.assertThat(s4).as("test data").isEqualTo("Note: The report will open in a separate window");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");

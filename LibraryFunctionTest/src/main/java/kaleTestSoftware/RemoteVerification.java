@@ -68,7 +68,7 @@ public class RemoteVerification {
 	ShareCheck share = new ShareCheck();
 	LoginPageObj lpo = new LoginPageObj();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
-	
+
 	public String testBugEmail = "testverifierusemail@gmail.com";
 
 
@@ -102,8 +102,7 @@ public class RemoteVerification {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
 		//Verify the report rename popup overflow text
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			rv3.verifySavePopupAfterRename(driver, softly);
+		rv3.verifySavePopupAfterRename(driver, softly);
 		//Clicks on Save and Send
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -276,7 +275,7 @@ public class RemoteVerification {
 		System.out.println(s2);
 		softly.assertThat(emailText).as("test data").contains(s2);
 	}
-	
+
 	public void upload1stpictureSafari(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
@@ -891,7 +890,7 @@ public class RemoteVerification {
 				dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
 				dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
 				Thread.sleep(2000);
-			//	executor.executeScript("arguments[0].click();", dropdown.findElement(obj2.FirstSelectionUnderDropdown));
+				//	executor.executeScript("arguments[0].click();", dropdown.findElement(obj2.FirstSelectionUnderDropdown));
 				try{
 					if(driver.findElement(eirca.ConfirmPopupTitle).isDisplayed())
 						break;
@@ -922,14 +921,11 @@ public class RemoteVerification {
 		String verifierUsername = verifier1.getText();
 		System.out.println(verifierUsername);
 		softly.assertThat(verifier).as("test data").isSubstringOf(verifierUsername);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on Remote Verification side panel
@@ -1203,19 +1199,16 @@ public class RemoteVerification {
 		softly.assertThat(critical).as("test data").contains("Critical");
 		if(driver.findElement(rv.RVMarkedCriticalText).isDisplayed())
 			System.out.println("Marked critical");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconWhenAlsoMarkedCritical));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
-			share2.loadingServer(driver);		
-		}
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
+		share2.loadingServer(driver);		
 		//Clicks on mark critical again
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change

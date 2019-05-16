@@ -92,18 +92,15 @@ public class CaseBrowse {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		List<String> keywordID = new ArrayList<String>();
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))
 		{
-			if(driver.getCurrentUrl().contains("kaleasia")||driver.getCurrentUrl().contains("kale."))
-			{
-				keywordID.add(keywordEquipProdLD);
-				keywordID.add(caseEquipProdLD);
-			}
-			else
-			{
-				keywordID.add(keywordEquipDevMK);
-				keywordID.add(caseEquipDev);
-			}
+			keywordID.add(keywordEquipProdLD);
+			keywordID.add(caseEquipProdLD);
+		}
+		else
+		{
+			keywordID.add(keywordEquipDevMK);
+			keywordID.add(caseEquipDev);
 		}
 		String keyword = keywordID.get(0);
 		String identifier = keywordID.get(1);
@@ -142,8 +139,7 @@ public class CaseBrowse {
 			searchWithTypeFilter(driver, keywordEquipALDev, keywordEquipCSDev, keywordEquipDev, obj.keywordPDDDev, obj.keywordEFDev, keywordElecDev, obj.caseEFDev, obj.casePDDDev, caseEquipColor1, caseEquipCSDev, caseEquipDev, caseElecDev);
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			caseSearchWithLD(driver);
+		caseSearchWithLD(driver);
 	}
 
 	public void searchWithTypeFilter(WebDriver driver, String keywordAL, String keywordCS, String keywordG, String keywordPDD, String keywordEF, String keywordFM, String caseEF, String casePDD, String caseAL, String caseCS, String caseG, String caseFM) throws Exception {

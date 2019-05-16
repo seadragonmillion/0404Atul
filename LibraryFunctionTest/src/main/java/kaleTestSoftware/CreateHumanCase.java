@@ -28,7 +28,7 @@ public class CreateHumanCase {
 	CaseBrowsePageObj cb = new CaseBrowsePageObj();
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 	CreateHumanCase2 chc2 = new CreateHumanCase2();
-	
+
 	int numberOfImages=5;
 	public String keyword_same="QAAfive";
 	public String key1="QAAzebra";
@@ -51,18 +51,15 @@ public class CreateHumanCase {
 	public String key3USie11="QAAie11horseUS";
 	public String titleUSie11 ="QAA US IE11 Human Case Upload";
 
-	
-	
+
+
 	public void checkForErrorWithoutUploadingSlides(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Scroll top
 		share2.scrollToTop(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
-		//Click ok on error message
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 		//Verify error message on slides
 		String error = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlideError)).getText();
 		softly.assertThat(error).as("test data").isEqualTo("Please select some PNG files with .png extension");
@@ -72,26 +69,23 @@ public class CreateHumanCase {
 	}
 
 	public void checkNoError(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,40);
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		System.out.println(browserName);
+		if (browserName.equals("internet explorer"))
 		{
+			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
-			//Get browser name
-			Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-			String browserName = cap.getBrowserName().toLowerCase();
-			System.out.println(browserName);
-			if (browserName.equals("internet explorer"))
-			{
-				Thread.sleep(2000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
-			}
-			//Verify the red error message is gone
-			String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
-			softly.assertThat(errorDotted).as("test data").doesNotContain("error");
 		}
+		//Verify the red error message is gone
+		String errorDotted = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSlidesDivContainingErrorDottedLine)).getAttribute("class");
+		softly.assertThat(errorDotted).as("test data").doesNotContain("error");
 	}
-	
+
 	public int deletePreviousCase(WebDriver driver, String title) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
@@ -346,8 +340,8 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
 		//Verify title of Related Links slide doesnt exist
 		try{
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div/div"))).getText();
-		softly.assertThat(s2).as("test data").doesNotContain("Related Links");
+			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div/div"))).getText();
+			softly.assertThat(s2).as("test data").doesNotContain("Related Links");
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException t)
 		{
 			System.out.println("Related links slide not present");
@@ -1058,8 +1052,7 @@ public class CreateHumanCase {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseAdminPopupConfirmButton)).click();
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					chc2.verifyErrorOnPage(driver, softly);
+				chc2.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{
@@ -1257,8 +1250,7 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					chc2.verifyErrorOnPage(driver, softly);
+				chc2.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{
@@ -1463,8 +1455,7 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					chc2.verifyErrorOnPage(driver, softly);
+				chc2.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{
@@ -1568,7 +1559,7 @@ public class CreateHumanCase {
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputCollapsible)).click();
-			
+
 			Thread.sleep(2000);
 			int i;
 			int n=1000;
@@ -1667,8 +1658,7 @@ public class CreateHumanCase {
 			Thread.sleep(1000);
 			if(count==1)
 			{
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					chc2.verifyErrorOnPage(driver, softly);
+				chc2.verifyErrorOnPage(driver, softly);
 			}
 			while (true)
 			{

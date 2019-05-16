@@ -333,11 +333,8 @@ public class RemoteVerification2 {
 		softly.assertThat(comments).as("test data").contains(rejectComment);
 		//Click on Revise button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationReviseButton)).click();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String note = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
-			softly.assertThat(note).as("test data").isEqualTo("WARNING: Revise report content for acceptance. Rejected verification will be archived.");
-		}
+		String note = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
+		softly.assertThat(note).as("test data").isEqualTo("WARNING: Revise report content for acceptance. Rejected verification will be archived.");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Clicks on Save and Send
 		driver.findElement(rv.RVSaveAndSendButton).click();
@@ -502,8 +499,7 @@ public class RemoteVerification2 {
 		}
 		//Clicks on Remote Verification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).click();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			rv3.verifyErrorOnPage(driver, softly);
+		rv3.verifyErrorOnPage(driver, softly);
 		//Fills the mandatory fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));

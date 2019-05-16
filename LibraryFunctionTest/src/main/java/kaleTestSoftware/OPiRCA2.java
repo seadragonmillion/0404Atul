@@ -629,13 +629,7 @@ public class OPiRCA2 {
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		Thread.sleep(1000);
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
-		{
-			verifyInfoPageErrorPopup(driver,softly);
-			//Click on ok
-			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
-			Thread.sleep(1000);
-		}
+		verifyInfoPageErrorPopup(driver,softly);
 		//Verify errors
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.EventTitleError)).getText().trim();
@@ -740,7 +734,6 @@ public class OPiRCA2 {
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText().trim();
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
-		//if (driver.getCurrentUrl().contains("kaleqa"))
 		softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: "+r1+"?");
 		/*else
 			softly.assertThat(r).as("test data").isEqualTo("Do you confirm you want to open O&P Assessment report referenced as: <br/>"+r1+"?");*/

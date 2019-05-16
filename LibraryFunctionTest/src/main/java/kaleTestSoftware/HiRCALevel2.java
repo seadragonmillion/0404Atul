@@ -832,9 +832,8 @@ public class HiRCALevel2 {
 				hml.put(s1, imp);
 				//Verify note
 				String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+2)+"]/td/span"))).getText().trim();
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					if(engOrChi==1)
-						softly.assertThat(note).as("test data").contains("备注：从以下问题所选的答案而来");
+				if(engOrChi==1)
+					softly.assertThat(note).as("test data").contains("备注：从以下问题所选的答案而来");
 				String r1 = s1.substring(0, s1.indexOf(":")) + s1.substring(s1.indexOf(":")+1, s1.length());
 				if(hircaNoteLopSURE.get(r1).contains(note)==false)
 				{
