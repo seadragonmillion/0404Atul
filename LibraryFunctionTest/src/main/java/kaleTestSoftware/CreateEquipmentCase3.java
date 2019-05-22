@@ -356,6 +356,7 @@ public class CreateEquipmentCase3 {
 		share2.scrollToTop(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		share2.verifyWarningPopupForError(driver, softly);
 		//Verify all errors
 		String idError = driver.findElement(equipObj.CaseIDError).getText();
 		softly.assertThat(idError).as("test data").isEqualTo("ID is required");

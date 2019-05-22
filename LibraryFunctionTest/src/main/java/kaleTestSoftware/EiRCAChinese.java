@@ -764,9 +764,9 @@ public class EiRCAChinese {
 		softly.assertThat(s28).as("test data").contains("描述");
 		c.add(s28);
 		//Row 1
-		String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable5Row1Column2)).getText();
-		softly.assertThat(s29).as("test data").contains("不适用");
-		c.add(s29);
+		//String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable5Row1Column2)).getText();
+		//softly.assertThat(s29).as("test data").contains("不适用");
+		//c.add(s29);
 		//Heading before Table 6
 		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable6Title)).getText();
 		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");
@@ -835,8 +835,8 @@ public class EiRCAChinese {
 		String s47 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable7SubTitle3Part1)).getText();
 		softly.assertThat(s47).as("test data").contains("失效模式描述:");
 		c.add(s47);
-		String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable7SubTitle3Part2)).getText();
-		softly.assertThat(s48).as("test data").contains("不适用");
+		//String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable7SubTitle3Part2)).getText();
+		//softly.assertThat(s48).as("test data").contains("不适用");
 		//Column 1 title
 		String s49 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable7Column1Title)).getText();
 		softly.assertThat(s49).as("test data").contains("问题");
@@ -901,8 +901,8 @@ public class EiRCAChinese {
 		String s70 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable8Title3Part1)).getText();
 		softly.assertThat(s70).as("test data").contains("失效模式描述:");
 		c.add(s70);
-		String s71 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable8Title3Part2)).getText();
-		softly.assertThat(s71).as("test data").contains("不适用");
+		//String s71 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable8Title3Part2)).getText();
+		//softly.assertThat(s71).as("test data").contains("不适用");
 		//Table 8 for 5.1
 		//Column 1 title
 		String s72 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable8Column1Title)).getText();
@@ -1010,8 +1010,8 @@ public class EiRCAChinese {
 		String s98 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable14Title3Part1)).getText();
 		softly.assertThat(s98).as("test data").contains("失效模式描述:");
 		c.add(s98);
-		String s99 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable14Title3Part2)).getText();
-		softly.assertThat(s99).as("test data").contains("不适用");
+		//String s99 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable14Title3Part2)).getText();
+		//softly.assertThat(s99).as("test data").contains("不适用");
 		//Column 1 title
 		String s100 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3HTMLTable14Column1Title)).getText();
 		softly.assertThat(s100).as("test data").contains("问题");
@@ -1266,8 +1266,8 @@ public class EiRCAChinese {
 		softly.assertThat(s28).as("test data").contains("描述");
 		c.add(s28);
 		//Row 1
-		String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable6Row1Column2)).getText();
-		softly.assertThat(s29).as("test data").contains("不适用");
+		//String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable6Row1Column2)).getText();
+		//softly.assertThat(s29).as("test data").contains("不适用");
 		//Heading before Table 7
 		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLSkippedStep3Message)).getText();
 		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");/*
@@ -1804,8 +1804,8 @@ public class EiRCAChinese {
 		String s28 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable5Column2Title)).getText();
 		softly.assertThat(s28).as("test data").contains("描述");
 		//Row 1
-		String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable5Row1Column2)).getText();
-		softly.assertThat(s29).as("test data").contains("不适用");
+		//String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable5Row1Column2)).getText();
+		//softly.assertThat(s29).as("test data").contains("不适用");
 		//Heading before Table 6
 		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable6Title)).getText();
 		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");/*
@@ -1857,8 +1857,8 @@ public class EiRCAChinese {
 		softly.assertThat(s46).as("test data").contains("失效模式:");
 		String s47 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable7SubTitle3Part1)).getText();
 		softly.assertThat(s47).as("test data").contains("失效模式描述:");
-		String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable7SubTitle3Part2)).getText();
-		softly.assertThat(s48).as("test data").contains("不适用");
+		//String s48 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable7SubTitle3Part2)).getText();
+		//softly.assertThat(s48).as("test data").contains("不适用");
 		//Column 1 title
 		String s49 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable7Column1Title)).getText();
 		softly.assertThat(s49).as("test data").contains("问题");
@@ -1910,8 +1910,8 @@ public class EiRCAChinese {
 		softly.assertThat(s69).as("test data").contains("失效模式:");
 		String s70 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable8Title3Part1)).getText();
 		softly.assertThat(s70).as("test data").contains("失效模式描述:");
-		String s71 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable8Title3Part2)).getText();
-		softly.assertThat(s71).as("test data").contains("不适用");
+		//String s71 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable8Title3Part2)).getText();
+		//softly.assertThat(s71).as("test data").contains("不适用");
 		//Table 8 for 5.1
 		//Column 1 title
 		String s72 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable8Column1Title)).getText();
@@ -1993,8 +1993,8 @@ public class EiRCAChinese {
 		softly.assertThat(s97).as("test data").contains("失效模式:");
 		String s98 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable14Title3Part1)).getText();
 		softly.assertThat(s98).as("test data").contains("失效模式描述:");
-		String s99 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable14Title3Part2)).getText();
-		softly.assertThat(s99).as("test data").contains("不适用");
+		//String s99 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable14Title3Part2)).getText();
+		//softly.assertThat(s99).as("test data").contains("不适用");
 		//Column 1 title
 		String s100 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Path3ReportTabTable14Column1Title)).getText();
 		softly.assertThat(s100).as("test data").contains("问题");
@@ -2334,8 +2334,8 @@ public class EiRCAChinese {
 		String s28 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable6Column2Title)).getText();
 		softly.assertThat(s28).as("test data").contains("描述");
 		//Row 1
-		String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable6Row1Column2)).getText();
-		softly.assertThat(s29).as("test data").contains("不适用");
+		//String s29 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable6Row1Column2)).getText();
+		//softly.assertThat(s29).as("test data").contains("不适用");
 		//Heading before Table 7
 		String s30 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabSkippedStep3Message)).getText();
 		softly.assertThat(s30).as("test data").contains("第三步 - 排除失效模式");/*
@@ -2555,8 +2555,8 @@ public class EiRCAChinese {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6TitleUnderCollapsible)).getText();
 		softly.assertThat(s3).as("test data").contains("失效模式描述:");
 		//Text under title of collapsible
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6TextUnderTitleUnderCollapsible)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("不适用");
+		//String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6TextUnderTitleUnderCollapsible)).getText();
+		//softly.assertThat(s4).as("test data").isEqualTo("不适用");
 		//Table column1 title
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6TableColumn1Title)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("问题");
@@ -2609,8 +2609,8 @@ public class EiRCAChinese {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TitleUnderCollapsible)).getText();
 		softly.assertThat(s3).as("test data").contains("失效模式描述:");
 		//Text under title of collapsible
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TextUnderTitleUnderCollapsible)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("不适用");
+		//String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TextUnderTitleUnderCollapsible)).getText();
+		//softly.assertThat(s4).as("test data").isEqualTo("不适用");
 		//Table 1 
 		//5.1
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5Table1Option51)).getText();
@@ -2751,8 +2751,8 @@ public class EiRCAChinese {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4TitleUnderCollapsible)).getText();
 		softly.assertThat(s3).as("test data").contains("失效模式描述:");
 		//Text under title of collapsible
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4TextUnderTitleUnderCollapsible)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("不适用");
+		//String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4TextUnderTitleUnderCollapsible)).getText();
+		//softly.assertThat(s4).as("test data").isEqualTo("不适用");
 		//Table column1 title
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4TableColumn1Title)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("问题");
@@ -2786,8 +2786,8 @@ public class EiRCAChinese {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TitleUnderCollapsible)).getText();
 		softly.assertThat(s3).as("test data").contains("失效模式描述:");
 		//Text under title of collapsible
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TextUnderTitleUnderCollapsible)).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("不适用");
+		//String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TextUnderTitleUnderCollapsible)).getText();
+		//softly.assertThat(s4).as("test data").isEqualTo("不适用");
 		//Title of Table under collapsible
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TableTitleUnderCollapsible)).getText();
 		softly.assertThat(s5).as("test data").contains("勾选答案为“是”的选项。若答案为否或不适用勿勾选。");

@@ -41,6 +41,7 @@ public class SRIPageObj {
 	public By SRIAdminIFS1Field = By.id("pii-asri-baseline-FS2-new");
 	public By SRIAdminIFS2Field = By.id("pii-asri-baseline-FS3-new");
 	public By SRIAdminBaselineAddButton = By.id("pii-asri-baseline-add");
+	public By SRIAdminBaselinePart2 = By.id("pii-asri-managebaselines-div");
 	public By SRIAdminBaselineMessageLine1 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[1]");
 	public By SRIAdminBaselineMessageLine2 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[2]");
 	public By SRIAdminBaselineMessageLine3 = By.xpath(".//*[@id='pii-asri-managebaselines-div']/div[3]");
@@ -62,6 +63,7 @@ public class SRIPageObj {
 	
 	
 	//Step1
+	public By SRINewButton = By.id("pii-sri-new");
 	public By SRIStep1Tab = By.id("pii-sri-tab-1-a");
 	public By SRIStep1NextButton = By.id("pii-sri-tab-1-form-submit");
 	public By Step1EventTitleLabel = By.id("pii-sri-tab-1-title-label");
@@ -77,6 +79,7 @@ public class SRIPageObj {
 	public By Step1MechanicalComponentLabel = By.xpath(".//*[@for='pii-sri-tab-1-component-type-mech']");
 	public By Step1ElectricalComponentLabel = By.xpath(".//*[@for='pii-sri-tab-1-component-type-elec']");
 	//Step 2
+	public By SRIStep2Tab = By.id("pii-sri-tab-2-a");
 	public By Step2Measurement = By.id("pii-sri-newentry-measurement");
 	public By Step2Unit = By.id("pii-sri-newentry-unit");
 	public By Step2CalendarIconAddMeasurement = By.xpath(".//*[@id='pii-sri-addnew-div']/div/div[1]/div[2]/div/div/a");
@@ -101,6 +104,7 @@ public class SRIPageObj {
 	public By Step2Measurement1Unit =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[5]/div/div/span");
 	public By Step2Measurement1Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[6]/textarea");
 	public By Step2Measurement1Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[7]/textarea");
+	public By Step2Measurement1DeleteButton = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[8]/a");
 	//2
 	public By Step2Measurement2Date = By.id("pii-sri-tab-1-event1-date");
 	public By Step2Measurement2Time = By.id("pii-sri-tab-1-event1-time");
@@ -153,6 +157,8 @@ public class SRIPageObj {
 			
 	public By SRINextButton = By.id("pii-sri-next");
 	public By SRISaveButton = By.id("pii-sri-save");
+	public By SRISavePopupHeader = By.id("pii-sri-dialog-header");
+	public By SRISavePopupTitle = By.id("pii-sri-dialog-title");
 	public By SRISavePopupNote = By.id("pii-sri-dialog-note");
 	public By SRISaveConfirmButton = By.id("pii-sri-dialog-confirmed");
 	public By SRISaveCancelButton = By.id("pii-sri-dialog-cancel");

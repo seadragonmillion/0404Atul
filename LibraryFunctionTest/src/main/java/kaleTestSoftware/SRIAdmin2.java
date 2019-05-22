@@ -49,6 +49,154 @@ public class SRIAdmin2 {
 	public String electricalFSIConclusion2 = "Electrical Conclusion 2";
 	public String electricalFSIConclusion3 = "Electrical Conclusion 3";
 
+	public int deleteMeasurementAdded(WebDriver driver, String component, String measurement, int mechOrElec) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait1 = new WebDriverWait(driver,2);
+		share2.scrollToTop(driver);
+		//Click on SRI measurement tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementTab)).click();
+		int sum=0;
+		/* 0 = Mechanical
+		 * 1 = Electrical
+		 *//*
+		if(mechOrElec==0)
+		{
+			//Select mechanical component
+			try{
+				WebElement element = driver.findElement(sri.SRIAdminMeasurementTabMechanicalDropdown);
+				Select s = new Select (element);
+				s.selectByVisibleText(component);		
+			}catch(org.openqa.selenium.NoSuchElementException r)
+			{
+				return 0;
+			}
+		}
+		else
+		{
+			//Select elecrtical component
+			try{
+				WebElement element = driver.findElement(sri.SRIAdminMeasurementTabElectricalDropdown);
+				Select s = new Select (element);
+				s.selectByVisibleText(component);
+			}catch(org.openqa.selenium.NoSuchElementException r)
+			{
+				return 0;
+			}
+		}*/
+		Thread.sleep(500);
+		//Count number of measurements
+		int count=1;
+		while(true)
+		{
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]")));
+				String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[3]/div/input"))).getAttribute("value");
+				if(measurementName.equals(measurement))
+				{
+					//if(driver.findElement(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input")).isSelected())
+					//{
+					//delete measurement
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))).click();
+					//Delete confirm button
+					wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+					//share2.loadingServer(driver);
+					//}
+					sum=1;
+				}
+			}catch(org.openqa.selenium.TimeoutException e)
+			{
+				break;
+			}
+			count=count+2;
+		}
+		return sum;
+	}
+
+	public int deleteUnitAdded(WebDriver driver, String measurement, String unit) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		share2.scrollToTop(driver);
+		//Click on SRI units tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
+		//Select measurement
+		try{
+			WebElement element = driver.findElement(sri.SRIAdminUnitTabMeasurementDropdown);
+			Select s = new Select (element);
+			s.selectByVisibleText(measurement);	
+		}catch(org.openqa.selenium.NoSuchElementException r)
+		{
+			return 0;
+		}
+		Thread.sleep(500);
+		//Count number of units
+		int count=1;
+		while(true)
+		{
+			try{
+				driver.findElement(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]"));
+				String unitName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[3]/div/input"))).getAttribute("value");
+				if(unitName.equals(unit))
+				{
+					if(driver.findElement(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input")).isSelected())
+					{
+						//delete unit
+						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))));
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))).click();
+						//Delete confirm button
+						wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+						//share2.loadingServer(driver);
+					}
+				}
+			}catch(org.openqa.selenium.NoSuchElementException e)
+			{
+				break;
+			}
+			count=count+2;
+		}
+		return 1;
+	}
+
+	public void removeUnitVerifyPart2UnderBaslineVanishes(WebDriver driver, String component, String measurement1, String measurement2, String unit1, String unit2) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Go to baseline tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();		
+		//Select component 1
+		WebElement element = driver.findElement(sri.SRIAdminBaselineTabMechanicalDropdown);
+		Select s = new Select (element);
+		s.selectByVisibleText(component);	
+		//Verify presence of 2.
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinePart2));
+		//Delete unit1
+		deleteUnitAdded(driver,measurement1,unit1);
+		//Come back to baseline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
+		//Verify presence of 2.
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinePart2));
+		//Click on conclusion
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
+		//Come back to baseline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
+		//Verify presence of 2.
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinePart2));
+		//Delete unit2
+		deleteUnitAdded(driver,measurement2,unit2);
+		//Delete measurement2
+		deleteMeasurementAdded(driver,component,measurement2,0);
+		//Come back to baseline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();				
+		//Verify 2. not present
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(sri.SRIAdminBaselinePart2));
+		//Click on conclusion
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
+		//Come back to baseline
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
+		//Verify 2. not present
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(sri.SRIAdminBaselinePart2));
+	}
+
 	public void verifyBaselineText(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -162,14 +310,14 @@ public class SRIAdmin2 {
 		}
 		Thread.sleep(500);
 		//Select mechanical component
-			try{
-				WebElement element = driver.findElement(sri.SRIAdminConclusionTabMechanicalDropdown);
-				Select s = new Select (element);
-				s.selectByVisibleText(component);	
-			}catch(org.openqa.selenium.NoSuchElementException r)
-			{
-				
-			}
+		try{
+			WebElement element = driver.findElement(sri.SRIAdminConclusionTabMechanicalDropdown);
+			Select s = new Select (element);
+			s.selectByVisibleText(component);	
+		}catch(org.openqa.selenium.NoSuchElementException r)
+		{
+
+		}
 		Thread.sleep(500);
 		//Select measurement
 		WebElement element = driver.findElement(sri.SRIAdminConclusionTabMeasurementDropdown);
@@ -199,7 +347,7 @@ public class SRIAdmin2 {
 		//Click on Save
 		saveChangedValues(driver);
 	}
-	
+
 	public void saveChangedValues(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -209,7 +357,7 @@ public class SRIAdmin2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 	}
-	
+
 	public void verifyConclusions(WebDriver driver, String measurement, String fs1, String fs2, String fs3, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);

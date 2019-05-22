@@ -16,7 +16,6 @@ public class SRI {
 
 	SoftAssertions softly = new SoftAssertions();
 	Random random = new Random();
-	public String text = "SRI sanity test";
 
 	HiRCALOPBug hlb = new HiRCALOPBug();
 	EiRCAPageObj eirca = new EiRCAPageObj();
@@ -28,10 +27,10 @@ public class SRI {
 	ShareCheck2 share2 = new ShareCheck2();
 	SRIPageObj sri = new SRIPageObj();
 	SRI2 sri2 = new SRI2();
+	SRI3 sri3 = new SRI3();
 	SRIAdmin sriA = new SRIAdmin();
 	SRIAdmin2 sriA2 = new SRIAdmin2();
-
-
+	LoginPageObj login = new LoginPageObj();
 
 	public void shareReport(WebDriver driver, String username, String password1, int y) throws Exception {
 
@@ -66,7 +65,7 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIShareIconOrCriticalIcon));
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
-		//Clicks on 3 Pass Review side panel
+		//Clicks on SRI side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISidePanel)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -381,8 +380,9 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		share2.loadingServer(driver);
-		//Click on next step 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1NextButton)).click();
+		//Click on save button step 1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveButton)).click();
+		share2.verifyWarningPopupForError(driver, softly);
 		//Error on Event title
 		String titleError = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitleErrorText)).getText();
 		softly.assertThat(titleError).as("test data").isEqualTo("Report title is required");
@@ -680,30 +680,6 @@ public class SRI {
 		sri2.verifyConclusionColorAndText(driver,conclusion8a,value8,measurement8,softly);
 	}
 
-	public void savePartialReport(WebDriver driver)	throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).click();
-		share2.loadingServer(driver);
-	}
-
-	public String saveSRIReport(WebDriver driver)throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Save report
-		savePartialReport(driver);
-		//Click on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISavedActivitiesButton)).click();
-		share2.loadingServer(driver);
-		String recordName = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).getText();
-		//CLick on new record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
-		share2.loadingServer(driver);
-		return recordName;
-	}
-
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
 
 		//Get count of characters
@@ -759,20 +735,32 @@ public class SRI {
 			softly.fail("Count did not match: aaaa: " + count);
 	}
 
-	public String path_SRI(WebDriver driver)throws Exception {
+	public String path_SRI(WebDriver driver, String username, String password)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		sriA.SRIAdminTest(driver,softly);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hlb.AnalysisLink)).click();
 		//Click on SRI
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRILink)).click();
+		//Verify no success popup
+		try{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(login.StickySuccessPopup));
+			softly.fail("Sticky popup seen: "+wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText());
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+
+		}
+		//Click on new button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).click();
 		//Step 1 check for errors
 		checkForErrorStep1(driver);
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
 		//Fill Step 1 for mechanical component
-		step1DataFill(driver,text,sriA2.mechanicalComponent1,0);
+		step1DataFill(driver,sri2.text,sriA2.mechanicalComponent1,0);
 		//Get Data from Step 1
 		HashMap<String,String> storeDataStep1 = getStep1Data(driver);
 		//Click on next step 1
@@ -780,9 +768,9 @@ public class SRI {
 		//Step 2 - add 2 measurements
 		step2Verify(driver);
 		//1
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "9");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "9");
 		//2
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "-2");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "-2");
 		//Change date of 1st measurement twice
 		changeDate1stMeasurementAndVerifyOrderOfMeasurements(driver);
 		changeDate1stMeasurementAndVerifyOrderOfMeasurements(driver);
@@ -790,19 +778,21 @@ public class SRI {
 		changeTimeOfMeasurementsAndVerifyOrderOfMeasurements(driver);
 		//Step 2 - add more measurements
 		//3
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "11");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "11");
 		//4
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "-0.98");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "-0.98");
 		//5
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "22");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "22");
 		//6
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "2.5");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "2.5");
 		//7
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "32");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "32");
 		//8
-		step2AddMeasurement(driver,text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "3.5");
+		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement2, sriA2.mechanicalUnit2, "3.5");
 		//get data from step 2
 		HashMap<String,String> storeDataStep2 = sri2.getStep2AllData(driver);
+		//Verify only even number of rows in table of step 2 and no extra row at the end
+		sri3.verifyOnlyEvenNumberOfRowsInStep2Table(driver, softly);
 		//Verify order of measurements
 		//verifyOrderOfMeasurements(driver,storeDataStep2.get("date1"),storeDataStep2.get("date2"),storeDataStep2.get("time1"),storeDataStep2.get("time2"));
 		//Click next
@@ -810,11 +800,11 @@ public class SRI {
 		//Verify everything on report
 		verifyReportTab(driver,storeDataStep1,storeDataStep2);
 		//Save report and open the report
-		String recordName = saveSRIReport(driver);
+		String recordName = sri3.saveSRIReport(driver);
 		//Verify data on HTML
 		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
 		//Verify rename popup overflow
-		sri2.verifySavePopupAfterRename(driver, softly);
+		sri2.verifySavePopupAfterRename(driver, softly,recordName,username,password);
 		return recordName;
 	}
 

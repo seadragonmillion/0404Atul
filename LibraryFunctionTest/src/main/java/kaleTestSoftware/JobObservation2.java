@@ -9,7 +9,7 @@ public class JobObservation2 {
 	
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
 		
-		//Clicks on Save and Send
+		//Clicks next
 		driver.findElement(jo.JOStep1NextButton).click();
 		//Verify all errors
 		String observerError = driver.findElement(jo.Step1ObserverError).getText();

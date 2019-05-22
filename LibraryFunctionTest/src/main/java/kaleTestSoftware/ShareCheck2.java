@@ -18,6 +18,17 @@ public class ShareCheck2 {
 
 	ShareCheckPageObj share = new ShareCheckPageObj();
 	LoginPageObj lpo = new LoginPageObj();
+	
+	public void verifyWarningPopupForError(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Look for warning popup
+		//wait.until(ExpectedConditions.invisibilityOfElementLocated(lpo.StickyWarningPopup));
+		String warning = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote)).getText();
+		softly.assertThat(warning).as("test data").isEqualTo("Warning: cannot save until all errors in red are fixed.");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
+		//softly.assertAll();
+	}
 
 	public void loadingServer(WebDriver driver) throws Exception {
 

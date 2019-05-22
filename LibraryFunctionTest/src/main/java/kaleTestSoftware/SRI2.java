@@ -1,10 +1,25 @@
 package kaleTestSoftware;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,7 +30,10 @@ public class SRI2 {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	SRIAdmin sriA = new SRIAdmin();
 	SRIAdmin2 sriA2 = new SRIAdmin2();
-	
+	SRI3 sri3 = new SRI3();
+
+	public String text = "SRI sanity test";
+
 	public void verifyHTML(WebDriver driver,  HashMap<String,String> storeDataStep1,  HashMap<String,String> storeDataStep2, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -224,7 +242,7 @@ public class SRI2 {
 		String conclusion8a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.HTMLMeasurement8ConclusionColorText)).getText();
 		verifyConclusionColorAndText(driver,conclusion8a,value8,measurement8,softly);
 	}
-	
+
 	public void verifyConclusionColorAndText(WebDriver driver, String conclusion, String value, String measurement, SoftAssertions softly)throws Exception {
 
 		if(measurement.equals(sriA2.mechanicalMeasurement1))
@@ -304,7 +322,7 @@ public class SRI2 {
 			}
 		}
 	}
-	
+
 	public void verifyConclusion(WebDriver driver, String conclusion, String value, String measurement, SoftAssertions softly)throws Exception {
 
 		if(measurement.equals(sriA2.mechanicalMeasurement1))
@@ -384,7 +402,7 @@ public class SRI2 {
 			}
 		}
 	}
-	
+
 	public HashMap<String,String> getStep2AllData(WebDriver driver)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -565,12 +583,13 @@ public class SRI2 {
 		storeData.put("note8", s39);
 		return storeData;
 	}
-	
-	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
+
+	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly, String recordName, String username, String password)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		sri3.verifyOpenReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1Tab)).click();
@@ -594,6 +613,217 @@ public class SRI2 {
 		//Click on first record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();		
 		share2.loadingServer(driver);
+		//download report
+		downloadReport(driver,softly);
+		//Delete a measurement inside report and verify the popup details
+		sri3.deleteMeasurementFromStep2(driver, softly, username, password);
 	}
 
+	public void downloadReport(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		//Download report to check pdf
+		if (browserName.equals("chrome"))
+			downloadReportChrome(driver,softly);
+		if (browserName.equals("firefox"))
+			downloadReportFirefox(driver,softly);
+		if (browserName.equals("internet explorer"))
+		{
+			if (v.startsWith("10"))
+				downloadReportIE10(driver,softly);
+			if (v.startsWith("11"))
+				downloadReportIE11(driver,softly);
+		}
+		if(browserName.toLowerCase().contains("safari"))
+			driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		//Switch to iframe
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+	}
+
+	public void downloadReportChrome(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String window = driver.getWindowHandle();
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		pdfCheck(softly);
+		for(String winHandle : driver.getWindowHandles()){
+			driver.switchTo().window(winHandle);
+		}
+		driver.close();
+		driver.switchTo().window(window);
+		Thread.sleep(3000);		
+	}
+
+	public void downloadReportFirefox(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		System.out.println("original window: "+window);
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		Thread.sleep(8000);
+		for(String winHandle : driver.getWindowHandles())
+		{
+			System.out.println(winHandle);
+			if(winHandle.isEmpty()==false)
+			{
+				if(winHandle.equals(window)==false)
+					driver.switchTo().window(winHandle);
+			}
+		}
+		Thread.sleep(2000);
+		pdfCheck(softly);
+		Thread.sleep(4000);
+		driver.close();
+		Thread.sleep(4000);
+		driver.switchTo().window(window);
+		driver.switchTo().defaultContent();	  
+		Thread.sleep(3000);
+	}
+
+	public void downloadReportIE10(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		Thread.sleep(3000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(7000);
+		//pdf verification
+		pdfCheck(softly);
+		Thread.sleep(4000);
+		//Switch to window    	
+		driver.switchTo().window(window);	   
+		Thread.sleep(3000);
+	}
+
+	public void downloadReportIE11(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		//deletes files in reports folder before starting to download
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		HiRCAEvent obj1 = new HiRCAEvent();
+		obj1.deleteFiles(file);
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on download button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		String window = driver.getWindowHandle();
+		//Clicks on open pdf report
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		Thread.sleep(3000);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");
+		}
+		Thread.sleep(7000);
+		//pdf verification
+		pdfCheck(softly);
+		Thread.sleep(4000);
+		//Switch to window    	
+		driver.switchTo().window(window);
+		Thread.sleep(3000);
+	}
+
+	public void pdfCheck(SoftAssertions softly) throws Exception{
+
+		// specify your directory
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		// here we get the stream with full directory listing
+		// exclude subdirectories from listing
+		// finally get the last file using simple comparator by lastModified field
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		try{
+			System.out.println(lastFilePath.get());
+		}catch(java.util.NoSuchElementException t)
+		{
+
+		}
+		//Loads the file to check if correct data is present
+		String fileName=lastFilePath.get().toString();
+		File oldfile = new File(fileName);
+		PDDocument pddoc= PDDocument.load(oldfile);
+		//Checks text in pdf
+		String data = new PDFTextStripper().getText(pddoc);
+		List<String> ans= Arrays.asList(data.split("\r\n"));
+		System.out.println(ans);
+		String newData2="";
+		for (int i = 0; i < ans.size(); i++)
+		{	        	
+			int n=ans.get(i).length()-1;
+			if (ans.get(i).charAt(n)==' ')
+				newData2 = newData2+ans.get(i);
+			if (ans.get(i).charAt(n)!=' ')
+				newData2 = newData2+" "+ans.get(i);	        	
+		}
+		String newData1 = newData2.replace("  ", " ");
+		//Verify text with html
+		softly.assertThat(newData1).as("test data").contains(text);
+		//Verify component/measurement/unit/conclusion
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalComponent1);
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalMeasurement1);
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalMeasurement2);
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalUnit1);
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalUnit2);
+		softly.assertThat(newData1).as("test data").contains("Within normal operation limits");
+		softly.assertThat(newData1).as("test data").contains("Conclusion: Incipient Failure Stage 1");
+		softly.assertThat(newData1).as("test data").contains("Conclusion: Incipient Failure Stage 2");
+		softly.assertThat(newData1).as("test data").contains("Conclusion: Incipient Failure Stage 3");
+		softly.assertThat(newData1).as("test data").contains("Conclusion: Normal Operation");
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalFSIConclusion1);
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalFSIConclusion2);
+		softly.assertThat(newData1).as("test data").contains(sriA2.mechanicalFSIConclusion3);
+		//Close pdf
+		pddoc.close();
+	}
 }

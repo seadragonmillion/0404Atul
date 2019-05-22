@@ -1,6 +1,8 @@
 package kaleTestSoftware;
 
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ErrorMeter3 {
 
 	ErrorMeter2 em2 = new ErrorMeter2 ();
+	ErrorMeterPageObj emObj = new ErrorMeterPageObj();
 
 	public void clickElementForSafariBrowser (WebDriver driver, By locator) throws Exception {		
 
@@ -162,5 +165,28 @@ public class ErrorMeter3 {
 			String sharer ="QAA (qaasharernonadminusie11)";
 			return sharer;
 		}
+	}
+	
+	public void verifyChangeOfTabTitleWhenScreenIsSmall(WebDriver driver, SoftAssertions softly) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Set new size to make it small
+		driver.manage().window().setSize(new Dimension(650,900));
+		//Verify tab titles
+		//E
+		String e = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).getText();
+		softly.assertThat(e).as("test data").isEqualTo("E");
+		//P
+		String pr = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).getText();
+		softly.assertThat(pr).as("test data").isEqualTo("P");
+		//A
+		String a = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).getText();
+		softly.assertThat(a).as("test data").isEqualTo("A");
+		//P
+		String p = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureTab)).getText();
+		softly.assertThat(p).as("test data").isEqualTo("P");
+		//Set window to maximise
+		driver.manage().window().maximize();
+		//softly.assertAll();
 	}
 }

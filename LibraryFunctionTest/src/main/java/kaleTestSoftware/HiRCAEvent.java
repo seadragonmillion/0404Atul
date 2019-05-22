@@ -2217,7 +2217,7 @@ public class HiRCAEvent {
 		}
 		//Clicks on save to get error message
 		driver.findElement(By.id("efi-irca-button-save")).click();
-		obj.verifyInfoPageErrorPopup(driver, softly);
+		share2.verifyWarningPopupForError(driver, softly);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Checks for the error message on each mandatory check box
 		if(driver.findElement(By.id("pii-irca-event-title-error")).isDisplayed())

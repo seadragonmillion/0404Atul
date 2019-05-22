@@ -17,6 +17,7 @@ public class EiRCA2 {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	LoginPageObj login = new LoginPageObj();
 	TextBoxResizing tbr = new TextBoxResizing ();
+	ShareCheck2 share2 = new ShareCheck2();
 
 	public String textCreate(WebDriver driver) throws Exception {
 
@@ -272,11 +273,7 @@ public class EiRCA2 {
 		WebDriverWait wait = new WebDriverWait(driver,10);				
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
-		Thread.sleep(1000);
-		verifyInfoPageErrorPopup(driver,softly);
-		//Click on ok
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
-		Thread.sleep(1000);
+		share2.verifyWarningPopupForError(driver, softly);
 		//Verify errors
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EventTitleError)).getText();

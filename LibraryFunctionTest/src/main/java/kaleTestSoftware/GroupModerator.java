@@ -25,6 +25,7 @@ public class GroupModerator {
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	PassReviewPageObj prObj = new PassReviewPageObj();
 	JobObservation jo = new JobObservation();
+	JobObservationObj joObj = new JobObservationObj();
 	RemoteVerification2 rv2 = new RemoteVerification2();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
@@ -119,6 +120,10 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		//Clicks on side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Gets the name of the record created
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).getText());
@@ -196,6 +201,8 @@ public class GroupModerator {
 		//Clicks on Saved activities button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();
 		share2.loadingServer(driver);
+		//side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASidePanel)).click();
 		share2.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).getText());
 	}
@@ -258,6 +265,9 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
+		//Click on side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASidePanel)).click();
+		share2.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).getText());
 	}
 
@@ -310,7 +320,10 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
-		return(wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.FirstRecord)).getText());
+		//Click on side panel
+				wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.PassReviewSidePanel)).click();
+				share2.loadingServer(driver);
+				return(wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.FirstRecord)).getText());
 	}
 
 	public String createJobObsReport(WebDriver driver) throws Exception {
@@ -359,16 +372,19 @@ public class GroupModerator {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-save"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSaveButton)).click();
 		//Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
 		share2.loadingServer(driver);
 		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-btn-savedactivities"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSavedActivitiesButton)).click();
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).getText());
+		//Clicks on side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSidePanel)).click();
+		share2.loadingServer(driver);
+		return (wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOFirstRecord)).getText());
 	}
 
 	public String createRVReport(WebDriver driver) throws Exception {
@@ -413,16 +429,21 @@ public class GroupModerator {
 		driver.findElement(rv.RVSavePopupComfirmButton).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		//Clicks on Remote Verification
+		//Clicks on Remote Verification side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		share2.loadingServer(driver);
+		//Clicks on Remote Verification side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		return(wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).getText());
 	}
-	
+
 	public String createHiRCAReport(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		//Fill mandatory details
 		hirca.fillPage(driver, text);
@@ -453,6 +474,11 @@ public class GroupModerator {
 		}
 		//Clicks on Saved activities
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		share2.loadingServer(driver);
+		//Clicks on side panel
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
@@ -519,18 +545,18 @@ public class GroupModerator {
 		}
 		//Thread.sleep(2000);
 	}
-	
+
 	public void chooseAllUsersUnderUserDropdown(WebDriver driver) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Wait for visibility of User Button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-user-select-button")));
 		Select s = new Select(driver.findElement(By.id("pii-user-home-user-select")));
 		s.selectByVisibleText("All");
 	}
-		
+
 	public void groupModeratorViewReportsFromUsers(WebDriver driver, List<String> allReportNames) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
@@ -723,7 +749,7 @@ public class GroupModerator {
 		groupModeratorViewReportsFromUsers(driver,allReportNamesFromGroup2);
 		//Logout
 		login.logout(driver);
-/*		//Switch to default content
+		/*		//Switch to default content
 		driver.switchTo().defaultContent();
 		//Company Moderator (user6) will view reports from users2,3,5
 		//Login to user 6 cm
@@ -734,7 +760,7 @@ public class GroupModerator {
 		//Logout
 		login.logout(driver);*/
 	}
-	
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

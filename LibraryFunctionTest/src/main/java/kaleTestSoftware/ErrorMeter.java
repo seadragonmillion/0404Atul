@@ -973,6 +973,7 @@ public class ErrorMeter {
 		//Closes any warning from server
 		Login obj1 = new Login();
 		obj1.closePopUpSticky(driver);
+		em3.verifyChangeOfTabTitleWhenScreenIsSmall(driver, softly);
 		//Verify mark all instruction
 		String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
 		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
@@ -2438,6 +2439,9 @@ public class ErrorMeter {
 		String purpose = driver.findElement(By.xpath(".//*[@id='epm-rpt']/div/div/span/abbr")).getText().trim();
 		String name = date + "_" + time2+"_"+time1 + "_" + username +"_" + purpose + "_" + text;
 		System.out.println ("Expected name of record: " +name);
+		//Clicks on side panel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterSidePanel)).click();
+		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterSidePanel)).click();
 		share2.loadingServer(driver);

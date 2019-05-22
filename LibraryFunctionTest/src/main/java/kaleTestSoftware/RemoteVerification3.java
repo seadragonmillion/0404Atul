@@ -15,6 +15,7 @@ public class RemoteVerification3 {
 
 		//Clicks on Save and Send
 		driver.findElement(rv.RVSaveAndSendButton).click();
+		share2.verifyWarningPopupForError(driver, softly);
 		//Verify all errors
 		String titleError = driver.findElement(rv.RVTitleError).getText();
 		softly.assertThat(titleError).as("test data").isEqualTo("This field is required.");

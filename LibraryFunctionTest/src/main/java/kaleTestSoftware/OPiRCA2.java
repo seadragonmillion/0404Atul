@@ -628,8 +628,8 @@ public class OPiRCA2 {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
-		Thread.sleep(1000);
-		verifyInfoPageErrorPopup(driver,softly);
+		share2.verifyWarningPopupForError(driver, softly);
+		//verifyInfoPageErrorPopup(driver,softly);
 		//Verify errors
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.EventTitleError)).getText().trim();
