@@ -59,7 +59,7 @@ public class IETest {
 			}
 		}	
 		//Create report
-		String recordName = obj1.path_SRI(driver);
+		String recordName = obj1.path_SRI(driver,username,password);
 		//ShareReport
 		/* Dev/Asia
 		 * 0=admin
