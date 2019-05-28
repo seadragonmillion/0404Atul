@@ -47,7 +47,7 @@ public class Error50SafariTest {
 		//Logs in
 		int login = obj.LoginUser(driver,username,password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
@@ -61,7 +61,7 @@ public class Error50SafariTest {
 		}catch (NoSuchElementException e){
 			throw e;
 		}
-		Thread.sleep(4000);
+		/*Thread.sleep(4000);
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on Analysis 
 		try
@@ -91,7 +91,7 @@ public class Error50SafariTest {
 		Thread.sleep(2000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 		obj1.papeError50(driver);
 		//Save report
 		String recordName = obj1.saveReport(driver, username);

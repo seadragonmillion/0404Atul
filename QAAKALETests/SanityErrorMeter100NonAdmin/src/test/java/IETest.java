@@ -52,7 +52,7 @@ public class IETest {
 		  //Logs in
 		  int login = obj.LoginUser(driver,username,password);
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(4000);
+		 // Thread.sleep(4000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		  //Switches to the iframe
@@ -66,7 +66,7 @@ public class IETest {
     }catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
 
 		}
-		  Thread.sleep(4000);
+		/*  Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -96,7 +96,7 @@ public class IETest {
 		  Thread.sleep(2000);
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(2000);*/
 		  obj1.checkEditButon(driver);
 		  obj1.papeError100(driver);
 		  //Save report

@@ -47,7 +47,7 @@ public class Error0SafariTest {
 		//Logs in
 		int login = obj.LoginUser(driver,username,password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		try{
@@ -59,7 +59,7 @@ public class Error0SafariTest {
 		}catch (NoSuchElementException e){
 			throw e;
 		}
-		Thread.sleep(4000);
+		/*Thread.sleep(4000);
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on Analysis 
 		try
@@ -89,7 +89,7 @@ public class Error0SafariTest {
 		Thread.sleep(2000);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 		obj1.papeError0(driver);
 		//Save report
 		String recordName = obj1.saveReport(driver, username);

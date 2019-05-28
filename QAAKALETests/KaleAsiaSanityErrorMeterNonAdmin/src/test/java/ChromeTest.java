@@ -65,10 +65,10 @@ public class ChromeTest {
 		  //Logs in
 		  int login = obj.LoginUser(driver,username,password);
 		  System.out.println("Title after login: "+driver.getTitle());
-		  Thread.sleep(10000);
+		  //Thread.sleep(10000);
 		  //Waits for the page to load
 	      driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	      Thread.sleep(4000);
+	     // Thread.sleep(4000);
 		  //Switches to the iframe
 		  driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		  try{
@@ -80,7 +80,7 @@ public class ChromeTest {
         }catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
                     
               }
-		  Thread.sleep(4000);
+		 /* Thread.sleep(4000);
 		  WebDriverWait wait = new WebDriverWait(driver,20);
 		  //Clicks on Analysis 
 		  try
@@ -110,7 +110,7 @@ public class ChromeTest {
 		  Thread.sleep(2000);
 		  //Click on next
 		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
-		  Thread.sleep(2000);
+		  Thread.sleep(2000);*/
 		  obj1.checkEditButon(driver);
 		  obj1.papeError0(driver);
 		  //Save report
