@@ -57,6 +57,7 @@ public class FirefoxTest {
 		  
 		CaseBrowse obj = new CaseBrowse();
 		CreateEquipmentCase obj1 = new CreateEquipmentCase();
+		CreateEquipmentCase3 obj3 = new CreateEquipmentCase3();
 		Login obj2 = new Login();
 		int login = obj2.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
@@ -83,20 +84,20 @@ public class FirefoxTest {
   			  else break;
   		  }
       }		  
-		obj1.deletePreviousCase(driver, obj1.eq_titleUS);
+		obj1.deletePreviousCase(driver, obj3.eq_titleUS);
 		Thread.sleep(1000);
-		obj1.deletePreviousCase(driver, obj1.ee_titleUS);
+		obj1.deletePreviousCase(driver, obj3.ee_titleUS);
 		Thread.sleep(1000);
 		//Creates 5 slides for Equipment Case Search
-		List<String> eqCases = obj1.createCaseFirefox(driver, obj1.keyword_same_eqUS, obj1.key1_eqUS, obj1.key2_eqUS, obj1.key3_eqUS, obj1.eq_titleUS);
+		List<String> eqCases = obj1.createCaseFirefox(driver, obj3.keyword_same_eqUS, obj3.key1_eqUS, obj3.key2_eqUS, obj3.key3_eqUS, obj3.eq_titleUS);
 		System.out.println("Slides created for equipment: "+ eqCases);
 		Thread.sleep(2000);
 		//Creates 5 slides for Electrical Case Search
-		List<String> eeCases = obj1.createCaseFirefox(driver, obj1.keywordUS_same_ee, obj1.key1_eeUS, obj1.key2_eeUS, obj1.key3_eeUS, obj1.ee_titleUS);
+		List<String> eeCases = obj1.createCaseFirefox(driver, obj3.keywordUS_same_ee, obj3.key1_eeUS, obj3.key2_eeUS, obj3.key3_eeUS, obj3.ee_titleUS);
 		System.out.println("Slides created for electrical "+eeCases);
 		Thread.sleep(2000);
 		//Checks slides for one Equipment non PII case
-		obj1.compareSlide(driver, eqCases.get(0), obj1.eq_titleUS, 0);
+		obj1.compareSlide(driver, eqCases.get(0), obj3.eq_titleUS, 0);
 		System.out.println("Slide checked for equipment");
 		//Search with keyword with all special characters
 		obj.searchWithKeyKeywordWithAllSpecialCharacters(driver, eqCases.get(0));
@@ -104,48 +105,48 @@ public class FirefoxTest {
 		obj.searchWithKeywordKALE1964(driver, softly);
 		Thread.sleep(2000);
 		//Checks slides for one Equipment PII case
-		obj1.compareSlide(driver, eqCases.get(0), obj1.eq_titleUS, 1);
+		obj1.compareSlide(driver, eqCases.get(0), obj3.eq_titleUS, 1);
 		System.out.println("Slide checked for equipment pii");
 		Thread.sleep(2000);
 		//Checks slides for one Electrical case
-		obj1.compareSlide(driver, eeCases.get(0), obj1.ee_titleUS, 0);
+		obj1.compareSlide(driver, eeCases.get(0), obj3.ee_titleUS, 0);
 		System.out.println("Slide checked for electrical");
 		Thread.sleep(2000);
 		//Check the keyword search for Equipment
-		obj1.checkkeyword(driver, eqCases, obj1.keyword_same_eqUS, obj1.key1_eqUS, obj1.key2_eqUS, obj1.key3_eqUS, 0,obj1.eq_titleUS);
+		obj1.checkkeyword(driver, eqCases, obj3.keyword_same_eqUS, obj3.key1_eqUS, obj3.key2_eqUS, obj3.key3_eqUS, 0,obj3.eq_titleUS);
 		System.out.println("Keyword checked for equipment");
 		Thread.sleep(2000);
 		//Check the keyword search for Equipment PII
-		obj1.checkkeyword(driver, eqCases, obj1.keyword_same_eqUS, obj1.key1_eqUS, obj1.key2_eqUS, obj1.key3_eqUS, 1,obj1.eq_titleUS);
+		obj1.checkkeyword(driver, eqCases, obj3.keyword_same_eqUS, obj3.key1_eqUS, obj3.key2_eqUS, obj3.key3_eqUS, 1,obj3.eq_titleUS);
 		System.out.println("Keyword checked for equipment pii");
 		Thread.sleep(2000);
 		//Check the keyword search for Electrical
-		obj1.checkkeyword(driver, eeCases, obj1.keywordUS_same_ee, obj1.key1_eeUS, obj1.key2_eeUS, obj1.key3_eeUS, 0,obj1.ee_titleUS);
+		obj1.checkkeyword(driver, eeCases, obj3.keywordUS_same_ee, obj3.key1_eeUS, obj3.key2_eeUS, obj3.key3_eeUS, 0,obj3.ee_titleUS);
 		System.out.println("Keyword checked for electrical");
 		Thread.sleep(2000);
 		//Check for presence of Equipment cases in Mechanical or Electrical modules
-		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), obj1.keyword_same_eqUS, obj1.keywordUS_same_ee);
+		obj1.checkCase(driver, eqCases.get(1), eeCases.get(1), obj3.keyword_same_eqUS, obj3.keywordUS_same_ee);
 		System.out.println("Cases checked in each module");
 		Thread.sleep(2000);
 		//Look for equipment cases with Type Advanced Learning
-		obj1.searchEquipmentDatabankOnly(driver,obj1.keyword_same_eqUS,eqCases,username,password);
+		obj1.searchEquipmentDatabankOnly(driver,obj3.keyword_same_eqUS,eqCases,username,password);
 		//Look for equipment cases with all filters
-		obj1.searchEquipmentPerformanceAllFilters(driver, obj1.keyword_same_eqUS, eqCases.get(5), username, password);
+		obj1.searchEquipmentPerformanceAllFilters(driver, obj3.keyword_same_eqUS, eqCases.get(5), username, password);
 		//Change keyword and search for it
-		obj1.changeKeywordKALE1969(driver,eqCases,obj1.keyword_same_eqUS);
+		obj1.changeKeywordKALE1969(driver,eqCases,obj3.keyword_same_eqUS);
 		Thread.sleep(2000);
 		//Add keyword to equipment case and search for case
-		obj1.addKeywordKALE2168(driver, eqCases, obj1.keyword_same_eqUS);
+		obj1.addKeywordKALE2168(driver, eqCases, obj3.keyword_same_eqUS);
 		//Youtube link test
-		obj1.searchCaseWithLinks(driver, obj1.keywordUS_same_ee, eeCases,obj1.ee_titleUS);
+		obj1.searchCaseWithLinks(driver, obj3.keywordUS_same_ee, eeCases,obj3.ee_titleUS);
 		//View case with links and then a case without links
-		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj1.keyword_same_eqUS);
+		obj1.viewCaseInAdmin(driver, eqCases, eeCases, obj3.keyword_same_eqUS);
 		//Verify cases with and without links with same keyword in Equipment Databank only
-		obj1.searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(driver, obj1.keywordUS_same_ee, eeCases);
+		obj1.searchCaseWithSameKeywordWithAndWithoutLinksInEquipDatabank(driver, obj3.keywordUS_same_ee, eeCases);
 		//Add an existing keyword to case with links and search for case
 		obj1.addKeywordToLinkCaseAndSearchInEquipmentDatabank(driver, eeCases, obj.keywordEquipProd);
 		//Turn slide security on and click on links in Related links slide
-		obj1.slideSecurityOnTest(driver, obj1.keywordUS_same_ee, eeCases, obj1.ee_titleUS, username);
+		obj1.slideSecurityOnTest(driver, obj3.keywordUS_same_ee, eeCases, obj3.ee_titleUS, username);
 		//Edit links
 		obj1.editLinks(driver, eeCases);
 		//Delete links

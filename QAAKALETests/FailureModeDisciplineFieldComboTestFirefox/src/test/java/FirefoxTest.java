@@ -53,6 +53,7 @@ public class FirefoxTest {
 	  public void SanityTest() throws Exception{
 		  
 		CreateEquipmentCase obj = new CreateEquipmentCase();
+		CreateEquipmentCase3 obj2 = new CreateEquipmentCase3();
 		Login obj1 = new Login();
 		int login = obj1.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
@@ -78,10 +79,10 @@ public class FirefoxTest {
     		  }
         }		  
 		//Deletes previous cases
-		obj.deletePreviousCase(driver, obj.titleCombo);
+		obj.deletePreviousCase(driver, obj2.titleCombo);
 		Thread.sleep(1000);
 		//Creates cases in each discipline and field combo and verify cases in failure mode and deletes all cases
-		obj.createCaseWithDifferentDisciplineField(driver, obj.titleCombo, obj.keywordCombo);
+		obj.createCaseWithDifferentDisciplineField(driver, obj2.titleCombo, obj2.keywordCombo);
 		//Logs out
 		obj1.logout(driver);
 		afterTest(obj);		
