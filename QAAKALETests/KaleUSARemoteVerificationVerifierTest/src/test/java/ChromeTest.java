@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ChromeTest {
 
 	private WebDriver driver;
-	private String username ="jenkinsvmnonadmin";
+	private String username ="jenkins_rv_us_nonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kale.error-free.com/";

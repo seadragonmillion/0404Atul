@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class IETest {
 
 	private InternetExplorerDriver driver;
-	private String username ="jenkinsvmnonadmin";
+	private String username ="jenkins_rv_nonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = System.getProperty("qaurl");
