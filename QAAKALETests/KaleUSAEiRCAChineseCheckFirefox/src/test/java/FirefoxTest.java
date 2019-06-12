@@ -82,7 +82,7 @@ public class FirefoxTest {
 		//Change language to english
 		obj1.changeToEnglish(driver);
 		//Change language to chinese
-		obj3.EiRCApath(driver);
+		obj3.EiRCApath(driver,username,password);
 		//Delete report
 		obj2.deleteReport(driver);
 		//Change language to english
