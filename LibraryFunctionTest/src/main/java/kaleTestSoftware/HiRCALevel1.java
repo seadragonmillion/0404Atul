@@ -46,6 +46,7 @@ public class HiRCALevel1 {
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	HiRCAObj hirca = new HiRCAObj();
 
 	public String text(WebDriver driver) throws Exception{
 
@@ -1155,7 +1156,6 @@ public class HiRCALevel1 {
 
 	public void modifyReport(WebDriver driver, List<String>lopOptions, HashMap<String,Integer>options, HashMap<String,String>hml, List<String>checklist,MultiValuedMap<String,String>hircaNoteLopSURE) throws Exception {
 
-		HiRCA2 obj1 = new HiRCA2();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		Thread.sleep(2000);
 		//Switch to iframe
@@ -1239,7 +1239,7 @@ public class HiRCALevel1 {
 		verifyReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Get browser name
@@ -1797,7 +1797,6 @@ public class HiRCALevel1 {
 	public void HiRCAPathCheck(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCA2 obj1 = new HiRCA2();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Analysis 
@@ -1867,7 +1866,7 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		}
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on Yes
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset[1]/div/div/label"))));
 		//Verify the LOP selection
@@ -1876,7 +1875,7 @@ public class HiRCALevel1 {
 		select3LOP(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on next
@@ -1886,7 +1885,7 @@ public class HiRCALevel1 {
 		//Click on No
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-initialquestions']/div/fieldset[2]/div/div/label"))));
 		//Click on modify
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Verify 2.21
@@ -1946,7 +1945,7 @@ public class HiRCALevel1 {
 		verifyReport(driver, lopOptions, options, hml, checklist,0, hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Get browser name

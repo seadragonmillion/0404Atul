@@ -16,8 +16,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HPI {
 
 	EiRCAPageObj eirca = new EiRCAPageObj();
+	HPIObj hpi = new HPIObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	ShareCheck3 share3 = new ShareCheck3();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
 
 	SoftAssertions softly = new SoftAssertions();
@@ -26,7 +28,7 @@ public class HPI {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Clicks on HPI
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-hpi"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hpi.HPILink)).click();
 		Thread.sleep(2000);
 		//Select Purpose from dropdown
 		WebElement element = driver.findElement(By.id("pii-hpi-select-purpose"));
@@ -137,7 +139,7 @@ public class HPI {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Wait for loading message to disappear

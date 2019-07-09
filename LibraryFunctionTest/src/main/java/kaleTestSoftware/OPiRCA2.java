@@ -428,7 +428,7 @@ public class OPiRCA2 {
 		{
 			combinedStep2.add(d1.get(i));
 		}
-		//System.out.println(combinedStep2);
+		System.out.println("combinedstep2: "+combinedStep2);
 		combinedStep2.addAll(ac);
 		return combinedStep2;
 	}

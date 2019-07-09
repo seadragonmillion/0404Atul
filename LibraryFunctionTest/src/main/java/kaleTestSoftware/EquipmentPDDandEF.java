@@ -84,17 +84,17 @@ public class EquipmentPDDandEF {
 	public String keywordEFDevSpcl ="SanityEF./";
 	public String keywordPDDProd = "packing friction force";
 	public String keywordPDDProdPercent = "10%";
-	public String keywordEFProd = "Ampere Electromagnetism Law";
+	public String keywordEFProd = "Anatomy of Equipment Failures";
 	public String keywordEFProdSpcl = "PM2.5 meter";
 	public String caseEFDev = "7450";
 	public String casePDDDev = "7890";
-	public String caseEFProd = "2014";
+	public String caseEFProd = "2003";
 	public String casePDDProd = "3005";
 	public String caseEFProdSpcl = "2017";
 	public String casePDDProdPercent = "4034";
 	public String titleEFDev = "Sanity: QAA Test (DO NOT DELETE)";
 	public String titlePDDDev = "Sanity: QAA Test (DO NOT DELETE)";
-	public String titleEFProd = "What is Faraday’s Law and Ampere’s Law?"+"\n";
+	public String titleEFProd = "What are the core capabilities to ensure equipment failure-free operation?"+"\n";
 	public String titlePDDProd = "How do you reduce valve packing friction force?";
 
 	public void searchCaseInFailureModes(WebDriver driver, String identifierEF, String identifierPDD, String keywordEF, String keywordPDD) throws Exception {
@@ -1072,7 +1072,6 @@ public class EquipmentPDDandEF {
 	public void selectTypeEFPDD(WebDriver driver, String keyword) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();

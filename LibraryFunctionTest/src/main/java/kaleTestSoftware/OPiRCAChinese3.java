@@ -1932,7 +1932,7 @@ public class OPiRCAChinese3 {
 		softly.assertThat(h8).as("test data").contains("重要性分级");
 		String h9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Heading3)).getText();
 		softly.assertThat(h9).as("test data").contains("纠正行动");
-		if(browserName.equals("chrome"))
+		/*if(browserName.equals("chrome"))
 		{
 			//Row 1
 			String r19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row1Column1)).getText();
@@ -1951,7 +1951,7 @@ public class OPiRCAChinese3 {
 			softly.assertThat(r23).as("test data").contains("自我评价培训，使人员认识到他或她容易发生失误的方面");
 			ac.add(r23);
 		}
-		else{
+		else{*/
 			//Row 51
 			String r19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row1Column1)).getText();
 			softly.assertThat(r19).as("test data").contains("O1.2 跨领域职能管理不足: (1) 职能协调人或经理不足; (2) 人因绩效提升职能不足; (3) 设备性能提升职能不足");
@@ -1967,7 +1967,7 @@ public class OPiRCAChinese3 {
 			String r23a = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row2Column2)).getText();
 			softly.assertThat(r23a).as("test data").contains("低");
 			ac.add(r23a);
-		}
+		//}
 		//Row 3
 		String r24 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row3Column1)).getText();
 		softly.assertThat(r24).as("test data").contains("O1.4 生产组织结构不足，例如: (1) 执行核心工作流程的结构存在不足; (2) 不同生产线的结构分隔存在不足; (3) 班值存在不足");
@@ -2261,7 +2261,7 @@ public class OPiRCAChinese3 {
 		String r119 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row50Column3)).getText();
 		softly.assertThat(r119).as("test data").contains("改进绩效提升的管理决策流程，纳入现场观察中的数据");
 		ac.add(r119);
-		if(browserName.equals("chrome"))
+		/*if(browserName.equals("chrome"))
 		{
 			//Row 51
 			String r120 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row51Column1)).getText();
@@ -2280,7 +2280,7 @@ public class OPiRCAChinese3 {
 			ac.add(r123a);
 		}
 		else
-		{
+		{*/
 			//51
 			String r120 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row51Column1)).getText();
 			softly.assertThat(r120).as("test data").contains("OP3.1 个人的自我分析存在不足");
@@ -2294,7 +2294,7 @@ public class OPiRCAChinese3 {
 			softly.assertThat(r123).as("test data").contains("开展Error-Free");
 			softly.assertThat(r123).as("test data").contains("自我评价培训，使主管认识到他或她的小组容易发生失误的方面");
 			ac.add(r123);
-		}
+		//}
 		//Row 53
 		String r124 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row53Column1)).getText();
 		softly.assertThat(r124).as("test data").contains("OP3.3 管理组织的自我分析存在不足");
@@ -2596,7 +2596,7 @@ public class OPiRCAChinese3 {
 		String r221 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row101Column3)).getText();
 		softly.assertThat(r221).as("test data").contains("使用软件或智能电话技术跟踪沟通情况");
 		ac.add(r221);
-		if(browserName.equals("chrome"))
+		/*if(browserName.equals("chrome"))
 		{
 			//Row 102
 			String r222 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row102Column1)).getText();
@@ -2606,13 +2606,13 @@ public class OPiRCAChinese3 {
 			softly.assertThat(r223).as("test data").contains("自我评价培训，使主管认识到他或她的小组容易发生失误的方面");
 			ac.add(r223);
 		}
-		else{
+		else{*/
 			String r222 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row102Column1)).getText();
 			softly.assertThat(r222).as("test data").contains("P5.9 使用过时且繁重的技术或工具来执行工作");
 			String r223a = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable4Row102Column3)).getText();
 			softly.assertThat(r223a).as("test data").contains("改进工作技术或工具");
 			ac.add(r223a);
-		}
+		//}
 		return ac;
 	}
 

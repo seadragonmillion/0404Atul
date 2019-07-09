@@ -22,10 +22,16 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,1);
+		Thread.sleep(1000);
 		//Get question text
 		String question = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText().trim();
+		System.out.println("question " +question);
 		//remove [ and ] 
-		int indexOfQuestionMark = question.lastIndexOf("?");
+		int indexOfQuestionMark = 0;
+		if(question.contains("？"))
+			indexOfQuestionMark = question.lastIndexOf("？");
+		if(question.contains("?"))
+			indexOfQuestionMark = question.lastIndexOf("?");
 		String r = question.substring(0, indexOfQuestionMark+1).replace("]", "").replace("[", "");
 		//Get answer text
 		//Count number of answers under question= number of div - the reason entry div
@@ -57,11 +63,12 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		String answer = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+divNumber+"]/fieldset/div/div/label"))).getText();
 		if (lcr.containsHanScript(answer)==true)
 		{
-			String note = "备注：根据以下答案所选出 "+r+": "+answer;
+			String note = "备注：从以下问题所选的答案而来 "+r+": "+answer;
 			System.out.println(note);
 			return note;
 		}
-		else{
+		else
+		{
 		String note = "Note: selected based on answer "+r+": "+answer;
 		System.out.println(note);
 		return note;

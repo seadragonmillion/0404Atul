@@ -41,6 +41,7 @@ public class OPiRCAPageObj {
 
 	public By OPiRCANextButton = By.id("efi-opa-button-next");
 	public By OPiRCASkipButton = By.id("efi-opa-button-skip");
+	public By OPiRCABackButton = By.id("efi-opa-button-back");
 	public By OPiRCAInfoTab = By.id("efi-opa-tab-0");
 	public By OPiRCAStep1Tab = By.id("efi-opa-tab-1");
 	public By OPiRCAStep2Tab = By.id("efi-opa-tab-2");
@@ -245,6 +246,8 @@ public class OPiRCAPageObj {
 	public By OPiRCANewContributingFactorField2 = By.id("pii-opa-addnewcf-ca");
 
 	//Step 2
+	public By OPiRCAStep2AboutLink =  By.id("pii-a-opa-rp2-btn");
+	public By OPiRCAStep2About3rdParagraph = By.xpath(".//*[@id='pii-a-opa-rp2-html']/p[3]");
 	public By OPiRCAReasonEntryLabel = By.xpath(".//*[@for='pii-opa-reason-entry']");
 	public By OPiRCAReasonEntryField = By.id("pii-opa-reason-entry");
 
@@ -699,6 +702,9 @@ public class OPiRCAPageObj {
 	public By OPiRCAStep5TableRow5Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[6]/td[3]/div/input");
 	public By OPiRCAStep5TableRow6Column2 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[7]/td[2]");
 	public By OPiRCAStep5TableRow6Column3 = By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr[7]/td[3]/div/input");
+	public By OPiRCAStep5AboutLink = By.id("pii-a-opa-rp5-btn");
+	public By OPiRCAStep5AboutLastParagraphUnderBurp = By.xpath(".//*[@id='pii-a-opa-rp5']/div[1]/div[10]/p/small");
+	public By OPiRCAStep5AboutParagraphUnderTQA = By.xpath(".//*[@id='pii-a-opa-rp5']/div[1]/div[8]/p/small");
 
 	//Report Tab
 	//Table 1

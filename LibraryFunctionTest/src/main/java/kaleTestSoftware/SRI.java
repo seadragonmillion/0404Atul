@@ -17,7 +17,7 @@ public class SRI {
 	SoftAssertions softly = new SoftAssertions();
 	Random random = new Random();
 
-	HiRCALOPBug hlb = new HiRCALOPBug();
+	HiRCAObj hc = new HiRCAObj();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	EiRCA2 eirca2 = new EiRCA2();
 	EiRCA3 eirca3 = new EiRCA3();
@@ -25,6 +25,7 @@ public class SRI {
 	ErrorMeter3 em3 = new ErrorMeter3 ();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
+	ShareCheck3 share3 = new ShareCheck3();
 	SRIPageObj sri = new SRIPageObj();
 	SRI2 sri2 = new SRI2();
 	SRI3 sri3 = new SRI3();
@@ -51,7 +52,7 @@ public class SRI {
 		//Verifies user added
 		String user=wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareSaveButton)).click();
 		//Verify share save sticky
@@ -156,7 +157,7 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		share2.loadingServer(driver);
-		sriA.deleteAll(driver);
+		sriA.deleteAll(driver,softly);
 		//Verify report not retrieved by shared to person		
 		String sharer = em3.decideSharer (y);
 		share.checkNoReportAfterDelete(driver, sharer, softly);	
@@ -357,6 +358,13 @@ public class SRI {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys(text);
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		int total = getTotalCountFromTitle(driver);
+		for(int i=count+1;i<=total;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys("z");
+		}
 		//Inspection staff
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1InspectionStaff)).sendKeys(text);
 		/*Select label mechanical or electrical
@@ -689,6 +697,16 @@ public class SRI {
 		System.out.println(s+ " "+count);
 		return count;
 	}
+	
+	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(sri.Step1TitleCharacterCount).getText();
+		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
 
 	public void step2Verify(WebDriver driver) throws Exception {
 
@@ -741,7 +759,7 @@ public class SRI {
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		sriA.SRIAdminTest(driver,softly);
 		//Clicks on Analysis 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hlb.AnalysisLink)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.AnalysisLink)).click();
 		//Click on SRI
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRILink)).click();
 		//Verify no success popup
@@ -804,7 +822,7 @@ public class SRI {
 		//Verify data on HTML
 		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
 		//Verify rename popup overflow
-		sri2.verifySavePopupAfterRename(driver, softly,recordName,username,password);
+		sri2.verifySavePopupAfterRename(driver, softly,recordName,username,password,sriA2.electricalComponent1);
 		return recordName;
 	}
 

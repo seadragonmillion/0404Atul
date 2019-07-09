@@ -65,9 +65,11 @@ public class RemoteVerification {
 	RemoteVerification3 rv3 = new RemoteVerification3();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
+	ShareCheck3 share3 = new ShareCheck3();
 	ShareCheck share = new ShareCheck();
 	LoginPageObj lpo = new LoginPageObj();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
+	UserManagement um = new UserManagement();
 
 	public String testBugEmail = "testverifierusemail@gmail.com";
 
@@ -75,17 +77,16 @@ public class RemoteVerification {
 	public void checkStatusReport (WebDriver driver, String username, int k) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		UserManagement obj1 = new UserManagement();
 		//Mark read verifier email		
 		String email = selectEmail(k);
-		obj1.emailMarkRead(email, driver);
+		um.emailMarkRead(email, driver);
 		//Clicks on Save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).click();
 		//Wait for loading message to disappear		
 		share2.loadingServer(driver);
 		//Click on Saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedAcivitiesButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedActivitiesButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on newly created record
@@ -130,51 +131,50 @@ public class RemoteVerification {
 
 	public String selectEmail(int k) throws Exception{
 
-		UserManagement obj = new UserManagement();
 		//dev admin
 		if(k==1)
 		{
-			return obj.emailDev;
+			return um.emailDev;
 		}
 		//dev nonadmin
 		if(k==2)
 		{
-			return obj.emailDev;
+			return um.emailDev;
 		}
 		//dev admin ie11
 		if(k==3)
 		{
-			return obj.emailDevie11;
+			return um.emailDevie11;
 		}
 		//dev nonadmin ie11
 		if(k==4)
 		{
-			return obj.emailDevie11;
+			return um.emailDevie11;
 		}
 		//asia admin
 		if(k==5)
 		{
-			return obj.emailAsia;
+			return um.emailAsia;
 		}
 		//asia nonadmin
 		if(k==6)
 		{
-			return obj.emailAsia;
+			return um.emailAsia;
 		}
 		//asia admin ie11
 		if(k==7)
 		{
-			return obj.emailAsiaie11;
+			return um.emailAsiaie11;
 		}
 		//asia nonadmin ie11
 		if(k==8)
 		{
-			return obj.emailAsiaie11;
+			return um.emailAsiaie11;
 		}
 		//us admin
 		if(k==9)
 		{
-			return obj.emailUS;
+			return um.emailUS;
 		}
 		//us nonadmin
 		if(k==10)
@@ -185,18 +185,17 @@ public class RemoteVerification {
 		//us admin ie11
 		if(k==11)
 		{
-			return obj.emailUSie11;
+			return um.emailUSie11;
 		}
 		//us nonadmin ie11
 		else
 		{
-			return obj.emailUSie11;
+			return um.emailUSie11;
 		}
 	}
 
 	public void verifyEmailForVerifier (WebDriver driver,String username, String reportName, int k) throws Exception {
 
-		UserManagement obj = new UserManagement();
 		//Get current Time
 		long currentTime = System.currentTimeMillis();
 		//Add 15 minutes to it
@@ -240,7 +239,7 @@ public class RemoteVerification {
 			if(currentTime>time15)
 			{
 				System.out.println("Time elapsed for email: More than 15 minutes");
-				obj.excelStore();
+				um.excelStore();
 				break;
 			}
 			if (messageCount1>0)
@@ -656,88 +655,7 @@ public class RemoteVerification {
 
 	}
 
-	public void verifierSelect(WebDriver driver, int k) throws Exception {
 
-		//dev admin
-		if(k==1)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaarvverifier1");
-		}
-		//dev nonadmin
-		if(k==2)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaarvverifiernonadmin");
-		}
-		//dev admin ie11
-		if(k==3)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaaie11rvverifier");
-		}
-		//dev nonadmin ie11
-		if(k==4)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaaie11rvverifiernonadmin");
-		}
-		//asia admin
-		if(k==5)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaarvverifier");
-		}
-		//asia nonadmin
-		if(k==6)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaarvverifiernonadmin");
-		}
-		//asia admin ie11
-		if(k==7)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaaie11rvverifier");
-		}
-		//asia nonadmin ie11
-		if(k==8)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaaie11rvverifiernonadmin");
-		}
-		//us admin
-		if(k==9)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaausrvverifier");
-		}
-		//us nonadmin
-		if(k==10)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaausrvverifiernonadmin");
-		}
-		//us admin ie11
-		if(k==11)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaausie11rvverifier");
-		}
-		//us nonadmin ie11
-		if(k==12)
-		{
-			driver.findElement(rv.RVVerifierField).sendKeys("qaausie11rvverifiernonadmin");
-		}
-		//Selects the remote verifier		
-		share2.scrollToAPoint(driver, 1500);
-		WebElement select = driver.findElement(rv.RVVerifierDropdown);
-		WebElement option=select.findElement(eirca.FirstSelectionUnderDropdown);		
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.toLowerCase().contains("safari"))
-		{
-			while(true)
-			{
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();", option);
-				String verifier= driver.findElement(rv.RVVerifierValue).getAttribute("piivalue");
-				if(verifier.contains("verifier"))
-					break;
-			}
-		}
-		else
-			option.click();
-	}
 
 	public void verifyLongitudeLatitude(WebDriver driver) throws Exception {
 
@@ -857,11 +775,19 @@ public class RemoteVerification {
 		System.out.println(s);
 		if(s.equals("true")==false)
 			softly.fail("Verifier text box not suppose to be enabled");    	
-		//Enters verifier username and tries to add verifier
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(verifier);
-		//Selects from dropdown
-		WebElement dropdown1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
-		dropdown1.findElement(eirca.FirstSelectionUnderDropdown).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Enters verifier username and tries to add verifier
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(verifier);
+			//Selects from dropdown
+			try{
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+			}catch(org.openqa.selenium.TimeoutException r)
+			{
+				System.out.println("No verifier in search for shared to user list");
+			}
+		}
+		/*	dropdown1.findElement(eirca.FirstSelectionUnderDropdown).click();
 		//Gets text from error pop up and verifies text
 		String error = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(error).as("test data").contains("Sorry, the current activity is already shared to user");
@@ -872,7 +798,7 @@ public class RemoteVerification {
 		//Verifies if only ok button available and clicks on ok
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(1000);
-		wait1.until(ExpectedConditions.invisibilityOfElementLocated(eirca.ConfirmPopupButton));
+		wait1.until(ExpectedConditions.invisibilityOfElementLocated(eirca.ConfirmPopupButton));*/
 		//Adds sharer
 		//Enters sharer username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).clear();
@@ -907,7 +833,7 @@ public class RemoteVerification {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);		
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		//Wait for loading message to disappear
@@ -1363,6 +1289,16 @@ public class RemoteVerification {
 		if(count!=1)
 			softly.fail("Count did not match: aaaa: " + count);
 	}
+	
+	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(rv.RVTitleCharacterCount).getText();
+		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
 
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 
@@ -1381,21 +1317,28 @@ public class RemoteVerification {
 		checkTitleCountReset(driver);
 		//Fills the mandatory fields
 		driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		int total = getTotalCountFromTitle(driver);
+		for(int i=count+1;i<=total;i++)
+		{
+			driver.findElement(rv.RVEventTitle).sendKeys("z");
+		}
 		driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		String ev1 = driver.findElement(rv.RVEventTitle).getAttribute("value");
 		String ev2 = driver.findElement(rv.RVEventDetails).getAttribute("value");
-		if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
+	/*	if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
 		{
 			driver.findElement(rv.RVEventTitle).clear();
 			driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
-		}
+		}*/
 		if((ev2.equals(rv.details(driver,driver.getCurrentUrl())))==false)
 		{
 			driver.findElement(rv.RVEventDetails).clear();
 			driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		}
 		//Select verifier
-		verifierSelect(driver,k);
+		rv3.verifierSelect(driver,k);
 		Thread.sleep(1000);
 		String verifier= driver.findElement(rv.RVVerifierValue).getAttribute("piivalue");
 		//Uploads picture 2
@@ -1417,7 +1360,7 @@ public class RemoteVerification {
 		//Creates the expected name of record
 		String creation_date = driver.findElement(rv.RVCreationDate).getText();
 		creation_date= creation_date.substring(22, creation_date.length());
-		String name = creation_date +"_"+ username + "_" + rv.eventTitle(driver,driver.getCurrentUrl());
+		String name = creation_date +"_"+ username + "_" + ev1;
 		System.out.println("Expected name of record: " + name);
 		//Clicks on Remote Verification
 		driver.findElement(rv.RVSidePanel).click();

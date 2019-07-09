@@ -28,6 +28,7 @@ public class CreateHumanCase {
 	CaseBrowsePageObj cb = new CaseBrowsePageObj();
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 	CreateHumanCase2 chc2 = new CreateHumanCase2();
+	CreateEquipmentCase3 equip3 = new CreateEquipmentCase3();
 
 	int numberOfImages=5;
 	public String keyword_same="QAAfive";
@@ -355,7 +356,6 @@ public class CreateHumanCase {
 	public void editLinks (WebDriver driver, List<String> cases) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		CreateEquipmentCase obj1 = new CreateEquipmentCase();
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -391,7 +391,7 @@ public class CreateHumanCase {
 		share2.scrollToElement(driver, l);
 		//Edit link title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).sendKeys("Edited: "+obj1.videoLinkTitle1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).sendKeys("Edited: "+equip3.videoLinkTitle1);
 		//Save case
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
@@ -453,7 +453,7 @@ public class CreateHumanCase {
 		//Verify title of 1st link
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s1).as("test data").contains("1. Video");
-		softly.assertThat(s1).as("test data").contains("Edited: "+obj1.videoLinkTitle1);
+		softly.assertThat(s1).as("test data").contains("Edited: "+equip3.videoLinkTitle1);
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/a"))).click();
 		//Click on clear
@@ -694,12 +694,12 @@ public class CreateHumanCase {
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 1
-		l.sendKeys(obj.noVideoLinkTitle3);
+		l.sendKeys(equip3.noVideoLinkTitle3);
 		//Scroll to element
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)));
 		//Enter url 3
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(equip3.noVideoLink);	
 		//To make url form appear click on title for link 1
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
 		share2.scrollToTop(driver);
@@ -708,13 +708,13 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 2 banana
-		l.sendKeys(obj.noVideoLinkTitle2);
+		l.sendKeys(equip3.noVideoLinkTitle2);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2URL)).click();
 		//Link 2 becomes Link 1
 		//Enter url 2
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
 		share2.scrollToTop(driver);
@@ -722,24 +722,24 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 1 apple
-		l.sendKeys(obj.noVideoLinkTitle1);
+		l.sendKeys(equip3.noVideoLinkTitle1);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3URL)).click();
 		//Link 3 becomes Link 1
 		//Enter url 3
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink1Title);
 		share2.scrollToTop(driver);
 		//Enter title for link 4 : video link 1
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title)).sendKeys(obj.videoLinkTitle1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4Title)).sendKeys(equip3.videoLinkTitle1);
 		Thread.sleep(1000);
 		//Enter url 4
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink4URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4URL)).sendKeys(obj.videoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4URL)).sendKeys(equip3.videoLink);
 		//Move to video checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink4VideoCheckbox));
 		share2.scrollToElement(driver, l);
@@ -751,17 +751,17 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1Title)).getAttribute("value");
-		softly.assertThat(s).as("test data").contains(obj.videoLinkTitle1);
+		softly.assertThat(s).as("test data").contains(equip3.videoLinkTitle1);
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink1URL)).getAttribute("value");
-		softly.assertThat(s1).as("test data").contains(obj.videoLink);
+		softly.assertThat(s1).as("test data").contains(equip3.videoLink);
 		//Enter title for link 5 : video link 2
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title)).sendKeys(obj.videoLinkTitle2);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5Title)).sendKeys(equip3.videoLinkTitle2);	
 		Thread.sleep(1000);
 		//Enter url 5
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink5URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5URL)).sendKeys(obj.videoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5URL)).sendKeys(equip3.videoLink);
 		//Move to viedo checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink5VideoCheckbox));
 		share2.scrollToElement(driver, l);
@@ -773,17 +773,17 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2Title)).getAttribute("value");
-		softly.assertThat(s3).as("test data").contains(obj.videoLinkTitle2);
+		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle2);
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink2URL)).getAttribute("value");
-		softly.assertThat(s4).as("test data").contains(obj.videoLink);
+		softly.assertThat(s4).as("test data").contains(equip3.videoLink);
 		//Enter title for link 6 : video link 3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title)).sendKeys(obj.videoLinkTitle3);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6Title)).sendKeys(equip3.videoLinkTitle3);	
 		Thread.sleep(1000);
 		//Enter url 6
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink6URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6URL)).sendKeys(obj.videoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6URL)).sendKeys(equip3.videoLink);
 		//Move to viedo checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink6VideoCheckbox));
 		share2.scrollToElement(driver, l);
@@ -795,19 +795,19 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3Title)).getAttribute("value");
-		softly.assertThat(s5).as("test data").contains(obj.videoLinkTitle3);
+		softly.assertThat(s5).as("test data").contains(equip3.videoLinkTitle3);
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink3URL)).getAttribute("value");
-		softly.assertThat(s6).as("test data").contains(obj.videoLink);
+		softly.assertThat(s6).as("test data").contains(equip3.videoLink);
 		//Scroll to link 7
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 7
-		l.sendKeys(obj.noVideoLinkTitle4);
+		l.sendKeys(equip3.noVideoLinkTitle4);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7URL)).click();
 		//Enter url 7
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink7URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink7URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink7Title);
 		share2.scrollToTop(driver);
@@ -815,12 +815,12 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 8
-		l.sendKeys(obj.noVideoLinkTitle5);
+		l.sendKeys(equip3.noVideoLinkTitle5);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8URL)).click();
 		//Enter url 8
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink8URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink8URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink8Title);
 		share2.scrollToTop(driver);
@@ -828,12 +828,12 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 9
-		l.sendKeys(obj.noVideoLinkTitle6);
+		l.sendKeys(equip3.noVideoLinkTitle6);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9URL)).click();
 		//Enter url 9
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink9URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink9URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink9Title);
 		share2.scrollToTop(driver);
@@ -841,12 +841,12 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 10
-		l.sendKeys(obj.noVideoLinkTitle7);
+		l.sendKeys(equip3.noVideoLinkTitle7);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10URL)).click();
 		//Enter url 10
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink10URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink10URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink10Title);
 		share2.scrollToTop(driver);
@@ -854,12 +854,12 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 11
-		l.sendKeys(obj.noVideoLinkTitle8);
+		l.sendKeys(equip3.noVideoLinkTitle8);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11URL)).click();
 		//Enter url 11
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink11URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink11URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink11Title);
 		share2.scrollToTop(driver);
@@ -867,12 +867,12 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 12
-		l.sendKeys(obj.noVideoLinkTitle9);
+		l.sendKeys(equip3.noVideoLinkTitle9);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12URL)).click();
 		//Enter url 12
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink12URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink12URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink12Title);
 		share2.scrollToTop(driver);
@@ -880,12 +880,12 @@ public class CreateHumanCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 11
-		l.sendKeys(obj.noVideoLinkTitle10);
+		l.sendKeys(equip3.noVideoLinkTitle10);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13URL)).click();
 		//Enter url 11
 		wait.until(ExpectedConditions.elementToBeClickable(chc.HumanCasesLink13URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13URL)).sendKeys(obj.noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCasesLink13URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		obj.clickToShowNextRowForLink(driver,chc.HumanCasesLink13Title);
 		share2.scrollToTop(driver);
@@ -941,19 +941,19 @@ public class CreateHumanCase {
 		//Verify title of 1st link with no video
 		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s10).as("test data").contains("10. ");
-		softly.assertThat(s10).as("test data").contains(obj2.noVideoLinkTitle7);
+		softly.assertThat(s10).as("test data").contains(equip3.noVideoLinkTitle7);
 		//Verify title of 2nd link with no video
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[3]"))).getText();
 		softly.assertThat(s11).as("test data").contains("11. ");
-		softly.assertThat(s11).as("test data").contains(obj2.noVideoLinkTitle8);
+		softly.assertThat(s11).as("test data").contains(equip3.noVideoLinkTitle8);
 		//Verify title of 3rd link with no video
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[4]"))).getText();
 		softly.assertThat(s12).as("test data").contains("12. ");
-		softly.assertThat(s12).as("test data").contains(obj2.noVideoLinkTitle9);
+		softly.assertThat(s12).as("test data").contains(equip3.noVideoLinkTitle9);
 		//Verify title of 4th link with no video
 		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[5]"))).getText();
 		softly.assertThat(s13).as("test data").contains("13. ");
-		softly.assertThat(s13).as("test data").contains(obj2.noVideoLinkTitle10);
+		softly.assertThat(s13).as("test data").contains(equip3.noVideoLinkTitle10);
 		String s14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div/div"))).getText();
 		softly.assertThat(s14).as("test data").isEqualTo("Related Links");
 		//Click on 1st link
@@ -968,39 +968,39 @@ public class CreateHumanCase {
 		//Verify title of 1st link with video
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s1).as("test data").contains("1. Video: ");
-		softly.assertThat(s1).as("test data").contains(obj2.videoLinkTitle1);
+		softly.assertThat(s1).as("test data").contains(equip3.videoLinkTitle1);
 		//Verify title of 2nd link with video
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[3]"))).getText();
 		softly.assertThat(s2).as("test data").contains("2. Video: ");
-		softly.assertThat(s2).as("test data").contains(obj2.videoLinkTitle2);
+		softly.assertThat(s2).as("test data").contains(equip3.videoLinkTitle2);
 		//Verify title of 3rd link with video
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[4]"))).getText();
 		softly.assertThat(s3).as("test data").contains("3. Video: ");
-		softly.assertThat(s3).as("test data").contains(obj2.videoLinkTitle3);
+		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle3);
 		//Verify title of 4th link with no video
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[5]"))).getText();
 		softly.assertThat(s4).as("test data").contains("4. ");
-		softly.assertThat(s4).as("test data").contains(obj2.noVideoLinkTitle1);
+		softly.assertThat(s4).as("test data").contains(equip3.noVideoLinkTitle1);
 		//Verify title of 5th link with no video
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[6]"))).getText();
 		softly.assertThat(s5).as("test data").contains("5. ");
-		softly.assertThat(s5).as("test data").contains(obj2.noVideoLinkTitle2);
+		softly.assertThat(s5).as("test data").contains(equip3.noVideoLinkTitle2);
 		//Verify title of 6th link with no video
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[7]"))).getText();
 		softly.assertThat(s6).as("test data").contains("6. ");
-		softly.assertThat(s6).as("test data").contains(obj2.noVideoLinkTitle3);
+		softly.assertThat(s6).as("test data").contains(equip3.noVideoLinkTitle3);
 		//Verify title of 4th link with no video
 		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[8]"))).getText();
 		softly.assertThat(s7).as("test data").contains("7. ");
-		softly.assertThat(s7).as("test data").contains(obj2.noVideoLinkTitle4);
+		softly.assertThat(s7).as("test data").contains(equip3.noVideoLinkTitle4);
 		//Verify title of 5th link with no video
 		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[9]"))).getText();
 		softly.assertThat(s8).as("test data").contains("8. ");
-		softly.assertThat(s8).as("test data").contains(obj2.noVideoLinkTitle5);
+		softly.assertThat(s8).as("test data").contains(equip3.noVideoLinkTitle5);
 		//Verify title of 6th link with no video
 		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[10]"))).getText();
 		softly.assertThat(s9).as("test data").contains("9. ");
-		softly.assertThat(s9).as("test data").contains(obj2.noVideoLinkTitle6);
+		softly.assertThat(s9).as("test data").contains(equip3.noVideoLinkTitle6);
 		Thread.sleep(2000);
 		//Click on 1st link
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]/a"))).click();

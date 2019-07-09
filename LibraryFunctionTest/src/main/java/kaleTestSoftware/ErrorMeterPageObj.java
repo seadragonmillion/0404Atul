@@ -4,8 +4,17 @@ import org.openqa.selenium.By;
 
 public class ErrorMeterPageObj {
 
+	//EM link
+	public By ErrorMeterLink = By.id("pii-a-menu-em");
 	//First page of module
 	public By JobTitleCharacterCount = By.id("pii-epm-job-title-count");
+	public By ErrorMeterPurpose = By.id("pii-epm-select-purpose");
+	public By ErrorMeterJobType = By.id("pii-epm-select-condition");
+	public By ErrorMeterJobTitle = By.id("pii-epm-job-title");
+	public By ErrorMeterNextButton = By.id("pii-epm-btn-next");
+	//Guide
+	public By ErrorMeterGuideLink = By.id("pii-a-epm-lp1-a");
+	public By ErrorMeterGuideParagraph3Label = By.xpath(".//*[@id='pii-a-epm-lp1']/div[1]/p[3]/b");
 
 	//HTML
 	public By ErrorMeterSidePanel = By.id("pii-user-home-panel-btn-epm");

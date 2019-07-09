@@ -40,7 +40,9 @@ public class HiRCAEvent {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	ShareCheck3 share3 = new ShareCheck3();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
+	HiRCAObj hirca = new HiRCAObj();
 
 	SoftAssertions softly = new SoftAssertions();
 	public String reason1="I think I will buy the red car, or I will lease the blue one.";
@@ -176,8 +178,8 @@ public class HiRCAEvent {
 		//Save pop verify
 		obj2.verifySavePopup(driver, softly);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Verify save sticky
 		obj2.verifyStickySaveReport(driver, softly, username, "changed title thrice", 0);
 		Thread.sleep(1000);
@@ -252,8 +254,8 @@ public class HiRCAEvent {
 		//Save pop verify
 		obj2.verifySavePopup(driver, softly);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Verify save sticky
 		obj2.verifyStickySaveReport(driver, softly, username, "changed title twice", 0);
 		Thread.sleep(1000);
@@ -366,8 +368,8 @@ public class HiRCAEvent {
 		//Save pop verify
 		obj2.verifySavePopup(driver, softly);
 		//Clicks on Save report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupMessage)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Verify save sticky
 		obj2.verifyStickySaveReport(driver, softly, username, "changed title", 0);
 		Thread.sleep(1000);
@@ -409,8 +411,8 @@ public class HiRCAEvent {
 		//Save pop verify
 		obj.verifySavePopup(driver, softly);
 		//Clicks on Save report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupMessage)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupConfirmButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		Thread.sleep(1000);
 		//Clicks on Saved activities
@@ -426,6 +428,7 @@ public class HiRCAEvent {
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		String window = driver.getWindowHandle();
@@ -441,7 +444,7 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		pdfCheck(get_date,get_time,get_dept,creationDate);
+		pdfCheck(get_date,get_time,get_dept,creationDate,url);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -457,6 +460,7 @@ public class HiRCAEvent {
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Clicks on download button
@@ -491,7 +495,7 @@ public class HiRCAEvent {
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 		p.waitFor();*/
-		pdfCheck(get_date,get_time,get_dept,creationDate);
+		pdfCheck(get_date,get_time,get_dept,creationDate,url);
 		Thread.sleep(4000);
 		driver.close();
 		Thread.sleep(4000);
@@ -507,6 +511,7 @@ public class HiRCAEvent {
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		Thread.sleep(2000);
@@ -568,7 +573,7 @@ public class HiRCAEvent {
 			Thread.sleep(6000);
 		}
 		//pdf verification
-		pdfCheck(get_date,get_time,get_dept,creationDate);
+		pdfCheck(get_date,get_time,get_dept,creationDate,url);
 		Thread.sleep(4000);
 		//Switch to window    	
 		driver.switchTo().window(window);				    		    	
@@ -581,6 +586,7 @@ public class HiRCAEvent {
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Clicks on download button
@@ -608,7 +614,7 @@ public class HiRCAEvent {
 		}
 		Thread.sleep(8000);
 		//pdf verification
-		pdfCheck(get_date,get_time,get_dept,creationDate);
+		pdfCheck(get_date,get_time,get_dept,creationDate,url);
 		Thread.sleep(4000);
 		//Close pdf
 		//Switch to window    	
@@ -641,7 +647,7 @@ public class HiRCAEvent {
 		return images;
 	}
 
-	public void pdfCheck( String get_date, String get_time, String get_dept, String creationDate) throws Exception{
+	public void pdfCheck( String get_date, String get_time, String get_dept, String creationDate, String url) throws Exception{
 
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
@@ -751,7 +757,10 @@ public class HiRCAEvent {
 		softly.assertThat("1.10 If a PJB (or PSM, TO, MJB) was held, why was the participant not aware so that he or she could mitigate the risk? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.11 Why did this error occur now, and not before? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.12 If PJB (or PSM, TO, MJB) was not performed, why? n/a n/a").as("test data").isSubstringOf(newData);
-		softly.assertThat("1.13 Was the error contributed to by error-prone mental states and/ or high risk situations? n/a n/a").as("test data").isSubstringOf(newData);
+		if(url.contains("kaleqa"))
+			softly.assertThat("1.13 Was the error contributed to by error-prone mental states and/ or high-risk situations? n/a n/a").as("test data").isSubstringOf(newData);
+		else
+			softly.assertThat("1.13 Was the error contributed to by error-prone mental states and/ or high risk situations? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.14 Did the supervisor conduct routine meetings to discuss lessons learned? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.15 Did the event involve a single-point-vulnerability item? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.16 Was the error related to inadequate supervision? n/a n/a").as("test data").isSubstringOf(newData);
@@ -807,7 +816,7 @@ public class HiRCAEvent {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-save"))).click();
 		//Verify share save sticky
@@ -1175,7 +1184,6 @@ public class HiRCAEvent {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		HiRCA2 obj = new HiRCA2();
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		//Clicks on next
@@ -1206,9 +1214,9 @@ public class HiRCAEvent {
 		//Click on garbage can
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
 		//Clicks on clear answers
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupMessage)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupConfirmButton)).click();
-		wait1.until(ExpectedConditions.invisibilityOfElementLocated(obj.HiRCAPopupMessage));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
+		wait1.until(ExpectedConditions.invisibilityOfElementLocated(hirca.HiRCAPopupMessage));
 		//Click on Act of Nature
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
 		//Enter data in reason entry
@@ -1216,7 +1224,7 @@ public class HiRCAEvent {
 		//Click on next
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Clicks on Root Cause
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupMessage)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
 		//Verify the n/a in LOPs
 		String lop1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
@@ -1317,13 +1325,13 @@ public class HiRCAEvent {
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
 				System.out.println("done with popup");
-				share2.scrollToElement(driver, driver.findElement(obj1.HiRCAPopupConfirmButton));
+				share2.scrollToElement(driver, driver.findElement(hirca.HiRCAPopupConfirmButton));
 				while (true)
 				{
 					jse.executeScript("document.getElementById('pii-irca-dialog-confirmed').focus();");
-					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)));					
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));					
 					try{
-						wait.until(ExpectedConditions.invisibilityOfElementLocated(obj1.HiRCAPopupConfirmButton));
+						wait.until(ExpectedConditions.invisibilityOfElementLocated(hirca.HiRCAPopupConfirmButton));
 						break;
 					}catch(org.openqa.selenium.TimeoutException t)
 					{
@@ -1398,7 +1406,7 @@ public class HiRCAEvent {
 				obj1.verifySavePopup(driver, softly);
 				//Clicks on Save report
 				jse.executeScript("document.getElementById('pii-irca-dialog-confirmed').focus();");
-				jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)));
+				jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 				//Verify save sticky
 				obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
 				Thread.sleep(1500);
@@ -1423,7 +1431,7 @@ public class HiRCAEvent {
 		jse.executeScript("document.getElementById('pii-irca-event-file-remove-2').focus();");
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
 		jse.executeScript("document.getElementById('pii-irca-dialog-confirmed').focus();");
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 		//Click on last collapsible
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.elementToBeClickable(By.id("pii-irca-event-filecollapsible-4"))));
 		while(true)
@@ -1459,7 +1467,7 @@ public class HiRCAEvent {
 			driver.findElement(By.id("pii-irca-event-file-description-4")).sendKeys("Description05");
 		}
 		//Upload image
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-4"))).sendKeys(filepath);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-4"))).sendKeys(filepath);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
 		Thread.sleep(2000);
 		//Clicks on save without images
@@ -1469,9 +1477,9 @@ public class HiRCAEvent {
 		jse.executeScript("document.getElementById('pii-irca-dialog-confirmed').focus();");
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage));
 		jse.executeScript("document.getElementById('pii-irca-dialog-confirmed').focus();");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1509,8 +1517,8 @@ public class HiRCAEvent {
 				driver.findElement(By.id(del)).click(); 			
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				if(j!=0)
 				{
 					driver.findElement(By.id("pii-irca-addnewfile-button")).click();
@@ -1559,8 +1567,8 @@ public class HiRCAEvent {
 				//Save pop verify
 				obj1.verifySavePopup(driver, softly);
 				//Clicks on Save report
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				//Verify save sticky
 				obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
 				Thread.sleep(1500);
@@ -1581,16 +1589,17 @@ public class HiRCAEvent {
 			}
 		}
 		//Delete 3rd image
-		share2.scrollToAPoint(driver, 600);
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
 		//Fill title and description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
 		//Upload image
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-4"))).sendKeys(filepath);
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))));
+		driver.findElement(By.id("pii-irca-event-file-4")).sendKeys(filepath);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-4")));
 		Thread.sleep(2000);
 		//Clicks on save without images
@@ -1601,8 +1610,8 @@ public class HiRCAEvent {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1643,8 +1652,8 @@ public class HiRCAEvent {
 				driver.findElement(By.id(del)).click(); 		
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				if(j!=0)
 				{
 					driver.findElement(By.id("pii-irca-addnewfile-button")).click();
@@ -1677,9 +1686,10 @@ public class HiRCAEvent {
 					for(int r=0;r<=j;r++)
 					{
 						Thread.sleep(2000);
-						if(j==4)
-							share2.scrollToAPoint(driver, 1000);
+						/*if(j==4)
+							share2.scrollToAPoint(driver, 1000);*/
 						l=driver.findElement(By.id(rotate));
+						share2.scrollToElement(driver, l);
 						//act.moveToElement(l).build().perform();
 						//jse.executeScript("arguments[0].scrollIntoView();", l);
 						l.click();
@@ -1695,8 +1705,8 @@ public class HiRCAEvent {
 				//Save pop verify
 				obj1.verifySavePopup(driver, softly);
 				//Clicks on Save report
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				//Verify save sticky
 				obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
 				Thread.sleep(1500);
@@ -1721,7 +1731,7 @@ public class HiRCAEvent {
 		Thread.sleep(2000);
 		share2.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
@@ -1745,8 +1755,8 @@ public class HiRCAEvent {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1756,8 +1766,8 @@ public class HiRCAEvent {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1805,8 +1815,8 @@ public class HiRCAEvent {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				if(j!=0)
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
@@ -1864,10 +1874,10 @@ public class HiRCAEvent {
 				{
 					ele.click();
 					Thread.sleep(3000);
-					if(driver.findElement(obj1.HiRCAPopupConfirmButton).isDisplayed())
+					if(driver.findElement(hirca.HiRCAPopupConfirmButton).isDisplayed())
 						break;
 				}
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton));
 				//Clicks on Save report
 				/* try{
 				  wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage));
@@ -1880,7 +1890,7 @@ public class HiRCAEvent {
 			  		  }*/
 				//Verify save pop up
 				obj1.verifySavePopup(driver, softly);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				//Verify save sticky
 				obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
 				Thread.sleep(1500);
@@ -1905,14 +1915,14 @@ public class HiRCAEvent {
 		Thread.sleep(2000);
 		share2.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
 		//Fill title and description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
 		//Upload image
-		WebElement l=driver.findElement(By.id("pii-irca-event-file-4"));
+		WebElement l=driver.findElement(By.id("pii-irca-event-file-button-4"));
 		//Scroll to element
 		share2.scrollToElement(driver, l);
 		Actions act1 = new Actions(driver);
@@ -1931,8 +1941,8 @@ public class HiRCAEvent {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1994,8 +2004,8 @@ public class HiRCAEvent {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				if(j!=0)
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
@@ -2051,8 +2061,8 @@ public class HiRCAEvent {
 				//Verify save pop up
 				obj1.verifySavePopup(driver, softly);
 				//Clicks on Save report
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 				//Verify save sticky
 				obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
 				Thread.sleep(1500);
@@ -2083,14 +2093,14 @@ public class HiRCAEvent {
 		Thread.sleep(2000);
 		share2.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
 		//Fill title and description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
 		//Upload image
-		WebElement l=driver.findElement(By.id("pii-irca-event-file-4"));
+		WebElement l=driver.findElement(By.id("pii-irca-event-file-button-4"));
 		Actions act1 = new Actions(driver);
 		act1.click(l).build().perform();
 		Thread.sleep(8000);
@@ -2109,8 +2119,8 @@ public class HiRCAEvent {
 		//Verify save pop up
 		obj1.verifySavePopup(driver, softly);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Verify save sticky
 		obj1.verifyStickySaveReport(driver, softly, username, reportTitle, 1);
 		Thread.sleep(4000);

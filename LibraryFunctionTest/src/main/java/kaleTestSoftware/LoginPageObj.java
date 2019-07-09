@@ -19,4 +19,6 @@ public class LoginPageObj {
 	public By Iframe = By.xpath("//iframe[@name='pii-iframe-main']");
 	public By StickySuccessPopup = By.cssSelector(".sticky.border-top-right.sticky-success");
 	public By StickyWarningPopup = By.cssSelector(".sticky.border-top-right.sticky-warning");
+	
+	public By LoginExpiringMessage = By.id("pii-header-message-div");
 }

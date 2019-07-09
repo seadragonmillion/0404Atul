@@ -12,29 +12,39 @@ public class HiRCA2 {
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	LoginPageObj login = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
+	HiRCAObj hirca = new HiRCAObj();
 	
-	//Info Page
-	public By HiRCANewReportButton = By.id("efi-irca-button-new");
-	//Popup inside report
-	public By HiRCAPopupHeader = By.id("pii-irca-dialog-header");
-	public By HiRCAPopupMessage = By.id("pii-irca-dialog-title");
-	public By HiRCAPopupNote = By.id("pii-irca-dialog-note");
-	public By HiRCAPopupConfirmButton = By.id("pii-irca-dialog-confirmed");
-	public By HiRCAPopupConfirmButton2 = By.id("pii-irca-dialog-confirmed2");
-	public By HiRCAPopupCancelButton = By.id("pii-irca-dialog-cancel");
+	public void verifyStickyUserAccountAfterChange(WebDriver driver, SoftAssertions softly, int chiOrEng) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,60);
+		try{
+			/*WebElement ele = driver.findElement(By.cssSelector(".sticky border-top-right.sticky-warning"));
+			String s = ele.findElement((login.StickyNote)).getText();
+			if(chiOrEng==0)
+				softly.assertThat(s).as("test data").isEqualTo("Please logout and login again for any changed data to apply to current user account");
+			if(chiOrEng==1)
+				softly.assertThat(s).as("test data").isEqualTo("请重新登入生效变更");
+			System.out.println(s);*/
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
+		}catch(org.openqa.selenium.TimeoutException r)
+		{
+			System.out.println("Couldn't find account save pop up");
+		}
+	}
 	
 	public void verifyStickyUserAccount(WebDriver driver, SoftAssertions softly, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+			/*String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			softly.assertThat(s).as("test data").isEqualTo("User updated: "+username+".");
-			System.out.println(s);
+			System.out.println(s);*/
 			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
-			System.out.println("Couldn't find share save pop up");
+			System.out.println("Couldn't find save pop up");
 		}
+		softly.assertAll();
 	}
 
 	public void verifySticky1ImageUploaded(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -70,6 +80,8 @@ public class HiRCA2 {
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
+			String css = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getCssValue("overflow");
+			System.out.println("overflow: "+css);
 			String r = s.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
 			if(n == 0)
@@ -102,19 +114,19 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Delete Supporting file");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to delete supporting file ("+k+")?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: deleted content cannot be recovered later.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Delete");
 	}
 
@@ -122,13 +134,13 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Use existing empty form");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Please use existing empty supporting file form above");
 		//ok button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("ok");
 	}
 
@@ -136,13 +148,13 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Invalid Data Entry");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Please fix all errors mentioned in red.");
 		//ok button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("ok");
 	}
 
@@ -150,16 +162,16 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Save Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
 	}
 
@@ -167,19 +179,19 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("New Report");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Would you like to confirm you want to erase the current report and create a new report?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//New button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("New Report");
 	}	
 
@@ -234,22 +246,22 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify pop up header
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupHeader)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("LOP or Root Cause");
 		//Verify question on pop up
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupMessage)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Do you want to (1) continue to analyze Layer Of Protection failures or (2) proceed to determine event root cause?");
 		//Verify note under question
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: LOP can be done afterwards by re-opening an existing report.");
 		//Cancel button
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupCancelButton)).getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//LOP button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("LOP");
 		//LOP button
-		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupConfirmButton2)).getText();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton2)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Root Cause");
 	}
 
@@ -284,10 +296,10 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify the popup
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getText();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getText();
 		softly.assertThat(s).as("test data").contains("‑");
 		System.out.println(s);
-		String overflow = wait.until(ExpectedConditions.visibilityOfElementLocated(HiRCAPopupNote)).getCssValue("word-wrap");
+		String overflow = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getCssValue("word-wrap");
 		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
 		System.out.println(overflow);
 	}

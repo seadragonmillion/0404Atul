@@ -40,6 +40,10 @@ public class HiRCAChinese {
 	HiRCAChinese37 hc37 = new HiRCAChinese37();
 	HiRCAChinese38 hc38 = new HiRCAChinese38();
 	HiRCAChinese39 hc39 = new HiRCAChinese39();
+	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
+	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
+	HiRCALOPBug2 hlb2 = new HiRCALOPBug2 ();
+	
 	public String text = "Chinese check";
 
 	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
@@ -50,6 +54,11 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify everything on Event Information page is in 
 		hc7.chineseEventInfo(driver,softly);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			ccf.verifyChineseTabsInsideHiRCA(driver, softly);
+			ccf.verifyChineseButtonsInfoTabHiRCA(driver, softly);
+		}
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(text);
 		//Location of event
@@ -96,6 +105,8 @@ public class HiRCAChinese {
 		hc7.chineseStepOneq11(driver,softly);
 		//Check language change
 		obj2.verifyChangeLanguage(driver, softly);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			ccf.verifyChineseButtonsInBetweenTabsHiRCA(driver, softly);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next
@@ -467,6 +478,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.3
 		hc7.chineseStepOneq13(driver,softly);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			hlb2.bugKALE2493(driver, softly);
 		//Select answer 1.3.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
 		//Click on next
@@ -627,6 +640,8 @@ public class HiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			lcr.verifyLabelAdminUserAccountChinese(driver, softly);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 	}
@@ -642,9 +657,10 @@ public class HiRCAChinese {
 					Thread.sleep(1000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 
-				}}catch (NoSuchElementException e)
+				}
+			}catch (NoSuchElementException e)
 			{
-					break;
+				break;
 			}
 			catch( StaleElementReferenceException f)
 			{
@@ -686,6 +702,7 @@ public class HiRCAChinese {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 				}
 			}
+			Thread.sleep(2000);
 		}
 		else
 		{

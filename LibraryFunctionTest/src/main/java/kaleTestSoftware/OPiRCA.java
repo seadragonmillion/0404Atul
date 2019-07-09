@@ -40,6 +40,7 @@ public class OPiRCA {
 	OPiRCA2 op2 = new OPiRCA2();
 	OPiRCA3 op3 = new OPiRCA3();
 	ShareCheck share = new ShareCheck();
+	ShareCheck3 share3 = new ShareCheck3();
 	EiRCA2 eirca2 = new EiRCA2 ();
 	EiRCAPageObj eirca = new EiRCAPageObj ();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
@@ -562,7 +563,7 @@ public class OPiRCA {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.SharerAdded)).getText().trim();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareSaveButton)).click();
 		//Verify share save sticky
@@ -954,7 +955,7 @@ public class OPiRCA {
 		//Event title
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HTMLTable1EventTitle)).getText().trim();
 		String r3 = s4.replace("\u00AD", "");
-		softly.assertThat(r3).as("test data").isEqualTo(text);
+		softly.assertThat(r3).as("test data").contains(text);
 		//Location of event
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HTMLTable1LocationOfEvent)).getText().trim();
 		String r4 = s5.replace("\u00AD", "");
@@ -1250,6 +1251,7 @@ public class OPiRCA {
 		{
 			try{
 				String s = driver.findElement(By.xpath(".//*[@id='opa-rpt']/div["+(rc+7)+"]/table/tbody/tr["+i+"]/td[1]")).getText().trim();
+				System.out.println("s: "+s);
 				list1.add(s);
 				i=i+1;
 			}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
@@ -1640,14 +1642,14 @@ public class OPiRCA {
 			System.out.println(s+"\n"+apparentCausesSelected.get(n));
 			n = n+1;
 		}
+		//softly.assertAll();
 	}
 
-	public void pathOPiRCA(WebDriver driver, String username) throws Exception{
+	public void pathOPiRCA(WebDriver driver, String username, String ev1) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		String text = eirca2.textCreate(driver);
 		//Scroll down
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Click next
@@ -1756,7 +1758,7 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)).click();
 		//Creates the expected name of record
 		String creationDate = driver.findElement(opirca.OPiRCAReportCreationDateTimeField).getAttribute("value").trim();
-		String name = creationDate +"_"+ username + "_" + text;
+		String name = creationDate +"_"+ username + "_" + ev1;
 		System.out.println("Expected name of record: " + name);			  
 		//Click on saved activities
 		jse.executeScript("return document.getElementById('efi-opa-btn-savedactivities').click();");
@@ -1846,6 +1848,16 @@ public class OPiRCA {
 		return count;
 	}
 
+	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(opirca.OPiRCATitleCharacterCount).getText();
+		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -1866,6 +1878,7 @@ public class OPiRCA {
 		if(count!=1)
 			softly.fail("Count did not match: aaaa: " + count);
 	}
+
 	public void reportCreate(WebDriver driver, String username) throws Exception {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -1881,6 +1894,13 @@ public class OPiRCA {
 		//Fills the mandatory fields
 		//tbr.sizeCheck(driver, opirca.OPiRCAEventTitleField, softly);
 		driver.findElement(opirca.OPiRCAEventTitleField).sendKeys(text);
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		int total = getTotalCountFromTitle(driver);
+		for(int i=count+1;i<=total;i++)
+		{
+			driver.findElement(opirca.OPiRCAEventTitleField).sendKeys("z");
+		}
 		//tbr.sizeCheck(driver, opirca.OPiRCAEventLocationField, softly);
 		driver.findElement(opirca.OPiRCAEventLocationField).sendKeys(text);
 		tbr.sizeCheck(driver, opirca.OPiRCAProblemStatementField, softly);
@@ -1897,11 +1917,11 @@ public class OPiRCA {
 		String ev4 = driver.findElement(opirca.OPiRCATimelineOfEventField).getAttribute("value").trim();
 		String ev5 = driver.findElement(opirca.OPiRCABackgroundInfoField).getAttribute("value").trim();
 		String ev6 = driver.findElement(opirca.OPiRCAInvestigatorsField).getAttribute("value").trim();
-		if ((ev1.equals(text)==false))
+		/*if ((ev1.equals(text)==false))
 		{
 			driver.findElement(opirca.OPiRCAEventTitleField).clear();
 			driver.findElement(opirca.OPiRCAEventTitleField).sendKeys(text);
-		}
+		}*/
 		if ((ev2.equals(text)==false))
 		{
 			driver.findElement(opirca.OPiRCAEventLocationField).clear();
@@ -1930,7 +1950,7 @@ public class OPiRCA {
 		//Verify no errors
 		op2.verifyNoErrorsOnInfoPage(driver);
 		//Step1 and KALE-1838
-		pathOPiRCA(driver,username);			  
+		pathOPiRCA(driver,username,ev1);			  
 	}
 
 	public void softAssert() throws Exception {

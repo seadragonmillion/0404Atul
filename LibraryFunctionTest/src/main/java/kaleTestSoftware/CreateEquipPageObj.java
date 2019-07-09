@@ -18,6 +18,7 @@ public class CreateEquipPageObj {
 	public By EquipSearchMessageErrorLink = By.xpath(".//*[@id='pii-efse-search-message']/div/a");
 	public By PreventionOfDesignDeficienciesLink = By.linkText("Prevention of Design Deficiencies");
 	public By EngineeringFundamentalsLink = By.linkText("Engineering Fundamentals");
+	public By SRILink = By.linkText("Systematic Reliability Inspection");
 
 	//Create equipment case page
 	public By EquipCaseNewButton = By.id("pii-admin-efse-button-new");
@@ -99,6 +100,7 @@ public class CreateEquipPageObj {
 	public By EquipListTypesFailureModes = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[4]/a");
 	public By EquipListTypesFundamentals = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[5]/a");
 	public By EquipListTypesGeneral = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[6]/a");
+	public By EquipListTypesSRI = By.xpath(".//*[@id='pii-admin-efse-type-menu']/li[7]/a");
 
 	public By EquipCasesDisciplineList = By.xpath(".//*[@id='pii-admin-efse-data-form']/div[3]/div/a/span[2]");
 	public By EquipListDisciplineElectrical = By.xpath(".//*[@id='pii-admin-efse-discipline-menu']/li[1]/a");

@@ -37,91 +37,6 @@ public class CreateEquipmentCase {
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 	EquipmentPDDandEF ede = new EquipmentPDDandEF();
 
-	public String titleCombo = "QAA Type Discipline Field Filters Combo Test";
-	public String titleComboUS = "QAA US Type Discipline Field Filters Combo Test";
-	public String titleComboie11 = "QAA IE11 Type Disciplineie11 Fieldie11 Filters Combo Test";
-	public String titleComboUSie11 = "QAA US IE11 Type Disciplineie11 Fieldie11 Filters Combo Test";
-	public String keywordCombo = "QAADiscFieldCombo";
-	public String keywordComboUS = "QAAUSDiscFieldCombo";
-	public String keywordComboie11 = "QAAie11DiscFieldCombo";
-	public String keywordComboUSie11 = "QAAUSie11DiscFieldCombo";
-	public String noVideoLink = "http://www.murdoch.edu.au/School-of-Engineering-and-Information-Technology/";
-	public String noVideoLinkTitle1 = "Apple \"pie\"";
-	public String noVideoLinkTitle2 = "Banana";
-	public String noVideoLinkTitle3 = "Coconut";
-	public String noVideoLinkTitle4 = "Dance";
-	public String noVideoLinkTitle5 = "Elephant";
-	public String noVideoLinkTitle6 = "Fruit";
-	public String noVideoLinkTitle7 = "Guava";
-	public String noVideoLinkTitle8 = "Honey";
-	public String noVideoLinkTitle9 = "Ink";
-	public String noVideoLinkTitle10 = "Jamaica";
-	public String videoLink = "https://www.youtube.com/watch?v=KQ9Za0oLPPM";
-	public String videoLinkTitle1 = "Tiger";
-	public String videoLinkTitle2 = "Whale";
-	public String videoLinkTitle3 = "Zebra";
-	public String keyword_same_eq="QAAfiveeq";
-	public String key1_eq="QAAzebraeq";
-	public String key2_eq="QAAcameleq";
-	public String key3_eq="QAAgiraffeeq";
-	public String keyword_same_ee="QAAfiveee";
-	public String key1_ee="QAAzebraee";
-	public String key2_ee="QAAcamelee";
-	public String key3_ee="QAAgiraffeee";
-	public String keyword_same_me="QAAfiveme";
-	public String key1_me="QAAzebrame";
-	public String key2_me="QAAcamelme";
-	public String key3_me="QAAgiraffeme";
-	public String eq_title="QAA Equipment Search Case Upload";
-	public String ee_title="QAA Electrical Failure Case Upload";
-	public String me_title="QAA Mechanical Failure Case Upload";
-	public String keyword_same_eqUS="QAAfiveeqUS";
-	public String key1_eqUS="QAAzebraeqUS";
-	public String key2_eqUS="QAAcameleqUS";
-	public String key3_eqUS="QAAgiraffeeqUS";
-	public String keywordUS_same_ee="QAAfiveeeUS";
-	public String key1_eeUS="QAAzebraeeUS";
-	public String key2_eeUS="QAAcameleeUS";
-	public String key3_eeUS="QAAgiraffeeeUS";
-	public String keywordUS_same_me="QAAfivemeUS";
-	public String key1_meUS="QAAzebrameUS";
-	public String key2_meUS="QAAcamelmeUS";
-	public String key3_meUS="QAAgiraffemeUS";
-	public String eq_titleUS="QAA US Equipment Search Case Upload";
-	public String ee_titleUS="QAA US Electrical Failure Case Upload";
-	public String me_titleUS="QAA US Mechanical Failure Case Upload";
-	public String keyword_same_eqie11="QAAie11fiveeq";
-	public String key1_eqie11="QAAie11zebraeq";
-	public String key2_eqie11="QAAie11cameleq";
-	public String key3_eqie11="QAAie11giraffeeq";
-	public String keyword_same_eeie11="QAAie11fiveee";
-	public String key1_eeie11="QAAie11zebraee";
-	public String key2_eeie11="QAAie11camelee";
-	public String key3_eeie11="QAAie11giraffeee";
-	public String keyword_same_meie11="QAAie11fiveme";
-	public String key1_meie11="QAAie11zebrame";
-	public String key2_meie11="QAAie11camelme";
-	public String key3_meie11="QAAie11giraffeme";
-	public String eq_titleie11="QAA IE11 Equipment Case Upload";
-	public String ee_titleie11="QAA IE11 Electrical Case Upload";
-	public String me_titleie11="QAA IE11 Mechanical Case Upload";
-	public String keyword_same_eqie11US="QAAie11fiveeqUS";
-	public String key1_eqie11US="QAAie11zebraeqUS";
-	public String key2_eqie11US="QAAie11cameleqUS";
-	public String key3_eqie11US="QAAie11giraffeeqUS";
-	public String keyword_same_eeie11US="QAAie11fiveeeUS";
-	public String key1_eeie11US="QAAie11zebraeeUS";
-	public String key2_eeie11US="QAAie11cameleeUS";
-	public String key3_eeie11US="QAAie11giraffeeeUS";
-	public String keyword_same_meie11US="QAAie11fivemeUS";
-	public String key1_meie11US="QAAie11zebrameUS";
-	public String key2_meie11US="QAAie11camelmeUS";
-	public String key3_meie11US="QAAie11giraffemeUS";
-	public String eq_titleie11US="QAA US IE11 Equipment Case Upload";
-	public String ee_titleie11US="QAA US IE11 Electrical Case Upload";
-	public String me_titleie11US="QAA US IE11 Mechanical Case Upload";
-
-
 	public void createCaseWithDifferentDisciplineField (WebDriver driver, String title, String keyword) throws Exception {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -1006,7 +921,7 @@ public class CreateEquipmentCase {
 		share2.scrollToElement(driver, l);
 		//Edit link title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).sendKeys("Edited: "+videoLinkTitle1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).sendKeys("Edited: "+equip3.videoLinkTitle1);
 		//Save case
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
@@ -1072,7 +987,7 @@ public class CreateEquipmentCase {
 		//Verify title of 1st link
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+ee_case.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s1).as("test data").contains("1. Video");
-		softly.assertThat(s1).as("test data").contains("Edited: "+videoLinkTitle1);
+		softly.assertThat(s1).as("test data").contains("Edited: "+equip3.videoLinkTitle1);
 		//Verify padding on slide
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+ee_case.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"));
 		//Closes the slideshow
@@ -1081,7 +996,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
 	}
 
-	public void viewCaseInAdmin(WebDriver driver, List<String> eq_case, List<String> ee_case, String keyword_same_eq) throws Exception{
+	public void viewCaseInAdmin(WebDriver driver, List<String> eq_case, List<String> ee_case, String keyword_sameeq) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on admin user name on top right corner
@@ -1132,7 +1047,7 @@ public class CreateEquipmentCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Verify all fields
-		verifyCaseFieldsInAdmin(driver, keyword_same_eq);
+		verifyCaseFieldsInAdmin(driver, keyword_sameeq);
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -1152,7 +1067,7 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Verify all fields
-		verifyCaseFieldsInAdmin(driver, keyword_same_eq);
+		verifyCaseFieldsInAdmin(driver, keyword_sameeq);
 		//Verify new case form after viewing case with links
 		verifyNewCaseForm(driver, ee_case.get(2));
 	}
@@ -1464,7 +1379,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxTypes));
 		//Verify types list
 		verifyTypesList(driver);
-		if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11)||title.equals(ee_titleie11))
+		if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11)||title.equals(equip3.ee_titleie11))
 		{
 			if (browserName.contains("internet")==true)
 			{
@@ -1474,7 +1389,7 @@ public class CreateEquipmentCase {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListTypesFailureModes)).click();
 		}
 		if(count<5){
-			if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+			if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 			{
 				if (browserName.contains("internet"))
 				{
@@ -1489,7 +1404,7 @@ public class CreateEquipmentCase {
 		int y;
 		if(count == 5)
 		{
-			if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+			if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 			{
 				while(true)
 				{
@@ -1842,7 +1757,7 @@ public class CreateEquipmentCase {
 			if(x==0)
 				continue;
 			//if title is ee or me then don't select ee or me
-			if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11)))
+			if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||(title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11)))
 			{
 				if((x==1)||(x==4))
 					continue;
@@ -1934,7 +1849,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxDiscipline));	 
 		//Verify Discipline list
 		verifyDisciplineList(driver);
-		if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+		if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11))
 		{
 			if (browserName.contains("internet")==true)
 			{
@@ -1943,7 +1858,7 @@ public class CreateEquipmentCase {
 			else
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListDisciplineElectrical)).click();		
 		}
-		if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+		if(title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 		{
 			if (browserName.contains("internet")==true)
 			{
@@ -1952,13 +1867,13 @@ public class CreateEquipmentCase {
 			else
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListDisciplineMechanical)).click();	
 		}
-		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 		{
 			selectRandomDiscipline(driver, browserName, title);
 		}
 		if(count == 5)
 		{
-			if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+			if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 			{
 				selectRandomDiscipline(driver, browserName, title);
 			}
@@ -2172,11 +2087,11 @@ public class CreateEquipmentCase {
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 3 coconut
-		l.sendKeys(noVideoLinkTitle3);
+		l.sendKeys(equip3.noVideoLinkTitle3);
 		Thread.sleep(1000);
 		//Enter url 3
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(noVideoLink);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);	
 		//To make url form appear click on title for link 1
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
 		share2.scrollToTop(driver);
@@ -2185,13 +2100,13 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 2 banana
-		l.sendKeys(noVideoLinkTitle2);
+		l.sendKeys(equip3.noVideoLinkTitle2);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)).click();
 		//Link 2 becomes Link 1
 		//Enter url 2
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
 		share2.scrollToTop(driver);
@@ -2199,13 +2114,13 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 1 apple
-		l.sendKeys(noVideoLinkTitle1);
+		l.sendKeys(equip3.noVideoLinkTitle1);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)).click();
 		//Link 3 becomes Link 1
 		//Enter url 3
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
 		share2.scrollToTop(driver);
@@ -2223,11 +2138,11 @@ public class CreateEquipmentCase {
 		//Enter title for link 4 : video link 1
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4Title));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4Title)).sendKeys(videoLinkTitle1);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4Title)).sendKeys(equip3.videoLinkTitle1);
 		Thread.sleep(1000);
 		//Enter url 4
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink4URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4URL)).sendKeys(videoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4URL)).sendKeys(equip3.videoLink);
 		//Move to video checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox));
 		share2.scrollToElement(driver, l);
@@ -2239,17 +2154,17 @@ public class CreateEquipmentCase {
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).getAttribute("value");
-		softly.assertThat(s).as("test data").contains(videoLinkTitle1);
+		softly.assertThat(s).as("test data").contains(equip3.videoLinkTitle1);
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).getAttribute("value");
-		softly.assertThat(s1).as("test data").contains(videoLink);
+		softly.assertThat(s1).as("test data").contains(equip3.videoLink);
 		//Enter title for link 5 : video link 2
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title)).sendKeys(videoLinkTitle2);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title)).sendKeys(equip3.videoLinkTitle2);	
 		Thread.sleep(1000);
 		//Enter url 5
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink5URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5URL)).sendKeys(videoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5URL)).sendKeys(equip3.videoLink);
 		//Move to viedo checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox));
 		share2.scrollToElement(driver, l);
@@ -2261,17 +2176,17 @@ public class CreateEquipmentCase {
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title)).getAttribute("value");
-		softly.assertThat(s3).as("test data").contains(videoLinkTitle2);
+		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle2);
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)).getAttribute("value");
-		softly.assertThat(s4).as("test data").contains(videoLink);
+		softly.assertThat(s4).as("test data").contains(equip3.videoLink);
 		//Enter title for link 6 : video link 3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6Title));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6Title)).sendKeys(videoLinkTitle3);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6Title)).sendKeys(equip3.videoLinkTitle3);	
 		Thread.sleep(1000);
 		//Enter url 5
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink6URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6URL)).sendKeys(videoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6URL)).sendKeys(equip3.videoLink);
 		//Move to video checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox));
 		share2.scrollToElement(driver, l);
@@ -2283,19 +2198,19 @@ public class CreateEquipmentCase {
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3Title)).getAttribute("value");
-		softly.assertThat(s5).as("test data").contains(videoLinkTitle3);
+		softly.assertThat(s5).as("test data").contains(equip3.videoLinkTitle3);
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)).getAttribute("value");
-		softly.assertThat(s6).as("test data").contains(videoLink);
+		softly.assertThat(s6).as("test data").contains(equip3.videoLink);
 		//Scroll to link 7
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 7
-		l.sendKeys(noVideoLinkTitle4);
+		l.sendKeys(equip3.noVideoLinkTitle4);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)).click();
 		//Enter url 7
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink7URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink7Title);
 		share2.scrollToTop(driver);
@@ -2303,12 +2218,12 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 8
-		l.sendKeys(noVideoLinkTitle5);
+		l.sendKeys(equip3.noVideoLinkTitle5);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).click();
 		//Enter url 8
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink8URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink8Title);
 		share2.scrollToTop(driver);
@@ -2316,12 +2231,12 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 9
-		l.sendKeys(noVideoLinkTitle6);
+		l.sendKeys(equip3.noVideoLinkTitle6);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).click();
 		//Enter url 9
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink9URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink9Title);
 		share2.scrollToTop(driver);
@@ -2329,12 +2244,12 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 10
-		l.sendKeys(noVideoLinkTitle7);
+		l.sendKeys(equip3.noVideoLinkTitle7);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).click();
 		//Enter url 10
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink10URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink10Title);
 		share2.scrollToTop(driver);
@@ -2342,12 +2257,12 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 11
-		l.sendKeys(noVideoLinkTitle8);
+		l.sendKeys(equip3.noVideoLinkTitle8);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).click();
 		//Enter url 11
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink11URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink11Title);
 		share2.scrollToTop(driver);
@@ -2355,12 +2270,12 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 12
-		l.sendKeys(noVideoLinkTitle9);
+		l.sendKeys(equip3.noVideoLinkTitle9);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).click();
 		//Enter url 12
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink12URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink12Title);
 		share2.scrollToTop(driver);
@@ -2368,12 +2283,12 @@ public class CreateEquipmentCase {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13Title));
 		share2.scrollToElement(driver, l);
 		//Enter title for link 13
-		l.sendKeys(noVideoLinkTitle10);
+		l.sendKeys(equip3.noVideoLinkTitle10);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).click();
 		//Enter url 13
 		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink13URL)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).sendKeys(noVideoLink);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
 		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink13Title);
 		share2.scrollToTop(driver);
@@ -2476,7 +2391,7 @@ public class CreateEquipmentCase {
 		}
 		Thread.sleep(1000);
 		WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-		element.findElement(chc.FirstAndLastChildInList).click();
+		element.findElement(chc.FirstChildInList).click();
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -2684,19 +2599,19 @@ public class CreateEquipmentCase {
 		//Verify title of 1st link with no video
 		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s10).as("test data").contains("10. ");
-		softly.assertThat(s10).as("test data").contains(noVideoLinkTitle7);
+		softly.assertThat(s10).as("test data").contains(equip3.noVideoLinkTitle7);
 		//Verify title of 2nd link with no video
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[3]"))).getText();
 		softly.assertThat(s11).as("test data").contains("11. ");
-		softly.assertThat(s11).as("test data").contains(noVideoLinkTitle8);
+		softly.assertThat(s11).as("test data").contains(equip3.noVideoLinkTitle8);
 		//Verify title of 3rd link with no video
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[4]"))).getText();
 		softly.assertThat(s12).as("test data").contains("12. ");
-		softly.assertThat(s12).as("test data").contains(noVideoLinkTitle9);
+		softly.assertThat(s12).as("test data").contains(equip3.noVideoLinkTitle9);
 		//Verify title of 4th link with no video
 		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[5]"))).getText();
 		softly.assertThat(s13).as("test data").contains("13. ");
-		softly.assertThat(s13).as("test data").contains(noVideoLinkTitle10);
+		softly.assertThat(s13).as("test data").contains(equip3.noVideoLinkTitle10);
 		//Click on previous
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
@@ -2721,39 +2636,39 @@ public class CreateEquipmentCase {
 		//Verify title of 1st link with video
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s1).as("test data").contains("1. Video: ");
-		softly.assertThat(s1).as("test data").contains(videoLinkTitle1);
+		softly.assertThat(s1).as("test data").contains(equip3.videoLinkTitle1);
 		//Verify title of 2nd link with video
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[3]"))).getText();
 		softly.assertThat(s2).as("test data").contains("2. Video: ");
-		softly.assertThat(s2).as("test data").contains(videoLinkTitle2);
+		softly.assertThat(s2).as("test data").contains(equip3.videoLinkTitle2);
 		//Verify title of 3rd link with video
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[4]"))).getText();
 		softly.assertThat(s3).as("test data").contains("3. Video: ");
-		softly.assertThat(s3).as("test data").contains(videoLinkTitle3);
+		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle3);
 		//Verify title of 4th link with no video
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[5]"))).getText();
 		softly.assertThat(s4).as("test data").contains("4. ");
-		softly.assertThat(s4).as("test data").contains(noVideoLinkTitle1);
+		softly.assertThat(s4).as("test data").contains(equip3.noVideoLinkTitle1);
 		//Verify title of 5th link with no video
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[6]"))).getText();
 		softly.assertThat(s5).as("test data").contains("5. ");
-		softly.assertThat(s5).as("test data").contains(noVideoLinkTitle2);
+		softly.assertThat(s5).as("test data").contains(equip3.noVideoLinkTitle2);
 		//Verify title of 6th link with no video
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[7]"))).getText();
 		softly.assertThat(s6).as("test data").contains("6. ");
-		softly.assertThat(s6).as("test data").contains(noVideoLinkTitle3);
+		softly.assertThat(s6).as("test data").contains(equip3.noVideoLinkTitle3);
 		//Verify title of 4th link with no video
 		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[8]"))).getText();
 		softly.assertThat(s7).as("test data").contains("7. ");
-		softly.assertThat(s7).as("test data").contains(noVideoLinkTitle4);
+		softly.assertThat(s7).as("test data").contains(equip3.noVideoLinkTitle4);
 		//Verify title of 5th link with no video
 		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[9]"))).getText();
 		softly.assertThat(s8).as("test data").contains("8. ");
-		softly.assertThat(s8).as("test data").contains(noVideoLinkTitle5);
+		softly.assertThat(s8).as("test data").contains(equip3.noVideoLinkTitle5);
 		//Verify title of 6th link with no video
 		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[10]"))).getText();
 		softly.assertThat(s9).as("test data").contains("9. ");
-		softly.assertThat(s9).as("test data").contains(noVideoLinkTitle6);
+		softly.assertThat(s9).as("test data").contains(equip3.noVideoLinkTitle6);
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))).click();
 	}
@@ -2894,19 +2809,19 @@ public class CreateEquipmentCase {
 		//Verify title of 1st link with video
 		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s10).as("test data").contains("10. ");
-		softly.assertThat(s10).as("test data").contains(noVideoLinkTitle7);
+		softly.assertThat(s10).as("test data").contains(equip3.noVideoLinkTitle7);
 		//Verify title of 2nd link with video
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[3]"))).getText();
 		softly.assertThat(s11).as("test data").contains("11. ");
-		softly.assertThat(s11).as("test data").contains(noVideoLinkTitle8);
+		softly.assertThat(s11).as("test data").contains(equip3.noVideoLinkTitle8);
 		//Verify title of 3rd link with video
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[4]"))).getText();
 		softly.assertThat(s12).as("test data").contains("12. ");
-		softly.assertThat(s12).as("test data").contains(noVideoLinkTitle9);
+		softly.assertThat(s12).as("test data").contains(equip3.noVideoLinkTitle9);
 		//Verify title of 4th link with no video
 		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[5]"))).getText();
 		softly.assertThat(s13).as("test data").contains("13. ");
-		softly.assertThat(s13).as("test data").contains(noVideoLinkTitle10);
+		softly.assertThat(s13).as("test data").contains(equip3.noVideoLinkTitle10);
 		//Verify slide attributes
 		verifyAttributesOfSlide (driver,cases,title,Integer.parseInt(number),number);
 		//Click on 1st link
@@ -2934,39 +2849,39 @@ public class CreateEquipmentCase {
 		//Verify title of 1st link with video
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"))).getText();
 		softly.assertThat(s1).as("test data").contains("1. Video: ");
-		softly.assertThat(s1).as("test data").contains(videoLinkTitle1);
+		softly.assertThat(s1).as("test data").contains(equip3.videoLinkTitle1);
 		//Verify title of 2nd link with video
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[3]"))).getText();
 		softly.assertThat(s2).as("test data").contains("2. Video: ");
-		softly.assertThat(s2).as("test data").contains(videoLinkTitle2);
+		softly.assertThat(s2).as("test data").contains(equip3.videoLinkTitle2);
 		//Verify title of 3rd link with video
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[4]"))).getText();
 		softly.assertThat(s3).as("test data").contains("3. Video: ");
-		softly.assertThat(s3).as("test data").contains(videoLinkTitle3);
+		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle3);
 		//Verify title of 4th link with no video
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[5]"))).getText();
 		softly.assertThat(s4).as("test data").contains("4. ");
-		softly.assertThat(s4).as("test data").contains(noVideoLinkTitle1);
+		softly.assertThat(s4).as("test data").contains(equip3.noVideoLinkTitle1);
 		//Verify title of 5th link with no video
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[6]"))).getText();
 		softly.assertThat(s5).as("test data").contains("5. ");
-		softly.assertThat(s5).as("test data").contains(noVideoLinkTitle2);
+		softly.assertThat(s5).as("test data").contains(equip3.noVideoLinkTitle2);
 		//Verify title of 6th link with no video
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[7]"))).getText();
 		softly.assertThat(s6).as("test data").contains("6. ");
-		softly.assertThat(s6).as("test data").contains(noVideoLinkTitle3);
+		softly.assertThat(s6).as("test data").contains(equip3.noVideoLinkTitle3);
 		//Verify title of 4th link with no video
 		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[8]"))).getText();
 		softly.assertThat(s7).as("test data").contains("7. ");
-		softly.assertThat(s7).as("test data").contains(noVideoLinkTitle4);
+		softly.assertThat(s7).as("test data").contains(equip3.noVideoLinkTitle4);
 		//Verify title of 5th link with no video
 		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[9]"))).getText();
 		softly.assertThat(s8).as("test data").contains("8. ");
-		softly.assertThat(s8).as("test data").contains(noVideoLinkTitle5);
+		softly.assertThat(s8).as("test data").contains(equip3.noVideoLinkTitle5);
 		//Verify title of 6th link with no video
 		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[10]"))).getText();
 		softly.assertThat(s9).as("test data").contains("9. ");
-		softly.assertThat(s9).as("test data").contains(noVideoLinkTitle6);
+		softly.assertThat(s9).as("test data").contains(equip3.noVideoLinkTitle6);
 		//Verify slide attributes
 		verifyAttributesOfSlide (driver,cases,title,number1,number);
 		Thread.sleep(2000);
@@ -3021,6 +2936,7 @@ public class CreateEquipmentCase {
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
+		Thread.sleep(4000);
 		//Get window title
 		String newWindowTitle = driver.getTitle();
 		System.out.println(newWindowTitle);	
@@ -3079,7 +2995,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();			
 		//Creates 5 cases
 		int num =5;
-		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 		{
 			num = 6;
 		}
@@ -3193,7 +3109,7 @@ public class CreateEquipmentCase {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
 					Thread.sleep(4000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-					if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+					if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 					{
 						//Add keyword with all special characters
 						obj1.addKeywordWithAllSpecialCharactersEquip(driver);
@@ -3215,7 +3131,7 @@ public class CreateEquipmentCase {
 				}}
 			if(count == 5)
 			{
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
@@ -3273,7 +3189,7 @@ public class CreateEquipmentCase {
 			}
 			//Add links in case number 3 of Electrical FM	
 			if(count==3){
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11))
 				{
 					addLinks(driver,title,caseId);
 				}}
@@ -3289,7 +3205,7 @@ public class CreateEquipmentCase {
 			if(count==5){
 				//Look for the multiple selected categories
 				searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
 				}
@@ -3317,7 +3233,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();	
 		//Creates 5 cases
 		int num =5;
-		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 		{
 			num = 6;
 		}
@@ -3440,7 +3356,7 @@ public class CreateEquipmentCase {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
 					Thread.sleep(2000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-					if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
+					if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US))
 					{
 						//Add keyword with all special characters
 						obj1.addKeywordWithAllSpecialCharactersEquip(driver);
@@ -3462,7 +3378,7 @@ public class CreateEquipmentCase {
 				}}
 			if(count == 5)
 			{
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
@@ -3530,7 +3446,7 @@ public class CreateEquipmentCase {
 			}
 			//Add links in case number 3 of Electrical FM	
 			if(count==3){
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11))
 				{
 					addLinks(driver,title,caseId);
 				}}
@@ -3551,7 +3467,7 @@ public class CreateEquipmentCase {
 			if(count==5){
 				//Look for the multiple selected categories
 				searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
 				}
@@ -3568,7 +3484,7 @@ public class CreateEquipmentCase {
 		List<String> categories = new ArrayList<String>();
 		//Creates 5 cases
 		int num =5;
-		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 		{
 			num = 6;
 		}
@@ -3733,7 +3649,7 @@ public class CreateEquipmentCase {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
 					Thread.sleep(2000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-					if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US))
+					if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US))
 					{
 						//Add keyword with all special characters
 						obj1.addKeywordWithAllSpecialCharactersEquip(driver);
@@ -3755,7 +3671,7 @@ public class CreateEquipmentCase {
 				}}
 			if(count == 5)
 			{
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
@@ -3821,7 +3737,7 @@ public class CreateEquipmentCase {
 			//Add links in case number 3 of Electrical FM	
 			if(count==3)
 			{
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11))
 				{
 					addLinks(driver,title,caseId);
 				}
@@ -3844,7 +3760,7 @@ public class CreateEquipmentCase {
 			if(count==5){
 				//Look for the multiple selected categories
 				searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
 				}
@@ -3861,7 +3777,7 @@ public class CreateEquipmentCase {
 		List<String> categories = new ArrayList<String>();
 		//Creates 5 cases
 		int num =5;
-		if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+		if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 		{
 			num = 6;
 		}
@@ -3988,7 +3904,7 @@ public class CreateEquipmentCase {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
 					Thread.sleep(2000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-					if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+					if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 					{
 						//Add keyword with all special characters
 						obj1.addKeywordWithAllSpecialCharactersEquip(driver);
@@ -4010,7 +3926,7 @@ public class CreateEquipmentCase {
 				}}
 			if(count == 5)
 			{
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same+"begonia");
@@ -4082,7 +3998,7 @@ public class CreateEquipmentCase {
 			}
 			//Add links in case number 3 of Electrical FM	
 			if(count==3){
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11))
 				{
 					addLinks(driver,title,caseId);
 				}}
@@ -4105,7 +4021,7 @@ public class CreateEquipmentCase {
 			if(count==5){
 				//Look for the multiple selected categories
 				searchCaseWithMultipleCategories(driver,categories,caseID.get(4));
-				if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11)||title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+				if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11)||title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 				{
 					searchFailurModeCaseWith2Discipline(driver,keyword_same+"begonia",caseID.get(4));
 				}
@@ -4124,7 +4040,7 @@ public class CreateEquipmentCase {
 		element1.click();
 		Thread.sleep(2000);
 		if(y==0){
-			if(title.equals(eq_title)||title.equals(eq_titleUS)||title.equals(eq_titleie11US)||title.equals(eq_titleie11))
+			if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 			{
 				//Clicks on Equipment Performance Search
 				wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)).click();
@@ -4134,12 +4050,12 @@ public class CreateEquipmentCase {
 			//Clicks on Equipment Performance Search (PII)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyLink1)).click();
 		}
-		if(title.equals(ee_title)||title.equals(ee_titleUS)||title.equals(ee_titleie11US)||title.equals(ee_titleie11))
+		if(title.equals(equip3.ee_title)||title.equals(equip3.ee_titleUS)||title.equals(equip3.ee_titleie11US)||title.equals(equip3.ee_titleie11))
 		{
 			//Clicks on Failure Mode Search
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
 		}
-		if(title.equals(me_title)||title.equals(me_titleUS)||title.equals(me_titleie11US)||title.equals(me_titleie11))
+		if(title.equals(equip3.me_title)||title.equals(equip3.me_titleUS)||title.equals(equip3.me_titleie11US)||title.equals(equip3.me_titleie11))
 		{
 			//Clicks on Failure Mode Search
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
@@ -4157,23 +4073,25 @@ public class CreateEquipmentCase {
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
-		if(y==0){
-			if(keyword_same.equals(keyword_same_eq)||keyword_same.equals(keyword_same_eqUS)||keyword_same.equals(keyword_same_eqie11US)||keyword_same.equals(keyword_same_eqie11))
+		if(y==0)
+		{
+			if(keyword_same.equals(equip3.keyword_same_eq)||keyword_same.equals(equip3.keyword_same_eqUS)||keyword_same.equals(equip3.keyword_same_eqie11US)||keyword_same.equals(equip3.keyword_same_eqie11))
 			{
 				//Clicks on Equipment Performance Search
 				wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)).click();
-			}}
+			}
+		}
 		if(y==1)
 		{
 			//Clicks on Equipment Performance Search (PII)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyLink1)).click();
 		}
-		if(keyword_same.equals(keyword_same_ee)||keyword_same.equals(keywordUS_same_ee)||keyword_same.equals(keyword_same_eeie11US)||keyword_same.equals(keyword_same_eeie11))
+		if(keyword_same.equals(equip3.keyword_same_ee)||keyword_same.equals(equip3.keywordUS_same_ee)||keyword_same.equals(equip3.keyword_same_eeie11US)||keyword_same.equals(equip3.keyword_same_eeie11))
 		{
 			//Clicks on  Failure Mode Search
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
 		}
-		if(keyword_same.equals(keyword_same_me)||keyword_same.equals(keywordUS_same_me)||keyword_same.equals(keyword_same_meie11US)||keyword_same.equals(keyword_same_meie11))
+		if(keyword_same.equals(equip3.keyword_same_me)||keyword_same.equals(equip3.keywordUS_same_me)||keyword_same.equals(equip3.keyword_same_meie11US)||keyword_same.equals(equip3.keyword_same_meie11))
 		{
 			//Clicks on  Failure Mode Search
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
@@ -4187,6 +4105,11 @@ public class CreateEquipmentCase {
 		{
 			//Clicks on Prevention of Design Deficiencies
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.PreventionOfDesignDeficienciesLink)).click();
+		}
+		if(y==3)
+		{
+			//Clicks on SRI
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.SRILink)).click();
 		}
 		//Enters the term and check the search by enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
@@ -4297,17 +4220,17 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
 		//Search with keywords for error message
 		//Electrical Failure mode in Equip
-		ede.searchCaseInEquipSearchByKeyword(driver, keyword_same_ee, ee_caseId);
+		ede.searchCaseInEquipSearchByKeyword(driver, equip3.keyword_same_ee, ee_caseId);
 		//Equip in Failure mode
-		ede.searchCaseInFMWithKeyword(driver, keyword_same_eq, eq_caseId);
+		ede.searchCaseInFMWithKeyword(driver, equip3.keyword_same_eq, eq_caseId);
 		//FM in PDD
-		ede.searchCaseInPreventionOfDesignDeficienciesWithKeyword(driver, keyword_same_ee, ee_caseId);
+		ede.searchCaseInPreventionOfDesignDeficienciesWithKeyword(driver, equip3.keyword_same_ee, ee_caseId);
 		//Equip in PDD
-		ede.searchCaseInPreventionOfDesignDeficienciesWithKeyword(driver, keyword_same_eq, eq_caseId);
+		ede.searchCaseInPreventionOfDesignDeficienciesWithKeyword(driver, equip3.keyword_same_eq, eq_caseId);
 		//FM in EF
-		ede.searchCaseInEngineeringFundamentalsWithKeyword(driver, keyword_same_ee, ee_caseId);
+		ede.searchCaseInEngineeringFundamentalsWithKeyword(driver, equip3.keyword_same_ee, ee_caseId);
 		//Equip in EF
-		ede.searchCaseInEngineeringFundamentalsWithKeyword(driver, keyword_same_eq, eq_caseId);
+		ede.searchCaseInEngineeringFundamentalsWithKeyword(driver, equip3.keyword_same_eq, eq_caseId);
 	}
 
 	public void checkCaseInOtherModulesWithKeywords(WebDriver driver, String keywordeq, String keywordee, String eq_caseId, String ee_caseId) throws Exception{
@@ -4340,6 +4263,7 @@ public class CreateEquipmentCase {
 	public void deleteCase(WebDriver driver, List<String> caseId1) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -4370,12 +4294,25 @@ public class CreateEquipmentCase {
 				if(li.getText().equals(caseId))
 					li.click();
 			}*/
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.scrollToTop(driver);
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)));
 			//Clicks on delete button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)).click();
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)).click();
+			}catch(org.openqa.selenium.WebDriverException r)
+			{
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
+				//Waits for black loading message to disappear
+				share2.loadingServer(driver);
+				share2.scrollToTop(driver);
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)).click();
+			}
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on delete case

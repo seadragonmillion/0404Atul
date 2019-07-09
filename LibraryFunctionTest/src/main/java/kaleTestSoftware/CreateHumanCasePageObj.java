@@ -35,6 +35,7 @@ public class CreateHumanCasePageObj {
 	public By HumanCaseKeywordNewField = By.id("pii-admin-efsh-keyword-search-input");
 	public By HumanCaseKeywordNewAddButton = By.id("pii-admin-efsh-keyword-new");
 	public By HumanCaseKeywordExistingList = By.xpath(".//*[@id='pii-admin-efsh-keyword-blocks']/div[2]/ul");
+	public By FirstChildInList = By.cssSelector(".ui-first-child");
 	public By FirstAndLastChildInList = By.cssSelector(".ui-first-child.ui-last-child");
 	public By HumanCaseTaskNewField = By.id("pii-admin-efsh-task-search-input");
 	public By HumanCaseTaskNewAddButton = By.id("pii-admin-efsh-task-new");

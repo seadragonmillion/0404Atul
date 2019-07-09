@@ -49,13 +49,13 @@ public class HiRCALevel2 {
 	ShareCheck share = new ShareCheck();
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
+	HiRCALOPBug2 hlb2 = new HiRCALOPBug2 ();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
 
-		HiRCALOPBug obj = new HiRCALOPBug();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//create a new report
-		obj.fillUpHiRCAEventInfo(driver, text);
+		hlb2.fillUpHiRCAEventInfo(driver, text);
 		//Select 3 lops with Act of Nature
 		List<String> lopSelected = select3LOPs(driver);
 		//Hashmaps for storing notes and answers
@@ -94,21 +94,21 @@ public class HiRCALevel2 {
 		hircaNoteLopSURE.putAll(pairOfReturnVariables2.getKey());
 		hircaNoteLopSURE.putAll(pairOfReturnVariables3.getKey());
 		System.out.println(hircaNoteLopSURE);
-		verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,0,hircaNoteLopSURE);
+		verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,0,hircaNoteLopSURE,softly);
 	}
 
-	public void verifyRemainingSteps(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, int chineseOrEnglish, MultiValuedMap<String,String> hircaNoteLopSURE) throws Exception{
+	public void verifyRemainingSteps(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, int chineseOrEnglish, MultiValuedMap<String,String> hircaNoteLopSURE, SoftAssertions softly) throws Exception{
 
 		HiRCALevel1 obj1 = new HiRCALevel1();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Step 4 verify select HML
-		HashMap<String,String> hml1 = verifyStep4LOP1(driver,lopSelected,level31stLOP,2,hircaNoteLopSURE,chineseOrEnglish);
+		HashMap<String,String> hml1 = verifyStep4LOP1(driver,lopSelected,level31stLOP,2,hircaNoteLopSURE,chineseOrEnglish,softly);
 		//Get corrective action from step 4
 		List<String> correctiveActionLOP1 = getCorrectiveAction(driver,level31stLOP,2);
 		int n3 = 3;
 		if(level31stLOP.isEmpty())
 			n3 = 2;
-		HashMap<String,String> hml2 = verifyStep4LOP1(driver,lopSelected,level32ndLOP,n3,hircaNoteLopSURE,chineseOrEnglish);
+		HashMap<String,String> hml2 = verifyStep4LOP1(driver,lopSelected,level32ndLOP,n3,hircaNoteLopSURE,chineseOrEnglish,softly);
 		//Get corrective action from step 4
 		List<String> correctiveActionLOP2 = getCorrectiveAction(driver,level32ndLOP,n3);
 		if(level32ndLOP.isEmpty())
@@ -117,7 +117,7 @@ public class HiRCALevel2 {
 			n3 = 2;
 		if(level32ndLOP.isEmpty()==false && level31stLOP.isEmpty()==false)
 			n3 = 4;
-		HashMap<String,String> hml3 = verifyStep4LOP1(driver,lopSelected,level33rdLOP,n3,hircaNoteLopSURE,chineseOrEnglish);
+		HashMap<String,String> hml3 = verifyStep4LOP1(driver,lopSelected,level33rdLOP,n3,hircaNoteLopSURE,chineseOrEnglish,softly);
 		//Get corrective action from step 4
 		List<String> correctiveActionLOP3 = getCorrectiveAction(driver,level33rdLOP,n3);
 		share2.scrollToTop(driver);
@@ -125,14 +125,20 @@ public class HiRCALevel2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Step 5 select random
 		List<Integer> step5 = selectStep5(driver);
+		if(chineseOrEnglish==1)
+		{
+			//On Step 5
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				hlb2.bugKALE2494(driver,softly);
+		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Save report
 		saveHiRCAReport(driver);
 		//Verify report
-		verifyHTMLReport(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,step5,hml1,hml2,hml3,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,hircaNoteLopSURE);
+		verifyHTMLReport(driver,chineseOrEnglish,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,step5,hml1,hml2,hml3,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,hircaNoteLopSURE,softly);
 		//download
-		downloadSelectFunction(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+		downloadSelectFunction(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		if(chineseOrEnglish==0)
 		{
 			modifyStep4(driver,level31stLOP,level32ndLOP,level33rdLOP);
@@ -141,6 +147,8 @@ public class HiRCALevel2 {
 		//delete
 		obj1.deleteReport(driver);
 	}
+
+
 
 	public void modifyLOPVerifyAnswersSaved(WebDriver driver, List<String> lopSelected) throws Exception {
 
@@ -285,7 +293,7 @@ public class HiRCALevel2 {
 		saveHiRCAReport(driver);
 	}
 
-	public void verifyHTMLReport(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<Integer> step5, HashMap<String,String> hml1, HashMap<String,String> hml2, HashMap<String,String> hml3, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, MultiValuedMap<String,String> hircaNoteLopSURE) throws Exception {
+	public void verifyHTMLReport(WebDriver driver, int chineseOrEnglish, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<Integer> step5, HashMap<String,String> hml1, HashMap<String,String> hml2, HashMap<String,String> hml3, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, MultiValuedMap<String,String> hircaNoteLopSURE, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
 		//Verify failed LOPs
@@ -296,11 +304,11 @@ public class HiRCALevel2 {
 		String lop3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table[1]/tbody/tr/td[3]"))).getText().trim();
 		softly.assertThat(lop3).as("test data").isIn(lopSelected);
 		//LOP1
-		verifyLOPTable(driver,lopSelected,level31stLOP,hml1,2,correctiveActionLOP1);
+		verifyLOPTable(driver,lopSelected,level31stLOP,hml1,2,correctiveActionLOP1,softly,chineseOrEnglish);
 		//LOP2
-		verifyLOPTable(driver,lopSelected,level32ndLOP,hml2,3,correctiveActionLOP2);
+		verifyLOPTable(driver,lopSelected,level32ndLOP,hml2,3,correctiveActionLOP2,softly,chineseOrEnglish);
 		//LOP3
-		verifyLOPTable(driver,lopSelected,level33rdLOP,hml3,4,correctiveActionLOP3);
+		verifyLOPTable(driver,lopSelected,level33rdLOP,hml3,4,correctiveActionLOP3,softly,chineseOrEnglish);
 		//2.20
 		verifyAdditionalLOPSRequired(driver,list220);
 		//Verify selected failed LOPs
@@ -311,13 +319,13 @@ public class HiRCALevel2 {
 		String lop3a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[3]"))).getText().trim();
 		softly.assertThat(lop3a).as("test data").isIn(lopSelected);
 		//LOP1
-		verifyLevel2and3AnswersForLOP(driver,lopSelected,level31stLOP,level21stLOP,8);
+		verifyLevel2and3AnswersForLOP(driver,lopSelected,level31stLOP,level21stLOP,8,softly);
 		//LOP2
-		verifyLevel2and3AnswersForLOP(driver,lopSelected,level32ndLOP,level22ndLOP,9);
+		verifyLevel2and3AnswersForLOP(driver,lopSelected,level32ndLOP,level22ndLOP,9,softly);
 		//LOP3
-		verifyLevel2and3AnswersForLOP(driver,lopSelected,level33rdLOP,level23rdLOP,10);
+		verifyLevel2and3AnswersForLOP(driver,lopSelected,level33rdLOP,level23rdLOP,10,softly);
 		//2.20
-		verifySupportingInfoAdditionalLOPs(driver,list220);
+		verifySupportingInfoAdditionalLOPs(driver,list220,softly);
 	}
 
 	public void modifyStep4(WebDriver driver, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP) throws Exception {
@@ -621,7 +629,7 @@ public class HiRCALevel2 {
 		return k;
 	}
 
-	public void verifyLevel2and3AnswersForLOP(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level21stLOP,int divNumber)throws Exception {
+	public void verifyLevel2and3AnswersForLOP(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level21stLOP,int divNumber, SoftAssertions softly)throws Exception {
 
 		OPiRCAChinese4 obj = new OPiRCAChinese4();
 		WebDriverWait wait1 = new WebDriverWait(driver,3);
@@ -677,7 +685,7 @@ public class HiRCALevel2 {
 		}
 	}
 
-	public void verifySupportingInfoAdditionalLOPs(WebDriver driver, List<String> list220) throws Exception {
+	public void verifySupportingInfoAdditionalLOPs(WebDriver driver, List<String> list220, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,3);
 		//System.out.println(list220.size()+" "+list220);
@@ -714,7 +722,7 @@ public class HiRCALevel2 {
 			}
 	}
 
-	public void verifyLOPTable(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, HashMap<String,String> hml, int tableNumber, List<String> correctiveActionLOP1)throws Exception {
+	public void verifyLOPTable(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, HashMap<String,String> hml, int tableNumber, List<String> correctiveActionLOP1, SoftAssertions softly, int chineseOrEnglish)throws Exception {
 
 		OPiRCAChinese4 obj = new OPiRCAChinese4();
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
@@ -737,21 +745,24 @@ public class HiRCALevel2 {
 			String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[1]"))).getText().trim();
 			share.checkColorOfElement(driver, By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[1]"), softly);
 			softly.assertThat(s2).as("test data").isIn(temp);
-			//Get value of HML
-			if(temp.contains(s2))
+			if(chineseOrEnglish==0)
 			{
-				int n  = temp.indexOf(s2);
-				//Get same value from temp1 and get hml from hashmap
-				String s3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[2]"))).getText().trim();
-				System.out.println(temp1.get(n) + " "+n+ " "+s2);
-				if(hml.get(temp1.get(n)).equals("None"))
+				//Get value of HML
+				if(temp.contains(s2))
 				{
-					softly.assertThat(s3).as("test data").isEqualTo("");
+					int n  = temp.indexOf(s2);
+					//Get same value from temp1 and get hml from hashmap
+					String s3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[2]"))).getText().trim();
+					System.out.println(temp1.get(n) + " "+n+ " "+s2);
+					if(hml.get(temp1.get(n)).equals("None"))
+					{
+						softly.assertThat(s3).as("test data").isEqualTo("");
+					}
+					else
+						softly.assertThat(s3).as("test data").isEqualTo(hml.get(temp1.get(n)));
+					//Verify hml order
+					b = checkHMLOrder(b,s3,softly);
 				}
-				else
-					softly.assertThat(s3).as("test data").isEqualTo(hml.get(temp1.get(n)));
-				//Verify hml order
-				b = checkHMLOrder(b,s3);
 			}
 			//Verify the corrective action
 			String s4 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[3]"))).getText().trim();
@@ -760,7 +771,7 @@ public class HiRCALevel2 {
 		}
 	}
 
-	public int checkHMLOrder(int b, String s) throws Exception{
+	public int checkHMLOrder(int b, String s, SoftAssertions softly) throws Exception{
 
 		if(s.equals("High"))
 		{
@@ -805,7 +816,7 @@ public class HiRCALevel2 {
 		return b;
 	}
 
-	public HashMap<String,String> verifyStep4LOP1 (WebDriver driver, List<String> lopSelected, List<String> level31stLOP, int n, MultiValuedMap<String,String> hircaNoteLopSURE, int engOrChi) throws Exception {
+	public HashMap<String,String> verifyStep4LOP1 (WebDriver driver, List<String> lopSelected, List<String> level31stLOP, int n, MultiValuedMap<String,String> hircaNoteLopSURE, int engOrChi, SoftAssertions softly) throws Exception {
 
 		HashMap<String,String> hml = new HashMap<String,String>();
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -917,7 +928,7 @@ public class HiRCALevel2 {
 		return a;
 	}
 
-	public void downloadSelectFunction(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3)throws Exception {
+	public void downloadSelectFunction(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, SoftAssertions softly, int chineseOrEnglish)throws Exception {
 
 		OPiRCA obj = new OPiRCA();
 		//Get browser name
@@ -932,15 +943,15 @@ public class HiRCALevel2 {
 		}
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
-			downloadReportChrome(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+			downloadReportChrome(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		if (browserName.equals("firefox"))
-			downloadReportFirefox(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+			downloadReportFirefox(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("10"))
-				downloadReportIE10(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+				downloadReportIE10(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 			if (v.startsWith("11"))
-				downloadReportIE11(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+				downloadReportIE11(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		}
 		if(browserName.toLowerCase().contains("safari"))
 			driver.switchTo().defaultContent();
@@ -949,7 +960,7 @@ public class HiRCALevel2 {
 		Thread.sleep(2000);
 	}
 
-	public void downloadReportChrome(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
+	public void downloadReportChrome(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, SoftAssertions softly, int chineseOrEnglish) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
@@ -961,12 +972,13 @@ public class HiRCALevel2 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		if(chineseOrEnglish==0)
+			obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -975,7 +987,7 @@ public class HiRCALevel2 {
 		Thread.sleep(1000);
 	}
 
-	public void downloadReportFirefox(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
+	public void downloadReportFirefox(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, SoftAssertions softly, int chineseOrEnglish) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
@@ -987,7 +999,8 @@ public class HiRCALevel2 {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		if(chineseOrEnglish==0)
+			obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
@@ -1011,7 +1024,7 @@ public class HiRCALevel2 {
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 		p.waitFor();*/
-		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		Thread.sleep(4000);
 		driver.close();
 		Thread.sleep(4000);
@@ -1019,7 +1032,7 @@ public class HiRCALevel2 {
 		driver.switchTo().defaultContent();
 	}
 
-	public void downloadReportIE10(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
+	public void downloadReportIE10(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, SoftAssertions softly, int chineseOrEnglish) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
@@ -1032,7 +1045,8 @@ public class HiRCALevel2 {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		if(chineseOrEnglish==0)
+			obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
@@ -1081,13 +1095,13 @@ public class HiRCALevel2 {
 			Thread.sleep(6000);
 		}
 		//pdf verification
-		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		Thread.sleep(4000);
 		//Switch to window
 		driver.switchTo().window(window);	
 	}
 
-	public void downloadReportIE11(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception {
+	public void downloadReportIE11(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, SoftAssertions softly, int chineseOrEnglish) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
@@ -1099,7 +1113,8 @@ public class HiRCALevel2 {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Verify download pop up
-		obj1.verifyDownloadReportPopup(driver, softly);
+		if(chineseOrEnglish==0)
+			obj1.verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
@@ -1116,13 +1131,13 @@ public class HiRCALevel2 {
 		}
 		Thread.sleep(7000);
 		//pdf verification
-		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
+		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		Thread.sleep(4000);
 		//Switch to window
 		driver.switchTo().window(window);
 	}
 
-	public void pdfCheck(List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception{
+	public void pdfCheck(List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3, SoftAssertions softly, int chineseOrEnglish) throws Exception{
 
 		OPiRCAChinese4 obj = new OPiRCAChinese4();
 		// specify your directory
@@ -1166,15 +1181,18 @@ public class HiRCALevel2 {
 		softly.assertThat(newData1).as("test data").contains(level22ndLOP);  
 		softly.assertThat(newData1).as("test data").contains(level23rdLOP);  
 		softly.assertThat(newData1).as("test data").contains(list220);  
-		if(correctiveActionLOP1.isEmpty()==false)
-			softly.assertThat(newData1).as("test data").contains(correctiveActionLOP1);
-		if(correctiveActionLOP2.isEmpty()==false)
-			softly.assertThat(newData1).as("test data").contains(correctiveActionLOP2);
-		if(correctiveActionLOP3.isEmpty()==false)
-			softly.assertThat(newData1).as("test data").contains(correctiveActionLOP3);
-		softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(op3.modifyList(level31stLOP)));  
-		softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(op3.modifyList(level32ndLOP)));  
-		softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(op3.modifyList(level33rdLOP)));  
+		if(chineseOrEnglish==0)
+		{
+			if(correctiveActionLOP1.isEmpty()==false)
+				softly.assertThat(newData1).as("test data").contains(correctiveActionLOP1);
+			if(correctiveActionLOP2.isEmpty()==false)
+				softly.assertThat(newData1).as("test data").contains(correctiveActionLOP2);
+			if(correctiveActionLOP3.isEmpty()==false)
+				softly.assertThat(newData1).as("test data").contains(correctiveActionLOP3);
+			softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(op3.modifyList(level31stLOP)));  
+			softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(op3.modifyList(level32ndLOP)));  
+			softly.assertThat(newData1).as("test data").contains(obj.removeColonFromAnswers(op3.modifyList(level33rdLOP)));  
+		}
 		//Close pdf
 		pddoc.close();
 	}

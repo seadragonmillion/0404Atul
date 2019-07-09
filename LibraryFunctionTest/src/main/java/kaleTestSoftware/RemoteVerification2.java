@@ -3,11 +3,9 @@ package kaleTestSoftware;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,172 +33,7 @@ public class RemoteVerification2 {
 
 
 
-	public void upload2ndpictureChrome(WebDriver driver) throws Exception {
 
-		//Uploads picture 2
-		String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
-		driver.findElement(rv.RV2ndImageField).sendKeys(file2);
-	}
-
-	public void upload2ndpictureFirefox(WebDriver driver) throws Exception {
-
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		//Clicks on browse button of 2nd picture
-		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV2ndImageField));
-		Thread.sleep(2000);
-		//Uploads picture 2
-		Process p3=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemum.exe");
-		p3.waitFor();
-		Thread.sleep(8000);
-	}
-
-	public void upload2ndpictureIE10(WebDriver driver) throws Exception {
-
-		//Clicks twice on browse button of 2nd picture
-		WebElement element =  driver.findElement(rv.RV2ndImageField);
-		Actions act = new Actions(driver);
-		act.doubleClick(element).build().perform();
-		Thread.sleep(3000);
-		try{
-			try {
-				//Uploads picture 2
-				Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");
-				p.waitFor();
-			}catch (UnhandledAlertException f){		
-				System.out.println("Unexpected alert for picture 2");
-				driver.switchTo().alert().accept();
-			}
-		}catch (NoAlertPresentException f){			  
-			System.out.println ("No unexpected alert for picture 2");
-		}
-		Thread.sleep(4000);
-	}
-
-	public void upload2ndpictureIE11(WebDriver driver) throws Exception {
-
-		//Clicks twice on browse button of 2nd picture
-		WebElement element =  driver.findElement(rv.RV2ndImageField);
-		Actions act = new Actions(driver);
-		act.doubleClick(element).build().perform();
-		Thread.sleep(3000);
-		try{
-			try {
-				//Uploads picture 2
-				Process p =Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEChrysanthemum.exe");
-				p.waitFor();
-			}catch (UnhandledAlertException f){		
-				System.out.println("Unexpected alert for picture 2");
-				driver.switchTo().alert().accept();
-			}
-
-		}catch (NoAlertPresentException f){			  
-			System.out.println ("No unexpected alert for picture 2");
-		}
-		Thread.sleep(4000);
-	}
-
-	public void upload2ndPicture(WebDriver driver) throws Exception{
-
-		share2.scrollToElement(driver, driver.findElement(rv.RV2ndImageField));
-		//Get browser name and version
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		String v = cap.getVersion().toString();
-		if(browserName.equals("chrome"))
-			upload2ndpictureChrome(driver);
-		if(browserName.equals("firefox"))
-			upload2ndpictureFirefox(driver);
-		if(browserName.equals("internet explorer"))
-		{
-			if(v.startsWith("10"))
-				upload2ndpictureIE10(driver);
-			if(v.startsWith("11"))
-				upload2ndpictureIE11(driver);
-		}
-	}
-
-	public void upload1stpictureChrome(WebDriver driver) throws Exception {
-
-		//Uploads picture 1
-		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
-		driver.findElement(rv.RV1stImageField).sendKeys(filepath);
-	}
-
-	public void upload1stpictureFirefox(WebDriver driver) throws Exception {
-
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		//Clicks on browse button of 1st picture
-		jse.executeScript("arguments[0].click();", driver.findElement(rv.RV1stImageField));
-		Thread.sleep(2000);
-		//Uploads picture 1
-		Process p=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaDesert.exe");
-		p.waitFor();
-		Thread.sleep(4000);
-	}
-
-	public void upload1stpictureIE10(WebDriver driver) throws Exception {
-
-		Actions act = new Actions(driver);
-		//Clicks twice on browse button of 1st picture
-		WebElement element2 =  driver.findElement(rv.RV1stImageField);
-		act.doubleClick(element2).build().perform();
-		Thread.sleep(3000);
-		try{
-			try {
-				//Uploads picture 1
-				Process q=Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/IEChrysanthemum.exe");				  
-				q.waitFor();
-			}catch (UnhandledAlertException g){
-				System.out.println("Unexpected alert for picture 1");
-				driver.switchTo().alert().accept();
-			}
-		}catch (NoAlertPresentException g){			  
-			System.out.println ("No unexpected alerts for picture 1");
-		}			 
-		Thread.sleep(4000);
-	}
-
-	public void upload1stpictureIE11(WebDriver driver) throws Exception {
-
-		//Clicks twice on browse button of 1st picture
-		WebElement element2 =  driver.findElement(rv.RV1stImageField);
-		Actions act = new Actions(driver);
-		act.doubleClick(element2).build().perform();
-		Thread.sleep(3000);
-		try{
-			try {
-				//Uploads picture 1
-				Process q=Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IEChrysanthemum.exe");				  
-				q.waitFor();
-			}catch (UnhandledAlertException g){
-				System.out.println("Unexpected alert for picture 1");
-				driver.switchTo().alert().accept();
-			}
-		}catch (NoAlertPresentException g){			  
-			System.out.println ("No unexpected alerts for picture 1");
-		}			 
-		Thread.sleep(4000);
-	}
-
-	public void upload1stPicture(WebDriver driver) throws Exception{
-
-		share2.scrollToElement(driver, driver.findElement(rv.RV1stImageField));
-		//Get browser name and version
-		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = cap.getBrowserName().toLowerCase();
-		String v = cap.getVersion().toString();
-		if(browserName.equals("chrome"))
-			upload1stpictureChrome(driver);
-		if(browserName.equals("firefox"))
-			upload1stpictureFirefox(driver);
-		if(browserName.equals("internet explorer"))
-		{
-			if(v.startsWith("10"))
-				upload1stpictureIE10(driver);
-			if(v.startsWith("11"))
-				upload1stpictureIE11(driver);
-		}
-	}
 
 	public void loginToUser(WebDriver driver, String username, String password1) throws Exception{
 
@@ -295,9 +128,11 @@ public class RemoteVerification2 {
 		//Click on reject confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectConfirmButton)).click();
 		share2.loadingServer(driver);
-		share.markNotificationsRead(driver, browserName);
+		share.markNotificationsRead(driver, browserName,0,softly);
 		//login to report creator
 		loginToUser(driver,username,password1);
+		//verify email of user 
+		rv3.verifyEmailForUserAfterReceivingReplyFromVerifier(driver, verifier, reportName, k, softly);
 		//Click on 1st record/notification
 		while(true)
 		{
@@ -344,7 +179,7 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Mark notification as read
-		share.markNotificationsRead(driver, browserName);
+		share.markNotificationsRead(driver, browserName,0,softly);
 		//Verify email
 		rv1.verifyEmailForVerifier (driver,username,reportName,k);
 		//Login to verifier
@@ -387,7 +222,7 @@ public class RemoteVerification2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Mark notification as read
-		share.markNotificationsRead(driver, browserName);
+		share.markNotificationsRead(driver, browserName,0,softly);
 		//login to report creator
 		loginToUser(driver,username,password1);
 		//Click on 1st record/notification
@@ -431,7 +266,7 @@ public class RemoteVerification2 {
 				share.downloadReportIE11(driver);
 		}
 		//Mark notification as read
-		share.markNotificationsRead(driver, browserName);
+		share.markNotificationsRead(driver, browserName,0,softly);
 		//Login to report creator
 		loginToUser(driver,username,password1);
 		//Verify version of report
@@ -483,11 +318,15 @@ public class RemoteVerification2 {
 		driver.findElement(eirca.ConfirmPopupButton).click();
 		share2.loadingServer(driver);
 	}
-
+	
 	public void rvVerifierTest(WebDriver driver, int k, String username, String password1) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Mark email read of verifier and user
 		um.emailMarkRead(rv1.selectEmail(k), driver);
+		String EMAIL_ADDRESS = rv3.selectEmailForUser(k);
+		System.out.println(EMAIL_ADDRESS);
+		um.emailMarkRead(EMAIL_ADDRESS, driver);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Analysis 
@@ -500,39 +339,8 @@ public class RemoteVerification2 {
 		//Clicks on Remote Verification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).click();
 		rv3.verifyErrorOnPage(driver, softly);
-		//Fills the mandatory fields
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
-		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).getAttribute("value");
-		String ev2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).getAttribute("value");
-		if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
-		}
-		if((ev2.equals(rv.details(driver,driver.getCurrentUrl())))==false)
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
-		}
-		//Select verifier
-		rv1.verifierSelect(driver,k);
-		Thread.sleep(1000);
-		String verifier= wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVVerifierValue)).getAttribute("piivalue");
-		//Uploads picture 2
-		upload2ndPicture(driver);
-		//Uploads picture 1
-		upload1stPicture(driver);
-		//*
-		share2.scrollToTop(driver);
-		//Save and send to verifier
-		//Clicks on Save and Send
-		driver.findElement(rv.RVSaveAndSendButton).click();
-		//Clicks on save and send report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
-		driver.findElement(rv.RVSavePopupComfirmButton).click();
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
+		//Fill page
+		String verifier = rv3.fillRVPage(driver,k,0,softly);
 		//Verify if verifier got notification
 		verifierNotification(driver,verifier,username,password1,k);
 		//Delete report

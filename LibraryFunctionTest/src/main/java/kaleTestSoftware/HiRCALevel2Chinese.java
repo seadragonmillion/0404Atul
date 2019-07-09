@@ -40,16 +40,16 @@ public class HiRCALevel2Chinese {
 	ShareCheck share = new ShareCheck();
 	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAObj hirca = new HiRCAObj();
+	HiRCALOPBug2 hlb2 = new HiRCALOPBug2 ();
 
 	public void pathHiRCALevel2(WebDriver driver) throws Exception{
 
-		HiRCALOPBug obj = new HiRCALOPBug();
 		HiRCALevel2 obj3 = new HiRCALevel2();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Hashmaps for storing notes and answers
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//create a new report
-		obj.fillUpHiRCAEventInfo(driver, text);
+		hlb2.fillUpHiRCAEventInfo(driver, text);
 		//Select 3 lops with Act of Nature
 		List<String> lopSelected = select3LOPs(driver);
 		//Select answers for 1st lop
@@ -87,7 +87,7 @@ public class HiRCALevel2Chinese {
 		hircaNoteLopSURE.putAll(pairOfReturnVariables1.getKey());
 		hircaNoteLopSURE.putAll(pairOfReturnVariables2.getKey());
 		hircaNoteLopSURE.putAll(pairOfReturnVariables3.getKey());
-		obj3.verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,1,hircaNoteLopSURE);
+		obj3.verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,1,hircaNoteLopSURE,softly);
 	}
 	
 	public Pair<MultiValuedMap<String,String>, List<String>> answerLOPRelatedQuestions(WebDriver driver) throws Exception {

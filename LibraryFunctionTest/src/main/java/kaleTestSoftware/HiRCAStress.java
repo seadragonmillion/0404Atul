@@ -24,17 +24,18 @@ public class HiRCAStress {
 
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	HiRCAObj hirca = new HiRCAObj();
+	HiRCALOPBug2 hlb2 = new HiRCALOPBug2 ();
 
 	public String text = "HiRCA Stress test";
 	SoftAssertions softly = new SoftAssertions();
 
 	public void HiRCAUpload10Images(WebDriver driver) throws Exception {
 
-		HiRCALOPBug obj = new HiRCALOPBug();
 		HiRCALevel1 obj2 = new HiRCALevel1();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Go to Analysis page and fill Info page
-		obj.fillPage(driver, text);
+		hlb2.fillPage(driver, text);
 		//Upload 10 images
 		uploadFiveImages(driver);
 		//Clicks on Saved activities
@@ -321,7 +322,6 @@ public class HiRCAStress {
 	public  void uploadTenImagesChrome(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		HiRCA2 obj1 = new HiRCA2();
 		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
 		for (int j=0; j<10; j++)
 		{
@@ -351,8 +351,8 @@ public class HiRCAStress {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -365,8 +365,8 @@ public class HiRCAStress {
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -378,7 +378,6 @@ public class HiRCAStress {
 	public  void uploadTenImagesFirefox(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		HiRCA2 obj1 = new HiRCA2();
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
@@ -409,8 +408,8 @@ public class HiRCAStress {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -423,8 +422,8 @@ public class HiRCAStress {
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -437,7 +436,6 @@ public class HiRCAStress {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		HiRCA2 obj1 = new HiRCA2();
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
@@ -476,8 +474,8 @@ public class HiRCAStress {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -490,8 +488,8 @@ public class HiRCAStress {
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -504,7 +502,6 @@ public class HiRCAStress {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		HiRCA2 obj1 = new HiRCA2();
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
@@ -543,8 +540,8 @@ public class HiRCAStress {
 		//Clicks on Save
 		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -557,8 +554,8 @@ public class HiRCAStress {
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj1.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);

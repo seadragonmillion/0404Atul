@@ -42,6 +42,7 @@ public class ShareCheck {
 	LoginPageObj login = new LoginPageObj();
 	Login loginFunction = new Login();
 	PassReviewPageObj pr = new PassReviewPageObj();
+	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
 
 	public void checkColorOfElement(WebDriver driver, By locator,SoftAssertions softly) throws Exception {
 
@@ -65,30 +66,6 @@ public class ShareCheck {
 	}
 
 
-	public void shareTwice (WebDriver driver, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		Thread.sleep(2000);
-		//Enters sharer username
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys("jenkins_1_nonadmin");
-		Thread.sleep(2000);
-		//Selects from dropdown
-		WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
-		dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
-		//Verify add sharer pop up
-		eirca3.verifyAddSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
-		//Clicks on add user
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
-		Thread.sleep(2000);
-		//Click on new shared row
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("QAA (jenkins_1_nonadmin)"))).click();
-		//Verify remove sharer pop up
-		eirca3.verifyRemoveSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
-		//Click on remove sharing
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
-	}
 
 	public void checkNoReportAfterDelete (WebDriver driver, String sharer, SoftAssertions softly) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -1076,14 +1053,14 @@ public class ShareCheck {
 			if((i+1)<users.size())
 			{
 				//Verify if notification is visible and mark it read
-				receiveNotification(driver, users.get(i));
+				receiveNotification(driver, users.get(i),0,softly);
 			}
 		}
 		//Log back into user
 		logInToUser(driver,username,password1);
 	}
 
-	public void receiveNotification(WebDriver driver, String sharer) throws Exception {
+	public void receiveNotification(WebDriver driver, String sharer, int chOrEng, SoftAssertions softly) throws Exception {
 
 		//LogOut
 		loginFunction.logout(driver);
@@ -1119,10 +1096,18 @@ public class ShareCheck {
 		}	
 		//Thread.sleep(4000);
 		//Mark read all notifications
-		markNotificationsRead(driver,browserName);
+		markNotificationsRead(driver,browserName,chOrEng,softly);
+		//Verify mark notification unread popup
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.verifyNotificationUnreadPopup(driver, softly,chOrEng);
+			share2.verifyNotificationDeletePopup(driver, softly,chOrEng);
+			if(chOrEng==1)
+				ccf.verifyChineseLabelsButtonsNotificationPage(driver, softly);
+		}
 	}
 
-	public void markNotificationsRead(WebDriver driver, String browserName) throws Exception{
+	public void markNotificationsRead(WebDriver driver, String browserName, int chOrEng, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -1135,7 +1120,7 @@ public class ShareCheck {
 		Thread.sleep(1000);
 		if(browserName.equals("firefox")==false)
 			share2.scrollToTop(driver);
-		if(browserName.equals("internet explorer"))
+		/*if(browserName.equals("internet explorer"))
 		{
 			Actions act = new Actions (driver);
 			for(int i=1;i<=n;i++)
@@ -1165,20 +1150,28 @@ public class ShareCheck {
 				act.click(ele).build().perform();
 				Thread.sleep(2000);
 				//Click on mark as read
+				
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
 				act.click(ele).build().perform();
 				share2.loadingServer(driver);
 			}
 		}
 		else
-		{
+		{*/
 			for(int i=1;i<=n;i++)
 			{
 				//Click on 1st record/notification
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
 				if(ele.isSelected()==false)
-					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+				{
+					try{
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+					}catch(org.openqa.selenium.WebDriverException t)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+					}
 				share2.loadingServer(driver);
+				}
 				//Click on read
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 				if(ele.isEnabled()==false)
@@ -1186,11 +1179,14 @@ public class ShareCheck {
 				ele.click();
 				Thread.sleep(2000);
 				//Click on mark as read
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					share2.verifyNotificationReadPopup(driver, softly,chOrEng);
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
 				ele.click();
-				share2.loadingServer(driver);
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					share2.verifyPopupAfterMarkingOneNotificationRead(driver, softly,chOrEng);
 			}
-		}		
+		//}		
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 	}

@@ -50,7 +50,6 @@
     <groupId>org.assertj</groupId>
     <artifactId>assertj-core</artifactId>
     <version>3.8.0</version>
-    <scope>test</scope>
 </dependency>
    <dependency>
   <groupId>junit</groupId>
@@ -61,20 +60,13 @@
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
-    <version>3.14.0</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver -->
-<dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-ie-driver</artifactId>
-    <version>3.14.0</version>
+    <version>3.141.59</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-junit-adaptor -->
 <dependency>
     <groupId>ru.yandex.qatools.allure</groupId>
     <artifactId>allure-junit-adaptor</artifactId>
     <version>1.5.4</version>
-    <scope>test</scope>
 </dependency>
 <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-report-builder -->
 <dependency>

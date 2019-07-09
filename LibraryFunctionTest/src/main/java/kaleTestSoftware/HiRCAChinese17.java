@@ -16,6 +16,7 @@ public class HiRCAChinese17 {
 	HiRCAChinese34 hc34 = new HiRCAChinese34();
 	HiRCAObj hirca = new HiRCAObj();
 	ShareCheck share = new ShareCheck();
+	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
 
 	public void chineseStepOneL313 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -534,12 +535,11 @@ public class HiRCAChinese17 {
 	public void chineseSave(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCA2 obj = new HiRCA2();
 		//Dialog header
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupHeader)).getText();
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(heading).as("test data").contains("保存报告");
 		//Dialog title
-		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupMessage)).getText();
+		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(title).as("test data").contains("请确认你要存入现有报告进度?");
 		//Cancel button
 		String cn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-cancel"))).getText();
@@ -552,6 +552,8 @@ public class HiRCAChinese17 {
 	public void chineseReport(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			ccf.verifyChineseButtonsReportTabHiRCA(driver, softly);
 		//Table1 header 
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[1]/table/thead/tr/th"))).getText();
 		softly.assertThat(heading).as("test data").contains("事件信息");

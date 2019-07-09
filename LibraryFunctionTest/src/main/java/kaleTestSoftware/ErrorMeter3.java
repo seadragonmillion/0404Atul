@@ -4,8 +4,12 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -14,6 +18,21 @@ public class ErrorMeter3 {
 
 	ErrorMeter2 em2 = new ErrorMeter2 ();
 	ErrorMeterPageObj emObj = new ErrorMeterPageObj();
+	EiRCA2 ec2 = new EiRCA2();
+	EiRCAPageObj eircaObj = new EiRCAPageObj();
+	
+	public void verifyGuideOnPAPEPage(WebDriver driver, SoftAssertions softly) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Click on  Guide
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterGuideLink)).click();
+		//Verify PAPE
+		String p=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterGuideParagraph3Label)).getText();
+		softly.assertThat(p).as("test data").contains("PAPE");
+		softly.assertThat(p).as("test data").doesNotContain("TAPE");
+		//Click on Guide
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterGuideLink)).click();
+	}
 
 	public void clickElementForSafariBrowser (WebDriver driver, By locator) throws Exception {		
 
@@ -188,5 +207,69 @@ public class ErrorMeter3 {
 		//Set window to maximise
 		driver.manage().window().maximize();
 		//softly.assertAll();
+	}
+	
+	public int getCharCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(emObj.JobTitleCharacterCount).getText().trim();
+		s=s.substring(1,s.indexOf("/"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(emObj.JobTitleCharacterCount).getText();
+		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+	
+	public void errorMeterFillFirstPage(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Clicks on Analysis 
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.AnalysisLink)).click();
+		}catch (UnhandledAlertException f){			  
+			driver.switchTo().alert().dismiss();
+		}
+		//Clicks on SPV Error meter
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterLink)).click();
+		Thread.sleep(2000);
+		//Select Purpose from dropdown
+		WebElement element = driver.findElement(emObj.ErrorMeterPurpose);
+		Select s = new Select (element);
+		s.selectByVisibleText("PJB");
+		Thread.sleep(2000);
+		//Select Job type
+		element = driver.findElement(emObj.ErrorMeterJobType);
+		Select s1 = new Select (element);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			s1.selectByVisibleText("Analysis");
+		else
+			s1.selectByVisibleText("Construction");
+		Thread.sleep(2000);
+		//Fills Job title
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterJobTitle)).sendKeys(ec2.textCreate(driver));
+	/*	String ev1= driver.findElement(emObj.ErrorMeterJobTitle).getAttribute("value");
+		if(ev1.equals(ec2.textCreate(driver))==false)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterJobTitle)).sendKeys(ec2.textCreate(driver));*/
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		int total = getTotalCountFromTitle(driver);
+		for(int i=count+1;i<=total;i++)
+		{
+			driver.findElement(emObj.ErrorMeterJobTitle).sendKeys("z");
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterJobTitle)).sendKeys(Keys.ENTER);
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterNextButton)).click();
+		Thread.sleep(2000);
 	}
 }

@@ -12,13 +12,16 @@ public class SRIPageObj {
 	public By AnalysisSideLink = By.xpath(".//*[@id='pii-admin-analysis']/h3/a");
 	public By SRISideLink = By.id("pii-admin-sri-manage-button");
 	public By SRIAdminSaveButton = By.id("pii-asri-button-save");
+	public By SRIAdminPopupNote = By.id("pii-asri-dialog-note");
 	public By SRIAdminPopupConfirmButton = By.id("pii-asri-dialog-confirmed");
+	public By SRIAdminUndoButton = By.id("pii-asri-button-undo");
 	//Components Tab
 	public By SRIAdminComponentsTab = By.id("pii-asri-tab-1-a");
 	public By SRIAdminComponentsTabMechanicalOption = By.xpath(".//*[@for='pii-asri-component-cat-mech']");
 	public By SRIAdminComponentsTabElectricalOption = By.xpath(".//*[@for='pii-asri-component-cat-elec']");
 	public By SRIAdminComponentNameFieldEnglish = By.id("pii-asri-component-name-en");
 	public By SRIAdminComponentAddButton = By.id("pii-asri-component-add");
+	public By SRIAdminComponentMessage = By.id("pii-asri-component-addnew-message");
 	//Measurement Tab
 	public By SRIAdminMeasurementTab = By.id("pii-asri-tab-2-a");
 	public By SRIAdminMeasurementNameLabel = By.xpath(".//*[@id='pii-asri-tab-2-data']/div[1]/div[1]/div[1]");
@@ -26,11 +29,13 @@ public class SRIPageObj {
 	public By SRIAdminMeasurementTabMechanicalDropdown = By.id("pii-asri-meas-component-mech");
 	public By SRIAdminMeasurementTabElectricalDropdown = By.id("pii-asri-meas-component-elec");
 	public By SRIAdminMeasurementAddButton = By.id("pii-asri-meas-add");
+	public By SRIAdminMeasurementMessage = By.id("pii-asri-meas-addnew-message");
 	//Units Tab
 	public By SRIAdminUnitsTab = By.id("pii-asri-tab-3-a");
 	public By SRIAdminUnitName = By.id("pii-asri-unit-name");
 	public By SRIAdminUnitTabMeasurementDropdown = By.id("pii-asri-unit-meas-select");
 	public By SRIAdminUnitAddButton = By.id("pii-asri-unit-add");
+	public By SRIAdminUnitMessage = By.id("pii-asri-unit-addnew-message");
 	//Baseline Tab
 	public By SRIAdminBaselinesTab = By.id("pii-asri-tab-4-a");
 	public By SRIAdminBaselineTabMechanicalDropdown = By.id("pii-asri-baseline-component-mech");
@@ -49,6 +54,9 @@ public class SRIPageObj {
 	public By SRIAdminBaselienOPLimitLabel = By.xpath(".//*[@id='pii-asri-baseline-addnew-div']/div[1]/div[3]/div[1]");
 	public By SRIAdminBaselienIFS1LimitLabel = By.xpath(".//*[@id='pii-asri-baseline-addnew-div']/div[1]/div[4]/div[1]");
 	public By SRIAdminBaselienIFS2LimitLabel = By.xpath(".//*[@id='pii-asri-baseline-addnew-div']/div[1]/div[5]/div[1]");
+	public By SRIAdminBaselineUnitForFirstRow = By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr[1]/td[3]/div/div/span");
+	public By SRIAdminBaselineUnitForFirstRowSelect = By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr[1]/td[3]/div/div/select");
+	public By SRIAdminBaselineMeasurementForFirstRow = By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr[1]/td[2]/div/div/span");
 	//Baseline Errors
 	public By SRIBaselineErrorMessage = By.xpath(".//*[@id='pii-asri-baseline-addnew-message']/ul/li[1]");
 	//Conclusion Tab
@@ -60,7 +68,7 @@ public class SRIPageObj {
 	public By SRIAdminFS2ConclusionField = By.id("pii-asri-conclusion-fs2conc-new");
 	public By SRIAdminFS3ConclusionField = By.id("pii-asri-conclusion-fs3conc-new");
 	public By SRIAdminConclusionAddButton = By.id("pii-asri-conclusion-add");
-	
+	public By SRIAdminConclusionMeasurementForFirstRow = By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr[1]/td[2]/div/div/span");
 	
 	//Step1
 	public By SRINewButton = By.id("pii-sri-new");
@@ -101,6 +109,7 @@ public class SRIPageObj {
 	public By Step2Measurement1Time = By.id("pii-sri-tab-1-event-time");
 	public By Step2Measurement1TimeFirefox = By.id("pii-sri-tab-1-event0-time");
 	public By Step2Measurement1Measurement =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/span");
+	public By Step2Measurement1MeasurementSelectMenu =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/select");
 	public By Step2Measurement1Unit =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[5]/div/div/span");
 	public By Step2Measurement1Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[6]/textarea");
 	public By Step2Measurement1Note = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[7]/textarea");

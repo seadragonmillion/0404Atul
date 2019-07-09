@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SRI3 {
@@ -148,6 +149,53 @@ public class SRI3 {
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Delete");
+	}
+
+	public void verifyPageSwitchesToStep2TabWhenErrorIsPresent(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);		
+		//Click on open button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		//Click on Step 2 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep2Tab)).click();
+		//Clear measurement
+		Select s = new Select(driver.findElement(sri.Step2Measurement1MeasurementSelectMenu));
+		s.selectByIndex(0);
+		//Click on Step 1 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1Tab)).click();
+		//Save report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveButton)).click();
+		share2.verifyWarningPopupForSRIError(driver, softly);
+		//Verify on step 2 by looking for measurement field of 1st measurement
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement1Measurement));
+	}
+
+	public void changeComponentVerifyMissingMeasurementAndUnit(WebDriver driver, String component, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);		
+		//Click on Step 1 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1Tab)).click();
+		//Change component to electrical
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1ElectricalComponentLabel)).click();
+		//Component
+		Select s = new Select(driver.findElement(sri.Step1Component));
+		s.selectByVisibleText(component);
+		//Click on Step 2 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep2Tab)).click();
+		//Get Measurement 1
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement1Measurement)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo(" ");
+		//Get unit 1
+		String s2a = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement1Unit)).getText();
+		softly.assertThat(s2a).as("test data").isEqualTo(" ");
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISavedActivitiesButton)).click();
+		share2.loadingServer(driver);
+		//CLick on new record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
+		share2.loadingServer(driver);
+		//softly.assertAll();
 	}
 
 }

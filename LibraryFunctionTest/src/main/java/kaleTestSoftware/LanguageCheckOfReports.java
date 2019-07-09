@@ -34,7 +34,10 @@ public class LanguageCheckOfReports {
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
-
+	Login login = new Login();
+	HiRCA2 hirca2 = new HiRCA2();
+	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
+	
 	public boolean containsHanScript(String s) {
 		return s.codePoints().anyMatch(
 				codepoint ->
@@ -67,8 +70,86 @@ public class LanguageCheckOfReports {
 				downloadReportIE11 (driver, y, l);
 		}
 	}
+	
+	public void verifyLabelAdminUserAccountChinese(WebDriver driver, SoftAssertions softly) throws Exception {
 
-	public void verifyLabelUserAccount(WebDriver driver,SoftAssertions softly) throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//Verify all label which are same as non admin user
+		verifyLabelUserAccountChinese(driver,softly);
+		//Labels which are visible only to admin user
+		//Activation status
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-status']"))).getText();
+		softly.assertThat(s).as("test data").isEqualTo("状态:");
+		//Select group
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-div']/fieldset/div[1]/legend"))).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("选择小组:");
+		//Cases slide security
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-slidesecurity']/div[1]/legend"))).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("知识库安全设定:");
+		//Company ID
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerId-div']/fieldset/div[1]/legend"))).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("公司代码:");
+		//Company moderator
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerAdmin']/div[1]/legend"))).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("公司代理人:");
+		//Group moderator
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-modgroups-div']/fieldset/div[1]/legend"))).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("小组代理人:");
+		//softly.assertAll();
+	}
+	
+	public void verifyLabelUserAccountChinese(WebDriver driver,SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//page title
+		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))).getText();
+		softly.assertThat(title).as("test data").isEqualTo("用户信息");
+		//login name
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-loginname']"))).getText();
+		softly.assertThat(s).as("test data").isEqualTo("账号:");
+		//Password
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password']"))).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("密码:");
+		//Retype password
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password-again']"))).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("重新输入密码。:");
+		//Language
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[6]/fieldset/div/legend"))).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("语言:");
+		//name
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-name']"))).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("姓名:");
+		//company name
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-company']"))).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("公司名称:");
+		//department
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[10]/fieldset/div/legend"))).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("部门:");
+		//sub- dept
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[11]/fieldset/div/legend"))).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("组:");
+		//job title
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[12]/fieldset/div/legend"))).getText();
+		softly.assertThat(s8).as("test data").isEqualTo("工作名称:");
+		//email
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-email']"))).getText();
+		softly.assertThat(s9).as("test data").isEqualTo("电子邮箱:");
+		//certification
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[14]/fieldset/div/legend"))).getText();
+		softly.assertThat(s10).as("test data").isEqualTo("PII授权等级:");
+		//license
+		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-license']"))).getText();
+		softly.assertThat(s11).as("test data").isEqualTo("软件使用条款同意书:");
+		//Verify place holder for password
+		//enter password
+		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password"))).getAttribute("placeholder");
+		softly.assertThat(s12).as("test data").isEqualTo("可以重新设置密码，需至少8个字母和数字，需至少一个大小写英文、数字和特殊符号。");
+		//enter password again
+		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password-again"))).getAttribute("placeholder");
+		softly.assertThat(s13).as("test data").isEqualTo("再次输入密码，需与以上密码完全雷同。");
+	}
+
+	public void verifyLabelUserAccountEnglish(WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//page title
@@ -82,7 +163,7 @@ public class LanguageCheckOfReports {
 		softly.assertThat(s1).as("test data").isEqualTo("Password:");
 		//Retype password
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password-again']"))).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Re-type Password:");
+		softly.assertThat(s2).as("test data").isEqualTo("Re-enter password:");
 		//Language
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[6]/fieldset/div/legend"))).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Language:");
@@ -122,8 +203,6 @@ public class LanguageCheckOfReports {
 	public void languageChangeTest(WebDriver driver,String username,String password) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		Login obj = new Login();
-		HiRCA2 obj2 = new HiRCA2();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -151,12 +230,14 @@ public class LanguageCheckOfReports {
 		//Checks language in Remote Verification
 		l = rv(driver,0);
 		downloadSelectFunction(driver, 0, l,browserName,v);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			ccf.verifyChineseMainMenuLinks(driver, softly);
 		//Logs out
-		obj.logout(driver);
+		login.logout(driver);
 		if (browserName.equals("firefox"))
 			driver.switchTo().defaultContent();
 		//Login again
-		obj.LoginUser(driver, username, password);
+		login.LoginUser(driver, username, password);
 		//wait for loading message
 		share2.loadingServer(driver);
 		//Switches to the iframe
@@ -208,9 +289,28 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//verify sticky
-		obj2.verifyStickyUserAccount(driver, softly, username);
+		hirca2.verifyStickyUserAccountAfterChange(driver, softly, 0);
+		hirca2.verifyStickyUserAccount(driver, softly, username);
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
+		//verify labels
+		verifyLabelUserAccountEnglish(driver,softly);
+		//Verifies changed data
+		String name1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).getAttribute("value");
+		System.out.println(name1);
+		softly.assertThat(name1).as("test data").isEqualTo("QAA");
+		String company1 =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).getAttribute("value");
+		System.out.println(company1);
+		softly.assertThat(company1).as("test data").isEqualTo("QAA-PII");
+		String dept1=driver.findElement(By.xpath(".//*[@id='pii-admin-user-dept-button']/span")).getText();
+		System.out.println(dept1);
+		softly.assertThat(dept1).as("test data").isEqualTo("Information Technology (IT)");
+		String jobTitle1=driver.findElement(By.xpath(".//*[@id='pii-admin-user-jobtitle-button']/span")).getText();
+		System.out.println(jobTitle1);
+		softly.assertThat(jobTitle1).as("test data").isEqualTo("Engineer");
+		String email1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).getAttribute("value");
+		System.out.println(email1);
+		softly.assertThat(email1).as("test data").isEqualTo("rramakrishnan@errorfree.com");
 		//Clicks on Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
@@ -271,18 +371,18 @@ public class LanguageCheckOfReports {
 		softly.assertThat(name).as("test data").contains("Error-Free® Inc and Performance Improvement International (PII)");		
 	}
 
-	public void verifyLabelAdminUserAccount(WebDriver driver, SoftAssertions softly) throws Exception {
+	public void verifyLabelAdminUserAccountEnglish(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Verify all label which are same as non admin user
-		verifyLabelUserAccount(driver,softly);
+		verifyLabelUserAccountEnglish(driver,softly);
 		//Labels which are visible only to admin user
 		//Activation status
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-status']"))).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Activation status:");
 		//Select group
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s1).as("test data").isEqualTo("Select group(s):");
+		softly.assertThat(s1).as("test data").contains("Select group(s)");
 		//Cases slide security
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-slidesecurity']/div[1]/legend"))).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cases slide security:");
@@ -342,7 +442,6 @@ public class LanguageCheckOfReports {
 	public void verifyAccountPageAdminUser(WebDriver driver, String username, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		HiRCA2 obj = new HiRCA2();
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Account
@@ -356,13 +455,13 @@ public class LanguageCheckOfReports {
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
 		//verify labels
-		verifyLabelAdminUserAccount(driver,softly);
+		verifyLabelAdminUserAccountEnglish(driver,softly);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify sticky 
-		obj.verifyStickyUserAccount(driver, softly, username);
+		hirca2.verifyStickyUserAccount(driver, softly, username);
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Activity
@@ -375,14 +474,14 @@ public class LanguageCheckOfReports {
 	public void changeAccountPage(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		HiRCA2 obj = new HiRCA2();
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Account
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		Thread.sleep(1000);
 		//verify labels
-		verifyLabelUserAccount(driver,softly);
+		//verifyLabelUserAccountEnglish(driver,softly);
 		//Change Name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).sendKeys("QAA changed");
@@ -409,9 +508,13 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify sticky 
-		obj.verifyStickyUserAccount(driver, softly, username);
+		hirca2.verifyStickyUserAccountAfterChange(driver, softly, 1);
+		hirca2.verifyStickyUserAccount(driver, softly, username);
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
+		//Check chinese translation for User Profile
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			verifyLabelUserAccountChinese(driver,softly);
 		//Clicks on Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();

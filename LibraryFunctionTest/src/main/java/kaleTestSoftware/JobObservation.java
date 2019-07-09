@@ -27,6 +27,7 @@ public class JobObservation {
 	EiRCA2 eirca2 = new EiRCA2();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	ShareCheck3 share3 = new ShareCheck3();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
 	JobObservation2 jo2 = new JobObservation2();
 	JobObservationObj jo = new JobObservationObj();
@@ -1341,7 +1342,7 @@ public class JobObservation {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		//Click back

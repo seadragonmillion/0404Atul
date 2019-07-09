@@ -584,7 +584,7 @@ public class SRI2 {
 		return storeData;
 	}
 
-	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly, String recordName, String username, String password)throws Exception {
+	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly, String recordName, String username, String password, String component)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on open button
@@ -617,6 +617,13 @@ public class SRI2 {
 		downloadReport(driver,softly);
 		//Delete a measurement inside report and verify the popup details
 		sri3.deleteMeasurementFromStep2(driver, softly, username, password);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Verify Page Switches To Step2 Tab When Error Is Present
+			sri3.verifyPageSwitchesToStep2TabWhenErrorIsPresent(driver, softly);
+			//Change component and verify if unit also goes missing with measurement in Step 2
+			//sri3.changeComponentVerifyMissingMeasurementAndUnit(driver,component,softly);
+		}
 	}
 
 	public void downloadReport(WebDriver driver, SoftAssertions softly) throws Exception {

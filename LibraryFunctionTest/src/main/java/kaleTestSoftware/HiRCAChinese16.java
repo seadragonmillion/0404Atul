@@ -7,7 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class HiRCAChinese16 {
+public class HiRCAChinese16 {	
+
+	HiRCAObj hirca = new HiRCAObj();
 	
 	public void chineseStepOneq115 (WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -460,15 +462,14 @@ public class HiRCAChinese16 {
 	public void chineseLOPRC(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCA2 obj = new HiRCA2();
 		//Dialog header
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupHeader)).getText();
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupHeader)).getText();
 		softly.assertThat(heading).as("test data").contains("屏障或根本原因分析");
 		//Dialog title
-		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupMessage)).getText();
+		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).getText();
 		softly.assertThat(title).as("test data").contains("您要(1)继续分析屏障失效或是(2)前往根本原因分析？");
 		//Dialog note
-		String note = wait.until(ExpectedConditions.visibilityOfElementLocated(obj.HiRCAPopupNote)).getText();
+		String note = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getText();
 		softly.assertThat(note).as("test data").contains("提醒：屏障失效分析可以随时回头再做。");
 		//Cancel button
 		String cn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-cancel"))).getText();

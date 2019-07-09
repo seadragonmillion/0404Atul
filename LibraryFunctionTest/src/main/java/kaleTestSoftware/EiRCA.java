@@ -43,6 +43,7 @@ public class EiRCA {
 	LoginPageObj login = new LoginPageObj();
 	EiRCA2 eirca2 = new EiRCA2();
 	EiRCA3 eirca3 = new EiRCA3();
+	ShareCheck3 share3 = new ShareCheck3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 
@@ -391,7 +392,7 @@ public class EiRCA {
 		//Event title
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable1EventTitle)).getText();
 		String r3 = s4.replace("\u00AD", "");
-		softly.assertThat(r3).as("test data").isEqualTo(text);
+		softly.assertThat(r3).as("test data").contains(text);
 		//Location of event
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable1LocationOfEvent)).getText();
 		String r4 = s5.replace("\u00AD", "");
@@ -757,9 +758,14 @@ public class EiRCA {
 						softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
 					}catch(org.openqa.selenium.TimeoutException q)
 					{
-						String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column6a)).getText();
-						String r1 = s.replaceAll("\u00AD", "");
-						softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
+						try{
+							String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column6a)).getText();
+							String r1 = s.replaceAll("\u00AD", "");
+							softly.assertThat(r1).as("test data").contains(EiRCA.this.eirca2.textCreate(driver));
+						}catch(org.openqa.selenium.TimeoutException q1)
+						{
+
+						}
 					}
 				}				
 				if(f>=1)
@@ -1653,9 +1659,14 @@ public class EiRCA {
 
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 
-		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);	
+		shareReportAfterChoosingSharer(driver,username,password1,sharer,sharerAdded);
+	}
+
+	public void shareReportAfterChoosingSharer(WebDriver driver,String username, String password1, String sharer, String sharerAdded) throws Exception{
+
+		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on share button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
 		//Enters username
@@ -1670,7 +1681,7 @@ public class EiRCA {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();		
 		//Verify share save sticky
@@ -2832,6 +2843,16 @@ public class EiRCA {
 		return count;
 	}
 
+	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(eirca.TitleCharacterCount).getText();
+		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -2871,6 +2892,13 @@ public class EiRCA {
 		checkTitleCountReset(driver);
 		//Fills all mandatory fields
 		driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		int total = getTotalCountFromTitle(driver);
+		for(int i=count+1;i<=total;i++)
+		{
+			driver.findElement(eirca.EiRCAEventTitleField).sendKeys("z");
+		}
 		driver.findElement(eirca.EiRCAEventLocationField).sendKeys(text);
 		//tbr.sizeCheck(driver, eirca.EiRCAEventReporterField, softly);
 		driver.findElement(eirca.EiRCAEventReporterField).sendKeys(text); 
@@ -2892,11 +2920,11 @@ public class EiRCA {
 		String ev6 = driver.findElement(eirca.EiRCAEventSponsorField).getAttribute("value");
 		String ev7= driver.findElement(eirca.EiRCAEventProblemStatementField).getAttribute("value");
 		String ev8= driver.findElement(eirca.EiRCAEventComponentField).getAttribute("value");
-		if ((ev1.equals(text)==false))
+		/*if ((ev1.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventTitleField).clear();
 			driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
-		}
+		}*/
 		if ((ev2.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventLocationField).clear();
@@ -2983,7 +3011,7 @@ public class EiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.InfoTab)).click();
 		//Gets the value from the text field report creation date
 		String creationDate = driver.findElement(eirca.ReportCreationDateField).getAttribute("value");
-		String name = creationDate + "_"+username+"_"+text ;
+		String name = creationDate + "_"+username+"_"+ev1 ;
 		System.out.println(name);
 		//Clicks on Saved activities button
 		jse.executeScript("return document.getElementById('pii-ircam-savedactivities').click();");

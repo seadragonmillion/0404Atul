@@ -3,6 +3,9 @@ package kaleTestSoftware;
 import org.openqa.selenium.By;
 
 public class UserManagementPageObj {
+	
+	//Knowledge
+	public By KnowledgeTopLink = By.linkText("Knowledge");
 
 	//Company
 	public By CompanySaveButton = By.id("pii-admin-cust-button-save");

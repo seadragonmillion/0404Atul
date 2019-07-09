@@ -20,6 +20,7 @@ public class OPiRCAChinese {
 	EiRCA2 eirca2= new EiRCA2();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
 
 	public void OPiRCApath (WebDriver driver) throws Exception {
 
@@ -36,13 +37,16 @@ public class OPiRCAChinese {
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Scroll down
-		share2.scrollToAPoint(driver, 1500);
+		share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
-		Thread.sleep(1000);
 		share2.scrollToTop(driver);	 
-		Thread.sleep(1000);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			ccf.verifyChineseButtonsInfoTabOPiRCA(driver, softly);
+			ccf.verifyChineseTabsInsideOPiRCA(driver, softly);
+		}
 		//Verify everything on Event Information page is in 
 		chineseInfoPage(driver);
 		//Verify errors in Chinese
@@ -52,6 +56,8 @@ public class OPiRCAChinese {
 		Thread.sleep(2000);
 		//Verify step 1
 		chineseOPiRCAStep1(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			ccf.verifyChineseButtonsInBetweenTabsOPiRCA(driver, softly);
 		Thread.sleep(1000);
 		//Select all HiRCA Level 3 Options
 		selectAllHiRCALevel3Options(driver);
@@ -156,7 +162,7 @@ public class OPiRCAChinese {
 		selectAllApparentCausesAnswers(driver);
 		Thread.sleep(1000);
 		//Verify chinese step 2
-		obj7.chineseStep2skip(driver);
+		obj7.chineseStep2skip(driver,softly);
 		Thread.sleep(1000);
 		//Verify chinese Step 3
 		chineseStep3SURE(driver);
@@ -186,6 +192,8 @@ public class OPiRCAChinese {
 		obj2.chineseStep5(driver,softly);
 		//Select 1st checkbox in Step 5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep5TableRow1Column3)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			obj7.bugKALE2494(driver, softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);
@@ -2775,6 +2783,7 @@ public class OPiRCAChinese {
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
 			//Scroll to element
 			share2.scrollToElement(driver, l);
+			l.click();
 		}
 		//Scroll to top
 		Thread.sleep(1000);

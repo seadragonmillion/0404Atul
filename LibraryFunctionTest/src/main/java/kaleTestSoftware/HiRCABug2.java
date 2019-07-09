@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HiRCABug2 {
 
-	HiRCALOPBug hlb = new HiRCALOPBug();
+	HiRCALOPBug2 hlb2 = new HiRCALOPBug2();
 	HiRCALevel1 hircaL1 = new HiRCALevel1();
 	HiRCALevel2 hircaL2 = new HiRCALevel2();
 	ShareCheck share = new ShareCheck();
@@ -159,7 +159,7 @@ public class HiRCABug2 {
 	public void pathHiRCABug(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		hlb.fillPage(driver, text);
+		hlb2.fillPage(driver, text);
 		//Scroll to image and upload one image with title
 		uploadImage(driver);
 		//Click on add supporting file

@@ -17,7 +17,7 @@ public class CreateHumanCase2 {
 		share2.scrollToTop(driver);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSaveButton)).click();
-		share2.verifyWarningPopupForError(driver, softly);
+		//share2.verifyWarningPopupForError(driver, softly);
 		//Verify all errors
 		String idError = driver.findElement(chc.CaseIDError).getText();
 		softly.assertThat(idError).as("test data").isEqualTo("ID is required");

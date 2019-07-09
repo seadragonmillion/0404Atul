@@ -26,6 +26,9 @@ public class OPiRCA3 {
 	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click on first record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
+		share2.loadingServer(driver);
 		//Click on open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
@@ -47,10 +50,7 @@ public class OPiRCA3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveCancelButton)).click();
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
-		share2.loadingServer(driver);
-		//Click on first record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();		
-		share2.loadingServer(driver);
+		share2.loadingServer(driver);		
 	}
 	
 	public List<String> modifyList(List<String> apparentCausesAnswers)  throws Exception{
@@ -156,6 +156,7 @@ public class OPiRCA3 {
 					checkCollapsibleEvidenceEntryPossibleCorrectiveAction(driver,y,softly);	
 				}
 			}
+		System.out.println("ac: "+ac);
 		return ac;		
 	}
 	

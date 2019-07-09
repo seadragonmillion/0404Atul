@@ -28,6 +28,7 @@ public class CaseBrowse {
 	ShareCheck share = new ShareCheck();
 	CaseBrowsePageObj cb = new CaseBrowsePageObj();
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
+	CreateEquipPageObj equipObj = new CreateEquipPageObj();
 
 	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
 	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
@@ -46,6 +47,7 @@ public class CaseBrowse {
 	public String caseEquipDev = "1974";
 	public String caseElecDev = "1678";
 	public String caseMechDev = "1988";
+	public String caseSRIDev = "7543";
 	public String caseHumanProd = "746";
 	public String caseHumanProdPercent = "209";
 	public String caseEquipProd = "231";
@@ -56,6 +58,7 @@ public class CaseBrowse {
 	public String keywordHumanDev = "test data";
 	public String keywordHumanDevSpcl = "test.1/1";
 	public String keywordHumanDevPercent = "Testpercentage%";
+	public String keywordEquipSRIDev = "Test data sri";
 	public String keywordEquipDev = "test data";
 	public String keywordEquipDevSpcl = "test.1/1";
 	public String keywordEquipDevPercent = "Testpercentage%";
@@ -86,7 +89,39 @@ public class CaseBrowse {
 	public String keywordEquipDevAllSpecial_ie11 = "Testie11qaa!@#$%^&*,.?/+-=;:_";
 	public String[] s= {"@","!","#","$","%","&"," ","/","?",",",".","[abcd]", "(pqrs)"};
 
+	public void caseSearchSRI(WebDriver driver, String identifier, String title, String keyword) throws Exception {
 
+		getSRILink(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Search with keyword %
+			searchWithPercentEquip(driver, keywordEquipDevPercent, identifier);
+			//Search with keyword ./
+			searchWithSpclEquip(driver, keywordEquipDevSpcl, identifier);
+		}
+		//Verify search options
+		verifySearchOptionsEquip(driver, keyword, identifier);
+		//Browse case with keyword
+		browseTermEquip(driver, keyword, identifier, title);
+		//Browse case with case id
+		browseCaseIDEquip(driver, identifier, title);
+	}
+
+	public void getSRILink(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Waits for black loading message to disappear
+		share2.loadingServer(driver);
+		try{
+			//Clicks on ErrorFree Bank
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
+		}catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.ErrorFreeBankLinkHomePage)).click();
+		}
+		//Clicks on SRI
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.SRILink)).click();
+	}
 
 	public void caseSearchWithLD(WebDriver driver) throws Exception {
 
@@ -703,11 +738,26 @@ public class CaseBrowse {
 		//Prevention of Design Deficiencies
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.PreventionOfDesignDeficienciesPosition)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//SRI
+			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SystematicReliabilityInspectionDevEquipmentDatabankOnlyPositionProd)).getText();
+			softly.assertThat(s6).as("test data").isEqualTo("Systematic Reliability Inspection");
+		}
 		if(y==0)
 		{
-			//Equipment Data Bank (Instructor Only)
-			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyPosition)).getText();
-			softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
+			if(driver.getCurrentUrl().contains("kaleqa"))
+			{
+				//Equipment Data Bank (Instructor Only)
+				String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyPositionDev)).getText();
+				softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
+			}
+			else
+			{
+				//Equipment Data Bank (Instructor Only)
+				String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SystematicReliabilityInspectionDevEquipmentDatabankOnlyPositionProd)).getText();
+				softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
+			}
 		}
 		if(y==1)
 			verifyNoEquipPII(driver);
@@ -1685,6 +1735,13 @@ public class CaseBrowse {
 			String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
+			//Verify file name of image in new cases after 4.6.1 version in KALE
+			if(expected_title.contains(equip3.titleCombo)||expected_title.contains(equip3.titleComboie11)||expected_title.contains(equip3.titleComboUSie11)||expected_title.contains(equip3.titleComboUS)||expected_title.contains(equip3.ee_title)||expected_title.contains(equip3.ee_titleie11)||expected_title.contains(equip3.ee_titleUS)||expected_title.contains(equip3.ee_titleie11US)||expected_title.contains(equip3.eq_title)||expected_title.contains(equip3.eq_titleie11)||expected_title.contains(equip3.eq_titleUS)||expected_title.contains(equip3.eq_titleie11US)||expected_title.contains(equip3.me_title)||expected_title.contains(equip3.me_titleie11)||expected_title.contains(equip3.me_titleUS)||expected_title.contains(equip3.me_titleie11US))
+			{
+				//Get property piifiles from img
+				String filename = driver.findElement(By.xpath(image_xpath)).getAttribute("piifile");
+				softly.assertThat(filename).as("test data").isEqualTo("Slide"+(i-1)+".PNG");
+			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)).click();
 		}
 	}
@@ -1722,6 +1779,13 @@ public class CaseBrowse {
 			String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 			String expected_slide = i+"/"+n;
 			softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
+			//Verify file name of image in new cases after 4.6.1 version in KALE
+			if(expected_title.contains(equip3.titleCombo)||expected_title.contains(equip3.titleComboie11)||expected_title.contains(equip3.titleComboUSie11)||expected_title.contains(equip3.titleComboUS)||expected_title.contains(equip3.ee_title)||expected_title.contains(equip3.ee_titleie11)||expected_title.contains(equip3.ee_titleUS)||expected_title.contains(equip3.ee_titleie11US)||expected_title.contains(equip3.eq_title)||expected_title.contains(equip3.eq_titleie11)||expected_title.contains(equip3.eq_titleUS)||expected_title.contains(equip3.eq_titleie11US)||expected_title.contains(equip3.me_title)||expected_title.contains(equip3.me_titleie11)||expected_title.contains(equip3.me_titleUS)||expected_title.contains(equip3.me_titleie11US))
+			{
+				//Get property piifiles from img
+				String filename = driver.findElement(By.xpath(image_xpath)).getAttribute("piifile");
+				softly.assertThat(filename).as("test data").isEqualTo("Slide"+(i-1)+".PNG");
+			}
 			//Click on previous
 			driver.findElement(cb.SlidePreviousButton).click();
 		}

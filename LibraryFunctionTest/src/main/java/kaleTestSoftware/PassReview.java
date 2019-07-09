@@ -28,9 +28,12 @@ public class PassReview {
 	EiRCA2 eirca2 = new EiRCA2();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	ShareCheck3 share3 = new ShareCheck3();
 	LoginPageObj lpo = new LoginPageObj();
 	PassReviewPageObj pr = new PassReviewPageObj();
 	PassReview2 pr2 = new PassReview2();
+	HiRCAObj hc = new HiRCAObj();
+	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
 
 	public void pass1Tab(WebDriver driver) throws Exception {
 
@@ -489,7 +492,7 @@ public class PassReview {
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
-		share.shareTwice (driver,softly);
+		share3.shareTwice (driver,softly,0);
 		//Clicks on save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareSaveButton)).click();
 		//Verify share save sticky
@@ -514,7 +517,6 @@ public class PassReview {
 	public void deleteNewRecord(WebDriver driver, String recordName, int y, String username) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		LanguageCheckOfReports obj3 = new LanguageCheckOfReports();
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
@@ -540,7 +542,7 @@ public class PassReview {
 			System.out.println("Record could not be deleted");	
 		//verify admin user account page
 		if(y==0||y==2||y==4||y==6)
-			obj3.verifyAccountPageAdminUser(driver, username, softly);
+			lcr.verifyAccountPageAdminUser(driver, username, softly);
 		//Verify report not retrieved by shared to person		
 		String sharer = em3.decideSharer (y);
 		share.checkNoReportAfterDelete(driver, sharer, softly);		
@@ -713,6 +715,16 @@ public class PassReview {
 		return count;
 	}
 
+	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
+
+		//Get count of characters
+		String s = driver.findElement(pr.DocumentTitleCharacterCount).getText();
+		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
+		int count = Integer.parseInt(s);
+		System.out.println(s+ " "+count);
+		return count;
+	}
+
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -737,7 +749,6 @@ public class PassReview {
 	public String createReport (WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10); 
-		HiRCALOPBug obj2 = new HiRCALOPBug();
 		FontCheck obj3 = new FontCheck();
 		String text = eirca2.textCreate(driver);
 		//Wait for loading message to disappear
@@ -745,7 +756,7 @@ public class PassReview {
 		//Clicks on Analysis 
 		try
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.AnalysisLink)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.AnalysisLink)).click();
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
@@ -760,6 +771,13 @@ public class PassReview {
 		//Fills in mandatory details
 		driver.findElement(pr.Reviewer).sendKeys(text);
 		driver.findElement(pr.DocumentTitle).sendKeys(text);
+		//Get count
+		int count = getCharCountFromTitle(driver);
+		int total = getTotalCountFromTitle(driver);
+		for(int i=count+1;i<=total;i++)
+		{
+			driver.findElement(pr.DocumentTitle).sendKeys("z");
+		}
 		driver.findElement(pr.Organisation).sendKeys(text);
 		String ev1 = driver.findElement(pr.Reviewer).getAttribute("value");
 		String ev2 = driver.findElement(pr.DocumentTitle).getAttribute("value");
@@ -769,11 +787,11 @@ public class PassReview {
 			driver.findElement(pr.Reviewer).clear();
 			driver.findElement(pr.Reviewer).sendKeys(text);
 		}
-		if ((ev2.equals(text)==false))
+		/*if ((ev2.equals(text)==false))
 		{
 			driver.findElement(pr.DocumentTitle).clear();
 			driver.findElement(pr.DocumentTitle).sendKeys(text);
-		}
+		}*/
 		if ((ev3.equals(text)==false))
 		{
 			driver.findElement(pr.Organisation).clear();
@@ -812,7 +830,7 @@ public class PassReview {
 		WebElement record = driver.findElement(pr.FirstRecord);
 		String recordName = record.getText();
 		String r1 = recordName.replaceAll("\u00AD", "");
-		softly.assertThat(r1).as("test data").contains(text);
+		softly.assertThat(r1).as("test data").contains(ev2);
 		return r1;
 	}
 

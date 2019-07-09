@@ -519,6 +519,14 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
 		//Click on edit user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
+		//Verify the message on top in edit user page
+		try{
+			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
+			softly.assertThat(message).as("test data").isEqualTo("Update a selected user...");
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+
+		}
 		//Searches for newly created user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(company_id);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
@@ -1546,7 +1554,7 @@ public class UserManagement {
 		System.out.println("User created");
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-	}
+	}	
 
 	public void createUserCM(WebDriver driver, String company_id, String password,String email) throws Exception{
 
@@ -1607,6 +1615,8 @@ public class UserManagement {
 		System.out.println("User created");
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			um2.createExistingUserAndVerifyErrorPopup(driver, softly, company_id, password, email);
 	}
 
 	public void addSubDepartments (WebDriver driver) throws Exception {
@@ -2291,14 +2301,6 @@ public class UserManagement {
 		//Clicks on Edit user
 		driver.findElement(By.id("pii-admin-user-edit")).click();
 		Thread.sleep(4000);
-		//Verify the message on top in edit user page
-		try{
-			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-			softly.assertThat(message).as("test data").isEqualTo("Update a selected user...");
-		}catch(org.openqa.selenium.TimeoutException t)
-		{
-
-		}
 		//Searches for newly created user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
 		Thread.sleep(2000);

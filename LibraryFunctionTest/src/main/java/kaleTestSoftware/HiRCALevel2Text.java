@@ -501,7 +501,10 @@ public class HiRCALevel2Text {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
 		//Verify Description text
 		String lop3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionText)).getText();
-		softly.assertThat(lop3).as("test data").contains("To have an LOP (e.g. PJB) executed correctly, bypass control measures are usually employed. These measures include: Behavior standards, Not-to-do warnings, Checklist, Job-site reminders, Place holders, etc.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(lop3).as("test data").contains("To have an LOP (e.g. PJB) executed correctly, bypass control measures are usually employed. These measures include: Behavior standards, Not-to-do warnings, Checklists, Job-site reminders, Place holders, etc.");
+		else
+			softly.assertThat(lop3).as("test data").contains("To have an LOP (e.g. PJB) executed correctly, bypass control measures are usually employed. These measures include: Behavior standards, Not-to-do warnings, Checklist, Job-site reminders, Place holders, etc.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
 		//Reason entry

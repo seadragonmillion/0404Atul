@@ -177,8 +177,11 @@ public class EiRCAPageObj {
 	public By Step7SUEPTableRow3CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[6]/textarea");
 	public By Step7SUEPTableRow4CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[6]/textarea");
 	public By Step7SUEPTableRow5CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[6]/textarea");
+	public By EiRCAStep7Tab = By.id("pii-ircam-tab-8-a");
 
 	//Report Tab
+	public By EiRCAReportTab = By.id("pii-ircam-tab-9-a");	
+	public By EiRCAReportTabDownloadButton = By.id("pii-ircam-download");
 	//Table 1
 	public By ReportTabTable1EventTitle = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[1]/td[2]");
 	public By ReportTabTable1LocationOfEvent = By.xpath(".//*[@id='pii-ircam-tab-9']/div[1]/table/tbody/tr[3]/td[2]");

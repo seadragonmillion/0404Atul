@@ -25,6 +25,7 @@ public class HiRCAHumanError {
 	HiRCAObj hirca = new HiRCAObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
+	HiRCALOPBug2 hlb2 = new HiRCALOPBug2 ();
 
 	public void stepOneq11 (WebDriver driver) throws Exception {
 
@@ -1792,7 +1793,10 @@ public class HiRCAHumanError {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("Is there evidence that and of the following mindsets contributed to the error-maker’s misjudgment in this error?");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(desc).as("test data").contains("Is there evidence that any of the following mindsets contributed to the error-maker’s misjudgment in this error?");
+		else
+			softly.assertThat(desc).as("test data").contains("Is there evidence that and of the following mindsets contributed to the error-maker’s misjudgment in this error?");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//3.18.1 question
@@ -1942,7 +1946,7 @@ public class HiRCAHumanError {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("If time was taken to critically think or ask questions, could the error have been mitigated? Critical thinking refers to the introspection of how to make the day or task successful; including examination of mental states of the individual and others or examination of procedural problems. Critical questioning is probing about whether preparation is adequate for for success; including clarifying anything unknown.");
+		softly.assertThat(desc).as("test data").contains("If time was taken to critically think or ask questions, could the error have been mitigated? Critical thinking refers to the introspection of how to make the day or task successful; including examination of mental states of the individual and others or examination of procedural problems. Critical questioning is probing about whether preparation is adequate for success; including clarifying anything unknown.");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//3.4.1 question
@@ -2071,7 +2075,6 @@ public class HiRCAHumanError {
 	public void pathHiRCA(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		HiRCALOPBug obj1 = new HiRCALOPBug();
 		HiRCAHumanError2 obj2 = new HiRCAHumanError2();
 		HiRCA2 obj3 = new HiRCA2();
 		HiRCALevel1 obj4 = new HiRCALevel1();
@@ -2085,7 +2088,7 @@ public class HiRCAHumanError {
 		//Waiting for loading message
 		share2.loadingServer(driver);
 		//Go to hirca and fill mandatory details on event info
-		obj1.fillUpHiRCAEventInfo(driver,obj4.text(driver));		
+		hlb2.fillUpHiRCAEventInfo(driver,obj4.text(driver));		
 		//Scroll up
 		share2.scrollToTop(driver);
 		//Verify text on 1.1
@@ -2570,7 +2573,7 @@ public class HiRCAHumanError {
 		//Verify LOP/RC popup
 		obj3.verifyLOPRCPopup(driver,softly);
 		//Click on Root cause
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj3.HiRCAPopupConfirmButton2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton2)).click();
 		//Verify selections made in Step 3/4/5 and report
 		obj2.verifySelections(driver, level3, softly, username, obj4.text(driver),hircaNoteLopSURE,hircaNoteLopStep4);	
 	}

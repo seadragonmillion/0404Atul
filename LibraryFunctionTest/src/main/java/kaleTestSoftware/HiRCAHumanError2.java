@@ -863,7 +863,10 @@ public class HiRCAHumanError2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		softly.assertThat(desc).as("test data").contains("30% of consequential errors are attributed by high risk situations.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(desc).as("test data").contains("30% of consequential errors are attributed by high-risk situations.");
+		else
+			softly.assertThat(desc).as("test data").contains("30% of consequential errors are attributed by high risk situations.");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//3.21.1 question
@@ -1777,7 +1780,10 @@ public class HiRCAHumanError2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-		softly.assertThat(desc).as("test data").contains("This question checks if error-prone mental states or high-risk situations are identified. Our research has shown there are 16 error-prone mental states and 16 high-risk situations that could increase error rates significantly (see ‘About’ panel). 70% of our errors are driven by our error-prone mental states without any contribution from external factors (e.g. poor working conditions, inadequate work instructions, etc.). About 30% of consequential errors are contributed by abnormal, external influences also known as high-risk situations. High risk means there is increased risk of an event occurrence in probability or in consequence.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(desc).as("test data").contains("This question checks if error-prone mental states or high-risk situations are identified. Our research has shown there are 16 error-prone mental states and 16 high-risk situations that could increase error rates significantly (see ‘About’ panel). 70% of our errors are driven by our error-prone mental states without any contribution from external factors (e.g. poor working conditions, inadequate work instructions, etc.). About 30% of consequential errors are contributed by abnormal, external influences also known as high-risk situations. High-risk means there is increased risk of an event occurrence in probability or in consequence.");
+		else
+			softly.assertThat(desc).as("test data").contains("This question checks if error-prone mental states or high-risk situations are identified. Our research has shown there are 16 error-prone mental states and 16 high-risk situations that could increase error rates significantly (see ‘About’ panel). 70% of our errors are driven by our error-prone mental states without any contribution from external factors (e.g. poor working conditions, inadequate work instructions, etc.). About 30% of consequential errors are contributed by abnormal, external influences also known as high-risk situations. High risk means there is increased risk of an event occurrence in probability or in consequence.");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
@@ -1785,7 +1791,10 @@ public class HiRCAHumanError2 {
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
 		//1.13 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.13] Was the error contributed to by error-prone mental states and/or high risk situations?");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(q11).as("test data").contains("[1.13] Was the error contributed to by error-prone mental states and/or high-risk situations?");
+		else
+			softly.assertThat(q11).as("test data").contains("[1.13] Was the error contributed to by error-prone mental states and/or high risk situations?");
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
@@ -1939,7 +1948,10 @@ public class HiRCAHumanError2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();
-		softly.assertThat(desc).as("test data").contains("This question explores whether the existing rule system is erronous.");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(desc).as("test data").contains("This question explores whether the existing rule system is erroneous.");
+		else
+			softly.assertThat(desc).as("test data").contains("This question explores whether the existing rule system is erronous.");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Heading
@@ -2032,7 +2044,6 @@ public class HiRCAHumanError2 {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCALevel1 obj = new HiRCALevel1();
-		HiRCA2 obj2 = new HiRCA2();
 		List<String>lopOptions1 = new ArrayList<String>();
 		for(int i=0;i<lopOptions.size();i++)
 		{
@@ -2088,7 +2099,7 @@ public class HiRCAHumanError2 {
 		obj.verifyReport(driver, lopOptions1, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(obj2.HiRCAPopupConfirmButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Get browser name

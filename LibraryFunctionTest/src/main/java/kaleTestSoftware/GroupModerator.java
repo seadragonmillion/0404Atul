@@ -20,13 +20,13 @@ public class GroupModerator {
 	Login login = new Login();
 	LoginPageObj lpo = new LoginPageObj();
 	ErrorMeter em = new ErrorMeter();
-	HiRCALOPBug hirca = new HiRCALOPBug();
+	HiRCALOPBug2 hirca = new HiRCALOPBug2();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	PassReviewPageObj prObj = new PassReviewPageObj();
 	JobObservation jo = new JobObservation();
 	JobObservationObj joObj = new JobObservationObj();
-	RemoteVerification2 rv2 = new RemoteVerification2();
+	RemoteVerification3 rv3 = new RemoteVerification3();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
@@ -416,9 +416,9 @@ public class GroupModerator {
 		WebElement option=select.findElement(eirca.FirstSelectionUnderDropdown);
 		option.click();
 		//Uploads picture 2
-		rv2.upload2ndPicture(driver);
+		rv3.upload2ndPicture(driver);
 		//Uploads picture 1
-		rv2.upload1stPicture(driver);
+		rv3.upload1stPicture(driver);
 		//*
 		share2.scrollToTop(driver);
 		//Save and send to verifier
@@ -749,6 +749,9 @@ public class GroupModerator {
 		groupModeratorViewReportsFromUsers(driver,allReportNamesFromGroup2);
 		//Logout
 		login.logout(driver);
+		//Clear lists
+		allReportNamesFromGroup1.clear();
+		allReportNamesFromGroup2.clear();
 		/*		//Switch to default content
 		driver.switchTo().defaultContent();
 		//Company Moderator (user6) will view reports from users2,3,5

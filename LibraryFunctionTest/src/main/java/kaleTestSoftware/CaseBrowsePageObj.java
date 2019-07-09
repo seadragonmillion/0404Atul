@@ -20,7 +20,8 @@ public class CaseBrowsePageObj {
 	public By EquipmentPerformancePosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[3]/a");
 	public By FailureModesPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[4]/a");
 	public By PreventionOfDesignDeficienciesPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[5]/a");
-	public By EquipmentDatabankOnlyPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a");
+	public By SystematicReliabilityInspectionDevEquipmentDatabankOnlyPositionProd = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[6]/a");
+	public By EquipmentDatabankOnlyPositionDev = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[7]/a");
 
 	//Equipment Case
 	public By EquipmentAddKeywordField = By.id("pii-admin-efse-keyword-search-input");
