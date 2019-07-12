@@ -12,7 +12,81 @@ public class EiRCA3 {
 
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
-	
+	LoginPageObj login = new LoginPageObj();
+
+	public void verifyHTMLSUEPTableContributingFactorBoldFont(WebDriver driver, int z) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,2);
+		System.out.println("Step 7 table bold html");
+		for(int i=1;i<=z;i++)
+		{
+			if(i==1)
+			{
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column1RC));
+				}catch(org.openqa.selenium.TimeoutException r)
+				{
+					try{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column1));
+					}catch(org.openqa.selenium.TimeoutException q)
+					{
+						try{
+							wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row2Column1a));
+						}catch(org.openqa.selenium.TimeoutException q1)
+						{
+
+						}
+					}
+				}							
+			}
+			if(i==2)
+			{
+				//Verify corrective action
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column1RC));
+				}catch(org.openqa.selenium.TimeoutException r)
+				{
+					try{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column1));
+					}catch(org.openqa.selenium.TimeoutException q)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row3Column1a));
+					}
+				}				
+			}
+			if(i==3)
+			{
+				//Verify corrective action
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column1RC));
+				}catch(org.openqa.selenium.TimeoutException r)
+				{
+					try{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column1));
+					}catch(org.openqa.selenium.TimeoutException q)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row4Column1a));
+					}
+				}				
+			}
+			if(i==4)
+			{
+				//Verify corrective action
+				try{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column1RC));
+				}catch(org.openqa.selenium.TimeoutException r)
+				{
+					try{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column1));
+					}catch(org.openqa.selenium.TimeoutException q)
+					{
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep7Row5Column1a));
+					}
+				}				
+			}
+		}
+	}	 
+
 	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -23,7 +97,7 @@ public class EiRCA3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.InfoTab)).click();
 		//Enter a very long name in Event title
 		driver.findElement(eirca.EiRCAEventTitleField).clear();
-		driver.findElement(eirca.EiRCAEventTitleField).sendKeys("Really long text which will make the report name o overflow out of the popup");
+		driver.findElement(eirca.EiRCAEventTitleField).sendKeys("Really long text which will make the report name to overflow out of the popup");
 		//click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
 		//Verify the popup
@@ -336,5 +410,13 @@ public class EiRCA3 {
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Remove sharing");
+	}
+
+	public void verifyBreakWordPropertyStickyNote(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);		
+		String wordWrap = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getCssValue("word-wrap");
+		softly.assertThat(wordWrap).as("test data").isEqualTo("break-word");
+		System.out.println("wordWrap "+wordWrap);
 	}
 }

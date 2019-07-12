@@ -206,7 +206,13 @@ public class ShareCheck {
 					int j=0;
 					while(j<10)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						try{
+							share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+							wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+						}catch(org.openqa.selenium.WebDriverException f)
+						{
+
+						}
 						if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).isEnabled()==false)
 							break;
 						j=j+1;
@@ -1098,13 +1104,10 @@ public class ShareCheck {
 		//Mark read all notifications
 		markNotificationsRead(driver,browserName,chOrEng,softly);
 		//Verify mark notification unread popup
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.verifyNotificationUnreadPopup(driver, softly,chOrEng);
-			share2.verifyNotificationDeletePopup(driver, softly,chOrEng);
-			if(chOrEng==1)
-				ccf.verifyChineseLabelsButtonsNotificationPage(driver, softly);
-		}
+		share2.verifyNotificationUnreadPopup(driver, softly,chOrEng);
+		share2.verifyNotificationDeletePopup(driver, softly,chOrEng);
+		if(chOrEng==1)
+			ccf.verifyChineseLabelsButtonsNotificationPage(driver, softly);		
 	}
 
 	public void markNotificationsRead(WebDriver driver, String browserName, int chOrEng, SoftAssertions softly) throws Exception{
@@ -1150,7 +1153,7 @@ public class ShareCheck {
 				act.click(ele).build().perform();
 				Thread.sleep(2000);
 				//Click on mark as read
-				
+
 				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
 				act.click(ele).build().perform();
 				share2.loadingServer(driver);
@@ -1158,34 +1161,34 @@ public class ShareCheck {
 		}
 		else
 		{*/
-			for(int i=1;i<=n;i++)
+		for(int i=1;i<=n;i++)
+		{
+			//Click on 1st record/notification
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+			if(ele.isSelected()==false)
 			{
-				//Click on 1st record/notification
-				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-				if(ele.isSelected()==false)
-				{
-					try{
-						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-					}catch(org.openqa.selenium.WebDriverException t)
-					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-					}
-				share2.loadingServer(driver);
-				}
-				//Click on read
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-				if(ele.isEnabled()==false)
+				try{
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-				ele.click();
-				Thread.sleep(2000);
-				//Click on mark as read
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					share2.verifyNotificationReadPopup(driver, softly,chOrEng);
-				ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-				ele.click();
-				if(driver.getCurrentUrl().contains("kaleqa"))
-					share2.verifyPopupAfterMarkingOneNotificationRead(driver, softly,chOrEng);
+				}catch(org.openqa.selenium.WebDriverException t)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+				}
+				share2.loadingServer(driver);
 			}
+			//Click on read
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+			if(ele.isEnabled()==false)
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			ele.click();
+			Thread.sleep(2000);
+			//Click on mark as read
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				share2.verifyNotificationReadPopup(driver, softly,chOrEng);
+			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+			ele.click();
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				share2.verifyPopupAfterMarkingOneNotificationRead(driver, softly,chOrEng);
+		}
 		//}		
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);

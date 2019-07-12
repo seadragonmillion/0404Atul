@@ -48,11 +48,13 @@ public class PassReviewPageObj {
 	public By Pass2Tab = By.id("pii-3pr-tab-3-a");
 
 	//Pass 3 Tab
+	public By Pass3Tab1stTableTitle = By.xpath(".//*[@id='pii-3pr-tab-4']/div[1]");
 	public By Pass3CriticalText = By.xpath(".//*[@id='pii-3pr-tab-4']/div[3]/table/tbody/tr[2]/td[2]/textarea");
 	public By Pass3Tab = By.id("pii-3pr-tab-4-a");
 
 	//HTML
 	public By HTMLPass3CriticalText = By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr[2]/td[2]");
+	public By HTMLPass3Tab1stTableTitle = By.xpath(".//*[@id='3pr-rpt']/div[9]/div");
 
 
 }

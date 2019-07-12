@@ -738,26 +738,14 @@ public class CaseBrowse {
 		//Prevention of Design Deficiencies
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.PreventionOfDesignDeficienciesPosition)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Prevention of Design Deficiencies");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//SRI
-			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SystematicReliabilityInspectionDevEquipmentDatabankOnlyPositionProd)).getText();
-			softly.assertThat(s6).as("test data").isEqualTo("Systematic Reliability Inspection");
-		}
+		//SRI
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SystematicReliabilityInspectionDevEquipmentDatabankOnlyPositionProd)).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("Systematic Reliability Inspection");		
 		if(y==0)
 		{
-			if(driver.getCurrentUrl().contains("kaleqa"))
-			{
-				//Equipment Data Bank (Instructor Only)
-				String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyPositionDev)).getText();
-				softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
-			}
-			else
-			{
-				//Equipment Data Bank (Instructor Only)
-				String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SystematicReliabilityInspectionDevEquipmentDatabankOnlyPositionProd)).getText();
-				softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");
-			}
+			//Equipment Data Bank (Instructor Only)
+			String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyPositionDev)).getText();
+			softly.assertThat(s5).as("test data").isEqualTo("Equipment Data Bank (Instructor Only)");			
 		}
 		if(y==1)
 			verifyNoEquipPII(driver);

@@ -1793,10 +1793,7 @@ public class HiRCAHumanError {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//Description text
 		String desc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-description-text"))).getText();		
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(desc).as("test data").contains("Is there evidence that any of the following mindsets contributed to the error-maker’s misjudgment in this error?");
-		else
-			softly.assertThat(desc).as("test data").contains("Is there evidence that and of the following mindsets contributed to the error-maker’s misjudgment in this error?");
+		softly.assertThat(desc).as("test data").contains("Is there evidence that any of the following mindsets contributed to the error-maker’s misjudgment in this error?");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-description']/h4/a"))).click();
 		//3.18.1 question

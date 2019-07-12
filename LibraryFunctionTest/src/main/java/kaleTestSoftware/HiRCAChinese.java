@@ -54,11 +54,8 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify everything on Event Information page is in 
 		hc7.chineseEventInfo(driver,softly);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			ccf.verifyChineseTabsInsideHiRCA(driver, softly);
+		ccf.verifyChineseTabsInsideHiRCA(driver, softly);
 			ccf.verifyChineseButtonsInfoTabHiRCA(driver, softly);
-		}
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(text);
 		//Location of event

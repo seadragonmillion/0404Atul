@@ -757,10 +757,7 @@ public class HiRCAEvent {
 		softly.assertThat("1.10 If a PJB (or PSM, TO, MJB) was held, why was the participant not aware so that he or she could mitigate the risk? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.11 Why did this error occur now, and not before? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.12 If PJB (or PSM, TO, MJB) was not performed, why? n/a n/a").as("test data").isSubstringOf(newData);
-		if(url.contains("kaleqa"))
-			softly.assertThat("1.13 Was the error contributed to by error-prone mental states and/ or high-risk situations? n/a n/a").as("test data").isSubstringOf(newData);
-		else
-			softly.assertThat("1.13 Was the error contributed to by error-prone mental states and/ or high risk situations? n/a n/a").as("test data").isSubstringOf(newData);
+		softly.assertThat("1.13 Was the error contributed to by error-prone mental states and/ or high-risk situations? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.14 Did the supervisor conduct routine meetings to discuss lessons learned? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.15 Did the event involve a single-point-vulnerability item? n/a n/a").as("test data").isSubstringOf(newData);
 		softly.assertThat("1.16 Was the error related to inadequate supervision? n/a n/a").as("test data").isSubstringOf(newData);

@@ -18,6 +18,24 @@ public class EiRCA2 {
 	LoginPageObj login = new LoginPageObj();
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
+	EiRCA3 eirca3 = new EiRCA3();
+
+	public void verifyBoldContributingFactorFont(WebDriver driver, int n) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		System.out.println("Step 7 table bold step 7 tab");
+		for(int i=1;i<=n;i++)
+		{
+			if(i==1)
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7SUEPTableRow2ContributingFactor));			
+			if(i==2)
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7SUEPTableRow3ContributingFactor));
+			if(i==3)
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7SUEPTableRow4ContributingFactor));
+			if(i==4)
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7SUEPTableRow5ContributingFactor));
+		}
+	}
 
 	public String textCreate(WebDriver driver) throws Exception {
 
@@ -212,6 +230,7 @@ public class EiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
+			eirca3.verifyBreakWordPropertyStickyNote(driver, softly);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			String r = s.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);

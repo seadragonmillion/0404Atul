@@ -26,6 +26,7 @@ public class RemoteVerificationChinese {
 
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
+		rc2.verifyEmailOfUser(driver, username, password1);
 		//Clicks on Analysis 
 		try
 		{

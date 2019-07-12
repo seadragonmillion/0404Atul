@@ -42,11 +42,8 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		share2.scrollToTop(driver);	 
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			ccf.verifyChineseButtonsInfoTabOPiRCA(driver, softly);
-			ccf.verifyChineseTabsInsideOPiRCA(driver, softly);
-		}
+		ccf.verifyChineseButtonsInfoTabOPiRCA(driver, softly);
+		ccf.verifyChineseTabsInsideOPiRCA(driver, softly);
 		//Verify everything on Event Information page is in 
 		chineseInfoPage(driver);
 		//Verify errors in Chinese
@@ -56,8 +53,7 @@ public class OPiRCAChinese {
 		Thread.sleep(2000);
 		//Verify step 1
 		chineseOPiRCAStep1(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			ccf.verifyChineseButtonsInBetweenTabsOPiRCA(driver, softly);
+		ccf.verifyChineseButtonsInBetweenTabsOPiRCA(driver, softly);
 		Thread.sleep(1000);
 		//Select all HiRCA Level 3 Options
 		selectAllHiRCALevel3Options(driver);
@@ -192,8 +188,7 @@ public class OPiRCAChinese {
 		obj2.chineseStep5(driver,softly);
 		//Select 1st checkbox in Step 5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep5TableRow1Column3)).click();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			obj7.bugKALE2494(driver, softly);
+		obj7.bugKALE2494(driver, softly);
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		Thread.sleep(1000);

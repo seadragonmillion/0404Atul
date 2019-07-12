@@ -1,15 +1,61 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RemoteVerificationChinese2 {
-	
+
 
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	EiRCAPageObj eirca = new EiRCAPageObj();
+	Login login = new Login();
+	LoginPageObj lpo = new LoginPageObj(); 
+	ShareCheck2 share2 = new ShareCheck2();
+	UserManagementPageObj um = new UserManagementPageObj();
+	CreateEquipPageObj equip = new CreateEquipPageObj();
+
+	public void verifyEmailOfUser(WebDriver driver, String username, String password) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);	
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		//Clicks on Account
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		String email=wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileEmailField)).getAttribute("value");
+		System.out.println(email);
+		if(email.equals("rramakrishnan@errorfree.com")==false)
+		{
+			//Change email id
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileEmailField)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileEmailField)).sendKeys("rramakrishnan@errorfree.com");
+			//Clicks on save
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileSaveButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileSavePopupTitle));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileSavePopupConfirmButton)).click();
+			//wait for loading message
+			share2.loadingServer(driver);
+			//Logs out
+			login.logout(driver);
+			if (browserName.equals("firefox"))
+				driver.switchTo().defaultContent();
+			//Login again
+			login.LoginUser(driver, username, password);
+			//Switches to the iframe
+			driver.switchTo().frame(driver.findElement(lpo.Iframe));
+		}
+		else
+		{
+			//Go to KALE homepage
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equip.KaleHomePage)).click();
+		}
+	}
 
 	public void verifySavePopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
@@ -27,7 +73,7 @@ public class RemoteVerificationChinese2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("保存报告");
 	}
-	
+
 	public void verifyReviseReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -47,7 +93,7 @@ public class RemoteVerificationChinese2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("重新编辑");
 	}
-	
+
 	public void verifySaveAndSendPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		

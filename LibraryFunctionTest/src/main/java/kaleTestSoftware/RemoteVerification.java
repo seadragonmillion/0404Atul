@@ -64,6 +64,7 @@ public class RemoteVerification {
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	RemoteVerification3 rv3 = new RemoteVerification3();
 	EiRCAPageObj eirca = new EiRCAPageObj();
+	EiRCA3 eirca3 = new EiRCA3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck3 share3 = new ShareCheck3();
 	ShareCheck share = new ShareCheck();
@@ -775,17 +776,14 @@ public class RemoteVerification {
 		System.out.println(s);
 		if(s.equals("true")==false)
 			softly.fail("Verifier text box not suppose to be enabled");    	
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		//Enters verifier username and tries to add verifier
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(verifier);
+		//Selects from dropdown
+		try{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+		}catch(org.openqa.selenium.TimeoutException r)
 		{
-			//Enters verifier username and tries to add verifier
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(verifier);
-			//Selects from dropdown
-			try{
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
-			}catch(org.openqa.selenium.TimeoutException r)
-			{
-				System.out.println("No verifier in search for shared to user list");
-			}
+			System.out.println("No verifier in search for shared to user list");
 		}
 		/*	dropdown1.findElement(eirca.FirstSelectionUnderDropdown).click();
 		//Gets text from error pop up and verifies text
@@ -1168,7 +1166,7 @@ public class RemoteVerification {
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Clicks on delete report
 		driver.findElement(eirca.ConfirmPopupButton).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
+		eirca3.verifyBreakWordPropertyStickyNote(driver, softly);
 		Thread.sleep(2000);
 		driver.findElement(rv.RVSidePanel).click();
 		//Wait for loading message to disappear		  
@@ -1289,7 +1287,7 @@ public class RemoteVerification {
 		if(count!=1)
 			softly.fail("Count did not match: aaaa: " + count);
 	}
-	
+
 	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
 
 		//Get count of characters
@@ -1327,7 +1325,7 @@ public class RemoteVerification {
 		driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		String ev1 = driver.findElement(rv.RVEventTitle).getAttribute("value");
 		String ev2 = driver.findElement(rv.RVEventDetails).getAttribute("value");
-	/*	if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
+		/*	if ((ev1.equals(rv.eventTitle(driver,driver.getCurrentUrl()))==false))
 		{
 			driver.findElement(rv.RVEventTitle).clear();
 			driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));

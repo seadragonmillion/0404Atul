@@ -173,6 +173,10 @@ public class EiRCAPageObj {
 	public By EiRCAStep6Tab = By.id("pii-ircam-tab-7-a");
 
 	//Step 7
+	public By Step7SUEPTableRow2ContributingFactor = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[1]/strong");
+	public By Step7SUEPTableRow3ContributingFactor = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[1]/strong");
+	public By Step7SUEPTableRow4ContributingFactor = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[1]/strong");
+	public By Step7SUEPTableRow5ContributingFactor = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[5]/td[1]/strong");
 	public By Step7SUEPTableRow2CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[2]/td[6]/textarea");
 	public By Step7SUEPTableRow3CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[3]/td[6]/textarea");
 	public By Step7SUEPTableRow4CorrectiveAction = By.xpath(".//*[@id='pii-ircam-tab-8']/div[7]/table/tbody/tr[4]/td[6]/textarea");
@@ -285,6 +289,10 @@ public class EiRCAPageObj {
 	public By HTMLStep6Row8Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[8]/td[2]");
 	public By HTMLStep6Row5Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[3]/div[2]/table/tbody/tr[5]/td[3]");
 	//Step 7
+	public By HTMLStep7Row2Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[2]/td[1]/strong");
+	public By HTMLStep7Row3Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[3]/td[1]/strong");
+	public By HTMLStep7Row4Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[4]/td[1]/strong");
+	public By HTMLStep7Row5Column1 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[5]/td[1]/strong");
 	public By HTMLStep7Row2Column2 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[2]");
 	public By HTMLStep7Row2Column3 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[3]");
 	public By HTMLStep7Row2Column4 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[4]");
@@ -305,6 +313,10 @@ public class EiRCAPageObj {
 	public By HTMLStep7Row3Column6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[3]/td[6]");
 	public By HTMLStep7Row4Column6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[4]/td[6]");
 	public By HTMLStep7Row5Column6 = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[5]/td[6]");
+	public By HTMLStep7Row2Column1a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[1]/strong");
+	public By HTMLStep7Row3Column1a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[3]/td[1]/strong");
+	public By HTMLStep7Row4Column1a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[1]/strong");
+	public By HTMLStep7Row5Column1a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[1]/strong");
 	public By HTMLStep7Row2Column2a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[2]");
 	public By HTMLStep7Row2Column3a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[3]");
 	public By HTMLStep7Row2Column4a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[2]/td[4]");
@@ -326,6 +338,10 @@ public class EiRCAPageObj {
 	public By HTMLStep7Row4Column6a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[4]/td[6]");
 	public By HTMLStep7Row5Column6a = By.xpath(".//*[@id='mirca-rpt']/div[8]/div[4]/div[6]/table/tbody/tr[5]/td[6]");
 	//RCA
+	public By HTMLStep7Row2Column1RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[2]/td[1]/strong");
+	public By HTMLStep7Row3Column1RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[3]/td[1]/strong");
+	public By HTMLStep7Row4Column1RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[4]/td[1]/strong");
+	public By HTMLStep7Row5Column1RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[5]/td[1]/strong");
 	public By HTMLStep7Row2Column2RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[2]/td[2]");
 	public By HTMLStep7Row2Column3RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[2]/td[3]");
 	public By HTMLStep7Row2Column4RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[7]/div[6]/table/tbody/tr[2]/td[4]");

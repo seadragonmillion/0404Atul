@@ -13,10 +13,11 @@ public class HiRCA2 {
 	LoginPageObj login = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAObj hirca = new HiRCAObj();
+	EiRCA3 eirca3 = new EiRCA3();
 	
 	public void verifyStickyUserAccountAfterChange(WebDriver driver, SoftAssertions softly, int chiOrEng) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,60);
+		//WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
 			/*WebElement ele = driver.findElement(By.cssSelector(".sticky border-top-right.sticky-warning"));
 			String s = ele.findElement((login.StickyNote)).getText();
@@ -24,8 +25,8 @@ public class HiRCA2 {
 				softly.assertThat(s).as("test data").isEqualTo("Please logout and login again for any changed data to apply to current user account");
 			if(chiOrEng==1)
 				softly.assertThat(s).as("test data").isEqualTo("请重新登入生效变更");
-			System.out.println(s);*/
-			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
+			System.out.println(s);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();*/
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("Couldn't find account save pop up");
@@ -79,6 +80,7 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
+			eirca3.verifyBreakWordPropertyStickyNote(driver, softly);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			String css = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getCssValue("overflow");
 			System.out.println("overflow: "+css);
@@ -99,6 +101,7 @@ public class HiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
+			eirca3.verifyBreakWordPropertyStickyNote(driver, softly);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 			String r = s.replaceAll("\u00AD", "");
 			String r1 = recordName.replaceAll("\u00AD", "");

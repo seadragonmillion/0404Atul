@@ -19,6 +19,7 @@ public class OPiRCA2 {
 	ShareCheck share = new ShareCheck();
 	EiRCAPageObj eirca = new EiRCAPageObj ();
 	EiRCA2 eirca2 = new EiRCA2();
+	EiRCA3 eirca3 = new EiRCA3();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	OPiRCA3 op3 = new OPiRCA3();
 	TextBoxResizing tbr = new TextBoxResizing ();
@@ -594,6 +595,7 @@ public class OPiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
+			eirca3.verifyBreakWordPropertyStickyNote(driver, softly);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.StickyNote)).getText().trim();
 			String r = s.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
@@ -612,6 +614,7 @@ public class OPiRCA2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
 		try{
+			eirca3.verifyBreakWordPropertyStickyNote(driver, softly);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.StickyNote)).getText().trim();
 			String r = s.replaceAll("\u00AD", "");
 			String r1 = recordName.replaceAll("\u00AD", "");

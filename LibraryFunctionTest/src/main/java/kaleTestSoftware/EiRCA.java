@@ -740,6 +740,7 @@ public class EiRCA {
 	public void HTMLStep7RCTr(WebDriver driver, int z, List<Integer> c) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,2);
+		eirca3.verifyHTMLSUEPTableContributingFactorBoldFont(driver, z);
 		for(int i=1;i<=z;i++)
 		{
 			int f = c.get(i-1);
@@ -2695,6 +2696,7 @@ public class EiRCA {
 		Random random = new Random();
 		return random.nextInt(5);
 	}
+
 	public String checkIfStep6Option65IsSelected(String key) throws Exception {
 
 		if(key.contains("Culprit work activities"))
@@ -2710,6 +2712,7 @@ public class EiRCA {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		HashMap<String,Integer> c = new HashMap<String,Integer>();
+		eirca2.verifyBoldContributingFactorFont(driver, n);
 		for(int i=1;i<=n;i++)
 		{
 			int k = chooseNumberOfSUEPBoxes();
@@ -2891,6 +2894,9 @@ public class EiRCA {
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
 		//Fills all mandatory fields
+		//Verify the optional in event id
+		String opt = driver.findElement(eirca.EiRCAEventIdField).getAttribute("placeholder");
+		softly.assertThat(opt).as("test data").isEqualTo("Fill in Event ID (optional)");
 		driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
 		//Get count
 		int count = getCharCountFromTitle(driver);

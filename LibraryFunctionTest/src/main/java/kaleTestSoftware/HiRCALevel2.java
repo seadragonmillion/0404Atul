@@ -128,8 +128,7 @@ public class HiRCALevel2 {
 		if(chineseOrEnglish==1)
 		{
 			//On Step 5
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				hlb2.bugKALE2494(driver,softly);
+			hlb2.bugKALE2494(driver,softly);
 		}
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();

@@ -249,6 +249,8 @@ public class PassReview {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> textList = em2.error100Data(driver,driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
+		String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass3Tab1stTableTitle)).getText();
+		softly.assertThat(titlePass3Tab).as("test data").isEqualTo("Pass 3: Self-Checklist");
 		//Table 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass3CriticalText)).sendKeys(iter.next());
 		//Table 2
@@ -379,6 +381,9 @@ public class PassReview {
 		}
 		//Pass 3
 		//Table 1
+		//Title
+		String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.HTMLPass3Tab1stTableTitle)).getText();
+		softly.assertThat(titlePass3Tab).as("test data").isEqualTo("Pass 3: Self-Checklist");
 		//Verify text
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.HTMLPass3CriticalText)).getText();
 		String r1 = s.replaceAll("\u00AD", "");

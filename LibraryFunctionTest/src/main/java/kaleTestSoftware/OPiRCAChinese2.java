@@ -46,8 +46,7 @@ public class OPiRCAChinese2 {
 	public void chineseReportTab(WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			ccf.verifyChineseButtonsReportTabOPiRCA(driver, softly);
+		ccf.verifyChineseButtonsReportTabOPiRCA(driver, softly);
 		//Table 1
 		//Heading
 		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Heading)).getText();

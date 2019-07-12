@@ -21,7 +21,7 @@ public class Login {
 	ShareCheck2 share = new ShareCheck2();
 
 	public String loginWarningMessage = "Warning: Only one current log in session per user is allowed. Any previous log in on another device or web browser will be automatically disconnected. Please report abnormal account activity and change password immediately.";
-
+	public String failedLoginMessage = "Failed to login. Error details: cannot establish connection with KALE server; please try again later";
 
 	public int LoginUser(WebDriver driver, String username, String password) throws Exception{
 
@@ -44,7 +44,8 @@ public class Login {
 		if (user.equals(username)==true)
 		{
 			if(pw.equals(decodePassword(password))==true)
-			{
+			{		
+				verifySpaceRemoved(driver);
 				//Sign in button is located and clicked
 				driver.findElement(lpo.SignInButton).click();  
 				share.loadingServer(driver);
@@ -61,7 +62,20 @@ public class Login {
 							System.out.println("Logged in");
 							break;
 						}
-						else
+						if(text.contains(failedLoginMessage))
+						{
+							//Enter Username
+							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).clear();
+							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys(username);
+							//Enter password
+							driver.findElement(lpo.Password).clear();
+							driver.findElement(lpo.Password).sendKeys(decodePassword(password));
+							//Sign in button is located and clicked
+							driver.findElement(lpo.SignInButton).click();  
+							share.loadingServer(driver);
+							break;
+						}
+						if(text.isEmpty()==false)
 						{
 							driver.findElement(lpo.Password).sendKeys(decodePassword(password));
 							//Sign in button is located and clicked
@@ -234,6 +248,13 @@ public class Login {
 			Thread.sleep(2000);
 		}
 		Thread.sleep(4000);
+	}
+	
+	public void verifySpaceRemoved(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys("  ");		
+		Thread.sleep(500);
 	}
 
 }

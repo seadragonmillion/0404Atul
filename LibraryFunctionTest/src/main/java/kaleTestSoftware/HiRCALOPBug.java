@@ -39,8 +39,7 @@ public class HiRCALOPBug {
 		//Bug KALE 2219 and KALE 2246
 		hlb2.bugKALE2219KALE2246(driver,softly);
 		//KALE 2412
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			hlb2.bugKALE2412(driver,softly);
+		hlb2.bugKALE2412(driver,softly);
 	}
 
 	public void bugKALE1957(WebDriver driver) throws Exception {

@@ -230,8 +230,7 @@ public class LanguageCheckOfReports {
 		//Checks language in Remote Verification
 		l = rv(driver,0);
 		downloadSelectFunction(driver, 0, l,browserName,v);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			ccf.verifyChineseMainMenuLinks(driver, softly);
+		ccf.verifyChineseMainMenuLinks(driver, softly);
 		//Logs out
 		login.logout(driver);
 		if (browserName.equals("firefox"))
@@ -513,8 +512,7 @@ public class LanguageCheckOfReports {
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
 		//Check chinese translation for User Profile
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			verifyLabelUserAccountChinese(driver,softly);
+		verifyLabelUserAccountChinese(driver,softly);
 		//Clicks on Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();

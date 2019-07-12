@@ -552,8 +552,7 @@ public class HiRCAChinese17 {
 	public void chineseReport(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			ccf.verifyChineseButtonsReportTabHiRCA(driver, softly);
+		ccf.verifyChineseButtonsReportTabHiRCA(driver, softly);
 		//Table1 header 
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[1]/table/thead/tr/th"))).getText();
 		softly.assertThat(heading).as("test data").contains("事件信息");

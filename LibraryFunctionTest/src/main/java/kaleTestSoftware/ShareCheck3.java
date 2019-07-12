@@ -33,11 +33,8 @@ public class ShareCheck3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Verify sharer does not appear in list after already adding sharer
-			share2.verifyNameDoesNotappearInListAfterSharerAdded(driver, "jenkins_1_nonadmin", softly);
-		}
+		//Verify sharer does not appear in list after already adding sharer
+		share2.verifyNameDoesNotappearInListAfterSharerAdded(driver, "jenkins_1_nonadmin", softly);
 		//Click on new shared row
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("QAA (jenkins_1_nonadmin)"))).click();
 		//Verify remove sharer pop up
@@ -45,8 +42,7 @@ public class ShareCheck3 {
 			eirca3.verifyRemoveSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
 		else
 		{
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				ccf.verifyChineseRemoveSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
+			ccf.verifyChineseRemoveSharerPopup(driver, softly, "QAA (jenkins_1_nonadmin)");
 		}
 		//Click on remove sharing
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();

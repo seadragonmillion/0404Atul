@@ -17,8 +17,17 @@ public class UserManagementPageObj {
 	public By CompanyPhoneError = By.id("pii-admin-cust-tel-error");
 	public By CompanyBusinessContactError = By.id("pii-admin-cust-busCts-error");
 	public By CompanyTechnicalContactError = By.id("pii-admin-cust-tecCts-error");
+	//Create user
+	public By CreateUserLoginName = By.id("pii-admin-user-loginname");
+	public By CreateUserPassword = By.id("pii-admin-user-password");
+	public By CreateUserReTypePassword = By.id("pii-admin-user-password-again");
 	//Edit user
 	public By EditUserMessageOnTop = By.xpath(".//*[@id='pii-admin-user-messages']/div");
+	//User Profile
+	public By UserProfileEmailField = By.id("pii-admin-user-email");
+	public By UserProfileSaveButton = By.id("pii-admin-user-button-save");
+	public By UserProfileSavePopupTitle = By.id("pii-admin-user-dialog-title");
+	public By UserProfileSavePopupConfirmButton = By.id("pii-admin-user-dialog-confirmed");
 	//Edit group
 	public By EditGroupMessageOnTop = By.xpath(".//*[@id='pii-admin-group-messages']/div");
 }

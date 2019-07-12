@@ -15,6 +15,52 @@ public class UserManagement2 {
 	Login login = new Login ();
 	LoginPageObj lpo = new LoginPageObj();
 
+	public void verifyLoginNameCharactersAccepted(WebDriver driver, SoftAssertions softly) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		WebDriverWait wait1 = new WebDriverWait(driver,3);
+		String arrayChar[] = {"!","#","$","%","&"," ","/","?",",","[]", "()", "{}","+","=",";",":","*","\\"};
+		String loginPlaceholder = wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).getAttribute("placeholder");
+		softly.assertThat(loginPlaceholder).as("test data").isEqualTo("Enter login name (alphabets, numbers or special characters: _-.@)");
+		for (int i=0;i<arrayChar.length;i++)
+		{
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).clear();
+			if(arrayChar[i].contains(" "))
+				wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).sendKeys("abcd123"+arrayChar[i]+"abcd123");
+			else
+				wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).sendKeys("abcd123"+arrayChar[i]);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileSaveButton)).click();
+			Thread.sleep(500);
+			try{				
+				String error1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote)).getText();
+				System.out.println(error1);
+				String e1 = error1.replace("­", "");
+				softly.assertThat(e1).as("test data").isEqualTo("Warning: Cannot save due to field <Login name> error: Incorrect value; please only enter alphabets, numbers or special characters: _-.@.");
+				while(true)
+				{
+					try{
+						wait1.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
+					}catch(org.openqa.selenium.WebDriverException r)
+					{
+						break;
+					}
+				}
+			}catch(org.openqa.selenium.TimeoutException n)
+			{
+
+			}
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).sendKeys("abcd123@._-");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.UserProfileSaveButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserLoginName)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserPassword)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(um.CreateUserReTypePassword)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyClose)).click();
+	}
+
 	public void verifyErrorOnCompanyPage (WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
@@ -54,7 +100,7 @@ public class UserManagement2 {
 		String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
 		softly.assertThat(message).as("test data").contains("a user must have a company id specified.");
 	}
-	
+
 	public void createExistingUserAndVerifyErrorPopup(WebDriver driver, SoftAssertions softly, String company_id, String password,String email) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);

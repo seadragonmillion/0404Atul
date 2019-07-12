@@ -1498,6 +1498,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-user-create")).click();
 		Thread.sleep(2000);
 		//Enters mandatory details
+		um2.verifyLoginNameCharactersAccepted(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).sendKeys(company_id+"testgroupm");
 		driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id+"testgroupm");
 		driver.findElement(By.id("pii-admin-user-password")).sendKeys(obj.decodePassword(password));
@@ -1565,6 +1566,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-user-create")).click();
 		Thread.sleep(2000);
 		//Enters mandatory details
+		um2.verifyLoginNameCharactersAccepted(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))).sendKeys(company_id+"testcm");
 		driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id+"testcm");
 		driver.findElement(By.id("pii-admin-user-password")).sendKeys(obj.decodePassword(password));
@@ -1615,8 +1617,7 @@ public class UserManagement {
 		System.out.println("User created");
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			um2.createExistingUserAndVerifyErrorPopup(driver, softly, company_id, password, email);
+		um2.createExistingUserAndVerifyErrorPopup(driver, softly, company_id, password, email);
 	}
 
 	public void addSubDepartments (WebDriver driver) throws Exception {

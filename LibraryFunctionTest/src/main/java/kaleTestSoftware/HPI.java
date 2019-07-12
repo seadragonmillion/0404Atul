@@ -222,6 +222,8 @@ public class HPI {
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Clicks on check boxes on of H for HOPS
+		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(hpi.HTab2ndParagraphLabel1)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("(1) Do all involved participate in the PJB?");
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q1-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-1-q2-l"))));
 		try{
@@ -299,6 +301,14 @@ public class HPI {
 		//Click on O of HOPS
 		share2.scrollToTop(driver);
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-navbar-tab-2"))));
+		String sa = wait1.until(ExpectedConditions.visibilityOfElementLocated(hpi.OTab1stParagraphLabel1)).getText();
+		softly.assertThat(sa).as("test data").isEqualTo("(1) Time related HRS identified in Error Meter?");
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(hpi.OTab2ndParagraphLabel2)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("(2) Activity related HRS identified in Error Meter?");
+		String s2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(hpi.OTab3rdParagraphLabel1)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("(1) Person related HRS identified in Error Meter?");
+		String s3 = wait1.until(ExpectedConditions.visibilityOfElementLocated(hpi.OTab4thParagraphLabel1)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("(1) Environment related HRS identified in Error Meter?");
 		//Click on checkboxes of O in HOPS
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q1-l"))));
 		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-tab-2-q2-l"))));

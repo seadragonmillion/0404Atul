@@ -2264,8 +2264,7 @@ public class EiRCAChinese {
 	public void chineseReportTab (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			ccf.verifyChineseButtonsReportTabEiRCA(driver, softly);
+		ccf.verifyChineseButtonsReportTabEiRCA(driver, softly);
 		//Table 1
 		chineseReportTabTable1(driver);
 		//Heading before Table 2
@@ -3255,7 +3254,7 @@ public class EiRCAChinese {
 		softly.assertThat(eircaEventIdLabel).as("test data").contains("事件编号代码:");
 		//Event id field
 		String eircaEventIdField = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventIdField)).getAttribute("placeholder");
-		softly.assertThat(eircaEventIdField).as("test data").contains("输入事件编号代码");
+		softly.assertThat(eircaEventIdField).as("test data").contains("输入事件编号代码 (非必填)");
 		//Event location label
 		String eircaEventLocLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventLocationLabel)).getText();
 		softly.assertThat(eircaEventLocLabel).as("test data").contains("事件地点:");
@@ -3323,11 +3322,8 @@ public class EiRCAChinese {
 		Thread.sleep(2000);
 		//Verify everything on Event Information page is in 
 		chineseInfoPage(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			ccf.verifyChineseTabsInsideEiRCA(driver, softly);
-			ccf.verifyChineseButtonsInfoTabEiRCA(driver, softly);
-		}
+		ccf.verifyChineseTabsInsideEiRCA(driver, softly);
+		ccf.verifyChineseButtonsInfoTabEiRCA(driver, softly);
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventTitleField)).sendKeys(text);
 		//Event id

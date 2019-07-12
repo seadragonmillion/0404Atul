@@ -45,8 +45,7 @@ public class SRIAdmin3 {
 	public void verifyAppearanceOfMissingValuesInBaseline(WebDriver driver, SoftAssertions softly, String component, String measurement, String unit) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			verifyIfNoUnitBaselineNotSaved(driver,softly,component);
+		verifyIfNoUnitBaselineNotSaved(driver,softly,component);
 		//Delete unit
 		deleteUnitAdded(driver,measurement,unit);
 		//Go to baseline tab
