@@ -41,7 +41,7 @@ public class ChromeTest {
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
 		driver.navigate().to(System.getProperty("qaurl"));
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
 	@Test
@@ -50,12 +50,8 @@ public class ChromeTest {
 		HiRCABug2 obj1 = new HiRCABug2();
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(6000);
-		//Waits for the page to load
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-		Thread.sleep(6000);
 		if (login==1)
 		{
 
@@ -71,7 +67,6 @@ public class ChromeTest {
 				else break;
 			}
 		}	
-		Thread.sleep(4000);
 		//Path for all bugs
 		obj1.pathHiRCABug(driver);
 		//Logout

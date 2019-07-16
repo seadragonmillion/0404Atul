@@ -326,6 +326,9 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D8: integer is total no of answers in d8
+		share2.loadingServer(driver);
+		String q1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText();
+		softly.assertThat(q1).as("test data").contains("[D8] Has there been a recent event (in the past year) where precursors were known beforehand, but not managed?");
 		d1.addAll(selectStep2D(driver,2,0,softly));
 		//Select apparent cause for d8
 		if(Integer.parseInt(d1.get(15))==0)
@@ -388,6 +391,10 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D11: integer is total no of answers in d11
+		share2.loadingServer(driver);
+		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText();
+		softly.assertThat(q2).as("test data").contains("[D11] Is the supervisory time in the field inadequate (<20%) to interact with workers?");
+		//softly.assertAll();
 		d1.addAll(selectStep2D(driver,3,0,softly));
 		//Select apparent cause for d6
 		if(Integer.parseInt(d1.get(21))>0)

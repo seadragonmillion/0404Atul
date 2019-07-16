@@ -41,7 +41,7 @@ public class HiRCAOldReport {
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on an old report in 09/2016
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[5]/a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[6]/a"))).click();
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Get data from old report
@@ -185,7 +185,7 @@ public class HiRCAOldReport {
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on an old report in 09/2016
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[5]/a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[6]/a"))).click();
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Open and check record

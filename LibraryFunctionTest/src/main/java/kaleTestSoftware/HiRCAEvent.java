@@ -65,7 +65,7 @@ public class HiRCAEvent {
 	public String text = "As it currently stands, this question is not a good fit for our Q&A format. We expect answers to be supported by facts.";
 	public String executive= "According to the 1993 Israel-Palestinian peace accords, the final status of Jerusalem is meant to be discussed in the latter stages of peace talks.";
 	public String event_id="Its a small world after all";
-	public String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you Mobile test.";
+	public String text184 = "This list looks quite big but the setup is quite easy but time-consuming and once you are done with setup next time it will hardly take two min to start you.";
 
 	public void deleteNewRecord(WebDriver driver, String recordName) throws Exception{	  
 

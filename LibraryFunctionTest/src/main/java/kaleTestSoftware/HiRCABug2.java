@@ -20,65 +20,58 @@ public class HiRCABug2 {
 	HiRCALevel2 hircaL2 = new HiRCALevel2();
 	ShareCheck share = new ShareCheck();
 	ShareCheck2 share2 = new ShareCheck2();
+	CreateEquipPageObj equip = new CreateEquipPageObj();
 
 	public String text = "HiRCA bug";
 	SoftAssertions softly = new SoftAssertions();
 
-	public void uploadImageChrome(WebDriver driver) throws Exception {
+	public void uploadImageChrome(WebDriver driver, int j) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
-		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
 		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
 		l.sendKeys(filepath);
 		String img = "pii-irca-event-file-img-"+j;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
-		//Fill title and description
-		String title_id="pii-irca-event-file-title-"+j;
-		driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
-		String desc = "pii-irca-event-file-description-"+j;
-		driver.findElement(By.id(desc)).sendKeys("Description0"+j);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 	}
-	
-	public void uploadImageFirefox(WebDriver driver) throws Exception {
+
+	public void uploadImageFirefox(WebDriver driver, int j) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
 		share2.scrollToElement(driver, driver.findElement(By.id(id)));
-		jse.executeScript("arguments[0].click();", driver.findElement(By.id(id)));
-		//driver.findElement(By.id(id)).click();
+		driver.findElement(By.id(id)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
-		share2.scrollToElement(driver, l);
+		jse.executeScript("arguments[0].scrollIntoView();", l);
+		jse.executeScript("arguments[0].click();", l);
 		Thread.sleep(2000);
 		Process p = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 		p.waitFor();
 		Thread.sleep(2000);
 		String img = "pii-irca-event-file-img-"+j;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
-		//Fill title and description
-		String title_id="pii-irca-event-file-title-"+j;
-		driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
-		String desc = "pii-irca-event-file-description-"+j;
-		driver.findElement(By.id(desc)).sendKeys("Description0"+j);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 	}
-	
-	public void uploadImageIE10(WebDriver driver) throws Exception {
+
+	public void uploadImageIE10(WebDriver driver, int j) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
 		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
@@ -97,21 +90,17 @@ public class HiRCABug2 {
 		Thread.sleep(6000);
 		String img = "pii-irca-event-file-img-"+j;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
-		//Fill title and description
-		String title_id="pii-irca-event-file-title-"+j;
-		driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
-		String desc = "pii-irca-event-file-description-"+j;
-		driver.findElement(By.id(desc)).sendKeys("Description0"+j);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 	}
-	
-	public void uploadImageIE11(WebDriver driver) throws Exception {
+
+	public void uploadImageIE11(WebDriver driver, int j) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		int j=0;
 		String id = "pii-irca-event-filecollapsible-"+j;
 		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
 		WebElement l=driver.findElement(By.id(file));
@@ -130,38 +119,44 @@ public class HiRCABug2 {
 		Thread.sleep(2000);
 		String img = "pii-irca-event-file-img-"+j;
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
+	}
+
+	public void enterTitleDesc(WebDriver driver, int j) throws Exception {
+
 		//Fill title and description
 		String title_id="pii-irca-event-file-title-"+j;
 		driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
 		String desc = "pii-irca-event-file-description-"+j;
 		driver.findElement(By.id(desc)).sendKeys("Description0"+j);
 	}
-	
-	public void uploadImage(WebDriver driver) throws Exception {
+
+	public void uploadImage(WebDriver driver, int j) throws Exception {
 
 		//Get browser name and version
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		String v = cap.getVersion().toString();
 		if(browserName.equals("chrome"))
-			uploadImageChrome(driver);
+			uploadImageChrome(driver,j);
 		if(browserName.equals("firefox"))
-			uploadImageFirefox(driver);
+			uploadImageFirefox(driver,j);
 		if(browserName.equals("internet explorer"))
 		{
 			if(v.startsWith("10"))
-				uploadImageIE10(driver);
+				uploadImageIE10(driver,j);
 			if(v.startsWith("11"))
-				uploadImageIE11(driver);
+				uploadImageIE11(driver,j);
 		}
 	}
 
-	public void pathHiRCABug(WebDriver driver) throws Exception {
+	public void bugKALE2332QAA758(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		hlb2.fillPage(driver, text);
 		//Scroll to image and upload one image with title
-		uploadImage(driver);
+		uploadImage(driver,0);
+		enterTitleDesc(driver, 0);
 		//Click on add supporting file
 		WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
 		share2.scrollToElement(driver, add);
@@ -175,19 +170,88 @@ public class HiRCABug2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		//Verify the warning message
-		//try{
+		//Verify no warning message
+		try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-file-status-0"))).getText();
 			softly.assertThat(s).as("test data").isEqualTo("Warning: no file attached.");
-		/*}catch(org.openqa.selenium.TimeoutException t)
+			softly.fail("No warning message should appear: "+s);
+		}catch(org.openqa.selenium.TimeoutException t)
 		{
-			
-		}*/
+
+		}
 		share2.scrollToTop(driver);
 		//Delete report
 		hircaL1.deleteReport(driver);
 	}
-	
+
+	public void bugKALE2330QAA757(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		hlb2.fillPage(driver, text);
+		for(int j=0;j<3;j++)
+		{
+			//Scroll to image and upload one image with title
+			uploadImage(driver,j);
+			//Click on add supporting file
+			WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
+			share2.scrollToElement(driver, add);
+			add.click();
+		}
+		//save hirca report and open report
+		share2.scrollToTop(driver);
+		hircaL2.saveHiRCAReport(driver);
+		//Scroll down
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))));
+		//Checks the 5 images if appearing
+		for (int j=0; j<3; j++)
+		{				  
+			//Click on Supporting file details
+			Thread.sleep(500);
+			String id = "pii-irca-h-event-report-filecollapsible-"+j;
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
+			if(browserName.contains("safari"))
+			{
+				while(true)
+				{
+					jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='"+id+"']/h4/a"))));
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='"+id+"']/h4/a"))));
+					if(driver.findElement(By.xpath(".//*[@id='"+id+"']/div/div/table")).isDisplayed())
+					{
+						break;
+					}
+				}
+			}
+			else
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			String img = "pii-irca-h-event-report-file-img-"+j;
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+			if(driver.findElement(By.id(img)).isDisplayed())
+			{
+				System.out.println("Image "+ (j+1) + " is displayed");	
+
+			}
+		}
+		share2.scrollToTop(driver);
+		//Delete report
+		hircaL1.deleteReport(driver);
+	}
+
+	public void pathHiRCABug(WebDriver driver) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		//KALE2332 or QAA758
+		bugKALE2332QAA758(driver);
+		//Go to KALE homepage
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equip.KaleHomePage)).click();
+		//KALE2330 or QAA757
+		bugKALE2330QAA757(driver);
+	}
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
