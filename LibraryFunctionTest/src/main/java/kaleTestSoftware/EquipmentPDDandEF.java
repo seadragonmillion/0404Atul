@@ -173,6 +173,10 @@ public class EquipmentPDDandEF {
 		}
 		//Clicks on Prevention Of Design Deficiencies
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.PreventionOfDesignDeficienciesLink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Prevention of Design Deficiencies Search");
 		//Clicks on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
 		//Enters Equipment Case id to see if it exists
@@ -218,6 +222,10 @@ public class EquipmentPDDandEF {
 		}
 		//Clicks on Engineering Fundamentals
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EngineeringFundamentalsLink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Engineering Fundamentals Search");
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);

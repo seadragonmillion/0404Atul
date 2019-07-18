@@ -62,19 +62,6 @@ public class Login {
 							System.out.println("Logged in");
 							break;
 						}
-						if(text.contains(failedLoginMessage))
-						{
-							//Enter Username
-							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).clear();
-							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys(username);
-							//Enter password
-							driver.findElement(lpo.Password).clear();
-							driver.findElement(lpo.Password).sendKeys(decodePassword(password));
-							//Sign in button is located and clicked
-							driver.findElement(lpo.SignInButton).click();  
-							share.loadingServer(driver);
-							break;
-						}
 						if(text.isEmpty()==false)
 						{
 							driver.findElement(lpo.Password).sendKeys(decodePassword(password));
@@ -82,6 +69,18 @@ public class Login {
 							driver.findElement(lpo.SignInButton).click();
 							if(text.contains("Warning: This user has an existing login session"))
 								login =1;
+							if(text.contains(failedLoginMessage))
+							{
+								//Enter Username
+								wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).clear();
+								wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys(username);
+								//Enter password
+								driver.findElement(lpo.Password).clear();
+								driver.findElement(lpo.Password).sendKeys(decodePassword(password));
+								//Sign in button is located and clicked
+								driver.findElement(lpo.SignInButton).click();  
+								continue;
+							}
 							share.loadingServer(driver);
 							break;
 						}

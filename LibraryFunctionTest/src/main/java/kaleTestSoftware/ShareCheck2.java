@@ -2,6 +2,7 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
@@ -235,7 +236,7 @@ public class ShareCheck2 {
 				}
 				else
 					break;
-			}catch (org.openqa.selenium.NoSuchElementException |org.openqa.selenium.StaleElementReferenceException e)
+			}catch (org.openqa.selenium.NoSuchElementException |org.openqa.selenium.StaleElementReferenceException | JavascriptException e)
 			{
 				break;
 			}
@@ -318,7 +319,7 @@ public class ShareCheck2 {
 		Thread.sleep(1000);
 		try{
 			jse.executeScript("scroll(0,"+yaxis+")");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException r)
 		{
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0,"+yaxis+")");
@@ -334,7 +335,7 @@ public class ShareCheck2 {
 		Thread.sleep(1000);
 		try{
 			jse.executeScript("scroll(0,"+yaxis+")");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException r)
 		{
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0,"+yaxis+")");
@@ -347,7 +348,7 @@ public class ShareCheck2 {
 		Thread.sleep(1000);
 		try{
 			jse.executeScript("scroll(0,0)");
-		}catch (org.openqa.selenium.ScriptTimeoutException r)
+		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException r)
 		{
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0,0)");

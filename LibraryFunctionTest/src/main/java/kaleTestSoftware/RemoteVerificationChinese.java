@@ -219,12 +219,20 @@ public class RemoteVerificationChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.NotificationOpenButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		//reload rv page activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		//click on 1st record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
 		//Verify the Verification status
 		String status1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationStatus)).getText();
 		softly.assertThat(status1).as("test data").contains("已反馈验证结果");
 		//Verification result
-		String result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationAcceptedResult)).getText();
-		softly.assertThat(result1).as("test data").contains("通过验证");
+		String result1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerificationAcceptedResult)).getText().trim();
+		softly.assertThat(result1).as("test data").isEqualTo("通过验证");
 	}
 
 	public void verifyChineseRVTitlesPlaceholders(WebDriver driver) throws Exception {

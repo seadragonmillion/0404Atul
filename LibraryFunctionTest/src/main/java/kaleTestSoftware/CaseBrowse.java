@@ -121,6 +121,10 @@ public class CaseBrowse {
 		}
 		//Clicks on SRI
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.SRILink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Systematic Reliability Inspection Search");
 	}
 
 	public void caseSearchWithLD(WebDriver driver) throws Exception {
@@ -238,6 +242,8 @@ public class CaseBrowse {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on ErrorFree Bank
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.ErrorFreeBankLinkHomePage)).getText();
+		softly.assertThat(s).as("test data").contains("Bank");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.ErrorFreeBankLinkHomePage)).click();
 		/*Verify order or modules
 		 * admin = 0
@@ -246,6 +252,10 @@ public class CaseBrowse {
 		verifyOrderOfModules(driver, y);
 		//Clicks on Human Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanPerformanceLink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanPerformanceSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Human Performance Search");
 	}
 
 	public void getEquipPerformanceLink(WebDriver driver, int y) throws Exception {
@@ -262,6 +272,10 @@ public class CaseBrowse {
 		verifyOrderOfModules(driver, y);
 		//Clicks on Equipment Performance
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Equipment Performance Search");
 	}
 
 	public void getEquipPerformancePIILink(WebDriver driver, int y) throws Exception {
@@ -278,6 +292,10 @@ public class CaseBrowse {
 		verifyOrderOfModules(driver, y);
 		//Clicks on Equipment Performance PII
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyLink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Equipment Data Bank (Instructor Only) Search");
 	}
 
 	public void getElecFailureModeLink(WebDriver driver, int y) throws Exception {
@@ -294,6 +312,10 @@ public class CaseBrowse {
 		verifyOrderOfModules(driver, y);
 		//Clicks on Electrical Failure Mode
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("keyword:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Failure Modes Search");
 	}
 
 	public void getMechFailureModeLink(WebDriver driver, int y) throws Exception {
@@ -749,6 +771,9 @@ public class CaseBrowse {
 		}
 		if(y==1)
 			verifyNoEquipPII(driver);
+		//Verify B capital in Error free Bank
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.ErrorFreeBankTitle)).getText();
+		softly.assertThat(s5).as("test data").contains("Bank");	
 	}
 
 	public void verifyNoEquipPII(WebDriver driver) throws Exception {
@@ -1135,6 +1160,9 @@ public class CaseBrowse {
 	public void browseTermEquip (WebDriver driver, String keyword, String identifier, String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchLogo)).getAttribute("src");
+		System.out.println(s);
+		softly.assertThat(s).as("test").contains("images/ErrorFree.gif");
 		int n = searchKeywordForBrowseCaseEquip(driver,keyword,identifier);
 		Thread.sleep(1000);
 		String expected_title = "F"+identifier+": "+title;
@@ -1209,6 +1237,9 @@ public class CaseBrowse {
 	public void browseTermHuman (WebDriver driver, String keyword, String identifier, String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchLogo)).getAttribute("src");
+		System.out.println(s);
+		softly.assertThat(s).as("test").contains("images/ErrorFree.gif");
 		int n = searchKeywordForBrowseCaseHuman(driver,keyword,identifier);
 		Thread.sleep(1000);
 		String expected_title = "Q"+identifier+": "+title;
@@ -1375,7 +1406,7 @@ public class CaseBrowse {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
 		//Get name of current module
 		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentModuleTitle)).getText();
-		if(str.contains("equipment performance cases (PII)"))
+		if(str.contains("Equipment Data Bank (Instructor Only) Search"))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		}

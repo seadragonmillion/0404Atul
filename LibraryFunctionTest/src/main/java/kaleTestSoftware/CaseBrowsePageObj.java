@@ -15,6 +15,7 @@ public class CaseBrowsePageObj {
 	public By EquipmentDatabankOnlyLink1 = By.id("pii-e-menu-equipPII");
 
 	//Error-free Bank Module page
+	public By ErrorFreeBankTitle = By.cssSelector(".pii-menu-title-text.pii-menu-title-text-e");
 	public By HumanPerformancePosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[1]/a");
 	public By EngineeringFundamentalPosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[2]/a");
 	public By EquipmentPerformancePosition = By.xpath(".//*[@id='pii-e-menu']/article/div[2]/ul/li[3]/a");
@@ -28,6 +29,9 @@ public class CaseBrowsePageObj {
 	public By EquipmentAddKeywordButton = By.id("pii-admin-efse-keyword-new");
 
 	//Equipment Search
+	public By EquipmentSearchLogo = By.xpath(".//*[@id='pii-user-image-equip']/img");
+	public By EquipmentSearchKeywordLabel = By.xpath(".//*[@id='pii-keyword-block-equip']/div[4]/label");
+	public By EquipmentSearchTitle = By.id("pii-efse-search-label");
 	public By EquipmentSearchKeywordField = By.id("pii-efse-searchbykw-input");
 	public By EquipmentSearchClearButton = By.id("pii-efse-clear");
 	public By EquipmentSearchKeywordFieldSearchButton = By.id("pii-efse-searchbykw-btn");
@@ -74,6 +78,9 @@ public class CaseBrowsePageObj {
 	public By HumanAddKeywordButton = By.id("pii-admin-efsh-keyword-new");
 
 	//Human Search
+	public By HumanSearchLogo = By.xpath(".//*[@id='pii-user-image']/img");
+	public By HumanSearchKeywordLabel = By.xpath(".//*[@for='pii-search-container-input']");
+	public By HumanPerformanceSearchTitle = By.xpath(".//*[@id='pii-keyword-block']/div[2]");
 	public By HumanSearchKeywordField = By.id("pii-efsh-searchbykw-input");
 	public By HumanSearchClearButton = By.id("pii-efsh-clear");
 	public By HumanSearchCaseIdField = By.id("pii-efsh-searchbyid-input");
