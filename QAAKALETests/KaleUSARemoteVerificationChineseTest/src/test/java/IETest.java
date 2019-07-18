@@ -75,7 +75,7 @@ public class IETest {
 		 * 12=non admin ie11 us
 		 */
 		//create report
-		obj1.verifyChineseRV(driver, 2, username, password);
+		obj1.verifyChineseRV(driver, 10, username, password);
 		//Change language to english
 		obj2.changeToEnglish(driver);
 		//Logs out
