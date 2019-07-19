@@ -33,7 +33,7 @@ public class FirefoxTest {
 	private String url = "https://kale.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	
-		@Rule
+	@Rule
     public TestWatcher watcher = new TestWatcher() {
         @Override
         protected void failed(Throwable throwable, Description description) {

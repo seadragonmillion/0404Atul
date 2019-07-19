@@ -12,13 +12,41 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 
 public class ChromeTest {
 
 	private WebDriver driver;
 	private String username = "jenkinsvmnonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	   
+	
+	@Rule
+    public TestWatcher watcher = new TestWatcher() {
+        @Override
+        protected void failed(Throwable throwable, Description description) {
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile,
+                        new File("target/screenshots/"+"failshot.png"));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void finished(Description description) {
+            driver.quit();
+        }
+	};
+		   
 		@Before
 		  public void beforeTest() throws MalformedURLException{
 			  
