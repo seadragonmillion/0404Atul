@@ -22,13 +22,41 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import java.util.Base64;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 public class SanityIETest {
 
 	private InternetExplorerDriver driver;
 	private String username ="qaacfi";
-	 private String password = "S2FsZTk0OTM1ODMwQA==";
+	private String password = "S2FsZTk0OTM1ODMwQA==";
 	private String ie_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe";
 	private String url = "https://kaleasia.error-free.com/";
+			
+	@Rule
+    public TestWatcher watcher = new TestWatcher() {
+        @Override
+        protected void failed(Throwable throwable, Description description) {
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile,
+                        new File("target/screenshots/"+"failshot.png"));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void finished(Description description) {
+            driver.quit();
+        }
+	};
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{

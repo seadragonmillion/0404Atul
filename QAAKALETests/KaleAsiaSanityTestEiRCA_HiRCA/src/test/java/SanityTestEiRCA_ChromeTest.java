@@ -16,6 +16,15 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 public class SanityTestEiRCA_ChromeTest {
 
 	private WebDriver driver;
@@ -23,6 +32,25 @@ public class SanityTestEiRCA_ChromeTest {
 	private String password = "S2FsZTQ2MTkxODAyQA==";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
+			
+	@Rule
+    public TestWatcher watcher = new TestWatcher() {
+        @Override
+        protected void failed(Throwable throwable, Description description) {
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile,
+                        new File("target/screenshots/"+"failshot.png"));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void finished(Description description) {
+            driver.quit();
+        }
+	};
 		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{

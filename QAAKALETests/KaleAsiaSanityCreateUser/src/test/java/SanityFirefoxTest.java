@@ -35,6 +35,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 public class SanityFirefoxTest {
 
 	private FirefoxDriver driver;
@@ -47,7 +56,26 @@ public class SanityFirefoxTest {
 	SoftAssertions softly = new SoftAssertions();
 	private String[]op=new String [25];
 	private List<Integer> num = new ArrayList<Integer>();
+		
+	@Rule
+    public TestWatcher watcher = new TestWatcher() {
+        @Override
+        protected void failed(Throwable throwable, Description description) {
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile,
+                        new File("target/screenshots/"+"failshot.png"));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
 
+        @Override
+        protected void finished(Description description) {
+            driver.quit();
+        }
+	};
+	
 	@Before
 	public void beforeTest() throws MalformedURLException{
 

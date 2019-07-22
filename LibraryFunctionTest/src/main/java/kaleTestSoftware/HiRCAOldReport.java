@@ -41,7 +41,10 @@ public class HiRCAOldReport {
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on an old report in 09/2016
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[6]/a"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[6]/a"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[5]/a"))).click();
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Get data from old report
@@ -185,7 +188,10 @@ public class HiRCAOldReport {
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on an old report in 09/2016
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[6]/a"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[6]/a"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[5]/a"))).click();
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Open and check record
@@ -193,7 +199,7 @@ public class HiRCAOldReport {
 	}
 
 	public void openCheckRecord (WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
-		
+
 		Thread.sleep(5000);
 		//Verifies Event title data
 		String eve_title =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]")).getText();
@@ -506,7 +512,7 @@ public class HiRCAOldReport {
 	}
 
 	public void downloadReportChrome(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
-		
+
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
@@ -532,7 +538,7 @@ public class HiRCAOldReport {
 	}
 
 	public void downloadReportFirefox(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
-		
+
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
@@ -575,7 +581,7 @@ public class HiRCAOldReport {
 	}
 
 	public void downloadReportIE10(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
-		
+
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
 		deleteFiles(file);
@@ -701,7 +707,7 @@ public class HiRCAOldReport {
 	}
 
 	public void deleteFiles(File folder) throws IOException {
-		
+
 		File[] files = folder.listFiles();
 		for(File file: files){
 			if(file.isFile()){
@@ -855,7 +861,7 @@ public class HiRCAOldReport {
 		softly.assertThat("3.17.4 Inadequate operation: (1) Inadequate operation procedure; (2) Inadequate operating condition; (3) Operation errors Yes Yes Yes").as("test data").isSubstringOf(newData);
 		softly.assertThat("3.17.5 Inadequate periodic surveillance testing Yes Yes Yes 3.17.6 Inadequate maintenance Yes Yes Yes").as("test data").isSubstringOf(newData);*/
 	}
-	
+
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

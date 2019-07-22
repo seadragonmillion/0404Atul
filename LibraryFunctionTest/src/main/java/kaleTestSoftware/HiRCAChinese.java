@@ -55,7 +55,7 @@ public class HiRCAChinese {
 		//Verify everything on Event Information page is in 
 		hc7.chineseEventInfo(driver,softly);
 		ccf.verifyChineseTabsInsideHiRCA(driver, softly);
-			ccf.verifyChineseButtonsInfoTabHiRCA(driver, softly);
+		ccf.verifyChineseButtonsInfoTabHiRCA(driver, softly);
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys(text);
 		//Location of event
@@ -102,8 +102,7 @@ public class HiRCAChinese {
 		hc7.chineseStepOneq11(driver,softly);
 		//Check language change
 		obj2.verifyChangeLanguage(driver, softly);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			ccf.verifyChineseButtonsInBetweenTabsHiRCA(driver, softly);
+		ccf.verifyChineseButtonsInBetweenTabsHiRCA(driver, softly);
 		//Select answer 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).click();
 		//Click on next

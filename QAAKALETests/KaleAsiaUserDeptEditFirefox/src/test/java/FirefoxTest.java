@@ -18,6 +18,15 @@ import org.openqa.selenium.firefox.ProfilesIni;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 
 public class FirefoxTest {
 
@@ -27,6 +36,25 @@ public class FirefoxTest {
 	private String company_id="2017qaadeptedit";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleasia.error-free.com/";
+			
+	@Rule
+    public TestWatcher watcher = new TestWatcher() {
+        @Override
+        protected void failed(Throwable throwable, Description description) {
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile,
+                        new File("target/screenshots/"+"failshot.png"));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void finished(Description description) {
+            driver.quit();
+        }
+	};
 	
 	@Before
 	  public void beforeTest() throws MalformedURLException{
