@@ -237,8 +237,13 @@ public class Login {
 		else
 		{
 			Actions act = new Actions (driver);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight));
-			WebElement element = driver.findElement(lpo.LoginNameOnTopRight);
+			WebElement element;
+			try{
+			element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight));
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameMenuRight));
+			}
 			act.click(element).build().perform();
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton));

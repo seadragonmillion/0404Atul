@@ -626,18 +626,19 @@ public class HiRCAChinese {
 			act.click(element).build().perform();
 			Thread.sleep(2000);
 		}
+		share2.loadingServer(driver);
 		//Changes language to Chinese
 		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
 		Select s4 = new Select (dropdown1);
 		s4.selectByVisibleText("Chinese");
+		share2.loadingServer(driver);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Waits for loading message to disappear
 		share2.loadingServer(driver);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			lcr.verifyLabelAdminUserAccountChinese(driver, softly);
+		lcr.verifyLabelAdminUserAccountChinese(driver, softly);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 	}
@@ -712,6 +713,7 @@ public class HiRCAChinese {
 			act.click(element).build().perform();
 			Thread.sleep(2000);
 		}
+		share2.loadingServer(driver);
 		//Changes language to English
 		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
 		Select s4 = new Select (dropdown1);

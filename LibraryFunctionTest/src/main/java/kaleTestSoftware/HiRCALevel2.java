@@ -833,6 +833,7 @@ public class HiRCALevel2 {
 			//Verify level 3 selected
 			for(int i=1;i<=(level31stLOP.size()*3);i=i+3)
 			{
+				try{
 				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText().trim();
 				share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"), softly);
 				softly.assertThat(s1).as("test data").isIn(temp);
@@ -848,6 +849,10 @@ public class HiRCALevel2 {
 				if(hircaNoteLopSURE.get(r1).contains(note)==false)
 				{
 					softly.fail("Note is not correct in SUEP table in step 3: "+hircaNoteLopSURE.get(r1)+"\n"+note+"\n"+r1);
+				}
+				}catch(org.openqa.selenium.TimeoutException w)
+				{
+					break;
 				}
 			}
 			//clear temp

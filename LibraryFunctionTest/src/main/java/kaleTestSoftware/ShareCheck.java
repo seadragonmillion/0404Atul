@@ -1164,8 +1164,8 @@ public class ShareCheck {
 		for(int i=1;i<=n;i++)
 		{
 			//Click on 1st record/notification
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-			if(ele.isSelected()==false)
+			//WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
 			{
 				try{
 					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
@@ -1176,18 +1176,16 @@ public class ShareCheck {
 				share2.loadingServer(driver);
 			}
 			//Click on read
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
-			if(ele.isEnabled()==false)
+			//ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
+			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).isEnabled()==false)
 				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-			ele.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton)).click();
 			Thread.sleep(2000);
 			//Click on mark as read
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				share2.verifyNotificationReadPopup(driver, softly,chOrEng);
-			ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-			ele.click();
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				share2.verifyPopupAfterMarkingOneNotificationRead(driver, softly,chOrEng);
+			share2.verifyNotificationReadPopup(driver, softly,chOrEng);
+			//ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton)).click();
+			share2.verifyPopupAfterMarkingOneNotificationRead(driver, softly,chOrEng);
 		}
 		//}		
 		//Wait for loading message to disappear

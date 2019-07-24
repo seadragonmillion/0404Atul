@@ -50,6 +50,7 @@ public class UserSessionExpired {
 			System.out.println("Username not remembered");
 		else softly.fail("Username remembered even with Remember Me unchecked");
 		//Enter Username
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-un"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-un"))).sendKeys(username);
 		//Enter password
 		driver.findElement(By.id("pii-pw")).sendKeys(login.decodePassword(password));
@@ -57,6 +58,7 @@ public class UserSessionExpired {
 		driver.findElement(By.xpath(".//*[@class='ui-checkbox ui-mini']/label")).click();
 		//Sign in button is located and clicked
 		driver.findElement(By.id("pii-signin-button")).click();
+		login.waitForIframe(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		//Logs out
@@ -81,6 +83,7 @@ public class UserSessionExpired {
 		driver.findElement(By.id("pii-pw")).sendKeys(login.decodePassword(password));
 		//Sign in button is located and clicked
 		driver.findElement(By.id("pii-signin-button")).click();
+		login.waitForIframe(driver);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		//Comes exactly at the 55th minute

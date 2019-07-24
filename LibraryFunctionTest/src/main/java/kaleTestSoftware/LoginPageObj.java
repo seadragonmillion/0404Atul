@@ -13,6 +13,7 @@ public class LoginPageObj {
 	public By StickyNote = By.className("sticky-note");
 	public By StickyClose = By.className("sticky-close");
 	public By LoginNameOnTopRight = By.id("pii-user-loginname");
+	public By LoginNameMenuRight = By.id("user-menu");
 	public By LogOutButton = By.id("pii-signout-button");
 	public By WebPageMessage = By.className("pii-slogan");
 	public By AgreeTermsButton = By.xpath(".//*[@id='pii-license-checkbox-div']/fieldset/div/div/label");
