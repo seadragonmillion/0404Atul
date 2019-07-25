@@ -2,6 +2,7 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,51 @@ public class UserManagement2 {
 	ShareCheck2 share2 = new ShareCheck2();
 	Login login = new Login ();
 	LoginPageObj lpo = new LoginPageObj();
+
+	public void companyChangeAddress(WebDriver driver, String company_id, SoftAssertions softly) throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		//Enters company id in ID field 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
+		Thread.sleep(1000);
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		//Clicks on newly created company id
+		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		Thread.sleep(3000);
+		//Verify if company opened is correct one
+		String verifyID=driver.findElement(By.id("pii-admin-cust-cid")).getAttribute("value");
+		if(verifyID.equals(company_id))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit")));
+			//Clicks on edit company
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+			//Changes the address
+			driver.findElement(By.id("pii-admin-cust-address")).clear();
+			driver.findElement(By.id("pii-admin-cust-address")).sendKeys("QAA edit company");
+			//Clicks on Save
+			driver.findElement(By.id("pii-admin-cust-button-save")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
+			//Clicks on update company
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			//Enters company id in ID field 
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
+			share2.loadingServer(driver);
+			//Clicks on newly created company id
+			driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+			share2.loadingServer(driver);
+			//Checks if company address has been edited
+			String changeAddress= driver.findElement(By.id("pii-admin-cust-address")).getAttribute("value");
+			softly.assertThat(changeAddress).as("test data").isEqualTo("QAA edit company");
+		}
+	}
 
 	public void verifyLoginNameCharactersAccepted(WebDriver driver, SoftAssertions softly) throws Exception{
 

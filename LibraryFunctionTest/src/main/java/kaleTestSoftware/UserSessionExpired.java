@@ -79,16 +79,23 @@ public class UserSessionExpired {
 			jse.executeScript("arguments[0].focus()",driver.findElement(By.id("pii-signin-checkbox")));
 			jse.executeScript("arguments[0].click()",driver.findElement(By.id("pii-signin-checkbox")));
 		}
+		try{
 		//Enter password
 		driver.findElement(By.id("pii-pw")).sendKeys(login.decodePassword(password));
 		//Sign in button is located and clicked
 		driver.findElement(By.id("pii-signin-button")).click();
 		login.waitForIframe(driver);
+		}catch(org.openqa.selenium.ElementNotInteractableException r)
+		{
+			//Login button is located and clicked
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+			login.LoginUser(driver, username, password);
+		}
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
 		//Comes exactly at the 55th minute
-		System.out.println("Wait for 55 minutes for re-login message");
-		Thread.sleep(3300000);
+		System.out.println("Wait for 56 minutes for re-login message");
+		Thread.sleep(3360000);
 		//Check for re login message 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-header-message-div")));
 		//Click on re-login button

@@ -169,6 +169,15 @@ public class SRI3 {
 		share2.verifyWarningPopupForSRIError(driver, softly);
 		//Verify on step 2 by looking for measurement field of 1st measurement
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement1Measurement));
+		/*
+		 *Only till components get fixed in SRI Analysis 
+		 */
+		//Click on saved activities
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISavedActivitiesButton)).click();
+		share2.loadingServer(driver);
+		//CLick on new record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
+		share2.loadingServer(driver);
 	}
 
 	public void changeComponentVerifyMissingMeasurementAndUnit(WebDriver driver, String component, SoftAssertions softly) throws Exception {

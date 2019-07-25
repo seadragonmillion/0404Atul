@@ -732,7 +732,7 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
 		//Get name of current module
 		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentModuleTitle)).getText();
-		if(str.contains("equipment performance cases (PII)"))
+		if(str.contains("Equipment Data Bank"))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		}
@@ -886,7 +886,7 @@ public class EquipmentPDDandEF {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
 		//Get name of current module
 		String str = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentModuleTitle)).getText();
-		if(str.contains("equipment performance cases (PII)"))
+		if(str.contains("Equipment Data Bank"))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
 		}

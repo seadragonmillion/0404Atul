@@ -109,7 +109,14 @@ public class ShareCheck {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
 			jse.executeScript("scroll(0,0)");
 			//Click on 1st record/notification
-			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			try{
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			}catch(org.openqa.selenium.WebDriverException r)
+			{
+				//Click on notification
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+			}
 			//Click on Open Report button
 			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationOpenButton)).click();
 			//Wait for loading message to disappear
@@ -485,7 +492,7 @@ public class ShareCheck {
 						try{
 							ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
 							break;
-						}catch(org.openqa.selenium.TimeoutException t)
+						}catch(org.openqa.selenium.WebDriverException t)
 						{
 							ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 							try{

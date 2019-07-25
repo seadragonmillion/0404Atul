@@ -141,15 +141,15 @@ public class SRIAdmin {
 		sriA2.verifyBaslineConclusionTabsViewWhenComponentChanged(driver, softly);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.KaleHomePage)).click();
-	/*	//bug needs to be fixed
+		/*	//bug needs to be fixed
 		login.logout(driver);
 		driver.switchTo().defaultContent();
 		login.LoginUser(driver, username, password);
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));*/
 	}
-	
+
 	public void deleteAll(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		//Get to SRI Admin part
 		getToSRIAdmin(driver);
 		//Change conclusion and verify save
@@ -193,6 +193,17 @@ public class SRIAdmin {
 		//Click on SRI components tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
 		Thread.sleep(1000);
+		for(int i=0;i<10;i++)
+		{
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTabMechanicalOption));
+				break;
+			}catch(org.openqa.selenium.WebDriverException r)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
+				Thread.sleep(1000);
+			}
+		}
 		/* 0 = Mechanical
 		 * 1 = Electrical
 		 */
@@ -274,7 +285,7 @@ public class SRIAdmin {
 		while(true)
 		{
 			try{
-				 wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]")));
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]")));
 				//Get unit name
 				String unitName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[3]/div/div/span"))).getText();
 				//Get Measurement name
@@ -476,7 +487,7 @@ public class SRIAdmin {
 			}
 			count=count+2;
 		}
-		
+
 	}
 
 	public void verifyUnitAdded(WebDriver driver, String measurement, String unit, SoftAssertions softly) throws Exception {
@@ -704,6 +715,7 @@ public class SRIAdmin {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		share2.scrollToTop(driver);
+		login.closePopUpSticky(driver);
 		//Click on SRI conclusion tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
 		/* 0 = Mechanical

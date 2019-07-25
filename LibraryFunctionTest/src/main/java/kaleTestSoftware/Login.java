@@ -218,7 +218,8 @@ public class Login {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		if(browserName.equals("firefox"))
+		String version = cap.getVersion();
+		if(browserName.equals("firefox")||browserName.equals("chrome"))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();		
 			Thread.sleep(3000);
@@ -239,7 +240,7 @@ public class Login {
 			Actions act = new Actions (driver);
 			WebElement element;
 			try{
-			element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight));
+				element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight));
 			}catch(org.openqa.selenium.TimeoutException t)
 			{
 				element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameMenuRight));
@@ -248,12 +249,19 @@ public class Login {
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton));
 			element = driver.findElement(lpo.LogOutButton);
-			act.click(element).build().perform();
+			if(version.startsWith("11"))
+			{
+				act.click(element).build().perform();
+			}
+			if(version.startsWith("10"))
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
+			}
 			Thread.sleep(2000);
 		}
 		Thread.sleep(4000);
 	}
-	
+
 	public void verifySpaceRemoved(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
