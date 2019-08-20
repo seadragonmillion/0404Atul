@@ -13,6 +13,18 @@
     <scope>system</scope>
     <systemPath>${main.basedir}/JavaKaleJar/bin/KALE.jar</systemPath>
   </dependency>
+        <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>2.3.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>2.3.1</version>
+        <scope>test</scope>
+    </dependency>
     <dependency>
     <groupId>com.sun.mail</groupId>
     <artifactId>javax.mail</artifactId>
