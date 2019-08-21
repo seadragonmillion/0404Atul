@@ -11,9 +11,12 @@ import kaleTestSoftware.beforeFunctions;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -40,9 +43,18 @@ public class RV_Sanity {
 			driver = bf.beforeIE10Test(driver, url);
 		if(browser.equals("ie11"))
 			driver = bf.beforeIE11Test(driver, url);
-		login.LoginUser(driver, username, password);
+		int login1 = login.LoginUser(driver, username, password);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		try{
+			if (login1==1)
+			{
+				WebDriverWait wait2 = new WebDriverWait(driver,20);
+				wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+			}
+		}catch (NoSuchElementException e){
+			throw e;
+		}
 	}
 
 	@When("^he creates an RV report with username as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
