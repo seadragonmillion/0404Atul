@@ -7,8 +7,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
- features = "QAAKALETests/SanityTestRemoteVerificationCucumber/src/test/resources/featureFiles" ,
- glue= {"QAAKALETests/SanityTestRemoteVerificationCucumber/src/test/java/seleniumTests"}
+ features = "src/test/resources/featureFiles" ,
+ glue= {"src/test/java/seleniumTests"}
  )
 
 public class runnerTest {
