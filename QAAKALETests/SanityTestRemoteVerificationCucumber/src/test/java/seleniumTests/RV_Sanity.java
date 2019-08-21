@@ -20,25 +20,6 @@ public class RV_Sanity {
 	WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	/*@ClassRule
-    public static TestWatcher watcher = new TestWatcher() {
-        @Override
-        protected void failed(Throwable throwable, Description description) {
-            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(scrFile,
-                        new File("target/screenshots/"+"failshot.png"));
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-
-        @Override
-        protected void finished(Description description) {
-            driver.quit();
-        }
-	};*/
-
 	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
@@ -99,6 +80,22 @@ public class RV_Sanity {
 		Login login = new Login();
 		login.logout(driver);
 		driver.manage().window().maximize();
+	}
+
+	@After
+	public void tearDown(Scenario scenario) {
+		if (scenario.isFailed()) {
+			// Take a screenshot...
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
+			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(scrFile,
+						new File("target/screenshots/"+"failshot.png"));
+			} catch (IOException exception) {
+				exception.printStackTrace();
+			}
+		}
 		driver.quit();
 	}
 
