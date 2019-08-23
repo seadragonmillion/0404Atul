@@ -64,7 +64,22 @@ public class RV_Chinese {
 		//Change language to chinese
 		hc.changeToChinese(driver);
 	}
-
+	  /*
+	 * 1=admin dev
+	 * 2= nonadmin dev
+	 * 3= admin ie11 dev
+	 * 4= nonadmin ie11 dev
+	 * ASIA
+	 * 5= admin asia
+	 * 6= nonadmin asia
+	 * 7= admin ie11 asia
+	 * 8= nonadmin ie11 asia
+	 * US
+	 * 9=admin us
+	 * 10=non admin us
+	 * 11=admin ie11 us
+	 * 12=non admin ie11 us
+	   */
 	@When("^verify chinese translation for RV report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and verifier indicator equals (\\d+)$")
 	public void verify_chinese_translation_for_RV_report_with_username_as_and_password_as_and_verifier_indicator_equals(String username, String password, int y) throws Exception {
 		RemoteVerificationChinese rvc = new RemoteVerificationChinese();

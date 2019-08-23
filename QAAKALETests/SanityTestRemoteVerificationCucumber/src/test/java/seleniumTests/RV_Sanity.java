@@ -56,7 +56,22 @@ public class RV_Sanity {
 			throw e;
 		}
 	}
-
+	  /*
+	 * 1=admin dev
+	 * 2= nonadmin dev
+	 * 3= admin ie11 dev
+	 * 4= nonadmin ie11 dev
+	 * ASIA
+	 * 5= admin asia
+	 * 6= nonadmin asia
+	 * 7= admin ie11 asia
+	 * 8= nonadmin ie11 asia
+	 * US
+	 * 9=admin us
+	 * 10=non admin us
+	 * 11=admin ie11 us
+	 * 12=non admin ie11 us
+	   */
 	@When("^he creates an RV report with username as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
 	public void he_creates_an_RV_report_with_username_as_and_admin_nonadmin_environment_indicator_equals(String username, int k) throws Exception {
 		RemoteVerification rv = new RemoteVerification();
@@ -75,7 +90,18 @@ public class RV_Sanity {
 		if(browser.equals("ie11"))
 			rv.downloadRecordIE11(driver, b.get(0), username);		
 	}
-
+	
+	  /* Dev/Asia
+	 * 0=admin
+	 * 1=non admin
+	 * 2= admin ie11
+	 * 3= non admin ie11
+	 * US
+	 * 4=admin
+	 * 5=non admin
+	 * 6=admin ie11
+	 * 7=non admin ie11
+	 */
 	@When("^share RV report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
 	public void share_RV_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 		RemoteVerification rv = new RemoteVerification();
