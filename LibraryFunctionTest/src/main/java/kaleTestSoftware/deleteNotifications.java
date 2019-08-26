@@ -131,10 +131,8 @@ public class deleteNotifications {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		System.out.println("Title after login: "+driver.getTitle());
-		Thread.sleep(5000);
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(IFrame));
-		Thread.sleep(5000);
 		if (login==1)
 		{
 
@@ -150,7 +148,6 @@ public class deleteNotifications {
 				else break;
 			}
 		}	
-		Thread.sleep(4000);
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(NotificationBell)).click();
 		share2.scrollToTop(driver);

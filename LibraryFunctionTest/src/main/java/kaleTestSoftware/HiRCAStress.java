@@ -329,11 +329,11 @@ public class HiRCAStress {
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))).sendKeys(filepath);
+			driver.findElement(By.id("pii-irca-event-file-"+j)).sendKeys(filepath);
 			//Wait for image
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+j)));
 			if(j<9)
@@ -384,11 +384,11 @@ public class HiRCAStress {
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))).click();
+			driver.findElement(By.id("pii-irca-event-file-"+j)).click();
 			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/MozillaChrysanthemumHiRCA.exe");
 			q.waitFor();
 			//Wait for image
@@ -442,7 +442,7 @@ public class HiRCAStress {
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
@@ -508,7 +508,7 @@ public class HiRCAStress {
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
 			//Uploads file
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-"+j))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);

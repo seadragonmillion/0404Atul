@@ -599,10 +599,17 @@ public class HiRCALevel2 {
 		Iterator<String> iter = Iterables.cycle(text).iterator();
 		if(level31stLOP.isEmpty()==false)
 		{			
+			System.out.println("change corrective action: \n"+level31stLOP);
+			System.out.println(level31stLOP.size());
 			for(int i=1;i<=(level31stLOP.size()*3);i=i+3)
 			{
+				try{
 				//Move to element
 				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))));
+				}catch(org.openqa.selenium.TimeoutException r)
+				{
+					break;
+				}
 				//Clear text box
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))).clear();
 				//Fill text box
