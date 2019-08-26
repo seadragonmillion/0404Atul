@@ -18,6 +18,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
+
 public class beforeFunctions {
 
 	public WebDriver beforeChromeTest(WebDriver driver, String url) throws MalformedURLException{

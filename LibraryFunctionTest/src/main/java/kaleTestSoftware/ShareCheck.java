@@ -396,7 +396,7 @@ public class ShareCheck {
 				try{
 					if(driver.findElement(share.ModuleTitle).isDisplayed())
 						break;
-				}catch(org.openqa.selenium.NoSuchElementException r)
+				}catch(org.openqa.selenium.WebDriverException r)
 				{
 					if(driver.findElement(share.NotificationOpenButton).isEnabled())
 					{
@@ -1172,6 +1172,7 @@ public class ShareCheck {
 		{
 			//Click on 1st record/notification
 			//WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+			share2.loadingServer(driver);
 			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
 			{
 				try{

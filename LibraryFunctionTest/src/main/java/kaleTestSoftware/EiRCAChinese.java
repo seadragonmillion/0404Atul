@@ -470,6 +470,7 @@ public class EiRCAChinese {
 	public void downloadReportChrome (WebDriver driver, List<String> verifyChinese) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		HiRCAEvent obj2 = new HiRCAEvent();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
@@ -479,6 +480,28 @@ public class EiRCAChinese {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
+		List<String> results = new ArrayList<String>();
+		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File file = new File("C://Users//IEUser//Downloads//reports//");
+		//If this pathname does not denote a directory, then listFiles() returns null. 
+		for (File file1 : files) {
+			if (file1.isFile()) {
+				results.add(file.getName());
+			}
+		}
+		System.out.println(results.get(0));
+		if(results.get(0).endsWith(".pdf")==false)
+		{
+			obj2.deleteFiles(file);
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			//Clicks on open pdf report
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupTitle)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupButton)).click();
+			Thread.sleep(8000);
+		}
 		//pdf check
 		pdfCheck(driver,verifyChinese);
 		for(String winHandle : driver.getWindowHandles()){

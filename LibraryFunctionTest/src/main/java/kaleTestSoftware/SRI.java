@@ -192,6 +192,7 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).clear();
 		while(true)
 		{
+			try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.CONTROL,"a");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.DELETE);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys("05");
@@ -200,6 +201,10 @@ public class SRI {
 			System.out.println(s);
 			if(s.equals("05"))
 				break;
+			}catch(org.openqa.selenium.WebDriverException e)
+			{
+				continue;
+			}
 		}
 		//Click on set time
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockSetTime)).click();

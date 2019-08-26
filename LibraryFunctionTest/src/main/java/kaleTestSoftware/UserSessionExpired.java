@@ -87,9 +87,20 @@ public class UserSessionExpired {
 		login.waitForIframe(driver);
 		}catch(org.openqa.selenium.ElementNotInteractableException r)
 		{
-			//Login button is located and clicked
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
-			login.LoginUser(driver, username, password);
+			Thread.sleep(1000);
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-pw")));
+				//Enter password
+				driver.findElement(By.id("pii-pw")).sendKeys(login.decodePassword(password));
+				//Sign in button is located and clicked
+				driver.findElement(By.id("pii-signin-button")).click();
+				login.waitForIframe(driver);
+			}catch(org.openqa.selenium.WebDriverException r1)
+			{
+				//Login button is located and clicked
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button"))).click();
+				login.LoginUser(driver, username, password);
+			}
 		}
 		//Switches to the iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));

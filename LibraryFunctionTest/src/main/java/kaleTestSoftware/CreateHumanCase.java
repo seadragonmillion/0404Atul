@@ -246,9 +246,16 @@ public class CreateHumanCase {
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
-		//Enter FM case id with links
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
+		//Enter case id with links
+		while(true)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
+			Thread.sleep(1000);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).getAttribute("value");
+			if(s.contains(cases.get(2)))
+				break;
+		}
 		Thread.sleep(2000);
 		//Clicks on case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
@@ -257,6 +264,23 @@ public class CreateHumanCase {
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
+		//Verify case id with links loaded
+		while(true)
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseIDField)).getAttribute("value");
+			if(s.contains(cases.get(2)))
+				break;
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDAdmin)).sendKeys(cases.get(2));
+			Thread.sleep(1000);
+			//Clicks on case id
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseSearchCaseIDDropdownAdmin)).click();
+			//Waits for black loading message to disappear
+			share2.loadingServer(driver);
+			Thread.sleep(2000);
+			share2.scrollToTop(driver);
+			Thread.sleep(1000);
+		}
 		//Click on Edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseEditButton)).click();
 		Thread.sleep(2000);

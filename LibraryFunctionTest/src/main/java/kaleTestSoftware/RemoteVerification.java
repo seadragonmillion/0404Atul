@@ -664,7 +664,7 @@ public class RemoteVerification {
 		//Get browser value
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		String version = cap.getVersion().toLowerCase();
+		//String version = cap.getVersion().toLowerCase();
 		//Get longitude latitude from rv location image
 		String location = wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLatitudeLongitudeAboveLocationImage)).getText();
 		System.out.println(location); 
@@ -672,7 +672,7 @@ public class RemoteVerification {
 		if(url.contains("kaleqa")&&browserName.contains("safari")==false)
 		{
 			//Store in excel
-			excelStore(location,browserName,version);
+			//excelStore(location,browserName,version);
 		}	    
 		String address = "462 Stevens Avenue, Suite #306 Solana Beach, CA 92705";
 		Thread.sleep(4000);
@@ -1079,7 +1079,7 @@ public class RemoteVerification {
 		return images;
 	}
 
-	private List<RenderedImage> getImagesFromResources(PDResources resources) throws IOException {
+	public List<RenderedImage> getImagesFromResources(PDResources resources) throws IOException {
 		List<RenderedImage> images = new ArrayList<>();
 
 		for (COSName xObjectName : resources.getXObjectNames()) {

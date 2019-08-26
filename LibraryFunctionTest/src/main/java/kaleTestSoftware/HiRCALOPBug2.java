@@ -34,6 +34,22 @@ public class HiRCALOPBug2 {
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
 		Thread.sleep(2000);
 	}
+	
+	public void verifyTextFilledCorrectly(WebDriver driver, By locator, String text) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		while(true)
+		{
+			String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("value");
+			if(ev1.contains(text))
+				break;
+			else
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
+			}
+		}
+	}
 
 	public void fillPage(WebDriver driver,String text) throws Exception {
 
@@ -47,20 +63,26 @@ public class HiRCALOPBug2 {
 		Thread.sleep(2000);
 		//Event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAEventTitleField)).sendKeys(text);
+		verifyTextFilledCorrectly(driver,hc.HiRCAEventTitleField,text);
 		//Location of event
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAEventLocationField)).sendKeys(text);
+		verifyTextFilledCorrectly(driver,hc.HiRCAEventLocationField,text);
 		//Department
 		WebElement dropdown = driver.findElement(By.id("pii-irca-event-department"));
 		Select s = new Select (dropdown);
 		s.selectByVisibleText("Construction");
 		//Problem Statement
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text);
+		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-pbstatement"),text);
 		//Timeline of event
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
+		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-events"),text);
 		//Background info
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
+		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-bginfos"),text);
 		//Investigators
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
+		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-investigators"),text);
 	}
 	
 	public void bugKALE2494(WebDriver driver, SoftAssertions softly) throws Exception {

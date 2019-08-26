@@ -28,7 +28,14 @@ public class ShareCheck2 {
 		//Click on 1st record/notification
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
 		if(ele.isSelected()==false)
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+		{
+			try{
+				executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+			}catch(org.openqa.selenium.StaleElementReferenceException r)
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+			}
+		}
 		loadingServer(driver);
 		//Click on unread
 		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationDeleteButton));
@@ -151,15 +158,15 @@ public class ShareCheck2 {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Click on 1st record/notification
-		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
-		if(ele.isSelected()==false)
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 		loadingServer(driver);
 		//Click on unread
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton));
-		if(ele.isEnabled()==false)
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton));
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton)).isEnabled()==false)
 			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
-		ele.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton)).click();
 		//Verify the header
 		String header = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadUnreadPopUpHeader)).getText();
 		//Verify the title

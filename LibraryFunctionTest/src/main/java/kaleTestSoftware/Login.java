@@ -33,8 +33,10 @@ public class Login {
 		//Login button is located and clicked
 		wait.until(ExpectedConditions.elementToBeClickable(lpo.LoginButton)).click();
 		//Enter Username
+		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys(username);
 		//Enter password
+		driver.findElement(lpo.Password).clear();
 		driver.findElement(lpo.Password).sendKeys(decodePassword(password));
 		Thread.sleep(2000);
 		String user = driver.findElement(lpo.UserName).getAttribute("value");
@@ -237,6 +239,7 @@ public class Login {
 		}
 		else
 		{
+			closePopUpSticky(driver);
 			Actions act = new Actions (driver);
 			WebElement element;
 			try{

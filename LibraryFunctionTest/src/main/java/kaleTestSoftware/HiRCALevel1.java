@@ -612,7 +612,39 @@ public class HiRCALevel1 {
 					driver.switchTo().window(winHandle);
 			}
 		}
-		Thread.sleep(4000);/*
+		Thread.sleep(4000);
+		List<String> results = new ArrayList<String>();
+		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		//If this pathname does not denote a directory, then listFiles() returns null. 
+		for (File file1 : files) {
+			if (file1.isFile()) {
+				results.add(file.getName());
+			}
+		}
+		System.out.println(results.get(0));
+		if(results.get(0).endsWith(".pdf")==false)
+		{
+			deleteFiles(file);
+			//Clicks on download button
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			//Wait for loading message to disappear
+			share2.loadingServer(driver);
+			//Clicks on open pdf report
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+			Thread.sleep(8000);
+			for(String winHandle : driver.getWindowHandles())
+			{
+				System.out.println(winHandle);
+				if(winHandle.isEmpty()==false)
+				{
+					if(winHandle.equals(window)==false)
+						driver.switchTo().window(winHandle);
+				}
+			}
+			Thread.sleep(4000);
+		}
+		/*
 		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing

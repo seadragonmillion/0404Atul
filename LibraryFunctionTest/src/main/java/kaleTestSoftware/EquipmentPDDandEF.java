@@ -1388,21 +1388,18 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
 			share2.scrollToAPoint(driver, 1700);
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
+			verifyCorrectKeywordEntered(driver,keyword_same);
 			Thread.sleep(2000);
 			if(count==1)
 			{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key1);
+				verifyCorrectKeywordEntered(driver,key1);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key2);
+				verifyCorrectKeywordEntered(driver,key2);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
+				verifyCorrectKeywordEntered(driver,key3);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();			  
 			}
@@ -1523,21 +1520,18 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
 			share2.scrollToAPoint(driver, 1700);
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
+			verifyCorrectKeywordEntered(driver,keyword_same);
 			Thread.sleep(2000);
 			if(count==1)
 			{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key1);
+				verifyCorrectKeywordEntered(driver,key1);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key2);
+				verifyCorrectKeywordEntered(driver,key2);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
+				verifyCorrectKeywordEntered(driver,key3);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();			  
 			}
@@ -1716,21 +1710,18 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
 			share2.scrollToAPoint(driver, 1700);;
 			//Enters Keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
+			verifyCorrectKeywordEntered(driver,keyword_same);
 			Thread.sleep(2000);
 			if(count==1)
 			{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key1);
+				verifyCorrectKeywordEntered(driver,key1);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key2);
+				verifyCorrectKeywordEntered(driver,key2);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
+				verifyCorrectKeywordEntered(driver,key3);
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();			  
 			}
@@ -1783,6 +1774,20 @@ public class EquipmentPDDandEF {
 			share2.loadingServer(driver);
 		}
 		return caseID;
+	}
+
+	public void verifyCorrectKeywordEntered (WebDriver driver, String keyword) throws Exception{
+		
+		WebDriverWait wait = new WebDriverWait(driver,40);
+		while(true)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword);
+			Thread.sleep(1000);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).getAttribute("value");
+			if(s.contains(keyword))
+				break;
+		}
 	}
 
 	public void softAssert() throws Exception {

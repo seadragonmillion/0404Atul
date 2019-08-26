@@ -166,6 +166,7 @@ public class deleteNotifications {
 		}
 		Thread.sleep(2000);
 		share2.loadingServer(driver);
+		obj.closePopUpSticky(driver);
 		//LogOut
 		obj.logout(driver);
 		Thread.sleep(4000);		
