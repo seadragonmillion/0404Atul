@@ -492,6 +492,7 @@ public class EiRCAChinese {
 		System.out.println(results.get(0));
 		if(results.get(0).endsWith(".pdf")==false)
 		{
+			driver.switchTo().window(window);
 			obj2.deleteFiles(file);
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();

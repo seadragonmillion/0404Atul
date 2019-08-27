@@ -624,6 +624,7 @@ public class HiRCALevel1 {
 		System.out.println(results.get(0));
 		if(results.get(0).endsWith(".pdf")==false)
 		{
+			driver.switchTo().window(window);
 			deleteFiles(file);
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
