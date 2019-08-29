@@ -126,7 +126,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "jenkinsvmnonadmin" and admin nonadmin environment indicator equals 2
 	And downloads RV report with username as "jenkinsvmnonadmin" on browser "chrome"
 	And share RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
-	And mark cqaacfil RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
+	And mark critical RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
 	And delete RV report with admin nonadmin environment indicator equals 1
 	And logout from KALE
 
@@ -136,7 +136,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "jenkinsvmnonadmin" and admin nonadmin environment indicator equals 2
 	And downloads RV report with username as "jenkinsvmnonadmin" on browser "firefox"
 	And share RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
-	And mark cqaacfil RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
+	And mark critical RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
 	And delete RV report with admin nonadmin environment indicator equals 1
 	And logout from KALE
 
@@ -146,7 +146,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "jenkinsvmnonadmin" and admin nonadmin environment indicator equals 2
 	And downloads RV report with username as "jenkinsvmnonadmin" on browser "ie10"
 	And share RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
-	And mark cqaacfil RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
+	And mark critical RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
 	And delete RV report with admin nonadmin environment indicator equals 1
 	And logout from KALE
 
@@ -156,7 +156,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "virtualnonadmin_ie11" and admin nonadmin environment indicator equals 4
 	And downloads RV report with username as "virtualnonadmin_ie11" on browser "ie11"
 	And share RV report with username as "virtualnonadmin_ie11" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 3
-	And mark cqaacfil RV report with username as "virtualnonadmin_ie11" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 3
+	And mark critical RV report with username as "virtualnonadmin_ie11" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 3
 	And delete RV report with admin nonadmin environment indicator equals 3
 	And logout from KALE
 			
@@ -166,7 +166,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "qaacfi" and admin nonadmin environment indicator equals 6
 	And downloads RV report with username as "qaacfi" on browser "chrome"
 	And share RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
-	And mark cqaacfil RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
+	And mark critical RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
 	And delete RV report with admin nonadmin environment indicator equals 1
 	And logout from KALE
 	
@@ -176,7 +176,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "qaacfi" and admin nonadmin environment indicator equals 6
 	And downloads RV report with username as "qaacfi" on browser "firefox"
 	And share RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
-	And mark cqaacfil RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
+	And mark critical RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
 	And delete RV report with admin nonadmin environment indicator equals 1
 	And logout from KALE
 	
@@ -186,7 +186,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "qaacfi" and admin nonadmin environment indicator equals 6
 	And downloads RV report with username as "qaacfi" on browser "ie10"
 	And share RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
-	And mark cqaacfil RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
+	And mark critical RV report with username as "qaacfi" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 1
 	And delete RV report with admin nonadmin environment indicator equals 1
 	And logout from KALE
 	
@@ -196,7 +196,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "qaa_ie11" and admin nonadmin environment indicator equals 8
 	And downloads RV report with username as "qaa_ie11" on browser "ie11"
 	And share RV report with username as "qaa_ie11" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 3
-	And mark cqaacfil RV report with username as "qaa_ie11" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 3
+	And mark critical RV report with username as "qaa_ie11" and password as "S2FsZTk0OTM1ODMwQA==" and admin nonadmin environment indicator equals 3
 	And delete RV report with admin nonadmin environment indicator equals 3
 	And logout from KALE
 	
@@ -206,7 +206,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "jenkinsvmnonadmin" and admin nonadmin environment indicator equals 10
 	And downloads RV report with username as "jenkinsvmnonadmin" on browser "chrome"
 	And share RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
-	And mark cqaacfil RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And mark critical RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And delete RV report with admin nonadmin environment indicator equals 5
 	And logout from KALE
 
@@ -216,7 +216,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "jenkinsvmnonadmin" and admin nonadmin environment indicator equals 10
 	And downloads RV report with username as "jenkinsvmnonadmin" on browser "firefox"
 	And share RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
-	And mark cqaacfil RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And mark critical RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And delete RV report with admin nonadmin environment indicator equals 5
 	And logout from KALE
 
@@ -226,7 +226,7 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "jenkinsvmnonadmin" and admin nonadmin environment indicator equals 10
 	And downloads RV report with username as "jenkinsvmnonadmin" on browser "ie10"
 	And share RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
-	And mark cqaacfil RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And mark critical RV report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And delete RV report with admin nonadmin environment indicator equals 5
 	And logout from KALE
 
@@ -236,6 +236,6 @@ Scenario: Test RV sanity feature with notifications
 	When he creates an RV report with username as "virtualnonadmin_ie11" and admin nonadmin environment indicator equals 12
 	And downloads RV report with username as "virtualnonadmin_ie11" on browser "ie11"
 	And share RV report with username as "virtualnonadmin_ie11" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 7
-	And mark cqaacfil RV report with username as "virtualnonadmin_ie11" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 7
+	And mark critical RV report with username as "virtualnonadmin_ie11" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 7
 	And delete RV report with admin nonadmin environment indicator equals 7
 	And logout from KALE
