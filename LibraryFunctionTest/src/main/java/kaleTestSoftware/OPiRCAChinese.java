@@ -3022,12 +3022,21 @@ public class OPiRCAChinese {
 		//Event location field
 		String opircaEventLocField = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventLocationField)).getAttribute("placeholder");
 		softly.assertThat(opircaEventLocField).as("test data").contains("输入 事件发生地点");
-		//Event date label
-		String opircaEventDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventDateLabel)).getText();
-		softly.assertThat(opircaEventDateLabel).as("test data").contains("事件发生日期:");
-		//Event time label
-		String opircaEventTimeLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTimeLabel)).getText();
-		softly.assertThat(opircaEventTimeLabel).as("test data").contains("事件发生时间:");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Event date label
+			String opircaEventDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventDateLabel)).getText();
+			softly.assertThat(opircaEventDateLabel).as("test data").contains("日期与时间:");
+		}
+		else
+		{
+			//Event date label
+			String opircaEventDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventDateLabel)).getText();
+			softly.assertThat(opircaEventDateLabel).as("test data").contains("事件发生日期:");
+			//Event time label
+			String opircaEventTimeLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTimeLabel)).getText();
+			softly.assertThat(opircaEventTimeLabel).as("test data").contains("事件发生时间:");
+		}
 		//Event Problem Statement label
 		String opircaEventpbLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventProblemStatementLabel)).getText();
 		softly.assertThat(opircaEventpbLabel).as("test data").contains("事件描述:");

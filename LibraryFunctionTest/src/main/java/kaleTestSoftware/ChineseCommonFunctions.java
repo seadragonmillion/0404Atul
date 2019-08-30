@@ -392,16 +392,16 @@ public class ChineseCommonFunctions {
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5Tab)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("第五步");
 		//report
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		/*if(driver.getCurrentUrl().contains("kaleqa"))
 		{
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).getText();
 			softly.assertThat(s6).as("test data").isEqualTo("报告");
 		}
 		else
-		{
+		{*/
 			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAReportTab)).getText();
 			softly.assertThat(s6).as("test data").isEqualTo("报告");
-		}
+		//}
 	}
 
 	public void verifyChineseButtonsInfoTabHiRCA(WebDriver driver, SoftAssertions softly) throws Exception{
