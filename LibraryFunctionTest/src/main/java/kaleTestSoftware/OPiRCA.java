@@ -57,7 +57,10 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on delete button
-		driver.findElement(opirca.DeleteButton).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(opirca.DeleteButton).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
 		//Verify delete popup
 		obj2.verifyDeleteReportPopup(driver, softly, recordName);
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -148,7 +151,10 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on Open button	    	
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OpenButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Verify open report pop up
 		op2.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
@@ -183,7 +189,10 @@ public class OPiRCA {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -211,7 +220,10 @@ public class OPiRCA {
 		//Wait for loading message to disappear			
 		share2.loadingServer(driver);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
@@ -258,7 +270,10 @@ public class OPiRCA {
 		//Wait for loading message to disappear			
 		share2.loadingServer(driver);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -296,7 +311,10 @@ public class OPiRCA {
 		//Wait for loading message to disappear			
 		share2.loadingServer(driver);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -550,7 +568,10 @@ public class OPiRCA {
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);	 
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(500);
@@ -594,17 +615,28 @@ public class OPiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
 		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText)).getText().trim();
-		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(opirca.OPIRCAMarkCriticalIndicatorText).isDisplayed())
-			System.out.println("Marked critical");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		}
+		else {
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText)).getText().trim();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(opirca.OPIRCAMarkCriticalIndicatorText).isDisplayed())
+				System.out.println("Marked critical");
+		}
 		//Click back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -616,16 +648,27 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Un-mark critical pop up
 		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.findElement(opirca.OPIRCAMarkCriticalIndicatorText).isDisplayed()==false)
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			System.out.println("Unmarked critical");
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
+		}
+		else {
+			if(driver.findElement(opirca.OPIRCAMarkCriticalIndicatorText).isDisplayed()==false)
+			{
+				System.out.println("Unmarked critical");
+			}
 		}
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);		
@@ -1651,10 +1694,16 @@ public class OPiRCA {
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll down
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		else
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))));
 		//Click next
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		else
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))));
 		//Scroll top
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);	 

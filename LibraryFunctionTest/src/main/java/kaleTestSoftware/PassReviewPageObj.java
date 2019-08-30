@@ -9,8 +9,8 @@ public class PassReviewPageObj {
 	//HTML report
 	public By PassReviewSidePanel = By.id("pii-user-home-panel-btn-3pr");
 	public By FirstRecord = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a");
-	public By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
-	public By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	public By DeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
+	public By ShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
 	public By PassReviewMarkCriticalIndicatorText = By.xpath(".//*[@id='3pr-rpt']/table[1]/tbody/tr/th/strong[1]");
 	public By PassReviewShareIconOrCriticalIcon = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[1]");
 	public By PassReviewShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[2]");
@@ -53,8 +53,8 @@ public class PassReviewPageObj {
 	public By Pass3Tab = By.id("pii-3pr-tab-4-a");
 
 	//HTML
-	public By HTMLPass3CriticalText = By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr[2]/td[2]");
-	public By HTMLPass3Tab1stTableTitle = By.xpath(".//*[@id='3pr-rpt']/div[9]/div");
+	public By HTMLPass3CriticalText = By.xpath(".//*[@id='3pr-rpt']/div[8]/table/tbody/tr[2]/td[2]");
+	public By HTMLPass3Tab1stTableTitle = By.xpath(".//*[@id='3pr-rpt']/div[8]/div");
 
 
 }

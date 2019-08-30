@@ -32,7 +32,7 @@ public class HiRCAObj {
 	//Info Page
 	public By HiRCAEventTitleField = By.id("pii-irca-event-title");
 	public By HiRCAEventLocationField = By.id("pii-irca-event-location");
-	public By HiRCAInfoTabNextButtonAtBottom = By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button");
+	public By HiRCAInfoTabNextButtonAtBottom = By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button");
 	public By HiRCASaveButton = By.id("efi-irca-button-save");
 	public By HiRCASavedActivitiesButton = By.id("efi-irca-btn-savedactivities");
 	public By HiRCANewReportButton = By.id("efi-irca-button-new");

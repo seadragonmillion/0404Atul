@@ -2700,19 +2700,22 @@ public class CreateEquipmentCase {
 		driver.findElement(By.id("pii-admin-user-edit")).click();
 		//Wait for loading message
 		share2.loadingServer(driver);
-		//Searches for newly created user
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(username);
-		driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
-		//Wait for loading message
-		share2.loadingServer(driver);
-		//Selects the newly created user
-		WebElement select = driver.findElement(By.id("pii-admin-user-list"));
-		WebElement option = select.findElement(By.cssSelector(".ui-first-child"));
-		option.click();
-		//Wait for loading message
-		share2.loadingServer(driver);
+		for(int i=1;i<=2;i++)
+		{
+			//Searches for newly created user
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).clear();
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input"))).sendKeys(username);
+			driver.findElement(By.xpath(".//*[@id='pii-admin-user-list']/form/div/input")).sendKeys(Keys.ENTER);
+			//Wait for loading message
+			share2.loadingServer(driver);
+			//Selects the newly created user
+			WebElement select = driver.findElement(By.id("pii-admin-user-list"));
+			WebElement option = select.findElement(By.cssSelector(".ui-first-child"));
+			option.click();
+			//Wait for loading message
+			share2.loadingServer(driver);
+		}
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-on']")));
 		share2.scrollToElement(driver, l);
 		if(x==1)

@@ -141,10 +141,10 @@ public class UserManagement2 {
 		dd.selectByIndex(0);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify error
 		String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-		softly.assertThat(message).as("test data").contains("a user must have a company id specified.");
+		softly.assertThat(message).as("test data").contains("Please select at least one user group");
 	}
 
 	public void createExistingUserAndVerifyErrorPopup(WebDriver driver, SoftAssertions softly, String company_id, String password,String email) throws Exception{

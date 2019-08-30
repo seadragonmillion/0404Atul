@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,7 +40,10 @@ public class SRI {
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);	 
 		//Click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//Enters username
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(500);
@@ -80,17 +84,28 @@ public class SRI {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);	
 		//Clicks on mark critical
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
 		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIMarkCriticalIndicatorText)).getText();
-		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed())
-			System.out.println("Marked critical");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		}
+		else {
+			String critical=wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIMarkCriticalIndicatorText)).getText();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed())
+				System.out.println("Marked critical");
+		}
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -102,16 +117,27 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Un-mark critical pop up
 		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed()==false)
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			System.out.println("Unmarked critical");
+			share2.loadingServer(driver);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
+		}
+		else {
+			if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed()==false)
+			{
+				System.out.println("Unmarked critical");
+			}
 		}
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);		
@@ -151,7 +177,10 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on delete
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.DeleteButton)).click();		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(eirca.DeleteButton).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
 		//Verify delete popup
 		verifyDeleteReportPopup(driver, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));

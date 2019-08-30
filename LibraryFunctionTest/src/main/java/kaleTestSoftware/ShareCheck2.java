@@ -164,8 +164,18 @@ public class ShareCheck2 {
 		loadingServer(driver);
 		//Click on unread
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton));
-		if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton)).isEnabled()==false)
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+		for(int i=0;i<10;i++)
+		{
+			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton)).isEnabled()==false)
+			{
+				if(i%2==0)
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
+				else
+					wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
+			}
+			if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton)).isEnabled()==true)
+				break;
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationUnreadButton)).click();
 		//Verify the header
 		String header = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadUnreadPopUpHeader)).getText();

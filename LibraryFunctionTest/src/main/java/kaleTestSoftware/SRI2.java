@@ -588,7 +588,10 @@ public class SRI2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		sri3.verifyOpenReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Info tab
@@ -657,7 +660,10 @@ public class SRI2 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
@@ -681,7 +687,10 @@ public class SRI2 {
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -717,7 +726,10 @@ public class SRI2 {
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -752,7 +764,10 @@ public class SRI2 {
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();

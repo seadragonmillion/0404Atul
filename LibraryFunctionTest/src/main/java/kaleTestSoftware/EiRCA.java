@@ -58,7 +58,10 @@ public class EiRCA {
 		System.out.println(browserName);
 		//Clicks on delete button
 		share2.loadingServer(driver);
-		driver.findElement(eirca.DeleteButton).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(eirca.DeleteButton).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
 		//Verify delete popup
 		if (browserName.contains("safari")==false)
 		{					
@@ -95,7 +98,10 @@ public class EiRCA {
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable4Step1Q11)).getText().contains("Troubleshooting"))
 		{
 			//Click on open button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+			else
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 			//Clicks on open report
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
@@ -1442,7 +1448,10 @@ public class EiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on Open button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Verify open report pop up
 		eirca2.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
@@ -1486,7 +1495,10 @@ public class EiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -1522,7 +1534,10 @@ public class EiRCA {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -1577,7 +1592,10 @@ public class EiRCA {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -1623,7 +1641,10 @@ public class EiRCA {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -1669,7 +1690,10 @@ public class EiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(2000);
@@ -1706,17 +1730,28 @@ public class EiRCA {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
 		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAMarkCriticalIndicatorText)).getText();
-		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(eirca.EiRCAMarkCriticalIndicatorText).isDisplayed())
-			System.out.println("Marked critical");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		}
+		else {
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAMarkCriticalIndicatorText)).getText();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(eirca.EiRCAMarkCriticalIndicatorText).isDisplayed())
+				System.out.println("Marked critical");
+		}
 		//Click back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -1728,16 +1763,27 @@ public class EiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Un Mark critical pop up
 		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.findElement(eirca.EiRCAMarkCriticalIndicatorText).isDisplayed()==false)
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			System.out.println("Unmarked critical");
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
+		}
+		else {
+			if(driver.findElement(eirca.EiRCAMarkCriticalIndicatorText).isDisplayed()==false)
+			{
+				System.out.println("Unmarked critical");
+			}
 		}
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);
@@ -1755,7 +1801,10 @@ public class EiRCA {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Open Report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();/*
 		//Click on Step 1 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)).click();
@@ -1826,7 +1875,10 @@ public class EiRCA {
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable7Step3Row6Column4)).getText();
 		softly.assertThat(s5).as("test data").contains(textToVerifyClearTextBox);
 		//Open Report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Step 3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep3Tab)).click();
@@ -1867,7 +1919,10 @@ public class EiRCA {
 		softly.assertThat(s6).as("test data").isEqualTo("Step 3 - Statements of Refutability (skipped)");
 		//	}
 		//Open Report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Step 4
 		System.out.println(driver.findElement(eirca.EiRCAStep4Tab).getAttribute("class"));
@@ -1890,7 +1945,10 @@ public class EiRCA {
 			String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLStep4Table1Row4Column3)).getText();
 			softly.assertThat(s13).as("test data").contains(textToVerifyClearTextBox);
 			//Open Report
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+			else
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 			//uncheck the boxes and verify the text is gone
 			//Click on Step 4
@@ -1918,7 +1976,10 @@ public class EiRCA {
 			softly.assertThat(s14).as("test data").contains("Step 4 - Probability of Occurrence and Actions (skipped)");
 			//}
 			//Open Report
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+			else
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();		
 		}
 		//Scroll to Tab Step 5
@@ -1979,7 +2040,10 @@ public class EiRCA {
 		String s16 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLTable14Step5Row2Column3)).getText();
 		softly.assertThat(s16).as("test data").contains(textToVerifyClearTextBox);
 		//Open Report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//uncheck the boxes and verify the text is gone
 		//Click on Step 5
@@ -2381,7 +2445,10 @@ public class EiRCA {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.SequenceOfEventPageDateTimeTitle3)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo(hm1.get("Date 3rd row")+", "+hm1.get("Time 3rd row"));    
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();	
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	

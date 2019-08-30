@@ -30,14 +30,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LanguageCheckOfReports {
 
 	SoftAssertions softly = new SoftAssertions();
-	
+
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
 	Login login = new Login();
 	HiRCA2 hirca2 = new HiRCA2();
 	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
-	
+
 	public boolean containsHanScript(String s) {
 		return s.codePoints().anyMatch(
 				codepoint ->
@@ -70,7 +70,7 @@ public class LanguageCheckOfReports {
 				downloadReportIE11 (driver, y, l);
 		}
 	}
-	
+
 	public void verifyLabelAdminUserAccountChinese(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -97,7 +97,7 @@ public class LanguageCheckOfReports {
 		softly.assertThat(s5).as("test data").isEqualTo("小组代理人:");
 		//softly.assertAll();
 	}
-	
+
 	public void verifyLabelUserAccountChinese(WebDriver driver,SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -114,7 +114,7 @@ public class LanguageCheckOfReports {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password-again']"))).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("重新输入密码。:");
 		//Language
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[6]/fieldset/div/legend"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-language']"))).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("语言:");
 		//name
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-name']"))).getText();
@@ -123,19 +123,19 @@ public class LanguageCheckOfReports {
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-company']"))).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("公司名称:");
 		//department
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[10]/fieldset/div/legend"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-dept']"))).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("部门:");
 		//sub- dept
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[11]/fieldset/div/legend"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-sub-dept']"))).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("组:");
 		//job title
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[12]/fieldset/div/legend"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-jobtitle']"))).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("工作名称:");
 		//email
 		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-email']"))).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("电子邮箱:");
 		//certification
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[14]/fieldset/div/legend"))).getText();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-cert-level']"))).getText();
 		softly.assertThat(s10).as("test data").isEqualTo("PII授权等级:");
 		//license
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-license']"))).getText();
@@ -165,7 +165,7 @@ public class LanguageCheckOfReports {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password-again']"))).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Re-enter password:");
 		//Language
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[6]/fieldset/div/legend"))).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-language']"))).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Language:");
 		//name
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-name']"))).getText();
@@ -174,19 +174,19 @@ public class LanguageCheckOfReports {
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-company']"))).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("Company name:");
 		//department
-		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[10]/fieldset/div/legend"))).getText();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-dept']"))).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("Department:");
 		//sub- dept
-		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[11]/fieldset/div/legend"))).getText();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-sub-dept']"))).getText();
 		softly.assertThat(s7).as("test data").isEqualTo("Sub-department:");
 		//job title
-		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[12]/fieldset/div/legend"))).getText();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-jobtitle']"))).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("Job title:");
 		//email
 		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-email']"))).getText();
 		softly.assertThat(s9).as("test data").isEqualTo("Email:");
 		//certification
-		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-div']/form/div[14]/fieldset/div/legend"))).getText();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-cert-level']"))).getText();
 		softly.assertThat(s10).as("test data").isEqualTo("PII Certification Level:");
 		//license
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-license']"))).getText();
@@ -340,7 +340,7 @@ public class LanguageCheckOfReports {
 		//Verify company name in contact page
 		verifyCompanyName(driver);
 	}
-	
+
 	public void verifyCompanyName (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -705,7 +705,7 @@ public class LanguageCheckOfReports {
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
 		{
-			
+
 		}
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
@@ -746,7 +746,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
 		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-epm-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
 		//Stores text of username label
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td/strong"))).getText());
 		//Stores text of username label
@@ -755,12 +755,24 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]/strong"))).getText());
 		//Stores text of time label
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td[2]/strong"))).getText());
-		//Stores text of download button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).getText());
+		}
+		else
+		{
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		}
 		//Stores text of label of error %
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/span"))).getText());
 		//Stores text of label of error low
@@ -812,7 +824,10 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			return(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
+		else
+			return(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))));
 	}
 
 
@@ -832,11 +847,21 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
 		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-hpi-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+		}
+		else
+		{
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+		}
 		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
@@ -863,19 +888,38 @@ public class LanguageCheckOfReports {
 		share2.loadingServer(driver);
 		//Stores text of HiRCA title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
-		//Stores text of Mark critical
-		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
-		//Stores text of back button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
-		//Stores text of open button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of download button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).getText());
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/button"))).getText());
+			//Stores text of open button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[4]"))).getText());
+		}
+		else
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
+			//Stores text of open button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).getText());
+		}
 		//Stores text of title of 1st table
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[1]/table/thead/tr/th"))).getText());
 		//Stores the labels of all the rows in 1st table
@@ -908,7 +952,10 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();		
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
+		else
+			return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
 
 	}
 
@@ -925,19 +972,38 @@ public class LanguageCheckOfReports {
 		share2.loadingServer(driver);	
 		//Stores text of EiRCA title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
-		//Stores text of Mark critical
-		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-mirca-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
-		//Stores text of back button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
-		//Stores text of open button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of download button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).getText());
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/button"))).getText());
+			//Stores text of open button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[4]"))).getText());
+		}
+		else
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
+			//Stores text of open button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).getText());
+		}
 		//Stores text of title of 1st table
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[1]/table/thead/tr/th"))).getText());
 		//Stores the labels of all the rows in 1st table
@@ -968,7 +1034,10 @@ public class LanguageCheckOfReports {
 		//Clear the list s
 		s.clear();		
 
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
+		else
+			return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
 	}
 
 	public WebElement opirca(WebDriver driver, int y) throws Exception{
@@ -993,7 +1062,10 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();		
-		return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
+		else
+			return (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))));
 
 	}
 
@@ -1008,16 +1080,30 @@ public class LanguageCheckOfReports {
 		//Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
-		share2.loadingServer(driver);
-		//Stores text of Mark critical
-		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-jo-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
-		//Stores text of back button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+		share2.loadingServer(driver);if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/button"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+		}
+		else
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+		}
 		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
@@ -1044,17 +1130,34 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		//Stores text of Mark critical
-		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-3pr-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
-		//Stores text of back button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
-		//Stores text of open button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/button"))).getText());
+			//Stores text of open button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).getText());
+		}
+		else
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
+			//Stores text of back button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/button"))).getText());
+			//Stores text of open button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		}
 		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
@@ -1082,15 +1185,30 @@ public class LanguageCheckOfReports {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Stores text of Remote Verification title
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
-		//Stores text of Mark critical
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
-		//Stores text of download button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
-		//Stores text of delete button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
-		//Stores text of share button
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).getText());
+		}
+		else
+		{
+			//Stores text of Mark critical
+			//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-irca-critical-input']"))).getText());
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
+			//Stores text of download button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText());
+			//Stores text of delete button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText());
+			//Stores text of share button
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).getText());
+		}
 		//Stores text of title of 1st table
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[1]/table/tbody/tr/th/span[1]"))).getText());
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[1]/table/tbody/tr/th/span[2]"))).getText());
@@ -1130,26 +1248,56 @@ public class LanguageCheckOfReports {
 		System.out.println(v);
 		if((browserName.equals("internet explorer"))&&(v.startsWith("11")))
 		{
-			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getAttribute("class");
-			System.out.println(s1);
-			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getAttribute("class");
-			System.out.println(s2);
-			if(s1.contains("pii-uhome-rv-print"))
-				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));
-			if(s2.contains("pii-uhome-rv-print"))
-				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
-			return (element);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getAttribute("class");
+				System.out.println(s1);
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getAttribute("class");
+				System.out.println(s2);
+				if(s1.contains("pii-uhome-rv-print"))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]")));
+				if(s2.contains("pii-uhome-rv-print"))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")));
+				return (element);
+			}
+			else
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getAttribute("class");
+				System.out.println(s1);
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getAttribute("class");
+				System.out.println(s2);
+				if(s1.contains("pii-uhome-rv-print"))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));
+				if(s2.contains("pii-uhome-rv-print"))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
+				return (element);
+			}
 		}
 		else{
-			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText();
-			System.out.println(s1);
-			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
-			System.out.println(s2);
-			if (s1.contains("download") || (s1.contains("打印"))  || (s1.contains("下载")))
-				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));	
-			else if (s2.contains("download")||(s1.contains("打印")) || (s1.contains("下载")))
-				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
-			return (element);
+			if(driver.getCurrentUrl().contains("kaleqa"))
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText();
+				System.out.println(s1);
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText();
+				System.out.println(s2);
+				if (s1.contains("download") || (s1.contains("打印"))  || (s1.contains("下载")))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]")));	
+				else if (s2.contains("download")||(s1.contains("打印")) || (s1.contains("下载")))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")));
+				return (element);
+			}
+			else
+			{
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).getText();
+				System.out.println(s1);
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).getText();
+				System.out.println(s2);
+				if (s1.contains("download") || (s1.contains("打印"))  || (s1.contains("下载")))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")));	
+				else if (s2.contains("download")||(s1.contains("打印")) || (s1.contains("下载")))
+					element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")));
+				return (element);
+			}
 		}
 
 	}

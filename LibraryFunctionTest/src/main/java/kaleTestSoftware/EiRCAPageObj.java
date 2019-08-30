@@ -6,10 +6,10 @@ import org.openqa.selenium.By;
 public class EiRCAPageObj {
 
 	//Buttons on HTML report page
-	public By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
-	public By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]");
-	public By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
-	public By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
+	public By DeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
+	public By OpenButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]");
+	public By DownloadButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
+	public By ShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[4]");
 	public By BackButton = By.id("pii-uhome-back");
 	public By EiRCAShareIconOrCriticalIcon = By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a/span[1]");
 	public By EiRCAShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-mirca']/ul/li[2]/a/span[2]");
@@ -22,7 +22,7 @@ public class EiRCAPageObj {
 	public By ShareSaveButton = By.id("pii-uhshare-save");
 
 	public By EiRCASidePanel = By.id("pii-user-home-panel-btn-mirca");
-	public By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
+	public By MarkCritical = By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label");
 	public By EiRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='mirca-rpt']/div/table/thead/tr/th/strong");
 
 	//Info page

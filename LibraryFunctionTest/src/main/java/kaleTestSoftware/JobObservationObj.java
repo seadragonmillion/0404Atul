@@ -16,7 +16,7 @@ public class JobObservationObj {
 	public By JOPopupTitle = By.id("pii-joa-dialog-title");
 	public By JOPopupConfirmButton = By.id("pii-joa-dialog-confirmed");
 	public By JOSavedActivitiesButton = By.id("pii-joa-btn-savedactivities");
-	public By JOStep1NextButton = By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button");
+	public By JOStep1NextButton = By.xpath(".//*[@id='pii-joa-tab-1-form']/div[5]/div/button");
 	//Step 1
 	public By Step1Observer = By.id("pii-joa-tab-1-observer");
 	public By Step1Location = By.id("pii-joa-tab-1-location");
@@ -94,6 +94,6 @@ public class JobObservationObj {
 	public By ReportTabStep3And4Answers = By.xpath(".//*[@id='pii-jo-rpt-data']/div[6]/div[2]/span");
 	//HTML
 	public By HTMLMarkedCritical = By.xpath(".//*[@id='joa-rpt']/div/div/span[3]/strong");
-	public By JODeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
-	public By JOShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	public By JODeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a");
+	public By JOShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
 }

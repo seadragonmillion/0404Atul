@@ -100,7 +100,10 @@ public class SRI3 {
 		WebDriverWait wait = new WebDriverWait(driver,30);	
 		verifyReportCanBeOpenedAfterLogin(driver,username,password);
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Step 2 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep2Tab)).click();
@@ -155,7 +158,10 @@ public class SRI3 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Step 2 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep2Tab)).click();

@@ -7,10 +7,10 @@ public class OPiRCAPageObj {
 
 
 	public By AnalysisLinkText = By.linkText("Analysis");
-	public By DeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
-	public By OpenButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
-	public By DownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
-	public By ShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]");
+	public By DeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
+	public By OpenButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a");
+	public By DownloadButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
+	public By ShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[4]");
 	public By ShareTextBox = By.id("pii-uhshare-search-input");
 	public By ShareDropdown = By.xpath(".//*[@id='pii-uhshare-blocks']/div[2]/ul");
 	public By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
@@ -18,7 +18,7 @@ public class OPiRCAPageObj {
 	public By UserNameDisplayInReport = By.xpath(".//*[@id='opa-rpt']/div/table/tbody/tr[6]/td[2]");
 	public By ShareSaveButton = By.id("pii-uhshare-save");
 	public By OPiRCASidePanel = By.id("pii-user-home-panel-btn-opa");
-	public By MarkCritical = By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label");
+	public By MarkCritical = By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label");
 	public By OPIRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th/strong");
 	public By OPIRCAMarkCriticalIndicatorText1 = By.xpath(".//*[@id='opa-rpt']/div/table/thead/tr/th");
 	public By OPiRCAFinalizeButton = By.id("efi-opa-button-finalize");
@@ -49,7 +49,7 @@ public class OPiRCAPageObj {
 	public By OPiRCAStep4Tab = By.id("efi-opa-tab-4");
 	public By OPiRCAStep5Tab = By.id("efi-opa-tab-5");
 	public By OPiRCAReportTab = By.id("efi-opa-tab-6");
-	public By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button");
+	public By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[11]/div/button");
 	public By OPiRCAAddContributingFactorButton = By.id("pii-opa-addnewcf-button");
 	public By OPiRCANewContributingFactorField = By.id("pii-opa-addnewcf-cf");
 	public By OPiRCAAddContributingFactorSaveButton = By.id("pii-opa-addnewcf-save");

@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class JobObservation2 {
@@ -10,7 +11,10 @@ public class JobObservation2 {
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
 		
 		//Clicks next
-		driver.findElement(jo.JOStep1NextButton).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(jo.JOStep1NextButton).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button")).click();
 		//Verify all errors
 		String observerError = driver.findElement(jo.Step1ObserverError).getText();
 		softly.assertThat(observerError).as("test data").isEqualTo("Observer is required");

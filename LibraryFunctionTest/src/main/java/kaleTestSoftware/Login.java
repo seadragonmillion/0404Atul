@@ -19,6 +19,7 @@ public class Login {
 	SoftAssertions softly = new SoftAssertions();
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share = new ShareCheck2();
+	CreateEquipPageObj equip = new CreateEquipPageObj();
 
 	public String loginWarningMessage = "Warning: Only one current log in session per user is allowed. Any previous log in on another device or web browser will be automatically disconnected. Please report abnormal account activity and change password immediately.";
 	public String failedLoginMessage = "Failed to login. Error details: cannot establish connection with KALE server; please try again later";
@@ -258,7 +259,21 @@ public class Login {
 			}
 			if(version.startsWith("10"))
 			{
+				try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
+				}catch(org.openqa.selenium.TimeoutException u)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(equip.KaleHomePage)).click();
+					try{
+						element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight));
+					}catch(org.openqa.selenium.TimeoutException t)
+					{
+						element = wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameMenuRight));
+					}
+					act.click(element).build().perform();
+					Thread.sleep(3000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
+				}
 			}
 			Thread.sleep(2000);
 		}

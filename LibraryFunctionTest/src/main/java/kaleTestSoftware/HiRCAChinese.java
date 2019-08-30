@@ -43,7 +43,7 @@ public class HiRCAChinese {
 	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
 	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
 	HiRCALOPBug2 hlb2 = new HiRCALOPBug2 ();
-	
+
 	public String text = "Chinese check";
 
 	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
@@ -84,8 +84,16 @@ public class HiRCAChinese {
 		share2.scrollToAPoint(driver, 6500);
 		//Clicks on next
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+		}
+		else
+		{
+			executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+		}
 		Thread.sleep(2000);
 	}
 

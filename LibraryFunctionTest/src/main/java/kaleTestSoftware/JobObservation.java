@@ -1261,7 +1261,10 @@ public class JobObservation {
 	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{
 
 		//Clicks on delete button
-		driver.findElement(jo.JODeleteButton).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(jo.JODeleteButton).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]")).click();
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		//Clicks on delete report
@@ -1329,7 +1332,10 @@ public class JobObservation {
 		//Calls verifyTextReport to check text entered
 		verifyTextReport(driver);
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOShareButton)).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]")).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(500);
@@ -1364,15 +1370,26 @@ public class JobObservation {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.HTMLMarkedCritical)).getText();
-		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed())
-			System.out.println("Marked critical");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		}
+		else {
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.HTMLMarkedCritical)).getText();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed())
+				System.out.println("Marked critical");
+		}
 		//Click back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -1384,14 +1401,25 @@ public class JobObservation {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(jo.JOFirstRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed()==false)
+		if(driver.getCurrentUrl().contains("kaleqa"))
 		{
-			System.out.println("Unmarked critical");
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
+		}
+		else {
+			if(driver.findElement(jo.HTMLMarkedCritical).isDisplayed()==false)
+			{
+				System.out.println("Unmarked critical");
+			}
 		}
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);
@@ -1488,7 +1516,10 @@ public class JobObservation {
 			driver.findElement(jo.Step1JobObserved).sendKeys(text);
 		}
 		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep1NextButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(jo.JOStep1NextButton).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button")).click();
 		//Uploads image, clears it, rotates it
 		imageUpload(driver);
 		//Modify date time

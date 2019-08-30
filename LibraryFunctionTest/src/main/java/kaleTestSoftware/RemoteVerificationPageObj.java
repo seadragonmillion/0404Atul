@@ -65,22 +65,22 @@ public class RemoteVerificationPageObj {
 	public By RVReportNotSentStatusMessage = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/span");
 	public By RVReportSentStatusMessage = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/span");
 	public By RVCreationDate = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[3]");
-	public By RVShareButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	public By RVShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
 	public By RVReportCreatorUsername = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div");
 	public By RVReportVerifierUsername = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[2]");
-	public By RVDownloadButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a");
+	public By RVDownloadButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a");
 	public By RVReportTitle = By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr[2]/td/strong");
 	public By RVReportEventDetails = By.xpath(".//*[@id='rv-rpt']/div/div[3]/table/tbody/tr[2]/td/span");
 	public By RVMarkedCriticalText = By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong");
-	public By RVDeleteButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
+	public By RVDeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
 	public By AcceptRejectConfirmPopupTitle = By.id("pii-user-home-rv-dialog-title");
 
 	//Share Page
 	public By RVSharePageVerifierBlock = By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul");
 
 	//Verifier report view
-	public By VerifierAcceptButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]");
-	public By VerifierRejectButton = By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]");
+	public By VerifierAcceptButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
+	public By VerifierRejectButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
 	public By VerifierRejectComment = By.id("pii-rv-dialog-comments");
 	public By VerifierRejectConfirmButton = By.id("pii-user-home-rv-dialog-confirmed");
 

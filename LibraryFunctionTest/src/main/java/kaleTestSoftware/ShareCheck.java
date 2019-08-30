@@ -626,7 +626,10 @@ public class ShareCheck {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
@@ -651,8 +654,10 @@ public class ShareCheck {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		//Clicks on download button		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -687,7 +692,10 @@ public class ShareCheck {
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -726,7 +734,10 @@ public class ShareCheck {
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(share.SharedReportDownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -944,7 +955,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-hpi']/ul/li[2]/a"))).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//HiRCA
@@ -955,7 +969,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//EiRCA
@@ -966,7 +983,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//O&PiRCA
@@ -977,7 +997,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//Job Observation
@@ -988,7 +1011,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-joa']/ul/li[2]/a"))).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//3 Pass Review
@@ -999,7 +1025,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 		//Remote Verification
@@ -1010,7 +1039,10 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		share2.loadingServer(driver);
 		//click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		//share to 10 users
 		shareReportToManyUsers(driver,username,password1);
 	}

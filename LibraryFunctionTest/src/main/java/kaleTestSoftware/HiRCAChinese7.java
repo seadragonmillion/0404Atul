@@ -29,7 +29,7 @@ public class HiRCAChinese7 {
 		System.out.println(ev_ph);
 		softly.assertThat(ev_ph).as("test data").contains("输入 事件名称");
 		//Event id
-		String ev_id = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[2]/label"))).getText();
+		String ev_id = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-crnumber']"))).getText();
 		System.out.println(ev_id);
 		softly.assertThat(ev_id).as("test data").contains("事件编号:");
 		//Verify place holder of event id
@@ -37,31 +37,49 @@ public class HiRCAChinese7 {
 		System.out.println(ev_ph1);
 		softly.assertThat(ev_ph1).as("test data").contains("输入 事件编号 (非必填)");
 		//Event location
-		String loc=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/label"))).getText();
+		String loc=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-location']"))).getText();
 		System.out.println(loc);
 		softly.assertThat(loc).as("test data").contains("事件发生地点:");
 		//Verify place holder of event location
 		String ev_ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).getAttribute("placeholder");
 		System.out.println(ev_ph2);
 		softly.assertThat(ev_ph2).as("test data").contains("输入 事件发生地点");
-		//Department
-		String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend"))).getText();
-		System.out.println(dept);
-		softly.assertThat(dept).as("test data").contains("部门:");
-		//Sub department
-		String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
-		System.out.println(sub_dept);
-		softly.assertThat(sub_dept).as("test data").contains("组:");
-		//Date of event
-		String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label"))).getText();
-		System.out.println(date);
-		softly.assertThat(date).as("test data").contains("事件发生日期:");
-		//Time of event
-		String time=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label"))).getText();
-		System.out.println(time);
-		softly.assertThat(time).as("test data").contains("事件发生时间:");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			//Department
+			String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
+			System.out.println(dept);
+			softly.assertThat(dept).as("test data").contains("部门:");
+			//Sub department
+			String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/fieldset/div/legend"))).getText();
+			System.out.println(sub_dept);
+			softly.assertThat(sub_dept).as("test data").contains("组:");
+			//Date of event
+			String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-date']"))).getText();
+			System.out.println(date);
+			softly.assertThat(date).as("test data").contains("日期与时间:");
+		}
+		else
+		{
+			//Department
+			String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend"))).getText();
+			System.out.println(dept);
+			softly.assertThat(dept).as("test data").contains("部门:");
+			//Sub department
+			String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
+			System.out.println(sub_dept);
+			softly.assertThat(sub_dept).as("test data").contains("组:");
+			//Date of event
+			String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label"))).getText();
+			System.out.println(date);
+			softly.assertThat(date).as("test data").contains("事件发生日期:");
+			//Time of event
+			String time=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label"))).getText();
+			System.out.println(time);
+			softly.assertThat(time).as("test data").contains("事件发生时间:");
+		}
 		//Problem statement
-		String prob=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label"))).getText();
+		String prob=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-pbstatement']"))).getText();
 		System.out.println(prob);
 		softly.assertThat(prob).as("test data").contains("事件描述:");
 		//Verify place holder of problem statement
@@ -69,7 +87,7 @@ public class HiRCAChinese7 {
 		System.out.println(ev_ph3);
 		softly.assertThat(ev_ph3).as("test data").contains("输入 事件描述");
 		//Executive summary
-		String exec=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label"))).getText();
+		String exec=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-execsummary']"))).getText();
 		System.out.println(exec);
 		softly.assertThat(exec).as("test data").contains("报告摘要:");
 		//Verify place holder of executive summary
@@ -77,7 +95,7 @@ public class HiRCAChinese7 {
 		System.out.println(ev_ph4);
 		softly.assertThat(ev_ph4).as("test data").contains("输入 报告摘要 (非必填)");
 		//Timeline of event
-		String timeline=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label"))).getText();
+		String timeline=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-events']"))).getText();
 		System.out.println(timeline);
 		softly.assertThat(timeline).as("test data").contains("事件详细过程（时序构建）:");
 		//Verify place holder of timeline of event
@@ -85,7 +103,7 @@ public class HiRCAChinese7 {
 		System.out.println(ev_ph5);
 		softly.assertThat(ev_ph5).as("test data").contains("输入 事件详细过程（时序构建）");
 		//Background information
-		String back=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[11]/label"))).getText();
+		String back=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-bginfos']"))).getText();
 		System.out.println(back);
 		softly.assertThat(back).as("test data").contains("相关信息:");
 		//Verify place holder of background information
@@ -105,7 +123,7 @@ public class HiRCAChinese7 {
 		System.out.println(newFilebutton);
 		softly.assertThat(newFilebutton).as("test data").contains("上传另一个档案");
 		//Investigators
-		String inve=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label"))).getText();
+		String inve=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-investigators']"))).getText();
 		System.out.println(inve);
 		softly.assertThat(inve).as("test data").contains("事件调查员:");
 		//Verify place holder of investigator
@@ -113,7 +131,7 @@ public class HiRCAChinese7 {
 		System.out.println(ev_ph7);
 		softly.assertThat(ev_ph7).as("test data").contains("输入 事件调查员");
 		//Report creation date
-		String repo=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/label"))).getText();
+		String repo=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-repdatetime']"))).getText();
 		System.out.println(repo);
 		softly.assertThat(repo).as("test data").contains("报告编写时间:");
 	}
@@ -160,7 +178,7 @@ public class HiRCAChinese7 {
 
 		softly.assertThat(ans3).as("test data").contains("两年内受过培训");
 	}
-	
+
 	public void chineseStepOneq16 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -193,7 +211,7 @@ public class HiRCAChinese7 {
 		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
 		softly.assertThat(ans3).as("test data").contains("未知");
 	}
-	
+
 	public void chineseStepOneq17 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -226,7 +244,7 @@ public class HiRCAChinese7 {
 		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
 		softly.assertThat(ans3).as("test data").contains("能，但程序未规定");
 	}
-	
+
 	public void chineseStepOneq15 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -312,7 +330,7 @@ public class HiRCAChinese7 {
 		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();		
 		softly.assertThat(ans3).as("test data").contains("未知");
 	}
-	
+
 
 	public void chineseStepOneq12 (WebDriver driver, SoftAssertions softly) throws Exception {
 

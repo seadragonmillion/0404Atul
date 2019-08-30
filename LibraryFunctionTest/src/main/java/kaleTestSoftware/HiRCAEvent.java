@@ -78,7 +78,10 @@ public class HiRCAEvent {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on delete button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		//Verify delete popup
 		obj1.verifyDeleteReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
@@ -160,7 +163,10 @@ public class HiRCAEvent {
 		//Wait for loading message to disappear		  
 		share2.loadingServer(driver);
 		//Click on Open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Verify open pop up
 		obj2.verifyOpenReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -238,7 +244,10 @@ public class HiRCAEvent {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on Open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Verify open pop up
 		obj2.verifyOpenReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -352,7 +361,10 @@ public class HiRCAEvent {
 		share2.loadingServer(driver);
 		//Clicks on Open button
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Verify open pop up
 		obj2.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -400,7 +412,10 @@ public class HiRCAEvent {
 		HiRCA2 obj = new HiRCA2();
 		//Clicks on Open button
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		//Verify open pop up
 		obj.verifyOpenReportPopup(driver, softly, recordName);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
@@ -433,7 +448,10 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -464,7 +482,10 @@ public class HiRCAEvent {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -516,7 +537,10 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		Thread.sleep(2000);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		Thread.sleep(3000);
@@ -553,7 +577,11 @@ public class HiRCAEvent {
 		{
 			deleteFiles(file);
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+			else
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on open pdf report
@@ -590,7 +618,10 @@ public class HiRCAEvent {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -684,7 +715,7 @@ public class HiRCAEvent {
 
 		}
 		String newData=newData1.replace("  ", " ");/*
-		String newData3 = newData2.replaceAll("<­br>", "");
+		String newData3 = newData2.replaceAll("<??br>", "");
 		String newData = newData3.replaceAll("[]", "");*/
 		// System.out.println(newData);
 		//Verifies event id
@@ -800,7 +831,10 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		share2.scrollToTop(driver);
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[4]"))).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
 		Thread.sleep(500);
@@ -819,10 +853,10 @@ public class HiRCAEvent {
 		//Verify share save sticky
 		eirca2.verifyStickyShareSave(driver, softly);
 		//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Share icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));	
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Share icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));	
 		//Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on HiRCA side panel
@@ -837,36 +871,58 @@ public class HiRCAEvent {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
 		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong"))).getText();
-		softly.assertThat(critical).as("test data").contains("Critical");
-		if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
-			System.out.println("Marked critical");
+		//Checks if marked critical		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		}
+		else {
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong"))).getText();
+			softly.assertThat(critical).as("test data").contains("Critical");
+			if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed())
+				System.out.println("Marked critical");
+		}
 		//Click back
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
-			share2.loadingServer(driver);
-			//Verify Marked critical icon
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));
-			//Verify presence of shared icon 
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[2]")));
-			//Clicks on first newly created record
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
-			share2.loadingServer(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[1]")));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a/span[2]")));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Mark critical pop up
 		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
-			System.out.println("Unmarked critical");		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
+		}
+		else {
+			if(driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/thead/tr/th/strong")).isDisplayed()==false)
+				System.out.println("Unmarked critical");		
+		}
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
@@ -903,7 +959,7 @@ public class HiRCAEvent {
 		softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
 		//Checks for Investigators data
 		String eve_inv =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]"))).getText();
-		/*String r = eve_inv.replaceAll("<­br>", "");
+		/*String r = eve_inv.replaceAll("<??br>", "");
 		String r1 = r.replaceAll("[]", "");*/
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators.replace("\n", ""));
@@ -914,7 +970,7 @@ public class HiRCAEvent {
 		softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
 		//Checks for Problem statement data
 		String eve_prob =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]"))).getText();
-		/*String r2 = eve_prob.replaceAll("<­br>", "");
+		/*String r2 = eve_prob.replaceAll("<??br>", "");
 		String r3 = r2.replaceAll("[]", "");*/
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem.replace("\n", ""));
@@ -922,7 +978,7 @@ public class HiRCAEvent {
 			softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
 		//Checks for Timeline of event data
 		String eve_timeline =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]"))).getText();
-		/*String r4 = eve_timeline.replaceAll("<­br>", "");
+		/*String r4 = eve_timeline.replaceAll("<??br>", "");
 		String r5 = r4.replaceAll("[]", "");*/
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline.replace("\n", ""));
@@ -930,7 +986,7 @@ public class HiRCAEvent {
 			softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
 		//Checks for Background information data
 		String eve_back =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]"))).getText();
-		/*String r6 = eve_back.replaceAll("<­br>", "");
+		/*String r6 = eve_back.replaceAll("<??br>", "");
 		String r7 = r6.replaceAll("[]", "");*/
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background.replace("\n", ""));
@@ -1186,11 +1242,24 @@ public class HiRCAEvent {
 		//Clicks on next
 		if(browserName.contains("safari"))
 		{
-			jse.executeScript("arguments[0].focus();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
-			jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+			if(driver.getCurrentUrl().contains("kaleqa"))
+			{
+				jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+				jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+			}
+			else
+			{
+				jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+				jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+			}
 		}
 		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+		{			
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
+			else
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();		
+		}
 		//Click on Act of Nature
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
 		//Verify the texts on the options
@@ -2147,43 +2216,58 @@ public class HiRCAEvent {
 		String ev_title = driver.findElement(By.id("pii-irca-event-title-label")).getText();
 		System.out.println(ev_title);
 		softly.assertThat(ev_title).as("test data").isEqualTo("Event title:");
-		String ev_id = driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[2]/label")).getText();
+		String ev_id = driver.findElement(By.xpath(".//*[@for='pii-irca-event-crnumber']")).getText();
 		System.out.println(ev_id);
 		softly.assertThat(ev_id).as("test data").isEqualTo("Event ID:");
-		String loc=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[3]/label")).getText();
+		String loc=driver.findElement(By.xpath(".//*[@for='pii-irca-event-location']")).getText();
 		System.out.println(loc);
 		softly.assertThat(loc).as("test data").isEqualTo("Location of event:");
-		String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
-		System.out.println(dept);
-		softly.assertThat(dept).as("test data").isEqualTo("Department:");
-		String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
-		System.out.println(sub_dept);
-		softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");
-		String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
-		System.out.println(date);
-		softly.assertThat(date).as("test data").isEqualTo("Date of event:");
-		String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
-		System.out.println(time);
-		softly.assertThat(time).as("test data").isEqualTo("Time of event:");
-		String prob=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]/label")).getText();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
+			System.out.println(dept);
+			softly.assertThat(dept).as("test data").isEqualTo("Department:");
+			String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/fieldset/div/legend")).getText();
+			System.out.println(sub_dept);
+			softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");
+			String date=driver.findElement(By.xpath(".//*[@for='pii-irca-event-date']")).getText();
+			System.out.println(date);
+			softly.assertThat(date).as("test data").isEqualTo("Date/Time of event:");
+		}
+		else
+		{
+			String dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend")).getText();
+			System.out.println(dept);
+			softly.assertThat(dept).as("test data").isEqualTo("Department:");
+			String sub_dept=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend")).getText();
+			System.out.println(sub_dept);
+			softly.assertThat(sub_dept).as("test data").isEqualTo("Sub-department:");
+			String date=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label")).getText();
+			System.out.println(date);
+			softly.assertThat(date).as("test data").isEqualTo("Date of event:");
+			String time=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label")).getText();
+			System.out.println(time);
+			softly.assertThat(time).as("test data").isEqualTo("Time of event:");
+		}
+		String prob=driver.findElement(By.xpath(".//*[@for='pii-irca-event-pbstatement']")).getText();
 		System.out.println(prob);
 		softly.assertThat(prob).as("test data").isEqualTo("Problem statement:");
-		String exec=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]/label")).getText();
+		String exec=driver.findElement(By.xpath(".//*[@for='pii-irca-event-execsummary']")).getText();
 		System.out.println(exec);
 		softly.assertThat(exec).as("test data").isEqualTo("Executive summary:");
-		String timeline=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[10]/label")).getText();
+		String timeline=driver.findElement(By.xpath(".//*[@for='pii-irca-event-events']")).getText();
 		System.out.println(timeline);
 		softly.assertThat(timeline).as("test data").isEqualTo("Timeline of event:");
-		String back=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[11]/label")).getText();
+		String back=driver.findElement(By.xpath(".//*[@for='pii-irca-event-bginfos']")).getText();
 		System.out.println(back);
 		softly.assertThat(back).as("test data").isEqualTo("Background information:");
 		String supp1 = driver.findElement(By.id("pii-irca-event-file-fieldcontain-label-0")).getText();
 		System.out.println(supp1);
 		softly.assertThat(supp1).as("test data").isEqualTo("Supporting file (1):");
-		String inve=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]/label")).getText();
+		String inve=driver.findElement(By.xpath(".//*[@for='pii-irca-event-investigators']")).getText();
 		System.out.println(inve);
 		softly.assertThat(inve).as("test data").isEqualTo("Investigators:");
-		String repo=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/label")).getText();
+		String repo=driver.findElement(By.xpath(".//*[@for='pii-irca-event-repdatetime']")).getText();
 		System.out.println(repo);
 		softly.assertThat(repo).as("test data").isEqualTo("Report creation date:");
 		//Checks if header appears
@@ -2628,11 +2712,24 @@ public class HiRCAEvent {
 		//Clicks on next
 		if(browserName.contains("safari"))
 		{
-			jse.executeScript("arguments[0].focus();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
-			jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+			if(driver.getCurrentUrl().contains("kaleqa"))
+			{
+				jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+				jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+			}
+			else
+			{
+				jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+				jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+			}
 		}
 		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();
+		{
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();				
+			else
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).click();	
+		}
 		//Clicks on back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		//Fills optional data

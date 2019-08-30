@@ -13,6 +13,7 @@ import java.util.Optional;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -347,7 +348,10 @@ public class EiRCAChinese {
 		String sharer = ccf.decideSharerChinese(driver);
 		String sharerAdded = ccf.decideSharerAddedChinese(driver);
 		//Click on share button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ShareButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ShareButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
 		share3.shareTwice(driver, softly, 1);
 		//Choose chinese sharer name and username
 		//Enters username
@@ -473,7 +477,10 @@ public class EiRCAChinese {
 		HiRCAEvent obj2 = new HiRCAEvent();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
@@ -495,7 +502,10 @@ public class EiRCAChinese {
 			driver.switchTo().window(window);
 			obj2.deleteFiles(file);
 			//Clicks on download button
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+			else
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on open pdf report
@@ -520,7 +530,10 @@ public class EiRCAChinese {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -588,7 +601,10 @@ public class EiRCAChinese {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -622,7 +638,10 @@ public class EiRCAChinese {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1178,19 +1197,40 @@ public class EiRCAChinese {
 		//Verify the buttons
 		hc17.chineseReportButtons(driver,softly);
 		//Mark critical
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).getText();
-		softly.assertThat(s).as("test data").contains("重要");
-		//Click on mark critical
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).getText();
+			softly.assertThat(s).as("test data").contains("重要");
+			//Click on mark critical
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).click();
+		}
+		else
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText();
+			softly.assertThat(s).as("test data").contains("重要");
+			//Click on mark critical
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		}
 		//confirm button click
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupButton)).click();
 		//Wait for loading
 		share2.loadingServer(driver);
 		//Mark critical text
-		String s76 = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAMarkCriticalIndicatorText)).getText();
-		softly.assertThat(s76).as("test data").contains("重要");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			share2.loadingServer(driver);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).getAttribute("class");
+			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		}
+		else {
+			String s76 = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAMarkCriticalIndicatorText)).getText();
+			softly.assertThat(s76).as("test data").contains("重要");
+		}
 		//Click on mark critical again
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.MarkCritical)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//confirm button click
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupButton)).click();
 		//Wait for loading

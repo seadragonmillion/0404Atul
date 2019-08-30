@@ -37,7 +37,10 @@ public class OPiRCAChinese {
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Scroll down
-		share2.scrollToElement(driver,wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		else
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
