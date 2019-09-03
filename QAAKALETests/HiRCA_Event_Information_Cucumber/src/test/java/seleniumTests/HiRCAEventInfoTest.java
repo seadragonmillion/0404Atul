@@ -80,7 +80,7 @@ public class HiRCAEventInfoTest {
 	public void rename_and_save_HiRCA_report_three_times_with_username_as_and_password_as_and_firefox_indicator_as(String username, String password, int f) throws Exception {
 		HiRCAEvent hirca = new HiRCAEvent();
 		Login login = new Login();
-		hirca.saveNewReport(driver, username, password, login,0,b.get(0),hirca.text184);
+		hirca.saveNewReport(driver, username, password, login,f,b.get(0),hirca.text184);
 	}
 
 	@When("^delete HiRCA report with admin nonadmin environment indicator equals (\\d+)$")
