@@ -242,11 +242,11 @@ Scenario: Test Error Meter sanity feature with notifications
 	
 @E50ChromeTest
 Scenario: Test Error Meter sanity feature with notifications
-	Given user is on KALE Home Page "https://kaleqa.error-free.com/" with username as "ritica_only_admin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
-	When she creates an Error Meter report with error probability as 50 and username as "ritica_only_admin"
+	Given user is on KALE Home Page "https://kaleqa.error-free.com/" with username as "jenkinsvm" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
+	When she creates an Error Meter report with error probability as 50 and username as "jenkinsvm"
 	And downloads Error Meter report with error probability as 50 on browser "chrome"
-	And share Error Meter report with username as "ritica_only_admin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 0
-	And mark critical Error Meter report with username as "ritica_only_admin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 0
+	And share Error Meter report with username as "jenkinsvm" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 0
+	And mark critical Error Meter report with username as "jenkinsvm" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 0
 	And delete Error Meter report with admin nonadmin environment indicator equals 0
 	And logout from KALE
 
