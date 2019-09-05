@@ -81,7 +81,7 @@ public class RemoteVerification3 {
 			rc2.verifySaveAndSendPopup(driver, softly);
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
-		driver.findElement(rv.RVSavePopupComfirmButton).click();
+		driver.findElement(rv.RVSavePopupConfirmButton).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		return verifier;

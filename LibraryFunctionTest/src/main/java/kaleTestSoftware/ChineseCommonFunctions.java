@@ -399,8 +399,8 @@ public class ChineseCommonFunctions {
 		}
 		else
 		{*/
-			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAReportTab)).getText();
-			softly.assertThat(s6).as("test data").isEqualTo("报告");
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAReportTab)).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("报告");
 		//}
 	}
 
@@ -417,8 +417,16 @@ public class ChineseCommonFunctions {
 		String savedActivities = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCASavedActivitiesButton)).getText();
 		softly.assertThat(savedActivities).as("test data").isEqualTo("保存报告中心");
 		//next on the bottom
-		String next = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAInfoTabNextButtonAtBottom)).getText();
-		softly.assertThat(next).as("test data").isEqualTo("下一步");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String next = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAInfoTabNextButtonAtBottom)).getText();
+			softly.assertThat(next).as("test data").isEqualTo("下一步");
+		}
+		else
+		{
+			String next = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).getText();
+			softly.assertThat(next).as("test data").isEqualTo("下一步");
+		}
 	}
 
 	public void verifyChineseButtonsReportTabHiRCA(WebDriver driver, SoftAssertions softly) throws Exception{

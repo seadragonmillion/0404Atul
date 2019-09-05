@@ -501,6 +501,8 @@ public class EiRCAChinese {
 		{
 			driver.switchTo().window(window);
 			obj2.deleteFiles(file);
+			//Switch to iframe
+			driver.switchTo().frame(driver.findElement(login.Iframe));
 			//Clicks on download button
 			if(driver.getCurrentUrl().contains("kaleqa"))
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.DownloadButton)).click();

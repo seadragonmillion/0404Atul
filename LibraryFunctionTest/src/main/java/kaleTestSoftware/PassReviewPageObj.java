@@ -16,6 +16,7 @@ public class PassReviewPageObj {
 	public By PassReviewShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[2]");
 
 	//Basic Info
+	public By NewButton = By.id("pii-3pr-new");
 	public By InfoTab = By.id("pii-3pr-tab-1-a");
 	public By Reviewer = By.id("pii-3pr-tab-1-reviewer");
 	public By DocumentTitle = By.id("pii-3pr-tab-1-title");
@@ -23,6 +24,7 @@ public class PassReviewPageObj {
 	public By Organisation = By.id("pii-3pr-tab-1-org");
 	public By DocumentType = By.id("pii-3pr-tab-1-doctype");
 	public By SaveButton = By.id("pii-3pr-save");
+	public By SavePopupHeader = By.id("pii-3pr-dialog-header");
 	public By SavePopupNote = By.id("pii-3pr-dialog-note");
 	public By SavePopupTitle = By.id("pii-3pr-dialog-title");
 	public By SavePopupConfirmButton = By.id("pii-3pr-dialog-confirmed");

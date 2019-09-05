@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,7 +36,10 @@ public class PassReview2 {
 		//Wait for loading message
 		share2.loadingServer(driver);
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.InfoTab)).click();
@@ -56,6 +60,56 @@ public class PassReview2 {
 		//Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
+	}
+	
+	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Click on new button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NewButton)).click();
+		//Verify pop up header
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupHeader)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Start New Report");
+		//Verify question on pop up
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupTitle)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to erase current changes and start a new report?");
+		//Verify note under question
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupNote)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Warning: erased content cannot be recovered later.");
+		//Cancel button
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)).getText();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		//New button
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("new report");
+		//Click on cancel
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)).click();
+	}
+	
+	public void verifySaveReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);		
+		//Verify pop up header
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupHeader)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Save Report");
+		//Verify question on pop up
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupTitle)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current report?");
+		//Verify note under question
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupNote)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Note: saved data can be seen by clicking \"saved activities\" button.");
+		//Cancel button
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)).getText();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		//save button
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("save report");
 	}
 
 }

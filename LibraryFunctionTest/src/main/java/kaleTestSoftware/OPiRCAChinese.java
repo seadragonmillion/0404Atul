@@ -26,7 +26,6 @@ public class OPiRCAChinese {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		OPiRCAChinese2 obj2 = new OPiRCAChinese2(); 
-		OPiRCAChinese3 obj3 = new OPiRCAChinese3();
 		HiRCALevel1 obj4 = new HiRCALevel1();
 		OPiRCA2 obj6 = new OPiRCA2();
 		OPiRCAChinese4 obj7 = new OPiRCAChinese4();
@@ -42,7 +41,10 @@ public class OPiRCAChinese {
 		else
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))));
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))).click();
 		//Scroll top
 		share2.scrollToTop(driver);	 
 		ccf.verifyChineseButtonsInfoTabOPiRCA(driver, softly);
@@ -199,10 +201,7 @@ public class OPiRCAChinese {
 		obj2.chineseReportTab(driver,softly);
 		Thread.sleep(1000);
 		//Mark critical
-		markCritical(driver);
-		//Chinese verify HTML report
-		List <String> verifyChinese=obj3.chineseHTMLReport(driver,softly);
-		Thread.sleep(1000);
+		List <String> verifyChinese=markCritical(driver);
 		//Download report
 		obj2.downloadReport(driver,verifyChinese, softly);
 		//Delete report
@@ -210,9 +209,10 @@ public class OPiRCAChinese {
 		obj7.OPiRCAStep2VariationPaths(driver,softly);
 	}
 
-	public void markCritical(WebDriver driver) throws Exception{
+	public List <String> markCritical(WebDriver driver) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		OPiRCAChinese3 opc3 = new OPiRCAChinese3();
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		//Verify chinese in save box
@@ -233,18 +233,36 @@ public class OPiRCAChinese {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		//Wait for loading message
 		share2.loadingServer(driver);
-		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).getText();
-		softly.assertThat(s).as("test data").contains("重要");
+		//Chinese verify HTML report
+		List <String> verifyChinese=opc3.chineseHTMLReport(driver,softly);
+		Thread.sleep(1000);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+		{
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).getText();
+			softly.assertThat(s).as("test data").contains("重要");
+		}
+		else
+		{
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText();
+			softly.assertThat(s).as("test data").contains("重要");
+		}
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText)).getText();
-		softly.assertThat(critical).as("test data").contains("重要");
-		String c1=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText1)).getText();
-		softly.assertThat(c1).as("test data").contains("事件信息");
+		if(driver.getCurrentUrl().contains("kaleqa")==false)
+		{
+			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText)).getText();
+			softly.assertThat(critical).as("test data").contains("重要");
+			String c1=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText1)).getText();
+			softly.assertThat(c1).as("test data").contains("事件信息");
+		}
+		return verifyChinese;
 	}
 
 	public void chineseSavePopup (WebDriver driver) throws Exception {
@@ -2987,8 +3005,11 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCABackgroundInfoField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInvestigatorsField)).sendKeys(text);
 		share2.scrollToAPoint(driver, 1500);
-		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		//Click next
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))).click();
 		//Scroll top
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);

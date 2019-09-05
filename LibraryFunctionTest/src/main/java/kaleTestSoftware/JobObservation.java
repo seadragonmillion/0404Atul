@@ -943,6 +943,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.Step6Notes)).sendKeys(text1(driver));
 		//Clicks on build report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep6BuildReportButton)).click();
+		jo2.verifyBuildReportPopup(driver, softly);
 		//Clicks on build report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
@@ -967,6 +968,7 @@ public class JobObservation {
 		}
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSaveButton)).click();
+		jo2.verifySaveReportPopup(driver, softly);
 		//Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
@@ -1488,6 +1490,7 @@ public class JobObservation {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JobObservationLink)).click();
 		//Clicks on new
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JONewButton)).click();
+		jo2.verifyNewReportPopup(driver, softly);
 		//Click on new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();

@@ -36,6 +36,7 @@ public class LanguageCheckOfReports {
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
 	Login login = new Login();
 	HiRCA2 hirca2 = new HiRCA2();
+	EiRCAPageObj eirca = new EiRCAPageObj();
 	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
 
 	public boolean containsHanScript(String s) {
@@ -381,7 +382,10 @@ public class LanguageCheckOfReports {
 		softly.assertThat(s).as("test data").isEqualTo("Activation status:");
 		//Select group
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s1).as("test data").contains("Select group(s)");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s1).as("test data").contains("Group(s)");
+		else
+			softly.assertThat(s1).as("test data").contains("Select group(s)");
 		//Cases slide security
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-slidesecurity']/div[1]/legend"))).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("Cases slide security:");
@@ -746,7 +750,10 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
 		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-epm-critical-input']"))).getText());
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getText());
+		else
+			s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText());
 		//Stores text of username label
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td/strong"))).getText());
 		//Stores text of username label

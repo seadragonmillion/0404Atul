@@ -127,10 +127,16 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: deleted content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Delete");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s3).as("test data").isEqualTo("delete");
+		else
+			softly.assertThat(s3).as("test data").isEqualTo("Delete");
 	}
 
 	public void verifyNoSupportingFilePopup(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -172,10 +178,16 @@ public class HiRCA2 {
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s3).as("test data").isEqualTo("save report");
+		else
+			softly.assertThat(s3).as("test data").isEqualTo("Save Report");
 	}
 
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -192,10 +204,16 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("New Report");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s3).as("test data").isEqualTo("new report");
+		else
+			softly.assertThat(s3).as("test data").isEqualTo("New Report");
 	}	
 
 	public void verifyOpenReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
@@ -214,10 +232,16 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Open");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s3).as("test data").isEqualTo("open");
+		else
+			softly.assertThat(s3).as("test data").isEqualTo("Open");
 	}	
 
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
@@ -239,7 +263,10 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");

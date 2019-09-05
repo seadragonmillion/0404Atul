@@ -30,7 +30,10 @@ public class OPiRCA3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OpenButton)).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OpenButton)).click();
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Click on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)).click();

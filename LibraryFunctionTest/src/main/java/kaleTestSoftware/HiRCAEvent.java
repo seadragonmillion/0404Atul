@@ -2022,7 +2022,7 @@ public class HiRCAEvent {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCA2 obj1 = new HiRCA2();
-		int n=500;
+		//int n=500;
 		int x=1800;
 		for (int j=0; j<5; j++)
 		{
@@ -2046,7 +2046,7 @@ public class HiRCAEvent {
 				Process p = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
 				p.waitFor();
 			}catch (UnhandledAlertException f){		
-				System.out.println("Unexpecetd alert for picture 2");
+				System.out.println("Unexpected alert for picture 2");
 				driver.switchTo().alert().accept();
 			}catch (NoAlertPresentException f){
 				System.out.println ("No unexpected alert for picture 2");
@@ -2058,15 +2058,16 @@ public class HiRCAEvent {
 			{
 				//delete file
 				String del = "pii-irca-event-file-remove-"+j;
-				Thread.sleep(1000);
-				jse.executeScript("scroll(0,"+(x-150)+")");
+				//Thread.sleep(1000);
+				/*jse.executeScript("scroll(0,"+(x-150)+")");
 				if(j==0||j==2||j==4 || j==3)
 				{
 					Thread.sleep(1000);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).sendKeys(Keys.ARROW_UP);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).sendKeys(Keys.ARROW_UP);
 				}
-				Thread.sleep(1000);
+				Thread.sleep(1000);*/
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(del))).click(); 
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
@@ -2076,11 +2077,12 @@ public class HiRCAEvent {
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))).click();
 					Thread.sleep(1000);
-					n=n+150;
+					/*n=n+150;
 					String scroll = "scroll(0,"+n+")";
-					jse.executeScript(scroll);
+					jse.executeScript(scroll);*/
 				}
 				//Click on Supporting file details
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 				//Fill title and description
 				String title_id="pii-irca-event-file-title-"+j;
@@ -2097,7 +2099,7 @@ public class HiRCAEvent {
 					Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/IE11MozillaChrysanthemumJOBOBS.exe");
 					q.waitFor();
 				}catch (UnhandledAlertException f){	
-					System.out.println("Unexpecetd alert for picture 2");
+					System.out.println("Unexpected alert for picture 2");
 					driver.switchTo().alert().accept();
 
 				}catch (NoAlertPresentException f){
@@ -2113,8 +2115,7 @@ public class HiRCAEvent {
 					for(int r=0;r<=j;r++)
 					{
 						Thread.sleep(2000);
-						if(j==4)
-							share2.scrollToAPoint(driver, 1000);
+						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))));
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(rotate))).click();
 					}
 				}
@@ -2135,18 +2136,11 @@ public class HiRCAEvent {
 				obj1.verifySticky1ImageUploaded(driver,softly);
 				//Wait for loading message to disappear
 				share2.loadingServer(driver);		  
-				jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				//jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				Thread.sleep(1000);
 				if(driver.findElement(By.id(img)).isDisplayed())
 				{
-					if(j<3)
-					{ 
-						share2.scrollToAPoint(driver, 1600);
-					} 
-					if(j>2)
-					{ 
-						share2.scrollToAPoint(driver, 2000);
-					}
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button"))));
 					//Click on attach another file
 					Thread.sleep(2000);
 					WebElement add= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewfile-button")));
@@ -2157,7 +2151,7 @@ public class HiRCAEvent {
 		}
 		//Delete 3rd image
 		Thread.sleep(2000);
-		share2.scrollToAPoint(driver, 600);
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		//Click on last collapsible
@@ -2333,7 +2327,11 @@ public class HiRCAEvent {
 		{
 			String error_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
 			softly.assertThat(error_dept).as("test data").isEqualTo("Department is required");
-			WebElement textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
+			WebElement textbox3;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]"));
+			else
+				textbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
 			WebElement error_dept_dotted = textbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child.error"));
 			if (error_dept_dotted.isDisplayed())
 				System.out.println("Error dotted line displayed on Department textbox");
@@ -2342,7 +2340,11 @@ public class HiRCAEvent {
 		{
 			String error_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
 			softly.assertThat(error_prob).as("test data").isEqualTo("Problem statement is required");
-			WebElement textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+			WebElement textbox4;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]"));
+			else
+				textbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
 			WebElement error_prob_dotted = textbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
 			if (error_prob_dotted.isDisplayed())
 				System.out.println("Error dotted line displayed on problem statement textbox");
@@ -2371,7 +2373,11 @@ public class HiRCAEvent {
 		{
 			String error_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
 			softly.assertThat(error_invest).as("test data").isEqualTo("Investigators is required");
-			WebElement textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+			WebElement textbox7;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]"));
+			else
+				textbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
 			WebElement error_invest_dotted = textbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow.error"));
 			if (error_invest_dotted.isDisplayed())
 				System.out.println("Error dotted line displayed on investigators textbox");
@@ -2383,7 +2389,11 @@ public class HiRCAEvent {
 		{
 			String noerror_invest = driver.findElement(By.id("pii-irca-event-investigators-error")).getText();
 			softly.assertThat(noerror_invest).as("test data").isEqualTo("");
-			WebElement ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
+			WebElement ttextbox7;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]"));
+			else
+				ttextbox7=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[14]"));
 			WebElement noerror_invest_dotted = ttextbox7.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
 			Thread.sleep(500);
 			if (noerror_invest_dotted.isDisplayed())
@@ -2449,7 +2459,11 @@ public class HiRCAEvent {
 		{
 			String noerror_prob = driver.findElement(By.id("pii-irca-event-pbstatement-error")).getText();
 			softly.assertThat(noerror_prob).as("test data").isEqualTo("");
-			WebElement ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
+			WebElement ttextbox4;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[9]"));
+			else
+				ttextbox4=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[8]"));
 			WebElement noerror_prob_dotted = ttextbox4.findElement(By.cssSelector(".ui-input-text.ui-shadow-inset.ui-body-inherit.ui-corner-all.ui-textinput-autogrow"));
 			if (noerror_prob_dotted.isDisplayed())
 				System.out.println("Error dotted line disappeared on problem statement textbox");
@@ -2473,7 +2487,11 @@ public class HiRCAEvent {
 		{
 			String noerror_dept = driver.findElement(By.id("pii-irca-event-department-error")).getText();
 			softly.assertThat(noerror_dept).as("test data").isEqualTo("");
-			WebElement ttextbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
+			WebElement ttextbox3;
+			if(driver.getCurrentUrl().contains("kaleqa"))
+				ttextbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[5]"));
+			else
+				ttextbox3=driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]"));
 			WebElement noerror_dept_dotted = ttextbox3.findElement(By.cssSelector(".ui-btn.ui-icon-carat-d.ui-btn-icon-right.ui-corner-all.ui-shadow.ui-first-child.ui-last-child"));
 			if (noerror_dept_dotted.isDisplayed())
 				System.out.println("Error dotted line disappeared on Department textbox");
@@ -2566,12 +2584,18 @@ public class HiRCAEvent {
 		driver.findElement(By.id("pii-irca-event-title")).sendKeys(text184);
 
 		//Check the date picker
-		driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a")).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/div/div[1]/div/a")).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a")).click();
 		//Close the popup
 		driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a")).click();
 		Thread.sleep(2000);
 		//Click on date picker
-		driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a")).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/div/div[1]/div/a")).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/div/a")).click();
 		//Check if the title is correct
 		String date_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		System.out.println(date_title);
@@ -2585,12 +2609,18 @@ public class HiRCAEvent {
 
 		//Check the time picker
 		Thread.sleep(1000);
-		driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a")).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/div/div[2]/div/a")).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a")).click();
 		//Close the popup
 		driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a")).click();
 		Thread.sleep(2000);
 		//Click on time picker
-		driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a")).click();
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/div/div[2]/div/a")).click();
+		else
+			driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/div/a")).click();
 		//Check if the title is correct
 		String time_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		System.out.println(time_title);

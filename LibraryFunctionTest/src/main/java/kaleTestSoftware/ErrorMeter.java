@@ -40,7 +40,7 @@ public class ErrorMeter {
 
 	public void papeError100(WebDriver driver) throws Exception{
 
-		em3.errorMeterFillFirstPage(driver);
+		em3.errorMeterFillFirstPage(driver,softly);
 		List<String> text=em2.error100Data(driver,driver.getCurrentUrl());
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String browserName = getBrowser(driver);
@@ -631,7 +631,7 @@ public class ErrorMeter {
 
 	public void papeError50(WebDriver driver) throws Exception{
 
-		em3.errorMeterFillFirstPage(driver);
+		em3.errorMeterFillFirstPage(driver,softly);
 		List<String> text = em2.error50Data(driver,driver.getCurrentUrl());
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String browserName = getBrowser(driver);
@@ -979,7 +979,7 @@ public class ErrorMeter {
 
 	public void papeError0(WebDriver driver) throws Exception{
 
-		em3.errorMeterFillFirstPage(driver);
+		em3.errorMeterFillFirstPage(driver,softly);
 		String text = em2.error0Data(driver,driver.getCurrentUrl());
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Closes any warning from server
@@ -1667,7 +1667,7 @@ public class ErrorMeter {
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
 		//Verifies 0.0%
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(url.contains("kaleqa"))
 			softly.assertThat("0.0%").as("test data").isSubstringOf(newData1);
 		else
 			softly.assertThat("0.00%").as("test data").isSubstringOf(newData1);
@@ -1720,7 +1720,7 @@ public class ErrorMeter {
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
 		//Verifies 50.00%
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(url.contains("kaleqa"))
 			softly.assertThat("50.0%").as("test data").isSubstringOf(newData1);
 		else
 			softly.assertThat("50.00%").as("test data").isSubstringOf(newData1);
@@ -1776,7 +1776,7 @@ public class ErrorMeter {
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
 		//Verifies 100.00%
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(url.contains("kaleqa"))
 			softly.assertThat("100.0%").as("test data").isSubstringOf(newData1);
 		else
 			softly.assertThat("100.00%").as("test data").isSubstringOf(newData1);
@@ -1985,7 +1985,10 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);
-		softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText.trim());	
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat("0.0%").as("test data").isEqualTo(probabilityText);		
+		else
+			softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);	
 		//Check the title count
 		checkTitleCount(driver);
 	}
@@ -2146,8 +2149,11 @@ public class ErrorMeter {
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
-		System.out.println(probabilityText);
-		softly.assertThat("50.00%").as("test data").isEqualTo(probabilityText);		
+		System.out.println(probabilityText);		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat("50.0%").as("test data").isEqualTo(probabilityText);		
+		else
+			softly.assertThat("50.00%").as("test data").isEqualTo(probabilityText);	
 	}
 
 	public void reportCheck100Dev (WebDriver driver) throws Exception{
@@ -2323,7 +2329,10 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);
-		softly.assertThat("100.00%").as("test data").isEqualTo(probabilityText);		
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat("100.0%").as("test data").isEqualTo(probabilityText);		
+		else
+			softly.assertThat("100.00%").as("test data").isEqualTo(probabilityText);	
 	}
 
 
@@ -2487,6 +2496,7 @@ public class ErrorMeter {
 		Thread.sleep(2000);
 		//Click on finalize
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
+		em3.verifyFinalizeReportPopup(driver, softly);
 		Thread.sleep(2000);
 		//Click on finalize and save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();

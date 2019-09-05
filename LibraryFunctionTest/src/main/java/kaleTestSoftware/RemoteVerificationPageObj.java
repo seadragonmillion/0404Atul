@@ -18,7 +18,7 @@ public class RemoteVerificationPageObj {
 	public By RVSavePopupHeader = By.id("pii-rv-dialog-header");
 	public By RVSavePopupNote = By.id("pii-rv-dialog-note");
 	public By RVSavePopupTitle = By.id("pii-rv-dialog-title");
-	public By RVSavePopupComfirmButton = By.id("pii-rv-dialog-confirmed");
+	public By RVSavePopupConfirmButton = By.id("pii-rv-dialog-confirmed");
 	public By RVSavePopupCancelButton = By.id("pii-rv-dialog-cancel");
 	public By RVSavedActivitiesButton = By.id("pii-rv-savedactivities");
 	public By RV1stImageField = By.id("pii-rv-imgwork-photo-input");

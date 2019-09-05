@@ -7,11 +7,17 @@ public class ErrorMeterPageObj {
 	//EM link
 	public By ErrorMeterLink = By.id("pii-a-menu-em");
 	//First page of module
+	public By ErrorMeterNewButton = By.id("pii-epm-clear");
 	public By JobTitleCharacterCount = By.id("pii-epm-job-title-count");
 	public By ErrorMeterPurpose = By.id("pii-epm-select-purpose");
 	public By ErrorMeterJobType = By.id("pii-epm-select-condition");
 	public By ErrorMeterJobTitle = By.id("pii-epm-job-title");
 	public By ErrorMeterNextButton = By.id("pii-epm-btn-next");
+	public By ErrorMeterPopupHeader = By.id("pii-epm-dialog-header");
+	public By ErrorMeterPopupTitle = By.id("pii-epm-dialog-title");
+	public By ErrorMeterPopupNote = By.id("pii-epm-dialog-note");
+	public By ErrorMeterPopupCancelButton = By.id("pii-epm-dialog-cancel");
+	public By ErrorMeterPopupConfirmButton = By.id("pii-epm-dialog-confirmed");
 	//Guide
 	public By ErrorMeterGuideLink = By.id("pii-a-epm-lp1-a");
 	public By ErrorMeterGuideParagraph3Label = By.xpath(".//*[@id='pii-a-epm-lp1']/div[1]/p[3]/b");

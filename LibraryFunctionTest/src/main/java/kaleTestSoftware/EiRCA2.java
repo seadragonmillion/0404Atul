@@ -353,7 +353,10 @@ public class EiRCA2 {
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
@@ -375,7 +378,10 @@ public class EiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("New Report");
@@ -415,10 +421,16 @@ public class EiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Open");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s3).as("test data").isEqualTo("open");
+		else
+			softly.assertThat(s3).as("test data").isEqualTo("Open");
 	}
 
 
@@ -437,10 +449,16 @@ public class EiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: The report will open in a separate window");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Open PDF report");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s3).as("test data").isEqualTo("open PDF report");
+		else
+			softly.assertThat(s3).as("test data").isEqualTo("Open PDF report");
 	}
 
 	public void verifyMarkCriticalPopup(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -499,7 +517,10 @@ public class EiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");

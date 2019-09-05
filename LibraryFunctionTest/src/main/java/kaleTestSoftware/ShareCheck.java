@@ -1160,6 +1160,14 @@ public class ShareCheck {
 		//Click on notification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
 		Thread.sleep(1000);
+		try{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
+		}catch(org.openqa.selenium.TimeoutException t)
+		{
+			share2.scrollToTop(driver);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
+			Thread.sleep(1000);
+		}
 		if(browserName.equals("firefox")==false)
 			share2.scrollToTop(driver);
 		/*if(browserName.equals("internet explorer"))

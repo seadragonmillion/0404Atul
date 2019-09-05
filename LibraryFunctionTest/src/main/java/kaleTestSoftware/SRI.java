@@ -167,7 +167,10 @@ public class SRI {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(s2).as("test data").isEqualTo("cancel");
+		else
+			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
 		//delete button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
@@ -806,6 +809,7 @@ public class SRI {
 		}
 		//Click on new button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewButton)).click();
+		sri3.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).click();
 		//Step 1 check for errors
 		checkForErrorStep1(driver);
@@ -852,7 +856,7 @@ public class SRI {
 		//Verify everything on report
 		verifyReportTab(driver,storeDataStep1,storeDataStep2);
 		//Save report and open the report
-		String recordName = sri3.saveSRIReport(driver);
+		String recordName = sri3.saveSRIReport(driver,softly);
 		//Verify data on HTML
 		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
 		//Verify rename popup overflow

@@ -64,6 +64,7 @@ public class RemoteVerification {
 	SoftAssertions softly = new SoftAssertions();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	RemoteVerification3 rv3 = new RemoteVerification3();
+	RemoteVerification4 rv4 = new RemoteVerification4();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	EiRCA3 eirca3 = new EiRCA3();
 	ShareCheck2 share2 = new ShareCheck2();
@@ -84,7 +85,8 @@ public class RemoteVerification {
 		um.emailMarkRead(email, driver);
 		//Clicks on Save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).click();
+		rv4.verifySaveReportPopup(driver, softly);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).click();
 		//Wait for loading message to disappear		
 		share2.loadingServer(driver);
 		//Click on Saved activities
@@ -120,7 +122,8 @@ public class RemoteVerification {
 		else driver.findElement(rv.RVSaveAndSendButton).click();
 		//Clicks on save and send report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
-		driver.findElement(rv.RVSavePopupComfirmButton).click();
+		rv4.verifySaveAndSendReportPopup(driver, softly);
+		driver.findElement(rv.RVSavePopupConfirmButton).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify status
@@ -1355,6 +1358,7 @@ public class RemoteVerification {
 		}
 		//Clicks on Remote Verification
 		driver.findElement(rv.RVLink).click();
+		rv4.verifyNewReportPopup(driver, softly);
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
 		//Fills the mandatory fields

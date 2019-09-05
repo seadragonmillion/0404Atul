@@ -42,7 +42,7 @@ public class beforeFunctions {
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
 		driver.navigate().to(url);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		return driver;
 	}
 
@@ -96,7 +96,7 @@ public class beforeFunctions {
 		System.out.println(finalSize);
 		//Browser navigates to the KALE url
 		driver.navigate().to(url);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		return driver;
 	}
 
@@ -112,7 +112,7 @@ public class beforeFunctions {
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
 		driver.navigate().to(url);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		return driver;
 	}
 	
@@ -128,7 +128,7 @@ public class beforeFunctions {
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
 		driver.navigate().to(url);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		return driver;
 	}
 }

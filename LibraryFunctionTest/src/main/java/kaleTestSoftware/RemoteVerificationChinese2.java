@@ -70,7 +70,7 @@ public class RemoteVerificationChinese2 {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("取消");
 		//Save button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("保存报告");
 	}
 
@@ -110,7 +110,7 @@ public class RemoteVerificationChinese2 {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("取消");
 		//Save and send button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("保存发送报告");
 	}
 
@@ -132,7 +132,7 @@ public class RemoteVerificationChinese2 {
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("取消");
 		//New button
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupComfirmButton)).getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("新增程验证报告");
 		//Click on cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).click();

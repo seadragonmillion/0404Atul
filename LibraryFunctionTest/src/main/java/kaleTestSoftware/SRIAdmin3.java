@@ -2,10 +2,12 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -174,6 +176,8 @@ public class SRIAdmin3 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		share2.scrollToTop(driver);
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
 		//Click on SRI components tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
 		//Click on SRI components tab electrical option
@@ -182,6 +186,9 @@ public class SRIAdmin3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).sendKeys(component);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).sendKeys(Keys.ENTER);
+		if(browserName.contains("internet explorer"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).sendKeys(Keys.TAB);
+		Thread.sleep(500);
 		//Verify error message
 		String error1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentMessage)).getText();
 		softly.assertThat(error1).as("test data").isEqualTo("Warning: this component already exist");
@@ -190,6 +197,9 @@ public class SRIAdmin3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).sendKeys(component+"s");
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).sendKeys(Keys.ENTER);
+		Thread.sleep(500);
+		if(browserName.contains("internet explorer"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentNameFieldEnglish)).sendKeys(Keys.TAB);
 		Thread.sleep(500);
 		//Verify error message
 		String error2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentMessage)).getText();
@@ -200,6 +210,9 @@ public class SRIAdmin3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameFieldEnglish)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameFieldEnglish)).sendKeys(measurement);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameFieldEnglish)).sendKeys(Keys.ENTER);
+		Thread.sleep(500);
+		if(browserName.contains("internet explorer"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameFieldEnglish)).sendKeys(Keys.TAB);
 		Thread.sleep(500);
 		//Verify error message
 		String error3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementMessage)).getText();
@@ -212,31 +225,37 @@ public class SRIAdmin3 {
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameFieldEnglish)).sendKeys(Keys.ENTER);
 		Thread.sleep(500);
+		if(browserName.contains("internet explorer"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementNameFieldEnglish)).sendKeys(Keys.TAB);
+		Thread.sleep(500);
 		//Verify error message
 		String error4 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementMessage)).getText();
 		System.out.println(error4);
 		softly.assertThat(error4).as("test data").isEmpty();
 		Thread.sleep(500);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Click on SRI units tab
-			share2.scrollToTop(driver);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
-			//Enter unit
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(unit);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(Keys.ENTER);
-			//Verify error message
-			String error5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitMessage)).getText();
-			softly.assertThat(error5).as("test data").isEqualTo("Warning: this unit already exist");
-			//Enter unit
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).clear();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(unit.toLowerCase());
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(Keys.ENTER);
-			//Verify error message
-			String error6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitMessage)).getText();
-			softly.assertThat(error6).as("test data").isEmpty();
-		}
+		//Click on SRI units tab
+		share2.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
+		//Enter unit
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(unit);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(Keys.ENTER);
+		if(browserName.contains("internet explorer"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(Keys.TAB);
+		Thread.sleep(500);
+		//Verify error message
+		String error5 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitMessage)).getText();
+		softly.assertThat(error5).as("test data").isEqualTo("Warning: this unit already exist");
+		//Enter unit
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(unit.toLowerCase());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(Keys.ENTER);
+		if(browserName.contains("internet explorer"))
+			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitName)).sendKeys(Keys.TAB);
+		Thread.sleep(500);
+		//Verify error message
+		String error6 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitMessage)).getText();
+		softly.assertThat(error6).as("test data").isEmpty();
 	}
 	
 	public void verifySavePopup(WebDriver driver, SoftAssertions softly) throws Exception {

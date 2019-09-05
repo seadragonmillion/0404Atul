@@ -179,7 +179,7 @@ public class RemoteVerification2 {
 		driver.findElement(rv.RVSaveAndSendButton).click();
 		//Clicks on save and send report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
-		driver.findElement(rv.RVSavePopupComfirmButton).click();
+		driver.findElement(rv.RVSavePopupConfirmButton).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Mark notification as read

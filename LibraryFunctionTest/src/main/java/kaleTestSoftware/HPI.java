@@ -17,6 +17,7 @@ public class HPI {
 
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	HPIObj hpi = new HPIObj();
+	HPI2 hpi2 = new HPI2();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheck share = new ShareCheck();
 	ShareCheck3 share3 = new ShareCheck3();
@@ -24,12 +25,15 @@ public class HPI {
 
 	SoftAssertions softly = new SoftAssertions();
 
-	public void createReport (WebDriver driver,String username) throws Exception{
+	public String createReport (WebDriver driver,String username) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Clicks on Analysis 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
 		//Clicks on HPI
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hpi.HPILink)).click();
 		Thread.sleep(2000);
+		hpi2.verifyNewReportPopup(driver, softly);
 		//Select Purpose from dropdown
 		WebElement element = driver.findElement(By.id("pii-hpi-select-purpose"));
 		Select s = new Select (element);
@@ -48,6 +52,7 @@ public class HPI {
 		//Click on finalize
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-btn-done"))).click();
 		Thread.sleep(2000);
+		hpi2.verifyFinalizeReportPopup(driver, softly);
 		//Click on finalize and save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-hpi-dialog-confirmed"))).click(); 
@@ -85,6 +90,7 @@ public class HPI {
 
 		//Checks if the record name is correct
 		softly.assertThat(name).isEqualTo(recordName);
+		return recordName;
 	}
 
 	public void deleteNewRecord(WebDriver driver, String recordName, int y) throws Exception{

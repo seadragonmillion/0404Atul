@@ -628,7 +628,7 @@ public class PassReview {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
 		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(500);
@@ -920,6 +920,7 @@ public class PassReview {
 		//Clicks on 3 Pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewLink)).click();
 		Thread.sleep(2000);
+		pr2.verifyNewReportPopup(driver, softly);
 		pr2.verifyErrorOnInfoPage(driver,softly);
 		//Check title count reset when characters are entered and deleted
 		checkTitleCountReset(driver);
@@ -968,6 +969,7 @@ public class PassReview {
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
 		Thread.sleep(2000);
+		pr2.verifySaveReportPopup(driver, softly);
 		//Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).click();
