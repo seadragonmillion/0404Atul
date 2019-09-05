@@ -88,7 +88,7 @@ public class RV_Verifier {
 
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario)  throws Exception {
 
 		if (scenario.isFailed()) {
 			// Take a screenshot...
@@ -103,6 +103,8 @@ public class RV_Verifier {
 			}
 		}
 		driver.quit();
+		RemoteVerification2 rv2 = new RemoteVerification2();
+		rv2.softAssert();
 	}
 
 }

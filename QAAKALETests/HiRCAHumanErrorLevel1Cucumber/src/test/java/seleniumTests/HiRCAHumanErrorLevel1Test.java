@@ -71,7 +71,7 @@ public class HiRCAHumanErrorLevel1Test {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario)  throws Exception {
 
 		if (scenario.isFailed()) {
 			// Take a screenshot...
@@ -86,6 +86,8 @@ public class HiRCAHumanErrorLevel1Test {
 			}
 		}
 		driver.quit();
+		HiRCAHumanError hirca = new HiRCAHumanError();
+		hirca.softAssert();
 	}
 
 }

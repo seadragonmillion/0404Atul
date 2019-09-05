@@ -73,7 +73,7 @@ public class HiRCALOPBugsTest {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario) throws Exception  {
 
 		if (scenario.isFailed()) {
 			// Take a screenshot...
@@ -88,6 +88,8 @@ public class HiRCALOPBugsTest {
 			}
 		}
 		driver.quit();
+		HiRCALOPBug hirca = new HiRCALOPBug();
+		hirca.softAssert();
 	}
 
 }

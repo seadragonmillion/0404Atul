@@ -128,7 +128,7 @@ public class RV_Sanity {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario)  throws Exception {
 		if (scenario.isFailed()) {
 			// Take a screenshot...
 			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -142,6 +142,8 @@ public class RV_Sanity {
 			}
 		}
 		driver.quit();
+		RemoteVerification rv = new RemoteVerification();
+		rv.softAssert();
 	}
 
 }

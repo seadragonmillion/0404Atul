@@ -72,7 +72,7 @@ public class HiRCABugTest {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario) throws Exception  {
 
 		if (scenario.isFailed()) {
 			// Take a screenshot...
@@ -87,6 +87,8 @@ public class HiRCABugTest {
 			}
 		}
 		driver.quit();
+		HiRCABug2 hirca = new HiRCABug2();
+		hirca.softAssert();
 	}
 
 }

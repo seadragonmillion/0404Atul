@@ -93,7 +93,7 @@ public class HiRCALevel1ChineseTest {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario) throws Exception  {
 
 		if (scenario.isFailed()) {
 			// Take a screenshot...
@@ -108,6 +108,8 @@ public class HiRCALevel1ChineseTest {
 			}
 		}
 		driver.quit();
+		HiRCAChinese hirca = new HiRCAChinese();
+		hirca.softAssert();
 	}
 
 }

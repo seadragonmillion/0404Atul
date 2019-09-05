@@ -77,7 +77,7 @@ public class HiRCALevel1Test {
 	}
 
 	@After
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario) throws Exception  {
 
 		if (scenario.isFailed()) {
 			// Take a screenshot...
@@ -92,6 +92,8 @@ public class HiRCALevel1Test {
 			}
 		}
 		driver.quit();
+		HiRCALevel1 hirca = new HiRCALevel1();
+		hirca.softAssert();
 	}
 
 }
