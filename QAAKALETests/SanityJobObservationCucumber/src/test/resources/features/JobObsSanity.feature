@@ -110,7 +110,7 @@ Scenario: Test Job Observation sanity feature with notifications
 	
 @NonAdminChromeTest
 Scenario: Test Job Observation sanity feature with notifications
-	Given user is on KALE Home Page "https://kaleqa.error-free.com/" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
+	Given user is on KALE Home Page "https://kaleqa.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
 	When she creates an Job Observation report
 	And share Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
 	And mark critical Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
@@ -119,7 +119,7 @@ Scenario: Test Job Observation sanity feature with notifications
 
 @NonAdminFirefoxTest
 Scenario: Test Job Observation sanity feature with notifications
-	Given user is on KALE Home Page "https://kaleqa.error-free.com/" and password as "S2FsZWplbmtpbnNAMTIz" on browser "firefox"
+	Given user is on KALE Home Page "https://kaleqa.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "firefox"
 	When she creates an Job Observation report
 	And share Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
 	And mark critical Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
@@ -128,7 +128,7 @@ Scenario: Test Job Observation sanity feature with notifications
 
 @NonAdminIE10Test
 Scenario: Test Job Observation sanity feature with notifications
-	Given user is on KALE Home Page "https://kaleqa.error-free.com/" and password as "S2FsZWplbmtpbnNAMTIz" on browser "ie10"
+	Given user is on KALE Home Page "https://kaleqa.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "ie10"
 	When she creates an Job Observation report
 	And share Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
 	And mark critical Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 1
@@ -182,7 +182,7 @@ Scenario: Test Job Observation sanity feature with notifications
 	
 @NonAdminUSAChromeTest
 Scenario: Test Job Observation sanity feature with notifications
-	Given user is on KALE Home Page "https://kale.error-free.com/" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
+	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
 	When she creates an Job Observation report
 	And share Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And mark critical Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
@@ -191,7 +191,7 @@ Scenario: Test Job Observation sanity feature with notifications
 
 @NonAdminUSAFirefoxTest
 Scenario: Test Job Observation sanity feature with notifications
-	Given user is on KALE Home Page "https://kale.error-free.com/" and password as "S2FsZWplbmtpbnNAMTIz" on browser "firefox"
+	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "firefox"
 	When she creates an Job Observation report
 	And share Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And mark critical Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
@@ -200,7 +200,7 @@ Scenario: Test Job Observation sanity feature with notifications
 
 @NonAdminUSAIE10Test
 Scenario: Test Job Observation sanity feature with notifications
-	Given user is on KALE Home Page "https://kale.error-free.com/" and password as "S2FsZWplbmtpbnNAMTIz" on browser "ie10"
+	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "ie10"
 	When she creates an Job Observation report
 	And share Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And mark critical Job Observation report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5

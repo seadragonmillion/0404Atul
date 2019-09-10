@@ -1688,7 +1688,7 @@ public class OPiRCA {
 		//softly.assertAll();
 	}
 
-	public void pathOPiRCA(WebDriver driver, String username, String ev1) throws Exception{
+	public String pathOPiRCA(WebDriver driver, String username, String ev1) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
@@ -1748,6 +1748,7 @@ public class OPiRCA {
 		List<String> step2QuestionAnswers = op2.step2QuestionsAnswersOnly(step2);
 		//List of apparent causes selected under Step 2
 		List<String> step2ApparentCausesAnswers = op2.step2ApparentCausesAnswersOnly(step2);
+		System.out.println(step2ApparentCausesAnswers);
 		//Combine Apparent causes selected under step1 and step 2 for veryfing in step 3/4 and reports
 		List<String> apparentCausesForStep3 = op2.combineApparentCausesFromStep1AndStep2(apparentCausesAnswers, step2ApparentCausesAnswers);
 		//Verify apparent causes selections in Step 3
@@ -1833,6 +1834,7 @@ public class OPiRCA {
 		//Download report
 		downloadSelectFunction(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options, step2QuestionAnswers);
 		Thread.sleep(2000);
+		return r1;
 	}
 
 	public void deleteFiles(File folder) throws IOException {
@@ -1928,7 +1930,7 @@ public class OPiRCA {
 			softly.fail("Count did not match: aaaa: " + count);
 	}
 
-	public void reportCreate(WebDriver driver, String username) throws Exception {
+	public String reportCreate(WebDriver driver, String username) throws Exception {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
@@ -1999,7 +2001,7 @@ public class OPiRCA {
 		//Verify no errors
 		op2.verifyNoErrorsOnInfoPage(driver);
 		//Step1 and KALE-1838
-		pathOPiRCA(driver,username,ev1);			  
+		return pathOPiRCA(driver,username,ev1);			  
 	}
 
 	public void softAssert() throws Exception {
