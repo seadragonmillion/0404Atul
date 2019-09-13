@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,10 +39,7 @@ public class SRI {
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);	 
 		//Click on share button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[4]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
 		//Enters username
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(500);
@@ -84,28 +80,16 @@ public class SRI {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);	
 		//Clicks on mark critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Mark critical pop up
 		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
-		}
-		else {
-			String critical=wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIMarkCriticalIndicatorText)).getText();
-			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed())
-				System.out.println("Marked critical");
-		}
+		share2.loadingServer(driver);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -117,28 +101,16 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Un-mark critical pop up
 		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
-		}
-		else {
-			if(driver.findElement(sri.SRIMarkCriticalIndicatorText).isDisplayed()==false)
-			{
-				System.out.println("Unmarked critical");
-			}
-		}
+		share2.loadingServer(driver);
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s1).as("test data").contains("ui-checkbox-off");
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);		
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
@@ -167,10 +139,7 @@ public class SRI {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//delete button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
@@ -180,10 +149,7 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on delete
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			driver.findElement(eirca.DeleteButton).click();
-		else
-			driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]")).click();
+		driver.findElement(eirca.DeleteButton).click();
 		//Verify delete popup
 		verifyDeleteReportPopup(driver, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
@@ -225,14 +191,14 @@ public class SRI {
 		while(true)
 		{
 			try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.CONTROL,"a");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.DELETE);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys("05");
-			Thread.sleep(500);
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).getAttribute("value");
-			System.out.println(s);
-			if(s.equals("05"))
-				break;
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.CONTROL,"a");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.DELETE);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys("05");
+				Thread.sleep(500);
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).getAttribute("value");
+				System.out.println(s);
+				if(s.equals("05"))
+					break;
 			}catch(org.openqa.selenium.WebDriverException e)
 			{
 				continue;
@@ -734,7 +700,7 @@ public class SRI {
 		System.out.println(s+ " "+count);
 		return count;
 	}
-	
+
 	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
 
 		//Get count of characters

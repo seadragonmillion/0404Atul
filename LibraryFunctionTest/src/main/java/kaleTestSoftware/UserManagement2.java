@@ -143,17 +143,8 @@ public class UserManagement2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify error
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-			softly.assertThat(message).as("test data").contains("Please select at least one user group");
-		}
-		else
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
-			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-			softly.assertThat(message).as("test data").contains("a user must have a company id specified.");
-		}
+		String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
+		softly.assertThat(message).as("test data").contains("Please select at least one user group");
 	}
 
 	public void createExistingUserAndVerifyErrorPopup(WebDriver driver, SoftAssertions softly, String company_id, String password,String email) throws Exception{

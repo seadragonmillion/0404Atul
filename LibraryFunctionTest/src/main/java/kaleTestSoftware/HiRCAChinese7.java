@@ -44,40 +44,18 @@ public class HiRCAChinese7 {
 		String ev_ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-location"))).getAttribute("placeholder");
 		System.out.println(ev_ph2);
 		softly.assertThat(ev_ph2).as("test data").contains("输入 事件发生地点");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Department
-			String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
-			System.out.println(dept);
-			softly.assertThat(dept).as("test data").contains("部门:");
-			//Sub department
-			String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/fieldset/div/legend"))).getText();
-			System.out.println(sub_dept);
-			softly.assertThat(sub_dept).as("test data").contains("组:");
-			//Date of event
-			String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-date']"))).getText();
-			System.out.println(date);
-			softly.assertThat(date).as("test data").contains("日期与时间:");
-		}
-		else
-		{
-			//Department
-			String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/fieldset/div/legend"))).getText();
-			System.out.println(dept);
-			softly.assertThat(dept).as("test data").contains("部门:");
-			//Sub department
-			String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
-			System.out.println(sub_dept);
-			softly.assertThat(sub_dept).as("test data").contains("组:");
-			//Date of event
-			String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/label"))).getText();
-			System.out.println(date);
-			softly.assertThat(date).as("test data").contains("事件发生日期:");
-			//Time of event
-			String time=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[7]/label"))).getText();
-			System.out.println(time);
-			softly.assertThat(time).as("test data").contains("事件发生时间:");
-		}
+		//Department
+		String dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[5]/fieldset/div/legend"))).getText();
+		System.out.println(dept);
+		softly.assertThat(dept).as("test data").contains("部门:");
+		//Sub department
+		String sub_dept=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[6]/fieldset/div/legend"))).getText();
+		System.out.println(sub_dept);
+		softly.assertThat(sub_dept).as("test data").contains("组:");
+		//Date of event
+		String date=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-date']"))).getText();
+		System.out.println(date);
+		softly.assertThat(date).as("test data").contains("日期与时间:");
 		//Problem statement
 		String prob=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-event-pbstatement']"))).getText();
 		System.out.println(prob);

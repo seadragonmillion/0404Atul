@@ -3,7 +3,6 @@ package kaleTestSoftware;
 import java.util.HashMap;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -92,10 +91,7 @@ public class EiRCA3 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Click on open button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.InfoTab)).click();
@@ -390,10 +386,7 @@ public class EiRCA3 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: report will be shared after you save your changes.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("add user");
@@ -413,16 +406,10 @@ public class EiRCA3 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: sharing to user will be removed after you save your changes.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Remove Sharing
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("remove sharing");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Remove sharing");
+		softly.assertThat(s3).as("test data").isEqualTo("remove sharing");		
 	}
 
 	public void verifyBreakWordPropertyStickyNote(WebDriver driver, SoftAssertions softly) throws Exception {

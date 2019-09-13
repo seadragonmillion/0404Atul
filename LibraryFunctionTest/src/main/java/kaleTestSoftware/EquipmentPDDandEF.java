@@ -1173,6 +1173,25 @@ public class EquipmentPDDandEF {
 			driver.findElement(equipObj.EquipListBoxDisciplineCrossSymbol).click();
 		}
 	}
+	
+	public List<String> createCase(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title)throws Exception{
+
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if(browserName.contains("chrome"))
+			return createCaseChrome(driver,keyword_same,key1,key2,key3,title);
+		else if(browserName.contains("firefox"))
+			return createCaseFirefox(driver,keyword_same,key1,key2,key3,title);
+		else
+		{			
+			if(v.startsWith("10"))
+				return createCaseIE10(driver,keyword_same,key1,key2,key3,title);
+			else
+				return createCaseIE11(driver,keyword_same,key1,key2,key3,title);
+		}
+	}
 
 	public List<String> createCaseChrome(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title) throws Exception{
 

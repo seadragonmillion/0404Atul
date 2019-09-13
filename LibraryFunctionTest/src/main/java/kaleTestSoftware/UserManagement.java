@@ -923,16 +923,8 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
 		//Verify the message on top in edit user page
 		try{
-			if(driver.getCurrentUrl().contains("kaleqa"))
-			{
-				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-				softly.assertThat(message).as("test data").isEqualTo("Search and select a login name to edit");
-			}
-			else
-			{
-				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
-				softly.assertThat(message).as("test data").isEqualTo("Update a selected user...");
-			}
+			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
+			softly.assertThat(message).as("test data").isEqualTo("Search and select a login name to edit");
 		}catch(org.openqa.selenium.TimeoutException t)
 		{
 
@@ -2899,16 +2891,8 @@ public class UserManagement {
 		//Verify the message on top in edit group page
 
 		try{
-			if(driver.getCurrentUrl().contains("kaleqa"))
-			{
-				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditGroupMessageOnTop)).getText().trim();
-				softly.assertThat(message).as("test data").isEqualTo("Search and select group to edit");
-			}
-			else
-			{
-				String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditGroupMessageOnTop)).getText().trim();
-				softly.assertThat(message).as("test data").isEqualTo("Update a selected group...");
-			}
+			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditGroupMessageOnTop)).getText().trim();
+			softly.assertThat(message).as("test data").isEqualTo("Search and select group to edit");
 		}catch(org.openqa.selenium.TimeoutException t)
 		{
 

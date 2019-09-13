@@ -395,7 +395,16 @@ public class CreateCaseSRI {
 			//Clicks on admin user name on top right corner
 			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 			//Clicks on admin option
-			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
+			}catch(org.openqa.selenium.TimeoutException t)
+			{
+				Thread.sleep(1000);
+				//Clicks on admin user name on top right corner
+				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
+				//Clicks on admin option
+				wait.until(ExpectedConditions.visibilityOfElementLocated(chc.AdminOption)).click();
+			}
 			//Clicks on Errorfree bank option
 			if (driver.findElement(equipObj.EquipCasesLink).isDisplayed()==false)
 			{

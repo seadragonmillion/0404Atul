@@ -1,7 +1,6 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,14 +8,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class JobObservation2 {
 
 	JobObservationObj jo = new JobObservationObj();
-	
+
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
-		
+
 		//Clicks next
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			driver.findElement(jo.JOStep1NextButton).click();
-		else
-			driver.findElement(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button")).click();
+		driver.findElement(jo.JOStep1NextButton).click();
 		//Verify all errors
 		String observerError = driver.findElement(jo.Step1ObserverError).getText();
 		softly.assertThat(observerError).as("test data").isEqualTo("Observer is required");
@@ -41,18 +37,12 @@ public class JobObservation2 {
 		softly.assertThat(s4).as("test data").contains("Warning: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("new report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("New Report");
+		softly.assertThat(s3).as("test data").isEqualTo("new report");
 	}
-	
+
 	public void verifySaveReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -67,15 +57,12 @@ public class JobObservation2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: saved data can be seen by clicking \"saved activities\" button.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("save report");
 	}
-	
+
 	public void verifyBuildReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -90,10 +77,7 @@ public class JobObservation2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: you cannot modify job observations once you click build report.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//build report button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("build report");

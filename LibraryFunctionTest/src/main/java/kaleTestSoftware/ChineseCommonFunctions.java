@@ -1,7 +1,6 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -391,17 +390,9 @@ public class ChineseCommonFunctions {
 		//step5
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5Tab)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("第五步");
-		//report
-		/*if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).getText();
-			softly.assertThat(s6).as("test data").isEqualTo("报告");
-		}
-		else
-		{*/
+		//report	
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAReportTab)).getText();
 		softly.assertThat(s6).as("test data").isEqualTo("报告");
-		//}
 	}
 
 	public void verifyChineseButtonsInfoTabHiRCA(WebDriver driver, SoftAssertions softly) throws Exception{
@@ -417,16 +408,8 @@ public class ChineseCommonFunctions {
 		String savedActivities = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCASavedActivitiesButton)).getText();
 		softly.assertThat(savedActivities).as("test data").isEqualTo("保存报告中心");
 		//next on the bottom
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String next = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAInfoTabNextButtonAtBottom)).getText();
-			softly.assertThat(next).as("test data").isEqualTo("下一步");
-		}
-		else
-		{
-			String next = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))).getText();
-			softly.assertThat(next).as("test data").isEqualTo("下一步");
-		}
+		String next = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAInfoTabNextButtonAtBottom)).getText();
+		softly.assertThat(next).as("test data").isEqualTo("下一步");		
 	}
 
 	public void verifyChineseButtonsReportTabHiRCA(WebDriver driver, SoftAssertions softly) throws Exception{
@@ -515,16 +498,8 @@ public class ChineseCommonFunctions {
 		String savedActivities = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).getText();
 		softly.assertThat(savedActivities).as("test data").isEqualTo("保存报告中心");
 		//next on the bottom
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String next = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).getText();
-			softly.assertThat(next).as("test data").isEqualTo("下一步");
-		}
-		else
-		{
-			String next = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))).getText();
-			softly.assertThat(next).as("test data").isEqualTo("下一步");
-		}
+		String next = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).getText();
+		softly.assertThat(next).as("test data").isEqualTo("下一步");		
 	}
 
 	public void verifyChineseButtonsReportTabOPiRCA(WebDriver driver, SoftAssertions softly) throws Exception{

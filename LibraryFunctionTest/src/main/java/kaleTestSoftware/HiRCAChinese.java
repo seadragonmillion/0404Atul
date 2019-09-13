@@ -84,16 +84,8 @@ public class HiRCAChinese {
 		share2.scrollToAPoint(driver, 6500);
 		//Clicks on next
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
-		}
-		else
-		{
-			executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
-		}
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
 		Thread.sleep(2000);
 	}
 
@@ -482,8 +474,7 @@ public class HiRCAChinese {
 		Thread.sleep(2000);
 		//Verify chinese on Step1 tab q1.3
 		hc7.chineseStepOneq13(driver,softly);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			hlb2.bugKALE2493(driver, softly);
+		hlb2.bugKALE2493(driver, softly);
 		//Select answer 1.3.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).click();
 		//Click on next

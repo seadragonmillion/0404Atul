@@ -1,7 +1,6 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.UnhandledAlertException;
@@ -121,10 +120,7 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on Reject button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierRejectButton)).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.AcceptRejectConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		//Enter comment
@@ -217,10 +213,7 @@ public class RemoteVerification2 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on Accept button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierAcceptButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.VerifierAcceptButton)).click();
 		String noHtml1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.AcceptRejectConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml1).as("test data").doesNotContain("<br/>");
 		//Enter comment
@@ -319,10 +312,7 @@ public class RemoteVerification2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Clicks on delete button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDeleteButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();	 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDeleteButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		//Clicks on delete report
 		driver.findElement(eirca.ConfirmPopupButton).click();

@@ -30,7 +30,7 @@ public class RV_Verifier {
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -72,14 +72,14 @@ public class RV_Verifier {
 	 * 11=admin ie11 us
 	 * 12=non admin ie11 us
 	   */
-	@When("^she creates RV report and verifies notification with verifier and sender with username as \"([^\"]*)\" and password as \"([^\"]*)\" and verifier indicator equals (\\d+)$")
+	@When("she creates RV report and verifies notification with verifier and sender with username as {string} and password as {string} and verifier indicator equals {int}")
 	public void she_creates_RV_report_and_verifies_notification_with_verifier_and_sender_with_username_as_and_password_as_and_verifier_indicator_equals(String username, String password, int y) throws Exception {
 
 		RemoteVerification2 rv2 = new RemoteVerification2();
 		rv2.rvVerifierTest(driver, y, username, password);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

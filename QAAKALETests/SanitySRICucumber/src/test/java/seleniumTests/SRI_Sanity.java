@@ -49,7 +49,7 @@ public class SRI_Sanity {
 		}
 	};*/
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -76,7 +76,7 @@ public class SRI_Sanity {
 		}
 	}
 
-	@When("^she creates an SRI report with username as \"([^\"]*)\" and password as \"([^\"]*)\"$")
+	@When("she creates an SRI report with username as {string} and password as {string}")
 	public void she_creates_an_SRI_report_with_username_as_and_password_as(String username, String password) throws Exception {
 
 		SRI sri = new SRI();
@@ -94,28 +94,28 @@ public class SRI_Sanity {
 	 * 6=admin ie11
 	 * 7=non admin ie11
 	 */
-	@When("^share SRI report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("share SRI report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void share_SRI_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 
 		SRI sri = new SRI();
 		sri.shareReport(driver, username, password, y);
 	}
 
-	@When("^mark critical SRI report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("mark critical SRI report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void mark_critical_SRI_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 
 		SRI sri = new SRI();
 		sri.markCriticalReport(driver, username, password, y);
 	}
 
-	@When("^delete SRI report with admin nonadmin environment indicator equals (\\d+)$")
+	@When("delete SRI report with admin nonadmin environment indicator equals {int}")
 	public void delete_SRI_report_with_admin_nonadmin_environment_indicator_equals(int y) throws Exception {
 
 		SRI sri = new SRI();
 		sri.deleteReport(driver, b.get(0), y);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

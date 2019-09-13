@@ -27,20 +27,14 @@ public class HiRCALOPBug2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		fillPage(driver,text);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
-		else
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
-		else
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[16]/div/button"))));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
 		Thread.sleep(2000);
 	}
-	
+
 	public void verifyTextFilledCorrectly(WebDriver driver, By locator, String text) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		while(true)
 		{
@@ -88,7 +82,7 @@ public class HiRCALOPBug2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-investigators"))).sendKeys(text);
 		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-investigators"),text);
 	}
-	
+
 	public void bugKALE2494(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -118,7 +112,7 @@ public class HiRCALOPBug2 {
 		//Click on About
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep1AboutLink)).click();
 	}
-	
+
 	public void bugKALE2412(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -259,10 +253,7 @@ public class HiRCALOPBug2 {
 		//Wait for loading message to disappear		  
 		share2.loadingServer(driver);
 		//Click on Open button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		//Clicks on open report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();

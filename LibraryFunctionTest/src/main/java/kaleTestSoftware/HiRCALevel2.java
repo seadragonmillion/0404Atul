@@ -156,10 +156,7 @@ public class HiRCALevel2 {
 		List<Integer> digits = new ArrayList<Integer>();
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Click on open button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
-		else
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
 		//Open confirm button
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		share2.scrollToTop(driver);
@@ -334,10 +331,7 @@ public class HiRCALevel2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on open button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
 		//Open confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();		
 		//Go to step 4
@@ -412,10 +406,7 @@ public class HiRCALevel2 {
 		EiRCA2 obj1 = new EiRCA2();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -440,10 +431,7 @@ public class HiRCALevel2 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
@@ -487,10 +475,7 @@ public class HiRCALevel2 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -525,10 +510,7 @@ public class HiRCALevel2 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -622,8 +604,8 @@ public class HiRCALevel2 {
 			for(int i=1;i<=(level31stLOP.size()*3);i=i+3)
 			{
 				try{
-				//Move to element
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))));
+					//Move to element
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))));
 				}catch(org.openqa.selenium.TimeoutException r)
 				{
 					break;
@@ -859,22 +841,22 @@ public class HiRCALevel2 {
 			for(int i=1;i<=(level31stLOP.size()*3);i=i+3)
 			{
 				try{
-				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText().trim();
-				share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"), softly);
-				softly.assertThat(s1).as("test data").isIn(temp);
-				String imp = selectHML(driver,i,n);
-				System.out.println(s1+ " "+i);
-				System.out.println(imp);
-				hml.put(s1, imp);
-				//Verify note
-				String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+2)+"]/td/span"))).getText().trim();
-				if(engOrChi==1)
-					softly.assertThat(note).as("test data").contains("备注：从以下问题所选的答案而来");
-				String r1 = s1.substring(0, s1.indexOf(":")) + s1.substring(s1.indexOf(":")+1, s1.length());
-				if(hircaNoteLopSURE.get(r1).contains(note)==false)
-				{
-					softly.fail("Note is not correct in SUEP table in step 3: "+hircaNoteLopSURE.get(r1)+"\n"+note+"\n"+r1);
-				}
+					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"))).getText().trim();
+					share.checkColorOfElement(driver, By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+1)+"]/td[1]"), softly);
+					softly.assertThat(s1).as("test data").isIn(temp);
+					String imp = selectHML(driver,i,n);
+					System.out.println(s1+ " "+i);
+					System.out.println(imp);
+					hml.put(s1, imp);
+					//Verify note
+					String note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+2)+"]/td/span"))).getText().trim();
+					if(engOrChi==1)
+						softly.assertThat(note).as("test data").contains("备注：从以下问题所选的答案而来");
+					String r1 = s1.substring(0, s1.indexOf(":")) + s1.substring(s1.indexOf(":")+1, s1.length());
+					if(hircaNoteLopSURE.get(r1).contains(note)==false)
+					{
+						softly.fail("Note is not correct in SUEP table in step 3: "+hircaNoteLopSURE.get(r1)+"\n"+note+"\n"+r1);
+					}
 				}catch(org.openqa.selenium.TimeoutException w)
 				{
 					break;
@@ -995,10 +977,7 @@ public class HiRCALevel2 {
 		EiRCA2 obj1 = new EiRCA2();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -1024,10 +1003,7 @@ public class HiRCALevel2 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear			
@@ -1073,10 +1049,7 @@ public class HiRCALevel2 {
 		EiRCA2 obj1 = new EiRCA2();
 		OPiRCA obj2 = new OPiRCA();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -1113,10 +1086,7 @@ public class HiRCALevel2 {
 		{
 			obj2.deleteFiles(new File("C://Users//IEUser//Downloads//reports//"));
 			//Clicks on download button
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-			else
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on open pdf report
@@ -1147,10 +1117,7 @@ public class HiRCALevel2 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		EiRCA2 obj1 = new EiRCA2();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Verify pdf pop up
 		obj1.verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear

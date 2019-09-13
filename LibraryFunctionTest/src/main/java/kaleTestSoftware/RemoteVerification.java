@@ -42,7 +42,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -101,10 +100,7 @@ public class RemoteVerification {
 		String status = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportNotSentStatusMessage)).getText();
 		softly.assertThat(status).as("test data").contains("Not yet sent to verifier");
 		//Click on Open
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
@@ -776,10 +772,7 @@ public class RemoteVerification {
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 		//Clicks on share button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareButton)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareButton)).click();
 		//Verifies if verifier displayed is disabled
 		WebElement verify = wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSharePageVerifierBlock));
 		String s = verify.getAttribute("data-inset");
@@ -882,10 +875,7 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear		
 		share2.loadingServer(driver);		
 		//Clicks on open pdf report
@@ -912,10 +902,7 @@ public class RemoteVerification {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear		
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -960,10 +947,7 @@ public class RemoteVerification {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear		
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -1000,10 +984,7 @@ public class RemoteVerification {
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDownloadButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -1136,26 +1117,14 @@ public class RemoteVerification {
 		//Verify text in HTML
 		verifyTextInHTML(driver);
 		//Clicks on mark critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
-		}
-		else {
-			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVMarkedCriticalText)).getText();
-			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(rv.RVMarkedCriticalText).isDisplayed())
-				System.out.println("Marked critical");
-		}
+		share2.loadingServer(driver);
+		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
 		//Click back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -1167,26 +1136,14 @@ public class RemoteVerification {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).click();
 		share2.loadingServer(driver);		
 		//Clicks on mark critical again
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
-		}
-		else {
-			if(driver.findElement(rv.RVMarkedCriticalText).isDisplayed()==false)
-			{
-				System.out.println("Unmarked critical");
-			}
-		}
+		share2.loadingServer(driver);
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s1).as("test data").contains("ui-checkbox-off");
 		//Verify report not retrieved by shared to person	    
 		String sharer = em3.decideSharer (y);
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
@@ -1204,10 +1161,7 @@ public class RemoteVerification {
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Clicks on delete button	
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDeleteButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();	 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVDeleteButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");

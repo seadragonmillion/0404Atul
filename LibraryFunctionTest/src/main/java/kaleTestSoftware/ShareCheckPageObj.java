@@ -38,6 +38,8 @@ public class ShareCheckPageObj {
 	public By UserAccountSavePopupSaveButton = By.id("pii-admin-user-dialog-confirmed");
 	public By SharePageCancelButton = By.id("pii-uhshare-cancel");
 	public By SharedToUsersLabel = By.id("pii-uhshare-shared-to-user-label");
+	public By VerifierLabel = By.id("pii-uhshare-verifier-label");
+	public By VerifierSectionDiv = By.id("pii-uhshare-verifier-list-div");
 	public By SharedActivityWithOtherUsersHeading = By.id("pii-parag-title");
 	public By ShareSearchSelectUsersLabel = By.id("pii-uhshare-search-select-user-label");
 	public By KALEContactPage = By.linkText("CONTACT");

@@ -20,9 +20,10 @@ public class ErrorMeter3 {
 	ErrorMeterPageObj emObj = new ErrorMeterPageObj();
 	EiRCA2 ec2 = new EiRCA2();
 	EiRCAPageObj eircaObj = new EiRCAPageObj();
-	
+	ShareCheck2 share2 = new ShareCheck2();
+
 	public void verifyGuideOnPAPEPage(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on  Guide
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterGuideLink)).click();
@@ -41,7 +42,7 @@ public class ErrorMeter3 {
 		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 	}
-	
+
 	public void verifyCheckBoxChecked (WebDriver driver, By locator) throws Exception {		
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -185,9 +186,9 @@ public class ErrorMeter3 {
 			return sharer;
 		}
 	}
-	
+
 	public void verifyChangeOfTabTitleWhenScreenIsSmall(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Set new size to make it small
 		driver.manage().window().setSize(new Dimension(650,900));
@@ -208,7 +209,7 @@ public class ErrorMeter3 {
 		driver.manage().window().maximize();
 		//softly.assertAll();
 	}
-	
+
 	public int getCharCountFromTitle(WebDriver driver) throws Exception {
 
 		//Get count of characters
@@ -218,7 +219,7 @@ public class ErrorMeter3 {
 		System.out.println(s+ " "+count);
 		return count;
 	}
-	
+
 	public int getTotalCountFromTitle(WebDriver driver) throws Exception {
 
 		//Get count of characters
@@ -228,9 +229,9 @@ public class ErrorMeter3 {
 		System.out.println(s+ " "+count);
 		return count;
 	}
-	
+
 	public void errorMeterFillFirstPage(WebDriver driver, SoftAssertions softly) throws Exception {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Clicks on Analysis 
 		try
@@ -244,6 +245,7 @@ public class ErrorMeter3 {
 		Thread.sleep(2000);
 		//verify new report popup
 		verifyNewReportPopup(driver,softly);
+		share2.loadingServer(driver);
 		//Select Purpose from dropdown
 		WebElement element = driver.findElement(emObj.ErrorMeterPurpose);
 		Select s = new Select (element);
@@ -259,7 +261,7 @@ public class ErrorMeter3 {
 		Thread.sleep(2000);
 		//Fills Job title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterJobTitle)).sendKeys(ec2.textCreate(driver));
-	/*	String ev1= driver.findElement(emObj.ErrorMeterJobTitle).getAttribute("value");
+		/*	String ev1= driver.findElement(emObj.ErrorMeterJobTitle).getAttribute("value");
 		if(ev1.equals(ec2.textCreate(driver))==false)
 			wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterJobTitle)).sendKeys(ec2.textCreate(driver));*/
 		//Get count
@@ -274,7 +276,7 @@ public class ErrorMeter3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterNextButton)).click();
 		Thread.sleep(2000);
 	}
-	
+
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -291,20 +293,14 @@ public class ErrorMeter3 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("new report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("New Report");
+		softly.assertThat(s3).as("test data").isEqualTo("new report");
 		//Click on cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupCancelButton)).click();
 	}
-	
+
 	public void verifyFinalizeReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -319,10 +315,7 @@ public class ErrorMeter3 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: later, saved data can be seen by clicking \"saved activities\" button.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("save & finalize");

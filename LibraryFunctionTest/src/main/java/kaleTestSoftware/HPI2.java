@@ -25,10 +25,7 @@ public class HPI2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hpi.HPIPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hpi.HPIPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("new report");
@@ -50,10 +47,7 @@ public class HPI2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: later, saved data can be seen by clicking \"saved activities\" button.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hpi.HPIPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hpi.HPIPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("save & finalize");

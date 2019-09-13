@@ -30,7 +30,7 @@ public class HiRCAStressTest {
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -57,7 +57,7 @@ public class HiRCAStressTest {
 		}
 	}
 
-	@When("^she creates HiRCA report to upload ten images as stress test$")
+	@When("she creates HiRCA report to upload ten images as stress test")
 	public void she_creates_HiRCA_report_to_upload_ten_images_as_stress_test() throws Exception {
 
 		HiRCAStress hirca = new HiRCAStress();
@@ -65,7 +65,7 @@ public class HiRCAStressTest {
 		hirca.HiRCAUpload10Images(driver);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

@@ -31,7 +31,7 @@ public class HiRCALevel1ChineseTest {
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -58,34 +58,34 @@ public class HiRCALevel1ChineseTest {
 		}
 	}
 
-	@When("^she changes language to chinese$")
+	@When("she changes language to chinese")
 	public void she_changes_language_to_chinese() throws Exception {
 		HiRCAChinese hc = new HiRCAChinese();
 		//Change language to chinese
 		hc.changeToChinese(driver);
 	}
 
-	@When("^she verifies chinese translation for HiRCA report answering Level one questions$")
+	@When("she verifies chinese translation for HiRCA report answering Level one questions")
 	public void she_verifies_chinese_translation_for_HiRCA_report_answering_Level_one_questions() throws Exception {
 		HiRCAChinese hc = new HiRCAChinese();
 		//Check path
 		hc.pathHiRCA(driver);
 	}
 	
-	@When("^delete report$")
+	@When("delete report")
 	public void delete_report() throws Exception {
 		HiRCALevel1 hl1 = new HiRCALevel1();
 		hl1.deleteReport(driver);
 	}
 
-	@When("^she changes language to english$")
+	@When("she changes language to english")
 	public void she_changes_language_to_english() throws Exception {
 		HiRCAChinese hc = new HiRCAChinese();
 		//Change language to chinese
 		hc.changeToEnglish(driver);
 	}
 	
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

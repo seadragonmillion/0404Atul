@@ -58,10 +58,7 @@ public class ShareCheck2 {
 			softly.assertThat(title).as("test data").isEqualTo("1 Report(s)/Notification(s) have been selected for deletion.");
 			softly.assertThat(warning).as("test data").isEqualTo("Warning: the deleted notification(s) cannot be recovered.");
 			softly.assertThat(confirm).as("test data").isEqualTo("delete");
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				softly.assertThat(cancel).as("test data").isEqualTo("cancel");
-			else
-				softly.assertThat(cancel).as("test data").isEqualTo("Cancel");
+			softly.assertThat(cancel).as("test data").isEqualTo("cancel");
 		}
 		else
 		{
@@ -144,10 +141,7 @@ public class ShareCheck2 {
 			softly.assertThat(header).as("test data").isEqualTo("Mark As Read");
 			softly.assertThat(title).as("test data").isEqualTo("1 Report(s)/Notification(s) have been selected to mark as read.");
 			softly.assertThat(confirm).as("test data").isEqualTo("mark as read");
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				softly.assertThat(cancel).as("test data").isEqualTo("cancel");
-			else
-				softly.assertThat(cancel).as("test data").isEqualTo("Cancel");
+			softly.assertThat(cancel).as("test data").isEqualTo("cancel");
 		}
 		else
 		{
@@ -197,10 +191,7 @@ public class ShareCheck2 {
 			softly.assertThat(header).as("test data").isEqualTo("Mark As Unread");
 			softly.assertThat(title).as("test data").isEqualTo("1 Report(s)/Notification(s) have been selected to mark as unread.");
 			softly.assertThat(confirm).as("test data").isEqualTo("mark as unread");
-			if(driver.getCurrentUrl().contains("kaleqa"))
-				softly.assertThat(cancel).as("test data").isEqualTo("cancel");
-			else
-				softly.assertThat(cancel).as("test data").isEqualTo("Cancel");
+			softly.assertThat(cancel).as("test data").isEqualTo("cancel");
 		}
 		else
 		{

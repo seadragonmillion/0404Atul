@@ -90,16 +90,10 @@ public class SRI3 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("open");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Open");
+		softly.assertThat(s3).as("test data").isEqualTo("open");
 	}
 
 	public void deleteMeasurementFromStep2(WebDriver driver, SoftAssertions softly, String username, String password) throws Exception {
@@ -107,10 +101,7 @@ public class SRI3 {
 		WebDriverWait wait = new WebDriverWait(driver,30);	
 		verifyReportCanBeOpenedAfterLogin(driver,username,password);
 		//Click on open button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Step 2 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep2Tab)).click();
@@ -155,26 +146,17 @@ public class SRI3 {
 		softly.assertThat(s4).as("test data").contains("Date: "+date+", Time: "+time+", Measurement: "+measurement);
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("delete");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Delete");
+		softly.assertThat(s3).as("test data").isEqualTo("delete");
 	}
 
 	public void verifyPageSwitchesToStep2TabWhenErrorIsPresent(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
 		//Click on open button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Step 2 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep2Tab)).click();
@@ -225,7 +207,7 @@ public class SRI3 {
 		share2.loadingServer(driver);
 		//softly.assertAll();
 	}
-	
+
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -240,18 +222,12 @@ public class SRI3 {
 		softly.assertThat(s4).as("test data").contains("Note: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("new report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("New Report");
+		softly.assertThat(s3).as("test data").isEqualTo("new report");
 	}
-	
+
 	public void verifySaveReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -263,16 +239,10 @@ public class SRI3 {
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("save report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Save Report");
+		softly.assertThat(s3).as("test data").isEqualTo("save report");
 	}
 
 }

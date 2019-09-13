@@ -30,7 +30,7 @@ public class HiRCAEventInfoTest {
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -57,39 +57,39 @@ public class HiRCAEventInfoTest {
 		}
 	}
 
-	@When("^she creates HiRCA report with username as \"([^\"]*)\"$")
+	@When("she creates HiRCA report with username as {string}")
 	public void she_creates_HiRCA_report_with_username_as(String username) throws Exception {
 		HiRCAEvent hirca = new HiRCAEvent();
 		b.add(hirca.hircaEventInfo(driver, username));
 	}
 
-	@When("^share HiRCA report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("share HiRCA report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void share_HiRCA_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 		HiRCAEvent hirca = new HiRCAEvent();
 		hirca.shareReport(driver,username,password, y);
 	}
 
-	@When("^mark HiRCA report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("mark HiRCA report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void mark_HiRCA_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 		HiRCAEvent hirca = new HiRCAEvent();
 		//Mark critical
 		hirca.markCritical(driver,username,password,y);
 	}
 
-	@When("^rename and save HiRCA report three times with username as \"([^\"]*)\" and password as \"([^\"]*)\" and firefox indicator as (\\d+)$")
+	@When("rename and save HiRCA report three times with username as {string} and password as {string} and firefox indicator as {int}")
 	public void rename_and_save_HiRCA_report_three_times_with_username_as_and_password_as_and_firefox_indicator_as(String username, String password, int f) throws Exception {
 		HiRCAEvent hirca = new HiRCAEvent();
 		Login login = new Login();
 		hirca.saveNewReport(driver, username, password, login,f,b.get(0),hirca.text184);
 	}
 
-	@When("^delete HiRCA report with admin nonadmin environment indicator equals (\\d+)$")
+	@When("delete HiRCA report with admin nonadmin environment indicator equals {int}")
 	public void delete_HiRCA_report_with_admin_nonadmin_environment_indicator_equals(int y) throws Exception {
 		HiRCAEvent hirca = new HiRCAEvent();
 		hirca.deleteNewRecord(driver, b.get(0));
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class RemoteVerification4 {
 
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
-	
+
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -25,20 +25,14 @@ public class RemoteVerification4 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: unsaved content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("new remote verification");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("New Remote Verification");
+		softly.assertThat(s3).as("test data").isEqualTo("new remote verification");
 		//Click on cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).click();
 	}
-	
+
 	public void verifySaveReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -50,18 +44,12 @@ public class RemoteVerification4 {
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("save report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Save Report");
+		softly.assertThat(s3).as("test data").isEqualTo("save report");
 	}
-	
+
 	public void verifySaveAndSendReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);		
@@ -76,16 +64,10 @@ public class RemoteVerification4 {
 		softly.assertThat(s4).as("test data").isEqualTo("Information: verification user will receive an email and will be able to verify report.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("save and send report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Save and Send Report");
+		softly.assertThat(s3).as("test data").isEqualTo("save and send report");
 	}
 
 }

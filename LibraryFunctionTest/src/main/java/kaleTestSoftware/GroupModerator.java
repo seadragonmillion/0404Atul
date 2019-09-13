@@ -359,10 +359,7 @@ public class GroupModerator {
 			driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
 		}
 		//Clicks on next
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[5]/div/button"))).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[6]/div/button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[5]/div/button"))).click();
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-2-next"))).click();
 		//Select Step 3/4/5

@@ -13,10 +13,27 @@ public class ShareCheck3 {
 	EiRCA3 eirca3 = new EiRCA3();
 	ShareCheck2 share2 = new ShareCheck2();
 	ChineseCommonFunctions ccf = new ChineseCommonFunctions();
+	ShareCheckPageObj shareObj = new ShareCheckPageObj();
+	
+	public void verifyNoVerifiersPresentForModules(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.ModuleTitle)).getText();
+		if(s.contains("Remote Verification"))
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.VerifierLabel));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.VerifierSectionDiv));
+		}
+		else
+		{
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(shareObj.VerifierSectionDiv));
+		}
+	}
 	
 	public void shareTwice (WebDriver driver, SoftAssertions softly, int chOrEn) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		verifyNoVerifiersPresentForModules(driver);
 		Thread.sleep(2000);
 		//Enters sharer username
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys("jenkins_1_nonadmin");

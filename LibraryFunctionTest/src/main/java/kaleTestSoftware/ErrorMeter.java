@@ -178,7 +178,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("25%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("25.0%").as("test data").isEqualTo(meterText.trim());
 
 
 
@@ -198,7 +198,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("15.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("31%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("31.3%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
 		else 
@@ -211,7 +211,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("30.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("38%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("37.5%").as("test data").isEqualTo(meterText.trim());
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
@@ -226,7 +226,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("45.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("44%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("43.8%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
 		else 
@@ -239,7 +239,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("60.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("50%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
 		share2.scrollToTop(driver);
@@ -344,7 +344,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("65.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("56%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("56.3%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
 		else 
@@ -357,7 +357,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("70.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("63%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("62.5%").as("test data").isEqualTo(meterText.trim());
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
@@ -372,7 +372,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("75.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("69%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("68.8%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 		else 
@@ -385,7 +385,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("80.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("75%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("75.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
 		share2.scrollToTop(driver);
@@ -489,7 +489,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("85.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("81%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("81.3%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
 		else 
@@ -502,7 +502,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("90.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("88%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("87.5%").as("test data").isEqualTo(meterText.trim());
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
@@ -517,7 +517,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("95.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("94%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("93.8%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 		else 
@@ -527,10 +527,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("100.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("100%").as("test data").isEqualTo(meterText.trim());
+		softly.assertThat("100.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
 		share2.scrollToTop(driver);
@@ -647,8 +644,7 @@ public class ErrorMeter {
 		{
 
 		}
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			em3.verifyGuideOnPAPEPage(driver, softly);
+		em3.verifyGuideOnPAPEPage(driver, softly);
 		//Click on Environment of PAPE
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
@@ -722,7 +718,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("13%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("12.5%").as("test data").isEqualTo(meterText.trim());
 
 
 
@@ -742,7 +738,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("15.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("19%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("18.8%").as("test data").isEqualTo(meterText.trim());
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
@@ -757,7 +753,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("30.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("25%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("25.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
 		share2.scrollToTop(driver);
@@ -829,7 +825,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("35.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("31%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("31.3%").as("test data").isEqualTo(meterText.trim());
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
@@ -844,7 +840,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("40.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("38%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("37.5%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
 		share2.scrollToTop(driver);
@@ -913,7 +909,7 @@ public class ErrorMeter {
 		if(driver.getCurrentUrl().contains("kaleqa"))
 			softly.assertThat("45.0%").as("test data").isEqualTo(meterText.trim());
 		else
-			softly.assertThat("44%").as("test data").isEqualTo(meterText.trim());
+			softly.assertThat("43.8%").as("test data").isEqualTo(meterText.trim());
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
@@ -925,10 +921,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("50%").as("test data").isEqualTo(meterText.trim());
+		softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Fill in texts in Supporting reasons 
 		share2.scrollToTop(driver);
@@ -1089,10 +1082,7 @@ public class ErrorMeter {
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());		
 
 		//Click on Activity of PAPE
 		share2.scrollToTop(driver);
@@ -1196,10 +1186,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Click on People of PAPE
 		share2.scrollToTop(driver);
@@ -1303,10 +1290,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());		
 
 		//Click on Environment of PAPE
 		share2.scrollToTop(driver);
@@ -1416,10 +1400,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("0%").as("test data").isEqualTo(meterText.trim());
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());		
 	}
 
 	public void downloadReportIE(WebDriver driver, int y) throws Exception {
@@ -1431,10 +1412,7 @@ public class ErrorMeter {
 		String url = driver.getCurrentUrl();
 		Thread.sleep(2000);
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1478,10 +1456,7 @@ public class ErrorMeter {
 		Thread.sleep(2000);
 		String url = driver.getCurrentUrl();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
 		Thread.sleep(3000);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1524,10 +1499,7 @@ public class ErrorMeter {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
@@ -1579,10 +1551,7 @@ public class ErrorMeter {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
@@ -1667,10 +1636,7 @@ public class ErrorMeter {
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
 		//Verifies 0.0%
-		if(url.contains("kaleqa"))
-			softly.assertThat("0.0%").as("test data").isSubstringOf(newData1);
-		else
-			softly.assertThat("0.00%").as("test data").isSubstringOf(newData1);
+		softly.assertThat("0.0%").as("test data").isSubstringOf(newData1);
 		//Verifies risk level as Low
 		softly.assertThat("risk level: low").as("test data").isSubstringOf(newData1);
 		//Verify Non-Issue
@@ -1720,10 +1686,7 @@ public class ErrorMeter {
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
 		//Verifies 50.00%
-		if(url.contains("kaleqa"))
-			softly.assertThat("50.0%").as("test data").isSubstringOf(newData1);
-		else
-			softly.assertThat("50.00%").as("test data").isSubstringOf(newData1);
+		softly.assertThat("50.0%").as("test data").isSubstringOf(newData1);
 		//Verifies risk level as Low
 		softly.assertThat("risk level: medium").as("test data").isSubstringOf(newData1);
 		//Verify Non-Issue
@@ -1776,10 +1739,7 @@ public class ErrorMeter {
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
 		//Verifies 100.00%
-		if(url.contains("kaleqa"))
-			softly.assertThat("100.0%").as("test data").isSubstringOf(newData1);
-		else
-			softly.assertThat("100.00%").as("test data").isSubstringOf(newData1);
+		softly.assertThat("100.0%").as("test data").isSubstringOf(newData1);
 		//Verifies risk level as Low
 		softly.assertThat("risk level: high").as("test data").isSubstringOf(newData1);
 		//Verify SPV
@@ -1985,10 +1945,7 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("0.0%").as("test data").isEqualTo(probabilityText);		
-		else
-			softly.assertThat("0.00%").as("test data").isEqualTo(probabilityText);	
+		softly.assertThat("0.0%").as("test data").isEqualTo(probabilityText);		
 		//Check the title count
 		checkTitleCount(driver);
 	}
@@ -2150,10 +2107,7 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);		
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("50.0%").as("test data").isEqualTo(probabilityText);		
-		else
-			softly.assertThat("50.00%").as("test data").isEqualTo(probabilityText);	
+		softly.assertThat("50.0%").as("test data").isEqualTo(probabilityText);		
 	}
 
 	public void reportCheck100Dev (WebDriver driver) throws Exception{
@@ -2329,10 +2283,7 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("100.0%").as("test data").isEqualTo(probabilityText);		
-		else
-			softly.assertThat("100.00%").as("test data").isEqualTo(probabilityText);	
+		softly.assertThat("100.0%").as("test data").isEqualTo(probabilityText);		
 	}
 
 
@@ -2343,10 +2294,7 @@ public class ErrorMeter {
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);
 		//Clicks on share button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
 		Thread.sleep(500);
@@ -2397,26 +2345,14 @@ public class ErrorMeter {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on mark critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		//Checks if marked critical		
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
-		}
-		else {
-			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong"))).getText().trim();
-			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong")).isDisplayed())
-				System.out.println("Marked critical");
-		}
+		share2.loadingServer(driver);
+		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
 		//Click back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -2428,27 +2364,14 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(2000);		
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
-		}
-		else {
-			if(driver.findElement(By.xpath(".//*[@id='epm-rpt']/table[2]/tbody/tr/th/strong")).isDisplayed()==false)
-			{
-				System.out.println("Unmarked critical");
-			}
-		}
-		//Verify report not retrieved by shared to person
+		share2.loadingServer(driver);
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s1).as("test data").contains("ui-checkbox-off");//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
 		//Clicks on Error meter side panel
@@ -2465,10 +2388,7 @@ public class ErrorMeter {
 		//CLicks on first newly created record
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Clicks on delete button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		//Clicks on delete report
 		driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();

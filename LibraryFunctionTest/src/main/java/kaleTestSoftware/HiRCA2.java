@@ -14,7 +14,7 @@ public class HiRCA2 {
 	ShareCheck2 share2 = new ShareCheck2();
 	HiRCAObj hirca = new HiRCAObj();
 	EiRCA3 eirca3 = new EiRCA3();
-	
+
 	public void verifyStickyUserAccountAfterChange(WebDriver driver, SoftAssertions softly, int chiOrEng) throws Exception {
 
 		//WebDriverWait wait = new WebDriverWait(driver,60);
@@ -32,7 +32,7 @@ public class HiRCA2 {
 			System.out.println("Couldn't find account save pop up");
 		}
 	}
-	
+
 	public void verifyStickyUserAccount(WebDriver driver, SoftAssertions softly, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
@@ -127,16 +127,10 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: deleted content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("delete");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Delete");
+		softly.assertThat(s3).as("test data").isEqualTo("delete");
 	}
 
 	public void verifyNoSupportingFilePopup(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -178,16 +172,10 @@ public class HiRCA2 {
 		softly.assertThat(s1).as("test data").isEqualTo("Are you sure you want to save current event report?");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("save report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Save Report");
+		softly.assertThat(s3).as("test data").isEqualTo("save report");
 	}
 
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -204,16 +192,10 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Note: erased content cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("new report");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("New Report");
+		softly.assertThat(s3).as("test data").isEqualTo("new report");
 	}	
 
 	public void verifyOpenReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
@@ -232,16 +214,10 @@ public class HiRCA2 {
 		softly.assertThat(s4).as("test data").isEqualTo("Warning: once you load this version, any changes on the report will override existing data.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s3).as("test data").isEqualTo("open");
-		else
-			softly.assertThat(s3).as("test data").isEqualTo("Open");
+		softly.assertThat(s3).as("test data").isEqualTo("open");
 	}	
 
 	public void verifyDeleteReportPopup(WebDriver driver, SoftAssertions softly, String recordName) throws Exception {
@@ -255,23 +231,20 @@ public class HiRCA2 {
 		String r = s1.replaceAll("\u00AD", "");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		if(r.contains("This report is currently open in "))
-				softly.assertThat(r).as("test data").isEqualTo("This report is currently open in HiRCA™, are you sure you want to delete this report ["+r1+"]?");
-			else
-				softly.assertThat(r).as("test data").isEqualTo("Are you sure you want to delete this HiRCA™ report ["+r1+"]?");
+			softly.assertThat(r).as("test data").isEqualTo("This report is currently open in HiRCA™, are you sure you want to delete this report ["+r1+"]?");
+		else
+			softly.assertThat(r).as("test data").isEqualTo("Are you sure you want to delete this HiRCA™ report ["+r1+"]?");
 		//Verify note under question
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupNote)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("Note: deleted data cannot be recovered later.");
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmCancelButton)).getText();
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat(s2).as("test data").isEqualTo("cancel");
-		else
-			softly.assertThat(s2).as("test data").isEqualTo("Cancel");
+		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Open button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("delete report");
 	}
-	
+
 	public void verifyLOPRCPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -321,7 +294,7 @@ public class HiRCA2 {
 		//Verify the language as chinese in test		
 		share2.loadingServer(driver);
 	}	
-	
+
 	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);

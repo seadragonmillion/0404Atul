@@ -300,47 +300,22 @@ public class PassReview {
 		for(int i=2;i<=6;i++)
 		{
 			//Verify text
-			if(driver.getCurrentUrl().contains("kaleqa"))
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[2]/table/tbody/tr["+i+"]/td[2]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-			}
-			else
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-			}
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[2]/table/tbody/tr["+i+"]/td[2]"))).getText();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 		}
 		//Table 2
 		for(int i=2;i<=11;i++)
 		{
-			if(driver.getCurrentUrl().contains("kaleqa"))
+			//Verify text
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
+			//Verify Yes for checkbox
+			if(i%2==0)
 			{
-				//Verify text
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[3]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Yes");
-				}
-			}
-			else
-			{
-				//Verify text
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[4]/table/tbody/tr["+i+"]/td[3]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[4]/table/tbody/tr["+i+"]/td[2]"))).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Yes");
-				}
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[3]/table/tbody/tr["+i+"]/td[2]"))).getText();
+				softly.assertThat(s1).as("test data").isEqualTo("Yes");
 			}
 		}
 		//Pass 2
@@ -349,18 +324,9 @@ public class PassReview {
 		for(int i=2;i<=5;i++)
 		{
 			//Verify text
-			if(driver.getCurrentUrl().contains("kaleqa"))
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[4]/table/tbody/tr["+i+"]/td[2]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-			}
-			else
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[5]/table/tbody/tr["+i+"]/td[2]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-			}
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[4]/table/tbody/tr["+i+"]/td[2]"))).getText();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 		}
 		int m = 2;
 		//Table 2
@@ -372,31 +338,15 @@ public class PassReview {
 			}
 			else
 				m=2;
-			if(driver.getCurrentUrl().contains("kaleqa"))
+			//Verify text
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
+			//Verify Yes for checkbox
+			if(i%2==0)
 			{
-				//Verify text
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[5]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[5]/table/tbody/tr["+i+"]/td["+m+"]"))).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Yes");
-				}
-			}
-			else
-			{
-				//Verify text
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[6]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[6]/table/tbody/tr["+i+"]/td["+m+"]"))).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Yes");
-				}
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[5]/table/tbody/tr["+i+"]/td["+m+"]"))).getText();
+				softly.assertThat(s1).as("test data").isEqualTo("Yes");
 			}
 		}
 		//Procedure
@@ -404,18 +354,9 @@ public class PassReview {
 		for(int i=2;i<=5;i++)
 		{
 			//Verify text
-			if(driver.getCurrentUrl().contains("kaleqa"))
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[6]/table/tbody/tr["+i+"]/td[2]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-			}
-			else
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[7]/table/tbody/tr["+i+"]/td[2]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				softly.assertThat(r1).as("test data").isIn(textList);
-			}
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[6]/table/tbody/tr["+i+"]/td[2]"))).getText();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(textList);
 		}
 		//Table 4
 		for(int i=2;i<=13;i++)
@@ -427,57 +368,27 @@ public class PassReview {
 			else
 				m=2;
 			//Verify text
-			if(driver.getCurrentUrl().contains("kaleqa"))
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[7]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
+			String r1 = s.replaceAll("\u00AD", "");
+			if(r1.equals("")==false)
+				softly.assertThat(r1).as("test data").isIn(textList);
+			//Verify Yes for checkbox
+			if(i%2==0)
 			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[7]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				if(r1.equals("")==false)
-					softly.assertThat(r1).as("test data").isIn(textList);
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[7]/table/tbody/tr["+i+"]/td["+m+"]"))).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Yes");
-				}
-			}
-			else
-			{
-				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[8]/table/tbody/tr["+i+"]/td["+(m+1)+"]"))).getText();
-				String r1 = s.replaceAll("\u00AD", "");
-				if(r1.equals("")==false)
-					softly.assertThat(r1).as("test data").isIn(textList);
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[8]/table/tbody/tr["+i+"]/td["+m+"]"))).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Yes");
-				}
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[7]/table/tbody/tr["+i+"]/td["+m+"]"))).getText();
+				softly.assertThat(s1).as("test data").isEqualTo("Yes");
 			}
 		}
 		//Pass 3
 		//Table 1
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Title
-			String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.HTMLPass3Tab1stTableTitle)).getText();
-			softly.assertThat(titlePass3Tab).as("test data").isEqualTo("Pass 3: Self-Checklist");
-			//Verify text
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.HTMLPass3CriticalText)).getText();
-			String r1 = s.replaceAll("\u00AD", "");
-			if(r1.equals("")==false)
-				softly.assertThat(r1).as("test data").isIn(textList);
-		}
-		else
-		{
-			//Title
-			String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[9]/div"))).getText();
-			softly.assertThat(titlePass3Tab).as("test data").isEqualTo("Pass 3: Self-Checklist");
-			//Verify text
-			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr[2]/td[2]"))).getText();
-			String r1 = s.replaceAll("\u00AD", "");
-			if(r1.equals("")==false)
-				softly.assertThat(r1).as("test data").isIn(textList);
-		}
+		//Title
+		String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.HTMLPass3Tab1stTableTitle)).getText();
+		softly.assertThat(titlePass3Tab).as("test data").isEqualTo("Pass 3: Self-Checklist");
+		//Verify text
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.HTMLPass3CriticalText)).getText();
+		String r1 = s.replaceAll("\u00AD", "");
+		if(r1.equals("")==false)
+			softly.assertThat(r1).as("test data").isIn(textList);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -485,59 +396,29 @@ public class PassReview {
 		//Table 2
 		for(int i=2;i<=7;i++)
 		{
-			if(driver.getCurrentUrl().contains("kaleqa"))
+			//Verify text
+			if (browserName.equals("internet explorer"))
 			{
-				//Verify text
-				if (browserName.equals("internet explorer"))
-				{
-					String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr["+i+"]/td[3]")).getText();
-					System.out.println(s1);
-					String r2 = s1.replaceAll("\u00AD", "");
-					softly.assertThat(r2).as("test data").isIn(textList);
-					//System.out.println(s1+"\n"+r2);
-				}
-				else
-				{
-					String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr["+i+"]/td[3]")).getText();
-					String r2 = s1.replaceAll("\u00AD", "");
-					softly.assertThat(r2).as("test data").isIn(textList);
-				}
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					if((i==2)&&browserName.contains("safari"))
-						continue;
-					String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr["+i+"]/td[2]"))).getText();
-					System.out.println(s2+" "+i);
-					softly.assertThat(s2).as("test data").isEqualTo("Yes");
-				}
+				String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr["+i+"]/td[3]")).getText();
+				System.out.println(s1);
+				String r2 = s1.replaceAll("\u00AD", "");
+				softly.assertThat(r2).as("test data").isIn(textList);
+				//System.out.println(s1+"\n"+r2);
 			}
 			else
 			{
-				//Verify text
-				if (browserName.equals("internet explorer"))
-				{
-					String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]")).getText();
-					System.out.println(s1);
-					String r2 = s1.replaceAll("\u00AD", "");
-					softly.assertThat(r2).as("test data").isIn(textList);
-					//System.out.println(s1+"\n"+r2);
-				}
-				else
-				{
-					String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[3]")).getText();
-					String r2 = s1.replaceAll("\u00AD", "");
-					softly.assertThat(r2).as("test data").isIn(textList);
-				}
-				//Verify Yes for checkbox
-				if(i%2==0)
-				{
-					if((i==2)&&browserName.contains("safari"))
-						continue;
-					String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[10]/table/tbody/tr["+i+"]/td[2]"))).getText();
-					System.out.println(s2+" "+i);
-					softly.assertThat(s2).as("test data").isEqualTo("Yes");
-				}
+				String s1 = driver.findElement(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr["+i+"]/td[3]")).getText();
+				String r2 = s1.replaceAll("\u00AD", "");
+				softly.assertThat(r2).as("test data").isIn(textList);
+			}
+			//Verify Yes for checkbox
+			if(i%2==0)
+			{
+				if((i==2)&&browserName.contains("safari"))
+					continue;
+				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='3pr-rpt']/div[9]/table/tbody/tr["+i+"]/td[2]"))).getText();
+				System.out.println(s2+" "+i);
+				softly.assertThat(s2).as("test data").isEqualTo("Yes");
 			}
 		}
 	}
@@ -550,28 +431,16 @@ public class PassReview {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);	
 		//Clicks on mark critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Mark critical pop up
 		eirca2.verifyMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-on");
-		}
-		else {
-			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewMarkCriticalIndicatorText)).getText();
-			softly.assertThat(critical).as("test data").contains("Critical");
-			if(driver.findElement(pr.PassReviewMarkCriticalIndicatorText).isDisplayed())
-				System.out.println("Marked critical");
-		}
+		share2.loadingServer(driver);
+		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
 		//Click back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
@@ -583,28 +452,16 @@ public class PassReview {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Un-mark critical pop up
 		eirca2.verifyUnMarkCriticalPopup(driver, softly);
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(2000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			share2.loadingServer(driver);
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
-			softly.assertThat(s).as("test data").contains("ui-checkbox-off");
-		}
-		else {
-			if(driver.findElement(pr.PassReviewMarkCriticalIndicatorText).isDisplayed()==false)
-			{
-				System.out.println("Unmarked critical");
-			}
-		}
+		share2.loadingServer(driver);
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s1).as("test data").contains("ui-checkbox-off");
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);		
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
@@ -625,10 +482,7 @@ public class PassReview {
 		//Verify change in text
 		verifyHTMLReport(driver, em2.error50Data(driver,driver.getCurrentUrl()));
 		//Clicks on share button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[3]"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(500);
@@ -670,10 +524,7 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
 		//Clicks on delete button
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(pr.DeleteButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[2]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.DeleteButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
@@ -830,10 +681,7 @@ public class PassReview {
 		//Verify final report
 		verifyHTMLReport(driver, em2.error100Data(driver,driver.getCurrentUrl()));
 		//Clicks on open
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div/div/a[1]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		//Clicks on open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();

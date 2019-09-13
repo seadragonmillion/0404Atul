@@ -30,7 +30,7 @@ public class HiRCAHumanErrorLevel1Test {
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -57,13 +57,13 @@ public class HiRCAHumanErrorLevel1Test {
 		}
 	}
 
-	@When("^she creates HiRCA report with Human Error and answering Level one questions with username as \"([^\"]*)\"$")
+	@When("she creates HiRCA report with Human Error and answering Level one questions with username as {string}")
 	public void she_creates_HiRCA_report_with_Human_Error_and_answering_Level_one_questions_with_username_as(String username) throws Exception {
 		HiRCAHumanError hl1 = new HiRCAHumanError();
 		hl1.pathHiRCA(driver, username);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

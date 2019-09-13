@@ -36,15 +36,9 @@ public class OPiRCAChinese {
 		//Clicks on OPiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCALink)).click();
 		//Scroll down
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
-		else
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Click next
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		share2.scrollToTop(driver);	 
 		ccf.verifyChineseButtonsInfoTabOPiRCA(driver, softly);
@@ -236,32 +230,21 @@ public class OPiRCAChinese {
 		//Chinese verify HTML report
 		List <String> verifyChinese=opc3.chineseHTMLReport(driver,softly);
 		Thread.sleep(1000);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).getText();
-			softly.assertThat(s).as("test data").contains("重要");
-		}
-		else
-		{
-			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).getText();
-			softly.assertThat(s).as("test data").contains("重要");
-		}
+		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).getText();
+		softly.assertThat(s).as("test data").contains("重要");
 		//Clicks on mark critical
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-single']/div[2]/div/label"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		//Checks if marked critical
-		if(driver.getCurrentUrl().contains("kaleqa")==false)
+		/*if(driver.getCurrentUrl().contains("kaleqa")==false)
 		{
 			String critical=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText)).getText();
 			softly.assertThat(critical).as("test data").contains("重要");
 			String c1=wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPIRCAMarkCriticalIndicatorText1)).getText();
 			softly.assertThat(c1).as("test data").contains("事件信息");
-		}
+		}*/
 		return verifyChinese;
 	}
 
@@ -3006,10 +2989,7 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInvestigatorsField)).sendKeys(text);
 		share2.scrollToAPoint(driver, 1500);
 		//Click next
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
-		else
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-opa-event-form']/div[12]/div/button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
@@ -3043,21 +3023,9 @@ public class OPiRCAChinese {
 		//Event location field
 		String opircaEventLocField = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventLocationField)).getAttribute("placeholder");
 		softly.assertThat(opircaEventLocField).as("test data").contains("输入 事件发生地点");
-		if(driver.getCurrentUrl().contains("kaleqa"))
-		{
-			//Event date label
-			String opircaEventDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventDateLabel)).getText();
-			softly.assertThat(opircaEventDateLabel).as("test data").contains("日期与时间:");
-		}
-		else
-		{
-			//Event date label
-			String opircaEventDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventDateLabel)).getText();
-			softly.assertThat(opircaEventDateLabel).as("test data").contains("事件发生日期:");
-			//Event time label
-			String opircaEventTimeLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTimeLabel)).getText();
-			softly.assertThat(opircaEventTimeLabel).as("test data").contains("事件发生时间:");
-		}
+		//Event date label
+		String opircaEventDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventDateLabel)).getText();
+		softly.assertThat(opircaEventDateLabel).as("test data").contains("日期与时间:");
 		//Event Problem Statement label
 		String opircaEventpbLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventProblemStatementLabel)).getText();
 		softly.assertThat(opircaEventpbLabel).as("test data").contains("事件描述:");

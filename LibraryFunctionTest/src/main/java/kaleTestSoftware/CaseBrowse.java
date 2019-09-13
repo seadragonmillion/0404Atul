@@ -976,7 +976,7 @@ public class CaseBrowse {
 	}
 
 
-	public void searchWithKeywordKALE1964(WebDriver driver, SoftAssertions softly1) throws Exception {
+	public void searchWithKeywordKALE1964(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
@@ -1027,7 +1027,7 @@ public class CaseBrowse {
 			}
 			if(dropdown.isDisplayed()==true)
 			{
-				softly1.fail("Dropdown visible and the webelement is: "+dropdown.getAttribute("id"));
+				softly.fail("Dropdown visible and the webelement is: "+dropdown.getAttribute("id"));
 			}
 			//Clear
 			try{

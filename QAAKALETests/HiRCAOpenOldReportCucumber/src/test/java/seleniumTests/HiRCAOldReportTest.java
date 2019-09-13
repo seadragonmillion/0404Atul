@@ -30,7 +30,7 @@ public class HiRCAOldReportTest {
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -57,14 +57,14 @@ public class HiRCAOldReportTest {
 		}
 	}
 
-	@When("^she verifies old HiRCA report can be opened and final report contains data inside$")
+	@When("she verifies old HiRCA report can be opened and final report contains data inside")
 	public void she_verifies_old_HiRCA_report_can_be_opened_and_final_report_contains_data_inside() throws Exception {
 		HiRCAOldReport hirca = new HiRCAOldReport();
 		//Verify old report
 		hirca.verifyOldReport(driver);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

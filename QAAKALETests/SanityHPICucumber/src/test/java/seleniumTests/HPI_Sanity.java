@@ -49,7 +49,7 @@ public class HPI_Sanity {
 		}
 	};*/
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -76,7 +76,7 @@ public class HPI_Sanity {
 		}
 	}
 
-	@When("^he creates an HPI report with username as \"([^\"]*)\"$")
+	@When("he creates an HPI report with username as {string}")
 	public void he_creates_an_HPI_report_with_username_as(String username) throws Exception {
 	    //Create a new report
 	    HPI hpi = new HPI();
@@ -94,28 +94,28 @@ public class HPI_Sanity {
 	 * 6=admin ie11
 	 * 7=non admin ie11
 	 */
-	@When("^share HPI report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("share HPI report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void share_HPI_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 	    // Share report
 	    HPI hpi = new HPI();
 	    hpi.shareReport(driver, username, password, y);
 	}
 
-	@When("^mark critical HPI report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("mark critical HPI report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void mark_critical_HPI_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 
 	    HPI hpi = new HPI();
 	    hpi.markCritical(driver, username, password, y);
 	}
 
-	@When("^delete HPI report with admin nonadmin environment indicator equals (\\d+)$")
+	@When("delete HPI report with admin nonadmin environment indicator equals {int}")
 	public void delete_HPI_report_with_admin_nonadmin_environment_indicator_equals(int y) throws Exception {
 
 	    HPI hpi = new HPI();
 	    hpi.deleteNewRecord(driver, b.get(0), y);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);

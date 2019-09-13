@@ -24,7 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateEquipmentCase {
 
-	SoftAssertions softly = new SoftAssertions();
+	public SoftAssertions softly = new SoftAssertions();
 	LoginPageObj lpo = new LoginPageObj();
 	Login login = new Login();
 	CreateEquipPageObj equipObj = new CreateEquipPageObj();
@@ -2976,6 +2976,25 @@ public class CreateEquipmentCase {
 		//Switch to iframe
 		driver.switchTo().frame(driver.findElement(lpo.Iframe));
 		Thread.sleep(2000);
+	}
+
+	public List<String> createCase(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title)throws Exception{
+
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if(browserName.contains("chrome"))
+			return createCaseChrome(driver,keyword_same,key1,key2,key3,title);
+		else if(browserName.contains("firefox"))
+			return createCaseFirefox(driver,keyword_same,key1,key2,key3,title);
+		else
+		{			
+			if(v.startsWith("10"))
+				return createCaseIE10(driver,keyword_same,key1,key2,key3,title);
+			else
+				return createCaseIE11(driver,keyword_same,key1,key2,key3,title);
+		}
 	}
 
 

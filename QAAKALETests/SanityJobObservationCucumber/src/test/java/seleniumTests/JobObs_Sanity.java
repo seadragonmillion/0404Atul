@@ -49,7 +49,7 @@ public class JobObs_Sanity {
 		}
 	};*/
 
-	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
+	@Given("user is on KALE Home Page {string} with username as {string} and password as {string} on browser {string}")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
 		beforeFunctions bf = new beforeFunctions();
@@ -76,7 +76,7 @@ public class JobObs_Sanity {
 		}
 	}
 
-	@When("^she creates an Job Observation report$")
+	@When("she creates an Job Observation report")
 	public void she_creates_an_Job_Observation_report() throws Exception {
 
 		JobObservation jo = new JobObservation();
@@ -94,28 +94,28 @@ public class JobObs_Sanity {
 	 * 6=admin ie11
 	 * 7=non admin ie11
 	 */
-	@When("^share Job Observation report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("share Job Observation report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void share_Job_Observation_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 
 		JobObservation jo = new JobObservation();
 		jo.shareReport(driver, username, password, y);
 	}
 
-	@When("^mark critical Job Observation report with username as \"([^\"]*)\" and password as \"([^\"]*)\" and admin nonadmin environment indicator equals (\\d+)$")
+	@When("mark critical Job Observation report with username as {string} and password as {string} and admin nonadmin environment indicator equals {int}")
 	public void mark_critical_Job_Observation_report_with_username_as_and_password_as_and_admin_nonadmin_environment_indicator_equals(String username, String password, int y) throws Exception {
 
 		JobObservation jo = new JobObservation();
 		jo.markCritical(driver, username, password, y);
 	}
 
-	@When("^delete Job Observation report with admin nonadmin environment indicator equals (\\d+)$")
+	@When("delete Job Observation report with admin nonadmin environment indicator equals {int}")
 	public void delete_Job_Observation_report_with_admin_nonadmin_environment_indicator_equals(int y) throws Exception {
 
 		JobObservation jo = new JobObservation();
 		jo.deleteNewRecord(driver, b.get(0), y);
 	}
 
-	@When("^logout from KALE$")
+	@When("logout from KALE")
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);
