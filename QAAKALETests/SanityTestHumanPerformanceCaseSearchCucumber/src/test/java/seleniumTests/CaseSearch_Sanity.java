@@ -130,7 +130,7 @@ public class CaseSearch_Sanity {
 		if(devProd.contains("dev"))
 			obj1.browseCaseIDHuman(driver, obj1.caseHumanDev, obj1.titleDev);
 		if(devProd.contains("prod"))
-			obj1.browseCaseIDHuman(driver, obj1.caseHumanDev, obj1.titleHumanProd);
+			obj1.browseCaseIDHuman(driver, obj1.caseHumanProd, obj1.titleHumanProd);
 	}
 
 	@When("search with keyword color oil")
