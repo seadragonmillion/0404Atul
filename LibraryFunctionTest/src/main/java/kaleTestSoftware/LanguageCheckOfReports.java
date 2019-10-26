@@ -246,6 +246,7 @@ public class LanguageCheckOfReports {
 		//Clicks on Account
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+		share2.loadingServer(driver);
 		//Verifies changed data
 		String name=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).getAttribute("value");
 		System.out.println(name);
@@ -504,6 +505,7 @@ public class LanguageCheckOfReports {
 		Select s4 = new Select (dropdown1);
 		s4.selectByVisibleText("Chinese");
 		//Clicks on save
+		share2.loadingServer(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();

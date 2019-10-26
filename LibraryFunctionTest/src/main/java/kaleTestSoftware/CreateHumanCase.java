@@ -20,7 +20,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateHumanCase {
 
-	SoftAssertions softly = new SoftAssertions();
+	public SoftAssertions softly = new SoftAssertions();
+	
 	LoginPageObj lpo = new LoginPageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj shareObj = new ShareCheckPageObj();
@@ -51,8 +52,6 @@ public class CreateHumanCase {
 	public String key2USie11="QAAie11tigerUS";
 	public String key3USie11="QAAie11horseUS";
 	public String titleUSie11 ="QAA US IE11 Human Case Upload";
-
-
 
 	public void checkForErrorWithoutUploadingSlides(WebDriver driver) throws Exception {
 
@@ -1040,6 +1039,25 @@ public class CreateHumanCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+cases.get(2)+"']/a"))).click();
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchClearButton)).click();
+	}
+	
+	public List<String> createCase(WebDriver driver, int m, String title, String keyword_same, String key1, String key2, String key3)throws Exception{
+
+		//Get browser name and version
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		String v = cap.getVersion().toString();
+		if(browserName.contains("chrome"))
+			return createCaseHumanChrome(driver, m, title, keyword_same, key1, key2, key3);
+		else if(browserName.contains("firefox"))
+			return createCaseHumanFirefox(driver, m, title, keyword_same, key1, key2, key3);
+		else
+		{			
+			if(v.startsWith("10"))
+				return createCaseHumanIE10(driver, m, title, keyword_same, key1, key2, key3);
+			else
+				return createCaseHumanIE11(driver, m, title, keyword_same, key1, key2, key3);
+		}
 	}
 
 	public List<String> createCaseHumanChrome (WebDriver driver, int m, String title, String keyword_same, String key1, String key2, String key3) throws Exception {

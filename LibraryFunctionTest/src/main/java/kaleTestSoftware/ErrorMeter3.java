@@ -243,6 +243,8 @@ public class ErrorMeter3 {
 		//Clicks on SPV Error meter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterLink)).click();
 		Thread.sleep(2000);
+		//Verify text in Env tab Job type= Construction 
+		verifyTextEnvironmentTabJobTypeConstruction(driver,softly);
 		//verify new report popup
 		verifyNewReportPopup(driver,softly);
 		share2.loadingServer(driver);
@@ -298,7 +300,7 @@ public class ErrorMeter3 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("new report");
 		//Click on cancel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupCancelButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupConfirmButton)).click();
 	}
 
 	public void verifyFinalizeReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -319,5 +321,30 @@ public class ErrorMeter3 {
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("save & finalize");
+	}
+
+	public void verifyTextEnvironmentTabJobTypeConstruction(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Select Purpose from dropdown
+		WebElement element = driver.findElement(emObj.ErrorMeterPurpose);
+		Select s = new Select (element);
+		s.selectByVisibleText("PJB");
+		Thread.sleep(2000);
+		//Select Job type
+		element = driver.findElement(emObj.ErrorMeterJobType);
+		Select s1 = new Select (element);
+		s1.selectByVisibleText("Construction");
+		Thread.sleep(2000);
+		//Fills Job title
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterJobTitle)).sendKeys(ec2.textCreate(driver));
+		//Click on next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterNextButton)).click();
+		Thread.sleep(2000);
+		//Click on Environment of PAPE
+		share2.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();		
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTabRow3Question)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Are there weather effects like rain, snow or typhoon?");
 	}
 }

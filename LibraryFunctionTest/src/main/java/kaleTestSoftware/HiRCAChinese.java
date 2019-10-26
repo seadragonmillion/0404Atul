@@ -711,6 +711,18 @@ public class HiRCAChinese {
 			element = driver.findElement(By.id("pii-user-acct"));
 			act.click(element).build().perform();
 			Thread.sleep(2000);
+			try{
+				driver.findElement(By.id("pii-admin-user-language"));
+			}catch(org.openqa.selenium.NoSuchElementException r){
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname")));
+				element = driver.findElement(By.id("pii-user-loginname"));
+				act.click(element).build().perform();
+				Thread.sleep(3000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct")));
+				element = driver.findElement(By.id("pii-user-acct"));
+				act.click(element).build().perform();
+				Thread.sleep(2000);
+			}
 		}
 		share2.loadingServer(driver);
 		//Changes language to English

@@ -40,12 +40,12 @@ public class TextBoxResizing {
 		String heightWithoutText = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("style");
 		//heightWithoutText to be same as sizeOriginal
 		//softly.assertThat(heightWithoutText).as("test data").isEqualTo(sizeOriginal);
-		int height1 = Integer.parseInt(heightWithoutText.substring(heightWithoutText.lastIndexOf("height:")+8, heightWithoutText.lastIndexOf("p")));
-		int height2 = Integer.parseInt(sizeOriginal.substring(sizeOriginal.indexOf("height:")+8, sizeOriginal.lastIndexOf("p")));
+		double height1 = Double.parseDouble(heightWithoutText.substring(heightWithoutText.lastIndexOf("height:")+8, heightWithoutText.lastIndexOf("p")));
+		double height2 = Double.parseDouble(sizeOriginal.substring(sizeOriginal.indexOf("height:")+8, sizeOriginal.lastIndexOf("p")));
 /*		if(height1<(height2-6))
 			softly.fail("For locator "+locator+"\n Starting size not correct: "+height1+", original height: "+height2);*/
 		//both heights not equal
-		int height3 = Integer.parseInt(heightWithText.substring(heightWithText.lastIndexOf("height:")+8, heightWithText.lastIndexOf("p")));
+		double height3 = Double.parseDouble(heightWithText.substring(heightWithText.lastIndexOf("height:")+8, heightWithText.lastIndexOf("p")));
 		if(height3==height1)
 			softly.fail("For locator "+locator+"\n Height with text equal to height without text "+height3);
 		//softly.assertThat(heightWithText).as("test data").isNotEqualTo(heightWithoutText);

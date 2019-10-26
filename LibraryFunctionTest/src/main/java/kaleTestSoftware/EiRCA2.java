@@ -44,6 +44,11 @@ public class EiRCA2 {
 		else
 			return("Sanity Test \"title\" Sanity");
 	}
+	
+	public String textCreateEIRCAv2(WebDriver driver) throws Exception {
+
+		return("Sanity Test \"title\" Sanity");
+	}
 
 	public String textCreate1() throws Exception {
 

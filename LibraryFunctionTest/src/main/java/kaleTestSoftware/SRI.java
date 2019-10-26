@@ -760,6 +760,7 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
+		WebDriverWait wait2 = new WebDriverWait(driver,2);
 		sriA.SRIAdminTest(driver,softly);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.AnalysisLink)).click();
@@ -788,6 +789,14 @@ public class SRI {
 		//Click on next step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1NextButton)).click();
 		//Step 2 - add 2 measurements
+		//Verify no warning message appears in new reports
+		try{
+			wait2.until(ExpectedConditions.visibilityOfElementLocated(login.StickyWarningPopup));
+			softly.fail("Sticky popup seen: "+wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText());
+		}catch(org.openqa.selenium.TimeoutException e)
+		{
+			
+		}
 		step2Verify(driver);
 		//1
 		step2AddMeasurement(driver,sri2.text,sriA2.mechanicalMeasurement1, sriA2.mechanicalUnit1, "9");

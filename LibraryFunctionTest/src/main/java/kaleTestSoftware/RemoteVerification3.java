@@ -27,6 +27,7 @@ public class RemoteVerification3 {
 
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 	RemoteVerificationChinese2 rc2 = new RemoteVerificationChinese2();
+	RemoteVerification4 rv4 = new RemoteVerification4();
 	ShareCheck2 share2 = new ShareCheck2();
 	EiRCAPageObj eirca = new EiRCAPageObj();
 	UserManagement um = new UserManagement();
@@ -40,6 +41,7 @@ public class RemoteVerification3 {
 	public String fillRVPage(WebDriver driver, int k, int chiOrEng, SoftAssertions softly) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		rv4.verifyTextOnRVCurrentVerificationPage(driver, softly);
 		//Fills the mandatory fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys(rv.details(driver,driver.getCurrentUrl()));
@@ -83,6 +85,13 @@ public class RemoteVerification3 {
 		driver.findElement(rv.RVSavePopupConfirmButton).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		//Verify text for sent for verification and request sent date
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVRequestSentDateLabel)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Request sent date:");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVRequestVerificationStatusLabel)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Verification status:");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVRequestVerificationStatus)).getText();
+		softly.assertThat(s2).as("test data").contains("Sent, waiting for verification");
 		return verifier;
 	}
 	

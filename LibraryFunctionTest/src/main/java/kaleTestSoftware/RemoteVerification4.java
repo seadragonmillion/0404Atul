@@ -69,5 +69,42 @@ public class RemoteVerification4 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("save and send report");
 	}
+	
+	public void verifyTextOnRVCurrentVerificationPage(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);	
+		//Main title
+		String mainTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVMainTitle)).getText();
+		softly.assertThat(mainTitle).as("test data").isEqualTo("Remote Verification: Enter all necessary data needed for verification. - v1");
+		//Report info
+		String reportInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportInfoTitle)).getText();
+		softly.assertThat(reportInfo).as("test data").isEqualTo("(1) Report Information.");
+		//Report title
+		String reportTitleLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportTitleLabel)).getText();
+		softly.assertThat(reportTitleLabel).as("test data").isEqualTo("Verification Report Title: ");
+		//date time
+		String dateTimeLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportDateTimeLabel)).getText();
+		softly.assertThat(dateTimeLabel).as("test data").isEqualTo("Creation date and time: ");
+		//location
+		String locationLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportLocationLabel)).getText();
+		softly.assertThat(locationLabel).as("test data").isEqualTo("Photo upload location: ");
+		//photo 1
+		String image1Label = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportImage1Label)).getText();
+		softly.assertThat(image1Label).as("test data").isEqualTo("(2) Take or choose a photo of work needing verification.");
+		//photo 2
+		String image2Label = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportImage2Label)).getText();
+		softly.assertThat(image2Label).as("test data").isEqualTo("(3) Take or choose a photo of the person requesting verification.");
+		//details
+		String detailsLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportDetailsLabel)).getText();
+		softly.assertThat(detailsLabel).as("test data").isEqualTo("(4) Fill in relevant details and description of work needing verification.");
+		//verifier
+		String verifierLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerifierLabel)).getText();
+		softly.assertThat(verifierLabel).as("test data").isEqualTo("(5) Select verifier.");
+		String verifierSelectedLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerifierSelectedLabel)).getText();
+		softly.assertThat(verifierSelectedLabel).as("test data").isEqualTo("Selected verifier: ");
+		//report verify title
+		String reportVerifySend = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerifierSendLabel)).getText();
+		softly.assertThat(reportVerifySend).as("test data").isEqualTo("(6) Save and send verification report to verifier for approval.");
+	}
 
 }

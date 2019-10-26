@@ -861,7 +861,14 @@ public class OPiRCA {
 		//Scroll to element
 		share2.scrollToElement(driver, l);
 		//Unselect the chosen HiRCA level 3 option
-		l.click();
+		try{
+			l.click();
+		}catch(org.openqa.selenium.ElementClickInterceptedException r){
+			l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(hircaL3.get(n))));
+			//Scroll to element
+			share2.scrollToElement(driver, l);
+			l.click();
+		}
 		//Scroll to the top
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);

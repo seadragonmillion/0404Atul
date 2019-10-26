@@ -43,8 +43,14 @@ public class UserManagement2 {
 			driver.findElement(By.id("pii-admin-cust-button-save")).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title"))).click();
 			//Clicks on update company
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();		
+			try{
+				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
+				softly.assertThat(s).as("test data").contains("Company updated");
+			}catch(org.openqa.selenium.TimeoutException r)
+			{
+
+			}
 			//Enters company id in ID field 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 			Thread.sleep(1000);

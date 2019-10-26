@@ -49,7 +49,7 @@ public class ErrorMeter {
 		//Closes any warning from server
 		try{
 
-			//CLoses server warning
+			//Closes server warning
 			String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText().trim();
 			System.out.println(s);
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  

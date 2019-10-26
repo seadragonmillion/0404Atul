@@ -74,6 +74,9 @@ public class RemoteVerificationPageObj {
 	public By RVMarkedCriticalText = By.xpath(".//*[@id='rv-rpt']/div/div/table/tbody/tr/th/strong");
 	public By RVDeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
 	public By AcceptRejectConfirmPopupTitle = By.id("pii-user-home-rv-dialog-title");
+	public By RVRequestSentDateLabel = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[4]/strong");
+	public By RVRequestVerificationStatusLabel = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]/strong");
+	public By RVRequestVerificationStatus = By.xpath(".//*[@id='rv-rpt']/div/div[2]/div[5]");
 
 	//Share Page
 	public By RVSharePageVerifierBlock = By.xpath(".//*[@id='pii-uhshare-verifier-list-div']/div/div/div/ul");

@@ -90,6 +90,7 @@ public class ErrorMeterPageObj {
 	public By ErrorMeterPAPEEnvironmentCorrectiveAction2 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[3]/td[4]/textarea");
 	public By ErrorMeterPAPEEnvironmentCorrectiveAction3 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[4]/td[4]/textarea");
 	public By ErrorMeterPAPEEnvironmentCorrectiveAction4 = By.xpath(".//*[@id='pii-epm-tab-e']/table/tbody/tr[5]/td[4]/textarea");
+	public By ErrorMeterPAPEEnvironmentTabRow3Question = By.id("pii-epm-tab-e-q3-l");
 
 	public By ErrorMeterPAPEPeopleTab = By.id("pii-epm-taba-p");
 	public By ErrorMeterPAPEPeopleCheckBox1 = By.id("pii-epm-tab-p-q1");

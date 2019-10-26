@@ -30,11 +30,6 @@ public class RemoteVerification2 {
 	public String rejectComment = "Rejected for test";
 	public String passComment = "Passed for test";
 
-
-
-
-
-
 	public void loginToUser(WebDriver driver, String username, String password1) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);

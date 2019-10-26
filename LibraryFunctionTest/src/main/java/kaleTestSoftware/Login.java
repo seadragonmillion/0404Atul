@@ -261,7 +261,7 @@ public class Login {
 			{
 				try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
-				}catch(org.openqa.selenium.TimeoutException u)
+				}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementClickInterceptedException u)
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equip.KaleHomePage)).click();
 					try{

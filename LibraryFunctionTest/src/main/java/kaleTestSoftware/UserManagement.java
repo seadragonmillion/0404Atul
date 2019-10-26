@@ -1874,7 +1874,8 @@ public class UserManagement {
 		//Clicks on create company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
+			softly.assertThat(s).as("test data").contains("Company created");
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 
@@ -2948,7 +2949,8 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-cust-dialog-confirmed")).click();
 		Thread.sleep(4000);
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
+			softly.assertThat(s).as("test data").contains("Company deleted");
 		}catch(org.openqa.selenium.TimeoutException r)
 		{
 

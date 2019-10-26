@@ -23,7 +23,7 @@ public class beforeFunctions {
 
 	public WebDriver beforeChromeTest(WebDriver driver, String url) throws MalformedURLException{
 
-		System.out.println("Chrome on Windows");
+		System.out.println("Test in Chrome on Windows");
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
@@ -48,7 +48,7 @@ public class beforeFunctions {
 
 	public WebDriver beforeSafariTechTest(WebDriver driver,String url) throws MalformedURLException{
 
-		System.out.println("Safari on MAC");
+		System.out.println("Test in Safari on MAC");
 		System.setProperty("webdriver.safari.driver", "/Applications/Safari Technology Preview.app/Contents/MacOS/safaridriver");
 		SafariOptions options = new SafariOptions();
 		options.setUseTechnologyPreview(true);
@@ -63,7 +63,7 @@ public class beforeFunctions {
 	
 	public WebDriver beforeSafariTest(WebDriver driver,String url) throws MalformedURLException{
 
-		System.out.println("Safari on MAC");
+		System.out.println("Test in Safari on MAC");
 		driver = new SafariDriver();
 		//Browser is maximized
 		driver.manage().window().maximize();
@@ -75,7 +75,7 @@ public class beforeFunctions {
 
 	public WebDriver beforeFirefoxTest(WebDriver driver,String url) throws MalformedURLException{
 
-		System.out.println("Firefox on Windows");
+		System.out.println("Test in Firefox on Windows");
 		System.setProperty("webdriver.gecko.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe");
 		ProfilesIni ffProfiles = new ProfilesIni();
 		FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
@@ -102,7 +102,7 @@ public class beforeFunctions {
 
 	public WebDriver beforeIE10Test(WebDriver driver,String url) throws MalformedURLException{
 
-		System.out.println("Test in IE10");
+		System.out.println("Test in IE10 on Windows");
 		System.setProperty("webdriver.ie.driver","C:\\Users\\rramakrishnan\\DriversForSelenium\\IEDriverServer.exe");
 		InternetExplorerOptions options = new InternetExplorerOptions(); 
 		options.setCapability("ignoreZoomSettings", true);
@@ -118,7 +118,7 @@ public class beforeFunctions {
 	
 	public WebDriver beforeIE11Test(WebDriver driver,String url) throws MalformedURLException{
 
-		System.out.println("Test in IE11");
+		System.out.println("Test in IE11 on Windows");
 		System.setProperty("webdriver.ie.driver","C:\\Users\\IEUser\\DriversForSelenium\\IEDriverServer.exe");
 		InternetExplorerOptions options = new InternetExplorerOptions(); 
 		options.setCapability("ignoreZoomSettings", true);

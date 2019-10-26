@@ -1128,6 +1128,7 @@ public class ShareCheck {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
 		Thread.sleep(1000);
 		try{
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
 		}catch(org.openqa.selenium.TimeoutException t)
 		{
@@ -1135,7 +1136,7 @@ public class ShareCheck {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell)).click();
 			Thread.sleep(1000);
 		}
-		if(browserName.equals("firefox")==false)
+		//if(browserName.equals("firefox")==false)
 			share2.scrollToTop(driver);
 		/*if(browserName.equals("internet explorer"))
 		{
