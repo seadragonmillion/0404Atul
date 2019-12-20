@@ -159,7 +159,7 @@ public class EiRCAV2_2 {
 		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//Save button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Save Report");
+		softly.assertThat(s3).as("test data").isEqualTo("save report");
 	}
 	
 	public void verifyChangesSavedSequenceOfEvents(WebDriver driver, HashMap<String,String> hm1, String username, int n, SoftAssertions softly) throws Exception {

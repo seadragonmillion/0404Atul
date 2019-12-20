@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EiRCAV2_3 {
@@ -25,10 +24,15 @@ public class EiRCAV2_3 {
 	public List<String> EiRCAStep2 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Enter text in DOOMS Tab
-		List<String> symptoms = doomsTab(driver,textStep2WithNextLine);
+		List<String> symptoms = new ArrayList<String>();
+		//Enter text in all tabs
+		designDataTab(driver,textStep2WithNextLine);		
+		operatingPracticeTab(driver,textStep2WithNextLine);
+		operatingExperienceTab(driver,textStep2WithNextLine);
+		maintenanceDataTab(driver,textStep2WithNextLine);
+		symptoms.addAll(symptomsTab(driver,textStep2WithNextLine,softly));
 		//Verify no <br> in text boxes
-		verifyNobrInDOOMSTextBoxes(driver,softly);
+		/*verifyNobrInDOOMSTextBoxes(driver,softly);
 		//Enter text in DELTA DOOMS Tab
 		deltaDOOMSTab(driver,textStep2WithNextLine,softly);
 		//Verify no <br> in text boxes
@@ -39,14 +43,14 @@ public class EiRCAV2_3 {
 		{
 			symptoms.add(inspectionsAndDetailsAll.get(i));
 			System.out.println(inspectionsAndDetailsAll.get(i));
-		}
+		}*/
 		//Add interviews in Interview Tab
 		interviews(driver,textStep2,softly);
 		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		return symptoms;
 	}
-	
+	/*
 	public void verifyNobrInDeltaDOOMSTextBoxes(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -64,16 +68,16 @@ public class EiRCAV2_3 {
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSNonFailureComponentSimilarFunctionTextbox1)).getAttribute("value");
 		softly.assertThat(s5).as("test data").doesNotContain("<br>");
 	}
-	
+
 	public void verifyNobrInDOOMSTextBoxes(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Verify text in Design data
-		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox1)).getAttribute("value");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C1)).getAttribute("value");
 		softly.assertThat(s1).as("test data").doesNotContain("<br>");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox2)).getAttribute("value");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C2)).getAttribute("value");
 		softly.assertThat(s2).as("test data").doesNotContain("<br>");
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox3)).getAttribute("value");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C3)).getAttribute("value");
 		softly.assertThat(s3).as("test data").doesNotContain("<br>");
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox4)).getAttribute("value");
 		softly.assertThat(s4).as("test data").doesNotContain("<br>");
@@ -96,8 +100,8 @@ public class EiRCAV2_3 {
 		softly.assertThat(s11).as("test data").doesNotContain("<br>");
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSMaintenanceDataTextbox3)).getAttribute("value");
 		softly.assertThat(s12).as("test data").doesNotContain("<br>");	
-	}
-	
+	}*/
+
 	public void interviews(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -158,7 +162,7 @@ public class EiRCAV2_3 {
 			softly.fail("interview did not get deleted");
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException t)
 		{
-			
+
 		}
 		//Table 3
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1)));
@@ -179,163 +183,274 @@ public class EiRCAV2_3 {
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2)).sendKeys(text);
 		Thread.sleep(500);
+		//Table 4
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)).click();
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)).sendKeys(text);
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2)).click();
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2)).sendKeys(text);
+		Thread.sleep(1000);
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)).click();
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)).sendKeys(text);
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)).click();
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)).sendKeys(text);
+		Thread.sleep(500);
 	}
 
-	public List<String> doomsTab(WebDriver driver, String text) throws Exception {
+	public void designDataTab(WebDriver driver, String text) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTab)).click();
+		//Fill text in Design data
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C3)).sendKeys(text);
+	}
+
+	public void operatingPracticeTab(WebDriver driver, String text) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTab)).click();
+		//Operating practice and condition data
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C3)).sendKeys(text);
+	}
+
+	public void operatingExperienceTab(WebDriver driver, String text) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTab)).click();
+		//Operating experience
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox2R2C2)).sendKeys(text);	
+	}
+
+	public void maintenanceDataTab(WebDriver driver, String text) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTab)).click();
+		//maintenance data
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C3)).sendKeys(text);		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C3)).sendKeys(text);		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C3)).sendKeys(text);		
+	}
+
+	public List<String> symptomsTab(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> symptoms = new ArrayList<String>();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSTab)).click();
-		//Fill text in Design data
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox1)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox2)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox3)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox4)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSDesignDataTextbox5)).sendKeys(text);
-		//Operating practice and condition data
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSOperatingPracticeTextbox1)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSOperatingPracticeTextbox2)).sendKeys(text);
-		//operating experience
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSOperatingExperienceTextbox1)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSOperatingExperienceTextbox2)).sendKeys(text);		
-		//maintenance data
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSMaintenanceDataTextbox1)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSMaintenanceDataTextbox2)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSMaintenanceDataTextbox3)).sendKeys(text);		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
 		//symptoms
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSSymptomsTextbox1)).sendKeys("Symptom 1");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSSymptomsTextbox2)).sendKeys("Symptom 2");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSSymptomsTextbox3)).sendKeys("Symptom 3");		
-		symptoms.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSSymptomsTextbox1)).getText());
-		symptoms.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSSymptomsTextbox2)).getText());
-		symptoms.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DOOMSSymptomsTextbox3)).getText());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox1)).sendKeys("Symptom 1");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox2)).sendKeys("Symptom 2");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox3)).sendKeys("Symptom 3");		
+		symptoms.add("Symptom 1");
+		symptoms.add("Symptom 2");
+		symptoms.add("Symptom 3");
+		//Add symptoms in Comprehensive field Inspection
+		List<String> symp = addSymptomsInComprehensiveFieldInspectionSenseBasedInspection(driver,text,softly);
+		symptoms.addAll(symp);	
+		symptoms.addAll(addSymptomsInComprehensiveFieldInspectionSRI(driver,text,softly,symp));
+		share2.scrollToTop(driver);
 		return symptoms;
 	}
 
-	public void deltaDOOMSTab(WebDriver driver, String text, SoftAssertions softly) throws Exception {
+	public List<String> addSymptomsInComprehensiveFieldInspectionSenseBasedInspection(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSTab)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSTab)).click();
-		//Verify the note on top including *
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSNoteForTable)).getText();
-		softly.assertThat(s).as("test data").isEqualTo("*Note: Similar components are the same components as the failure component in other trains, channels, or paths that are designed to perform redundant functions.");
-		//Fill text in Failure Component
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSFailureComponentTextbox1)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSFailureComponentTextbox2)).sendKeys(text);
-		//Non-Failure Similar Components
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSNonFailureSimilarComponentTextbox1)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSNonFailureSimilarComponentTextbox2)).sendKeys(text);
-		//Non-Failure Components with Similar Functions
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DeltaDOOMSNonFailureComponentSimilarFunctionTextbox1)).sendKeys(text);
-	}
-
-	public List<String> comprehensiveFieldInspection(WebDriver driver, String text, SoftAssertions softly) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		List<String> inspectionsAndDetailsAll = new ArrayList<String>();
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2ComprehensiveFieldInspectionTab)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2ComprehensiveFieldInspectionTab)).click();
-		verifySymptomInspectionDropdownEmpty(driver,softly);
-		verifySymptomDropdownIsCorrect(driver,softly);
-		verifyInspectionFocusDropdownIsCorrect(driver,softly);
-		//Add 5 inspections
-		addInspections(driver);
-		addInspections(driver);
-		addInspections(driver);
-		addInspections(driver);
-		addInspections(driver);
-		//Fill inspection notes and symptoms
-		//1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1InspectionNotes)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1SymptomFindings)).sendKeys("Symptom to be deleted");
-		//2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2InspectionNotes)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2SymptomFindings)).sendKeys("Symptom 4");
-		//3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3InspectionNotes)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3SymptomFindings)).sendKeys("Symptom 5");
-		//4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4InspectionNotes)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4SymptomFindings)).sendKeys("Symptom 6");
-		//5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow5InspectionNotes)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow5SymptomFindings)).sendKeys("Symptom 7");
-		//Delete 1st inspection
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1DeleteButton)).click();
-		//Verify popup question
-		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
-		softly.assertThat(s).as("test data").isEqualTo("Are you sure you want to delete the following inspection:");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
-		//Verify data selected in dropdown is visible in table
-		inspectionsAndDetailsAll.addAll(joinDataInInspectionTable(driver));
-		return inspectionsAndDetailsAll;
-	}
-
-	public List<String> joinDataInInspectionTable(WebDriver driver) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,10);
-		List<String> inspectionsAndDetailsAll = new ArrayList<String>();
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1ComprehensiveFieldInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1SymptomForInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1InspectionFocus)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1InspectionNotes)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow1SymptomFindings)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2ComprehensiveFieldInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2SymptomForInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2InspectionFocus)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2InspectionNotes)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow2SymptomFindings)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3ComprehensiveFieldInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3SymptomForInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3InspectionFocus)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3InspectionNotes)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow3SymptomFindings)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4ComprehensiveFieldInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4SymptomForInspection)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4InspectionFocus)).getText());
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4InspectionNotes)).getAttribute("textcontent"));
-		inspectionsAndDetailsAll.add(wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIInspectionTableRow4SymptomFindings)).getAttribute("textcontent"));
-		return inspectionsAndDetailsAll;
-	}
-
-	public void addInspections(WebDriver driver) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> symptoms = new ArrayList<String>();
+		//Sense Based inspection
+		//Select randomly symptoms
 		Random random = new Random();
-		//Select Inspection type
-		int index = random.nextInt(2);
-		WebElement inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionTypeDropdown);
-		Select s = new Select(inspection);
-		s.selectByValue(""+index+"");
-		int index1;
-		if(index==0)
-			index1 = random.nextInt(6);
-		else
-			index1 = random.nextInt(7);
-		inspection = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1 = new Select(inspection);
-		s1.selectByValue(""+index1+"");
-		//Get number of inspection focus
-		int index2=0;
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<10;i++)
-		{
-			try{
-				inspection.findElement(By.xpath(".//*[@value='"+i+"']"));
-			}catch(org.openqa.selenium.NoSuchElementException r)
-			{
-				index2=i-1;
-				break;
-			}
+		int num = random.nextInt(7);
+		if(num==0){
+			num=num+1;
 		}
-		//Select inspection focus
-		Select s2 = new Select(inspection);
-		s2.selectByValue(""+index2+"");	
-		//Click on add button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2CFIAddInspectionButton)).click();
+		//Click on button
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
+		WebElement menu1 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
+		String cL1 = menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).getAttribute("class");
+		if(cL1.contains("ui-checkbox-off"))
+			menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).click();
+		for(int i=1;i<num;i++)
+		{
+			//Click on button
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
+			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
+			String cL = menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+			if(cL.contains("ui-checkbox-off"))
+				menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
+		}
+		//List for counting number of rows in SBI
+		List<Integer>rows = new ArrayList<Integer>();
+		for(int i=1;i<=num;i++)
+		{
+			//Click on button for selecting inspection parameter
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-"+(i-1)))));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-"+(i-1)))).click();
+			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-"+(i-1)+"-menu"));
+			int y=2;
+			if(i==4)
+				y=3;
+			//Select options
+			int n = random.nextInt(y);
+			rows.add(n);
+			for(int j=0;j<n+1;j++)
+			{
+				String cL = menu.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).getAttribute("class");
+				if(cL.contains("ui-checkbox-off"))
+					menu.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).click();
+			}
+			//close popup
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-"+(i-1)+"-listbox']/div/a"))).click();
+		}
+		//Fill text in notes and findings
+		int countRow = 0;
+		for(int j=0;j<rows.size();j++)
+		{
+			for(int i=0;i<=rows.get(j);i++)
+			{
+				if(i==0){
+					//Notes
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+(i+countRow+1)+"]/td[3]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+(i+countRow+1)+"]/td[3]/textarea"))).sendKeys(text);
+					//Findings
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+(i+countRow+1)+"]/td[4]/textarea"))).sendKeys("Symptoms findings SBI "+j+i);	
+					symptoms.add("Symptoms findings SBI "+j+i);
+				}
+				else{
+					//Notes
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+(i+countRow+1)+"]/td[2]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+(i+countRow+1)+"]/td[2]/textarea"))).sendKeys(text);
+					//Findings
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+(i+countRow+1)+"]/td[3]/textarea"))).sendKeys("Symptoms findings SBI "+j+i);	
+					symptoms.add("Symptoms findings SBI "+j+i);
+				}
+			}
+			countRow += rows.get(j)+1;
+		}
+		return symptoms;
 	}
+	
+	public List<String> addSymptomsInComprehensiveFieldInspectionSRI(WebDriver driver, String text, SoftAssertions softly, List<String>symp) throws Exception {
 
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String> symptoms = new ArrayList<String>();
+		//SRI
+		//Select randomly symptoms
+		Random random = new Random();
+		int num = random.nextInt(8);
+		if(num==0){
+			num=num+1;
+		}
+		//Click on button
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
+		WebElement menu1 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
+		String cL1 = menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).getAttribute("class");
+		if(cL1.contains("ui-checkbox-off"))
+			menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).click();
+		for(int i=1;i<num;i++)
+		{
+			//Click on button
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
+			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
+			String cL = menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+			if(cL.contains("ui-checkbox-off"))
+				menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
+		}
+		//List for counting number of rows in SRI
+		List<Integer>rows = new ArrayList<Integer>();
+		int lastIndexOfSBI = symp.size();		
+		for(int i=1;i<=num;i++)
+		{
+			//Click on button for selecting inspection parameter
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-"+(lastIndexOfSBI+i-1)))));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-"+(lastIndexOfSBI+i-1)))).click();
+			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-"+(lastIndexOfSBI+i-1)+"-menu"));
+			int y=2;
+			if(i==4)
+				y=3;
+			//Select options
+			int n = random.nextInt(y);
+			rows.add(n);
+			for(int j=0;j<n+1;j++)
+			{
+				String cL = menu.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).getAttribute("class");
+				if(cL.contains("ui-checkbox-off"))
+					menu.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).click();
+			}
+			//close popup
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-"+(lastIndexOfSBI+i-1)+"-listbox']/div/a"))).click();
+		}
+		//Fill text in notes and findings
+		int countRow = 0;
+		for(int j=0;j<rows.size();j++)
+		{
+			for(int i=0;i<=rows.get(j);i++)
+			{
+				if(i==0){
+					//Notes
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+(i+countRow+1)+"]/td[3]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+(i+countRow+1)+"]/td[3]/textarea"))).sendKeys(text);
+					//Findings
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+(i+countRow+1)+"]/td[4]/textarea"))).sendKeys("Symptoms findings SRI "+j+i);	
+					symptoms.add("Symptoms findings SRI "+j+i);
+				}
+				else{
+					//Notes
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+(i+countRow+1)+"]/td[2]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+(i+countRow+1)+"]/td[2]/textarea"))).sendKeys(text);
+					//Findings
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+(i+countRow+1)+"]/td[3]/textarea"))).sendKeys("Symptoms findings SRI "+j+i);	
+					symptoms.add("Symptoms findings SRI "+j+i);
+				}
+			}
+			countRow += rows.get(j)+1;
+		}
+		return symptoms;
+	}
+	/*	
 	public void verifyInspectionFocusDropdownIsCorrect(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//Select Inspection type = SRI
@@ -515,8 +630,8 @@ public class EiRCAV2_3 {
 			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
 		}
 		inspectionFocus.clear();
-	}
-	
+	}*/
+
 	public List<String> inspectionFocusForLeakCorrosion(WebDriver driver) throws Exception {
 
 		List<String> inspectionFocus = new ArrayList<String>();
@@ -524,7 +639,7 @@ public class EiRCAV2_3 {
 		inspectionFocus.add("Water pool underneath pipe");
 		return inspectionFocus;
 	}
-	
+
 	public List<String> inspectionFocusForDiscoloration(WebDriver driver) throws Exception {
 
 		List<String> inspectionFocus = new ArrayList<String>();
@@ -532,7 +647,7 @@ public class EiRCAV2_3 {
 		inspectionFocus.add("Over-heating in loose terminals");
 		return inspectionFocus;
 	}
-	
+
 	public List<String> inspectionFocusForCrackWearPitting(WebDriver driver) throws Exception {
 
 		List<String> inspectionFocus = new ArrayList<String>();
@@ -541,7 +656,7 @@ public class EiRCAV2_3 {
 		inspectionFocus.add("Scratch marks from pipe movements");
 		return inspectionFocus;
 	}
-	
+
 	public List<String> inspectionFocusForAbnormalSmell(WebDriver driver) throws Exception {
 
 		List<String> inspectionFocus = new ArrayList<String>();
@@ -549,7 +664,7 @@ public class EiRCAV2_3 {
 		inspectionFocus.add("Burning of lubrication oil");
 		return inspectionFocus;
 	}
-	
+
 	public List<String> inspectionFocusForAbnormalNoises(WebDriver driver) throws Exception {
 
 		List<String> inspectionFocus = new ArrayList<String>();
@@ -557,7 +672,7 @@ public class EiRCAV2_3 {
 		inspectionFocus.add("Check valve banging");
 		return inspectionFocus;
 	}
-	
+
 	public List<String> inspectionFocusForAbnormalConfiguration(WebDriver driver) throws Exception {
 
 		List<String> inspectionFocus = new ArrayList<String>();
@@ -661,7 +776,7 @@ public class EiRCAV2_3 {
 		symptoms.add("Wear and tear");
 		return symptoms;
 	}
-
+	/*
 	public void verifySymptomDropdownIsCorrect(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//Select Inspection type = Sense Based Inspection
@@ -705,7 +820,7 @@ public class EiRCAV2_3 {
 			softly.fail("Symptom for inspection dropdown not empty: "+inspection.findElement(By.xpath(".//*[@value='0']")).getText());
 		}catch(org.openqa.selenium.NoSuchElementException e)
 		{
-			
+
 		}
 		//Verify inspection focus dropdown is empty
 		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);	
@@ -714,7 +829,7 @@ public class EiRCAV2_3 {
 			softly.fail("Inspection focus dropdown not empty: "+inspection.findElement(By.xpath(".//*[@value='0']")).getText());
 		}catch(org.openqa.selenium.NoSuchElementException e)
 		{
-			
+
 		}
-	}
+	}*/
 }

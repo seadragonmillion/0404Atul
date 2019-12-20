@@ -142,75 +142,67 @@ public class EiRCAV2PageObj {
 
 	//Step 2
 	public By EiRCAStep2Tab = By.id("pii-ircam2-tab-2-a");
-	public By EiRCAStep2DOOMSTab = By.id("pii-ircam2-tab2-tab1-a");
-	public By EiRCAStep2DeltaDOOMSTab = By.id("pii-ircam2-tab2-tab2-a");
-	public By EiRCAStep2ComprehensiveFieldInspectionTab = By.id("pii-ircam2-tab2-tab3-a");
-	public By EiRCAStep2InterviewsTab = By.id("pii-ircam2-tab2-tab4-a");
-	//DOOMS Tab
-	public By EiRCAStep2DOOMSDesignDataTextbox1 = By.xpath(".//*[@piiid='2.1.1']");
-	public By EiRCAStep2DOOMSDesignDataTextbox2 = By.xpath(".//*[@piiid='2.1.4']");
-	public By EiRCAStep2DOOMSDesignDataTextbox3 = By.xpath(".//*[@piiid='2.1.7']");
-	public By EiRCAStep2DOOMSDesignDataTextbox4 = By.xpath(".//*[@piiid='2.1.8']");
-	public By EiRCAStep2DOOMSDesignDataTextbox5 = By.xpath(".//*[@piiid='2.1.9']");
-	public By EiRCAStep2DOOMSOperatingPracticeTextbox1 = By.xpath(".//*[@piiid='2.1.2']");
-	public By EiRCAStep2DOOMSOperatingPracticeTextbox2 = By.xpath(".//*[@piiid='2.1.5']");
-	public By EiRCAStep2DOOMSOperatingExperienceTextbox1 = By.xpath(".//*[@piiid='2.1.3']");
-	public By EiRCAStep2DOOMSOperatingExperienceTextbox2 = By.xpath(".//*[@piiid='2.1.6']");
-	public By EiRCAStep2DOOMSMaintenanceDataTextbox1 = By.xpath(".//*[@piiid='2.1.10']");
-	public By EiRCAStep2DOOMSMaintenanceDataTextbox2 = By.xpath(".//*[@piiid='2.1.12']");
-	public By EiRCAStep2DOOMSMaintenanceDataTextbox3 = By.xpath(".//*[@piiid='2.1.14']");
-	public By EiRCAStep2DOOMSSymptomsTextbox1 = By.xpath(".//*[@piiid='2.1.11']");
-	public By EiRCAStep2DOOMSSymptomsTextbox2 = By.xpath(".//*[@piiid='2.1.13']");
-	public By EiRCAStep2DOOMSSymptomsTextbox3 = By.xpath(".//*[@piiid='2.1.15']");
-	//Delta DOOMS Tab
-	public By EiRCAStep2DeltaDOOMSNoteForTable = By.xpath(".//*[@id='pii-ircam2-tab2-tab2']/div");
-	public By EiRCAStep2DeltaDOOMSFailureComponentTextbox1 = By.xpath(".//*[@piiid='2.2.1']");
-	public By EiRCAStep2DeltaDOOMSFailureComponentTextbox2 = By.xpath(".//*[@piiid='2.2.4']");
-	public By EiRCAStep2DeltaDOOMSNonFailureSimilarComponentTextbox1 = By.xpath(".//*[@piiid='2.2.2']");
-	public By EiRCAStep2DeltaDOOMSNonFailureSimilarComponentTextbox2 = By.xpath(".//*[@piiid='2.2.5']");
-	public By EiRCAStep2DeltaDOOMSNonFailureComponentSimilarFunctionTextbox1 = By.xpath(".//*[@piiid='2.2.3']");
-	//Comprehensive Field Inspection Tab
-	public By EiRCAStep2CFIInspectionTypeDropdown = By.id("pii-ircam2-t2t3-newentry-itype");	
-	public By EiRCAStep2CFISymptomForInspectionDropdown = By.id("pii-ircam2-t2t3-newentry-isymptom");	
-	public By EiRCAStep2CFIInspectionFocusDropdown = By.id("pii-ircam2-t2t3-newentry-ifocus");	
-	public By EiRCAStep2CFIInspectionTypeDropdownSelectedValue = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-itype-button']/span");
-	public By EiRCAStep2CFISymptomForInspectionDropdownSelectedValue = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-isymptom-button']/span");
-	public By EiRCAStep2CFIInspectionFocusDropdownSelectedValue = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-button']/span");
-	public By EiRCAStep2CFIAddInspectionButton = By.id("pii-ircam2-t2t3-newentry-add");
-	public By EiRCAStep2CFIInspectionTableRow1ComprehensiveFieldInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[1]/td[1]");
-	public By EiRCAStep2CFIInspectionTableRow1SymptomForInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[1]/td[2]");
-	public By EiRCAStep2CFIInspectionTableRow1InspectionFocus = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[1]/td[3]");
-	public By EiRCAStep2CFIInspectionTableRow1InspectionNotes = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[1]/td[4]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow1SymptomFindings = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[1]/td[5]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow1DeleteButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[1]/td[6]/a");
-	public By EiRCAStep2CFIInspectionTableRow2ComprehensiveFieldInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[2]/td[1]");
-	public By EiRCAStep2CFIInspectionTableRow2SymptomForInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[2]/td[2]");
-	public By EiRCAStep2CFIInspectionTableRow2InspectionFocus = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[2]/td[3]");
-	public By EiRCAStep2CFIInspectionTableRow2InspectionNotes = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[2]/td[4]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow2SymptomFindings = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[2]/td[5]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow2DeleteButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[2]/td[6]/a");
-	public By EiRCAStep2CFIInspectionTableRow3ComprehensiveFieldInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[3]/td[1]");
-	public By EiRCAStep2CFIInspectionTableRow3SymptomForInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[3]/td[2]");
-	public By EiRCAStep2CFIInspectionTableRow3InspectionFocus = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[3]/td[3]");
-	public By EiRCAStep2CFIInspectionTableRow3InspectionNotes = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[3]/td[4]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow3SymptomFindings = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[3]/td[5]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow3DeleteButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[3]/td[6]/a");
-	public By EiRCAStep2CFIInspectionTableRow4ComprehensiveFieldInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[4]/td[1]");
-	public By EiRCAStep2CFIInspectionTableRow4SymptomForInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[4]/td[2]");
-	public By EiRCAStep2CFIInspectionTableRow4InspectionFocus = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[4]/td[3]");
-	public By EiRCAStep2CFIInspectionTableRow4InspectionNotes = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[4]/td[4]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow4SymptomFindings = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[4]/td[5]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow4DeleteButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[4]/td[6]/a");
-	public By EiRCAStep2CFIInspectionTableRow5ComprehensiveFieldInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[5]/td[1]");
-	public By EiRCAStep2CFIInspectionTableRow5SymptomForInspection = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[5]/td[2]");
-	public By EiRCAStep2CFIInspectionTableRow5InspectionFocus = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[5]/td[3]");
-	public By EiRCAStep2CFIInspectionTableRow5InspectionNotes = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[5]/td[4]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow5SymptomFindings = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[5]/td[5]/textarea");
-	public By EiRCAStep2CFIInspectionTableRow5DeleteButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/tbody/tr[5]/td[6]/a");
+	public By EiRCAStep2DesignDataTab = By.id("pii-ircam2-tab2-tab1-a");
+	public By EiRCAStep2OperatingPracticeTab = By.id("pii-ircam2-tab2-tab2-a");
+	public By EiRCAStep2OperatingExperienceTab = By.id("pii-ircam2-tab2-tab3-a");
+	public By EiRCAStep2MaintenanceDataTab = By.id("pii-ircam2-tab2-tab4-a");
+	public By EiRCAStep2SymptomsTab = By.id("pii-ircam2-tab2-tab5-a");
+	public By EiRCAStep2InterviewsTab = By.id("pii-ircam2-tab2-tab6-a");
+	//Design Data Tab
+	public By EiRCAStep2DesignDataTextbox1R1C1 = By.xpath(".//*[@piiid='2.1.1.0']");
+	public By EiRCAStep2DesignDataTextbox1R1C2 = By.xpath(".//*[@piiid='2.1.1.1']");
+	public By EiRCAStep2DesignDataTextbox1R1C3 = By.xpath(".//*[@piiid='2.1.1.2']");
+	public By EiRCAStep2DesignDataTextbox2R2C1 = By.xpath(".//*[@piiid='2.1.4.0']");
+	public By EiRCAStep2DesignDataTextbox2R2C2 = By.xpath(".//*[@piiid='2.1.4.1']");
+	public By EiRCAStep2DesignDataTextbox2R2C3 = By.xpath(".//*[@piiid='2.1.4.2']");
+	public By EiRCAStep2DesignDataTextbox3R3C1 = By.xpath(".//*[@piiid='2.1.7.0']");
+	public By EiRCAStep2DesignDataTextbox3R3C2 = By.xpath(".//*[@piiid='2.1.7.1']");
+	public By EiRCAStep2DesignDataTextbox3R3C3 = By.xpath(".//*[@piiid='2.1.7.2']");
+	public By EiRCAStep2DesignDataTextbox4R4C1 = By.xpath(".//*[@piiid='2.1.8.0']");
+	public By EiRCAStep2DesignDataTextbox4R4C2 = By.xpath(".//*[@piiid='2.1.8.1']");
+	public By EiRCAStep2DesignDataTextbox4R4C3 = By.xpath(".//*[@piiid='2.1.8.2']");
+	public By EiRCAStep2DesignDataTextbox5R5C1 = By.xpath(".//*[@piiid='2.1.9.0']");
+	public By EiRCAStep2DesignDataTextbox5R5C2 = By.xpath(".//*[@piiid='2.1.9.1']");
+	public By EiRCAStep2DesignDataTextbox5R5C3 = By.xpath(".//*[@piiid='2.1.9.2']");
+	//Operating practice tab
+	public By EiRCAStep2OperatingPracticeTextbox1R1C1 = By.xpath(".//*[@piiid='2.1.2.0']");
+	public By EiRCAStep2OperatingPracticeTextbox1R1C2 = By.xpath(".//*[@piiid='2.1.2.1']");
+	public By EiRCAStep2OperatingPracticeTextbox1R1C3 = By.xpath(".//*[@piiid='2.1.2.2']");
+	public By EiRCAStep2OperatingPracticeTextbox2R2C1 = By.xpath(".//*[@piiid='2.1.5.0']");
+	public By EiRCAStep2OperatingPracticeTextbox2R2C2 = By.xpath(".//*[@piiid='2.1.5.1']");
+	public By EiRCAStep2OperatingPracticeTextbox2R2C3 = By.xpath(".//*[@piiid='2.1.5.2']");
+	public By EiRCAStep2OperatingPracticeTextbox3R3C1 = By.xpath(".//*[@piiid='2.1.16.0']");
+	public By EiRCAStep2OperatingPracticeTextbox3R3C2 = By.xpath(".//*[@piiid='2.1.16.1']");
+	public By EiRCAStep2OperatingPracticeTextbox3R3C3 = By.xpath(".//*[@piiid='2.1.16.2']");
+	//Operating exp tab
+	public By EiRCAStep2OperatingExperienceTextbox1 = By.xpath(".//*[@piiid='2.1.3']");
+	public By EiRCAStep2OperatingExperienceTextbox2R2C1 = By.xpath(".//*[@piiid='2.1.6.0']");
+	public By EiRCAStep2OperatingExperienceTextbox2R2C2 = By.xpath(".//*[@piiid='2.1.6.1']");
+	//Maintenance data tab
+	public By EiRCAStep2MaintenanceDataTextbox1R1C1 = By.xpath(".//*[@piiid='2.1.10.0']");
+	public By EiRCAStep2MaintenanceDataTextbox1R1C2 = By.xpath(".//*[@piiid='2.1.10.1']");
+	public By EiRCAStep2MaintenanceDataTextbox1R1C3 = By.xpath(".//*[@piiid='2.1.10.2']");
+	public By EiRCAStep2MaintenanceDataTextbox2R2C1 = By.xpath(".//*[@piiid='2.1.12.0']");
+	public By EiRCAStep2MaintenanceDataTextbox2R2C2 = By.xpath(".//*[@piiid='2.1.12.1']");
+	public By EiRCAStep2MaintenanceDataTextbox2R2C3 = By.xpath(".//*[@piiid='2.1.12.2']");
+	public By EiRCAStep2MaintenanceDataTextbox3R3C1 = By.xpath(".//*[@piiid='2.1.14.0']");
+	public By EiRCAStep2MaintenanceDataTextbox3R3C2 = By.xpath(".//*[@piiid='2.1.14.1']");
+	public By EiRCAStep2MaintenanceDataTextbox3R3C3 = By.xpath(".//*[@piiid='2.1.14.2']");
+	//Symptoms tab
+	public By EiRCAStep2SymptomsTextbox1 = By.xpath(".//*[@piiid='2.1.11']");
+	public By EiRCAStep2SymptomsTextbox2 = By.xpath(".//*[@piiid='2.1.13']");
+	public By EiRCAStep2SymptomsTextbox3 = By.xpath(".//*[@piiid='2.1.15']");
+	public By EiRCAStep2SenseBasedInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SB']/tr[1]/td[1]/button");
+	public By EiRCAStep2SystematicReliabilityInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SRI']/tr[1]/td[1]/button");
+	public By EiRCAStep2InspectionSymptomListPopup = By.id("pii-ircam2-t2t3-newentry-isymptom-listbox-popup");
+	public By EiRCAStep2InspectionSymptomListMenu = By.id("pii-ircam2-t2t3-newentry-isymptom-menu");
+	public By EiRCAStep2InspectionSymptomListPopupSRI = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI-listbox-popup");
+	public By EiRCAStep2InspectionSymptomListMenuSRI = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI-menu");
 	//Interviews Tab
 	public By EiRCAStep2InterviewTabTable1 = By.id("pii-ircam2-t2t4-0-table");
 	public By EiRCAStep2InterviewTabTable2 = By.id("pii-ircam2-t2t4-1-table");
 	public By EiRCAStep2InterviewTabTable3 = By.id("pii-ircam2-t2t4-2-table");
+	public By EiRCAStep2InterviewTabTable4 = By.id("pii-ircam2-t2t4-3-table");
 	public By EiRCAStep2InterviewTabTable1Row1Column1 = By.xpath(".//*[@id='pii-ircam2-t2t4-0-table']/tbody/tr[1]/td[1]/textarea");
 	public By EiRCAStep2InterviewTabTable1Row1Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-0-table']/tbody/tr[1]/td[2]/textarea");
 	public By EiRCAStep2InterviewTabTable1Row2Column1 = By.xpath(".//*[@id='pii-ircam2-t2t4-0-table']/tbody/tr[2]/td[1]/textarea");
@@ -228,22 +220,26 @@ public class EiRCAV2PageObj {
 	public By EiRCAStep2InterviewTabTable3Row1Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-2-table']/tbody/tr[1]/td[2]/textarea");
 	public By EiRCAStep2InterviewTabTable3Row2Column1 = By.xpath(".//*[@id='pii-ircam2-t2t4-2-table']/tbody/tr[2]/td[1]/textarea");
 	public By EiRCAStep2InterviewTabTable3Row2Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-2-table']/tbody/tr[2]/td[2]/textarea");
+	public By EiRCAStep2InterviewTabTable4Row1Column1 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[1]/td[1]/textarea");
+	public By EiRCAStep2InterviewTabTable4Row1Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[1]/td[2]/textarea");
+	public By EiRCAStep2InterviewTabTable4Row2Column1 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[2]/td[1]/textarea");
+	public By EiRCAStep2InterviewTabTable4Row2Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[2]/td[2]/textarea");
 	
 	
 	//Step 3
-	/*
-	public By Step3FailureCollapsibleFailureMode2 = By.xpath(".//*[@id='pii-ircam2-tab-4']/div[4]");
-	public By Step3TableOption31CheckBoxFM2 = By.xpath(".//*[@id='pii-ircam2-tab-4']/div[4]/div/table/tbody/tr[1]/td[2]/div/input");
-	public By EiRCAStep3Tab = By.id("pii-ircam2-tab-4-a");
-	*/
+	public By Step3Tab = By.id("pii-ircam2-tab-3-a");	
+	public By Step3FACTPopupCloseButton = By.xpath(".//*[@class='ui-popup-container ui-popup-active']/div/div/a");
+	public By Step3FACTPopupMenu = By.xpath(".//*[@class='ui-popup-container ui-popup-active']/div/ul");
 
 	//Step 4
 	public By Step4Tab = By.id("pii-ircam2-tab-4-a");	
 	public By Step4SelectNewMethodButton = By.id("pii-ircam2-t4-newfm-method-select-button");
+	public By Step4SelectNewMethodButtonText = By.xpath(".//*[@id='pii-ircam2-t4-newfm-method-select-button']/span[1]");
 	public By Step4SelectNewMethodPopup = By.id("pii-ircam2-t4-newfm-method-select-listbox-popup");
 	public By Step4SelectNewMethodSelectMenu = By.id("pii-ircam2-t4-newfm-method-select-menu");
 	public By Step4SelectNewMethodPopupCloseButton = By.xpath(".//*[@id='pii-ircam2-t4-newfm-method-select-listbox']/div[1]/a");
 	public By Step4NewFailureModeTextBox = By.id("pii-ircam2-t4-newfm-title");
+	public By Step4NewFailureModeDescriptionTextBox = By.id("pii-ircam2-t4-newfm-descr");
 	public By Step4NewFailureModeAddButton = By.id("pii-ircam2-t4-newfm-add");
 	public By Step4FailureModeTableRow1MethodsMenu = By.xpath(".//*[@id='pii-ircam2-t4-fm-method-button-0']/ul");
 
@@ -256,6 +252,7 @@ public class EiRCAV2PageObj {
 	public By Step4FailureModeTableRow1DeleteButton = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr[1]/td[4]/a");
 	public By Step4FailureModeTableRow1ErrorMessageLine1 = By.xpath(".//*[@id='pii-ircam2-t4-fm-method-message-0']/ul/li[1]");
 	public By Step4FailureModeTableRow1ErrorMessageLine2 = By.xpath(".//*[@id='pii-ircam2-t4-fm-method-message-0']/ul/li[2]");
+	public By Step4FailureModeTableRow4DeleteButton = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr[7]/td[4]/a");
 	public By Step4FailureModeTableRow5DeleteButton = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr[9]/td[4]/a");
 
 	//Step 5
@@ -275,18 +272,27 @@ public class EiRCAV2PageObj {
 	//Step 6
 	public By Step6Tab = By.id("pii-ircam2-tab-6-a");
 	public By Step6FailureMode1Collapsible = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/h4/a");
-	public By Step6FailureMode1AnalysisDropdown = By.id("pii-ircam2-t6-newanatype-select-0");
+	public By Step6FailureMode1AnalysisDropdown0 = By.id("pii-ircam2-t6-newanatype-select-0");
+	public By Step6FailureMode1AnalysisDropdown1 = By.id("pii-ircam2-t6-newanatype-select-1");
 	public By Step6FailureMode1AnalysisTextbox = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[2]/textarea");
 	public By Step6FailureMode1ComponentTextbox = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[3]/textarea");
 	public By Step6FailureMode1AddAnalysisButton = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[4]/div/a");
-	public By Step6FailureMode1AddedAnalysisTypeRow1 = By.xpath(".//*[@id='pii-ircam2-t6-anatype-select-0-0-button']/span");
-	public By Step6FailureMode1AddedAnalysisTextRow1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-0-anatable']/table/tbody/tr[1]/td[2]/textarea");
-	public By Step6FailureMode1AddedComponentTextRow1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-0-anatable']/table/tbody/tr[1]/td[3]/textarea");
-	public By Step6FailureMode1AddedAnalysisDeleteButtonRow2 = By.xpath(".//*[@id='pii-ircam2-t6-fm-0-anatable']/table/tbody/tr[2]/td[4]/a");
+	public By Step6FailureMode1AddedAnalysisTypeRow1Position0 = By.xpath(".//*[@id='pii-ircam2-t6-anatype-select-0-0-button']/span");
+	public By Step6FailureMode1AddedAnalysisTextRow1Position0 = By.xpath(".//*[@id='pii-ircam2-t6-fm-0-anatable']/table/tbody/tr[1]/td[2]/textarea");
+	public By Step6FailureMode1AddedComponentTextRow1Position0 = By.xpath(".//*[@id='pii-ircam2-t6-fm-0-anatable']/table/tbody/tr[1]/td[3]/textarea");
+	public By Step6FailureMode1AddedAnalysisDeleteButtonRow2Position0 = By.xpath(".//*[@id='pii-ircam2-t6-fm-0-anatable']/table/tbody/tr[2]/td[4]/a");
+	public By Step6FailureMode1AddedAnalysisTypeRow1Position1 = By.xpath(".//*[@id='pii-ircam2-t6-anatype-select-1-0-button']/span");
+	public By Step6FailureMode1AddedAnalysisTextRow1Position1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-1-anatable']/table/tbody/tr[1]/td[2]/textarea");
+	public By Step6FailureMode1AddedComponentTextRow1Position1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-1-anatable']/table/tbody/tr[1]/td[3]/textarea");
+	public By Step6FailureMode1AddedAnalysisDeleteButtonRow2Position1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-1-anatable']/table/tbody/tr[2]/td[4]/a");
 	
 	//Step 7
 	public By Step7Tab = By.id("pii-ircam2-tab-7-a");
 	public By Step7FailureMode1Collapsible = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a");
+	public By Step7FailureMode1CollapsibleText = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a/span");
+	public By Step7FailureMode2CollapsibleText = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[3]/h4/a");
+	public By Step7FailureMode3CollapsibleText = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[4]/h4/a");
+	public By Step7FailureMode4CollapsibleText = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[5]/h4/a");
 	public By Step7FailureMode1Checkbox1 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[1]/td[2]/div/input");
 	public By Step7FailureMode1Checkbox2 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[2]/td[2]/div/input");
 	public By Step7FailureMode1Checkbox3 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[3]/td[2]/div/input");
@@ -295,7 +301,71 @@ public class EiRCAV2PageObj {
 	public By Step7FailureMode1Checkbox6 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[6]/td[2]/div/input");
 	public By Step7FailureMode1Checkbox7 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[7]/td[2]/div/input");
 	public By Step7FailureMode1Checkbox8 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[8]/td[2]/div/input");
-	public By Step7FailureMode1ProbabilityRanking = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[1]/td[2]/span");
+	public By Step7FailureMode1Point4MainText = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]");
+	public By Step7FailureMode1Point4ElectricalHeading = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/li/strong");
+	public By Step7FailureMode1Point4MechanicalHeading = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/li/strong");
+	public By Step7FailureMode1Point4ElectricalPoint1 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[1]");
+	public By Step7FailureMode1Point4ElectricalPoint2 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[2]");
+	public By Step7FailureMode1Point4ElectricalPoint3 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[3]");
+	public By Step7FailureMode1Point4ElectricalPoint4 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[4]");
+	public By Step7FailureMode1Point4ElectricalPoint5 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[5]");
+	public By Step7FailureMode1Point4MechanicalPoint1 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[1]");
+	public By Step7FailureMode1Point4MechanicalPoint2 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[2]");
+	public By Step7FailureMode1Point4MechanicalPoint3 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[3]");
+	public By Step7FailureMode1Point4MechanicalPoint4 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[4]");
+	public By Step7FailureMode1Point4MechanicalPoint5 = By.xpath(".//*[@id='pii-ircam2-t7-fm-0-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[5]");
+	public By Step7FailureMode2Checkbox1 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[1]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox2 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[2]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox3 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[3]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox4 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox5 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[5]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox6 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[6]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox7 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[7]/td[2]/div/input");
+	public By Step7FailureMode2Checkbox8 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[8]/td[2]/div/input");
+	public By Step7FailureMode2Point4MainText = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]");
+	public By Step7FailureMode2Point4ElectricalHeading = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/li/strong");
+	public By Step7FailureMode2Point4MechanicalHeading = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/li/strong");
+	public By Step7FailureMode2Point4ElectricalPoint1 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[1]");
+	public By Step7FailureMode2Point4ElectricalPoint2 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[2]");
+	public By Step7FailureMode2Point4ElectricalPoint3 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[3]");
+	public By Step7FailureMode2Point4ElectricalPoint4 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[4]");
+	public By Step7FailureMode2Point4ElectricalPoint5 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[1]/ul/ol/li[5]");
+	public By Step7FailureMode2Point4MechanicalPoint1 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[1]");
+	public By Step7FailureMode2Point4MechanicalPoint2 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[2]");
+	public By Step7FailureMode2Point4MechanicalPoint3 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[3]");
+	public By Step7FailureMode2Point4MechanicalPoint4 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[4]");
+	public By Step7FailureMode2Point4MechanicalPoint5 = By.xpath(".//*[@id='pii-ircam2-t7-fm-1-condtable']/table/tbody/tr[4]/td[1]/div/div[2]/ul/ol/li[5]");
+	public By Step7ProbabilityTableFailureModeRow1Column1 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[1]/td[1]");
+	public By Step7ProbabilityTableFailureModeRow2Column1 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[2]/td[1]");
+	public By Step7ProbabilityTableFailureModeRow3Column1 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[3]/td[1]");
+	public By Step7ProbabilityTableFailureModeRow4Column1 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[4]/td[1]");
+	public By Step7ProbabilityTableProbabilityRankingRow1Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[1]/td[2]/span");
+	public By Step7ProbabilityTableProbabilityRankingRow2Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[2]/td[2]/span");
+	public By Step7ProbabilityTableProbabilityRankingRow3Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[3]/td[2]/span");
+	public By Step7ProbabilityTableProbabilityRankingRow4Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[4]/td[2]/span");
+	
+	//Step 8 
+	public By Step8Tab = By.id("pii-ircam2-tab-8-a");
+	public By Step8TableFailureModeRow1Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[1]/td[1]");
+	public By Step8TableFailureModeRow2Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[2]/td[1]");
+	public By Step8TableFailureModeRow3Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[3]/td[1]");
+	public By Step8TableFailureModeRow4Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[4]/td[1]");
+	public By Step8TableProbabilityRankingRow1Column2 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[1]/td[2]/span");
+	public By Step8TableProbabilityRankingRow2Column2 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[2]/td[2]/span");
+	public By Step8TableProbabilityRankingRow3Column2 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[3]/td[2]/span");
+	public By Step8TableProbabilityRankingRow4Column2 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[4]/td[2]/span");
+	public By Step8TableCheckBoxRow1Column5 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[1]/td[5]/div/input");
+	public By Step8TableCheckBoxRow2Column5 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[2]/td[5]/div/input");
+	public By Step8TableCheckBoxRow3Column5 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[3]/td[5]/div/input");
+	public By Step8TableCheckBoxRow4Column5 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[4]/td[5]/div/input");
+	public By Step8TableTextBoxRow1Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[1]/td[4]/textarea");
+	public By Step8TableTextBoxRow2Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[2]/td[4]/textarea");
+	public By Step8TableTextBoxRow3Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[3]/td[4]/textarea");
+	public By Step8TableTextBoxRow4Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[4]/td[4]/textarea");	
+	
+	//Step 9 
+	public By Step9Tab = By.id("pii-ircam2-tab-9-a");
+	
 	
 	/*
 

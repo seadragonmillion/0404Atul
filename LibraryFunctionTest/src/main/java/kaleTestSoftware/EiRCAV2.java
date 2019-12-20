@@ -7,11 +7,13 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,6 +32,8 @@ public class EiRCAV2 {
 	EiRCAV2_3 eircav3 = new EiRCAV2_3();
 	EiRCAV2_4 eircav4 = new EiRCAV2_4();
 	EiRCAV2_5 eircav5 = new EiRCAV2_5();
+	EiRCAV2_6 eircav6 = new EiRCAV2_6();
+	EiRCAV2_7 eircav7 = new EiRCAV2_7();
 	ErrorMeter2 em2 = new ErrorMeter2 ();
 	
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
@@ -67,7 +71,6 @@ public class EiRCAV2 {
 		String s = driver.findElement(eirca.TitleCharacterCount).getText();
 		s=s.substring(1,s.indexOf("/"));
 		int count = Integer.parseInt(s);
-		System.out.println(s+ " "+count);
 		return count;
 	}
 
@@ -77,7 +80,6 @@ public class EiRCAV2 {
 		String s = driver.findElement(eirca.TitleCharacterCount).getText();
 		s=s.substring((s.indexOf("/")+1), s.indexOf(")"));
 		int count = Integer.parseInt(s);
-		System.out.println(s+ " "+count);
 		return count;
 	}
 	
@@ -96,8 +98,8 @@ public class EiRCAV2 {
 		s1.selectByIndex(0);
 		//Detect no extra box
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox));
-		//Select Other elecrical
-		s1.selectByIndex(28);
+		//Select Other electrical
+		s1.selectByIndex(29);
 		//detect additional box
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox));
 		//Select Choose answer
@@ -317,7 +319,7 @@ public class EiRCAV2 {
 		softly.assertThat(s2).as("test data").isEqualTo("cancel");
 		//New button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("New Report");
+		softly.assertThat(s3).as("test data").isEqualTo("new report");
 		//Click on cancel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
 	}
@@ -359,7 +361,7 @@ public class EiRCAV2 {
 	}
 
 
-	public void reportCreate(WebDriver driver,String username) throws Exception {
+	public void reportCreate(WebDriver driver,String username, String password, int y) throws Exception {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
@@ -460,23 +462,24 @@ public class EiRCAV2 {
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));	
 		//Sequence of Events
 		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
+		Thread.sleep(1000);
 		//Step2
 		List<String> symptoms = eircav3.EiRCAStep2(driver,softly);
 		//Step 3
-		List<String> step3 = eircav4.EiRCAStep3(driver,softly,text);
+		List<String> step3 = eircav4.EiRCAStep3(driver,softly,text,symptoms);
 		//Step 4
-		List<String> step4 = eircav4.EiRCAStep4(driver,softly,text);
+		List<String> step4 = eircav4.EiRCAStep4(driver,softly,text,step3);
 		//Step 5
 		int n = eircav4.EiRCAStep5(driver,softly,text);
 		//if(n==0){
 		//Step 6
-		eircav4.EiRCAStep6(driver,softly,text);
+		eircav4.EiRCAStep6(driver,softly,text,n);
 		//Step 7
-		eircav5.EiRCAStep7(driver,softly,text);
+		HashMap<String,String> step7 = eircav5.EiRCAStep7(driver,softly,text,n,step3);
 		//Step 8
-			
+		eircav5.EiRCAStep8(driver,softly,step7,text,n,step3);
 		//Step 9
-			
+		eircav6.EiRCAStep9(driver, softly, text, n, step3);
 		//Step 10
 			
 		//}
@@ -518,6 +521,14 @@ public class EiRCAV2 {
 			System.out.println ("Record not found.");
 		//Checks if the name displayed on record is same as expected
 		softly.assertThat(r1).as("test data").isEqualTo(name);
+		//Download report
+		eircav7.downloadReport(driver, hm, softly, ev1);
+		//Share report
+		eircav7.shareReport(driver, username, password, y, softly);
+		//Mark Critical
+		
+		//Delete report
+		eircav7.deleteNewRecord(driver, recordName, y, softly);
 	}
 
 	public void softAssert() throws Exception {
