@@ -3,7 +3,11 @@ package kaleTestSoftware;
 import org.openqa.selenium.By;
 
 
-public class EiRCAV2PageObj {
+public class EiRCAV2PageObj {	
+
+	public String textStep2 = "Sanity test for EiRCA v2 Step 2 tabs";
+	public String textStep2WithNextLine = textStep2+"\n"+textStep2;
+	public String textEiRCAv2 = "Sanity Test \"title\" Sanity";
 
 	//Buttons on HTML report page
 	public By DeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
@@ -86,14 +90,14 @@ public class EiRCAV2PageObj {
 	public By StickyClose = By.className("sticky-close");
 
 	//Sequence of Events in HTML
-	public By SequenceOfEventPageTitle = By.xpath(".//*[@id='mirca-rpt']/div[5]/div");
-	public By SequenceOfEventPageDateTimeTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[1]");
-	public By SequenceOfEventPageWhatHappenedTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[2]");
-	public By SequenceOfEventPageWhatShouldHappenTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[1]/td[3]");
-	public By SequenceOfEventPageDateTimeTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[1]");
-	public By SequenceOfEventPageWhatHappenedTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[2]");
-	public By SequenceOfEventPageWhatShouldHappenTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[2]/td[3]");
-	public By SequenceOfEventPageDateTimeTitle3 = By.xpath(".//*[@id='mirca-rpt']/div[5]/table/tbody/tr[3]/td[1]");
+	public By SequenceOfEventPageTitle = By.xpath(".//*[@id='mirca-rpt']/div[2]/div");
+	public By SequenceOfEventPageDateTimeTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[1]/td[1]");
+	public By SequenceOfEventPageWhatHappenedTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[1]/td[2]");
+	public By SequenceOfEventPageWhatShouldHappenTitle1 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[1]/td[3]");
+	public By SequenceOfEventPageDateTimeTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[2]/td[1]");
+	public By SequenceOfEventPageWhatHappenedTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[2]/td[2]");
+	public By SequenceOfEventPageWhatShouldHappenTitle2 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[2]/td[3]");
+	public By SequenceOfEventPageDateTimeTitle3 = By.xpath(".//*[@id='mirca-rpt']/div[2]/table/tbody/tr[3]/td[1]");
 
 	//Sequence of Events page
 	public By EiRCAStep1PageTitle = By.id("pii-ircam2-tab-1-pagetitle");
@@ -224,8 +228,8 @@ public class EiRCAV2PageObj {
 	public By EiRCAStep2InterviewTabTable4Row1Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[1]/td[2]/textarea");
 	public By EiRCAStep2InterviewTabTable4Row2Column1 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[2]/td[1]/textarea");
 	public By EiRCAStep2InterviewTabTable4Row2Column2 = By.xpath(".//*[@id='pii-ircam2-t2t4-3-table']/tbody/tr[2]/td[2]/textarea");
-	
-	
+
+
 	//Step 3
 	public By Step3Tab = By.id("pii-ircam2-tab-3-a");	
 	public By Step3FACTPopupCloseButton = By.xpath(".//*[@class='ui-popup-container ui-popup-active']/div/div/a");
@@ -268,7 +272,7 @@ public class EiRCAV2PageObj {
 	public By Step5TableOption53Textbox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[3]/td[4]/textarea");
 	public By Step5TableOption54Textbox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[4]/td[4]/textarea");
 	public By Step5TableOption55Textbox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[5]/td[4]/textarea");
-	
+
 	//Step 6
 	public By Step6Tab = By.id("pii-ircam2-tab-6-a");
 	public By Step6FailureMode1Collapsible = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/h4/a");
@@ -285,7 +289,7 @@ public class EiRCAV2PageObj {
 	public By Step6FailureMode1AddedAnalysisTextRow1Position1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-1-anatable']/table/tbody/tr[1]/td[2]/textarea");
 	public By Step6FailureMode1AddedComponentTextRow1Position1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-1-anatable']/table/tbody/tr[1]/td[3]/textarea");
 	public By Step6FailureMode1AddedAnalysisDeleteButtonRow2Position1 = By.xpath(".//*[@id='pii-ircam2-t6-fm-1-anatable']/table/tbody/tr[2]/td[4]/a");
-	
+
 	//Step 7
 	public By Step7Tab = By.id("pii-ircam2-tab-7-a");
 	public By Step7FailureMode1Collapsible = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a");
@@ -343,7 +347,7 @@ public class EiRCAV2PageObj {
 	public By Step7ProbabilityTableProbabilityRankingRow2Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[2]/td[2]/span");
 	public By Step7ProbabilityTableProbabilityRankingRow3Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[3]/td[2]/span");
 	public By Step7ProbabilityTableProbabilityRankingRow4Column2 = By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr[4]/td[2]/span");
-	
+
 	//Step 8 
 	public By Step8Tab = By.id("pii-ircam2-tab-8-a");
 	public By Step8TableFailureModeRow1Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[1]/td[1]");
@@ -362,11 +366,78 @@ public class EiRCAV2PageObj {
 	public By Step8TableTextBoxRow2Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[2]/td[4]/textarea");
 	public By Step8TableTextBoxRow3Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[3]/td[4]/textarea");
 	public By Step8TableTextBoxRow4Column4 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[4]/td[4]/textarea");	
-	
+
 	//Step 9 
 	public By Step9Tab = By.id("pii-ircam2-tab-9-a");
+
+	//Step 10 
+	public By Step10Tab = By.id("pii-ircam2-tab-10-a");
+
+	//Report Tab
+	public By EiRCAReportTab = By.id("pii-ircam2-tab-11-a");	
+	public By EiRCAReportTabDownloadButton = By.id("pii-ircam2-download");
+	//Section titles
+	public By ReportTabStep1SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/div[1]");
+	public By ReportTabSequenceOfEventsTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[2]/div[1]");
+	public By ReportTabStep2SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[3]/div[1]");
+	public By ReportTabStep3SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[9]/div[1]");
+	public By ReportTabStep4SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[10]/div[1]");
+	public By ReportTabStep5SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[1]");
+	public By ReportTabStep6SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[12]/div[1]");
+	public By ReportTabStep7SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/div[1]");
+	public By ReportTabStep8SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/div[1]");
+	public By ReportTabStep9SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/div[1]");
+	public By ReportTabStep10SectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/div[1]");
+	public By ReportTabSignaturesSectionTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[17]/div[1]");
+	//Table 1
+	public By ReportTabTable1EventTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[1]/td[2]");
+	public By ReportTabTable1LocationOfEvent = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[3]/td[2]");
+	public By ReportTabTable1WhoDiscovered = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[5]/td[2]");
+	public By ReportTabTable1Investigators = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[8]/td[2]");
+	public By ReportTabTable1Reviewers = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[9]/td[2]");
+	public By ReportTabTable1ManagementSponsors = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[10]/td[2]");
+	public By ReportTabTable1ProblemStatement = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[11]/td[2]");
+	public By ReportTabTable1SuspectedFailedComponent = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[12]/td[2]");
+	public By ReportTabTable1PrimarySymptom = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[13]/td[2]");
+	//Step 5
+	public By ReportTabStep5RefutedFailureModeTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[2]");
+	public By ReportTabStep5RefutedFailureModeName1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/h4/span");
+	public By ReportTabStep5RefutedFailureModeDescription1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[3]/div[2]");
+	public By ReportTabStep5RefutedFailureModeMethods1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[3]/div[4]");
+	public By ReportTabStep5UnrefutedFailureModeTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[4]");
+	public By ReportTabStep5UnrefutedFailureModeTitleWithNoneRefuted = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[3]");
 	
-	
+	//HTML	
+	//Section titles
+	public By HTMLReportStep1SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[1]/div[1]");
+	public By HTMLReportSequenceOfEventsTitle = By.xpath(".//*[@id='mirca-rpt']/div[2]/div[1]");
+	public By HTMLReportStep2SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[3]/div[1]");
+	public By HTMLReportStep3SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[9]/div[1]");
+	public By HTMLReportStep4SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[10]/div[1]");
+	public By HTMLReportStep5SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[1]");
+	public By HTMLReportStep6SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[12]/div[1]");
+	public By HTMLReportStep7SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[13]/div[1]");
+	public By HTMLReportStep8SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[14]/div[1]");
+	public By HTMLReportStep9SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[15]/div[1]");
+	public By HTMLReportStep10SectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[16]/div[1]");
+	public By HTMLReportSignaturesSectionTitle = By.xpath(".//*[@id='mirca-rpt']/div[17]/div[1]");
+	//Table 1
+	public By HTMLReportTable1EventTitle = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[1]/td[2]");
+	public By HTMLReportTable1LocationOfEvent = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[3]/td[2]");
+	public By HTMLReportTable1WhoDiscovered = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[5]/td[2]");
+	public By HTMLReportTable1Investigators = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[8]/td[2]");
+	public By HTMLReportTable1Reviewers = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[9]/td[2]");
+	public By HTMLReportTable1ManagementSponsors = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[10]/td[2]");
+	public By HTMLReportTable1ProblemStatement = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[11]/td[2]");
+	public By HTMLReportTable1SuspectedFailedComponent = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[12]/td[2]");
+	public By HTMLReportTable1PrimarySymptom = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[13]/td[2]");
+	//Step 5
+	public By HTMLReportStep5RefutedFailureModeTitle = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[2]");
+	public By HTMLReportStep5RefutedFailureModeName1 = By.xpath(".//*[@id='mirca-rpt']/div[11]/h4/span");
+	public By HTMLReportStep5RefutedFailureModeDescription1 = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[3]/div[2]");
+	public By HTMLReportStep5RefutedFailureModeMethods1 = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[3]/div[4]");
+	public By HTMLReportStep5UnrefutedFailureModeTitle = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[4]");
+	public By HTMLReportStep5UnrefutedFailureModeTitleWithNoneRefuted = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[3]");
 	/*
 
 	//Step 5
@@ -389,19 +460,8 @@ public class EiRCAV2PageObj {
 	public By Step7SUEPTableRow5CorrectiveAction = By.xpath(".//*[@id='pii-ircam2-tab-8']/div[7]/table/tbody/tr[5]/td[6]/textarea");
 	public By EiRCAStep7Tab = By.id("pii-ircam2-tab-8-a");
 
-	//Report Tab
-	public By EiRCAReportTab = By.id("pii-ircam2-tab-9-a");	
-	public By EiRCAReportTabDownloadButton = By.id("pii-ircam2-download");
-	//Table 1
-	public By ReportTabTable1EventTitle = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[1]/td[2]");
-	public By ReportTabTable1LocationOfEvent = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[3]/td[2]");
-	public By ReportTabTable1WhoDiscovered = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[5]/td[2]");
-	public By ReportTabTable1Investigators = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[8]/td[2]");
-	public By ReportTabTable1Reviewers = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[9]/td[2]");
-	public By ReportTabTable1ManagementSponsors = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[10]/td[2]");
-	public By ReportTabTable1ProblemStatement = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[11]/td[2]");
-	public By ReportTabTable1SuspectedFailedComponent = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]/table/tbody/tr[12]/td[2]");
-	
+
+
 	//HTML
 	//Table 1
 	public By HTMLTable1EventTitle = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[1]/td[2]");
@@ -568,7 +628,7 @@ public class EiRCAV2PageObj {
 	public By HTMLStep7Row3Column6RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[3]/td[6]");
 	public By HTMLStep7Row4Column6RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[4]/td[6]");
 	public By HTMLStep7Row5Column6RC = By.xpath(".//*[@id='mirca-rpt']/div[7]/div[5]/div[4]/div[6]/table/tbody/tr[5]/td[6]");
-	
+
 
 	//Main module links
 	public By EiRCALink = By.id("pii-a-menu-eirca");
@@ -650,7 +710,7 @@ public class EiRCAV2PageObj {
 
 	public By Step2AddFailureButton = By.id("pii-ircam2-addnewfmt");
 
-	
+
 
 	//Step 3
 	public By Step3Tab = By.id("pii-ircam2-tab-4-a");
@@ -685,9 +745,9 @@ public class EiRCAV2PageObj {
 	public By Step3TableOption36Column3 = By.xpath(".//*[@id='pii-ircam2-tab-4']/div[3]/div/table/tbody/tr[6]/td[3]/strong");
 
 
-	
-	
-	
+
+
+
 	/*
 	public By Step5Title = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[1]");
 	public By Step5TextUnderTitle = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]");

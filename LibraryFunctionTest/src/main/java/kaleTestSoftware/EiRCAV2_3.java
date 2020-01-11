@@ -18,19 +18,16 @@ public class EiRCAV2_3 {
 	ShareCheck share = new ShareCheck();
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
 
-	public String textStep2 = "Sanity test for EiRCA v2 Step 2 tabs";
-	public String textStep2WithNextLine = textStep2+"\n"+textStep2;
 
 	public List<String> EiRCAStep2 (WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
 		List<String> symptoms = new ArrayList<String>();
 		//Enter text in all tabs
-		designDataTab(driver,textStep2WithNextLine);		
-		operatingPracticeTab(driver,textStep2WithNextLine);
-		operatingExperienceTab(driver,textStep2WithNextLine);
-		maintenanceDataTab(driver,textStep2WithNextLine);
-		symptoms.addAll(symptomsTab(driver,textStep2WithNextLine,softly));
+		designDataTab(driver,eirca.textStep2WithNextLine);		
+		operatingPracticeTab(driver,eirca.textStep2WithNextLine);
+		operatingExperienceTab(driver,eirca.textStep2WithNextLine);
+		maintenanceDataTab(driver,eirca.textStep2WithNextLine);
+		symptoms.addAll(symptomsTab(driver,eirca.textStep2WithNextLine,softly));
 		//Verify no <br> in text boxes
 		/*verifyNobrInDOOMSTextBoxes(driver,softly);
 		//Enter text in DELTA DOOMS Tab
@@ -45,9 +42,8 @@ public class EiRCAV2_3 {
 			System.out.println(inspectionsAndDetailsAll.get(i));
 		}*/
 		//Add interviews in Interview Tab
-		interviews(driver,textStep2,softly);
+		interviews(driver,eirca.textStep2,softly);
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		return symptoms;
 	}
 	/*
@@ -366,6 +362,7 @@ public class EiRCAV2_3 {
 			}
 			countRow += rows.get(j)+1;
 		}
+		//Pair<type1, type2> pair =  new Pair<type1, type2>(value1, value2);
 		return symptoms;
 	}
 	

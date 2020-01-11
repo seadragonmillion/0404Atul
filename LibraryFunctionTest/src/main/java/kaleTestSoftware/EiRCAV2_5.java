@@ -229,7 +229,7 @@ public class EiRCAV2_5 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[5]/div/textarea[3]"))).sendKeys(text);
 		}		
 		//Store data in hashmap
-		HashMap<String,String> step7 = storeDataFromTableStep7(driver,n5);
+		HashMap<String,String> step7 = storeDataFromTableStep7(driver,n5,totalFms);
 		//next
 		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
@@ -276,25 +276,16 @@ public class EiRCAV2_5 {
 		}
 	}
 
-	public HashMap<String,String> storeDataFromTableStep7(WebDriver driver, int n5) throws Exception{
+	public HashMap<String,String> storeDataFromTableStep7(WebDriver driver, int n5, int totalFms) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		HashMap<String,String> step7 = new HashMap<String,String>();
-		String fm1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7ProbabilityTableFailureModeRow1Column1)).getText();
-		String rv1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7ProbabilityTableProbabilityRankingRow1Column2)).getText();
-		String fm2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7ProbabilityTableFailureModeRow2Column1)).getText();
-		String rv2 = driver.findElement(eirca.Step7ProbabilityTableProbabilityRankingRow2Column2).getText();
-		String fm3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7ProbabilityTableFailureModeRow3Column1)).getText();
-		String rv3 = driver.findElement(eirca.Step7ProbabilityTableProbabilityRankingRow3Column2).getText();
-		if(n5==0)
+		for(int i=1;i<=totalFms;i++)
 		{
-			String fm4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7ProbabilityTableFailureModeRow4Column1)).getText();
-			String rv4 = driver.findElement(eirca.Step7ProbabilityTableProbabilityRankingRow4Column2).getText();
-			step7.put(fm4, rv4);
+			String fm1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[1]"))).getText();
+			String rv1 = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[2]/span")).getText();
+			step7.put(fm1, rv1);
 		}
-		step7.put(fm1, rv1);
-		step7.put(fm2, rv2);
-		step7.put(fm3, rv3);
 		System.out.println(step7);
 		return step7;
 	}

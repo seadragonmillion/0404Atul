@@ -79,8 +79,6 @@ public class EiRCAV2_4 {
 			step3.add("IMP FM "+i);
 		}
 		share2.scrollToTop(driver);
-		//next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		return step3;
 	}
 
@@ -291,6 +289,7 @@ public class EiRCAV2_4 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsCloseButton)).click();		
 		//next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		System.out.println(step4);
 		return step4;
 	}
 

@@ -7,13 +7,11 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,13 +25,15 @@ public class EiRCAV2 {
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
-	EiRCA2 eirca2 = new EiRCA2();
+	//EiRCA2 eirca2 = new EiRCA2();
 	EiRCAV2_2 eircav2 = new EiRCAV2_2();
 	EiRCAV2_3 eircav3 = new EiRCAV2_3();
 	EiRCAV2_4 eircav4 = new EiRCAV2_4();
 	EiRCAV2_5 eircav5 = new EiRCAV2_5();
 	EiRCAV2_6 eircav6 = new EiRCAV2_6();
 	EiRCAV2_7 eircav7 = new EiRCAV2_7();
+	EiRCAV2_8 eircav8 = new EiRCAV2_8();
+	EiRCAV2_9 eircav9 = new EiRCAV2_9();
 	ErrorMeter2 em2 = new ErrorMeter2 ();
 	
 	public void checkTitleCountReset(WebDriver driver) throws Exception {
@@ -138,13 +138,13 @@ public class EiRCAV2 {
 		if(s.contains("Other MECHANICAL related components")||s.contains("Other ELECTRICAL related components"))
 		{
 			//tbr.sizeCheck(driver, eirca.EiRCAStep1Q12AnswerTextBox, softly);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox)).sendKeys(eirca2.textCreateEIRCAv2(driver));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerTextBox)).sendKeys(eirca.textEiRCAv2);
 		}
 		//1.3 extra box
 		if(s1.contains("Other MECHANICAL related symptoms")||s1.contains("Other ELECTRICAL related symptoms"))
 		{
 			//tbr.sizeCheck(driver, eirca.EiRCAStep1Q13AnswerTextBox, softly);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox)).sendKeys(eirca2.textCreateEIRCAv2(driver));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerTextBox)).sendKeys(eirca.textEiRCAv2);
 		}
 	}
 	
@@ -365,7 +365,7 @@ public class EiRCAV2 {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebDriverWait wait1 = new WebDriverWait(driver,10);
-		String text = eirca2.textCreateEIRCAv2(driver);			
+		String text = eirca.textEiRCAv2;	
 		//Clicks on Analysis 
 		try
 		{
@@ -449,13 +449,10 @@ public class EiRCAV2 {
 			driver.findElement(eirca.EiRCAEventProblemStatementField).clear();
 			driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		}
-		EIRCAStep1Dropboxes(driver,eirca2.textCreateEIRCAv2(driver),softly);
-		//Get 1.2 selected answer
-		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q12AnswerSelected)).getText();
-		//Get 1.3 selected answer
-		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Q13AnswerSelected)).getText();
+		EIRCAStep1Dropboxes(driver,eirca.textEiRCAv2,softly);
 		//Verify errors have disappeared
 		verifyNoErrorsOnInfoPage(driver);
+		HashMap<String,String> hmStep1 = eircav6.getStep1Data(driver);
 		//Step1
 		//Click next
 		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));
@@ -465,13 +462,15 @@ public class EiRCAV2 {
 		Thread.sleep(1000);
 		//Step2
 		List<String> symptoms = eircav3.EiRCAStep2(driver,softly);
+		HashMap<String,String> hmStep2symptomsData = eircav6.getStep2SymptomsData(driver);
 		//Step 3
 		List<String> step3 = eircav4.EiRCAStep3(driver,softly,text,symptoms);
+		HashMap<String,String> hmStep3Data = eircav6.getStep3Data(driver, step3);
+		HashMap<String,List<String>> hmStep3FACTSData = eircav6.getStep3FACTSCharaceristicsData(driver,step3);
 		//Step 4
 		List<String> step4 = eircav4.EiRCAStep4(driver,softly,text,step3);
 		//Step 5
 		int n = eircav4.EiRCAStep5(driver,softly,text);
-		//if(n==0){
 		//Step 6
 		eircav4.EiRCAStep6(driver,softly,text,n);
 		//Step 7
@@ -481,8 +480,10 @@ public class EiRCAV2 {
 		//Step 9
 		eircav6.EiRCAStep9(driver, softly, text, n, step3);
 		//Step 10
-			
-		//}
+		eircav8.EiRCAStep10(driver, softly, text, n, step3);
+		//Verify report tab
+		eircav9.verifyReportTabSectionHeadings(driver, softly);
+		eircav8.verifyReportTab(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n);
 		Thread.sleep(2000);
 		//Clicks on Save button
 		share2.scrollToTop(driver);
@@ -521,6 +522,9 @@ public class EiRCAV2 {
 			System.out.println ("Record not found.");
 		//Checks if the name displayed on record is same as expected
 		softly.assertThat(r1).as("test data").isEqualTo(name);
+		//verify HTML report
+		eircav9.verifyHTMLReportSectionHeadings(driver, softly);
+		eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n);
 		//Download report
 		eircav7.downloadReport(driver, hm, softly, ev1);
 		//Share report

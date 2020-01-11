@@ -208,12 +208,12 @@ public class EiRCAV2_2 {
 		share2.loadingServer(driver);
 		//Verify the time and date of the sequence of events
 		//Verify Sequence of Events title
-	/*	String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.SequenceOfEventPageDateTimeTitle1)).getText();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.SequenceOfEventPageDateTimeTitle1)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo(hm1.get("Date 1st row")+", "+hm1.get("Time 1st row"));    
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.SequenceOfEventPageDateTimeTitle2)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo(hm1.get("Date 2nd row")+", "+hm1.get("Time 2nd row"));    
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.SequenceOfEventPageDateTimeTitle3)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo(hm1.get("Date 3rd row")+", "+hm1.get("Time 3rd row"));    */
+		softly.assertThat(s3).as("test data").isEqualTo(hm1.get("Date 3rd row")+", "+hm1.get("Time 3rd row"));    
 		//Click on open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();

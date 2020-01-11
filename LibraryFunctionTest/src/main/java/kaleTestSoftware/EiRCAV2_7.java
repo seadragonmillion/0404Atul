@@ -1,7 +1,5 @@
 package kaleTestSoftware;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +13,6 @@ import java.util.Optional;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Test;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -147,8 +144,6 @@ public class EiRCAV2_7 {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		String window = driver.getWindowHandle();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
@@ -181,8 +176,6 @@ public class EiRCAV2_7 {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
 		//Verify pdf pop up
@@ -225,8 +218,6 @@ public class EiRCAV2_7 {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
 		//Verify pdf pop up
@@ -268,8 +259,6 @@ public class EiRCAV2_7 {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
-		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//Clicks on download button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
 		//Verify pdf pop up
