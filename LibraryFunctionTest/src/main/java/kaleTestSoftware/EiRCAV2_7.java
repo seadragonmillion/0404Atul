@@ -115,7 +115,10 @@ public class EiRCAV2_7 {
 		share.checkNoReportAfterDelete(driver, sharer, softly);		  			  
 	}
 
-	public void downloadReport(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle)throws Exception {
+	public void downloadReport(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle, 
+			HashMap<String,String> hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames)throws Exception {
 
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -123,21 +126,24 @@ public class EiRCAV2_7 {
 		String v = cap.getVersion().toString();
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
-			downloadRecordChrome(driver,hm,softly,textTitle);
+			downloadRecordChrome(driver,hm,softly,textTitle, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		if (browserName.equals("firefox"))
-			downloadRecordFirefox(driver,hm,softly,textTitle);
+			downloadRecordFirefox(driver,hm,softly,textTitle, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("10"))
-				downloadRecordIE10(driver,hm,softly,textTitle);
+				downloadRecordIE10(driver,hm,softly,textTitle, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 			if (v.startsWith("11"))
-				downloadRecordIE11(driver,hm,softly,textTitle);
+				downloadRecordIE11(driver,hm,softly,textTitle, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		}
 		if(browserName.toLowerCase().contains("safari"))
 			driver.switchTo().defaultContent();
 	}
 
-	public void downloadRecordChrome(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle) throws Exception {
+	public void downloadRecordChrome(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle, 
+			HashMap<String,String> hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -157,7 +163,7 @@ public class EiRCAV2_7 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		//pdfCheck(driver,hm,textTitle,softly);
+		pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -169,7 +175,10 @@ public class EiRCAV2_7 {
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
-	public void downloadRecordFirefox(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle) throws Exception {
+	public void downloadRecordFirefox(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle, 
+			HashMap<String,String> hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -200,7 +209,7 @@ public class EiRCAV2_7 {
 			}
 		}
 		Thread.sleep(2000);
-		//pdfCheck(driver,hm,textTitle,softly);
+		pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		Thread.sleep(4000);
 		driver.close();
 		Thread.sleep(4000);
@@ -211,7 +220,10 @@ public class EiRCAV2_7 {
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
-	public void downloadRecordIE10(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle) throws Exception {
+	public void downloadRecordIE10(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle, 
+			HashMap<String,String> hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -243,7 +255,7 @@ public class EiRCAV2_7 {
 		}
 		Thread.sleep(7000);
 		//pdf verification
-		//pdfCheck(driver,hm,textTitle,softly);
+		pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		Thread.sleep(4000);
 		//Switch to window    	
 		driver.switchTo().window(window);	   
@@ -252,7 +264,10 @@ public class EiRCAV2_7 {
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
-	public void downloadRecordIE11(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle) throws Exception {
+	public void downloadRecordIE11(WebDriver driver, HashMap <String,String> hm, SoftAssertions softly, String textTitle, 
+			HashMap<String,String> hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -284,7 +299,7 @@ public class EiRCAV2_7 {
 		}
 		Thread.sleep(7000);
 		//pdf verification
-		//pdfCheck(driver,hm,textTitle,softly);
+		pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		Thread.sleep(4000);
 		//Switch to window    	
 		driver.switchTo().window(window);
@@ -293,7 +308,10 @@ public class EiRCAV2_7 {
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}
 
-	public void pdfCheck(WebDriver driver, HashMap<String,String>hm, String textTitle, SoftAssertions softly) throws Exception{
+	public void pdfCheck(WebDriver driver, HashMap<String,String>hm, String textTitle, SoftAssertions softly, 
+			HashMap<String,String> hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception{
 
 		// specify your directory
 		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
@@ -324,9 +342,16 @@ public class EiRCAV2_7 {
 			if (ans.get(i).charAt(n)!=' ')
 				newData2 = newData2+" "+ans.get(i);	        	
 		}
-		String newData1 = newData2.replace("  ", " ");
+		String newData3 = newData2.replace("  ", " ");
+		String newData1 = newData3.replace("/ ", "/");
 		//Verify text with html
 		softly.assertThat(newData1).as("test data").contains(textTitle);
+		//Suspected failed component
+		if(hmStep1.get("Other suspected failed component")==null) softly.assertThat(newData1).as("test data").contains(hmStep1.get("Suspected failed component"));
+		else softly.assertThat(newData1).as("test data").contains(hmStep1.get("Other suspected failed component"));
+		//Primary symptoms
+		if(hmStep1.get("Other primary symptom")==null) softly.assertThat(newData1).as("test data").contains(hmStep1.get("Primary symptom"));
+		else softly.assertThat(newData1).as("test data").contains(hmStep1.get("Other primary symptom"));
 		//Verify Sequence of Events in pdf
 		softly.assertThat(newData1).as("test data").contains("Sequence of Events");
 		softly.assertThat(newData1).as("test data").contains(hm.get("date1")+", "+hm.get("time1"));
@@ -335,6 +360,57 @@ public class EiRCAV2_7 {
 		softly.assertThat(newData1).as("test data").contains(hm.get("date2")+", "+hm.get("time2"));
 		softly.assertThat(newData1).as("test data").contains(hm.get("what happened2"));
 		softly.assertThat(newData1).as("test data").contains(hm.get("what is supposed to happen2"));
+		//other data
+		softly.assertThat(newData1).as("test data").contains(eirca.textStep2);
+		for(int i=0;i<step4.size();i++)
+		{
+			softly.assertThat(newData1).as("test data").contains(step4.get(i));
+		}
+		for(int i=0;i<step3.size();i++)
+		{
+			softly.assertThat(newData1).as("test data").contains(step3.get(i));
+		}
+		for(int i=0;i<symptoms.size();i++)
+		{
+			softly.assertThat(newData1).as("test data").contains(symptoms.get(i));
+		}
+		int lengthOfSymptomsInspection = symptoms.size()-3;
+		//SBI
+		for (int i=1;i<=lengthOfSymptomsInspection;i++)
+		{
+			if(hmStep2symptomsData.get("SBI Symptom for inspection "+i)==null)
+				break;
+			softly.assertThat(newData1).as("test data").contains(hmStep2symptomsData.get("SBI Symptom for inspection "+i));
+			softly.assertThat(newData1).as("test data").contains(hmStep2symptomsData.get("SBI Inspection parameter "+i));
+			softly.assertThat(newData1).as("test data").contains(hmStep2symptomsData.get("SBI Inspection findings "+i));			
+		}
+		//SRI
+		for (int i=1;i<=lengthOfSymptomsInspection;i++)
+		{
+			if(hmStep2symptomsData.get("SRI Symptom for inspection "+i)==null)
+				break;
+			softly.assertThat(newData1).as("test data").contains(hmStep2symptomsData.get("SRI Symptom for inspection "+i));
+			softly.assertThat(newData1).as("test data").contains(hmStep2symptomsData.get("SRI Inspection parameter "+i));
+			softly.assertThat(newData1).as("test data").contains(hmStep2symptomsData.get("SRI Inspection findings "+i));		
+		}
+		//Step 3
+		for(int i=1;i<=step3.size();i++)
+		{
+			softly.assertThat(newData1).as("test data").contains(hmStep3Data.get("Symptoms type"+i));
+			softly.assertThat(newData1).as("test data").contains(hmStep3Data.get("Symptoms name"+i));
+			softly.assertThat(newData1).as("test data").contains(hmStep3Data.get("Implication"+i));
+			List<String> f1 = hmStep3FACTSData.get("FACT "+i);
+			List<String> c1 = hmStep3FACTSData.get("Char "+i);
+			for(int j=0;j<f1.size();j++)
+			{
+				softly.assertThat(newData1).as("test data").contains("["+(j+1)+"] "+f1.get(j));
+				softly.assertThat(newData1).as("test data").contains("["+(j+1)+"] "+c1.get(j));
+			}
+		}
+		for(int i=0;i<dcAcCfNames.size();i++)
+		{
+			softly.assertThat(newData1).as("test data").contains(dcAcCfNames.get(i));
+		}
 		//Close pdf
 		pddoc.close();
 	}

@@ -472,18 +472,18 @@ public class EiRCAV2 {
 		//Step 5
 		int n = eircav4.EiRCAStep5(driver,softly,text);
 		//Step 6
-		eircav4.EiRCAStep6(driver,softly,text,n);
+		String analysisAdded = eircav4.EiRCAStep6(driver,softly,text,n);
 		//Step 7
 		HashMap<String,String> step7 = eircav5.EiRCAStep7(driver,softly,text,n,step3);
 		//Step 8
 		eircav5.EiRCAStep8(driver,softly,step7,text,n,step3);
 		//Step 9
-		eircav6.EiRCAStep9(driver, softly, text, n, step3);
+		List<String> dcAcCfNames = eircav6.EiRCAStep9(driver, softly, text, n, step3);
 		//Step 10
 		eircav8.EiRCAStep10(driver, softly, text, n, step3);
 		//Verify report tab
 		eircav9.verifyReportTabSectionHeadings(driver, softly);
-		eircav8.verifyReportTab(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n);
+		eircav8.verifyReportTab(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		Thread.sleep(2000);
 		//Clicks on Save button
 		share2.scrollToTop(driver);
@@ -524,9 +524,9 @@ public class EiRCAV2 {
 		softly.assertThat(r1).as("test data").isEqualTo(name);
 		//verify HTML report
 		eircav9.verifyHTMLReportSectionHeadings(driver, softly);
-		eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n);
+		eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		//Download report
-		eircav7.downloadReport(driver, hm, softly, ev1);
+		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		//Share report
 		eircav7.shareReport(driver, username, password, y, softly);
 		//Mark Critical

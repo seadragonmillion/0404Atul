@@ -6,11 +6,13 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,6 +56,7 @@ public class EiRCAV2_4 {
 			//Choose characteristics
 			for(int j=1;j<=n;j++)
 			{
+				share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[4]/div["+j+"]/div/select")));
 				WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[4]/div["+j+"]/div/select"));
 				Select s = new Select(ele);
 				//Find number of options under Characteristics
@@ -82,7 +85,7 @@ public class EiRCAV2_4 {
 		return step3;
 	}
 
-	public void EiRCAStep6 (WebDriver driver, SoftAssertions softly, String text, int n5) throws Exception {
+	public String EiRCAStep6 (WebDriver driver, SoftAssertions softly, String text, int n5) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		Random random = new Random();
@@ -180,10 +183,16 @@ public class EiRCAV2_4 {
 		String p3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(p3).as("test data").isEqualTo("delete");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		if(n5==0){
+			locator = eirca.Step6FailureMode1AddedAnalysisTypeRow1Position0;
+		}
+		else locator = eirca.Step6FailureMode1AddedAnalysisTypeRow1Position1;
+		String ana = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
 		//Scroll to the top
 		share2.scrollToTop(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
+		return ana;
 	}
 
 	public int EiRCAStep5 (WebDriver driver, SoftAssertions softly, String text) throws Exception {
@@ -313,20 +322,28 @@ public class EiRCAV2_4 {
 		//Verify height
 		String minHeightFM = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)).getCssValue("height");
 		String minHeightFMDesc = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeDescriptionTextBox)).getCssValue("height");
-		int heightFM = Integer.parseInt(minHeightFM.substring(0,minHeightFM.indexOf("p")));
-		int heightFMDesc = Integer.parseInt(minHeightFMDesc.substring(0,minHeightFMDesc.indexOf("p")));
+		double heightFM = Double.parseDouble(minHeightFM.substring(0,minHeightFM.indexOf("p")));
+		double heightFMDesc = Double.parseDouble(minHeightFMDesc.substring(0,minHeightFMDesc.indexOf("p")));
 		//Add a failure mode
 		addFailureMode(driver,3,text+text+text+text+text+text,softly);
 		//Verify height of text boxes
 		String heightFMAfterAdd = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)).getCssValue("height");
 		String heightFMDescAfterAdd = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeDescriptionTextBox)).getCssValue("height");
-		int heightFM1 = Integer.parseInt(heightFMAfterAdd.substring(0,heightFMAfterAdd.indexOf("p")));
-		int heightFMDesc1 = Integer.parseInt(heightFMDescAfterAdd.substring(0,heightFMDescAfterAdd.indexOf("p")));
-		if(heightFM!= heightFM1){
-			softly.fail("Text box for failure mode did not go back to original size:"+heightFM1);
-		}
-		if(heightFMDesc!= heightFMDesc1){
-			softly.fail("Text box for failure mode description did not go back to original size:"+heightFMDesc1);
+		double heightFM1 = Double.parseDouble(heightFMAfterAdd.substring(0,heightFMAfterAdd.indexOf("p")));
+		double heightFMDesc1 = Double.parseDouble(heightFMDescAfterAdd.substring(0,heightFMDescAfterAdd.indexOf("p")));
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		//String v = cap.getVersion().toString();
+		if (browserName.equals("firefox")==false)
+		{
+
+			if(heightFM!= heightFM1){
+				softly.fail("Text box for failure mode did not go back to original size:"+heightFM1);
+			}
+			if(heightFMDesc!= heightFMDesc1){
+				softly.fail("Text box for failure mode description did not go back to original size:"+heightFMDesc1);
+			}
 		}
 		//Delete failure mode text
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1FailureModeText)).clear();
@@ -354,9 +371,18 @@ public class EiRCAV2_4 {
 		//Click on description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1DescriptionText)).click();
 		//Verify error
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1ErrorMessageLine1)).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("Method is not specified");
 		int lastRow = (step3.size()*2)+1;
+		System.out.println(lastRow);
+		if (browserName.equals("firefox"))
+		{
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fm-method-message-"+((lastRow-1)/2)+"']/ul/li[1]"))).getText();
+			softly.assertThat(s3).as("test data").isEqualTo("Method is not specified");
+		}
+		else
+		{
+			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1ErrorMessageLine1)).getText();
+			softly.assertThat(s3).as("test data").isEqualTo("Method is not specified");
+		}
 		//Delete failure mode
 		try{
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))));
@@ -383,7 +409,7 @@ public class EiRCAV2_4 {
 					if(s.contains("ui-checkbox-off"))
 						break;
 				}
-			}catch(org.openqa.selenium.StaleElementReferenceException r){
+			}catch(org.openqa.selenium.WebDriverException r){
 				try{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsPopup));		
 				}catch(org.openqa.selenium.TimeoutException t){

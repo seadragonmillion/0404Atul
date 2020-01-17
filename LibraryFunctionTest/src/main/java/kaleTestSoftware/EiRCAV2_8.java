@@ -6,6 +6,7 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,7 +30,12 @@ public class EiRCAV2_8 {
 			startFM = 1;
 		}
 		int totalFms = addedFM+step3.size();
-		for(int fm=0;fm<2;fm++)
+		int loopEnd;
+		if(totalFms<=5)
+			loopEnd=totalFms;
+		else
+			loopEnd = 5;
+		for(int fm=0;fm<loopEnd;fm++)
 		{
 			//Click on collapsible
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-10']/div["+(fm+2)+"]/h4/a"))));
@@ -75,7 +81,8 @@ public class EiRCAV2_8 {
 
 	public void verifyReportTab(WebDriver driver, SoftAssertions softly, 
 			HashMap<String,String>hmStep1, HashMap<String,String> hmStep2symptomsData, HashMap<String,String> hmStep3Data, 
-			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, int n5) throws Exception {
+			HashMap<String,List<String>> hmStep3FACTSData, List<String> step4, List<String> step3, 
+			int n5, String analysisAdded, HashMap<String,String> step7, List<String> dcAcCfNames) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		WebDriverWait wait1 = new WebDriverWait(driver,3);
@@ -118,7 +125,37 @@ public class EiRCAV2_8 {
 		String r11 = s12.replace("\u00AD", "");
 		if(r11.toLowerCase().contains("other")) softly.assertThat(r11).as("test data").isEqualTo(hmStep1.get("Other primary symptom"));
 		else softly.assertThat(r11).as("test data").isEqualTo(hmStep1.get("Primary symptom"));
-
+		//Report findings
+		WebElement reportFinding = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabTable1ReportFindingTr));
+		//total number of fms
+		int addedFM;
+		if(n5==0) {
+			addedFM = 4;
+		}
+		else {
+			addedFM = 3;
+		}
+		int totalFms = addedFM+step3.size();
+		int loopEnd;
+		if(totalFms<=5)
+			loopEnd=totalFms;
+		else
+			loopEnd = 5;
+		for(int i=1;i<=loopEnd;i++)
+		{
+			//dc
+			String s = reportFinding.findElement(By.xpath(".//*[@colspan='3']/ol[1]/li["+i+"]")).getText();
+			softly.assertThat(s).as("test data").isEqualTo(dcAcCfNames.get(i-1));
+			//ac
+			String s1 = reportFinding.findElement(By.xpath(".//*[@colspan='3']/ol[2]/li["+i+"]")).getText();
+			softly.assertThat(s1).as("test data").isEqualTo(dcAcCfNames.get(i+4));
+		}		
+		for(int i=1;i<=(loopEnd*2);i++)
+		{
+			//cf
+			String s = reportFinding.findElement(By.xpath(".//*[@colspan='3']/ol[3]/li["+i+"]")).getText();
+			softly.assertThat(s).as("test data").isEqualTo(dcAcCfNames.get(i+9));
+		}
 		//Step 2
 		//Design
 		for(int i=1;i<=4;i++)
@@ -281,9 +318,9 @@ public class EiRCAV2_8 {
 			for(int j=0;j<f1.size();j++)
 			{
 				String f = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[9]/table/tbody/tr["+i+"]/td[3]/ul/li["+(j+1)+"]"))).getText();
-				softly.assertThat(f).as("test data").isEqualTo("["+(j+1)+"] "+hmStep3Data.get(f1.get(j)));
+				softly.assertThat(f).as("test data").isEqualTo("["+(j+1)+"] "+f1.get(j));
 				String c = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[9]/table/tbody/tr["+i+"]/td[4]/ul/li["+(j+1)+"]"))).getText();
-				softly.assertThat(c).as("test data").isEqualTo("["+(j+1)+"] "+hmStep3Data.get(c1.get(j)));
+				softly.assertThat(c).as("test data").isEqualTo("["+(j+1)+"] "+c1.get(j));
 			}
 		}
 
@@ -345,18 +382,9 @@ public class EiRCAV2_8 {
 		}
 		else{
 			String f4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabStep5UnrefutedFailureModeTitleWithNoneRefuted)).getText();
-			softly.assertThat(f4).as("test data").isEqualTo("Un-refuted failure modes: ");
+			softly.assertThat(f4).as("test data").isEqualTo("Un-refuted failure modes:");
 		}
 		//List of unrefuted failure modes
-		//total number of fms
-		int addedFM;
-		if(n5==0) {
-			addedFM = 4;
-		}
-		else {
-			addedFM = 3;
-		}
-		int totalFms = addedFM+step3.size();
 		for(int i=1;i<=totalFms;i++)
 		{
 			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/ol/li["+i+"]"))).getText();
@@ -382,17 +410,114 @@ public class EiRCAV2_8 {
 			if(i==totalFms)
 				softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"4");
 		}
-		
+
 		//Step 6
-		
+		String a1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabStep6AnalysisTypeR1)).getText();
+		softly.assertThat(a1).as("test data").isEqualTo(analysisAdded);
+		String a2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabStep6AnalysisNameR1)).getText();
+		softly.assertThat(a2).as("test data").isEqualTo(eirca.textEiRCAv2);
+		String a3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabStep6AnalysisComponentR1)).getText();
+		softly.assertThat(a3).as("test data").isEqualTo(eirca.textEiRCAv2);
 		//Step 7
-		
+		for(int i=1;i<=totalFms;i++)
+		{
+			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[1]"))).getText();
+			String rank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[2]/span"))).getText();
+			softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[3]"))).getText();
+			softly.assertThat(s1).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[4]/div/div[1]"))).getText();
+			softly.assertThat(s1a).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1b = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[4]/div/div[2]"))).getText();
+			softly.assertThat(s1b).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1c = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[4]/div/div[3]"))).getText();
+			softly.assertThat(s1c).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1d = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[5]/div/div[1]"))).getText();
+			softly.assertThat(s1d).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[5]/div/div[2]"))).getText();
+			softly.assertThat(s1e).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1f = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[5]/div/div[3]"))).getText();
+			softly.assertThat(s1f).as("test data").isEqualTo(eirca.textEiRCAv2);			
+		}
 		//Step 8
-		
+		for(int i=1;i<=totalFms;i++)
+		{
+			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[1]"))).getText();
+			String rank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[2]/span"))).getText();
+			softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
+			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[3]"))).getText();
+			softly.assertThat(s1).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[4]"))).getText();
+			softly.assertThat(s1a).as("test data").isEqualTo(eirca.textEiRCAv2);			
+			String s1f = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[5]/strong"))).getText();
+			softly.assertThat(s1f).as("test data").isEqualTo("Yes");			
+		}
 		//Step 9
-		
+		count = 1;
+		for(int i=1;i<=loopEnd;i++)
+		{
+			String fmName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/h4["+i+"]/span[1]"))).getText();
+			String dc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[1]"))).getText();
+			softly.assertThat(dc1).as("test data").isEqualTo(fmName+" DC 1");
+			String dc2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[2]/td[1]"))).getText();
+			softly.assertThat(dc2).as("test data").isEqualTo(fmName+" DC 2");
+			String dc1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[2]"))).getText();
+			softly.assertThat(dc1a).as("test data").isEqualTo("Yes");
+			String dc2a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[2]/td[2]"))).getText();
+			softly.assertThat(dc2a).as("test data").isEqualTo("Yes");
+			count = count +1;
+			String ac1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[1]"))).getText();
+			softly.assertThat(ac1).as("test data").isEqualTo(fmName+" AC 1");
+			String ac2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[2]/td[1]"))).getText();
+			softly.assertThat(ac2).as("test data").isEqualTo(fmName+" AC 2");
+			String ac1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[2]"))).getText();
+			softly.assertThat(ac1a).as("test data").isEqualTo("Yes");
+			String ac2a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[2]/td[2]"))).getText();
+			softly.assertThat(ac2a).as("test data").isEqualTo("Yes");
+			count = count +1;
+
+			count = count +1;
+
+			count = count +1;
+			
+			count = count +1;			
+
+			count = count +1;
+		}
+		for(int i=count;i<=totalFms;i++)
+		{
+			String dc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[1]"))).getText();
+			softly.assertThat(dc1).as("test data").isEqualTo("n/a");
+			String dc1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[2]"))).getText();
+			softly.assertThat(dc1a).as("test data").isEqualTo("n/a");
+			count = count +1;
+			String ac1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[1]"))).getText();
+			softly.assertThat(ac1).as("test data").isEqualTo("n/a");
+			String ac1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]/table["+count+"]/tbody/tr[1]/td[2]"))).getText();
+			softly.assertThat(ac1a).as("test data").isEqualTo("n/a");
+			count = count +1;
+		}
 		//Step 10
-		
+		count=1;
+		for(int fm=0;fm<loopEnd;fm++)
+		{
+			for(int j=count;j<=count+4;j++)
+			{
+				String dc1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/table["+count+"]/tbody/tr[1]/td[2]/div/div[1]"))).getText();
+				softly.assertThat(dc1).as("test data").isEqualTo(eirca.textEiRCAv2);
+				String dc2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/table["+count+"]/tbody/tr[1]/td[2]/div/div[2]"))).getText();
+				softly.assertThat(dc2).as("test data").isEqualTo(eirca.textEiRCAv2);
+				String dc3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/table["+count+"]/tbody/tr[1]/td[2]/div/div[3]"))).getText();
+				softly.assertThat(dc3).as("test data").isEqualTo(eirca.textEiRCAv2);
+				String dc4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/table["+count+"]/tbody/tr[2]/td[2]/div/div[1]"))).getText();
+				softly.assertThat(dc4).as("test data").isEqualTo(eirca.textEiRCAv2);
+				String dc5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/table["+count+"]/tbody/tr[2]/td[2]/div/div[2]"))).getText();
+				softly.assertThat(dc5).as("test data").isEqualTo(eirca.textEiRCAv2);
+				String dc6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[16]/table["+count+"]/tbody/tr[2]/td[2]/div/div[3]"))).getText();
+				softly.assertThat(dc6).as("test data").isEqualTo(eirca.textEiRCAv2);
+			}
+			count = count+4;
+		}
 	}
 
 }

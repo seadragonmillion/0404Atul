@@ -17,9 +17,12 @@ public class EiRCAV2_6 {
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 
-	public void EiRCAStep9 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3) throws Exception {
+	public List<String> EiRCAStep9 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		List<String>dcNames = new ArrayList<String>();
+		List<String>acNames = new ArrayList<String>();
+		List<String>cfNames = new ArrayList<String>();
 		//total number of fms
 		int addedFM;
 		int startFM;
@@ -32,7 +35,12 @@ public class EiRCAV2_6 {
 			startFM = 1;
 		}
 		int totalFms = addedFM+step3.size();
-		for(int fm=0;fm<2;fm++)
+		int loopEnd;
+		if(totalFms<=5)
+			loopEnd=totalFms;
+		else
+			loopEnd = 5;
+		for(int fm=0;fm<loopEnd;fm++)
 		{
 			//Click on collapsible
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
@@ -42,6 +50,7 @@ public class EiRCAV2_6 {
 			//Fill direct cause twice and select
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))).sendKeys(fmName+" DC 1");
+			dcNames.add(fmName+" DC 1");
 			Thread.sleep(1000);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input")));
 			try{
@@ -105,6 +114,7 @@ public class EiRCAV2_6 {
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))).sendKeys(fmName+" AC 1");
 			Thread.sleep(1000);
+			acNames.add(fmName+" AC 1");
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[2]/div/input")));
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[2]/div/input"))).click();
@@ -136,9 +146,11 @@ public class EiRCAV2_6 {
 					driver.findElement(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[2]/td[1]/textarea")).sendKeys(fmName+" AC 2");
 				}catch(org.openqa.selenium.StaleElementReferenceException a){
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[2]/td[1]/textarea"))).sendKeys(fmName+" DC 2");
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[2]/td[1]/textarea"))).sendKeys(fmName+" AC 2");
 				}	
 			}
+			cfNames.add(fmName+" AC 2");
+			cfNames.add(fmName+" DC 2");
 			Thread.sleep(1000);
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[2]/td[2]/div/input"))).click();
@@ -230,6 +242,9 @@ public class EiRCAV2_6 {
 		//next
 		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		dcNames.addAll(acNames);
+		dcNames.addAll(cfNames);
+		return (dcNames);
 	}
 
 	public HashMap<String,String> getStep1Data(WebDriver driver) throws Exception {

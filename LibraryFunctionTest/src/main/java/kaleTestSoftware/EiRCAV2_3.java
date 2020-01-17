@@ -300,9 +300,9 @@ public class EiRCAV2_3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
 		WebElement menu1 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
-		String cL1 = menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).getAttribute("class");
+		String cL1 = menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
 		if(cL1.contains("ui-checkbox-off"))
-			menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).click();
+			menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
 		for(int i=1;i<num;i++)
 		{
 			//Click on button
@@ -382,9 +382,9 @@ public class EiRCAV2_3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
 		WebElement menu1 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
-		String cL1 = menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).getAttribute("class");
+		String cL1 = menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
 		if(cL1.contains("ui-checkbox-off"))
-			menu1.findElement(By.xpath(".//*[@data-option-index='1']/a")).click();
+			menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
 		for(int i=1;i<num;i++)
 		{
 			//Click on button
