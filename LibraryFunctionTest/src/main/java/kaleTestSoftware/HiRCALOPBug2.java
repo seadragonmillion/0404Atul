@@ -334,42 +334,48 @@ public class HiRCALOPBug2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
 		Thread.sleep(2000);
 		//Click on trash can for 2.12
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Click on trash can for 2.11
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Click on trash can for 2.10
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Click on trash can for 2.9
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Click on trash can for 2.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Click on trash can for 2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on back

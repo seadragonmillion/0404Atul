@@ -1188,9 +1188,15 @@ public class CreateHumanCase {
 			if(count==1)
 				checkForErrorWithoutUploadingSlides(driver);
 			//Uploads 5 slides
-			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField)).click();
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
-			p.waitFor();
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField)).click();
+			//Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
+			//p.waitFor();
+			String file1 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide1.png";
+			String file2 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide2.png";
+			String file3 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide3.png";
+			String file4 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide4.png";
+			String file5 = "C:/Users/rramakrishnan/KALE Case Test 1-20/KALE Case Test 1-20/Upload5/Slide5.png";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(chc.HumanCaseImageInputField)).sendKeys(file1+"\n"+file2+"\n"+file3+"\n"+file4+"\n"+file5);
 			Thread.sleep(3000);
 			//Checks if 5 images have been uploaded
 			if(count==1)

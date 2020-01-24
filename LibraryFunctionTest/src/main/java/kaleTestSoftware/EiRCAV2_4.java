@@ -373,7 +373,7 @@ public class EiRCAV2_4 {
 		//Verify error
 		int lastRow = (step3.size()*2)+1;
 		System.out.println(lastRow);
-		if (browserName.equals("firefox"))
+		if (browserName.equals("firefox")||browserName.contains("internet"))
 		{
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fm-method-message-"+((lastRow-1)/2)+"']/ul/li[1]"))).getText();
 			softly.assertThat(s3).as("test data").isEqualTo("Method is not specified");

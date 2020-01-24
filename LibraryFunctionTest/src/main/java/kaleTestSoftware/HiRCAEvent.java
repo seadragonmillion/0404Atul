@@ -1235,7 +1235,8 @@ public class HiRCAEvent {
 		//Enter data in reason entry
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
 		//Click on garbage can
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		driver.findElement(By.id("pii-irca-clear")).click();
+
 		//Clicks on clear answers
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
