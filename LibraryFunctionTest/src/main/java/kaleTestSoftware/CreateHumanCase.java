@@ -1567,6 +1567,7 @@ public class CreateHumanCase {
 			else
 			{
 				WebElement element = driver.findElement(chc.HumanCaseTaskExistingList);
+				share2.scrollToElement(driver, element);
 				element.findElement(chc.FirstAndLastChildInList).click();			  
 			}
 			//Enters purpose
