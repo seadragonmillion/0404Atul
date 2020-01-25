@@ -406,7 +406,11 @@ public class CreateEquipmentCase3 {
 						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 						share2.scrollToAPoint(driver, 2000);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+						try{
+							wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+						}catch(org.openqa.selenium.WebDriverException t){
+							
+						}
 					}
 				}
 			}
