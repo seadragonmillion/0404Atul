@@ -6,6 +6,9 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -283,6 +286,40 @@ public class EiRCAV2_3 {
 		share2.scrollToTop(driver);
 		return symptoms;
 	}
+	
+	public void scrollToSBIButtonElement(WebDriver driver)throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Point p = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).getLocation();
+		int yaxis= p.getY()-250;
+		Thread.sleep(1000);
+		try{
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException | org.openqa.selenium.StaleElementReferenceException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}
+		Thread.sleep(1000);
+	}
+	
+	public void scrollToSRIButtonElement(WebDriver driver)throws Exception{
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Point p = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).getLocation();
+		int yaxis= p.getY()-250;
+		Thread.sleep(1000);
+		try{
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException | org.openqa.selenium.StaleElementReferenceException r)
+		{
+			Thread.sleep(3000);
+			jse.executeScript("scroll(0,"+yaxis+")");
+		}
+		Thread.sleep(1000);
+	}
 
 	public List<String> addSymptomsInComprehensiveFieldInspectionSenseBasedInspection(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
@@ -306,7 +343,14 @@ public class EiRCAV2_3 {
 		for(int i=1;i<num;i++)
 		{
 			//Click on button
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)));
+			/*
+			try{
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)));
+			}catch(org.openqa.selenium.StaleElementReferenceException e){
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)));
+			}*/
+			Thread.sleep(500);
+			scrollToSBIButtonElement(driver);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
 			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
@@ -319,6 +363,7 @@ public class EiRCAV2_3 {
 		for(int i=1;i<=num;i++)
 		{
 			//Click on button for selecting inspection parameter
+			Thread.sleep(500);
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-"+(i-1)))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-"+(i-1)))).click();
 			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-"+(i-1)+"-menu"));
@@ -365,7 +410,7 @@ public class EiRCAV2_3 {
 		//Pair<type1, type2> pair =  new Pair<type1, type2>(value1, value2);
 		return symptoms;
 	}
-	
+
 	public List<String> addSymptomsInComprehensiveFieldInspectionSRI(WebDriver driver, String text, SoftAssertions softly, List<String>symp) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -388,7 +433,13 @@ public class EiRCAV2_3 {
 		for(int i=1;i<num;i++)
 		{
 			//Click on button
+			/*try{
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+			}catch(org.openqa.selenium.StaleElementReferenceException e){
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+			}*/
+			Thread.sleep(500);
+			scrollToSRIButtonElement(driver);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
 			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
@@ -402,6 +453,7 @@ public class EiRCAV2_3 {
 		for(int i=1;i<=num;i++)
 		{
 			//Click on button for selecting inspection parameter
+			Thread.sleep(500);
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-"+(lastIndexOfSBI+i-1)))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-"+(lastIndexOfSBI+i-1)))).click();
 			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-"+(lastIndexOfSBI+i-1)+"-menu"));

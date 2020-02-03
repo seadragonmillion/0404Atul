@@ -460,6 +460,7 @@ public class HiRCAEvent {
 			}
 			driver.close();
 			driver.switchTo().window(window);
+			wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 			//Clicks on open pdf report
@@ -1234,6 +1235,7 @@ public class HiRCAEvent {
 		softly.assertThat(rc11).as("test data").contains("[1.1] Was the triggering event a human error, an equipment failure, or an act of nature?");
 		//Enter data in reason entry
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
+		Thread.sleep(1000);
 		//Click on garbage can
 		driver.findElement(By.id("pii-irca-clear")).click();
 

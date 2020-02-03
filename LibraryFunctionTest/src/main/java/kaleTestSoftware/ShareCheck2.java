@@ -353,7 +353,7 @@ public class ShareCheck2 {
 		Thread.sleep(1000);
 		try{
 			jse.executeScript("scroll(0,"+yaxis+")");
-		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException r)
+		}catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException | org.openqa.selenium.StaleElementReferenceException r)
 		{
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0,"+yaxis+")");

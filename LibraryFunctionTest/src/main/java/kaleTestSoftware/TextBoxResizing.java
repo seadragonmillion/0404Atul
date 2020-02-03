@@ -20,7 +20,8 @@ public class TextBoxResizing {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(" ");		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(Keys.TAB);
 		Thread.sleep(500);
-		String sizeOriginal = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("style");
+		try{
+			String sizeOriginal = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute("style");
 		//Enter text
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(em2.error100Data(driver,driver.getCurrentUrl()).get(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(Keys.TAB);
@@ -51,6 +52,9 @@ public class TextBoxResizing {
 		//softly.assertThat(heightWithText).as("test data").isNotEqualTo(heightWithoutText);
 		System.out.println(height1+" "+height2+ " "+height3);
 		System.out.println(sizeOriginal+" "+heightWithoutText+" "+heightWithText);
+		}catch(org.openqa.selenium.WebDriverException t){
+			
+		}
 	}
 	
 	public void sizeCheckAfterAddingElement(WebDriver driver, By locatorOfTextBox, By locatorOfAddSign, SoftAssertions softly) throws Exception {

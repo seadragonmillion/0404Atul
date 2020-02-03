@@ -26,6 +26,7 @@ public class EiRCAV2_4 {
 	public List<String> EiRCAStep3 (WebDriver driver, SoftAssertions softly, String text, List<String> symptoms) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		
 		List<String> step3 = new ArrayList<String>();
 		for(int i=0;i<symptoms.size();i++)
 		{
@@ -416,13 +417,18 @@ public class EiRCAV2_4 {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)).click();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsPopup));		
 				}
-				WebElement menu = driver.findElement(eirca.Step4FailureModeTableRow1MethodsSelectMenu);
 				while(true){
-					String s = menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
-					if(s.contains("ui-checkbox-on"))
-						menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
-					if(s.contains("ui-checkbox-off"))
-						break;
+					try{
+						WebElement menu = driver.findElement(eirca.Step4FailureModeTableRow1MethodsSelectMenu);
+						String s = menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+						if(s.contains("ui-checkbox-on"))
+							menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
+						if(s.contains("ui-checkbox-off"))
+							break;
+					}catch(org.openqa.selenium.StaleElementReferenceException r1){
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)).click();
+						wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsPopup));		
+					}
 				}
 			}
 		}

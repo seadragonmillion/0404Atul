@@ -99,6 +99,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox1;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[1]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=5;
@@ -110,6 +111,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox2;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[2]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=4;
@@ -121,6 +123,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox3;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[3]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=3;
@@ -132,6 +135,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox4;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[4]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=3;
@@ -143,6 +147,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox5;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[5]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=2;
@@ -154,6 +159,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox6;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[6]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=2;
@@ -165,6 +171,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox7;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[7]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=1;
@@ -176,6 +183,7 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox8;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[8]/td[2]/div/input");
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints-=1;
@@ -214,6 +222,7 @@ public class EiRCAV2_5 {
 				verifyProbabilityRankinfForFailureMode(rankingValue1,sumOfPoints,softly);
 			}*/
 			//Click on collapsible
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))).click();
 		}
 		//Fill text in text boxes

@@ -148,6 +148,7 @@ public class EiRCAV2PageObj {
 
 	//Step 2
 	public By EiRCAStep2Tab = By.id("pii-ircam2-tab-2-a");
+	public By EiRCAStep2TabInstruction = By.id("pii-ircam2-tab2-message-instruction");
 	public By EiRCAStep2DesignDataTab = By.id("pii-ircam2-tab2-tab1-a");
 	public By EiRCAStep2OperatingPracticeTab = By.id("pii-ircam2-tab2-tab2-a");
 	public By EiRCAStep2OperatingExperienceTab = By.id("pii-ircam2-tab2-tab3-a");
@@ -235,11 +236,13 @@ public class EiRCAV2PageObj {
 
 	//Step 3
 	public By Step3Tab = By.id("pii-ircam2-tab-3-a");	
+	public By Step3TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-3']/div[1]");
 	public By Step3FACTPopupCloseButton = By.xpath(".//*[@class='ui-popup-container ui-popup-active']/div/div/a");
 	public By Step3FACTPopupMenu = By.xpath(".//*[@class='ui-popup-container ui-popup-active']/div/ul");
 
 	//Step 4
 	public By Step4Tab = By.id("pii-ircam2-tab-4-a");	
+	public By Step4TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-4']/div[1]");
 	public By Step4SelectNewMethodButton = By.id("pii-ircam2-t4-newfm-method-select-button");
 	public By Step4SelectNewMethodButtonText = By.xpath(".//*[@id='pii-ircam2-t4-newfm-method-select-button']/span[1]");
 	public By Step4SelectNewMethodPopup = By.id("pii-ircam2-t4-newfm-method-select-listbox-popup");
