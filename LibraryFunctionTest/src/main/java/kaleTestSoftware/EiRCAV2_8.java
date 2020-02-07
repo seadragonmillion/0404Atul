@@ -466,7 +466,9 @@ public class EiRCAV2_8 {
 		{
 			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[1]"))).getText();
 			String rank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[2]/span"))).getText();
-			softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
+			if(step7.get(fm).length()==0)
+				softly.assertThat(rank).as("test data").isEqualTo("n/a");
+			else softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[3]"))).getText();
 			softly.assertThat(s1).as("test data").isEqualTo(eirca.textEiRCAv2);			
 			String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[4]/div/div[1]"))).getText();
@@ -487,7 +489,9 @@ public class EiRCAV2_8 {
 		{
 			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[1]"))).getText();
 			String rank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[2]/span"))).getText();
-			softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
+			if(step7.get(fm).length()==0)
+				softly.assertThat(rank).as("test data").isEqualTo("n/a");
+			else softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[3]"))).getText();
 			softly.assertThat(s1).as("test data").isEqualTo(eirca.textEiRCAv2);			
 			String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-11']/div[14]/table/tbody/tr["+i+"]/td[4]"))).getText();
