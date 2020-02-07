@@ -181,6 +181,9 @@ public class EiRCAV2 {
 		Thread.sleep(1000);
 		//Select 1.2
 		selectDropdown12(driver);
+		WebElement dropdown1 = driver.findElement(eirca.Step1Q12Answer);
+		String s = dropdown1.findElement(By.xpath(".//*[@piiindex='14']")).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Breaker");
 		Thread.sleep(1000);
 		//Select 1.3
 		selectDropdown13(driver);
@@ -480,11 +483,12 @@ public class EiRCAV2 {
 		//Step 9
 		List<String> dcAcCfNames = eircav6.EiRCAStep9(driver, softly, text, n, step3);
 		//Step 10
-		eircav8.EiRCAStep10(driver, softly, text, n, step3);
+		eircav8.EiRCAStep10(driver, softly, text, n, step3, dcAcCfNames);
 		//Verify report tab
 		eircav9.verifyReportTabSectionHeadings(driver, softly);
 		eircav8.verifyReportTab(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		Thread.sleep(2000);
+		eircav9.verifyBackButtonWorks(driver, softly);
 		//Clicks on Save button
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
@@ -526,7 +530,7 @@ public class EiRCAV2 {
 		eircav9.verifyHTMLReportSectionHeadings(driver, softly);
 		eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		//Download report
-		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
+		//eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		//Share report
 		eircav7.shareReport(driver, username, password, y, softly);
 		//Mark Critical

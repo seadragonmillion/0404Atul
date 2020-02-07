@@ -3,6 +3,7 @@ package kaleTestSoftware;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
@@ -61,8 +62,9 @@ public class EiRCAV2_4 {
 				WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[4]/div["+j+"]/div/select"));
 				Select s = new Select(ele);
 				//Find number of options under Characteristics
-				int count = 0;
-				while(true)
+				//int count = 0;
+				List<WebElement> charList = ele.findElements(By.tagName("option"));
+				/*while(true)
 				{
 					try{
 						ele.findElement(By.xpath(".//*[@value='"+count+"']"));
@@ -70,8 +72,8 @@ public class EiRCAV2_4 {
 					}catch(org.openqa.selenium.NoSuchElementException r){
 						break;
 					}					
-				}
-				int selectValue = random.nextInt(count);
+				}*/
+				int selectValue = random.nextInt(charList.size()-1);
 				s.selectByValue(String.valueOf(selectValue));
 				if(j==indexOfFactFreqOfOcc){
 					String s1 = ele.findElement(By.xpath(".//*[@value='1']")).getText();
@@ -101,6 +103,13 @@ public class EiRCAV2_4 {
 		Select s = new Select(analysis);
 		int n = random.nextInt(3);
 		s.selectByValue(String.valueOf(n));
+		//Verify labels for 1st failure mode - Add analysis dropdown and textboxes
+		String label1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1DropdownLabel)).getText();
+		softly.assertThat(label1).as("test data").isEqualTo("Leading-Following Differential Analysis:");
+		String label2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1AnalysisLabel)).getText();
+		softly.assertThat(label2).as("test data").isEqualTo("Analysis:");
+		String label3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1ComponentLabel)).getText();
+		softly.assertThat(label3).as("test data").isEqualTo("Identified Leading Failed Component:");
 		//Fill Analysis text
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1AnalysisTextbox)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1AnalysisTextbox)).sendKeys(text);
@@ -115,7 +124,10 @@ public class EiRCAV2_4 {
 		if(n5==0){
 			locator = eirca.Step6FailureMode1AddedAnalysisTypeRow1Position0;
 		}
-		else locator = eirca.Step6FailureMode1AddedAnalysisTypeRow1Position1;
+		else {
+			locator = eirca.Step6FailureMode1AddedAnalysisTypeRow1Position1;
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(eirca.Step6FailureMode1AddedAnalysisTypeRow1Position0));
+		}
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
 		if(n==0)
 			softly.assertThat(s1).as("test data").isEqualTo("Cause-effect analysis");
@@ -207,7 +219,7 @@ public class EiRCAV2_4 {
 		Random random = new Random();
 		int n = random.nextInt(6);
 		//Fill text in Step 5
-		//n = 0;
+		n = 2;
 		Thread.sleep(1000);
 		if(n==0)
 		{
@@ -313,8 +325,14 @@ public class EiRCAV2_4 {
 			softly.assertThat(s).as("test data").isEqualTo("Symptoms (failure factor analysis)");		
 			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+rowCount+"]/td[2]/textarea"))).getAttribute("value");
 			softly.assertThat(fm).as("test data").isIn(step3);
+			//Verify no delete 
+			WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+rowCount+"]")));
+			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+			List<WebElement> delButton = el.findElements(By.cssSelector(".pii-row-delete-btn"));
+			softly.assertThat(delButton.size()).as("test data").isEqualTo(0);
 			rowCount = rowCount+2;
 		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public void verifyErrorOnLastFailureMode(WebDriver driver, SoftAssertions softly, String text, List<String> step3) throws Exception {

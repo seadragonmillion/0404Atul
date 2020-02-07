@@ -2,7 +2,9 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -305,5 +307,18 @@ public class HiRCA2 {
 		String overflow = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupNote)).getCssValue("word-wrap");
 		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
 		System.out.println(overflow);
+	}
+	
+	public void clickOnTrashCan(WebDriver driver) throws Exception {
+		
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		WebElement el = wait.until(ExpectedConditions.elementToBeClickable(By.id("efi-irca-question")));
+		try{
+		jse.executeAsyncScript("arguments[0].click();", el.findElement(By.id("pii-irca-clear")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed")));
+		}catch(org.openqa.selenium.ScriptTimeoutException r){
+
+		}
 	}
 }

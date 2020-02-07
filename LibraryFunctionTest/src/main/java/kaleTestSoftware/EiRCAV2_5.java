@@ -42,6 +42,9 @@ public class EiRCAV2_5 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[5]/div/input"))).click();
 			//Fill text
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[4]/textarea"))).sendKeys(text);
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[1]"))).getText();
+			if(n5>0) 
+				softly.assertThat(s).as("test data").doesNotContain("Sanity Test \"title\" Sanity1");
 		}
 		if(n5==0)
 		{
@@ -62,10 +65,14 @@ public class EiRCAV2_5 {
 		if(n5==0) {
 			addedFM = 4;
 			startFM = 0;
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a"))).getText();
+			softly.assertThat(s).as("test data").contains("Sanity Test \"title\" Sanity1");
 		}
 		else {
 			addedFM = 3;
 			startFM = 1;
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a"))).getText();
+			softly.assertThat(s).as("test data").contains("Sanity Test \"title\" Sanity2");
 		}
 		int totalFms = addedFM+step3.size();
 		//Verify probability rankings are blank

@@ -1319,7 +1319,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Clear 2.0
-		driver.findElement(By.id("pii-irca-clear")).click();
+		obj1.clickOnTrashCan(driver);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
@@ -1502,7 +1502,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Clear 2.0
-		driver.findElement(By.id("pii-irca-clear")).click();
+		obj1.clickOnTrashCan(driver);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);

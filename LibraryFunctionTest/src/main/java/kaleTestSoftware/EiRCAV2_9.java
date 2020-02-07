@@ -517,4 +517,60 @@ public class EiRCAV2_9 {
 		}
 	}
 
+	public void verifyBackButtonWorks(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Click back on report tab
+		//Step 10
+		share2.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step10TabPageTitle)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("Corrective Actions");
+		//Step 9
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step9TabPageTitle)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Direct Cause, Apparent Cause Confirmation & Cause Quality Check");
+		//Step 8
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step8TabPageTitle)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("Perform Supporting Analysis");
+		//Step 7
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step7TabPageTitle)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("Probability of Occurrence and Actions");
+		//Step 6
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6TabPageTitle)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("Identify Failed Component through Leading-Following Differential Analysis");
+		//Step 5
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TabPageTitle)).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("Non-Presence Refuting Method");
+		//Step 4
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4TabPageTitle)).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("Possible Failure Modes");
+		//Step 3
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TabPageTitle)).getText();
+		softly.assertThat(s7).as("test data").isEqualTo("FACTS Symptom Characterization");
+		//Step 2
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2TabInstruction)).getText();
+		softly.assertThat(s8).as("test data").isEqualTo("Enter DOOMS Data and Delta DOOMS Data based on evidence collection.");
+		/*
+		Thread.sleep(3000);
+		//Sequence of events
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1PageTitle)).getText();
+		softly.assertThat(s9).as("test data").isEqualTo("Sequence of Events");
+		System.out.println(s9);
+		softly.assertAll();*/
+		//Step 1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1PageTitle)).getText();
+		softly.assertThat(s10).as("test data").isEqualTo("EiRCA™ v2 - Report Initiation and General Questions");
+		softly.assertAll();
+	}
+
 }

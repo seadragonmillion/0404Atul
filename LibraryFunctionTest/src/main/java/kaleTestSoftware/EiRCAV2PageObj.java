@@ -267,6 +267,7 @@ public class EiRCAV2PageObj {
 
 	//Step 5
 	public By Step5Tab = By.id("pii-ircam2-tab-5-a");
+	public By Step5TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[1]");
 	public By Step5FailureCollapsible = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]");	
 	public By Step5TableOption51CheckBox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[1]/td[2]/div/input");
 	public By Step5TableOption52CheckBox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[2]/td[2]/div/input");
@@ -281,7 +282,11 @@ public class EiRCAV2PageObj {
 
 	//Step 6
 	public By Step6Tab = By.id("pii-ircam2-tab-6-a");
+	public By Step6TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[1]");
 	public By Step6FailureMode1Collapsible = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/h4/a");
+	public By Step6FailureMode1DropdownLabel = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[1]/div[1]");
+	public By Step6FailureMode1AnalysisLabel = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[2]/div[1]");
+	public By Step6FailureMode1ComponentLabel = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[3]/div[1]");
 	public By Step6FailureMode1AnalysisDropdown0 = By.id("pii-ircam2-t6-newanatype-select-0");
 	public By Step6FailureMode1AnalysisDropdown1 = By.id("pii-ircam2-t6-newanatype-select-1");
 	public By Step6FailureMode1AnalysisTextbox = By.xpath(".//*[@id='pii-ircam2-tab-6']/div[2]/div[1]/div[4]/div[2]/textarea");
@@ -298,6 +303,7 @@ public class EiRCAV2PageObj {
 
 	//Step 7
 	public By Step7Tab = By.id("pii-ircam2-tab-7-a");
+	public By Step7TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[1]");
 	public By Step7FailureMode1Collapsible = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a");
 	public By Step7FailureMode1CollapsibleText = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[2]/h4/a/span");
 	public By Step7FailureMode2CollapsibleText = By.xpath(".//*[@id='pii-ircam2-tab-7']/div[3]/h4/a");
@@ -356,6 +362,7 @@ public class EiRCAV2PageObj {
 
 	//Step 8 
 	public By Step8Tab = By.id("pii-ircam2-tab-8-a");
+	public By Step8TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-8']/div[1]");
 	public By Step8TableFailureModeRow1Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[1]/td[1]");
 	public By Step8TableFailureModeRow2Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[2]/td[1]");
 	public By Step8TableFailureModeRow3Column1 = By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr[3]/td[1]");
@@ -375,9 +382,11 @@ public class EiRCAV2PageObj {
 
 	//Step 9 
 	public By Step9Tab = By.id("pii-ircam2-tab-9-a");
+	public By Step9TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-9']/div[1]");
 
 	//Step 10 
 	public By Step10Tab = By.id("pii-ircam2-tab-10-a");
+	public By Step10TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-10']/div[1]");
 
 	//Report Tab
 	public By EiRCAReportTab = By.id("pii-ircam2-tab-11-a");	

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -66,6 +68,8 @@ public class EiRCAV2_6 {
 			//Click on collapsible
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();
+			String sfHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/thead/tr[1]/th[1]"))).getText();
+			softly.assertThat(sfHeading).as("test data").isEqualTo("Sequence of Failures");
 			//Get name of failure mode 
 			String fmName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a/span[1]"))).getText();
 			//Fill direct cause twice and select
@@ -119,6 +123,8 @@ public class EiRCAV2_6 {
 			Thread.sleep(1000);*/
 			//Fill apparent cause twice and select
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))));
+			String seHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/thead/tr[1]/th[1]"))).getText();
+			softly.assertThat(seHeading).as("test data").isEqualTo("Sequence of Events");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))).sendKeys(fmName+" AC 1");
 			Thread.sleep(1000);
 			acNames.add(fmName+" AC 1");
@@ -288,24 +294,32 @@ public class EiRCAV2_6 {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		HashMap<String,String> hm = new HashMap<String,String>();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		//SBI
-		for(int i=1;i<=100;i++)
+		WebElement sbiTbody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t2t3-inspections-table-tbody")));
+		List<WebElement> sbiRows= sbiTbody.findElements(By.tagName("tr"));
+		for(int i=1;i<=sbiRows.size();i++)
 		{
-			try{
+			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[1]")));
+			List<WebElement> buttonInsList= l.findElements(By.cssSelector(".pii-ircam2-focus-button"));
+			if(buttonInsList.size()>0){
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[1]/button"))).getText();
 				hm.put("SBI Symptom for inspection "+i, s);
-			}catch(org.openqa.selenium.TimeoutException r)
+			}else
 			{
-				try{
-					String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[1]"))).getAttribute("id");
+				String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[1]"))).getAttribute("id");
+				//try{
+					//String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[1]"))).getAttribute("id");
 					if(idTd.contains("pii-ircam2-t2t3-ifocus-selected"))
 					{
 						String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[1]"))).getText();
 						hm.put("SBI Inspection parameter "+i, s1);
+						System.out.println("*****");
+						System.out.println(i + ": "+s1);
 					}
-				}catch(org.openqa.selenium.TimeoutException e){
+				/*}catch(org.openqa.selenium.TimeoutException e){
 					break;
-				}
+				}*/
 			}
 			String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["+i+"]/td[2]"))).getAttribute("id");
 			if(idTd.contains("pii-ircam2-t2t3-ifocus-selected"))
@@ -330,24 +344,29 @@ public class EiRCAV2_6 {
 			}			
 		}
 		//SRI
-		for(int i=1;i<=100;i++)
+		WebElement sriTbody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t2t3-inspections-table-SRI-tbody")));
+		List<WebElement> sriRows= sriTbody.findElements(By.tagName("tr"));
+		for(int i=1;i<=sriRows.size();i++)
 		{
-			try{
+			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+i+"]/td[1]")));
+			List<WebElement> buttonInsList= l.findElements(By.cssSelector(".pii-ircam2-focus-SRI-button"));
+			if(buttonInsList.size()>0){
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+i+"]/td[1]/button"))).getText();
 				hm.put("SRI Symptom for inspection "+i, s);
-			}catch(org.openqa.selenium.TimeoutException r)
-			{
-				try{
-					String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+i+"]/td[1]"))).getAttribute("id");
-					if(idTd.contains("pii-ircam2-t2t3-ifocus-SRI-selected"))
+			}//else
+			//{
+				List<WebElement> buttonIfocusList= l.findElements(By.id("pii-ircam2-t2t3-ifocus-SRI-selected"));
+				//try{
+					//String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+i+"]/td[1]"))).getAttribute("id");
+					if(buttonIfocusList.size()>0)
 					{
 						String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+i+"]/td[1]"))).getText();
 						hm.put("SRI Inspection parameter "+i, s1);
 					}
-				}catch(org.openqa.selenium.TimeoutException e){
+				/*}catch(org.openqa.selenium.TimeoutException e){
 					break;
-				}
-			}
+				}*/
+			//}
 			String idTd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["+i+"]/td[2]"))).getAttribute("id");
 			if(idTd.contains("pii-ircam2-t2t3-ifocus-SRI-selected"))
 			{
@@ -371,6 +390,7 @@ public class EiRCAV2_6 {
 			}			
 		}
 		System.out.println(hm);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		return hm;
@@ -396,36 +416,40 @@ public class EiRCAV2_6 {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		for(int i=1;i<=step3.size();i++)
 		{
 			List<String> f1 = new ArrayList<String>();
 			List<String> c1 = new ArrayList<String>();
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[3]/button"))).getText();
 			f1.add(s);
-			for(int j=1;j<=15;j++)
+			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[3]")));
+			List<WebElement> divList = l.findElements(By.id("pii-fact-display-button"));			
+			for(int j=1;j<=divList.size();j++)
 			{
-				try{
+				//try{
 					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[3]/div[2]/button["+j+"]"))).getText();
 					f1.add(s1);
-				}catch(org.openqa.selenium.TimeoutException r)
+				/*}catch(org.openqa.selenium.TimeoutException r)
 				{
 					break;
-				}
+				}*/
 			}
-			for(int j=1;j<=15;j++)
+			for(int j=1;j<=f1.size();j++)
 			{
-				try{
+				//try{
 					String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[4]/div["+j+"]/div/span"))).getText();
 					c1.add(s1);
-				}catch(org.openqa.selenium.TimeoutException r)
+				/*}catch(org.openqa.selenium.TimeoutException r)
 				{
 					break;
-				}
+				}*/
 			}
 			hm.put("FACT "+i,f1);
 			hm.put("Char "+i,c1);
 		}
 		System.out.println(hm);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		return hm;

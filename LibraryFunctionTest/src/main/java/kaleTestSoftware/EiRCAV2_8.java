@@ -1,5 +1,6 @@
 package kaleTestSoftware;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class EiRCAV2_8 {
 	ShareCheck2 share2 = new ShareCheck2();
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
 
-	public void EiRCAStep10 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3) throws Exception {
+	public void EiRCAStep10 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3, List<String> dcAcCfNames) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//total number of fms
@@ -35,6 +36,26 @@ public class EiRCAV2_8 {
 			loopEnd=totalFms;
 		else
 			loopEnd = 5;
+		List<String>dcList = new ArrayList<String>();
+		for(int i=0;i<loopEnd;i++){
+			
+			dcList.add(dcAcCfNames.get(i));
+		}
+		int start = loopEnd;
+		List<String>acList = new ArrayList<String>();
+		for(int i=start;i<loopEnd*2;i++){
+			
+			acList.add(dcAcCfNames.get(i));
+		}
+		start = loopEnd*2;
+		List<String>cfList = new ArrayList<String>();
+		for(int i=start;i<loopEnd*4;i++){
+			
+			cfList.add(dcAcCfNames.get(i));
+		}
+		System.out.println(dcList);
+		System.out.println(acList);
+		System.out.println(cfList);
 		for(int fm=0;fm<loopEnd;fm++)
 		{
 			//Click on collapsible
@@ -45,6 +66,17 @@ public class EiRCAV2_8 {
 			//Direct Cause
 			for(int i=0;i<2;i++)
 			{
+				if(i==0){
+					String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-dc-table']/table["+(i+1)+"]/thead/tr[1]/th[1]"))).getText();
+					int indexColon = s.indexOf(":");
+					String s1 = s.substring(0,indexColon);
+					softly.assertThat(s1).as("test data").isEqualTo("Direct Cause");
+				}else{
+					String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-dc-table']/table["+(i+1)+"]/thead/tr[1]/th[1]"))).getText();
+					int indexColon = s.indexOf(":");
+					String s1 = s.substring(0,indexColon);
+					softly.assertThat(s1).as("test data").isEqualTo("Contributing factor");
+				}
 				//Fill text in corrective actions
 				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-dc-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-dc-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]/div/textarea[1]"))).sendKeys(text);
@@ -59,6 +91,17 @@ public class EiRCAV2_8 {
 			//Apparent Cause
 			for(int i=0;i<2;i++)
 			{
+				if(i==0){
+					String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-ac-table']/table["+(i+1)+"]/thead/tr[1]/th[1]"))).getText();
+					int indexColon = s.indexOf(":");
+					String s1 = s.substring(0,indexColon);
+					softly.assertThat(s1).as("test data").isEqualTo("Apparent Cause");
+				}else{
+					String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-ac-table']/table["+(i+1)+"]/thead/tr[1]/th[1]"))).getText();
+					int indexColon = s.indexOf(":");
+					String s1 = s.substring(0,indexColon);
+					softly.assertThat(s1).as("test data").isEqualTo("Contributing factor");
+				}
 				//Fill text in corrective actions
 				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-ac-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t10-fm-"+(fm+startFM)+"-ac-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]/div/textarea[1]"))).sendKeys(text);
