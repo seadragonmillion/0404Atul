@@ -26,6 +26,7 @@ public class EiRCAV2_3 {
 
 		List<String> symptoms = new ArrayList<String>();
 		//Enter text in all tabs
+		verifyTabNames(driver,softly);
 		designDataTab(driver,eirca.textStep2WithNextLine);		
 		operatingPracticeTab(driver,eirca.textStep2WithNextLine);
 		operatingExperienceTab(driver,eirca.textStep2WithNextLine);
@@ -48,6 +49,23 @@ public class EiRCAV2_3 {
 		interviews(driver,eirca.textStep2,softly);
 		share2.scrollToTop(driver);
 		return symptoms;
+	}
+	
+	public void verifyTabNames(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTab)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("D-\"Design Data\"");
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTab)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("O-\"Operating Practice and Condition Data\"");
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTab)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("O-\"Operating Experience\"");
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTab)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("M-\"Maintenance Data\"");
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).getText();
+		softly.assertThat(s5).as("test data").isEqualTo("S-\"Symptoms\"");
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewsTab)).getText();
+		softly.assertThat(s6).as("test data").isEqualTo("Interviews");
 	}
 	/*
 	public void verifyNobrInDeltaDOOMSTextBoxes(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -499,187 +517,63 @@ public class EiRCAV2_3 {
 		}
 		return symptoms;
 	}
-	/*	
+		
 	public void verifyInspectionFocusDropdownIsCorrect(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		//Select Inspection type = SRI
-		WebElement inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionTypeDropdown);
-		Select s = new Select(inspection);
-		s.selectByValue("1");
-		//Select Symptoms = Burning / Overheating
-		WebElement inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1 = new Select(inspection1);
-		s1.selectByValue("0");
-		//Verify the values in symptoms dropdown
-		List<String> inspectionFocus = inspectionFocusForBurningOverheating(driver);
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<2;i++)
+		List<String> inspectionFocus = new ArrayList<String>();
+		//SBI
+		for(int i=0;i<=6;i++)
 		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
+			if(i==1)
+				i=i+1;	
+			WebElement inspection = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-"+i));
+			if(i==0)
+				inspectionFocus.addAll(inspectionFocusForAbnormalConfiguration(driver));			
+			if(i==2)
+				inspectionFocus.addAll(inspectionFocusForAbnormalNoises(driver));	
+			if(i==3)
+				inspectionFocus.addAll(inspectionFocusForAbnormalSmell(driver));		
+			if(i==4)
+				inspectionFocus.addAll(inspectionFocusForCrackWearPitting(driver));		
+			if(i==5)
+				inspectionFocus.addAll(inspectionFocusForDiscoloration(driver));		
+			if(i==6)
+				inspectionFocus.addAll(inspectionFocusForLeakCorrosion(driver));
+			List<WebElement> insList = inspection.findElements(By.tagName("option"));
+			for(int j=0;j<insList.size();j++)
+			{
+				softly.assertThat(insList.get(j).getText()).as("test data").isIn(inspectionFocus);
+			}
+			inspectionFocus.clear();
 		}
-		inspectionFocus.clear();
-		//Select Symptoms = Dust and Water
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1a = new Select(inspection1);
-		s1a.selectByValue("1");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForDustAndWater(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<3;i++)
+		//SRI
+		for(int i=1;i<13;i++)
 		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
+			WebElement inspection = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-"+i));
+			if(i==1){
+				inspectionFocus.addAll(inspectionFocusForBurningOverheating(driver));	
+				i=6;
+			}	
+			if(i==7)
+				inspectionFocus.addAll(inspectionFocusForDustAndWater(driver));		
+			if(i==8)
+				inspectionFocus.addAll(inspectionFocusForElectronicAndElectricalEquipment(driver));		
+			if(i==9)
+				inspectionFocus.addAll(inspectionFocusForEMNearField(driver));		
+			if(i==10)
+				inspectionFocus.addAll(inspectionFocusForLeakDrainRelated(driver));		
+			if(i==11)
+				inspectionFocus.addAll(inspectionFocusForVibrationRelated(driver));		
+			if(i==12)
+				inspectionFocus.addAll(inspectionFocusForWearAndTear(driver));		
+			List<WebElement> insList = inspection.findElements(By.tagName("option"));
+			for(int j=0;j<insList.size();j++)
+			{
+				softly.assertThat(insList.get(j).getText()).as("test data").isIn(inspectionFocus);
+			}
+			inspectionFocus.clear();
 		}
-		inspectionFocus.clear();
-		//Select Symptoms = Electronic and Electrical Equipment
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1b = new Select(inspection1);
-		s1b.selectByValue("2");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForElectronicAndElectricalEquipment(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<6;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = EM Near Field
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1c = new Select(inspection1);
-		s1c.selectByValue("3");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForEMNearField(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<3;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Leak/Drain related
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1d = new Select(inspection1);
-		s1d.selectByValue("4");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForLeakDrainRelated(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<5;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Vibration Related
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1e = new Select(inspection1);
-		s1e.selectByValue("5");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForVibrationRelated(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<5;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Wear and Tear
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1f = new Select(inspection1);
-		s1f.selectByValue("6");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForWearAndTear(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<5;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Inspection type = Sense Based Inspection
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionTypeDropdown);
-		Select sa = new Select(inspection);
-		sa.selectByValue("0");
-		//Select Symptoms = Abnormal Configuration
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1g = new Select(inspection1);
-		s1g.selectByValue("0");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForAbnormalConfiguration(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<2;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms =  Abnormal Noises
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1h = new Select(inspection1);
-		s1h.selectByValue("1");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForAbnormalNoises(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<2;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Abnormal Smell
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1i = new Select(inspection1);
-		s1i.selectByValue("2");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForAbnormalSmell(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<2;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Crack/Wear/Pitting
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1j = new Select(inspection1);
-		s1j.selectByValue("3");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForCrackWearPitting(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<3;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Discoloration
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1k = new Select(inspection1);
-		s1k.selectByValue("4");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForDiscoloration(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<2;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-		//Select Symptoms = Leak/Corrosion
-		inspection1 = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		Select s1l = new Select(inspection1);
-		s1l.selectByValue("5");
-		//Verify the values in symptoms dropdown
-		inspectionFocus.addAll(inspectionFocusForLeakCorrosion(driver));
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);
-		for(int i=0;i<2;i++)
-		{
-			String s2 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
-			softly.assertThat(s2).as("test data").isIn(inspectionFocus);
-		}
-		inspectionFocus.clear();
-	}*/
+	}
 
 	public List<String> inspectionFocusForLeakCorrosion(WebDriver driver) throws Exception {
 
@@ -825,60 +719,26 @@ public class EiRCAV2_3 {
 		symptoms.add("Wear and tear");
 		return symptoms;
 	}
-	/*
+	
 	public void verifySymptomDropdownIsCorrect(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//Select Inspection type = Sense Based Inspection
-		WebElement inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionTypeDropdown);
-		Select s = new Select(inspection);
-		s.selectByValue("0");
+		WebElement inspection = driver.findElement(eirca.EiRCAStep2SBISelectMenu);
 		//Verify the values in symptoms dropdown
 		List<String> symptoms = symptomsForInspectionForSenseBasedInspection(driver);
-		inspection = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
 		for(int i=0;i<6;i++)
 		{
 			String s1 = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
 			softly.assertThat(s1).as("test data").isIn(symptoms);
 		}
 		//Select Inspection type = Systematic Reliability Inspection
-		WebElement inspection1 = driver.findElement(eirca.EiRCAStep2CFIInspectionTypeDropdown);
-		Select s1 = new Select(inspection1);
-		s1.selectByValue("1");
+		WebElement inspection1 = driver.findElement(eirca.EiRCAStep2SRISelectMenu);
 		//Verify the values in symptoms dropdown
 		List<String> symptoms1 = symptomsForInspectionForSystematicReliabilityInspection(driver);
-		inspection = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
 		for(int i=0;i<7;i++)
 		{
-			String s1a = inspection.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
+			String s1a = inspection1.findElement(By.xpath(".//*[@value='"+i+"']")).getText();
 			softly.assertThat(s1a).as("test data").isIn(symptoms1);
 		}
 	}
-
-	public void verifySymptomInspectionDropdownEmpty(WebDriver driver, SoftAssertions softly) throws Exception {
-
-		//Verify inspection type has values
-		WebElement inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionTypeDropdown);
-		for(int i=0;i<2;i++)
-		{
-			inspection.findElement(By.xpath(".//*[@value='"+i+"']"));
-		}
-		//Verify symptom dropdown is empty
-		inspection = driver.findElement(eirca.EiRCAStep2CFISymptomForInspectionDropdown);
-		try{
-			inspection.findElement(By.xpath(".//*[@value='0']"));
-			softly.fail("Symptom for inspection dropdown not empty: "+inspection.findElement(By.xpath(".//*[@value='0']")).getText());
-		}catch(org.openqa.selenium.NoSuchElementException e)
-		{
-
-		}
-		//Verify inspection focus dropdown is empty
-		inspection = driver.findElement(eirca.EiRCAStep2CFIInspectionFocusDropdown);	
-		try{
-			inspection.findElement(By.xpath(".//*[@value='0']"));
-			softly.fail("Inspection focus dropdown not empty: "+inspection.findElement(By.xpath(".//*[@value='0']")).getText());
-		}catch(org.openqa.selenium.NoSuchElementException e)
-		{
-
-		}
-	}*/
 }

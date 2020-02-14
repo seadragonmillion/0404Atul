@@ -26,6 +26,9 @@ public class EiRCAPath2 {
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
 	EiRCAV2 e1 = new EiRCAV2();
 	EiRCAV2_4 eirca4 = new EiRCAV2_4();
+	EiRCAV2_3 e3 = new EiRCAV2_3();
+	EiRCAPath2_1 ep2 = new EiRCAPath2_1();
+	EiRCAV2_2 eircav2 = new EiRCAV2_2();
 
 	public void verifyFACTCharacteristics(WebDriver driver) throws Exception {
 
@@ -241,6 +244,9 @@ public class EiRCAPath2 {
 		//Click Next
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Create 2 new events
+		eircav2.createNewEvent(driver, text,softly);
+		eircav2.createNewEvent(driver, text,softly);
 		//Click next on Sequence Of events
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
@@ -291,6 +297,22 @@ public class EiRCAPath2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-1-listbox']/div/a"))).click();
 		//Findings
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[1]/td[4]/textarea"))).sendKeys("Symptom 10 \n Symptom 11");	
+		//Click on back
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		//Click next
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Click on cross symbol of 2nd event row
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DeleteSign2ndEvent)).click();
+		//Click delete button
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		//CLick next
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Click on symptoms
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
+		//Verify symptom exists in SBI
+		String symp = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[1]/td[4]/textarea"))).getAttribute("value");
+		softly.assertThat(symp).as("test data").isEqualTo("Symptom 8 \n Symptom 9");
 		//Click Next
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
@@ -815,6 +837,41 @@ public class EiRCAPath2 {
 		//Verify title on Step 3
 		String title6 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3TabPageTitle)).getText();
 		softly.assertThat(title6).as("test data").isEqualTo("FACTS Symptom Characterization");
+		//Click back to step 2
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		//Click on symptoms
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
+		//SBI
+		for(int i=1;i<6;i++)
+		{
+			//Click on button
+			Thread.sleep(500);
+			e3.scrollToSBIButtonElement(driver);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
+			WebElement menu2 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
+			String cL3 = menu2.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+			if(cL3.contains("ui-checkbox-off"))
+				menu2.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
+		}
+		//SRI
+		for(int i=1;i<7;i++)
+		{
+			//Click on button
+			Thread.sleep(500);
+			e3.scrollToSRIButtonElement(driver);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
+			WebElement menu2 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
+			String cL3 = menu2.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+			if(cL3.contains("ui-checkbox-off"))
+				menu2.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
+		}
+		//Verify dropdown texts in Symptom > Comprehensive Field Inspection
+		Thread.sleep(1000);
+		e3.verifySymptomDropdownIsCorrect(driver, softly);
+		e3.verifyInspectionFocusDropdownIsCorrect(driver, softly);
 
 
 		//Clicks on Save button
@@ -840,6 +897,15 @@ public class EiRCAPath2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		share2.loadingServer(driver);
+		//Click on 1st record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
+		share2.loadingServer(driver);
+		//Delete report
+		driver.findElement(eirca.DeleteButton).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		share2.loadingServer(driver);
+		ep2.verifyEiRCAPath2(driver, softly);
 	}
 
 	public void softAssert() throws Exception {

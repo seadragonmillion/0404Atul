@@ -473,7 +473,7 @@ public class EiRCAV2 {
 		//Step 4
 		List<String> step4 = eircav4.EiRCAStep4(driver,softly,text,step3);
 		//Step 5
-		int n = eircav4.EiRCAStep5(driver,softly,text);
+		int n = eircav4.EiRCAStep5(driver,softly,text,step3,step4);
 		//Step 6
 		String analysisAdded = eircav4.EiRCAStep6(driver,softly,text,n);
 		//Step 7

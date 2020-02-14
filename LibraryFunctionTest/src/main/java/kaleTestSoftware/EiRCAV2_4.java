@@ -208,18 +208,27 @@ public class EiRCAV2_4 {
 		return ana;
 	}
 
-	public int EiRCAStep5 (WebDriver driver, SoftAssertions softly, String text) throws Exception {
+	public int EiRCAStep5 (WebDriver driver, SoftAssertions softly, String text, List<String> step3, List<String> step4) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(1000);
+		//Verify all the fm collapsibles are visible
+		List<String> allFMs = new ArrayList<String>();
+		allFMs.addAll(step4);
+		allFMs.addAll(step3);
+		for(int i=0;i<step3.size()+4;i++)
+		{
+			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fm-title-"+i))).getText();
+			softly.assertThat(s).as("test data").isIn(allFMs);
+		}
 		//Click on collapsible
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)).click();
 		//Choose a number between 0 to 5
 		Random random = new Random();
 		int n = random.nextInt(6);
 		//Fill text in Step 5
-		n = 2;
+		//n = 2;
 		Thread.sleep(1000);
 		if(n==0)
 		{

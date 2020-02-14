@@ -206,6 +206,8 @@ public class EiRCAV2PageObj {
 	public By EiRCAStep2InspectionSymptomListPopupSRI = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI-listbox-popup");
 	public By EiRCAStep2InspectionSymptomListMenuSRI = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI-menu");
 	public By EiRCAStep2SymptomsOption1 = By.xpath(".//*[@data-option-index='1']/a");
+	public By EiRCAStep2SBISelectMenu = By.id("pii-ircam2-t2t3-newentry-isymptom");
+	public By EiRCAStep2SRISelectMenu = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI");
 	//Interviews Tab
 	public By EiRCAStep2InterviewTabTable1 = By.id("pii-ircam2-t2t4-0-table");
 	public By EiRCAStep2InterviewTabTable2 = By.id("pii-ircam2-t2t4-1-table");

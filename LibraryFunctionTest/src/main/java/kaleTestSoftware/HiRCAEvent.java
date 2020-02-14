@@ -43,6 +43,7 @@ public class HiRCAEvent {
 	ShareCheck3 share3 = new ShareCheck3();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
 	HiRCAObj hirca = new HiRCAObj();
+	HiRCA2 hc2 = new HiRCA2();
 
 	SoftAssertions softly = new SoftAssertions();
 	public String reason1="I think I will buy the red car, or I will lease the blue one.";
@@ -1237,7 +1238,7 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
 		Thread.sleep(1000);
 		//Click on garbage can
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+		hc2.clickOnTrashCan(driver);
 
 		//Clicks on clear answers
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();

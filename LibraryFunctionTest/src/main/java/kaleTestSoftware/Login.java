@@ -231,8 +231,9 @@ public class Login {
 				try{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
 					break;
-				}catch(org.openqa.selenium.TimeoutException t)
+				}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementClickInterceptedException t)
 				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.KALELogo)).click();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 				}
 			}
@@ -272,7 +273,19 @@ public class Login {
 					}
 					act.click(element).build().perform();
 					Thread.sleep(3000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
+					int i=0;
+					while(i<10)
+					{
+						try{
+							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LogOutButton)).click();
+							break;
+						}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementClickInterceptedException t)
+						{
+							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.KALELogo)).click();
+							wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
+							i++;
+						}
+					}
 				}
 			}
 			Thread.sleep(2000);
