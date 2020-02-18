@@ -184,8 +184,8 @@ Scenario: Test OPiRCA sanity feature with notifications
 Scenario: Test OPiRCA sanity feature with notifications
 	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
 	When she creates an OPiRCA report with username as "jenkinsvmnonadmin"
-	And share OPiRCA report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
-	And mark critical OPiRCA report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And share OPiRCA report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And mark critical OPiRCA report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And delete OPiRCA report with admin nonadmin environment indicator equals 5
 	And logout from KALE
 
@@ -193,8 +193,8 @@ Scenario: Test OPiRCA sanity feature with notifications
 Scenario: Test OPiRCA sanity feature with notifications
 	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "firefox"
 	When she creates an OPiRCA report with username as "jenkinsvmnonadmin"
-	And share OPiRCA report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
-	And mark critical OPiRCA report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And share OPiRCA report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And mark critical OPiRCA report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And delete OPiRCA report with admin nonadmin environment indicator equals 5
 	And logout from KALE
 
@@ -202,8 +202,8 @@ Scenario: Test OPiRCA sanity feature with notifications
 Scenario: Test OPiRCA sanity feature with notifications
 	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "ie10"
 	When she creates an OPiRCA report with username as "jenkinsvmnonadmin"
-	And share OPiRCA report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
-	And mark critical OPiRCA report and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And share OPiRCA report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
+	And mark critical OPiRCA report with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" and admin nonadmin environment indicator equals 5
 	And delete OPiRCA report with admin nonadmin environment indicator equals 5
 	And logout from KALE
 
