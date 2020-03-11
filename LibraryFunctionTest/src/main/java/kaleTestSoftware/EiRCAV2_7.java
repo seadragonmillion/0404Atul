@@ -414,6 +414,52 @@ public class EiRCAV2_7 {
 		//Close pdf
 		pddoc.close();
 	}
+	
+	public void markCritical(WebDriver driver,String username, String password1,int y, SoftAssertions softly) throws Exception{
+
+		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		//Clicks on mark critical
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		//Mark critical pop up
+		verifyMarkCriticalPopup(driver, softly);
+		//Clicks on confirm change
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		//Checks if marked critical
+		share2.loadingServer(driver);
+		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
+		//Click back
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		share2.loadingServer(driver);
+		//Verify Marked critical icon
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAShareIconOrCriticalIcon));
+		//Verify presence of shared icon 
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAShareIconWhenAlsoMarkedCritical));
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
+		share2.loadingServer(driver);
+		//Clicks on mark critical again
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		//Un Mark critical pop up
+		verifyUnMarkCriticalPopup(driver, softly);
+		//Clicks on confirm change
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		Thread.sleep(2000);
+		share2.loadingServer(driver);
+		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
+		softly.assertThat(s1).as("test data").contains("ui-checkbox-off");
+		//Verify report not retrieved by shared to person
+		String sharer = em3.decideSharer (y);
+		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
+		//Clicks on EiRCA side panel
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASidePanel)).click();
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
+	}
 
 	public void verifyDownloadReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 

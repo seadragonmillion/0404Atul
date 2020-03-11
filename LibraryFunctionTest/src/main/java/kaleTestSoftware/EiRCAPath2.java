@@ -222,6 +222,9 @@ public class EiRCAPath2 {
 		//Click on 1st record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();	
 		share2.loadingServer(driver);
+		//Verify Report findings has n/a
+		String repFin = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLReportTable1ReportFindingTd)).getText();
+		softly.assertThat(repFin).as("test data").isEqualTo("Direct Cause(s): n/a"+"\n\n"+"Apparent Cause(s): n/a"+"\n\n"+"Contributing factor(s): n/a");
 		//Click on open button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();	
@@ -266,8 +269,8 @@ public class EiRCAPath2 {
 		if(cL1.contains("ui-checkbox-off"))
 			menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
 		//Click on button for selecting inspection parameter
-		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))).click();
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SBIIFocusButton1WhenNoSelection)));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SBIIFocusButton1WhenNoSelection)).click();
 		WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-0-menu"));
 		String cL1a = menu.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
 		if(cL1a.contains("ui-checkbox-off"))
@@ -416,16 +419,13 @@ public class EiRCAPath2 {
 			}
 			share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdFact+"]/button"))));
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdFact+"]/button"))).click();
-			int indexOfFactFreqOfOcc=0;
 			for(int j=1;j<=n;j++)
 			{
 				WebElement menu1a = driver.findElement(eirca.Step3FACTPopupMenu);
 				String cL1a1 = menu1a.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).getAttribute("class");
+				share2.scrollToElement(driver, menu1a.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")));
 				if(cL1a1.contains("ui-checkbox-off"))
 					menu1a.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).click();
-				if(menu1a.findElement(By.xpath(".//*[@data-option-index='"+j+"']/a")).getText()=="Frequency of occurrence"){
-					indexOfFactFreqOfOcc=j;
-				}
 			}
 			//Close popup
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FACTPopupCloseButton)).click();
@@ -434,24 +434,10 @@ public class EiRCAPath2 {
 			{
 				share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdChar+"]/div["+j+"]/div/select")));
 				WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdChar+"]/div["+j+"]/div/select"));
+				List<WebElement> charList = ele.findElements(By.tagName("option"));
 				Select s = new Select(ele);
-				//Find number of options under Characteristics
-				int count = 0;
-				while(true)
-				{
-					try{
-						ele.findElement(By.xpath(".//*[@value='"+count+"']"));
-						count += 1;
-					}catch(org.openqa.selenium.NoSuchElementException r){
-						break;
-					}					
-				}
-				int selectValue = random.nextInt(count);
+				int selectValue = random.nextInt(charList.size()-1);
 				s.selectByValue(String.valueOf(selectValue));
-				if(j==indexOfFactFreqOfOcc){
-					String s1 = ele.findElement(By.xpath(".//*[@value='1']")).getText();
-					softly.assertThat(s1).as("test data").isEqualTo("Intermittent (appearing and disappearing)");
-				}
 			}
 			//Enter Implication
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdImp+"]/textarea"))).sendKeys("IMP FM "+i);
@@ -525,25 +511,18 @@ public class EiRCAPath2 {
 			}
 			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdFact+"]/button"))).getText();
 			f1.add(s);
-			for(int j=1;j<=15;j++)
+			WebElement l = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[3]")));
+			List<WebElement> divList = l.findElements(By.id("pii-fact-display-button"));			
+			for(int j=1;j<=divList.size();j++)
 			{
-				try{
-					String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdFact+"]/div[2]/button["+j+"]"))).getText();
-					f1.add(s1);
-				}catch(org.openqa.selenium.TimeoutException r)
-				{
-					break;
-				}
+				//try{
+				String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdFact+"]/div[2]/button["+j+"]"))).getText();
+				f1.add(s1);
 			}
-			for(int j=1;j<=15;j++)
+			for(int j=1;j<=f1.size();j++)
 			{
-				try{
-					String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdChar+"]/div["+j+"]/div/span"))).getText();
-					c1.add(s1);
-				}catch(org.openqa.selenium.TimeoutException r)
-				{
-					break;
-				}
+				String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td["+tdChar+"]/div["+j+"]/div/span"))).getText();
+				c1.add(s1);
 			}
 			hm.put("FACT "+i,f1);
 			hm.put("Char "+i,c1);
@@ -553,7 +532,9 @@ public class EiRCAPath2 {
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		//Click back
+		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();		
+		share2.loadingServer(driver);
 		//Verify Step 3 data
 		for(int i=2;i<=9;i++)
 		{
@@ -633,25 +614,15 @@ public class EiRCAPath2 {
 			menu1a.findElement(By.xpath(".//*[@data-option-index=4]/a")).click();
 		//Close popup
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FACTPopupCloseButton)).click();
+		Random random = new Random();
 		//Choose characteristics
 		for(int j=1;j<=2;j++)
 		{
 			share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr[1]/td[4]/div["+j+"]/div/select")));
 			WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr[1]/td[4]/div["+j+"]/div/select"));
+			List<WebElement> charList = ele.findElements(By.tagName("option"));
 			Select s = new Select(ele);
-			//Find number of options under Characteristics
-			int count = 0;
-			while(true)
-			{
-				try{
-					ele.findElement(By.xpath(".//*[@value='"+count+"']"));
-					count += 1;
-				}catch(org.openqa.selenium.NoSuchElementException r){
-					break;
-				}					
-			}
-			Random random = new Random();
-			int selectValue = random.nextInt(count);
+			int selectValue = random.nextInt(charList.size()-1);
 			s.selectByValue(String.valueOf(selectValue));
 		}
 		//Store FACT and Characteristics
@@ -818,6 +789,10 @@ public class EiRCAPath2 {
 		fms1.add("IMP FM 9");
 		//Verify the implication names in Step 4
 		eirca4.verifyStep3FailureModes(driver,softly,fms1);
+		ep2.verifyBugsInStep5(driver, softly, text);
+		//Click back to step 4
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
 		//Click back to step 3
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
@@ -872,8 +847,134 @@ public class EiRCAPath2 {
 		Thread.sleep(1000);
 		e3.verifySymptomDropdownIsCorrect(driver, softly);
 		e3.verifyInspectionFocusDropdownIsCorrect(driver, softly);
-
-
+		WebElement t1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SBITbody));
+		String h1 = t1.findElement(eirca.EiRCAStep2TableHeadingC1).getText();
+		softly.assertThat(h1).as("test data").isEqualTo("Symptom for Inspection");
+		String h2 = t1.findElement(eirca.EiRCAStep2TableHeadingC2).getText();
+		softly.assertThat(h2).as("test data").isEqualTo("Inspection Parameter");
+		String h3 = t1.findElement(eirca.EiRCAStep2TableHeadingC3).getText();
+		softly.assertThat(h3).as("test data").isEqualTo("Inspection Notes");
+		String h4 = t1.findElement(eirca.EiRCAStep2TableHeadingC4).getText();
+		softly.assertThat(h4).as("test data").isEqualTo("Symptom Findings");
+		WebElement t2 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SRITbody));
+		String h1a = t2.findElement(eirca.EiRCAStep2TableHeadingC1).getText();
+		softly.assertThat(h1a).as("test data").isEqualTo("Symptom for Inspection");
+		String h2a = t2.findElement(eirca.EiRCAStep2TableHeadingC2).getText();
+		softly.assertThat(h2a).as("test data").isEqualTo("Inspection Parameter");
+		String h3a = t2.findElement(eirca.EiRCAStep2TableHeadingC3).getText();
+		softly.assertThat(h3a).as("test data").isEqualTo("Inspection Notes");
+		String h4a = t2.findElement(eirca.EiRCAStep2TableHeadingC4).getText();
+		softly.assertThat(h4a).as("test data").isEqualTo("Symptom Findings");
+		//Click Next
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Click Back
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		e3.verifyInspectionFocusDropdownIsCorrect(driver, softly);
+		//Click on button for selecting inspection parameter
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-2"))));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-2"))).click();
+		WebElement menu2 = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-2-menu"));
+		String cL3 = menu2.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+		if(cL3.contains("ui-checkbox-off"))
+			menu2.findElement(eirca.EiRCAStep2SymptomsOption1).click();
+		String cL4 = menu2.findElement(eirca.EiRCAStep2SymptomsOption0).getAttribute("class");
+		if(cL4.contains("ui-checkbox-off"))
+			menu2.findElement(eirca.EiRCAStep2SymptomsOption0).click();
+		//close popup
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-2-listbox']/div/a"))).click();
+		//Click Next
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Click Back
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		//Verify the selections in checkboxes
+		//SBI
+		//Click on button
+		Thread.sleep(500);
+		e3.scrollToSBIButtonElement(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
+		for(int i=1;i<6;i++)
+		{
+			WebElement menu5 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
+			String cL6 = menu5.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+			if(cL6.contains("ui-checkbox-off"))
+				softly.fail("Check no: " +i+ " not selected in SBI popup");
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSBIPopupCloseButton)).click();
+		//Click on button
+		Thread.sleep(500);
+		e3.scrollToSRIButtonElement(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
+		//SRI
+		for(int i=1;i<7;i++)
+		{
+			WebElement menu5 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
+			String cL6 = menu5.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+			if(cL6.contains("ui-checkbox-off"))
+				softly.fail("Check no: " +i+ " not selected in SRI popup");
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSRIPopupCloseButton)).click();
+		//SBI option Abnormal noises
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-12"))));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-12"))).click();
+		WebElement menu5 = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-12-menu"));
+		String cL6 = menu5.findElement(eirca.EiRCAStep2SymptomsOption0).getAttribute("class");
+		if(cL6.contains("ui-checkbox-off"))
+			softly.fail("Check box is off for option 0 for Abnormal noises");
+		String cL7 = menu5.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+		if(cL7.contains("ui-checkbox-off"))
+			softly.fail("Check box is off for option 1 for Abnormal noises");
+		//close popup
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-12-listbox']/div/a"))).click();
+		//SBI option Abnormal configuration
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))).click();
+		WebElement menu6 = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-0-menu"));
+		String cL8 = menu6.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+		if(cL8.contains("ui-checkbox-off"))
+			softly.fail("Check box is off for option 1 for Abnormal configuration");
+		//close popup
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-listbox']/div/a"))).click();
+		//SRI option Burning overheating
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-1"))));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-1"))).click();
+		WebElement menu7 = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-1-menu"));
+		String cL9 = menu7.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+		if(cL9.contains("ui-checkbox-off"))
+			softly.fail("Check box is off for option 1 for Burning overheating");
+		//close popup
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-1-listbox']/div/a"))).click();
+		//Click on button for selecting inspection parameter
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-12"))));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-12"))).click();
+		WebElement menu3 = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-12-menu"));
+		String cL5 = menu3.findElement(eirca.EiRCAStep2SymptomsOption0).getAttribute("class");
+		if(cL5.contains("ui-checkbox-on"))
+			menu3.findElement(eirca.EiRCAStep2SymptomsOption0).click();
+		//close popup
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-12-listbox']/div/a"))).click();
+		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-12-listbox']/div/a")));
+		//Click Next
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Click Back
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCABackButton)).click();
+		WebElement l = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t2t3-inspections-table-tbody")));
+		List<WebElement> rowListSymp = l.findElements(By.tagName("tr"));
+		softly.assertThat(rowListSymp.size()).as("test data").isEqualTo(6);				
+		//Delete last one
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[6]/td[5]/a"))));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[6]/td[5]/a"))).click();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		WebElement l1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t2t3-inspections-table-tbody")));
+		List<WebElement> rowListSymp1 = l1.findElements(By.tagName("tr"));
+		softly.assertThat(rowListSymp1.size()).as("test data").isEqualTo(5);
 		//Clicks on Save button
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();

@@ -2527,7 +2527,7 @@ public class HiRCAEvent {
 		driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a")).click();
 		Thread.sleep(2000);
 		//Click on date picker
-		driver.findElement(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/div/div[1]/div/a")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[4]/div/div[1]/div/a"))).click();
 		//Check if the title is correct
 		String date_title=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1")).getText();
 		System.out.println(date_title);

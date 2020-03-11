@@ -21,6 +21,10 @@ public class LoginPageObj {
 	public By StickySuccessPopup = By.cssSelector(".sticky.border-top-right.sticky-success");
 	public By StickyWarningPopup = By.cssSelector(".sticky.border-top-right.sticky-warning");
 	public By KALELogo = By.className("pii-logo-div-element-kale");
+	public By piiLabelClass = By.cssSelector(".pii-label");
+	public By piiDivBlockA = By.className("ui-block-a");
+	public By piiDivBlockB = By.className("ui-block-b");
+	public By piiDivBlockC = By.className("ui-block-c");
 	
 	public By LoginExpiringMessage = By.id("pii-header-message-div");
 }

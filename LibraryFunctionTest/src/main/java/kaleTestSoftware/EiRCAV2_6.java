@@ -23,19 +23,16 @@ public class EiRCAV2_6 {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Get checkbox clicked or not value
 		int i =1;
-		while(i<=10)
+		while(i<=5)
 		{
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			String checkDC1 = wait.until(ExpectedConditions.visibilityOfElementLocated(element)).getAttribute("checked");
-			System.out.println(checkDC1);
-			if(checkDC1 == "true")
-				wait.until(ExpectedConditions.visibilityOfElementLocated(element)).click();
-			Thread.sleep(1000);
+			if(checkDC1 == "false")
+				wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+			Thread.sleep(500);
 			String checkDC2 = wait.until(ExpectedConditions.visibilityOfElementLocated(element)).getAttribute("checked");
-			System.out.println(checkDC2);
-			if(checkDC2 == "false")
+			if(checkDC2 == "true")
 				break;
-			Thread.sleep(1000);
 			i=i+1;
 		}
 	}
@@ -59,11 +56,16 @@ public class EiRCAV2_6 {
 		//Cancel button
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("see report");
-		//Save button
+		//add DC or AC button
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("add direct or apparent cause");
-		//Click add DC or AC
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		//Click on see report
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
+		//Verify skipped on step 10
+		String skip5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabStep10SectionTitle)).getText();
+		softly.assertThat(skip5).as("test data").isEqualTo("10. Corrective Actions (skipped)");
+		//Click on Step 9 tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step9Tab)).click();
 	}
 
 	public List<String> EiRCAStep9 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3) throws Exception {
@@ -75,7 +77,6 @@ public class EiRCAV2_6 {
 		List<String> qualityScores = new ArrayList<String>();
 		//Verify popup
 		verifyPopupStep9NoDCAC(driver,softly);
-		softly.assertAll();
 		//total number of fms
 		int addedFM;
 		int startFM;
@@ -88,6 +89,32 @@ public class EiRCAV2_6 {
 			startFM = 1;
 		}
 		int totalFms = addedFM+step3.size();
+		//Verify all FM collapsible appearing on Step 9
+		for(int i=2;i<=totalFms+1;i++)
+		{
+			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+i+"]/h4/a/span[1]"))).getText();
+			if(n5>0)
+			{
+				if(i==2)
+					softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"2");
+				if(i==3)
+					softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"3");
+				if(i>3 && i<=totalFms) 
+					softly.assertThat(fm).as("test data").isIn(step3);
+			}
+			else {
+				if(i==2)
+					softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"1");
+				if(i==3)
+					softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"2");
+				if(i==4)
+					softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"3");
+				if(i>4 && i<=totalFms) 
+					softly.assertThat(fm).as("test data").isIn(step3);
+			}
+			if(i==totalFms+1)
+				softly.assertThat(fm).as("test data").isEqualTo(eirca.textEiRCAv2+"4");
+		}
 		int loopEnd;
 		if(totalFms<=5)
 			loopEnd=totalFms;
@@ -100,6 +127,11 @@ public class EiRCAV2_6 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();
 			String sfHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/thead/tr[1]/th[1]"))).getText();
 			softly.assertThat(sfHeading).as("test data").isEqualTo("Sequence of Failures");
+			//Check if the possible direct cause and apparent cause are n/a
+			String posNoDC = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table"))).getText();
+			softly.assertThat(posNoDC).as("test data").isEqualTo("Possible Direct Cause: n/a");
+			String posNoAC = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table"))).getText();
+			softly.assertThat(posNoAC).as("test data").isEqualTo("Possible Apparent Cause: n/a");
 			//Get name of failure mode 
 			String fmName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a/span[1]"))).getText();
 			//Fill direct cause twice and select
@@ -241,6 +273,13 @@ public class EiRCAV2_6 {
 					WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]")));
 					String s = l.findElement(By.className("pii-ircam2-t9-fm-qc-score")).getText();
 					softly.assertThat(s).as("test data").isEqualTo(String.valueOf(countQScore*10));
+					if(j==7)
+					{
+						WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody")));
+						l1.findElement(By.xpath("//td[contains(text(),'(9) Can the direct (or apparent) cause explain the severity (magnitude and speed) or signals of the failure symptoms?')]"));
+						//pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[3]/td[2]/div[2]/table/tbody/tr["+(j+1)+"]/td[1]")).getText();
+						//softly.assertThat(s1).as("test data").isEqualTo("(9) Can the direct (or apparent) cause explain the severity (magnitude and speed) or signals of the failure symptoms?");		
+					}
 				}
 				qualityScores.add(String.valueOf(countQScore*10));
 			}
@@ -275,6 +314,10 @@ public class EiRCAV2_6 {
 					WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]")));
 					String s = l.findElement(By.className("pii-ircam2-t9-fm-qc-score")).getText();
 					softly.assertThat(s).as("test data").isEqualTo(String.valueOf(countQScore*10));
+					WebElement l1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody")));
+					l1.findElement(By.xpath("//td[contains(text(),'(9) Can the direct (or apparent) cause explain the severity (magnitude and speed) or signals of the failure symptoms?')]"));
+					//String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[3]/td[2]/div[2]/table/tbody/tr["+(j+1)+"]/td[1]"))).getText();
+					//softly.assertThat(s1).as("test data").isEqualTo("(9) Can the direct (or apparent) cause explain the severity (magnitude and speed) or signals of the failure symptoms?");	
 				}
 				qualityScores.add(String.valueOf(countQScore*10));
 			}
@@ -470,28 +513,17 @@ public class EiRCAV2_6 {
 			List<WebElement> divList = l.findElements(By.id("pii-fact-display-button"));			
 			for(int j=1;j<=divList.size();j++)
 			{
-				//try{
 				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[3]/div[2]/button["+j+"]"))).getText();
 				f1.add(s1);
-				/*}catch(org.openqa.selenium.TimeoutException r)
-				{
-					break;
-				}*/
 			}
 			for(int j=1;j<=f1.size();j++)
 			{
-				//try{
 				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+i+"]/td[4]/div["+j+"]/div/span"))).getText();
 				c1.add(s1);
-				/*}catch(org.openqa.selenium.TimeoutException r)
-				{
-					break;
-				}*/
 			}
 			hm.put("FACT "+i,f1);
 			hm.put("Char "+i,c1);
 		}
-		System.out.println(hm);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();

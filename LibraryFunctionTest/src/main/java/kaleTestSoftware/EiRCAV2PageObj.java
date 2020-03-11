@@ -71,6 +71,7 @@ public class EiRCAV2PageObj {
 	public By EiRCAPopupHeader = By.id("pii-ircam2-dialog-header");
 	public By EiRCAPopupTitle = By.id("pii-ircam2-dialog-title");
 	public By EiRCAPopupConfirmButton = By.id("pii-ircam2-dialog-confirmed");
+	public By EiRCAPopupConfirmButton2 = By.id("pii-ircam2-dialog-confirmed2");
 	public By EiRCAPopUpMessageNote = By.id("pii-ircam2-dialog-note");
 	public By EiRCAPopupNotePoint1 = By.xpath(".//*[@id='pii-ircam2-dialog-note']/ul/li[1]");
 	public By EiRCAPopupNotePoint2 = By.xpath(".//*[@id='pii-ircam2-dialog-note']/ul/li[2]");
@@ -202,12 +203,22 @@ public class EiRCAV2PageObj {
 	public By EiRCAStep2SenseBasedInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SB']/tr[1]/td[1]/button");
 	public By EiRCAStep2SystematicReliabilityInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SRI']/tr[1]/td[1]/button");
 	public By EiRCAStep2InspectionSymptomListPopup = By.id("pii-ircam2-t2t3-newentry-isymptom-listbox-popup");
+	public By EiRCAStep2InspectionSymptomListSBIPopupCloseButton = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-isymptom-listbox']/div/a");
+	public By EiRCAStep2InspectionSymptomListSRIPopupCloseButton = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-listbox']/div/a");
 	public By EiRCAStep2InspectionSymptomListMenu = By.id("pii-ircam2-t2t3-newentry-isymptom-menu");
 	public By EiRCAStep2InspectionSymptomListPopupSRI = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI-listbox-popup");
 	public By EiRCAStep2InspectionSymptomListMenuSRI = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI-menu");
+	public By EiRCAStep2SymptomsOption0 = By.xpath(".//*[@data-option-index='0']/a");
 	public By EiRCAStep2SymptomsOption1 = By.xpath(".//*[@data-option-index='1']/a");
 	public By EiRCAStep2SBISelectMenu = By.id("pii-ircam2-t2t3-newentry-isymptom");
 	public By EiRCAStep2SRISelectMenu = By.id("pii-ircam2-t2t3-newentry-isymptom-SRI");
+	public By EiRCAStep2SBIIFocusButton1WhenNoSelection = By.id("pii-ircam2-t3-inspections-focus-button-0");
+	public By EiRCAStep2SBITbody = By.id("pii-ircam2-t2t3-inspections-outer-table-tbody-SB");
+	public By EiRCAStep2SRITbody = By.id("pii-ircam2-t2t3-inspections-outer-table-tbody-SRI");
+	public By EiRCAStep2TableHeadingC1 = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/thead/tr[1]/th[1]");
+	public By EiRCAStep2TableHeadingC2 = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/thead/tr[1]/th[2]");
+	public By EiRCAStep2TableHeadingC3 = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/thead/tr[1]/th[3]");
+	public By EiRCAStep2TableHeadingC4 = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table']/thead/tr[1]/th[4]");
 	//Interviews Tab
 	public By EiRCAStep2InterviewTabTable1 = By.id("pii-ircam2-t2t4-0-table");
 	public By EiRCAStep2InterviewTabTable2 = By.id("pii-ircam2-t2t4-1-table");
@@ -244,6 +255,7 @@ public class EiRCAV2PageObj {
 
 	//Step 4
 	public By Step4Tab = By.id("pii-ircam2-tab-4-a");	
+	public By Step4Page = By.id("pii-ircam2-tab-4");
 	public By Step4TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-4']/div[1]");
 	public By Step4SelectNewMethodButton = By.id("pii-ircam2-t4-newfm-method-select-button");
 	public By Step4SelectNewMethodButtonText = By.xpath(".//*[@id='pii-ircam2-t4-newfm-method-select-button']/span[1]");
@@ -266,6 +278,10 @@ public class EiRCAV2PageObj {
 	public By Step4FailureModeTableRow1ErrorMessageLine2 = By.xpath(".//*[@id='pii-ircam2-t4-fm-method-message-0']/ul/li[2]");
 	public By Step4FailureModeTableRow4DeleteButton = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr[7]/td[4]/a");
 	public By Step4FailureModeTableRow5DeleteButton = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr[9]/td[4]/a");
+	public By Step4FailureModeTableHeadingColumn1 = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/thead/tr[1]/th[1]");
+	public By Step4FailureModeTableHeadingColumn2 = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/thead/tr[1]/th[2]");
+	public By Step4FailureModeTableHeadingColumn3 = By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/thead/tr[1]/th[3]");
+	
 
 	//Step 5
 	public By Step5Tab = By.id("pii-ircam2-tab-5-a");
@@ -417,6 +433,7 @@ public class EiRCAV2PageObj {
 	public By ReportTabTable1SuspectedFailedComponent = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[12]/td[2]");
 	public By ReportTabTable1PrimarySymptom = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[13]/td[2]");
 	public By ReportTabTable1ReportFindingTr = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[15]");
+	public By ReportTabTable1ReportFindingTd = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[1]/table/tbody/tr[15]/td[2]");
 	//Step 5
 	public By ReportTabStep5RefutedFailureModeTitle = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/div[2]");
 	public By ReportTabStep5RefutedFailureModeName1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[11]/h4/span");
@@ -428,6 +445,9 @@ public class EiRCAV2PageObj {
 	public By ReportTabStep6AnalysisTypeR1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[12]/div[2]/table/tbody/tr[1]/td[1]");
 	public By ReportTabStep6AnalysisNameR1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[12]/div[2]/table/tbody/tr[1]/td[2]");
 	public By ReportTabStep6AnalysisComponentR1 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[12]/div[2]/table/tbody/tr[1]/td[3]");
+	public By ReportTabStep6AnalysisTypeR2 = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[12]/div[2]/table/tbody/tr[2]/td[1]");
+	//Step 9
+	public By ReportTabStep9Div = By.xpath(".//*[@id='pii-ircam2-tab-11']/div[15]");
 
 	//HTML	
 	//Section titles
@@ -454,6 +474,7 @@ public class EiRCAV2PageObj {
 	public By HTMLReportTable1SuspectedFailedComponent = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[12]/td[2]");
 	public By HTMLReportTable1PrimarySymptom = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[13]/td[2]");
 	public By HTMLReportTable1ReportFindingTr = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[15]");
+	public By HTMLReportTable1ReportFindingTd = By.xpath(".//*[@id='mirca-rpt']/div[1]/table/tbody/tr[15]/td[2]");
 	//Step 5
 	public By HTMLReportStep5RefutedFailureModeTitle = By.xpath(".//*[@id='mirca-rpt']/div[11]/div[2]");
 	public By HTMLReportStep5RefutedFailureModeName1 = By.xpath(".//*[@id='mirca-rpt']/div[11]/h4/span");
@@ -465,6 +486,9 @@ public class EiRCAV2PageObj {
 	public By HTMLReportStep6AnalysisTypeR1 = By.xpath(".//*[@id='mirca-rpt']/div[12]/div[2]/table/tbody/tr[1]/td[1]");
 	public By HTMLReportStep6AnalysisNameR1 = By.xpath(".//*[@id='mirca-rpt']/div[12]/div[2]/table/tbody/tr[1]/td[2]");
 	public By HTMLReportStep6AnalysisComponentR1 = By.xpath(".//*[@id='mirca-rpt']/div[12]/div[2]/table/tbody/tr[1]/td[3]");
+	public By HTMLReportStep6AnalysisTypeR2 = By.xpath(".//*[@id='mirca-rpt']/div[12]/div[2]/table/tbody/tr[2]/td[1]");
+	//Step 9
+	public By HTMLReportStep9Div = By.xpath(".//*[@id='mirca-rpt']/div[15]");
 	/*
 
 	//Step 5

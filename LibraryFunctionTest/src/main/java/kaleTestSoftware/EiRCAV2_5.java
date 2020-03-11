@@ -15,10 +15,42 @@ public class EiRCAV2_5 {
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
 	ShareCheck2 share2 = new ShareCheck2();
 	LoginPageObj login = new LoginPageObj();
+	
+	public void verifyPopupStep8NoneConfirmed(WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		//next
+		share2.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		//Wait for popup
+		//Verify pop up header
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
+		softly.assertThat(s).as("test data").isEqualTo("None Confirmed");
+		//Verify question on pop up
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupTitle)).getText();
+		softly.assertThat(s1).as("test data").isEqualTo("Since none of the failure modes are confirmed, do you want to see report now or modify failure modes?");
+		//Verify question on pop up
+		String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getText();
+		softly.assertThat(s1a).as("test data").isEqualTo("Modify failure modes: add failure modes or review their test results.");
+		//Cancel button
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).getText();
+		softly.assertThat(s2).as("test data").isEqualTo("see report");
+		//Modify button
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
+		softly.assertThat(s3).as("test data").isEqualTo("modify failure modes");
+		//Modify button
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton2)).getText();
+		softly.assertThat(s4).as("test data").isEqualTo("confirm existing failure mode");
+		//Confirm existing failure mode
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton2)).click();
+	}
 
 	public void EiRCAStep8 (WebDriver driver, SoftAssertions softly, HashMap<String,String> step7, String text, int n5, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Verify popup
+		verifyPopupStep8NoneConfirmed(driver,softly);
+		softly.assertAll();
 		//Verify the table is correct from Step 7
 		String fm1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step8TableFailureModeRow1Column1)).getText();
 		String rv1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step8TableProbabilityRankingRow1Column2)).getText();

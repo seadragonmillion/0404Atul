@@ -34,6 +34,12 @@ public class Login {
 		//Login button is located and clicked
 		wait.until(ExpectedConditions.elementToBeClickable(lpo.LoginButton)).click();
 		//Enter Username
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName));
+		}catch(org.openqa.selenium.TimeoutException r){
+			//Login button is located and clicked
+			wait.until(ExpectedConditions.elementToBeClickable(lpo.LoginButton)).click();
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.UserName)).sendKeys(username);
 		//Enter password

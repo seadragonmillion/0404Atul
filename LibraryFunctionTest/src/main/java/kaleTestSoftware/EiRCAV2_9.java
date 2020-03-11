@@ -319,7 +319,10 @@ public class EiRCAV2_9 {
 				String f = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[9]/table/tbody/tr["+i+"]/td[3]/ul/li["+(j+1)+"]"))).getText();
 				softly.assertThat(f).as("test data").isEqualTo("["+(j+1)+"] "+f1.get(j));
 				String c = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[9]/table/tbody/tr["+i+"]/td[4]/ul/li["+(j+1)+"]"))).getText();
-				softly.assertThat(c).as("test data").isEqualTo("["+(j+1)+"] "+c1.get(j));
+				if(c1.get(j).contains("Choose characteristics"))
+					softly.assertThat(c).as("test data").isEqualTo("["+(j+1)+"] n/a");
+				else
+					softly.assertThat(c).as("test data").isEqualTo("["+(j+1)+"] "+c1.get(j));
 			}
 		}
 
@@ -416,6 +419,8 @@ public class EiRCAV2_9 {
 		softly.assertThat(a2).as("test data").isEqualTo(eirca.textEiRCAv2);
 		String a3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLReportStep6AnalysisComponentR1)).getText();
 		softly.assertThat(a3).as("test data").isEqualTo(eirca.textEiRCAv2);
+		String a4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLReportStep6AnalysisTypeR2)).getText();
+		softly.assertThat(a4).as("test data").isEqualTo("n/a");
 		List<String> allFMs = new ArrayList<String>();
 		allFMs.addAll(step3);
 		allFMs.addAll(step4);
@@ -432,8 +437,15 @@ public class EiRCAV2_9 {
 		for(int i=1;i<=totalFms;i++)
 		{
 			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[1]"))).getText();
-			String rank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[2]/span"))).getText();
-			softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
+			String rank = driver.findElement(By.xpath(".//*[@id='mirca-rpt']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[2]/span")).getText();
+			if(step7.get(fm).length()==0)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					softly.assertThat(rank).as("test data").isEqualTo("n/a");
+				else
+					softly.assertThat(rank).as("test data").isEqualTo("");
+			}
+			else softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[3]"))).getText();
 			softly.assertThat(s1).as("test data").isEqualTo(eirca.textEiRCAv2);			
 			String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[13]/table["+(totalFms+1)+"]/tbody/tr["+i+"]/td[4]/div/div[1]"))).getText();
@@ -453,8 +465,14 @@ public class EiRCAV2_9 {
 		for(int i=1;i<=totalFms;i++)
 		{
 			String fm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[14]/table/tbody/tr["+i+"]/td[1]"))).getText();
-			String rank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[14]/table/tbody/tr["+i+"]/td[2]/span"))).getText();
-			softly.assertThat(rank).as("test data").isEqualTo(step7.get(fm));
+			String rank = driver.findElement(By.xpath(".//*[@id='mirca-rpt']/div[14]/table/tbody/tr["+i+"]/td[2]/span")).getText();
+			if(step7.get(fm).length()==0)
+			{
+				if(driver.getCurrentUrl().contains("kaleqa"))
+					softly.assertThat(rank).as("test data").isEqualTo("n/a");
+				else
+					softly.assertThat(rank).as("test data").isEqualTo("");
+			}
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[14]/table/tbody/tr["+i+"]/td[3]"))).getText();
 			softly.assertThat(s1).as("test data").isEqualTo(eirca.textEiRCAv2);			
 			String s1a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='mirca-rpt']/div[14]/table/tbody/tr["+i+"]/td[4]"))).getText();
@@ -464,6 +482,9 @@ public class EiRCAV2_9 {
 		}
 		//Step 9
 		count = 1;
+		String step9DivText = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLReportStep9Div)).getText();
+		softly.assertThat(step9DivText).as("test data").contains("Possible Direct Cause: n/a");
+		softly.assertThat(step9DivText).as("test data").contains("Possible Apparent Cause: n/a");
 		List<String> qualityScore = new ArrayList<String>();
 		for(int i=loopEnd*4;i<dcAcCfNames.size();i++){
 			qualityScore.add(dcAcCfNames.get(i));

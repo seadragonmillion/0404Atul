@@ -391,7 +391,9 @@ public class EiRCAV2 {
 		//Verify the optional in event id
 		String opt = driver.findElement(eirca.EiRCAEventIdField).getAttribute("placeholder");
 		softly.assertThat(opt).as("test data").isEqualTo("Fill in Event ID (optional)");
-		driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
+		if(driver.getCurrentUrl().contains("kaleqa")) 
+			driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text+"<div>");
+		else driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
 		//Get count
 		int count = getCharCountFromTitle(driver);
 		int total = getTotalCountFromTitle(driver);
@@ -530,11 +532,11 @@ public class EiRCAV2 {
 		eircav9.verifyHTMLReportSectionHeadings(driver, softly);
 		eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		//Download report
-		//eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
+		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		//Share report
 		eircav7.shareReport(driver, username, password, y, softly);
 		//Mark Critical
-		
+		eircav7.markCritical(driver, username, password, y, softly);
 		//Delete report
 		eircav7.deleteNewRecord(driver, recordName, y, softly);
 	}

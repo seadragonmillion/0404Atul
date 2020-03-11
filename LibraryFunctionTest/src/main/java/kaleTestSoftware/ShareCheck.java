@@ -19,7 +19,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+//import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -459,10 +459,11 @@ public class ShareCheck {
 			Thread.sleep(4000);
 			if(browserName.equals("internet explorer"))
 			{
-				Actions act = new Actions (driver);
+				//Actions act = new Actions (driver);
 				//Go back to notifications
 				WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationBell));
-				act.click(ele).build().perform();
+				ele.click();
+				//act.click(ele).build().perform();
 				Thread.sleep(4000);
 				for(int i=1;i<=n;i++)
 				{
@@ -478,12 +479,13 @@ public class ShareCheck {
 					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord));
 					Thread.sleep(4000);
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).isSelected()==false)
-						act.click(ele).build().perform();
+						ele.click();
 					//Click on read
 					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 					if(ele.isEnabled()==false)
 						wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationFirstRecord)).click();
-					act.click(ele).build().perform();
+					ele.click();
+					//act.click(ele).build().perform();
 					Thread.sleep(2000);
 					//Click on mark as read
 					int k = 0;
@@ -496,7 +498,8 @@ public class ShareCheck {
 						{
 							ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadButton));
 							try{
-								act.click(ele).build().perform();
+								ele.click();
+								//act.click(ele).build().perform();
 							}catch(org.openqa.selenium.WebDriverException w)
 							{
 								k=k+1;
@@ -505,7 +508,8 @@ public class ShareCheck {
 						}
 					}
 					ele = wait.until(ExpectedConditions.visibilityOfElementLocated(share.NotificationReadConfirmButton));
-					act.click(ele).build().perform();
+					//act.click(ele).build().perform();
+					ele.click();
 					Thread.sleep(2000);
 				}
 			}
@@ -595,7 +599,7 @@ public class ShareCheck {
 			}	
 		}
 		//Thread.sleep(3000);
-		Actions act = new Actions(driver);
+		//Actions act = new Actions(driver);
 		if(browserName.equals("firefox"))
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
@@ -607,12 +611,14 @@ public class ShareCheck {
 		{
 			//Clicks on admin user name on top right corner
 			WebElement ele =wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight));
-			act.click(ele).build().perform();
+			ele.click();
+			//act.click(ele).build().perform();
 			Thread.sleep(3000);
 			//Clicks on Activity
 			wait.until(ExpectedConditions.visibilityOfElementLocated(share.ActivityOnTopRight));
 			WebElement ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(share.ActivityOnTopRight));
-			act.click(ele1).build().perform();
+			ele1.click();
+			//act.click(ele1).build().perform();
 			Thread.sleep(4000);
 		}
 	}

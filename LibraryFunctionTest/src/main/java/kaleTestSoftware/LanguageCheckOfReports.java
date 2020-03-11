@@ -350,7 +350,7 @@ public class LanguageCheckOfReports {
 		//Scroll down to contact link
 		share2.scrollToElement(driver, driver.findElement(shareObj.KALEContactPage));
 		//Click on contact page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.KALEContactPage)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(shareObj.KALEContactPage)).click();
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -363,7 +363,7 @@ public class LanguageCheckOfReports {
 			}catch(org.openqa.selenium.NoSuchElementException t)
 			{
 				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.KALEContactPage)));
-				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.KALEContactPage)));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(shareObj.KALEContactPage)));
 			}
 		}
 		//Verify company name

@@ -47,9 +47,9 @@ public class OPiRCA3 {
 		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
 		System.out.println(overflow);
 		//Click on cancel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveCancelButton)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(opirca.OPiRCASaveCancelButton)).click();
 		//Click on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(opirca.OPiRCASavedActivitiesButton)).click();
 		share2.loadingServer(driver);		
 	}
 	

@@ -276,7 +276,10 @@ public class ChineseCommonFunctions {
 		softly.assertThat(jo).as("test data").isEqualTo("现场观察");
 		//3 pass
 		String p3 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewLink)).getText();
-		softly.assertThat(p3).as("test data").isEqualTo("三通审查");
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat(p3).as("test data").isEqualTo("零错误审查");
+		else
+			softly.assertThat(p3).as("test data").isEqualTo("三通审查");
 		//rv
 		String rev = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).getText();
 		softly.assertThat(rev).as("test data").isEqualTo("远程验证");
