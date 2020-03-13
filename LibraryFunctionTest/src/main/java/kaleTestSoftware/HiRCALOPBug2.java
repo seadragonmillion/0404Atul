@@ -142,7 +142,7 @@ public class HiRCALOPBug2 {
 			Thread.sleep(1000);
 		}
 		//Click skip on step 5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();/*
 		//Report tab
 		//verify the n/a is center aligned in the table for questions 1.1 to 1.20 and SUEP table
 		//Answer for 1.3 to 1.5
@@ -162,7 +162,7 @@ public class HiRCALOPBug2 {
 		{
 			String align = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[8]/table/tbody/tr[1]/td["+i+"]"))).getAttribute("align");
 			softly.assertThat(align).as("test data").isEqualTo("center");
-		}
+		}*/
 		//Scroll top
 		share2.scrollToTop(driver);
 		//Save report
@@ -184,7 +184,7 @@ public class HiRCALOPBug2 {
 		//HTML
 		//verify the n/a is center aligned in the table for questions 1.1 to 1.20 and SUEP table
 		//Answer for 1.3 to 1.5
-		for(int i=3;i<=5;i++)
+		/*for(int i=3;i<=5;i++)
 		{
 			String align = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr["+i+"]/td[2]"))).getAttribute("align");
 			softly.assertThat(align).as("test data").isEqualTo("center");
@@ -200,7 +200,7 @@ public class HiRCALOPBug2 {
 		{
 			String align = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[8]/table/tbody/tr[1]/td["+i+"]"))).getAttribute("align");
 			softly.assertThat(align).as("test data").isEqualTo("center");
-		}
+		}*/
 		//Delete
 		hl1.deleteReport(driver);
 		//Go to KALE homepage

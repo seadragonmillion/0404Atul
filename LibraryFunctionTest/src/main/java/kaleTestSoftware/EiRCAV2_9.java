@@ -48,8 +48,6 @@ public class EiRCAV2_9 {
 	public void verifyHTMLReportSectionHeadings(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Clicks on first newly created record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		share2.loadingServer(driver);
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.HTMLReportStep1SectionTitle)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("1. Event Information");

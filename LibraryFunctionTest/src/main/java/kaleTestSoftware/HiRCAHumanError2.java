@@ -2084,7 +2084,7 @@ public class HiRCAHumanError2 {
 		Thread.sleep(2000);
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
-		obj.verifyReport(driver, lopOptions1, options, hml, checklist,0,hircaNoteLopSURE);
+		//obj.verifyReport(driver, lopOptions1, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();

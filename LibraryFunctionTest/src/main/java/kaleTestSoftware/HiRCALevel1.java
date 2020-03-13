@@ -1165,7 +1165,7 @@ public class HiRCALevel1 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify HTML
-		verifyHTMLReport(driver, lopOptions, options, hml, checklist,0,hircaNoteLopSURE);
+		//verifyHTMLReport(driver, lopOptions, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on Open button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
@@ -1232,7 +1232,7 @@ public class HiRCALevel1 {
 		}
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
-		verifyReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
+		//verifyReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
@@ -1285,7 +1285,7 @@ public class HiRCALevel1 {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify HTML report
-		verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
+		//verifyHTMLReport(driver, lopOptions, optionsNew, hmlNew, checklistNew,1,hircaNoteLopSURE);
 	}
 
 	public List<String> modifyHiRCAChecklist(WebDriver driver,List<String> checklistOriginal) throws Exception {
@@ -1938,7 +1938,7 @@ public class HiRCALevel1 {
 		Thread.sleep(2000);
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
-		verifyReport(driver, lopOptions, options, hml, checklist,0, hircaNoteLopSURE);
+		//verifyReport(driver, lopOptions, options, hml, checklist,0, hircaNoteLopSURE);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));

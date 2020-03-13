@@ -1083,7 +1083,7 @@ public class HiRCALOPBug {
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
 			Thread.sleep(2000);
-		}
+		}/*
 		//Verify on Report Tab
 		//Failed LOPs
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/table[1]/tbody/tr[1]/td[1]"))).getText();
@@ -1122,7 +1122,7 @@ public class HiRCALOPBug {
 		softly.assertThat(s23).as("test data").isEqualTo(hlb2.reason2);
 		//3.17.2 selected for concurrent check
 		String s24 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[9]/table/tbody/tr[2]/td/div/table/tbody/tr/td[1]"))).getText();
-		softly.assertThat(s24).as("test data").isEqualTo("3.17.2 Inadequate source audit / inspection QA/QC for compliance (if applicable)");
+		softly.assertThat(s24).as("test data").isEqualTo("3.17.2 Inadequate source audit / inspection QA/QC for compliance (if applicable)");*/
 	}
 
 	public void verifyStep3SUEP(WebDriver driver) throws Exception {

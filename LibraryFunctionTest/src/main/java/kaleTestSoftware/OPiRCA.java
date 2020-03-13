@@ -949,12 +949,6 @@ public class OPiRCA {
 	public void verifyHTML(WebDriver driver, List<String> hircaNewList, List<String> apparentCausesNew, List<String> apparentCausesAnswersNew, HashMap<String,String> hml, HashMap<String,Integer> options, List<String>apparentCausesSelected, List<String>step2QuestionAnswers, List<String>step2ApparentCausesAnswers) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
-		//Clicks on first newly created record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();	
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
 		//Verify all text in 1st table in HTML
 		String text = eirca2.textCreate(driver);
 		//Event title
@@ -1781,8 +1775,14 @@ public class OPiRCA {
 			System.out.println ("Record not found.");
 		String r1 = recordName.replaceAll("\u00AD", "");
 		softly.assertThat(name).as("test data").isEqualTo(r1);
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
+		//Clicks on first newly created record
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();	
+		//Wait for loading message to disappear
+		share2.loadingServer(driver);
 		//Verify Apparent Causes in HTML
-		verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options,apparentCausesSelected, step2QuestionAnswers,step2ApparentCausesAnswers);
+		//verifyHTML(driver,hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options,apparentCausesSelected, step2QuestionAnswers,step2ApparentCausesAnswers);
 		//Open report
 		openReport(driver,r1);
 		//verify the report rename save popup overflow text

@@ -487,8 +487,8 @@ public class EiRCAV2 {
 		//Step 10
 		eircav8.EiRCAStep10(driver, softly, text, n, step3, dcAcCfNames);
 		//Verify report tab
-		eircav9.verifyReportTabSectionHeadings(driver, softly);
-		eircav8.verifyReportTab(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
+		//eircav9.verifyReportTabSectionHeadings(driver, softly);
+		//eircav8.verifyReportTab(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		Thread.sleep(2000);
 		eircav9.verifyBackButtonWorks(driver, softly);
 		//Clicks on Save button
@@ -528,9 +528,11 @@ public class EiRCAV2 {
 			System.out.println ("Record not found.");
 		//Checks if the name displayed on record is same as expected
 		softly.assertThat(r1).as("test data").isEqualTo(name);
+		//Clicks on first newly created record
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//verify HTML report
-		eircav9.verifyHTMLReportSectionHeadings(driver, softly);
-		eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
+		//eircav9.verifyHTMLReportSectionHeadings(driver, softly);
+		//eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		//Download report
 		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		//Share report

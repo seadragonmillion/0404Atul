@@ -135,7 +135,7 @@ public class HiRCALevel2 {
 		//Save report
 		saveHiRCAReport(driver);
 		//Verify report
-		verifyHTMLReport(driver,chineseOrEnglish,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,step5,hml1,hml2,hml3,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,hircaNoteLopSURE,softly);
+		//verifyHTMLReport(driver,chineseOrEnglish,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,step5,hml1,hml2,hml3,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,hircaNoteLopSURE,softly);
 		//download
 		downloadSelectFunction(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		if(chineseOrEnglish==0)
@@ -311,11 +311,11 @@ public class HiRCALevel2 {
 		//2.20
 		verifyAdditionalLOPSRequired(driver,list220);
 		//Verify selected failed LOPs
-		String lop1a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[1]"))).getText().trim();
+		String lop1a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[2]/td[2]/ul/li[1]"))).getText().trim();
 		softly.assertThat(lop1a).as("test data").isIn(lopSelected);
-		String lop2a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[2]"))).getText().trim();
+		String lop2a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[2]/td[2]/ul/li[2]"))).getText().trim();
 		softly.assertThat(lop2a).as("test data").isIn(lopSelected);
-		String lop3a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[7]/table/tbody/tr[2]/td[2]/ul/li[3]"))).getText().trim();
+		String lop3a = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[2]/td[2]/ul/li[3]"))).getText().trim();
 		softly.assertThat(lop3a).as("test data").isIn(lopSelected);
 		//LOP1
 		verifyLevel2and3AnswersForLOP(driver,lopSelected,level31stLOP,level21stLOP,8,softly);
