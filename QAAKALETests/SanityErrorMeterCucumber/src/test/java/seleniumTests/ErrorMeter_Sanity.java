@@ -84,19 +84,19 @@ public class ErrorMeter_Sanity {
 	    {
 	    	em.papeError0(driver);
 	    	b.add(em.saveReport(driver, username));
-	    	em.reportCheck0(driver);
+	    	//em.reportCheck0(driver);
 	    }
 	    if(prob==50)
 	    {
 	    	em.papeError50(driver);
 	    	b.add(em.saveReport(driver, username));
-	    	em.reportCheck50(driver);
+	    	//em.reportCheck50(driver);
 	    }
 	    if(prob==100)
 	    {
 	    	em.papeError100(driver);
 	    	b.add(em.saveReport(driver, username));
-	    	em.reportCheck100(driver);
+	    	//em.reportCheck100(driver);
 	    }
 	}
 	

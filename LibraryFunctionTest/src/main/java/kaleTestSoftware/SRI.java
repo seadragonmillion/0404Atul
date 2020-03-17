@@ -829,11 +829,11 @@ public class SRI {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINextButton)).click();
 		//Verify everything on report
-		verifyReportTab(driver,storeDataStep1,storeDataStep2);
+		//verifyReportTab(driver,storeDataStep1,storeDataStep2);
 		//Save report and open the report
 		String recordName = sri3.saveSRIReport(driver,softly);
 		//Verify data on HTML
-		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
+		//sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
 		//Verify rename popup overflow
 		sri2.verifySavePopupAfterRename(driver, softly,recordName,username,password,sriA2.electricalComponent1);
 		return recordName;
