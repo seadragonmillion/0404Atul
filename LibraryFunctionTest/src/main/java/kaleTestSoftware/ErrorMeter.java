@@ -52,7 +52,7 @@ public class ErrorMeter {
 			//Closes server warning
 			String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText().trim();
 			System.out.println(s);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 		}catch (org.openqa.selenium.TimeoutException e)
 		{
 
@@ -63,28 +63,28 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Environment Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
@@ -157,7 +157,7 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
 		}
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));	
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));
 
 
 
@@ -188,7 +188,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in People Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
 		Thread.sleep(1000);
@@ -201,7 +201,7 @@ public class ErrorMeter {
 			softly.assertThat("31.3%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
 		Thread.sleep(1000);
@@ -216,7 +216,7 @@ public class ErrorMeter {
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
 		Thread.sleep(1000);
@@ -229,7 +229,7 @@ public class ErrorMeter {
 			softly.assertThat("43.8%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
 		Thread.sleep(1000);
@@ -241,7 +241,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j--));
@@ -334,7 +334,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Activity Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
 		Thread.sleep(1000);
@@ -347,7 +347,7 @@ public class ErrorMeter {
 			softly.assertThat("56.3%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
 		Thread.sleep(1000);
@@ -362,7 +362,7 @@ public class ErrorMeter {
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
 		Thread.sleep(1000);
@@ -375,7 +375,7 @@ public class ErrorMeter {
 			softly.assertThat("68.8%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 		Thread.sleep(1000);
@@ -387,7 +387,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("75.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text.get(j--));
@@ -479,7 +479,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Procedure Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
 		Thread.sleep(1000);
@@ -492,7 +492,7 @@ public class ErrorMeter {
 			softly.assertThat("81.3%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
 		Thread.sleep(1000);
@@ -507,7 +507,7 @@ public class ErrorMeter {
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(1000);
@@ -520,7 +520,7 @@ public class ErrorMeter {
 			softly.assertThat("93.8%").as("test data").isEqualTo(meterText.trim());
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 		Thread.sleep(1000);
@@ -529,7 +529,7 @@ public class ErrorMeter {
 		System.out.println(meterText);
 		softly.assertThat("100.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j--));
@@ -639,7 +639,7 @@ public class ErrorMeter {
 			//Closes server warning
 			String s=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText().trim();
 			System.out.println(s);
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();			  
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
 		}catch (org.openqa.selenium.TimeoutException e)
 		{
 
@@ -651,18 +651,18 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Environment Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
 
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
@@ -728,7 +728,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in People Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
 		Thread.sleep(1000);
@@ -743,7 +743,7 @@ public class ErrorMeter {
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
 		Thread.sleep(1000);
@@ -755,7 +755,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("25.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
@@ -815,7 +815,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Activity Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
 		Thread.sleep(1000);
@@ -830,7 +830,7 @@ public class ErrorMeter {
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 		Thread.sleep(1000);
@@ -842,7 +842,7 @@ public class ErrorMeter {
 		else
 			softly.assertThat("37.5%").as("test data").isEqualTo(meterText.trim());
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j--));
@@ -899,7 +899,7 @@ public class ErrorMeter {
 		//Clicks on checkboxes in Procedure Tab
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
 		Thread.sleep(1000);
@@ -914,7 +914,7 @@ public class ErrorMeter {
 		share2.scrollToAPoint(driver, 800);
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-		else 
+		else
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(1000);
@@ -923,7 +923,7 @@ public class ErrorMeter {
 		System.out.println(meterText);
 		softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j--));
@@ -1008,7 +1008,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		int i;
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason1, softly);
@@ -1082,7 +1082,7 @@ public class ErrorMeter {
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
-		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());		
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Click on Activity of PAPE
 		share2.scrollToTop(driver);
@@ -1113,7 +1113,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text);
@@ -1217,7 +1217,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text);
@@ -1290,7 +1290,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());		
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 
 		//Click on Environment of PAPE
 		share2.scrollToTop(driver);
@@ -1321,7 +1321,7 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
-		//Fill in texts in Supporting reasons 
+		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason1, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text);
@@ -1400,7 +1400,7 @@ public class ErrorMeter {
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
-		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());		
+		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 	}
 
 	public void downloadReportIE(WebDriver driver, int y) throws Exception {
@@ -1424,7 +1424,7 @@ public class ErrorMeter {
 		try {
 			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
 			q.waitFor();
-		}catch (UnhandledAlertException f){	
+		}catch (UnhandledAlertException f){
 			System.out.println("Unexpected alert for picture 2");
 			driver.switchTo().alert().accept();
 
@@ -1440,7 +1440,7 @@ public class ErrorMeter {
 		if(y==100)
 			pdfCheckError100(driver,url);
 		Thread.sleep(4000);
-		//Switch to window    	
+		//Switch to window
 		driver.switchTo().window(window);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
@@ -1468,7 +1468,7 @@ public class ErrorMeter {
 		try {
 			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
 			q.waitFor();
-		}catch (UnhandledAlertException f){	
+		}catch (UnhandledAlertException f){
 			System.out.println("Unexpected alert for picture 2");
 			driver.switchTo().alert().accept();
 
@@ -1484,7 +1484,7 @@ public class ErrorMeter {
 		if(y==100)
 			pdfCheckError100(driver,url);
 		Thread.sleep(4000);
-		//Switch to window    	
+		//Switch to window
 		driver.switchTo().window(window);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
@@ -1606,11 +1606,11 @@ public class ErrorMeter {
 
 		String text = em2.error0Data(driver,url);
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
-		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));
 		try{
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
@@ -1626,12 +1626,12 @@ public class ErrorMeter {
 		List<String> ans= Arrays.asList(data.split("\r\n"));
 		String newData1="";
 		for (int i = 0; i < ans.size(); i++)
-		{	        	
+		{
 			int n=ans.get(i).length()-1;
 			if (ans.get(i).charAt(n)==' ')
 				newData1 = newData1+ans.get(i);
 			if (ans.get(i).charAt(n)!=' ')
-				newData1 = newData1+" "+ans.get(i);	        	
+				newData1 = newData1+" "+ans.get(i);
 		}
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
@@ -1656,11 +1656,11 @@ public class ErrorMeter {
 
 		List<String> text = em2.error50Data(driver,url);
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
-		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));
 		try{
 			System.out.println(lastFilePath.get());
 		}catch(java.util.NoSuchElementException t)
@@ -1676,12 +1676,12 @@ public class ErrorMeter {
 		List<String> ans= Arrays.asList(data.split("\r\n"));
 		String newData1="";
 		for (int i = 0; i < ans.size(); i++)
-		{	        	
+		{
 			int n=ans.get(i).length()-1;
 			if (ans.get(i).charAt(n)==' ')
 				newData1 = newData1+ans.get(i);
 			if (ans.get(i).charAt(n)!=' ')
-				newData1 = newData1+" "+ans.get(i);	        	
+				newData1 = newData1+" "+ans.get(i);
 		}
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
@@ -1714,11 +1714,11 @@ public class ErrorMeter {
 
 		List<String> text = em2.error100Data(driver,url);
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
-		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
+		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));
 		System.out.println(lastFilePath.get());
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
@@ -1729,12 +1729,12 @@ public class ErrorMeter {
 		List<String> ans= Arrays.asList(data.split("\r\n"));
 		String newData1="";
 		for (int i = 0; i < ans.size(); i++)
-		{	        	
+		{
 			int n=ans.get(i).length()-1;
 			if (ans.get(i).charAt(n)==' ')
 				newData1 = newData1+ans.get(i);
 			if (ans.get(i).charAt(n)!=' ')
-				newData1 = newData1+" "+ans.get(i);	        	
+				newData1 = newData1+" "+ans.get(i);
 		}
 		newData1=newData1.replace("  ", " ");
 		System.out.println(newData1);
@@ -1783,11 +1783,11 @@ public class ErrorMeter {
 		softly.assertThat(text4E).as("test data").isEqualTo("");
 		//Corrective actions
 		String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction1)).getText().trim();
-		softly.assertThat(text5E).as("test data").isEqualTo("");    	
+		softly.assertThat(text5E).as("test data").isEqualTo("");
 		String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction2)).getText().trim();
-		softly.assertThat(text6E).as("test data").isEqualTo("");    	
+		softly.assertThat(text6E).as("test data").isEqualTo("");
 		String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction3)).getText().trim();
-		softly.assertThat(text7E).as("test data").isEqualTo("");    	
+		softly.assertThat(text7E).as("test data").isEqualTo("");
 		String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction4)).getText().trim();
 		softly.assertThat(text8E).as("test data").isEqualTo("");
 
@@ -1795,20 +1795,20 @@ public class ErrorMeter {
 		//Compare People data
 		//Supporting reasons
 		String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason1)).getText().trim();
-		softly.assertThat(text9E).as("test data").isEqualTo("");    	
+		softly.assertThat(text9E).as("test data").isEqualTo("");
 		String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason2)).getText().trim();
-		softly.assertThat(text10E).as("test data").isEqualTo("");    	
+		softly.assertThat(text10E).as("test data").isEqualTo("");
 		String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason3)).getText().trim();
-		softly.assertThat(text11E).as("test data").isEqualTo("");    	
+		softly.assertThat(text11E).as("test data").isEqualTo("");
 		String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason4)).getText().trim();
-		softly.assertThat(text12E).as("test data").isEqualTo("");    	
+		softly.assertThat(text12E).as("test data").isEqualTo("");
 		//Corrective actions
 		String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction1)).getText().trim();
-		softly.assertThat(text13E).as("test data").isEqualTo("");    	
+		softly.assertThat(text13E).as("test data").isEqualTo("");
 		String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction2)).getText().trim();
-		softly.assertThat(text14E).as("test data").isEqualTo("");    	
+		softly.assertThat(text14E).as("test data").isEqualTo("");
 		String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction3)).getText().trim();
-		softly.assertThat(text15E).as("test data").isEqualTo("");    	
+		softly.assertThat(text15E).as("test data").isEqualTo("");
 		String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction4)).getText().trim();
 		softly.assertThat(text16E).as("test data").isEqualTo("");
 
@@ -1816,40 +1816,40 @@ public class ErrorMeter {
 		//Compare Activity data
 		//Supporting reasons
 		String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason1)).getText().trim();
-		softly.assertThat(text17E).as("test data").isEqualTo("");    	
+		softly.assertThat(text17E).as("test data").isEqualTo("");
 		String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason2)).getText().trim();
-		softly.assertThat(text18E).as("test data").isEqualTo("");    	
+		softly.assertThat(text18E).as("test data").isEqualTo("");
 		String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason3)).getText().trim();
-		softly.assertThat(text19E).as("test data").isEqualTo("");    	
+		softly.assertThat(text19E).as("test data").isEqualTo("");
 		String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason4)).getText().trim();
-		softly.assertThat(text20E).as("test data").isEqualTo("");    	
+		softly.assertThat(text20E).as("test data").isEqualTo("");
 		//Corrective actions
 		String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction1)).getText().trim();
-		softly.assertThat(text21E).as("test data").isEqualTo("");    	
+		softly.assertThat(text21E).as("test data").isEqualTo("");
 		String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction2)).getText().trim();
-		softly.assertThat(text22E).as("test data").isEqualTo("");    	
+		softly.assertThat(text22E).as("test data").isEqualTo("");
 		String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction3)).getText().trim();
-		softly.assertThat(text23E).as("test data").isEqualTo("");    	
+		softly.assertThat(text23E).as("test data").isEqualTo("");
 		String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction4)).getText().trim();
-		softly.assertThat(text24E).as("test data").isEqualTo("");    	
+		softly.assertThat(text24E).as("test data").isEqualTo("");
 
 		//Compare Procedure data
 		//Supporting reasons
 		String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason1)).getText().trim();
-		softly.assertThat(text25E).as("test data").isEqualTo("");    	
+		softly.assertThat(text25E).as("test data").isEqualTo("");
 		String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason2)).getText().trim();
-		softly.assertThat(text26E).as("test data").isEqualTo("");    	
+		softly.assertThat(text26E).as("test data").isEqualTo("");
 		String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason3)).getText().trim();
-		softly.assertThat(text27E).as("test data").isEqualTo("");    	
+		softly.assertThat(text27E).as("test data").isEqualTo("");
 		String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason4)).getText().trim();
-		softly.assertThat(text28E).as("test data").isEqualTo("");    	
+		softly.assertThat(text28E).as("test data").isEqualTo("");
 		//Corrective actions
 		String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction1)).getText().trim();
-		softly.assertThat(text29E).as("test data").isEqualTo("");    	
+		softly.assertThat(text29E).as("test data").isEqualTo("");
 		String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction2)).getText().trim();
-		softly.assertThat(text30E).as("test data").isEqualTo("");    	
+		softly.assertThat(text30E).as("test data").isEqualTo("");
 		String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction3)).getText().trim();
-		softly.assertThat(text31E).as("test data").isEqualTo("");    	
+		softly.assertThat(text31E).as("test data").isEqualTo("");
 		String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction4)).getText().trim();
 		softly.assertThat(text32E).as("test data").isEqualTo("");
 
@@ -1902,7 +1902,7 @@ public class ErrorMeter {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Click on Error Meter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
-		//Check title count 
+		//Check title count
 		checkTitleCountReset(driver);
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))).click();
@@ -1945,7 +1945,7 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);
-		softly.assertThat("0.0%").as("test data").isEqualTo(probabilityText);		
+		softly.assertThat("0.0%").as("test data").isEqualTo(probabilityText);
 		//Check the title count
 		checkTitleCount(driver);
 	}
@@ -1970,11 +1970,11 @@ public class ErrorMeter {
 		//Corrective actions
 		String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction1)).getText().trim();
 		String r2 = text5E.replaceAll("\u00AD", "");
-		softly.assertThat(r2).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r2).as("test data").isEqualTo(text.get(j--));
 		String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction2)).getText().trim();
-		softly.assertThat(text6E).as("test data").isEqualTo("");    	
+		softly.assertThat(text6E).as("test data").isEqualTo("");
 		String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction3)).getText().trim();
-		softly.assertThat(text7E).as("test data").isEqualTo("");    	
+		softly.assertThat(text7E).as("test data").isEqualTo("");
 		String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction4)).getText().trim();
 		String r3 = text8E.replaceAll("\u00AD", "");
 		softly.assertThat(r3).as("test data").isEqualTo(text.get(j--));
@@ -1983,24 +1983,24 @@ public class ErrorMeter {
 		//Compare People data
 		//Supporting reasons
 		String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason1)).getText().trim();
-		softly.assertThat(text9E).as("test data").isEqualTo("");    	
+		softly.assertThat(text9E).as("test data").isEqualTo("");
 		String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason2)).getText().trim();
 		String r4 = text10E.replaceAll("\u00AD", "");
-		softly.assertThat(r4).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r4).as("test data").isEqualTo(text.get(j--));
 		String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason3)).getText().trim();
 		String r5 = text11E.replaceAll("\u00AD", "");
-		softly.assertThat(r5).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r5).as("test data").isEqualTo(text.get(j--));
 		String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason4)).getText().trim();
-		softly.assertThat(text12E).as("test data").isEqualTo("");    	
+		softly.assertThat(text12E).as("test data").isEqualTo("");
 		//Corrective actions
 		String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction1)).getText().trim();
-		softly.assertThat(text13E).as("test data").isEqualTo("");    	
+		softly.assertThat(text13E).as("test data").isEqualTo("");
 		String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction2)).getText().trim();
 		String r6 = text14E.replaceAll("\u00AD", "");
-		softly.assertThat(r6).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r6).as("test data").isEqualTo(text.get(j--));
 		String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction3)).getText().trim();
 		String r7 = text15E.replaceAll("\u00AD", "");
-		softly.assertThat(r7).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r7).as("test data").isEqualTo(text.get(j--));
 		String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction4)).getText().trim();
 		softly.assertThat(text16E).as("test data").isEqualTo("");
 
@@ -2008,48 +2008,48 @@ public class ErrorMeter {
 		//Compare Activity data
 		//Supporting reasons
 		String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason1)).getText().trim();
-		softly.assertThat(text17E).as("test data").isEqualTo("");    	
+		softly.assertThat(text17E).as("test data").isEqualTo("");
 		String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason2)).getText().trim();
 		String r8 = text18E.replaceAll("\u00AD", "");
-		softly.assertThat(r8).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r8).as("test data").isEqualTo(text.get(j--));
 		String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason3)).getText().trim();
-		softly.assertThat(text19E).as("test data").isEqualTo("");    	
+		softly.assertThat(text19E).as("test data").isEqualTo("");
 		String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason4)).getText().trim();
 		String r9 = text20E.replaceAll("\u00AD", "");
-		softly.assertThat(r9).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r9).as("test data").isEqualTo(text.get(j--));
 		//Corrective actions
 		String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction1)).getText().trim();
-		softly.assertThat(text21E).as("test data").isEqualTo("");    	
+		softly.assertThat(text21E).as("test data").isEqualTo("");
 		String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction2)).getText().trim();
 		String r10 = text22E.replaceAll("\u00AD", "");
-		softly.assertThat(r10).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r10).as("test data").isEqualTo(text.get(j--));
 		String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction3)).getText().trim();
-		softly.assertThat(text23E).as("test data").isEqualTo("");    	
+		softly.assertThat(text23E).as("test data").isEqualTo("");
 		String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction4)).getText().trim();
 		String r11 = text24E.replaceAll("\u00AD", "");
-		softly.assertThat(r11).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r11).as("test data").isEqualTo(text.get(j--));
 
 		//Compare Procedure data
 		//Supporting reasons
 		String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason1)).getText().trim();
 		String r12 = text25E.replaceAll("\u00AD", "");
-		softly.assertThat(r12).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r12).as("test data").isEqualTo(text.get(j--));
 		String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason2)).getText().trim();
-		softly.assertThat(text26E).as("test data").isEqualTo("");    	
+		softly.assertThat(text26E).as("test data").isEqualTo("");
 		String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason3)).getText().trim();
 		String r13 = text27E.replaceAll("\u00AD", "");
-		softly.assertThat(r13).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r13).as("test data").isEqualTo(text.get(j--));
 		String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason4)).getText().trim();
-		softly.assertThat(text28E).as("test data").isEqualTo("");    	
+		softly.assertThat(text28E).as("test data").isEqualTo("");
 		//Corrective actions
 		String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction1)).getText().trim();
 		String r14 = text29E.replaceAll("\u00AD", "");
-		softly.assertThat(r14).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r14).as("test data").isEqualTo(text.get(j--));
 		String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction2)).getText().trim();
-		softly.assertThat(text30E).as("test data").isEqualTo("");    	
+		softly.assertThat(text30E).as("test data").isEqualTo("");
 		String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction3)).getText().trim();
 		String r15 = text31E.replaceAll("\u00AD", "");
-		softly.assertThat(r15).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r15).as("test data").isEqualTo(text.get(j--));
 		String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction4)).getText().trim();
 		softly.assertThat(text32E).as("test data").isEqualTo("");
 
@@ -2106,8 +2106,8 @@ public class ErrorMeter {
 		//Error probability
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
-		System.out.println(probabilityText);		
-		softly.assertThat("50.0%").as("test data").isEqualTo(probabilityText);		
+		System.out.println(probabilityText);
+		softly.assertThat("50.0%").as("test data").isEqualTo(probabilityText);
 	}
 
 	public void reportCheck100Dev (WebDriver driver) throws Exception{
@@ -2132,13 +2132,13 @@ public class ErrorMeter {
 		//Corrective actions
 		String text5E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction1)).getText().trim();
 		String r2 = text5E.replaceAll("\u00AD", "");
-		softly.assertThat(r2).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r2).as("test data").isEqualTo(text.get(j--));
 		String text6E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction2)).getText().trim();
 		String r20 = text6E.replaceAll("\u00AD", "");
-		softly.assertThat(r20).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r20).as("test data").isEqualTo(text.get(j--));
 		String text7E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction3)).getText().trim();
 		String r21 = text7E.replaceAll("\u00AD", "");
-		softly.assertThat(r21).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r21).as("test data").isEqualTo(text.get(j--));
 		String text8E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterEnvironmentCorrectiveAction4)).getText().trim();
 		String r3 = text8E.replaceAll("\u00AD", "");
 		softly.assertThat(r3).as("test data").isEqualTo(text.get(j--));
@@ -2148,26 +2148,26 @@ public class ErrorMeter {
 		//Supporting reasons
 		String text9E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason1)).getText().trim();
 		String r22 = text9E.replaceAll("\u00AD", "");
-		softly.assertThat(r22).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r22).as("test data").isEqualTo(text.get(j--));
 		String text10E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason2)).getText().trim();
 		String r4 = text10E.replaceAll("\u00AD", "");
-		softly.assertThat(r4).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r4).as("test data").isEqualTo(text.get(j--));
 		String text11E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason3)).getText().trim();
 		String r5 = text11E.replaceAll("\u00AD", "");
-		softly.assertThat(r5).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r5).as("test data").isEqualTo(text.get(j--));
 		String text12E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleSupportingReason4)).getText().trim();
 		String r23 = text12E.replaceAll("\u00AD", "");
-		softly.assertThat(r23).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r23).as("test data").isEqualTo(text.get(j--));
 		//Corrective actions
 		String text13E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction1)).getText().trim();
 		String r24 = text13E.replaceAll("\u00AD", "");
-		softly.assertThat(r24).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r24).as("test data").isEqualTo(text.get(j--));
 		String text14E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction2)).getText().trim();
 		String r6 = text14E.replaceAll("\u00AD", "");
-		softly.assertThat(r6).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r6).as("test data").isEqualTo(text.get(j--));
 		String text15E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction3)).getText().trim();
 		String r7 = text15E.replaceAll("\u00AD", "");
-		softly.assertThat(r7).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r7).as("test data").isEqualTo(text.get(j--));
 		String text16E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPeopleCorrectiveAction4)).getText().trim();
 		String r25 = text16E.replaceAll("\u00AD", "");
 		softly.assertThat(r25).as("test data").isEqualTo(text.get(j--));
@@ -2177,54 +2177,54 @@ public class ErrorMeter {
 		//Supporting reasons
 		String text17E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason1)).getText().trim();
 		String r26 = text17E.replaceAll("\u00AD", "");
-		softly.assertThat(r26).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r26).as("test data").isEqualTo(text.get(j--));
 		String text18E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason2)).getText().trim();
 		String r8 = text18E.replaceAll("\u00AD", "");
-		softly.assertThat(r8).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r8).as("test data").isEqualTo(text.get(j--));
 		String text19E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason3)).getText().trim();
 		String r27 = text19E.replaceAll("\u00AD", "");
-		softly.assertThat(r27).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r27).as("test data").isEqualTo(text.get(j--));
 		String text20E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivitySupportingReason4)).getText().trim();
 		String r9 = text20E.replaceAll("\u00AD", "");
-		softly.assertThat(r9).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r9).as("test data").isEqualTo(text.get(j--));
 		//Corrective actions
 		String text21E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction1)).getText().trim();
 		String r28 = text21E.replaceAll("\u00AD", "");
-		softly.assertThat(r28).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r28).as("test data").isEqualTo(text.get(j--));
 		String text22E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction2)).getText().trim();
 		String r10 = text22E.replaceAll("\u00AD", "");
-		softly.assertThat(r10).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r10).as("test data").isEqualTo(text.get(j--));
 		String text23E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction3)).getText().trim();
 		String r29 = text23E.replaceAll("\u00AD", "");
-		softly.assertThat(r29).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r29).as("test data").isEqualTo(text.get(j--));
 		String text24E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterActivityCorrectiveAction4)).getText().trim();
 		String r11 = text24E.replaceAll("\u00AD", "");
-		softly.assertThat(r11).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r11).as("test data").isEqualTo(text.get(j--));
 
 		//Compare Procedure data
 		//Supporting reasons
 		String text25E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason1)).getText().trim();
 		String r12 = text25E.replaceAll("\u00AD", "");
-		softly.assertThat(r12).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r12).as("test data").isEqualTo(text.get(j--));
 		String text26E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason2)).getText().trim();
 		String r30 = text26E.replaceAll("\u00AD", "");
-		softly.assertThat(r30).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r30).as("test data").isEqualTo(text.get(j--));
 		String text27E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason3)).getText().trim();
 		String r13 = text27E.replaceAll("\u00AD", "");
-		softly.assertThat(r13).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r13).as("test data").isEqualTo(text.get(j--));
 		String text28E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureSupportingReason4)).getText().trim();
 		String r31 = text28E.replaceAll("\u00AD", "");
-		softly.assertThat(r31).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r31).as("test data").isEqualTo(text.get(j--));
 		//Corrective actions
 		String text29E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction1)).getText().trim();
 		String r14 = text29E.replaceAll("\u00AD", "");
-		softly.assertThat(r14).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r14).as("test data").isEqualTo(text.get(j--));
 		String text30E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction2)).getText().trim();
 		String r17 = text30E.replaceAll("\u00AD", "");
-		softly.assertThat(r17).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r17).as("test data").isEqualTo(text.get(j--));
 		String text31E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction3)).getText().trim();
 		String r15 = text31E.replaceAll("\u00AD", "");
-		softly.assertThat(r15).as("test data").isEqualTo(text.get(j--));    	
+		softly.assertThat(r15).as("test data").isEqualTo(text.get(j--));
 		String text32E=wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterProcedureCorrectiveAction4)).getText().trim();
 		String r16 = text32E.replaceAll("\u00AD", "");
 		softly.assertThat(r16).as("test data").isEqualTo(text.get(j--));
@@ -2283,7 +2283,7 @@ public class ErrorMeter {
 		WebElement probability=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/strong")));
 		String probabilityText = probability.getText().trim();
 		System.out.println(probabilityText);
-		softly.assertThat("100.0%").as("test data").isEqualTo(probabilityText);		
+		softly.assertThat("100.0%").as("test data").isEqualTo(probabilityText);
 	}
 
 
@@ -2349,7 +2349,7 @@ public class ErrorMeter {
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		//Checks if marked critical		
+		//Checks if marked critical
 		share2.loadingServer(driver);
 		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
 		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
@@ -2358,7 +2358,7 @@ public class ErrorMeter {
 		share2.loadingServer(driver);
 		//Verify Marked critical icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
-		//Verify presence of shared icon 
+		//Verify presence of shared icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[2]")));
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
@@ -2368,18 +2368,18 @@ public class ErrorMeter {
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(2000);		
+		Thread.sleep(2000);
 		share2.loadingServer(driver);
 		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
 		softly.assertThat(s1).as("test data").contains("ui-checkbox-off");//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);
-		share.checkCriticalNotification(driver, sharer, username, password1, softly);		
+		share.checkCriticalNotification(driver, sharer, username, password1, softly);
 		//Clicks on Error meter side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on first newly created record
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();	
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	}
 
 	public void deleteNewRecord(WebDriver driver, String recordName,  int y) throws Exception{
@@ -2403,11 +2403,11 @@ public class ErrorMeter {
 		if (name!=recordName)
 			System.out.println("Record deleted");
 		else
-			System.out.println("Record could not be deleted");		  
+			System.out.println("Record could not be deleted");
 		//Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer (y);
-		share.checkNoReportAfterDelete(driver, sharer, softly);	  
-	}  
+		share.checkNoReportAfterDelete(driver, sharer, softly);
+	}
 
 	public String saveReport(WebDriver driver, String username) throws Exception {
 
@@ -2420,7 +2420,7 @@ public class ErrorMeter {
 		Thread.sleep(2000);
 		//Click on finalize and save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click(); 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click();
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		share2.loadingServer(driver);

@@ -79,27 +79,34 @@ public class ErrorMeter_Sanity {
 	@When("she creates an Error Meter report with error probability as {int} and username as {string}")
 	public void she_creates_an_Error_Meter_report_with_error_probability_as_and_username_as(int prob, String username) throws Exception {
 	    ErrorMeter em = new ErrorMeter();
+			WebDriverWait wait = new WebDriverWait(driver,20);
 	    //Create report
 	    if(prob==0)
 	    {
 	    	em.papeError0(driver);
 	    	b.add(em.saveReport(driver, username));
+				//Clicks on first newly created record
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	    	//em.reportCheck0(driver);
 	    }
 	    if(prob==50)
 	    {
 	    	em.papeError50(driver);
 	    	b.add(em.saveReport(driver, username));
+	    	//Clicks on first newly created record
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	    	//em.reportCheck50(driver);
 	    }
 	    if(prob==100)
 	    {
 	    	em.papeError100(driver);
 	    	b.add(em.saveReport(driver, username));
+	    	//Clicks on first newly created record
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 	    	//em.reportCheck100(driver);
 	    }
 	}
-	
+
 	@When("downloads Error Meter report with error probability as {int} on browser {string}")
 	public void downloads_Error_Meter_report_with_error_probability_as_on_browser(int prob, String browser) throws Exception {
 		ErrorMeter em = new ErrorMeter();
@@ -110,9 +117,9 @@ public class ErrorMeter_Sanity {
 		if(browser.equals("ie10"))
 			em.downloadReportIE(driver, prob);
 		if(browser.equals("ie11"))
-			em.downloadReportIE11(driver, prob);	
+			em.downloadReportIE11(driver, prob);
 	}
-	
+
 	  /* Dev/Asia
 	 * 0=admin
 	 * 1=non admin
