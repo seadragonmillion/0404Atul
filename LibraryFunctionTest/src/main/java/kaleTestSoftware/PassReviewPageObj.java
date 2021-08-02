@@ -39,7 +39,7 @@ public class PassReviewPageObj {
 	public By InfoPageDocTypeError = By.id("pii-3pr-tab-1-doctype-error");
 	public By InfoPageOrganizationError = By.id("pii-3pr-tab-1-org-error");
 
-	//Pass 1 Tab
+	//Pass 1 Tab elements
 	public By Pass1RequirementText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr/td[2]/textarea");	
 	public By Pass1OperatingText = By.xpath("//*[@id='pii-3pr-tab-2']/div[8]/table/tbody/tr/td[2]/textarea");
 	public By Pass1AssumptionText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[11]/table/tbody/tr/td[2]/textarea");
