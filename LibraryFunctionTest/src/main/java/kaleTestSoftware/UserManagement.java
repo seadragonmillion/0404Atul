@@ -1589,8 +1589,8 @@ public class UserManagement {
 	public void emailMarkRead(String email, WebDriver driver) throws Exception{
 
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = email;
-		String PASSWORD = "5sepkale";
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";    //"username@gmail.com"
+		String PASSWORD = "pii@2021";    //password
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
 		//Get browser name
@@ -1609,7 +1609,7 @@ public class UserManagement {
 		else if (browserName.contains("safari"))
 			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
 		else
-			props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+			props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
 		Store store = session.getStore("imaps");
 		store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -1778,7 +1778,7 @@ public class UserManagement {
 
 	public void createCompany (WebDriver driver, String company_id) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		//JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on companies
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();

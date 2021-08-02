@@ -80,22 +80,22 @@ public class LanguageCheckOfReports {
 		//Labels which are visible only to admin user
 		//Activation status
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-status']"))).getText();
-		softly.assertThat(s).as("test data").isEqualTo("状态:");
+		softly.assertThat(s).as("test data").isEqualTo("çŠ¶æ€�:");
 		//Select group
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s1).as("test data").isEqualTo("选择小组:");
+		softly.assertThat(s1).as("test data").isEqualTo("é€‰æ‹©å°�ç»„:");
 		//Cases slide security
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-slidesecurity']/div[1]/legend"))).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("知识库安全设定:");
+		softly.assertThat(s2).as("test data").isEqualTo("çŸ¥è¯†åº“å®‰å…¨è®¾å®š:");
 		//Company ID
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerId-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("公司代码:");
+		softly.assertThat(s3).as("test data").isEqualTo("å…¬å�¸ä»£ç �:");
 		//Company moderator
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerAdmin']/div[1]/legend"))).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("公司代理人:");
+		softly.assertThat(s4).as("test data").isEqualTo("å…¬å�¸ä»£ç�†äºº:");
 		//Group moderator
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-modgroups-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s5).as("test data").isEqualTo("小组代理人:");
+		softly.assertThat(s5).as("test data").isEqualTo("å°�ç»„ä»£ç�†äºº:");
 		//softly.assertAll();
 	}
 
@@ -104,50 +104,50 @@ public class LanguageCheckOfReports {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//page title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))).getText();
-		softly.assertThat(title).as("test data").isEqualTo("用户信息");
+		softly.assertThat(title).as("test data").isEqualTo("ç”¨æˆ·ä¿¡æ�¯");
 		//login name
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-loginname']"))).getText();
-		softly.assertThat(s).as("test data").isEqualTo("账号:");
+		softly.assertThat(s).as("test data").isEqualTo("è´¦å�·:");
 		//Password
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password']"))).getText();
-		softly.assertThat(s1).as("test data").isEqualTo("密码:");
+		softly.assertThat(s1).as("test data").isEqualTo("å¯†ç �:");
 		//Retype password
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-password-again']"))).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("重新输入密码。:");
+		softly.assertThat(s2).as("test data").isEqualTo("é‡�æ–°è¾“å…¥å¯†ç �ã€‚:");
 		//Language
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-language']"))).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("语言:");
+		softly.assertThat(s3).as("test data").isEqualTo("è¯­è¨€:");
 		//name
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-name']"))).getText();
-		softly.assertThat(s4).as("test data").isEqualTo("姓名:");
+		softly.assertThat(s4).as("test data").isEqualTo("å§“å��:");
 		//company name
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-company']"))).getText();
-		softly.assertThat(s5).as("test data").isEqualTo("公司名称:");
+		softly.assertThat(s5).as("test data").isEqualTo("å…¬å�¸å��ç§°:");
 		//department
 		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-dept']"))).getText();
-		softly.assertThat(s6).as("test data").isEqualTo("部门:");
+		softly.assertThat(s6).as("test data").isEqualTo("éƒ¨é—¨:");
 		//sub- dept
 		String s7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-sub-dept']"))).getText();
-		softly.assertThat(s7).as("test data").isEqualTo("组:");
+		softly.assertThat(s7).as("test data").isEqualTo("ç»„:");
 		//job title
 		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-jobtitle']"))).getText();
-		softly.assertThat(s8).as("test data").isEqualTo("工作名称:");
+		softly.assertThat(s8).as("test data").isEqualTo("å·¥ä½œå��ç§°:");
 		//email
 		String s9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-email']"))).getText();
-		softly.assertThat(s9).as("test data").isEqualTo("电子邮箱:");
+		softly.assertThat(s9).as("test data").isEqualTo("ç”µå­�é‚®ç®±:");
 		//certification
 		String s10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-cert-level']"))).getText();
-		softly.assertThat(s10).as("test data").isEqualTo("PII授权等级:");
+		softly.assertThat(s10).as("test data").isEqualTo("PIIæŽˆæ�ƒç­‰çº§:");
 		//license
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-license']"))).getText();
-		softly.assertThat(s11).as("test data").isEqualTo("软件使用条款同意书:");
+		softly.assertThat(s11).as("test data").isEqualTo("è½¯ä»¶ä½¿ç”¨æ�¡æ¬¾å�Œæ„�ä¹¦:");
 		//Verify place holder for password
 		//enter password
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password"))).getAttribute("placeholder");
-		softly.assertThat(s12).as("test data").isEqualTo("可以重新设置密码，需至少8个字母和数字，需至少一个大小写英文、数字和特殊符号。");
+		softly.assertThat(s12).as("test data").isEqualTo("å�¯ä»¥é‡�æ–°è®¾ç½®å¯†ç �ï¼Œéœ€è‡³å°‘8ä¸ªå­—æ¯�å’Œæ•°å­—ï¼Œéœ€è‡³å°‘ä¸€ä¸ªå¤§å°�å†™è‹±æ–‡ã€�æ•°å­—å’Œç‰¹æ®Šç¬¦å�·ã€‚");
 		//enter password again
 		String s13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-password-again"))).getAttribute("placeholder");
-		softly.assertThat(s13).as("test data").isEqualTo("再次输入密码，需与以上密码完全雷同。");
+		softly.assertThat(s13).as("test data").isEqualTo("å†�æ¬¡è¾“å…¥å¯†ç �ï¼Œéœ€ä¸Žä»¥ä¸Šå¯†ç �å®Œå…¨é›·å�Œã€‚");
 	}
 
 	public void verifyLabelUserAccountEnglish(WebDriver driver,SoftAssertions softly) throws Exception {
@@ -270,6 +270,10 @@ public class LanguageCheckOfReports {
 		//Change Company name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).sendKeys("QAA-PII");
+		//Change Group
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("//div[@id='pii-admin-user-groups-listbox']//ul/li[4]/a')]"))).click();
+		
 		//Change department
 		WebElement dropdown2 = driver.findElement(By.id("pii-admin-user-dept"));
 		Select s2 = new Select (dropdown2);
@@ -287,7 +291,7 @@ public class LanguageCheckOfReports {
 		s5.selectByVisibleText("English");
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+	//	wait.until(ExpectedCondit ions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//verify sticky
 		hirca2.verifyStickyUserAccountAfterChange(driver, softly, 0);
@@ -303,6 +307,8 @@ public class LanguageCheckOfReports {
 		String company1 =wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).getAttribute("value");
 		System.out.println(company1);
 		softly.assertThat(company1).as("test data").isEqualTo("QAA-PII");
+		
+		
 		String dept1=driver.findElement(By.xpath(".//*[@id='pii-admin-user-dept-button']/span")).getText();
 		System.out.println(dept1);
 		softly.assertThat(dept1).as("test data").isEqualTo("Information Technology (IT)");
@@ -369,7 +375,7 @@ public class LanguageCheckOfReports {
 		//Verify company name
 		WebElement ele = driver.findElement(By.tagName("address"));
 		String name = ele.findElement(By.tagName("h3")).getText();
-		softly.assertThat(name).as("test data").contains("Error-Free® Inc and Performance Improvement International (PII)");		
+		softly.assertThat(name).as("test data").contains("Error-FreeÂ® Inc and Performance Improvement International (PII)");		
 	}
 
 	public void verifyLabelAdminUserAccountEnglish(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -459,7 +465,7 @@ public class LanguageCheckOfReports {
 		verifyLabelAdminUserAccountEnglish(driver,softly);
 		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify sticky 
 		hirca2.verifyStickyUserAccount(driver, softly, username);
@@ -494,8 +500,11 @@ public class LanguageCheckOfReports {
 		Select s = new Select (dropdown);
 		s.selectByVisibleText("Design Engineering");
 		//Change job title
+		
 		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-jobtitle"));
-		Select s1 = new Select (dropdown1);
+		JavascriptExecutor js=  (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView();", dropdown1);
+		Select s1 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
 		s1.selectByVisibleText("Support");
 		//Change email id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
@@ -506,9 +515,17 @@ public class LanguageCheckOfReports {
 		s4.selectByVisibleText("Chinese");
 		//Clicks on save
 		share2.loadingServer(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		WebElement savebtn1 = driver.findElement(By.id("pii-admin-user-button-save"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView();", savebtn1);
+		
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
+		WebElement savebtn2 = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		js.executeScript("arguments[0].scrollIntoView();", savebtn2);
+		
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		
 		//Verify sticky 
 		hirca2.verifyStickyUserAccountAfterChange(driver, softly, 1);
 		hirca2.verifyStickyUserAccount(driver, softly, username);
@@ -537,7 +554,7 @@ public class LanguageCheckOfReports {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+	//	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(7000);
 		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
@@ -557,7 +574,7 @@ public class LanguageCheckOfReports {
 	public void downloadReportIE11(WebDriver driver, int y, WebElement element) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		Thread.sleep(2000);
@@ -568,7 +585,7 @@ public class LanguageCheckOfReports {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+	//	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(6000);
 		try{
@@ -613,7 +630,7 @@ public class LanguageCheckOfReports {
 	public void downloadReportFirefox (WebDriver driver, int y, WebElement element) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on download button
@@ -622,7 +639,7 @@ public class LanguageCheckOfReports {
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+	//	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(12000);
 		for(String winHandle : driver.getWindowHandles())
@@ -659,7 +676,7 @@ public class LanguageCheckOfReports {
 
 	public void downloadReportChrome (WebDriver driver, int y, WebElement element) throws Exception {
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports");
+		File file = new File("C://Users//rramakrishnan//report//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
@@ -668,7 +685,7 @@ public class LanguageCheckOfReports {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
+	//	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(3000);
 		pdfCheck(y);
@@ -699,7 +716,7 @@ public class LanguageCheckOfReports {
 	public void pdfCheck(int y) throws Exception {
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//rramakrishnan//report//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -748,62 +765,70 @@ public class LanguageCheckOfReports {
 		//Stores text of SPV title
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		//Stores text of Mark critical
-		//s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-epm-critical-input']"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-uhome-epm-critical-input']"))).getText());
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getText());
-		//Stores text of username label
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td/strong"))).getText());
-		//Stores text of username label
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong"))).getText());
-		//Stores text of date label
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]/strong"))).getText());
+		//Stores text of Purpose label
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr/td[1]"))).getText());
+		//Stores text of JobTitle label
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr[2]/td[1]"))).getText());
+		//Stores text of Report Creation date label
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr[3]/td"))).getText());
 		//Stores text of time label
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td[2]/strong"))).getText());
-		//Stores text of download button
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr[3]/td"))).getText());
+		//Stores text of Open button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
-		//Stores text of delete button
+		//Stores text of Download button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
-		//Stores text of share button
+		//Stores text of Delete button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).getText());
 		//Stores text of label of error %
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td/span"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr/td[2]/div"))).getText());
 		//Stores text of label of error low
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td[2]/span"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr/td[2]"))).getText());
+		
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td[2]/span"))).getText());
 		//Stores text of Error Low
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td[2]/strong"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr/td[2]/div"))).getText());
+		
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[3]/tbody/tr/td[2]/strong"))).getText());
 		//Stores text of label of PJB
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[1]/strong"))).getText());
-		//Stores text of label of Analysis
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[2]/strong"))).getText());
-		//Stores text of label of report title
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[3]/strong"))).getText());
+		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr[2]/td"))).getText());
+		
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[1]/strong"))).getText());
+		//Stores text of label of Analysis (not sure Analysis where)
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[2]/strong"))).getText());
+		//Stores text of label of report title (not sure report title where)
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/table/tbody/tr/td"))).getText());
+		
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[3]/strong"))).getText());
 		//Stores text of label of 1-general review
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[4]/strong"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div/div[4]/strong"))).getText());
 		//Stores text of PAPE full form
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[4]/tbody/tr/td/span"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table[4]/tbody/tr/td/span"))).getText());
 		//Stores text of label of 1st table 1st column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr/th[2]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr/th[2]"))).getText());
 		//Stores text of label of 1st table 2nd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr/th[3]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr/th[3]"))).getText());
 		//Stores text of label of 1st table 3rd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr/th[4]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[2]/table/tbody/tr/th[4]"))).getText());
 		//Stores text of label of 2nd table 1st column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr/th[2]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr/th[2]"))).getText());
 		//Stores text of label of 2nd table 2nd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr/th[3]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr/th[3]"))).getText());
 		//Stores text of label of 2nd table 3rd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr/th[4]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[3]/table/tbody/tr/th[4]"))).getText());
 		//Stores text of label of 3rd table 1st column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr/th[2]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr/th[2]"))).getText());
 		//Stores text of label of 3rd table 2nd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr/th[3]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr/th[3]"))).getText());
 		//Stores text of label of 3rd table 3rd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr/th[4]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[4]/table/tbody/tr/th[4]"))).getText());
 		//Stores text of label of 4th table 1st column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[2]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[2]"))).getText());
 		//Stores text of label of 4th table 2nd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[3]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[3]"))).getText());
 		//Stores text of label of 4th table 3rd column
-		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[4]"))).getText());
+//		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/div[5]/table/tbody/tr/th[4]"))).getText());
 		System.out.println(s);
 		//Checks the language is correct or not
 		for (int i=0;i<s.size();i++)
@@ -815,7 +840,7 @@ public class LanguageCheckOfReports {
 		}		
 		//Clear the list s
 		s.clear();
-		return(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
+		return(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
 	}
 
 
@@ -1051,7 +1076,7 @@ public class LanguageCheckOfReports {
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label"))).getText());
 		//Stores text of back button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/button"))).getText());
-		//Stores text of open button
+		//Stores text of open utton
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).getText());
 		//Stores text of delete button
 		s.add (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText());
@@ -1148,9 +1173,9 @@ public class LanguageCheckOfReports {
 			System.out.println(s1);
 			String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).getText();
 			System.out.println(s2);
-			if (s1.contains("download") || (s1.contains("打印"))  || (s1.contains("下载")))
+			if (s1.contains("download") || (s1.contains("æ‰“å�°"))  || (s1.contains("ä¸‹è½½")))
 				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]")));	
-			else if (s2.contains("download")||(s1.contains("打印")) || (s1.contains("下载")))
+			else if (s2.contains("download")||(s1.contains("æ‰“å�°")) || (s1.contains("ä¸‹è½½")))
 				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")));
 			return (element);
 		}

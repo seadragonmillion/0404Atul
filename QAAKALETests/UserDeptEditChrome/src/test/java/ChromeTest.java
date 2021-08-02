@@ -31,7 +31,7 @@ public class ChromeTest {
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String company_id="2017qaadeptedit";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 	
 	@Rule
     public TestWatcher watcher = new TestWatcher() {

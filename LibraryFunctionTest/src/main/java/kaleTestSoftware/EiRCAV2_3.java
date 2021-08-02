@@ -358,7 +358,8 @@ public class EiRCAV2_3 {
 		String cL1 = menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
 		if(cL1.contains("ui-checkbox-off"))
 			menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
-		for(int i=1;i<num;i++)
+		//for(int i=1;i<num;i++)
+		for(int i=1;i<2;i++)
 		{
 			//Click on button
 			/*
@@ -378,7 +379,8 @@ public class EiRCAV2_3 {
 		}
 		//List for counting number of rows in SBI
 		List<Integer>rows = new ArrayList<Integer>();
-		for(int i=1;i<=num;i++)
+		//for(int i=1;i<=num;i++)
+	/*	for(int i=1;i<=1;i++)
 		{
 			//Click on button for selecting inspection parameter
 			Thread.sleep(500);
@@ -400,6 +402,7 @@ public class EiRCAV2_3 {
 			//close popup
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-"+(i-1)+"-listbox']/div/a"))).click();
 		}
+		*/
 		//Fill text in notes and findings
 		int countRow = 0;
 		for(int j=0;j<rows.size();j++)
@@ -431,7 +434,7 @@ public class EiRCAV2_3 {
 
 	public List<String> addSymptomsInComprehensiveFieldInspectionSRI(WebDriver driver, String text, SoftAssertions softly, List<String>symp) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		List<String> symptoms = new ArrayList<String>();
 		//SRI
 		//Select randomly symptoms
@@ -445,17 +448,17 @@ public class EiRCAV2_3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
 		WebElement menu1 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
-		String cL1 = menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+		/*String cL1 = menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
 		if(cL1.contains("ui-checkbox-off"))
 			menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
 		for(int i=1;i<num;i++)
 		{
 			//Click on button
-			/*try{
+			try{
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
 			}catch(org.openqa.selenium.StaleElementReferenceException e){
 				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
-			}*/
+			}
 			Thread.sleep(500);
 			scrollToSRIButtonElement(driver);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
@@ -464,7 +467,7 @@ public class EiRCAV2_3 {
 			String cL = menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
 			if(cL.contains("ui-checkbox-off"))
 				menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
-		}
+		}*/
 		//List for counting number of rows in SRI
 		List<Integer>rows = new ArrayList<Integer>();
 		int lastIndexOfSBI = symp.size();		

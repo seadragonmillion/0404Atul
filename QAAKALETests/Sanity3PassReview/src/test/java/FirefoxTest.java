@@ -27,7 +27,7 @@ public class FirefoxTest {
 	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 		
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
@@ -44,7 +44,7 @@ public class FirefoxTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+        //    driver.quit();
         }
 	};
 		  
@@ -56,7 +56,7 @@ public class FirefoxTest {
 		 ProfilesIni ffProfiles = new ProfilesIni();
 		 FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 		 profile.setPreference("browser.download.folderList", 2);
-		 profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		 profile.setPreference("browser.download.dir", "C:\\Users\\rramakrishnan\\report");
 		 FirefoxOptions options = new FirefoxOptions();
 		 options.setCapability(FirefoxDriver.PROFILE, profile);
 		 driver = new FirefoxDriver(options);
@@ -133,7 +133,7 @@ public class FirefoxTest {
 		
 		driver.manage().window().maximize();
 		//Browser closes
-		driver.quit();
+	//	driver.quit();
 		obj.softAssert();
 	}
 

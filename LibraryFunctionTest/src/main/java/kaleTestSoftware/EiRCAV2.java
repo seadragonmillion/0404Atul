@@ -386,14 +386,20 @@ public class EiRCAV2 {
 		//Verify Error Messages for mandatory fields on Info page
 		verifyErrorMessagesInfoPage(driver,softly);
 		//Check title count reset when characters are entered and deleted
-		checkTitleCountReset(driver);
+		//checkTitleCountReset(driver);
 		//Fills all mandatory fields
 		//Verify the optional in event id
 		String opt = driver.findElement(eirca.EiRCAEventIdField).getAttribute("placeholder");
+		System.out.println("first");
 		softly.assertThat(opt).as("test data").isEqualTo("Fill in Event ID (optional)");
-		if(driver.getCurrentUrl().contains("kaleqa")) 
+		System.out.println("second");
+		if(driver.getCurrentUrl().contains("kaleqa")) {
+			System.out.println("1"); 
 			driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text+"<div>");
-		else driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
+			System.out.println("2"); 
+		}else { driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
+		
+		}
 		//Get count
 		int count = getCharCountFromTitle(driver);
 		int total = getTotalCountFromTitle(driver);

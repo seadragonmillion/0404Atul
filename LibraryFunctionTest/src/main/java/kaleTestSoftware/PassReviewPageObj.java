@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 
 public class PassReviewPageObj {
 
+	public By ReviwerType = By.id("pii-3pr-tab-1-revtype");
+
 	public By PassReviewLink = By.id("pii-a-menu-3pr");
 
 	//HTML report
@@ -30,7 +32,7 @@ public class PassReviewPageObj {
 	public By SavePopupConfirmButton = By.id("pii-3pr-dialog-confirmed");
 	public By SavePopupCancelButton = By.id("pii-3pr-dialog-cancel");
 	public By SavedAcivitiesButton = By.id("pii-3pr-savedactivities");
-	public By NextButttonAtBottom = By.xpath(".//*[@id='pii-3pr-tab-1-form']/div[6]/div/button");
+	public By NextButttonAtBottom = By.xpath(".//*[@id='pii-3pr-tab-1-form']//button");
 	//Errors
 	public By InfoPageReviewerError = By.id("pii-3pr-tab-1-reviewer-error");
 	public By InfoPageDocTitleError = By.id("pii-3pr-tab-1-title-error");
@@ -38,11 +40,18 @@ public class PassReviewPageObj {
 	public By InfoPageOrganizationError = By.id("pii-3pr-tab-1-org-error");
 
 	//Pass 1 Tab
-	public By Pass1RequirementText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[2]/td[2]/textarea");
-	public By Pass1OperatingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[3]/td[2]/textarea");
-	public By Pass1AssumptionText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[4]/td[2]/textarea");
-	public By Pass1ScopeText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[5]/td[2]/textarea");
-	public By Pass1TestingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[6]/td[2]/textarea");
+	public By Pass1RequirementText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[5]/table/tbody/tr/td[2]/textarea");	
+	public By Pass1OperatingText = By.xpath("//*[@id='pii-3pr-tab-2']/div[8]/table/tbody/tr/td[2]/textarea");
+	public By Pass1AssumptionText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[11]/table/tbody/tr/td[2]/textarea");
+	public By Pass1ScopeText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[14]/table/tbody/tr/td[2]/textarea");
+	public By Pass1TestingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[16]/table/tbody/tr/td[2]/textarea");
+	public By Pass1TestingText2Answer = By.xpath(".//*[@id='pii-3pr-tab-2']/div[17]/table/tbody/tr/td[2]/textarea");
+	
+//	public By Pass1RequirementText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[2]/td[2]/textarea");	
+//	public By Pass1OperatingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[3]/td[2]/textarea");
+//	public By Pass1AssumptionText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[4]/td[2]/textarea");
+//	public By Pass1ScopeText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[5]/td[2]/textarea");
+//	public By Pass1TestingText = By.xpath(".//*[@id='pii-3pr-tab-2']/div[3]/table/tbody/tr[6]/td[2]/textarea");
 	public By NextButton = By.id("pii-3pr-next");
 	public By Pass1Tab = By.id("pii-3pr-tab-2-a");
 

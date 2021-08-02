@@ -1,28 +1,27 @@
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
-import org.junit.Rule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-
-import kaleTestSoftware.*;
+import kaleTestSoftware.LanguageCheckOfReports;
+import kaleTestSoftware.Login;
 
 
 public class ChromeTest {
@@ -30,8 +29,8 @@ public class ChromeTest {
 	private WebDriver driver;
 	private String username ="jenkins_chinese";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String chrome_path = "C:\\drivers\\chromedriver.exe";
+	private String url = "https://kaleqa.error-free.com/";
 
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
@@ -48,7 +47,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+//            driver.quit();
         }
 	};	
 
@@ -63,13 +62,22 @@ public class ChromeTest {
         		    "Chrome PDF Viewer"
         		});
           chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
-          options.setExperimentalOption("prefs", chromeOptionsMap);
-          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
-          chromeOptionsMap.put("download.default_directory", downloadFilepath);
-          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
-          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-          options.setCapability(ChromeOptions.CAPABILITY, options);
-          driver = new ChromeDriver(options);
+          
+          String downloadFilepath = "C:\\Users\\mama\\report";
+          //chromeOptionsMap.put("download.default_directory", downloadFilepath);
+          HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+          chromePrefs.put("download.default_directory",  System.getProperty("user.dir")+ File.separator + "externalFiles");
+          chromePrefs.put("profile.default_content_setting_values.automatic_downloads",1);
+          chromePrefs.put("profile.default_content_settings.popups", 0);
+          chromePrefs.put("download.prompt_for_download", false);
+          chromePrefs.put("profile.content_settings.exceptions.automatic_downloads.*.setting", 1);
+          options.setExperimentalOption("prefs", chromePrefs);
+          
+          options.addArguments("disable-popup-blocking");
+          DesiredCapabilities cap = DesiredCapabilities.chrome();
+          cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+          cap.setCapability(ChromeOptions.CAPABILITY, options);
+          driver = new ChromeDriver(cap);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
@@ -89,7 +97,7 @@ public class ChromeTest {
 	    //Waits for the page to load
 	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         //Switches to the iframe
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='pii-iframe-main']")));
 		Thread.sleep(5000);
 		if (login==1)
         {
@@ -109,7 +117,7 @@ public class ChromeTest {
 		Thread.sleep(2000);
 		//language check
 		obj1.languageChangeTest(driver, username, password);
-		//Logs out
+		/*//Logs out
 		obj.logout(driver);
 		afterTest(obj1);		
 	}
@@ -121,6 +129,6 @@ public class ChromeTest {
 		//Browser closes
 		driver.quit();
 		obj.softAssert();
+	}*/
 	}
-
 }

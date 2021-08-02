@@ -26,7 +26,7 @@ public class ChromeTest {
 	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com";
 		
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
@@ -43,7 +43,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+           // driver.quit();
         }
 	};
 		  
@@ -119,7 +119,7 @@ public class ChromeTest {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
-		driver.quit();
+//		driver.quit();
 		obj.softAssert();
 	}
 

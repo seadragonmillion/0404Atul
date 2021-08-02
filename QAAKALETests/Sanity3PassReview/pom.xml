@@ -12,14 +12,14 @@
   <version>0.0.1-SNAPSHOT</version>
 <packaging>jar</packaging>
 <properties>
-        <main.basedir>${project.basedir}/..</main.basedir>
+		<main.basedir>${project.basedir}/..</main.basedir>
     </properties>
 
     <repositories>
-            <repository>
-                <id>in-project</id>
-                <name>In Project Repo</name>
-                <url>file://${main.basedir}/lib</url>
-            </repository>
+<!--             <repository> -->
+<!--                 <id>in-project</id> -->
+<!--                 <name>In Project Repo</name> -->
+<!--                 <url>file://${main.basedir}/lib</url> -->
+<!--             </repository> -->
     </repositories>
 </project>

@@ -86,7 +86,7 @@ public class EiRCAV2Test {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+	//	driver.quit();
 		EiRCAV2 eirca = new EiRCAV2();
 		eirca.softAssert();
 	}
