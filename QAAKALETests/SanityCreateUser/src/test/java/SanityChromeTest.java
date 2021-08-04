@@ -27,7 +27,6 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.search.FlagTerm;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class SanityChromeTest {
 	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 	
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
@@ -68,7 +67,7 @@ public class SanityChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+         //   driver.quit();
         }
 	};
 		  
@@ -133,7 +132,7 @@ public class SanityChromeTest {
 	public void afterTest(UserManagement obj) throws Exception{
 
 		//Browser closes
-		driver.quit();
+	//	driver.quit();
 		obj.softAssert();
 	}
 }

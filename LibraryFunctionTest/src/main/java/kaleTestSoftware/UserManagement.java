@@ -54,7 +54,8 @@ public class UserManagement {
 
 	SoftAssertions softly = new SoftAssertions();
 	public String emailDevie11 = "fakeemailtestqaaie11dev@gmail.com";
-	public String emailDev = "fakeemailtestqaa@gmail.com";
+	public String emailDev = "piikaleemailtest01@gmail.com";
+	//public String emailDev = "fakeemailtestqaa@gmail.com";
 	public String emailUSie11 = "fakeemailtestqaaie11usa@gmail.com";
 	public String emailUS = "fakeemailtestqaausa@gmail.com";
 	public String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
@@ -351,7 +352,7 @@ public class UserManagement {
 
 	public void userRetrieveAfterProfileView(WebDriver driver, String company_id, String username, String password, Login obj) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		//Logout and login as admin
 		logoutLogin(driver,obj,username,password);		
 		//Clicks on admin user name on top right corner
@@ -597,7 +598,7 @@ public class UserManagement {
 			}
 			if(num.get(m)==15)
 			{
-				op[m]="3-Pass Review";
+				op[m]="Error-Free Review";
 			}
 			if(num.get(m)==16)
 			{
@@ -738,8 +739,10 @@ public class UserManagement {
 		//Add 15 minutes to it
 		long time15 = currentTime + (15*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = email;
-		String PASSWORD = "5sepkale";
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
+		//String EMAIL_ADDRESS = email;
+		String PASSWORD = "pii@2021";
+		//String PASSWORD = "5sepkale";
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
 		//Get browser name
@@ -751,14 +754,14 @@ public class UserManagement {
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("11"))
-				props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 			else
-				props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		}
 		else if (browserName.contains("safari"))
 			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
 		else
-			props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+			props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
 		Store store = session.getStore("imaps");
 		store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -858,7 +861,7 @@ public class UserManagement {
 		text.add("Organization & Programmatic Instant RCA");
 		text.add("Instant Common Cause Analysis");
 		text.add("Job Observation Analysis");
-		text.add("3-Pass Review");
+		text.add("Error-Free Review");
 		text.add("Remote Verification");
 		//text.add("eLearning");
 		//text.add("Error-Free Trainings");
@@ -952,8 +955,13 @@ public class UserManagement {
 		ele1.findElement(By.linkText(groupChange)).click();
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
+		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click()", savebtn);
+		jse.executeScript("arguments[0].click()", popupbtn);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 	}
@@ -1148,7 +1156,7 @@ public class UserManagement {
 			}
 			if(num.get(m)==15)
 			{
-				op[m]="3-Pass Review";
+				op[m]="Error-Free Review";
 			}
 			if(num.get(m)==16)
 			{
@@ -1404,8 +1412,10 @@ public class UserManagement {
 		//Add 15 minutes to it
 		long time15 = currentTime + (15*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = email;
-		String PASSWORD = "5sepkale";
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
+		//String EMAIL_ADDRESS = email;
+		String PASSWORD = "pii@2021";
+		//String PASSWORD = "5sepkale";
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
 		//Get browser name
@@ -1417,14 +1427,14 @@ public class UserManagement {
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("11"))
-				props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 			else
-				props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		}		
 		else if (browserName.contains("safari"))
 			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
 		else
-			props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+			props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
 		Store store = session.getStore("imaps");
 		store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -1511,11 +1521,13 @@ public class UserManagement {
 		//Add 15 minutes to it
 		long time15 = currentTime + (15*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = email;
-		String PASSWORD = "5sepkale";
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
+		//String EMAIL_ADDRESS = email;
+		String PASSWORD = "pii@2021";
+		//String PASSWORD = "5sepkale";
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
-		props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+		props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
 		Store store = session.getStore("imaps");
 		store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -1602,9 +1614,9 @@ public class UserManagement {
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("11"))
-				props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 			else
-				props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		}
 		else if (browserName.contains("safari"))
 			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
@@ -1625,11 +1637,13 @@ public class UserManagement {
 	public void emailMarkReadIE11(String email) throws Exception{
 
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = email;
-		String PASSWORD = "5sepkale";
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
+		//String EMAIL_ADDRESS = email;
+		String PASSWORD = "pii@2021";
+		//String PASSWORD = "5sepkale";
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
-		props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
+		props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
 		Store store = session.getStore("imaps");
 		store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);
@@ -1917,7 +1931,7 @@ public class UserManagement {
 		ele.findElement(By.linkText("Organization & Programmatic Instant RCA"));
 		ele.findElement(By.linkText("Instant Common Cause Analysis"));
 		ele.findElement(By.linkText("Job Observation Analysis"));
-		ele.findElement(By.linkText("3-Pass Review"));
+		ele.findElement(By.linkText("Error-Free Review"));
 		ele.findElement(By.linkText("Remote Verification"));
 		//ele.findElement(By.linkText("eLearning"));
 		//ele.findElement(By.linkText("Error-Free Trainings"));
@@ -2053,10 +2067,15 @@ public class UserManagement {
 		ele1.findElement(By.linkText(company_id)).click();
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-listbox-popup']/div/div/a")).click();
 		//Clicks on save button
-		driver.findElement(By.id("pii-admin-user-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
+		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
+		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click()", savebtn);
+		jse.executeScript("arguments[0].click()", popupbtn);
+		//driver.findElement(By.id("pii-admin-user-button-save")).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		}catch(org.openqa.selenium.TimeoutException r)
@@ -2115,10 +2134,18 @@ public class UserManagement {
 		//Click on Company Moderator as yes
 		driver.findElement(By.xpath(".//*[@for='pii-admin-user-customerAdmin-yes']")).click();
 		//Clicks on save button
-		driver.findElement(By.id("pii-admin-user-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
+		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
+		WebElement dialogtitle = driver.findElement(By.id("pii-admin-user-dialog-title"));
+		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click()", savebtn);
+		jse.executeScript("arguments[0].scrollIntoView(true);", dialogtitle);
+		jse.executeScript("arguments[0].click()", popupbtn);
+		
+		//driver.findElement(By.id("pii-admin-user-button-save")).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		}catch(org.openqa.selenium.TimeoutException r)
@@ -2227,12 +2254,22 @@ public class UserManagement {
 		Select dd2 = new Select (driver.findElement(By.id("pii-admin-user-dept")));
 		dd2.selectByVisibleText("Accounting");
 		Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
-		dd3.selectByVisibleText("Engineer");		  
+		dd3.selectByVisibleText("Engineer");	
 		//Clicks on save button
-		driver.findElement(By.id("pii-admin-user-button-save")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
-		//Clicks on Save button
+		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
+		WebElement dialogtitle = driver.findElement(By.id("pii-admin-user-dialog-title"));
+		WebElement popupbtn2 = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click()", savebtn);
+		jse.executeScript("arguments[0].scrollIntoView(true);", dialogtitle);
+		//jse.executeScript("arguments[0].click()", popupbtn2);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		Thread.sleep(3000);
+		
+		//driver.findElement(By.id("pii-admin-user-button-save")).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
+		//Clicks on Save button
+		
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		}catch(org.openqa.selenium.TimeoutException r)
@@ -2721,12 +2758,12 @@ public class UserManagement {
 			}
 			else softly.fail("Job Obs disabled");
 		}
-		if(f.contains("3-Pass Review"))
+		if(f.contains("Error-Free Review"))
 		{
 			element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-3pr")));
 			if(element.getAttribute("class").contains("ui-state-disabled")==false)
 			{
-				System.out.println("3 Pass Review enabled");
+				System.out.println("Error-Free Review enabled");
 				share2.loadingServer(driver);
 				element.click();
 				share2.loadingServer(driver);
@@ -2734,7 +2771,7 @@ public class UserManagement {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 				share2.loadingServer(driver);
 			}
-			else softly.fail("3 Pass Review disabled");
+			else softly.fail("Error-Free disabled");
 		}
 		if(f.contains("Remote Verification"))
 		{
