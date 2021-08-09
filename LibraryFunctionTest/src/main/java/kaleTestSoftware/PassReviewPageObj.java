@@ -11,8 +11,8 @@ public class PassReviewPageObj {
 	//HTML report
 	public By PassReviewSidePanel = By.id("pii-user-home-panel-btn-3pr");
 	public By FirstRecord = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a");
-	public By DeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]");
-	public By ShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
+	public By DeleteButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]");
+	public By ShareButton = By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[4]");
 	public By PassReviewMarkCriticalIndicatorText = By.xpath(".//*[@id='3pr-rpt']/table[1]/tbody/tr/th/strong[1]");
 	public By PassReviewShareIconOrCriticalIcon = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[1]");
 	public By PassReviewShareIconWhenAlsoMarkedCritical = By.xpath(".//*[@id='pii-user-home-activities-3pr']/ul/li[2]/a/span[2]");

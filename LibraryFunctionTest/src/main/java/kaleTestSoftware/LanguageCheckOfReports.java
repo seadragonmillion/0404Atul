@@ -370,13 +370,16 @@ public class LanguageCheckOfReports {
 		s3.selectByVisibleText("Engineer");
 		// Change email id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email")))
-				.sendKeys("rramakrishnan@errorfree.com");
-		// Changes language to English
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("amlee@errorfree.com");
+		//Changes language to English
 		WebElement dropdown1 = driver.findElement(By.id("pii-admin-user-language"));
 		Select s5 = new Select(dropdown1);
 		s5.selectByVisibleText("English");
-		// Clicks on save
+		//Click Group and Select admin in checkbox and Close checkbox
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[2]/a"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a"))).click();
+		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		// wait.until(ExpectedCondit
 		// ions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -577,9 +580,17 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
 		// Waits for loading message to disappear
 		share2.loadingServer(driver);
-		// verify labels
-		verifyLabelAdminUserAccountEnglish(driver, softly);
-		// Clicks on save
+		//verify labels
+		verifyLabelAdminUserAccountEnglish(driver,softly);
+		//Click Group and Select admin in checkbox and Close checkbox
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[2]/a"))).click();
+		Thread.sleep(700);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a"))).click();
+		Thread.sleep(700);
+		
+		//Clicks on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
