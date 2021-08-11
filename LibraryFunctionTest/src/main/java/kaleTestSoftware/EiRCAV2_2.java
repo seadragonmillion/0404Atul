@@ -423,7 +423,7 @@ public class EiRCAV2_2 {
 
 	public void changeDate(WebDriver driver, By CalendarIcon) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		//Click on calendar icon add event
 		wait.until(ExpectedConditions.visibilityOfElementLocated(CalendarIcon)).click();
 		//Click on - sign twice

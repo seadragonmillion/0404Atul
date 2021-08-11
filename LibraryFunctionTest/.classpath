@@ -23,6 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/mama/Desktop/ErrorFree/AutomationCode/KALE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Desktop/AutomationCode/KALE.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
