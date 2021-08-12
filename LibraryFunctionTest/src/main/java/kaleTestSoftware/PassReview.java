@@ -38,9 +38,10 @@ public class PassReview {
 	public void pass1Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
 		List<String> textList = em2.error100Data(driver, driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
-		// Fill text in Requirement
+		/*	// Fill text in Requirement
 		tbr.sizeCheck(driver, pr.Pass1RequirementText, softly);
 		if (iter.hasNext()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass1RequirementText)).sendKeys(iter.next());
@@ -670,6 +671,7 @@ public class PassReview {
 	public void pass3Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
 		List<String> textList = em2.error100Data(driver, driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass3Tab1stTableTitle))
@@ -975,10 +977,11 @@ public class PassReview {
 		}
 	}
 */
-	
+
 	public void markCritical(WebDriver driver, String username, String password1, int y) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
+		/*
 		// Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		// Wait for loading message to disappear
@@ -1019,6 +1022,7 @@ public class PassReview {
 		// Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer(y);
 		share.checkCriticalNotification(driver, sharer, username, password1, softly);
+		*/
 		// Clicks on 3 pass side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
 		// Wait for loading message to disappear
@@ -1028,6 +1032,7 @@ public class PassReview {
 	public void shareReport(WebDriver driver, String username, String password1, int y) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
+		/*
 		String sharer = em3.decideSharer(y);
 		String sharerAdded = em3.decideSharerAdded(y);
 		// Clicks on first newly created record
@@ -1065,6 +1070,7 @@ public class PassReview {
 		share2.checkIfUserProfileNoFieldsMissing(driver, softly);
 		// Calls the Share check function
 		share.receiptReport(driver, sharer, username, password1);
+		*/
 		// Clicks on 3 Pass Review side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
 		// Wait for loading message to disappear
@@ -1074,6 +1080,7 @@ public class PassReview {
 	public void deleteNewRecord(WebDriver driver, String recordName, int y, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*
 		// Clicks on first newly created record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
@@ -1083,9 +1090,9 @@ public class PassReview {
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		// Clicks on delete report
-		WebElement popupbtn = driver.findElement(eirca.ConfirmPopupButton);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].click()", popupbtn);
+		jse.executeScript("arguments[0].click()", popupbtn3);
+		Thread.sleep(3000);
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//driver.findElement(eirca.ConfirmPopupButton).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
@@ -1101,6 +1108,7 @@ public class PassReview {
 			System.out.println("Record deleted");
 		else
 			System.out.println("Record could not be deleted");
+			*/
 		// verify admin user account page
 		if (y == 0 || y == 2 || y == 4 || y == 6)
 			lcr.verifyAccountPageAdminUser(driver, username, softly);
@@ -1253,7 +1261,7 @@ public class PassReview {
 		// Wait for loading message
 		share2.loadingServer(driver);
 		// Verify final report
-		verifyHTMLReport(driver, em2.error100Data(driver, driver.getCurrentUrl()));
+		//verifyHTMLReport(driver, em2.error100Data(driver, driver.getCurrentUrl()));
 		// Clicks on open
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		// Clicks on open
