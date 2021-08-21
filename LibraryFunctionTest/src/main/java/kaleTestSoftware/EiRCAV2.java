@@ -269,22 +269,26 @@ public class EiRCAV2 {
 		//Verify changes have been saved
 		eircav2.verifyChangesSavedSequenceOfEvents(driver,hm1, username,0,softly);
 		//Change date on 3rd row
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarIcon3rdEvent)));
 		eircav2.changeDate(driver,eirca.CalendarIcon3rdEvent);
 		Thread.sleep(1000);
-		//Verify the events are organised as per date and time
+		//Verify the events are organized as per date and time
 		HashMap<String,String> hm4 = eircav2.verifyOrderOfEvents(driver,softly,3);
 		System.out.println(hm4);
 		//Verify changes have been saved
 		eircav2.verifyChangesSavedSequenceOfEvents(driver,hm4, username,1,softly);
 		//Make date same and change time on 3rd row
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarIcon3rdEvent)));
 		eircav2.makeDateSame(driver,eirca.CalendarIcon3rdEvent);
 		Thread.sleep(1000);
 		//Make date same and change time on 3rd row
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarIcon3rdEvent)));
 		eircav2.makeDateSame(driver,eirca.CalendarIcon3rdEvent);
 		Thread.sleep(1000);
 		//Make time different
 		eircav2.changeTime(driver,eirca.ClockIcon2ndEvent);
 		Thread.sleep(1000);
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarIcon3rdEvent)));
 		eircav2.changeTime(driver,eirca.ClockIcon3rdEvent);
 		Thread.sleep(1000);
 		eircav2.changeTime(driver,eirca.ClockIcon2ndEvent);

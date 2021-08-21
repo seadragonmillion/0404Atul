@@ -613,47 +613,59 @@ public class EiRCAV2_3 {
 		if (num == 0) {
 			num = num + 1;
 		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSBIPopupCloseButton)).click();
+		Thread.sleep(500);
 		// Click on button
-		share2.scrollToElement(driver, wait.until(
-				ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", wait.until(
-				ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+		JavascriptExecutor jse=((JavascriptExecutor)driver);
+		jse.executeScript("window.scrollBy(0,400)");
+		//share2.scrollToElement(driver, wait.until(
+				ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
 		WebElement menu1 = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
-		/*
-		 * String cL1 =
-		 * menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
-		 * if(cL1.contains("ui-checkbox-off"))
-		 * menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click(); for(int
-		 * i=1;i<num;i++) { //Click on button try{ share2.scrollToElement(driver,
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2SystematicReliabilityInspectionButton)));
-		 * }catch(org.openqa.selenium.StaleElementReferenceException e){
-		 * share2.scrollToElement(driver,
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2SystematicReliabilityInspectionButton))); } Thread.sleep(500);
-		 * scrollToSRIButtonElement(driver);
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2SystematicReliabilityInspectionButton)).click();
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2InspectionSymptomListPopupSRI)); WebElement menu =
-		 * driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI); String cL =
-		 * menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute
-		 * ("class"); if(cL.contains("ui-checkbox-off"))
-		 * menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click(); }
-		 */
+		
+		 String cL1 = menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+		 if(cL1.contains("ui-checkbox-off"))
+			 menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
+		// close SBI popup
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSRIPopupCloseButton)).click();
+		 
+		 for(int i=1;i<num;i++) 
+		 { 
+			//Click on button
+				/*try{
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+				}catch(org.openqa.selenium.StaleElementReferenceException e){
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+				}*/
+				Thread.sleep(500);
+				scrollToSRIButtonElement(driver);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
+				WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
+				String cL = menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).getAttribute("class");
+				if(cL.contains("ui-checkbox-off"))
+					menu.findElement(By.xpath(".//*[@data-option-index='"+i+"']/a")).click();
+			// close SBI popup
+				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSRIPopupCloseButton)).click();
+				 
+			}
 		// List for counting number of rows in SRI
 		List<Integer> rows = new ArrayList<Integer>();
 		int lastIndexOfSBI = symp.size();
 		for (int i = 1; i <= num; i++) {
 			// Click on button for selecting inspection parameter
 			Thread.sleep(500);
+			
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
+					By.id("pii-ircam2-t3-inspections-focus-button-SRI-1"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))).click();
+					By.id("pii-ircam2-t3-inspections-focus-button-SRI-1"))).click();
+			
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))).click();
 			WebElement menu = driver
 					.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-menu"));
 			int y = 2;
@@ -668,9 +680,8 @@ public class EiRCAV2_3 {
 					menu.findElement(By.xpath(".//*[@data-option-index='" + j + "']/a")).click();
 			}
 			// close popup
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-					".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-listbox']/div/a")))
-					.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSRIPopupCloseButton)).click();
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-listbox']/div/a"))).click();
 		}
 		// Fill text in notes and findings
 		int countRow = 0;
