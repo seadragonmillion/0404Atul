@@ -173,7 +173,7 @@ public class EiRCAV2 {
 		
 	
 	public void EIRCAStep1Dropboxes(WebDriver driver, String text, SoftAssertions softly) throws Exception {
-
+/*
 		//Verify no next button without mandatory dropdowns selected
 		if(driver.findElement(eirca.EiRCANextButton).isDisplayed()==true)
 			softly.fail("Next button visible in Step 1 without selecting 1.1, 1.2, 1.3");
@@ -188,6 +188,8 @@ public class EiRCAV2 {
 		//Select 1.3
 		selectDropdown13(driver);
 		Thread.sleep(1000);
+		
+		*/
 		//Verify extra ex box is appears and enter text in it
 		detectAdditionalBoxStep1(driver,softly);
 		//Verify next button is visible after mandatory dropdowns are selected
@@ -430,6 +432,9 @@ public class EiRCAV2 {
 			driver.findElement(eirca.EiRCAEventTitleField).clear();
 			driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
 		}*/
+		
+		
+		
 		if ((ev2.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventLocationField).clear();
@@ -461,9 +466,17 @@ public class EiRCAV2 {
 			driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		}
 		EIRCAStep1Dropboxes(driver,eirca.textEiRCAv2,softly);
+
 		//Verify errors have disappeared
-		verifyNoErrorsOnInfoPage(driver);
-		HashMap<String,String> hmStep1 = eircav6.getStep1Data(driver);
+//		verifyNoErrorsOnInfoPage(driver);
+//		HashMap<String,String> hmStep1 = eircav6.getStep1Data(driver);
+		
+	
+		
+		
+		
+		
+		
 		//Step1
 		//Click next
 		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));
@@ -540,7 +553,7 @@ public class EiRCAV2 {
 		//eircav9.verifyHTMLReportSectionHeadings(driver, softly);
 		//eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		//Download report
-		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
+//		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		//Share report
 		eircav7.shareReport(driver, username, password, y, softly);
 		//Mark Critical

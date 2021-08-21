@@ -48,7 +48,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+     //       driver.quit();
         }
 	};
 			
@@ -90,6 +90,8 @@ public class ChromeTest {
 		 WebDriverWait wait = new WebDriverWait(driver,20);	
 		 //Mark all email read
 		 obj1.emailMarkRead(obj1.emailDev,driver);
+		 
+		
 		 //Deletes previous user with CM rights
 		 obj1.deletesPreviousCMUser(driver, company_id+"testcm");
 		 //Deletes previous created company,user,group
@@ -102,8 +104,28 @@ public class ChromeTest {
 		 obj1.createGroup (driver, company_id);
 		 //Create user
 		 obj1.createUser (driver, company_id, password,obj1.emailDev);
+		
+		 
+		 
+		 
+			//Clicks on admin user name on top right corner
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+			//Clicks on admin option
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+			if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
+			{
+				//Clicks on Accounts
+				driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
+			}		  
+		 
+		 
+		 
+		 
 		 //Create user with CM rights
 		 obj1.createUserCM (driver, company_id, password,obj1.emailDev);
+		 
+		 
+		 
 		 //Logout as admin
 		 obj.logout(driver);
 		 //Activate user
@@ -193,7 +215,7 @@ public class ChromeTest {
 	
 	public void afterTest(UserManagement obj1) throws Exception{
 		
-		driver.quit();
+	//	driver.quit();
 		obj1.softAssert();
 	}
 

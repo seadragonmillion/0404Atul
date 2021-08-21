@@ -28,7 +28,7 @@ public class ChromeTest {
 	private String username ="jenkins";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 		
 	@Rule
@@ -46,7 +46,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+        //    driver.quit();
         }
 	};
 	
@@ -100,10 +100,13 @@ public class ChromeTest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		//Deletes any previous cases if any
 		obj1.deletePreviousCase(driver, obj1.keyword2);
+		
 		//Goes to KALE home page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		//Deletes any previous cases if any
 		obj1.deletePreviousCase(driver, obj1.keyword3);
+		
+		
 		//Goes to KALE home page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		//Create case r=1 for no images, r=2 for 100 images, r=3 for 50 images
@@ -142,7 +145,7 @@ public class ChromeTest {
 	}
 	
 	public void afterTest() {
-		  driver.quit();
+		//  driver.quit();
 		  softly.assertAll();
 		  
 	  }

@@ -28,7 +28,7 @@ public class ChromeTest {
 	private String username ="jenkins";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Rule
@@ -46,7 +46,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+        //    driver.quit();
         }
 	};
 			
@@ -94,6 +94,7 @@ public class ChromeTest {
 			  {
 				  
 			  }		
+		
 		//Deletes any previous cases if any
 		obj1.deletePreviousCase(driver, obj1.keyword1eq);
 		//Goes to KALE home page
@@ -106,6 +107,8 @@ public class ChromeTest {
 		obj1.deletePreviousCase(driver, obj1.keyword3eq);
 		//Goes to KALE home page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+
+		
 		//Create case r=1 for no images, r=2 for 100 images, r=3 for 50 images
 		//No Images
 		String case1=obj1.createCaseChrome (driver, obj1.title2, obj1.keyword2eq, 1);
@@ -113,6 +116,8 @@ public class ChromeTest {
 		String case2=obj1.createCaseChrome (driver, obj1.title1, obj1.keyword1eq, 2);
 		//50 Images
 		String case3=obj1.createCaseChrome (driver, obj1.title3, obj1.keyword3eq, 3);
+		
+		
 		//Goes to KALE home page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		//Goes to Human Performance Search
@@ -129,6 +134,8 @@ public class ChromeTest {
 		System.out.println("Total time in seconds for case with only images:"+(total1/1000));
 		System.out.println("Total time in seconds for case with no images:"+(total2/1000));
 		System.out.println("Total time in seconds for case with 50 images:"+(total3/1000));
+		
+		
 		//Store data in excel in Equipment Kale Asia
 		obj1.storeData(driver,total1,total2,total3,obj1.sheetEquipAsia);
 		//Deletes all cases
@@ -142,7 +149,7 @@ public class ChromeTest {
 	}
 	
 	public void afterTest() {
-		  driver.quit();
+		//  driver.quit();
 		  softly.assertAll();
 		  
 	  }

@@ -15,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -221,7 +222,7 @@ public class EquipmentCaseLoad {
 
 	public String createCaseChrome (WebDriver driver, String title, String keyword, int r) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,90);
+		WebDriverWait wait = new WebDriverWait(driver,50);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -307,24 +308,34 @@ public class EquipmentCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(3000);
 		share2.scrollToAPoint(driver, 2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-search-list"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))).click();
 		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
+		share2.scrollToAPoint(driver, 400);
+		Actions builder = new Actions(driver);
+		builder.moveToElement(driver.findElement(By.id("pii-admin-efse-upload-file-input"))).click().build().perform();
+		
+		//WebElement element = driver.findElement(By.id("pii-admin-efse-upload-file-input"));
+		//JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//jse.executeScript("arguments[0].click();", element);
+		Thread.sleep(500);
+		
+		//share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-upload-file-input"))).click();
 		if(r==1)
 		{
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeNoImages100.exe");
+			Process p =Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\UploadHumanCaseSlidesChromeNoImages100.exe");
 			p.waitFor();
 		}
 		if(r==2)
 		{
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeOnlyImages100.exe");
+			Process p =Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\UploadHumanCaseSlidesChromeOnlyImages100.exe");
 			p.waitFor();
 		}
 		if(r==3)
 		{
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChrome50ImagesAndText100.exe");
+			Process p =Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\UploadHumanCaseSlidesChrome50ImagesAndText100.exe");
 			p.waitFor();
 		}
 		Thread.sleep(3000);
@@ -334,7 +345,8 @@ public class EquipmentCaseLoad {
 		int i;
 		for (i=0; i<100;i++)
 		{
-			String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div["+(i+1)+"]";
+			//String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles']/div["+(i+1)+"]";
+			String xpath = ".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/div/div/div["+(i+1)+"]";
 			if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
 			{
 				System.out.println("Uploaded Image : " + (i+1));
@@ -1083,7 +1095,7 @@ public class EquipmentCaseLoad {
 
 	public void storeData(WebDriver driver, long total1, long total2, long total3, String sheet) throws Exception {
 
-		File file = new File("E:/LoadCase.xlsx");		
+		File file = new File("C:\\Users\\rramakrishnan\\KALE Case Test 1-20\\LoadCase.xlsx");		
 		// Open the Excel file
 		FileInputStream ExcelFile = new FileInputStream(file);
 		// Access the required test data sheet

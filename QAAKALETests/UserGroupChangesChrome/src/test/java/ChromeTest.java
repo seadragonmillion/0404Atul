@@ -45,7 +45,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+       //     driver.quit();
         }
 	};
 			
@@ -96,6 +96,20 @@ public class ChromeTest {
 		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
 		//Deletes previous created company2,user2,group2
 		obj1.deletesPrevious(driver, obj1.company_id2DevAsia);
+		
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+//		//Clicks on admin option
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
+//		if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
+//		{
+//			//Clicks on Accounts
+//			driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
+//		}		  
+//		
+		
+		
+		
+		
 		//Create company 1
 		obj1.createCompany(driver, obj1.company_id1DevAsia);
 		//Create group 1 under company 1
@@ -116,6 +130,8 @@ public class ChromeTest {
 		obj.logout(driver);
 		//Activate user
 		obj1.activateUser(obj1.emailDev,obj1.company_id2DevAsia,driver);
+		
+		
 		//Login as new user under company 2
 		obj1.loginAsNewUser(driver, obj1.company_id2DevAsia, password);
 		//Logout as new user of company 2, login as Admin
@@ -179,7 +195,7 @@ public class ChromeTest {
 	
 	public void afterTest(UserManagement obj1) throws Exception{
 		
-		driver.quit();
+	//	driver.quit();
 		obj1.softAssert();
 	}
 

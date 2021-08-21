@@ -198,10 +198,13 @@ public class UserManagement2 {
 		//Click on Company Moderator as yes
 		driver.findElement(By.xpath(".//*[@for='pii-admin-user-customerAdmin-yes']")).click();
 		//Clicks on save button
-		driver.findElement(By.id("pii-admin-user-button-save")).click();
+		share2.scrollToTop(driver);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		//driver.findElement(By.id("pii-admin-user-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		Thread.sleep(1000);
 		try{
 			String error = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
 			softly.assertThat(error).as("test data").isEqualTo("User already exists: "+company_id+"testcm"+".");

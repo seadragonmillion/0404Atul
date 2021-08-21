@@ -959,9 +959,10 @@ public class UserManagement {
 		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click()", savebtn);
-		jse.executeScript("arguments[0].click()", popupbtn);
+		//jse.executeScript("arguments[0].click()", popupbtn);
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 	}
@@ -1017,6 +1018,7 @@ public class UserManagement {
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[2]/td[1]"))).getText();
 		softly.assertThat(s).as("test data").isEqualTo(company_id1);
 		//Click on group under company
+		share2.scrollToAPoint(driver, 400);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[2]/td[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1058,6 +1060,7 @@ public class UserManagement {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(s3).as("test data").isEqualTo(group2);
 		//Click on group under company
+		share2.scrollToAPoint(driver, 400);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[1]/td[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1081,6 +1084,7 @@ public class UserManagement {
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).getText();
 		softly.assertThat(s4).as("test data").isEqualTo(company_id2);
 		//Click on group under company
+		share2.scrollToAPoint(driver, 400);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1410,7 +1414,8 @@ public class UserManagement {
 		//Get current Time
 		long currentTime = System.currentTimeMillis();
 		//Add 15 minutes to it
-		long time15 = currentTime + (15*60*1000);
+		long time15 = currentTime + (1*60*1000);
+//		long time15 = currentTime + (15*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
 		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
 		//String EMAIL_ADDRESS = email;
@@ -1442,6 +1447,7 @@ public class UserManagement {
 		inbox.open(Folder.READ_ONLY);
 		int messageCount = inbox.getMessageCount(); 
 		System.out.println("Total Messages:- " + messageCount);
+		
 		Flags seen = new Flags(Flags.Flag.SEEN);
 		FlagTerm unseenFlagTerm = new FlagTerm(seen, false);
 		Message[] messages1 = inbox.search(unseenFlagTerm);
@@ -1481,6 +1487,8 @@ public class UserManagement {
 				}
 			}
 		}
+		
+	
 		String emailText=sb.toString();
 		int n=emailText.indexOf("https");
 		int e=emailText.indexOf(">click ");
@@ -1513,6 +1521,8 @@ public class UserManagement {
 		//Wait for 10 seconds
 		Thread.sleep(10000);
 	}
+	
+
 
 	public void activateUserIE11(String email,WebDriver driver)throws Exception {
 
@@ -2090,6 +2100,7 @@ public class UserManagement {
 	public void createUserCM(WebDriver driver, String company_id, String password,String email) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		
 		Login obj = new Login ();
 		Thread.sleep(2000);
 		//Clicks on create user
@@ -2136,11 +2147,13 @@ public class UserManagement {
 		//Clicks on save button
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
 		WebElement dialogtitle = driver.findElement(By.id("pii-admin-user-dialog-title"));
-		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		//WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click()", savebtn);
 		jse.executeScript("arguments[0].scrollIntoView(true);", dialogtitle);
-		jse.executeScript("arguments[0].click()", popupbtn);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		Thread.sleep(1000);
+		//jse.executeScript("arguments[0].click()", popupbtn);
 		
 		//driver.findElement(By.id("pii-admin-user-button-save")).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
@@ -2155,6 +2168,8 @@ public class UserManagement {
 		System.out.println("User created");
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		
+		
 		um2.createExistingUserAndVerifyErrorPopup(driver, softly, company_id, password, email);
 	}
 

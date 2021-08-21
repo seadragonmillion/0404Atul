@@ -1,5 +1,7 @@
 package kaleTestSoftware;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -120,7 +123,6 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-question"))).sendKeys(title);
 		//Enters Answer
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-answer"))).sendKeys(title);
-		share2.scrollToAPoint(driver, 1700);
 		//Enters Keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
@@ -130,32 +132,49 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-new"))).click();
-		//Enters purpose
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
-		Thread.sleep(1500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
-		share2.scrollToAPoint(driver, 2000);
 		//Enters condition
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
-		share2.scrollToAPoint(driver, 2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-condition-new"))).click();
+		//Enters purpose
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-search-input"))).sendKeys(keyword);
+		Thread.sleep(1500);
+		WebElement element = driver.findElement(By.id("pii-admin-efsh-purpose-new"));
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+		
+		
+		/*
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_END);
+		robot.keyRelease(KeyEvent.VK_END);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		*/
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-purpose-new"))).click();
+		Thread.sleep(500);
+		
 		share2.scrollToTop(driver);
 		//Uploads 100 slides r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
+		share2.scrollToAPoint(driver, 400);
+		Actions builder = new Actions(driver);
+		builder.moveToElement(driver.findElement(By.id("pii-admin-efsh-upload-file-input"))).click().build().perform();
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-upload-file-input"))).click();
+		
 		if(r==1)
 		{
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeNoImages100.exe");
+			Process p =Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\UploadHumanCaseSlidesChromeNoImages100.exe");
 			p.waitFor();
 		}
 		if(r==2)
 		{
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChromeOnlyImages100.exe");
+			Process p =Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\UploadHumanCaseSlidesChromeOnlyImages100.exe");
 			p.waitFor();
 		}
 		if(r==3)
 		{
-			Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlidesChrome50ImagesAndText100.exe");
+			Process p =Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\UploadHumanCaseSlidesChrome50ImagesAndText100.exe");
 			p.waitFor();
 		}
 		Thread.sleep(3000);
@@ -165,7 +184,8 @@ public class HumanCaseLoad {
 		int i;
 		for (i=0; i<100;i++)
 		{
-			String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
+			//String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles']/div["+(i+1)+"]";
+			String xpath = ".//*[@id='pii-admin-efsh-upload-form-selectedfiles-div']/div/div/div["+(i+1)+"]";
 			if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed())
 			{
 				System.out.println("Uploaded Image : " + (i+1));
@@ -872,7 +892,7 @@ public class HumanCaseLoad {
 
 	public void storeData(WebDriver driver, long total1, long total2, long total3, String sheet) throws Exception {
 
-		File file = new File("E:/LoadCase.xlsx");		
+		File file = new File("C:\\Users\\rramakrishnan\\KALE Case Test 1-20\\LoadCase.xlsx");		
 		// Open the Excel file
 		FileInputStream ExcelFile = new FileInputStream(file);
 		// Access the required test data sheet

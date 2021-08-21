@@ -24,8 +24,10 @@ import org.openqa.selenium.TakesScreenshot;
 public class FirefoxTest {
 
 	private FirefoxDriver driver;
-	private String username ="jenkinsvm";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+	//private String username ="jenkinsvm";
+	private String username ="test0812";
+	private String password = "SHBAMTIzNDU=";
+	//private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String gecko_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\geckodriver.exe";
 	private String url = "https://kaleqa.error-free.com/";
 		
@@ -119,11 +121,15 @@ public class FirefoxTest {
 		   * 6=admin ie11
 		   * 7=non admin ie11
 		  */
+		//Share report
 		obj1.shareReport(driver, username, password, 0);
+		
 		//Mark critical
 		obj1.markCritical(driver, username, password, 0);
+		
 		//Delete report
-		obj1.deleteNewRecord(driver, recordName,0,username);
+		obj1.deleteNewRecord(driver, recordName,4,username);
+		
 		//Logout
 		obj.logout(driver);
 		afterTest(obj1);

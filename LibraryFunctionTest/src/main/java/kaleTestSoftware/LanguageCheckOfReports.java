@@ -518,7 +518,7 @@ public class LanguageCheckOfReports {
 		// Language
 		driver.findElement(By.id("pii-admin-user-language"));
 		// Select groups
-		driver.findElement(By.id("pii-admin-user-groups-button"));
+//		driver.findElement(By.id("pii-admin-user-groups-button"));
 		// Name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name")));
 		// Company name
@@ -531,7 +531,7 @@ public class LanguageCheckOfReports {
 		driver.findElement(By.id("pii-admin-user-jobtitle"));
 		// email
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email")));
-		// cerificate level
+		// certificate level
 		driver.findElement(By.id("pii-admin-user-certif"));
 		// case slide on button
 		String s7 = wait
@@ -576,21 +576,51 @@ public class LanguageCheckOfReports {
 		// Waits for loading message to disappear
 		share2.loadingServer(driver);
 		// Clicks on Account
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
 		// Waits for loading message to disappear
-		share2.loadingServer(driver);
+	//	share2.loadingServer(driver);
 		//verify labels
 		verifyLabelAdminUserAccountEnglish(driver,softly);
 		//Click Group and Select admin in checkbox and Close checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
-		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[2]/a"))).click();
-		Thread.sleep(700);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a"))).click();
-		Thread.sleep(700);
+		
+		
+		  share2.scrollToElement(driver,
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(
+		  "pii-admin-user-jobtitle")))); 
+		  try {
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click(); 
+		  wait.until(ExpectedConditions
+		  .visibilityOfElementLocated(By.
+		  xpath("//div[@id='pii-admin-user-groups-listbox']//ul//a[text()='admin' and contains(@class,'ui-checkbox-off')]"
+		  ))) .click(); 
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By
+		  .xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']"
+		  ))) .click(); } 
+		  catch (Exception e) { try {
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By
+		  .xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']"
+		  ))) .click(); } 
+		  catch (Exception e1) { }
+		 
+		}
+		/*
+		  //Select Group
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(
+		  "pii-admin-user-groups-button"))).click(); 
+		  Thread.sleep(500);
+		  	//Select > open listbox > select "admin"
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+		  "//div[@id='pii-admin-user-groups-listbox']//ul//a[text()='admin' and contains(@class,'ui-checkbox-off')]"))).click();
+		  Thread.sleep(700);
+		  	//close listbox
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+		  "//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']"))).click();
+		  Thread.sleep(700);
+		 */
 		
 		//Clicks on save
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
@@ -605,6 +635,7 @@ public class LanguageCheckOfReports {
 		share2.loadingServer(driver);
 	}
 
+	
 	public void changeAccountPage(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 20);
