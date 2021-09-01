@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -741,6 +742,7 @@ public class SRI {
 		//Enter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys("aaaa");
+		Thread.sleep(500);
 		//Get count
 		int count = getCharCountFromTitle(driver);
 		if(count!=4)
@@ -761,7 +763,7 @@ public class SRI {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		WebDriverWait wait2 = new WebDriverWait(driver,2);
-		sriA.SRIAdminTest(driver,softly);
+//		sriA.SRIAdminTest(driver,softly);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.AnalysisLink)).click();
 		//Click on SRI
@@ -778,16 +780,24 @@ public class SRI {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINewButton)).click();
 		sri3.verifyNewReportPopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRISaveConfirmButton)).click();
+		
+		
+		
+		
 		//Step 1 check for errors
-		checkForErrorStep1(driver);
+//		checkForErrorStep1(driver);
 		//Check title count reset when characters are entered and deleted
-		checkTitleCountReset(driver);
+//		checkTitleCountReset(driver);
 		//Fill Step 1 for mechanical component
-		step1DataFill(driver,sri2.text,sriA2.mechanicalComponent1,0);
+//		step1DataFill(driver,sri2.text,sriA2.mechanicalComponent1,0);
+		
 		//Get Data from Step 1
-		HashMap<String,String> storeDataStep1 = getStep1Data(driver);
+//		HashMap<String,String> storeDataStep1 = getStep1Data(driver);
 		//Click on next step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1NextButton)).click();
+
+		
+		/*
 		//Step 2 - add 2 measurements
 		//Verify no warning message appears in new reports
 		try{
@@ -826,6 +836,19 @@ public class SRI {
 		sri3.verifyOnlyEvenNumberOfRowsInStep2Table(driver, softly);
 		//Verify order of measurements
 		//verifyOrderOfMeasurements(driver,storeDataStep2.get("date1"),storeDataStep2.get("date2"),storeDataStep2.get("time1"),storeDataStep2.get("time2"));
+		
+		
+		*/
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys("xxx");
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1InspectionStaff)).sendKeys("xxx");
+
+		Select dropdown = new Select(driver.findElement(By.id("pii-sri-tab-1-component")));
+
+		dropdown.selectByVisibleText("gear");
+		
+		
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINextButton)).click();
 		//Verify everything on report
@@ -834,6 +857,11 @@ public class SRI {
 		String recordName = sri3.saveSRIReport(driver,softly);
 		//Verify data on HTML
 		//sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
+		
+		
+		
+		
+		
 		//Verify rename popup overflow
 		sri2.verifySavePopupAfterRename(driver, softly,recordName,username,password,sriA2.electricalComponent1);
 		return recordName;

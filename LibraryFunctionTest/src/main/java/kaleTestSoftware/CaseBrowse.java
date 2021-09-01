@@ -30,8 +30,8 @@ public class CaseBrowse {
 	CreateHumanCasePageObj chc = new CreateHumanCasePageObj();
 	CreateEquipPageObj equipObj = new CreateEquipPageObj();
 
-	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2020. Derivative Product Strictly Prohibited.";
-	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2020. Derivative Product Strictly Prohibited.";
+	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2021. Derivative Product Strictly Prohibited.";
+	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2021. Derivative Product Strictly Prohibited.";
 	public String caseEquipALProd = "1545";
 	public String caseEquipGProd = "1636";
 	public String caseEquipCSDev = "1985";

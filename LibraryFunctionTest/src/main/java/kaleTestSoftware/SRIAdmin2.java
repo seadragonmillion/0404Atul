@@ -251,6 +251,7 @@ public class SRIAdmin2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on Save button
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)).click();
 		sriA3.verifySavePopup(driver, softly);
 		//Click on save button on popup

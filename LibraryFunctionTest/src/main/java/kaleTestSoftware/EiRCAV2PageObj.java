@@ -200,8 +200,10 @@ public class EiRCAV2PageObj {
 	public By EiRCAStep2SymptomsTextbox1 = By.xpath(".//*[@piiid='2.1.11']");
 	public By EiRCAStep2SymptomsTextbox2 = By.xpath(".//*[@piiid='2.1.13']");
 	public By EiRCAStep2SymptomsTextbox3 = By.xpath(".//*[@piiid='2.1.15']");
-	public By EiRCAStep2SenseBasedInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SB']/tr[1]/td[1]/button");
-	public By EiRCAStep2SystematicReliabilityInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SRI']/tr[1]/td[1]/button");
+	//public By EiRCAStep2SenseBasedInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SB']/tr[1]/td[1]/button");
+	public By EiRCAStep2SenseBasedInspectionButton = By.xpath("//*[contains(@id,'pii-ircam2-t2t3-inspections-outer-table-tbody-SB')]//button[text()='Sense based inspection']");
+	//public By EiRCAStep2SystematicReliabilityInspectionButton = By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-outer-table-tbody-SRI']/tr[1]/td[1]/button");
+	public By EiRCAStep2SystematicReliabilityInspectionButton = By.xpath("	//*[contains(@id,'pii-ircam2-t2t3-inspections-outer-table-tbody-SRI')]//button[text()='Systematic reliability inspection']");
 	public By EiRCAStep2InspectionSymptomListPopup = By.id("pii-ircam2-t2t3-newentry-isymptom-listbox-popup");
 	public By EiRCAStep2InspectionSymptomListSBIPopupCloseButton = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-isymptom-listbox']/div/a");
 	public By EiRCAStep2InspectionSymptomListSRIPopupCloseButton = By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-listbox']/div/a");

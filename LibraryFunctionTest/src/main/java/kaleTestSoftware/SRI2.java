@@ -1,13 +1,21 @@
 package kaleTestSoftware;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -19,6 +27,10 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -651,7 +663,9 @@ public class SRI2 {
 	public void downloadReportChrome(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//ErrorFreeSavedFile//");
+		String PDFsave_path = "C://Users//mama//Pictures//ErrorFreeSavedFile//";
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -664,6 +678,35 @@ public class SRI2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
+		
+		Map<String, Object> preferences = new Hashtable<String, Object>();
+		preferences.put("profile.default_content_settings.popups", 0);
+		preferences.put("download.prompt_for_download", "false");
+		preferences.put("download.default_directory", PDFsave_path);
+
+				
+		Robot rb = new Robot();
+		Thread.sleep(1000);
+		StringSelection str = new StringSelection(PDFsave_path);
+		Thread.sleep(1000);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+		Thread.sleep(1000);
+		rb.keyPress(KeyEvent.VK_TAB);
+		rb.keyRelease(KeyEvent.VK_TAB);
+		rb.keyPress(KeyEvent.VK_TAB);
+		rb.keyRelease(KeyEvent.VK_TAB);
+		rb.keyPress(KeyEvent.VK_TAB);
+		rb.keyRelease(KeyEvent.VK_TAB);
+		rb.keyPress(KeyEvent.VK_ENTER); 
+		rb.keyRelease(KeyEvent.VK_ENTER); 
+		rb.keyPress(KeyEvent.VK_ENTER); 
+		rb.keyRelease(KeyEvent.VK_ENTER); 
+		
+		
+		
+		
+		
+		
 		pdfCheck(softly);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -676,7 +719,8 @@ public class SRI2 {
 	public void downloadReportFirefox(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -712,7 +756,8 @@ public class SRI2 {
 	public void downloadReportIE10(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -782,10 +827,14 @@ public class SRI2 {
 	public void pdfCheck(SoftAssertions softly) throws Exception{
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		//Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+	Path dir = Paths.get("C://Users//rramakrishnan//report//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
+		
+
+		
 		Optional<Path> lastFilePath = Files.list(dir).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified()));  
 		try{
 			System.out.println(lastFilePath.get());
@@ -793,8 +842,11 @@ public class SRI2 {
 		{
 
 		}
+		
+		
 		//Loads the file to check if correct data is present
 		String fileName=lastFilePath.get().toString();
+//		String fileName=ret.get(0).toString();
 		File oldfile = new File(fileName);
 		PDDocument pddoc= PDDocument.load(oldfile);
 		//Checks text in pdf

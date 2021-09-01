@@ -20,6 +20,7 @@ public class ChromeTest {
 
 	private WebDriver driver;
 	private String password = "S2FsZWplbmtpbnNAMTIz";
+	private String url = "https://kaleqa.error-free.com/";
 	
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
@@ -36,7 +37,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+        //    driver.quit();
         }
 	};
 		 	
@@ -49,7 +50,7 @@ public class ChromeTest {
 		//Browser is maximized
 		driver.manage().window().maximize();
 		//Browser navigates to the KALE url
-		driver.navigate().to(System.getProperty("qaurl"));
+		driver.navigate().to(url);
 		Thread.sleep(3000);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
@@ -66,20 +67,20 @@ public class ChromeTest {
 		login = obj.LoginUser(driver, obj1.decideSharer(1), password);
 		obj2.deleteNotif(driver,obj, login);
 		//qaasharerie11
-		login = obj.LoginUser(driver, obj1.decideSharer(2), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj1.decideSharer(2), password);
+//		obj2.deleteNotif(driver,obj, login);
 		//qaasharernonadminie11
-		login = obj.LoginUser(driver, obj1.decideSharer(3), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj1.decideSharer(3), password);
+//		obj2.deleteNotif(driver,obj, login);
 		//qaaandroidshare1
-		login = obj.LoginUser(driver, obj2.decideSharerAndroid(0), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj2.decideSharerAndroid(0), password);
+//		obj2.deleteNotif(driver,obj, login);
 		//qaaandroidshare2
-		login = obj.LoginUser(driver, obj2.decideSharerAndroid(1), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj2.decideSharerAndroid(1), password);
+//		obj2.deleteNotif(driver,obj, login);
 		//qaaandroidshare3
-		login = obj.LoginUser(driver, obj2.decideSharerAndroid(2), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj2.decideSharerAndroid(2), password);
+//		obj2.deleteNotif(driver,obj, login);
 		//qaarvverifier1
 		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(0), password);
 		obj2.deleteNotif(driver,obj, login);
@@ -87,17 +88,17 @@ public class ChromeTest {
 		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(1), password);
 		obj2.deleteNotif(driver,obj, login);
 		//qaaie11rvverifier
-		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(2), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(2), password);
+//		obj2.deleteNotif(driver,obj, login);
 		//qaaie11rvverifiernonadmin
-		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(3), password);
-		obj2.deleteNotif(driver,obj, login);
+//		login = obj.LoginUser(driver, obj2.decideSharerRVVerifier(3), password);
+//		obj2.deleteNotif(driver,obj, login);
 		afterTest();
 	}
 	
 	 public void afterTest() throws Exception {
 		  
-		  driver.quit();		  
+		//  driver.quit();		  
 	  }
 
 }

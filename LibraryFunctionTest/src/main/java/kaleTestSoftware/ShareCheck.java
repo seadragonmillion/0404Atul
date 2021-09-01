@@ -626,7 +626,8 @@ public class ShareCheck {
 	public void downloadReportChrome (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -653,7 +654,7 @@ public class ShareCheck {
 	public void downloadReportFirefox(WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);

@@ -137,7 +137,7 @@ public class SRI_Sanity {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		SRI sri = new SRI();
 		sri.softAssert();
 	}

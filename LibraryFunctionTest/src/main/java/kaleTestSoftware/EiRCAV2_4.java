@@ -339,6 +339,7 @@ public class EiRCAV2_4 {
 		addFailureMode(driver,2,text+"4",softly);
 		share2.loadingServer(driver);
 		//Delete last failure mode
+		share2.scrollToAPoint(driver, 400);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow4DeleteButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
@@ -349,6 +350,7 @@ public class EiRCAV2_4 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsPopup));		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsCloseButton)).click();		
 		//next
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		System.out.println(step4);
 		return step4;

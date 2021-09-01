@@ -173,7 +173,7 @@ public class EiRCAV2 {
 		
 	
 	public void EIRCAStep1Dropboxes(WebDriver driver, String text, SoftAssertions softly) throws Exception {
-/*
+
 		//Verify no next button without mandatory dropdowns selected
 		if(driver.findElement(eirca.EiRCANextButton).isDisplayed()==true)
 			softly.fail("Next button visible in Step 1 without selecting 1.1, 1.2, 1.3");
@@ -188,8 +188,6 @@ public class EiRCAV2 {
 		//Select 1.3
 		selectDropdown13(driver);
 		Thread.sleep(1000);
-		
-		*/
 		//Verify extra ex box is appears and enter text in it
 		detectAdditionalBoxStep1(driver,softly);
 		//Verify next button is visible after mandatory dropdowns are selected
@@ -385,6 +383,23 @@ public class EiRCAV2 {
 		//Clicks on EiRCA
 		jse.executeScript("return document.getElementById('pii-a-menu-eirca').click();");
 		Thread.sleep(1000);
+		
+		driver.findElement(eirca.EiRCAEventIdField).sendKeys("xxx");
+		driver.findElement(eirca.EiRCAEventTitleField).sendKeys("xxx");
+		driver.findElement(eirca.EiRCAEventLocationField).sendKeys("xxx");
+		driver.findElement(eirca.EiRCAEventInvestigatorField).sendKeys("xxx");
+		driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys("xxx");
+		EIRCAStep1Dropboxes(driver,eirca.textEiRCAv2,softly);
+		driver.findElement(By.id("pii-ircam2-tab-1-who")).sendKeys("xxx");
+		driver.findElement(eirca.EiRCAEventReviewerField).sendKeys("xxx");
+		driver.findElement(eirca.EiRCAEventSponsorField).sendKeys("xxx");
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));	
+		Thread.sleep(600);
+		driver.findElement(By.id("pii-ircam2-next")).click();
+		
+		
+		/*
 		//Verify placeholder of problem statement
 		verifyProbStatementPlaceHolder(driver);
 		//Verify new report pop up
@@ -435,7 +450,7 @@ public class EiRCAV2 {
 		{
 			driver.findElement(eirca.EiRCAEventTitleField).clear();
 			driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
-		}*/
+		}
 		
 		
 		
@@ -469,6 +484,7 @@ public class EiRCAV2 {
 			driver.findElement(eirca.EiRCAEventProblemStatementField).clear();
 			driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		}
+		
 		EIRCAStep1Dropboxes(driver,eirca.textEiRCAv2,softly);
 
 		//Verify errors have disappeared
@@ -488,9 +504,13 @@ public class EiRCAV2 {
 		//Sequence of Events
 		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
 		Thread.sleep(1000);
+		
+		*/
+		
+		
 		//Step2
 		List<String> symptoms = eircav3.EiRCAStep2(driver,softly);
-		HashMap<String,String> hmStep2symptomsData = eircav6.getStep2SymptomsData(driver);
+		//HashMap<String,String> hmStep2symptomsData = eircav6.getStep2SymptomsData(driver);
 		//Step 3
 		List<String> step3 = eircav4.EiRCAStep3(driver,softly,text,symptoms);
 		HashMap<String,String> hmStep3Data = eircav6.getStep3Data(driver, step3);
@@ -530,8 +550,8 @@ public class EiRCAV2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)).click();
 		//Gets the value from the text field report creation date
 		String creationDate = driver.findElement(eirca.ReportCreationDateField).getAttribute("value");
-		String name = creationDate + "_"+username+"_"+ev1 ;
-		System.out.println(name);
+//		String name = creationDate + "_"+username+"_"+ev1 ;
+//		System.out.println(name);
 		//Clicks on Saved activities button
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();
 		Thread.sleep(2000);
@@ -550,7 +570,7 @@ public class EiRCAV2 {
 		else
 			System.out.println ("Record not found.");
 		//Checks if the name displayed on record is same as expected
-		softly.assertThat(r1).as("test data").isEqualTo(name);
+//		softly.assertThat(r1).as("test data").isEqualTo(name);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAFirstRecord)).click();
 		//verify HTML report

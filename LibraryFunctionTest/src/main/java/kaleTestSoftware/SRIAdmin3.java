@@ -1,5 +1,7 @@
 package kaleTestSoftware;
 
+import javax.annotation.concurrent.ThreadSafe;
+
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
@@ -276,7 +278,9 @@ public class SRIAdmin3 {
 		Select s = new Select (element);
 		s.selectByVisibleText(component);
 		//Set new size to make screen small
+		Thread.sleep(200);
 		driver.manage().window().setSize(new Dimension(620,900));
+		Thread.sleep(200);
 		//Verify size of plus sign
 		Dimension elementSize = driver.findElement(sri.SRIAdminBaselineAddButton).getSize();
 		int x = elementSize.getWidth();

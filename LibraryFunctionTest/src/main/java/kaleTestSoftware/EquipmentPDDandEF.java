@@ -74,8 +74,8 @@ public class EquipmentPDDandEF {
 	public String key3EFUSie11 = "QAAUShorseEFie11";
 	public String titlePDDUSie11 = "QAA US IE11 PDD Test Slides";
 	public String titleEFUSie11 = "QAA US IE11 EF Test Slides";
-	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
-	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2019. Derivative Product Strictly Prohibited.";
+	public String expected_copyright = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2021. Derivative Product Strictly Prohibited.";
+	public String expected_copyright1 = "Copyright and Proprietary, Error-Free Inc. and Performance Improvement International LLC, 2021. Derivative Product Strictly Prohibited.";
 	public String keywordPDDDev ="SanityPDD";
 	public String keywordPDDDevPercent ="SanityPDD%";
 	public String keywordPDDDevSpcl ="SanityPDD./";

@@ -76,8 +76,10 @@ public class SRIPageObj {
 	public By SRIStep1NextButton = By.id("pii-sri-tab-1-form-submit");
 	public By Step1EventTitleLabel = By.id("pii-sri-tab-1-title-label");
 	public By Step1TitleCharacterCount = By.id("pii-sri-tab-1-title-count");
-	public By Step1EventTitle = By.id("pii-sri-tab-1-title");
-	public By Step1InspectionStaff = By.id("pii-sri-tab-1-inspection-staff");
+	//public By Step1EventTitle = By.id("pii-sri-tab-1-title");
+	public By Step1EventTitle = By.xpath("//div[starts-with(@class,'ui-input-text')]/input[@id='pii-sri-tab-1-title']");
+	//public By Step1InspectionStaff = By.id("pii-sri-tab-1-inspection-staff");
+	public By Step1InspectionStaff = By.xpath("//div[starts-with(@class,'ui-input-text')]/input[@id='pii-sri-tab-1-inspection-staff']");
 	public By Step1Component = By.id("pii-sri-tab-1-component");
 	public By Step1EventTitleErrorText = By.id("pii-sri-tab-1-title-error");
 	public By Step1InspectionStaffErrorText = By.id("pii-sri-tab-1-inspection-staff-error");
