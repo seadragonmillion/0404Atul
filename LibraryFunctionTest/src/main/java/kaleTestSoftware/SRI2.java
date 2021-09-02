@@ -679,12 +679,6 @@ public class SRI2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		
-		Map<String, Object> preferences = new Hashtable<String, Object>();
-		preferences.put("profile.default_content_settings.popups", 0);
-		preferences.put("download.prompt_for_download", "false");
-		preferences.put("download.default_directory", PDFsave_path);
-
-				
 		Robot rb = new Robot();
 		Thread.sleep(1000);
 		StringSelection str = new StringSelection(PDFsave_path);

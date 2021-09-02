@@ -839,10 +839,12 @@ public class SRI {
 		
 		
 		*/
-
+		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys("xxx");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1InspectionStaff)).sendKeys("xxx");
+		
+
 
 		Select dropdown = new Select(driver.findElement(By.id("pii-sri-tab-1-component")));
 

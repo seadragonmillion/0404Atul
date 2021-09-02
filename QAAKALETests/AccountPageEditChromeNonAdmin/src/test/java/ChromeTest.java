@@ -29,7 +29,7 @@ public class ChromeTest {
 	private WebDriver driver;
 	private String username = "jenkins_chinese";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	private String chrome_path = "C:\\drivers\\chromedriver.exe";
+	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private String url = "https://kaleqa.error-free.com/";
 
 	@Rule
