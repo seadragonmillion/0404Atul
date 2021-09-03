@@ -3010,10 +3010,11 @@ public class UserManagement {
 		System.out.println("Company deleted");
 		share2.loadingServer(driver);
 	}
-
+	
+/*
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
 	}
-
+*/
 }

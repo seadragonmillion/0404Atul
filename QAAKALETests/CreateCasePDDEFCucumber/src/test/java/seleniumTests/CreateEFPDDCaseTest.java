@@ -324,7 +324,7 @@ public class CreateEFPDDCaseTest {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		EquipmentPDDandEF obj = new EquipmentPDDandEF();
 		obj.softAssert();
 	}

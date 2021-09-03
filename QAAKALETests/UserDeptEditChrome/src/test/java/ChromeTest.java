@@ -216,7 +216,7 @@ public class ChromeTest {
 	public void afterTest(UserManagement obj1) throws Exception{
 		
 	//	driver.quit();
-		obj1.softAssert();
+	//	obj1.softAssert();
 	}
 
 }

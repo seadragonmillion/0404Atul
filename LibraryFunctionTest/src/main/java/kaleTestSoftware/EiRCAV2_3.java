@@ -479,6 +479,46 @@ public class EiRCAV2_3 {
 						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
 			}
 		}
+		
+		List<WebElement> sriOptionsLst = driver
+				.findElements(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a"));
+66666		int sbiOptionsSize = sriOptionsLst.size();
+		for (int i = 0; i < sbiOptionsSize; i++) {
+			WebElement sbiElement = driver.findElement(By.id("pii-ircam2-t3-inspections-type-button"));
+			share2.scrollToElement(driver, wait.until(
+					ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-type-button"))));
+			sbiElement.click();
+			driver.findElement(
+					By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//*[@data-option-index='" + i + "']/a"))
+					.click();
+
+			WebElement openSubMenu = driver.findElement(By.xpath("//tr[@piiindex='" + i + "']//button"));
+			share2.scrollToElement(driver, wait.until(
+					ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[@piiindex='" + i + "']//button"))));
+			openSubMenu.click();
+
+			List<WebElement> sbiSubOptionsLst = driver.findElements(
+					By.xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"));
+			int sbiSubOptionsSize = sbiSubOptionsLst.size();
+
+			for (int j = 0; j < sbiSubOptionsSize; j++) {
+				driver.findElements(
+						By.xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a")).get(j)
+						.click();
+
+			}
+			driver.findElement(By.xpath("//*[@class='ui-popup-container ui-popup-active']//*[text()='Close']"))
+					.click();
+
+			for (int k = 0; k < sbiSubOptionsSize; k++) {
+				driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
+						+ "']//td[@id='pii-ircam2-t2t3-inotes-td']//textarea"))
+						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
+				driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
+						+ "']//td[@id='pii-ircam2-t2t3-ifindings-td']//textarea"))
+						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
+			}
+		}
 
 		share2.scrollToTop(driver);
 		return symptoms;
@@ -532,6 +572,9 @@ public class EiRCAV2_3 {
 		System.out.println(num);
 	}
 
+	
+	
+/*///////////////////////Comment out SBI dropdown: new loop is located in symptomsTab 
 	public List<String> addSymptomsInComprehensiveFieldInspectionSenseBasedInspection(WebDriver driver, String text,
 			SoftAssertions softly) throws Exception {
 
@@ -562,8 +605,9 @@ public class EiRCAV2_3 {
 		 * EiRCAStep2SymptomsOption1
 		 */
 		// menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
-		System.out.println("random" + num);
-		for (int i = 0; i <= num; i++) {
+	
+//		System.out.println("random" + num);
+//		for (int i = 0; i <= num; i++) {
 //					//Click on button
 //					
 //					try{
@@ -571,18 +615,18 @@ public class EiRCAV2_3 {
 //					}catch(org.openqa.selenium.StaleElementReferenceException e){
 //						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)));
 //					}
-			Thread.sleep(500);
-			scrollToSBIButtonElement(driver);
-			Thread.sleep(500);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton))
-					.click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
-			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
-			String cL = menu.findElement(By.xpath(".//*[@data-option-index='" + i + "']/a")).getAttribute("class");
-			if (cL.contains("ui-checkbox-off"))
-				menu.findElement(By.xpath(".//*[@data-option-index='" + i + "']/a")).click();
-			Thread.sleep(200);
-		}
+//			Thread.sleep(500);
+//			scrollToSBIButtonElement(driver);
+//			Thread.sleep(500);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton))
+//					.click();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopup));
+//			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu);
+//			String cL = menu.findElement(By.xpath(".//*[@data-option-index='" + i + "']/a")).getAttribute("class");
+//			if (cL.contains("ui-checkbox-off"))
+//				menu.findElement(By.xpath(".//*[@data-option-index='" + i + "']/a")).click();
+//			Thread.sleep(200);
+//		}
 //				
 ////				
 ////				public By EiRCAStep2SymptomsTextbox1 = By.xpath(".//*[@piiid='2.1.11']");
@@ -611,96 +655,98 @@ public class EiRCAV2_3 {
 ////				
 //				
 //				//List for counting number of rows in SBI
-		List<Integer> rows = new ArrayList<Integer>();
-		for (int i = 1; i <= num; i++) {
-			// Click on button for selecting inspection parameter
-			Thread.sleep(500);
-			share2.scrollToElement(driver, wait.until(ExpectedConditions
-					.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-" + (i - 1)))));
-			wait.until(ExpectedConditions
-					.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-" + (i - 1)))).click();
-			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-" + (i - 1) + "-menu"));
-			int y = 2;
-			if (i == 4)
-				y = 3;
-			// Select options
-			int n = random.nextInt(y);
-			System.out.println("576Random" + n);
-			rows.add(n);
-			for (int j = 0; j < n; j++) {
-				String cL = menu.findElement(By.xpath(".//*[@data-option-index='" + j + "']/a")).getAttribute("class");
-				if (cL.contains("ui-checkbox-off"))
-					menu.findElement(By.xpath(".//*[@data-option-index='" + j + "']/a")).click();
-			}
-			// close popup
-			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-" + (i - 1) + "-listbox']/div/a"))).click();
-		}
+//		List<Integer> rows = new ArrayList<Integer>();
+//		for (int i = 1; i <= num; i++) {
+//			// Click on button for selecting inspection parameter
+//			Thread.sleep(500);
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions
+//					.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-" + (i - 1)))));
+//			wait.until(ExpectedConditions
+//					.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-" + (i - 1)))).click();
+//			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-" + (i - 1) + "-menu"));
+//			int y = 2;
+//			if (i == 4)
+//				y = 3;
+//			// Select options
+//			int n = random.nextInt(y);
+//			System.out.println("576Random" + n);
+//			rows.add(n);
+//			for (int j = 0; j < n; j++) {
+//				String cL = menu.findElement(By.xpath(".//*[@data-option-index='" + j + "']/a")).getAttribute("class");
+//				if (cL.contains("ui-checkbox-off"))
+//					menu.findElement(By.xpath(".//*[@data-option-index='" + j + "']/a")).click();
+//			}
+//			// close popup
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-" + (i - 1) + "-listbox']/div/a"))).click();
+//		}
+//
+//		// Fill text in notes and findings
+//		int countRow = 0;
+//		for (int j = 0; j < rows.size(); j++) {
+//			for (int i = 0; i <= rows.get(j); i++) {
+//				if (i == 0) {
+//					// Notes
+//					share2.scrollToElement(driver,
+//							wait.until(ExpectedConditions.visibilityOfElementLocated(
+//									By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["
+//											+ (i + countRow + 1) + "]/td[3]/textarea"))));
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(
+//							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
+//									+ "]/td[3]/textarea")))
+//							.sendKeys(text);
+//					// Findings
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(
+//							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
+//									+ "]/td[4]/textarea")))
+//							.sendKeys("Symptoms findings SBI " + j + i);
+//					symptoms.add("Symptoms findings SBI " + j + i);
+//				} else {
+//					// Notes
+//					System.out.println("SBI print countRow" + countRow);
+//					System.out.println("SBI print i" + i);
+//
+//					share2.scrollToElement(driver,
+//							wait.until(ExpectedConditions.visibilityOfElementLocated(
+//									By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["
+//											+ (i + countRow + 1) + "]/td[3]/textarea"))));
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(
+//							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
+//									+ "]/td[3]/textarea")))
+//							.sendKeys(text);
+//
+//					/*
+//					 * share2.scrollToElement(driver,
+//					 * wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					 * By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i +
+//					 * countRow + 1) + "]/td[2]/textarea"))));
+//					 * wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					 * By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i +
+//					 * countRow + 1) + "]/td[2]/textarea"))) .sendKeys(text);
+//					 */
+//
+//					// Findings
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(
+//							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
+//									+ "]/td[4]/textarea")))
+//							.sendKeys("Symptoms findings SBI " + j + i);
+//					symptoms.add("Symptoms findings SBI " + j + i);
+//
+//					/*
+//					 * // Findings wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					 * By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i +
+//					 * countRow + 1) + "]/td[3]/textarea"))) .sendKeys("Symptoms findings SBI " + j
+//					 * + i); symptoms.add("Symptoms findings SBI " + j + i);
+//					 */
+//				}
+//			}
+//			countRow += rows.get(j) + 1;
+//		}
+//		// Pair<type1, type2> pair = new Pair<type1, type2>(value1, value2);
+//		return symptoms;
+//	}
 
-		// Fill text in notes and findings
-		int countRow = 0;
-		for (int j = 0; j < rows.size(); j++) {
-			for (int i = 0; i <= rows.get(j); i++) {
-				if (i == 0) {
-					// Notes
-					share2.scrollToElement(driver,
-							wait.until(ExpectedConditions.visibilityOfElementLocated(
-									By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["
-											+ (i + countRow + 1) + "]/td[3]/textarea"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[3]/textarea")))
-							.sendKeys(text);
-					// Findings
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[4]/textarea")))
-							.sendKeys("Symptoms findings SBI " + j + i);
-					symptoms.add("Symptoms findings SBI " + j + i);
-				} else {
-					// Notes
-					System.out.println("SBI print countRow" + countRow);
-					System.out.println("SBI print i" + i);
-
-					share2.scrollToElement(driver,
-							wait.until(ExpectedConditions.visibilityOfElementLocated(
-									By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr["
-											+ (i + countRow + 1) + "]/td[3]/textarea"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[3]/textarea")))
-							.sendKeys(text);
-
-					/*
-					 * share2.scrollToElement(driver,
-					 * wait.until(ExpectedConditions.visibilityOfElementLocated(
-					 * By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i +
-					 * countRow + 1) + "]/td[2]/textarea"))));
-					 * wait.until(ExpectedConditions.visibilityOfElementLocated(
-					 * By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i +
-					 * countRow + 1) + "]/td[2]/textarea"))) .sendKeys(text);
-					 */
-
-					// Findings
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[4]/textarea")))
-							.sendKeys("Symptoms findings SBI " + j + i);
-					symptoms.add("Symptoms findings SBI " + j + i);
-
-					/*
-					 * // Findings wait.until(ExpectedConditions.visibilityOfElementLocated(
-					 * By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-tbody']/tr[" + (i +
-					 * countRow + 1) + "]/td[3]/textarea"))) .sendKeys("Symptoms findings SBI " + j
-					 * + i); symptoms.add("Symptoms findings SBI " + j + i);
-					 */
-				}
-			}
-			countRow += rows.get(j) + 1;
-		}
-		// Pair<type1, type2> pair = new Pair<type1, type2>(value1, value2);
-		return symptoms;
-	}
+////////////////////////Comment out SBI dropdown: new loop is located in symptomsTab */
 
 	public List<String> addSymptomsInComprehensiveFieldInspectionSRI(WebDriver driver, String text,
 			SoftAssertions softly, List<String> symp) throws Exception {
