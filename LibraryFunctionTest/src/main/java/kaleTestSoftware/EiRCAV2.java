@@ -25,6 +25,7 @@ public class EiRCAV2 {
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
 	EiRCAV2PageObj eirca = new EiRCAV2PageObj();
+	/////
 	//EiRCA2 eirca2 = new EiRCA2();
 	EiRCAV2_2 eircav2 = new EiRCAV2_2();
 	EiRCAV2_3 eircav3 = new EiRCAV2_3();
