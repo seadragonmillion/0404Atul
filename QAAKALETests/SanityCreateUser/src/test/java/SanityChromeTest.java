@@ -133,6 +133,6 @@ public class SanityChromeTest {
 
 		//Browser closes
 		driver.quit();
-		obj.softAssert();
+//		obj.softAssert();
 	}
 }
