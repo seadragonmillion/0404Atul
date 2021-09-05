@@ -29,7 +29,7 @@ public class EiRCAV2Test {
 
 	static WebDriver driver;
 	List<String> b = new ArrayList<String>();
-
+///
 	@Given("^user is on KALE Home Page \"([^\"]*)\" with username as \"([^\"]*)\" and password as \"([^\"]*)\" on browser \"([^\"]*)\"$")
 	public void user_is_on_KALE_Home_Page_with_username_as_and_password_as_on_browser(String url, String username, String password, String browser) throws Exception {
 		//Launch chrome browser
