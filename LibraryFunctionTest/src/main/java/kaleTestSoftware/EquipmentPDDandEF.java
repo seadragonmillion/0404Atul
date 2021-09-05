@@ -564,6 +564,7 @@ public class EquipmentPDDandEF {
 		share2.loadingServer(driver);
 		//Waits for case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier)));
+		share2.scrollToAPoint(driver, 300);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
 		Thread.sleep(2000);
 		//Checks for search method with dropdown
