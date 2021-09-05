@@ -24,7 +24,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/mama/Desktop/ErrorFree/AutomationCode/KALE.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mama/.m2/repository/org/apache/poi/poi/poi-5.0.0/commons-codec-1.15.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mama/.m2/repository/org/apache/poi/poi/poi-5.0.0/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mama/.m2/repository/org/apache/poi/poi/poi-5.0.0/commons-compress-1.20.jar"/>
