@@ -1293,8 +1293,11 @@ public class EquipmentPDDandEF {
 			else 
 			{
 				share2.scrollToAPoint(driver, 1700);
-//				WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-//				element.findElement(chc.FirstAndLastChildInList).click();
+	//			WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
+				//element.findElement(chc.FirstAndLastChildInList).click();
+			JavascriptExecutor jse = (JavascriptExecutor)driver;	
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(chc.FirstAndLastChildInList)));
+
 			}
 			Thread.sleep(2000);
 			//Uploads 5 slides

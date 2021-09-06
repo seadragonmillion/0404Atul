@@ -1,5 +1,9 @@
 package kaleTestSoftware;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -23,6 +27,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -643,6 +649,24 @@ public class LanguageCheckOfReports {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company")))
 				.sendKeys("QAA-PII changed");
+		// Change Group
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+					wait.until(ExpectedConditions
+							.visibilityOfElementLocated(By.xpath("//div[@id='pii-admin-user-groups-listbox']//ul//a[text()='admin' and contains(@class,'ui-checkbox-off')]")))
+							.click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By
+							.xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']")))
+							.click();
+				} catch (Exception e) {
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By
+								.xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']")))
+								.click();	
+					} catch (Exception e1) {
+					}
+				}
+				
 		// Change department
 		WebElement dropdown = driver.findElement(By.id("pii-admin-user-dept"));
 		Select s = new Select(dropdown);
@@ -689,7 +713,7 @@ public class LanguageCheckOfReports {
 		// Waits for loading message to disappear
 		share2.loadingServer(driver);
 	}
-
+	
 	public void downloadReportIE(WebDriver driver, int y, WebElement element) throws Exception {
 
 		// deletes files in reports folder before starting to download
@@ -821,6 +845,7 @@ public class LanguageCheckOfReports {
 	public void downloadReportChrome(WebDriver driver, int y, WebElement element) throws Exception {
 		// deletes files in reports folder before starting to download
 		File file = new File("C://Users//rramakrishnan//report//");
+//		String PDFsave_path = "C://Users//rramakrishnan//report//";
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
 		String window = driver.getWindowHandle();
@@ -831,8 +856,28 @@ public class LanguageCheckOfReports {
 		// Clicks on open pdf report
 		// wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+
+		 Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
+/*am
 		Thread.sleep(3000);
-		pdfCheck(y);
+		Robot rb = new Robot();
+		Thread.sleep(1000);
+//		StringSelection str = new StringSelection(PDFsave_path);
+//		Thread.sleep(1000);
+//		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+		Thread.sleep(1000);
+		rb.keyPress(KeyEvent.VK_TAB);
+		rb.keyRelease(KeyEvent.VK_TAB);
+		rb.keyPress(KeyEvent.VK_TAB);
+		rb.keyRelease(KeyEvent.VK_TAB);
+		rb.keyPress(KeyEvent.VK_TAB);
+		rb.keyRelease(KeyEvent.VK_TAB);
+		rb.keyPress(KeyEvent.VK_ENTER); 
+		rb.keyRelease(KeyEvent.VK_ENTER); 
+am*/		
+		
+		
+//		pdfCheck(y);
 		for (String winHandle : driver.getWindowHandles()) {
 			driver.switchTo().window(winHandle);
 		}

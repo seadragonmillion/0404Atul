@@ -664,8 +664,7 @@ public class SRI2 {
 
 		//deletes files in reports folder before starting to download
 		//File file = new File("C://Users//IEUser//Downloads//reports//");
-		File file = new File("C://Users//mama//Pictures//ErrorFreeSavedFile//");
-		String PDFsave_path = "C://Users//mama//Pictures//ErrorFreeSavedFile//";
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -679,29 +678,8 @@ public class SRI2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		
-		Robot rb = new Robot();
-		Thread.sleep(1000);
-		StringSelection str = new StringSelection(PDFsave_path);
-		Thread.sleep(1000);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
-		Thread.sleep(1000);
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-		rb.keyPress(KeyEvent.VK_ENTER); 
-		rb.keyRelease(KeyEvent.VK_ENTER); 
-		rb.keyPress(KeyEvent.VK_ENTER); 
-		rb.keyRelease(KeyEvent.VK_ENTER); 
-		
-		
-		
-		
-		
-		
 		pdfCheck(softly);
+		
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}

@@ -55,7 +55,11 @@ public class ChromeTest {
 
 		System.out.println("Ability to edit account page for non admin user in Chrome");
 		System.setProperty("webdriver.chrome.driver", chrome_path);
+		
+		
 		ChromeOptions options = new ChromeOptions();
+		
+		
 //          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
 //          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
 //        		    "Chrome PDF Viewer"
@@ -66,15 +70,18 @@ public class ChromeTest {
 		// chromeOptionsMap.put("download.default_directory", downloadFilepath);
 //          HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 //          chromePrefs.put("download.default_directory",  System.getProperty("user.dir")+ File.separator + "externalFiles");
+
 		Map<String, Object> prefs = new HashMap<String, Object>();
-		prefs.put("download.prompt_for_download", false);
+		prefs.put("download.prompt_for_download", true);
 		prefs.put("download.default_directory", downloadFilepath);
-		prefs.put("plugins.always_open_pdf_externally", true);
+		prefs.put("plugins.always_open_pdf_externally", false);
 
 		options.setExperimentalOption("prefs", prefs);
+		
 		DesiredCapabilities cap = DesiredCapabilities.chrome();
-		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		cap.setCapability(ChromeOptions.CAPABILITY, options);
+		
+		
 		driver = new ChromeDriver(cap);
 		// Browser is maximized
 		driver.manage().window().maximize();

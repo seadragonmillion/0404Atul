@@ -479,10 +479,12 @@ public class EiRCAV2_3 {
 						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
 			}
 		}
+
 		
+/*am_remodify
 		List<WebElement> sriOptionsLst = driver
 				.findElements(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a"));
-66666		int sbiOptionsSize = sriOptionsLst.size();
+		int sbiOptionsSize = sriOptionsLst.size();
 		for (int i = 0; i < sbiOptionsSize; i++) {
 			WebElement sbiElement = driver.findElement(By.id("pii-ircam2-t3-inspections-type-button"));
 			share2.scrollToElement(driver, wait.until(
@@ -519,7 +521,8 @@ public class EiRCAV2_3 {
 						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
 			}
 		}
-
+am_remodify*/
+		
 		share2.scrollToTop(driver);
 		return symptoms;
 	}
