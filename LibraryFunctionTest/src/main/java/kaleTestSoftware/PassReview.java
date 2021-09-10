@@ -1081,9 +1081,11 @@ public class PassReview {
 
 	public void deleteNewRecord(WebDriver driver, String recordName, int y, String username) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		// Clicks on first newly created record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click()", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		share2.loadingServer(driver);
 		// Clicks on delete button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.DeleteButton)).click();
@@ -1091,8 +1093,7 @@ public class PassReview {
 		String noHtml = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).getText();
 		softly.assertThat(noHtml).as("test data").doesNotContain("<br/>");
 		// Clicks on delete report
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].click()", eirca.ConfirmPopupButton);
+		jse.executeScript("arguments[0].click()", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)));
 		Thread.sleep(3000);
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//driver.findElement(eirca.ConfirmPopupButton).click();
@@ -1109,11 +1110,12 @@ public class PassReview {
 			System.out.println("Record deleted");
 		else
 			System.out.println("Record could not be deleted");
-		
+
+	
 		  // verify admin user account page
 		  
-		  if (y == 0 || y == 2 || y == 4 || y == 6)
-		  lcr.verifyAccountPageAdminUser(driver, username, softly);
+//		  if (y == 0 || y == 2 || y == 4 || y == 6)
+//		  lcr.verifyAccountPageAdminUser(driver, username, softly);
 		 
 		// Verify report not retrieved by shared to person
 		String sharer = em3.decideSharer(y);
@@ -1259,7 +1261,7 @@ public class PassReview {
 	
 	public void openReport(WebDriver driver) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		// Clicks on record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		// Wait for loading message
@@ -1276,13 +1278,15 @@ public class PassReview {
 		// Change text
 //		changeText(driver);
 		// Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
 		Thread.sleep(2000);
 		// Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).click();
 		// Waits for the green popup on the right top corner
-		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		share2.loadingServer(driver);
 		// Clicks on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
@@ -1401,12 +1405,25 @@ public class PassReview {
 		Thread.sleep(2000);
 		// Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)).click();
+
+///////////////////////////////
+		//am_temp at Pass1: Scroll up
+		share2.scrollToTop(driver);
+		// Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();		
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+//////////////////////////////am_temp: recover	
 		// Pass 1 Tab
-		pass1Tab(driver);
+//		pass1Tab(driver);
 		// Pass 2 Tab
-		pass2Tab(driver);
+//		pass2Tab(driver);
 		// Pass 3 Tab
-		pass3Tab(driver);
+//		pass3Tab(driver);
+//////////////////////////////am_temp: recover		
+		
 		// Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
 		Thread.sleep(2000);

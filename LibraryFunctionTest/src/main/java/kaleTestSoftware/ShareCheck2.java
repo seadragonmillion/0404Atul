@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -312,6 +313,21 @@ public class ShareCheck2 {
 			act.click(element).build().perform();
 			Thread.sleep(2000);
 		}
+		// Change Group
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='pii-admin-user-groups-listbox']//ul//a[text()='admin' and contains(@class,'ui-checkbox-off')]"))).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']"))).click();
+		} catch (Exception e) {
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+						"//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']")))
+						.click();
+			} catch (Exception e1) {
+			}
+
+		}
+		
 		scrollToTop(driver);
 		while(true)				
 		{

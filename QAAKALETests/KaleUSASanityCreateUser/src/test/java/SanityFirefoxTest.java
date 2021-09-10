@@ -154,7 +154,7 @@ public class SanityFirefoxTest {
 		//Browser closes
 		driver.manage().window().maximize();
 		driver.quit();
-		obj.softAssert();
+//		obj.softAssert();
 	}
 
 }

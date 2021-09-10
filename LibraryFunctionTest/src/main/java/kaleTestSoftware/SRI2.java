@@ -728,7 +728,7 @@ public class SRI2 {
 	public void downloadReportIE10(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File = new File("C://Users//IEUser//Downloads//reports//");
 		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
@@ -752,6 +752,8 @@ public class SRI2 {
 		}catch (NoAlertPresentException f){
 			System.out.println ("No unexpected alert");
 		}
+		
+		
 		Thread.sleep(7000);
 		//pdf verification
 		pdfCheck(softly);

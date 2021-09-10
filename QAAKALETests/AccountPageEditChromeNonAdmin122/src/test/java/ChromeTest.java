@@ -1,5 +1,6 @@
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,29 +56,72 @@ public class ChromeTest {
 
 	@Before
 	  public void beforeTest() throws MalformedURLException{
+
+			System.out.println("Ability to edit account page for non admin user in Chrome");
+			System.setProperty("webdriver.chrome.driver", chrome_path);
+			ChromeOptions options = new ChromeOptions();
+//			String downloadFilepath = "C://Users//rramakrishnan//report//";
+			String downloadFilepath = "C:\\Users\\mama\\Pictures\\";
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			prefs.put("download.prompt_for_download", false);
+			prefs.put("download.default_directory", downloadFilepath);
+			prefs.put("plugins.always_open_pdf_externally", true);
+
+			options.setExperimentalOption("prefs", prefs);
+			DesiredCapabilities cap = DesiredCapabilities.chrome();
+			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			cap.setCapability(ChromeOptions.CAPABILITY, options);
+			driver = new ChromeDriver(cap);
+			// Browser is maximized
+			driver.manage().window().maximize();
+			// Browser navigates to the KALE url
+			driver.navigate().to(url);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
+///////////////////////////////*am_edit		
+//		  System.out.println("Ability to edit account page for non admin user in Chrome");
+//		  System.setProperty("webdriver.chrome.driver",chrome_path);
+//		  ChromeOptions options = new ChromeOptions();
 		  
-		  System.out.println("Ability to edit account page for non admin user in Chrome");
-		  System.setProperty("webdriver.chrome.driver",chrome_path);
-		  ChromeOptions options = new ChromeOptions();
-          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
-          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
-        		    "Chrome PDF Viewer"
-        		});
-          chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
-          options.setExperimentalOption("prefs", chromeOptionsMap);
-          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
-          chromeOptionsMap.put("download.default_directory", downloadFilepath);
-          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
-          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-          options.setCapability(ChromeOptions.CAPABILITY, options);
-          driver = new ChromeDriver(options);
+		  ////*am_below already commentout
+//          HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+//          chromeOptionsMap.put("plugins.plugins_disabled", new String[] {
+//        		    "Chrome PDF Viewer"
+//        		});
+//          chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
+//          options.setExperimentalOption("prefs", chromeOptionsMap);
+//          String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+//          chromeOptionsMap.put("download.default_directory", downloadFilepath);
+//          options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+//          options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+//          options.setCapability(ChromeOptions.CAPABILITY, options);
+		  
+		
+			// chromeOptionsMap.put("download.default_directory", downloadFilepath);
+//	          HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+//	          chromePrefs.put("download.default_directory",  System.getProperty("user.dir")+ File.separator + "externalFiles");
+		  ///*am_above already commentout  
+		  
+		  
+//		    String downloadFilepath = "C://Users//rramakrishnan//report//";
+//			Map<String, Object> prefs = new HashMap<String, Object>();
+//			prefs.put("profile.default_content_settings.popups", 0);
+//			prefs.put("download.prompt_for_download", true);
+//			prefs.put("download.default_directory", downloadFilepath);
+//			prefs.put("plugins.always_open_pdf_externally", false);
+
+//			options.setExperimentalOption("prefs", prefs);
+//			options.addArguments("disable-popup-blocking");
+//			DesiredCapabilities cap = DesiredCapabilities.chrome();
+//			cap.setCapability(ChromeOptions.CAPABILITY, options);
+//         driver = new ChromeDriver(options);
 		  //Browser is maximized
-		  driver.manage().window().maximize();
-		  //Browser navigates to the KALE url
-		  driver.navigate().to(url);
-		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	  }
-	
+//		  driver.manage().window().maximize();
+//		  //Browser navigates to the KALE url
+//		  driver.navigate().to(url);
+//		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//	  }
+///////////////////////am_edit*////		
 	
 	@Test
 	public void test() throws Exception {

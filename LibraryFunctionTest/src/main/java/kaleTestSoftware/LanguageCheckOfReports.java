@@ -844,8 +844,8 @@ public class LanguageCheckOfReports {
 
 	public void downloadReportChrome(WebDriver driver, int y, WebElement element) throws Exception {
 		// deletes files in reports folder before starting to download
-		File file = new File("C://Users//rramakrishnan//report//");
-//		String PDFsave_path = "C://Users//rramakrishnan//report//";
+//		File file = new File("C://Users//rramakrishnan//report//");
+		File file = new File("C://Users//mama//Pictures//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
 		String window = driver.getWindowHandle();
@@ -856,26 +856,20 @@ public class LanguageCheckOfReports {
 		// Clicks on open pdf report
 		// wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-
-		 Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
-/*am
-		Thread.sleep(3000);
-		Robot rb = new Robot();
-		Thread.sleep(1000);
-//		StringSelection str = new StringSelection(PDFsave_path);
-//		Thread.sleep(1000);
-//		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
-		Thread.sleep(1000);
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-		rb.keyPress(KeyEvent.VK_TAB);
-		rb.keyRelease(KeyEvent.VK_TAB);
-		rb.keyPress(KeyEvent.VK_ENTER); 
-		rb.keyRelease(KeyEvent.VK_ENTER); 
-am*/		
 		
+		Thread.sleep(6000);
+		try {
+			try {
+				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
+				q.waitFor();
+			} catch (UnhandledAlertException g) {
+				System.out.println("Unexpected alert");
+				driver.switchTo().alert().accept();
+			}
+		} catch (NoAlertPresentException g) {
+			System.out.println("No unexpected alerts");
+		}
+		Thread.sleep(15000);
 		
 //		pdfCheck(y);
 		for (String winHandle : driver.getWindowHandles()) {
@@ -902,7 +896,8 @@ am*/
 	}
 
 	public void pdfCheck(int y) throws Exception {
-		final Path dir = Paths.get("C://Users//rramakrishnan//report//").toAbsolutePath();
+//		final Path dir = Paths.get("C://Users//rramakrishnan//report//").toAbsolutePath();
+		final Path dir = Paths.get("C://Users//mama//Pictures//").toAbsolutePath();
 		final String filter = "*." + "pdf";
 
 		final List<Path> ret = new ArrayList<>();

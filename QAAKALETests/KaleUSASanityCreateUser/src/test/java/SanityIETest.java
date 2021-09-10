@@ -138,6 +138,6 @@ public class SanityIETest {
 
 		//Browser closes
 		driver.quit();
-		obj.softAssert();
+//		obj.softAssert();
 	}
 }

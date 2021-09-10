@@ -2260,7 +2260,9 @@ public class UserManagement {
 		}
 		Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd4.selectByVisibleText(company_id);
-		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+//		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		ele1.findElement(By.linkText(company_id)).click();
 		//ele1.findElement(By.className("ui-first-child ui-last-child")).click();
@@ -2274,7 +2276,6 @@ public class UserManagement {
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
 		WebElement dialogtitle = driver.findElement(By.id("pii-admin-user-dialog-title"));
 		WebElement popupbtn2 = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click()", savebtn);
 		jse.executeScript("arguments[0].scrollIntoView(true);", dialogtitle);
 		//jse.executeScript("arguments[0].click()", popupbtn2);
