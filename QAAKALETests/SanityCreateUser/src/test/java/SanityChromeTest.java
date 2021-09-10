@@ -1,4 +1,5 @@
 import kaleTestSoftware.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.MalformedURLException;
@@ -7,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -77,15 +79,20 @@ public class SanityChromeTest {
 		  
 		  System.out.println("Performing sanity test on create Company/Group/User in Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
-		  ChromeOptions chromeOpt = new ChromeOptions();
-		  chromeOpt.addArguments("--headless");
-		  chromeOpt.addArguments("--window-size=1920,1080");
-		  chromeOpt.addArguments("--disable-gpu");
-		  driver = new ChromeDriver(chromeOpt);
+		  driver = new ChromeDriver();
 		  //Browser is maximized
-		  driver.manage().window().maximize();
+//		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
+		  
+		// maximize the browser
+	      driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+	      // fetching the current window size with getSize()
+	      System.out.println(driver.manage().window().getSize());
+	      //Create object of Dimensions class
+	      Dimension dm = new Dimension(1920,1080);
+	      //Setting the current window to that dimension
+	      driver.manage().window().setSize(dm);
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	  }
 	  
