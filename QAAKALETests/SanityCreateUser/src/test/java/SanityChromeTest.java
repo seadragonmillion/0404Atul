@@ -81,18 +81,18 @@ public class SanityChromeTest {
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
 		  driver = new ChromeDriver();
 		  //Browser is maximized
-//		  driver.manage().window().maximize();
+		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  
-		// maximize the browser
-	      driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
-	      // fetching the current window size with getSize()
-	      System.out.println(driver.manage().window().getSize());
-	      //Create object of Dimensions class
-	      Dimension dm = new Dimension(1920,1080);
-	      //Setting the current window to that dimension
-	      driver.manage().window().setSize(dm);
+//		// maximize the browser
+//	      driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+//	      // fetching the current window size with getSize()
+//	      System.out.println(driver.manage().window().getSize());
+//	      //Create object of Dimensions class
+//	      Dimension dm = new Dimension(1920,1080);
+//	      //Setting the current window to that dimension
+//	      driver.manage().window().setSize(dm);
 		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	  }
 	  
