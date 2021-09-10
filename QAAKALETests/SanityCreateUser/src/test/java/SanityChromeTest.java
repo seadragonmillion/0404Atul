@@ -13,6 +13,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -76,7 +77,11 @@ public class SanityChromeTest {
 		  
 		  System.out.println("Performing sanity test on create Company/Group/User in Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
-		  driver = new ChromeDriver();
+		  ChromeOptions chromeOpt = new ChromeOptions();
+		  chromeOpt.addArguments("--headless");
+		  chromeOpt.addArguments("--window-size=1920,1080");
+		  chromeOpt.addArguments("--disable-gpu");
+		  driver = new ChromeDriver(chromeOpt);
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
