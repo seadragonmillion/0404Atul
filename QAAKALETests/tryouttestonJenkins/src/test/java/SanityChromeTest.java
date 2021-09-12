@@ -49,14 +49,32 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class SanityChromeTest {
-
+	
 	private WebDriver driver;
 	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
-	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = "https://kaleqa.error-free.com/";
+	private  String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
+	private  String url = "https://kaleqa.error-free.com/";
+	
+	
+/*		
+		 System.out.println("Check pre-test config on Chrome");
+		  System.setProperty("webdriver.chrome.driver",chrome_path);
+		  driver = new ChromeDriver();
+		  driver.navigate().to(url);
+		  driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+	      // fetching the current window size with getSize()
+	      System.out.println(driver.manage().window().getSize());
+		  driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+		Dimension dm = new Dimension(1024,768);
+//	      //Setting the current window to that dimension
+	      driver.manage().window().setSize(dm);
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  System.out.println(driver.manage().window().getSize());
+		  Thread.sleep(10000);
+	}
+}
 
-/*
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
         @Override
@@ -82,30 +100,39 @@ public class SanityChromeTest {
 		  System.out.println("Check pre-test config on Chrome");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
 		  driver = new ChromeDriver();
-		// Change resolution to 1920x1080
-		  DesiredCapabilities caps = new DesiredCapabilities();
-		  caps.setCapability("resolution", "1920x1080");
 
 		  //Browser is maximized
 //		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
 		  
+		  Dimension dm = new Dimension(2048,1536);
+//	      //Setting the current window to that dimension
+	      driver.manage().window().setSize(dm);
+		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  System.out.println(driver.manage().window().getSize());
+		  driver.manage().window().fullscreen();
+		  
 //		// maximize the browser
-//	      driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+ //    driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 //	      // fetching the current window size with getSize()
 //	      System.out.println(driver.manage().window().getSize());
 //	      //Create object of Dimensions class
 //	      Dimension dm = new Dimension(1920,1080);
 //	      //Setting the current window to that dimension
 //	      driver.manage().window().setSize(dm);
-		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	  }
-}
+//		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	  
-/*
+	}
+
 	@Test
 	public void test() throws Exception{
+		System.out.println("test begins");
+		  System.out.println(driver.manage().window().getSize());
+
+	}
+}
+		/*
 		Login obj = new Login();
 		UserManagement obj1 = new UserManagement();		  
 		//Mark all messages in inbox as read
