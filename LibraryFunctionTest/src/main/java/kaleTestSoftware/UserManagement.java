@@ -1998,6 +1998,11 @@ public class UserManagement {
 		verifyModuleList(driver,ele);
 		//Checks it
 		ele.findElement(By.linkText("Human Error Instant RCA")).click();
+		share2.scrollToTop(driver);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id='pii-admin-group-modules-dialog']/div/div/a"))));
+		
+		/*am_commentout
 		try{
 			driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
 		}catch (NoSuchElementException e)
@@ -2008,10 +2013,11 @@ public class UserManagement {
 		{
 			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		}
+		am_commentout*/
+		
 		//Clicks on save
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))));
 //		driver.findElement(By.id("pii-admin-group-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
