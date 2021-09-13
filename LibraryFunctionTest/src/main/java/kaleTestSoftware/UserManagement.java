@@ -2005,18 +2005,18 @@ public class UserManagement {
 		 builder.click(closebtn).build().perform();
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]")));
 		
-		/*am_commentout
+		
 		try{
 			driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
 		}catch (NoSuchElementException e)
 		{
-			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
+			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]")).click();
 		}
 		catch (ElementNotInteractableException e1)
 		{
 			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		}
-		am_commentout*/
+	
 		
 		//Clicks on save
 		share2.scrollToTop(driver);
