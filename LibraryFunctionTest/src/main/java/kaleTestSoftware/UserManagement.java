@@ -36,6 +36,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -1999,8 +2000,10 @@ public class UserManagement {
 		//Checks it
 		ele.findElement(By.linkText("Human Error Instant RCA")).click();
 		share2.scrollToTop(driver);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]"))));
+		 WebElement closebtn = driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]"));
+		 Actions builder = new Actions(driver);
+		 builder.click(closebtn).build().perform();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]")));
 		
 		/*am_commentout
 		try{
@@ -2018,6 +2021,7 @@ public class UserManagement {
 		//Clicks on save
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))));
 //		driver.findElement(By.id("pii-admin-group-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
