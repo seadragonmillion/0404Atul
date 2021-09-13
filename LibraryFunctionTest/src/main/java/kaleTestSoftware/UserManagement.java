@@ -2008,7 +2008,10 @@ public class UserManagement {
 			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		}
 		//Clicks on save
-		driver.findElement(By.id("pii-admin-group-button-save")).click();
+		share2.scrollToTop(driver);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))));
+//		driver.findElement(By.id("pii-admin-group-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
 		//Clicks on Save
 		driver.findElement(By.id("pii-admin-group-dialog-confirmed")).click();
