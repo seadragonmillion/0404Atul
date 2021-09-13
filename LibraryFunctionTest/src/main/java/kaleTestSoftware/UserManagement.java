@@ -2000,7 +2000,7 @@ public class UserManagement {
 		ele.findElement(By.linkText("Human Error Instant RCA")).click();
 		share2.scrollToTop(driver);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id='pii-admin-group-modules-dialog']/div/div/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]"))));
 		
 		/*am_commentout
 		try{
