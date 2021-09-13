@@ -1360,7 +1360,8 @@ public class UserManagement {
 			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
 		}
 		//Fill expiration date
-		driver.findElement(By.xpath(".//*[@title='Open Date Picker']")).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@title='Open Date Picker']"))).click();
 		Thread.sleep(2000);
 		//Click on + sign for next month
 		//WebElement ele1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']")));
@@ -2009,6 +2010,7 @@ public class UserManagement {
 		}
 		//Clicks on save
 		share2.scrollToTop(driver);
+		Thread.sleep(1000);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))));
 //		driver.findElement(By.id("pii-admin-group-button-save")).click();
