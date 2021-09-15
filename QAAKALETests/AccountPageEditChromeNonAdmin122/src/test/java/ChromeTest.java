@@ -1,3 +1,4 @@
+
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,6 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
 import kaleTestSoftware.*;
 
 
@@ -154,9 +154,9 @@ public class ChromeTest {
 		Thread.sleep(2000);
 		//language check
 		obj1.languageChangeTest(driver, username, password);
-		/*//Logs out
+		//Logs out
 		obj.logout(driver);
-		afterTest(obj1);		
+//		afterTest(obj1);		
 	}
 	
 	public void afterTest(LanguageCheckOfReports obj) throws Exception{
@@ -164,8 +164,8 @@ public class ChromeTest {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
-		driver.quit();
-		obj.softAssert();
-	}*/
+//		driver.quit();
+//		obj.softAssert();
 	}
-}
+	}
+

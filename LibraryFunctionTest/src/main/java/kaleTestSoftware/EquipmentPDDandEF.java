@@ -926,7 +926,10 @@ public class EquipmentPDDandEF {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
+		share2.scrollToAPoint(driver, 400);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'pii-collapsible-equip-F"+identifier+"')]/h4/a"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
@@ -1296,7 +1299,7 @@ public class EquipmentPDDandEF {
 	//			WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
 				//element.findElement(chc.FirstAndLastChildInList).click();
 			JavascriptExecutor jse = (JavascriptExecutor)driver;	
-			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(chc.FirstAndLastChildInList)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-keyword-search-list']//li[@class='ui-first-child ui-last-child']/a"))));
 
 			}
 			Thread.sleep(2000);

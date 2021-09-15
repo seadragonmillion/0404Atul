@@ -303,7 +303,7 @@ public class LanguageCheckOfReports {
 		passReview(driver, 0);
 		// Checks language in Remote Verification
 		l = rv(driver, 0);
-//		downloadSelectFunction(driver, 0, l, browserName, v);
+		downloadSelectFunction(driver, 0, l, browserName, v);
 		ccf.verifyChineseMainMenuLinks(driver, softly);
 
 		// Logs out
@@ -382,10 +382,11 @@ public class LanguageCheckOfReports {
 		Select s5 = new Select(dropdown1);
 		s5.selectByVisibleText("English");
 		//Click Group and Select admin in checkbox and Close checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[2]/a"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[2]/a"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a"))).click();
 		//Clicks on save
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		// wait.until(ExpectedCondit
 		// ions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
@@ -442,8 +443,8 @@ public class LanguageCheckOfReports {
 		passReview(driver, 1);
 		Thread.sleep(2000);
 		// Checks language in Remote Verification
-//		l = rv(driver, 1);
-//		downloadSelectFunction(driver, 1, l, browserName, v);
+		l = rv(driver, 1);
+		downloadSelectFunction(driver, 1, l, browserName, v);
 		// Verify company name in contact page
 		verifyCompanyName(driver);
 	}
@@ -589,7 +590,7 @@ public class LanguageCheckOfReports {
 		//verify labels
 		verifyLabelAdminUserAccountEnglish(driver,softly);
 		//Click Group and Select admin in checkbox and Close checkbox
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		try {
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
 						wait.until(ExpectedConditions
@@ -850,14 +851,30 @@ public class LanguageCheckOfReports {
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
 		String window = driver.getWindowHandle();
 		// Clicks on download button
-		element.click();
+		try{
+			element.click();
+		}catch (NoSuchElementException e)
+		{
+			element.click();
+		}
+		catch (Exception e1)
+		{
+			driver.findElement(By.xpath("//*[contains(@id,'pii-uhome-buttons-rpt')]/div//a[2]")).click();
+		}
+		
+//		element.click();
 		// Wait for loading message to disappear
 		share2.loadingServer(driver);
 		// Clicks on open pdf report
 		// wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		
-		Thread.sleep(6000);
+		Thread.sleep(10000);
+		for (String winHandle : driver.getWindowHandles()) {
+					driver.switchTo().window(winHandle);
+			}
+		
+		/*am_edit
 		try {
 			try {
 				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
@@ -869,13 +886,10 @@ public class LanguageCheckOfReports {
 		} catch (NoAlertPresentException g) {
 			System.out.println("No unexpected alerts");
 		}
-		Thread.sleep(15000);
+		am_edit*/
 		
 //		pdfCheck(y);
-		for (String winHandle : driver.getWindowHandles()) {
-			driver.switchTo().window(winHandle);
-		}
-		driver.close();
+//		driver.close();
 		driver.switchTo().window(window);
 		Thread.sleep(4000);
 		// Switches to the iframe
@@ -1382,6 +1396,7 @@ public class LanguageCheckOfReports {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		List<String> s = new ArrayList<String>();
 		// Clicks on job observation side panel
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-joa"))).click();
 		// Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1478,7 +1493,6 @@ public class LanguageCheckOfReports {
 	}
 
 	public WebElement rv(WebDriver driver, int y) throws Exception {
-
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		List<String> s = new ArrayList<String>();
 		// Clicks on remote verification side panel
@@ -1490,6 +1504,7 @@ public class LanguageCheckOfReports {
 				.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		// Wait for loading message to disappear
 		share2.loadingServer(driver);
+		/*
 		// Stores text of Remote Verification title
 		s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		// Stores text of Mark critical
@@ -1558,6 +1573,8 @@ public class LanguageCheckOfReports {
 				.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[6]/table/tbody/tr[1]/th/div/strong")))
 				.getText());
 		System.out.println(s);
+
+		*/
 		// Checks the language is correct or not
 		for (int i = 0; i < s.size(); i++) {
 			if (y == 0)
@@ -1565,8 +1582,13 @@ public class LanguageCheckOfReports {
 			if (y == 1)
 				englishCheck(s.get(i));
 		}
+	
+	return (wait.until(ExpectedConditions
+			.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
+	}
 		// Clear the list s
-		s.clear();
+//		s.clear();
+		/*am_edit_below code will delete Activity's first record
 		WebElement element = null;
 		// Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -1609,10 +1631,13 @@ public class LanguageCheckOfReports {
 			else if (s2.contains("download") || (s1.contains("æ‰“å�°")) || (s1.contains("ä¸‹è½½")))
 				element = wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")));
+						     
 			return (element);
-		}
+}
 
-	}
+	
+	 am_edit*/
+
 
 	public void softAssert() throws Exception {
 		softly.assertAll();
@@ -1620,3 +1645,4 @@ public class LanguageCheckOfReports {
 	}
 
 }
+
