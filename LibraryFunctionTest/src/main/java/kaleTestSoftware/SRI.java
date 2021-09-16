@@ -490,10 +490,10 @@ public class SRI {
 		//Event information
 		//Event title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabEventTitle)).getText();
-		softly.assertThat(s).as("test data").isEqualTo(storeDataStep1.get("event title"));
+		softly.assertThat(s).as("test data").isEqualTo(storeDataStep1.get("Report title"));
 		//Inspection staff
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabInspectionStaff)).getText();
-		softly.assertThat(s1).as("test data").isEqualTo(storeDataStep1.get("inspection staff"));
+		softly.assertThat(s1).as("test data").isEqualTo(storeDataStep1.get("Inspection staff"));
 		//Component
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.ReportTabComponent)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo(storeDataStep1.get("component"));
@@ -754,6 +754,7 @@ public class SRI {
 			Thread.sleep(250);
 		}
 		count = getCharCountFromTitle(driver);
+		
 		if(count!=1)
 			softly.fail("Count did not match: aaaa: " + count);
 	}
@@ -763,7 +764,7 @@ public class SRI {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
 		WebDriverWait wait2 = new WebDriverWait(driver,2);
-//		sriA.SRIAdminTest(driver,softly);
+		sriA.SRIAdminTest(driver,softly);
 		//Clicks on Analysis 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.AnalysisLink)).click();
 		//Click on SRI
@@ -785,19 +786,19 @@ public class SRI {
 		
 		
 		//Step 1 check for errors
-//		checkForErrorStep1(driver);
+		checkForErrorStep1(driver);
 		//Check title count reset when characters are entered and deleted
 //		checkTitleCountReset(driver);
 		//Fill Step 1 for mechanical component
-//		step1DataFill(driver,sri2.text,sriA2.mechanicalComponent1,0);
+		step1DataFill(driver,sri2.text,sriA2.mechanicalComponent1,0);
 		
 		//Get Data from Step 1
-//		HashMap<String,String> storeDataStep1 = getStep1Data(driver);
+		HashMap<String,String> storeDataStep1 = getStep1Data(driver);
 		//Click on next step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIStep1NextButton)).click();
 
 		
-		/*
+		
 		//Step 2 - add 2 measurements
 		//Verify no warning message appears in new reports
 		try{
@@ -835,10 +836,10 @@ public class SRI {
 		//Verify only even number of rows in table of step 2 and no extra row at the end
 		sri3.verifyOnlyEvenNumberOfRowsInStep2Table(driver, softly);
 		//Verify order of measurements
-		//verifyOrderOfMeasurements(driver,storeDataStep2.get("date1"),storeDataStep2.get("date2"),storeDataStep2.get("time1"),storeDataStep2.get("time2"));
+		verifyOrderOfMeasurements(driver,storeDataStep2.get("date1"),storeDataStep2.get("date2"),storeDataStep2.get("time1"),storeDataStep2.get("time2"));
 		
 		
-		*/
+		/*am_fastchecking
 		Thread.sleep(10000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step1EventTitle)).sendKeys("xxx");
 
@@ -849,21 +850,16 @@ public class SRI {
 		Select dropdown = new Select(driver.findElement(By.id("pii-sri-tab-1-component")));
 
 		dropdown.selectByVisibleText("gear");
-		
+		am_fastchecking*/
 		
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRINextButton)).click();
 		//Verify everything on report
-		//verifyReportTab(driver,storeDataStep1,storeDataStep2);
+//		verifyReportTab(driver,storeDataStep1,storeDataStep2);
 		//Save report and open the report
 		String recordName = sri3.saveSRIReport(driver,softly);
 		//Verify data on HTML
-		//sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
-		
-		
-		
-		
-		
+//		sri2.verifyHTML(driver,storeDataStep1,storeDataStep2,softly);
 		//Verify rename popup overflow
 		sri2.verifySavePopupAfterRename(driver, softly,recordName,username,password,sriA2.electricalComponent1);
 		return recordName;

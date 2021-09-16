@@ -110,7 +110,8 @@ public class SRIPageObj {
 	public By Step2Measurement1DateFirefox = By.id("pii-sri-tab-1-event0-date");
 	public By Step2Measurement1Time = By.id("pii-sri-tab-1-event-time");
 	public By Step2Measurement1TimeFirefox = By.id("pii-sri-tab-1-event0-time");
-	public By Step2Measurement1Measurement =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/span");
+	public By Step2Measurement1Measurement =  By.id("pii-sri-newentry-measurement-button");
+//	public By Step2Measurement1Measurement =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/span");
 	public By Step2Measurement1MeasurementSelectMenu =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[4]/div/div/select");
 	public By Step2Measurement1Unit =  By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[5]/div/div/span");
 	public By Step2Measurement1Value = By.xpath(".//*[@id='pii-sri-events-table']/tbody/tr[1]/td[6]/textarea");
@@ -181,8 +182,12 @@ public class SRIPageObj {
 	public By SRIMarkCriticalIndicatorText = By.xpath(".//*[@id='sri-rpt']/div[1]/table/thead/tr/th/strong");
 	
 	//Report Tab
-	public By ReportTabEventTitle = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[1]/td[2]");
-	public By ReportTabInspectionStaff = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[3]/td[2]");
+	
+	public By ReportTabInspectionStaff = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[1]/td[2]");
+	public By ReportTabEventTitle = By.xpath("//*[contains(@class,'pii-level45-table')]//td[text()='Report title']");
+	
+//	public By ReportTabEventTitle = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[1]/td[2]");
+//	public By ReportTabInspectionStaff = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[3]/td[2]");
 	public By ReportTabComponent = By.xpath(".//*[@id='pii-sri-tab-3']/div[1]/table/tbody/tr[4]/td[2]");
 	//from step 2
 	//1

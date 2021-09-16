@@ -277,6 +277,7 @@ public class SRIAdmin3 {
 		WebElement element = driver.findElement(sri.SRIAdminBaselineTabMechanicalDropdown);
 		Select s = new Select (element);
 		s.selectByVisibleText(component);
+		/*
 		//Set new size to make screen small
 		Thread.sleep(200);
 		driver.manage().window().setSize(new Dimension(620,900));
@@ -287,6 +288,7 @@ public class SRIAdmin3 {
 		int y = elementSize.getHeight();
 		softly.assertThat(x).as("test data").isEqualTo(42);
 		softly.assertThat(y).as("test data").isEqualTo(39);		
+		*/
 		//Maximize
 		driver.manage().window().maximize();
 		//softly.assertAll();
