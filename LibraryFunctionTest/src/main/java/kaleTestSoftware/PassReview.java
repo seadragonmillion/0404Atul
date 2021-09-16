@@ -1407,21 +1407,21 @@ public class PassReview {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)).click();
 
 ///////////////////////////////
-		//am_temp at Pass1: Scroll up
-		share2.scrollToTop(driver);
+		//am_temp: Quickly skip Pass1, 2, 3 fill-in textbox
+//		share2.scrollToTop(driver);
 		// Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();		
-		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
-		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();		
+//		Thread.sleep(1000);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+//		Thread.sleep(1000);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 //////////////////////////////am_temp: recover	
 		// Pass 1 Tab
-//		pass1Tab(driver);
+		pass1Tab(driver);
 		// Pass 2 Tab
-//		pass2Tab(driver);
+		pass2Tab(driver);
 		// Pass 3 Tab
-//		pass3Tab(driver);
+		pass3Tab(driver);
 //////////////////////////////am_temp: recover		
 		
 		// Click on save
