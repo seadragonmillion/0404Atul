@@ -664,7 +664,7 @@ public class SRI2 {
 
 		//deletes files in reports folder before starting to download
 		//File file = new File("C://Users//IEUser//Downloads//reports//");
-		File file = new File("C://Users//mama//Pictures//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -678,7 +678,7 @@ public class SRI2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		System.out.println("before pdfCheck before runtime");
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_HPremote.exe");
 
 //		pdfCheck(softly);
 		
