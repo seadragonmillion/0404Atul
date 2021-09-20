@@ -26,7 +26,7 @@ public class EiRCAV2_3 {
 
 		List<String> symptoms = new ArrayList<String>();
 		// Enter text in all tabs
-		verifyTabNames(driver, softly);
+//		verifyTabNames(driver, softly);
 		designDataTab(driver, eirca.textStep2WithNextLine);
 		operatingPracticeTab(driver, eirca.textStep2WithNextLine);
 		operatingExperienceTab(driver, eirca.textStep2WithNextLine);

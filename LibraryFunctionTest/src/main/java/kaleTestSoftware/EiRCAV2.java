@@ -503,7 +503,7 @@ public class EiRCAV2 {
 		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));	
 		//Sequence of Events
-//		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
+		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
 		Thread.sleep(1000);
 		
 		
