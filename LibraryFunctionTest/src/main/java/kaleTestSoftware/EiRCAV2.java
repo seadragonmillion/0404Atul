@@ -296,7 +296,7 @@ public class EiRCAV2 {
 		HashMap<String,String> hm2 = eircav2.verifyOrderOfEvents(driver,softly,3);
 		System.out.println(hm2);
 		//Verify changes have been saved
-		eircav2.verifyChangesSavedSequenceOfEvents(driver,hm2, username,1,softly);
+//		eircav2.verifyChangesSavedSequenceOfEvents(driver,hm2, username,1,softly);
 		//Store 1st 2 event data
 		HashMap<String,String>hm3 = eircav2.storeEvent(driver);
 		//Delete 2nd event
@@ -503,7 +503,7 @@ public class EiRCAV2 {
 		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));	
 		//Sequence of Events
-		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
+//		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
 		Thread.sleep(1000);
 		
 		
