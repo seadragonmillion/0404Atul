@@ -544,7 +544,7 @@ public class EiRCAV2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Waits for the green popup on the right top corner
 		//Verify sticky save
-		eircav2.verifyStickySaveReport(driver, softly, username, text,1);
+//		eircav2.verifyStickySaveReport(driver, softly, username, text,1);
 		Thread.sleep(2000);
 		//Clicks on step1 tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)).click();
