@@ -146,7 +146,7 @@ public class EiRCAV2_7 {
 			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -167,6 +167,9 @@ public class EiRCAV2_7 {
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
+		Thread.sleep(1000);
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_HPremote.exe");
+		Thread.sleep(1000);
 		driver.close();
 		driver.switchTo().window(window);
 		Thread.sleep(1000);	 

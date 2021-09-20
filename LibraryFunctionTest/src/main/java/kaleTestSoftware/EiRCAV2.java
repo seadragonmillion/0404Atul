@@ -384,7 +384,7 @@ public class EiRCAV2 {
 		//Clicks on EiRCA
 		jse.executeScript("return document.getElementById('pii-a-menu-eirca').click();");
 		Thread.sleep(1000);
-		
+		/*am_quicktest
 		driver.findElement(eirca.EiRCAEventIdField).sendKeys("xxx");
 		driver.findElement(eirca.EiRCAEventTitleField).sendKeys("xxx");
 		driver.findElement(eirca.EiRCAEventLocationField).sendKeys("xxx");
@@ -398,9 +398,9 @@ public class EiRCAV2 {
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.NextButtonBottomOfStep1Page)));	
 		Thread.sleep(600);
 		driver.findElement(By.id("pii-ircam2-next")).click();
+		*/
 		
 		
-		/*
 		//Verify placeholder of problem statement
 		verifyProbStatementPlaceHolder(driver);
 		//Verify new report pop up
@@ -505,7 +505,6 @@ public class EiRCAV2 {
 		//Sequence of Events
 		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
 		Thread.sleep(1000);
-		
 		*/
 		
 		
