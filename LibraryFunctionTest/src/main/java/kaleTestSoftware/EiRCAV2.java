@@ -447,7 +447,7 @@ public class EiRCAV2 {
 		String ev5 = driver.findElement(eirca.EiRCAEventReviewerField).getAttribute("value");
 		String ev6 = driver.findElement(eirca.EiRCAEventSponsorField).getAttribute("value");
 		String ev7= driver.findElement(eirca.EiRCAEventProblemStatementField).getAttribute("value");
-		/*if ((ev1.equals(text)==false))
+		if ((ev1.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventTitleField).clear();
 			driver.findElement(eirca.EiRCAEventTitleField).sendKeys(text);
@@ -489,8 +489,8 @@ public class EiRCAV2 {
 		EIRCAStep1Dropboxes(driver,eirca.textEiRCAv2,softly);
 
 		//Verify errors have disappeared
-//		verifyNoErrorsOnInfoPage(driver);
-//		HashMap<String,String> hmStep1 = eircav6.getStep1Data(driver);
+		verifyNoErrorsOnInfoPage(driver);
+		HashMap<String,String> hmStep1 = eircav6.getStep1Data(driver);
 		
 	
 		
@@ -505,7 +505,7 @@ public class EiRCAV2 {
 		//Sequence of Events
 		HashMap<String,String>hm = pathEiRCASequenceOfEvents(driver,username);
 		Thread.sleep(1000);
-		*/
+		
 		
 		
 		//Step2
