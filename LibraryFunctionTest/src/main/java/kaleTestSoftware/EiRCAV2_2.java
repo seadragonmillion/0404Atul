@@ -32,9 +32,9 @@ public class EiRCAV2_2 {
 			String r = s.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").contains(username+"_"+reportTitle);
 			if(n == 0)
-				softly.assertThat(r).as("test data").contains("EiRCA™ Data created for id:");
+				softly.assertThat(r).as("test data").contains("Data created for id:");
 			else
-				softly.assertThat(r).as("test data").contains("EiRCA™ Data updated for id:");
+				softly.assertThat(r).as("test data").contains("Data updated for id:");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
 		}catch(org.openqa.selenium.TimeoutException | org.openqa.selenium.ElementNotInteractableException r)
 		{
@@ -374,9 +374,12 @@ public class EiRCAV2_2 {
 		//Get text present in text box
 		String s = ele.getAttribute("value");
 		System.out.println(s);
+		System.out.println("#377");
 		//CLear some text
 		for (int i=0;i<6;i++)
+			System.err.println("before back_space");
 			ele.sendKeys(Keys.BACK_SPACE);
+			System.err.println("after back_space");
 		//Clear all text
 		ele.clear();
 		//Enter new text in text box
