@@ -10,9 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.android.dx.command.annotool.Main;
+
 
 public class HiRCAFunctionsForLevel1_2_3 {
-	
 	OPiRCA op = new OPiRCA();
 	OPiRCA3 op3 = new OPiRCA3();
 	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
@@ -28,11 +29,14 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		System.out.println("question " +question);
 		//remove [ and ] 
 		int indexOfQuestionMark = 0;
-		if(question.contains("？"))
-			indexOfQuestionMark = question.lastIndexOf("？");
+		if(question.contains("ï¼Ÿ"))
+			indexOfQuestionMark = question.lastIndexOf("ï¼Ÿ");
 		if(question.contains("?"))
 			indexOfQuestionMark = question.lastIndexOf("?");
 		String r = question.substring(0, indexOfQuestionMark+1).replace("]", "").replace("[", "");
+		
+		
+
 		//Get answer text
 		//Count number of answers under question= number of div - the reason entry div
 		int count = 0;
@@ -50,7 +54,8 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		int start = 2;
 		//Look for selected answer
 		int divNumber=0;
-		for(int i=start;i<=count;i++)
+//		for(int i=start;i<=count;i++)
+		for(int i=2;i<=8;i++)
 		{
 			String getClass = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+i+"]/fieldset/div/div/label"))).getAttribute("class");
 			if(getClass.contains("ui-radio-on"))
@@ -63,7 +68,7 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		String answer = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+divNumber+"]/fieldset/div/div/label"))).getText();
 		if (lcr.containsHanScript(answer)==true)
 		{
-			String note = "备注：从以下问题所选的答案而来 "+r+": "+answer;
+			String note = "备注：根据以下答案所选出 "+r+": "+answer;
 			System.out.println(note);
 			return note;
 		}
@@ -74,6 +79,8 @@ public class HiRCAFunctionsForLevel1_2_3 {
 		return note;
 		}
 	}
+	
+		
 	
 	public MultiValuedMap<String,String> joinNoteWithAnswerForSURE(WebDriver driver, String note, List<String> lopOptions) throws Exception {
 		

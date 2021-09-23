@@ -378,7 +378,7 @@ public class HiRCALevel2 {
 		if(browserName.toLowerCase().contains("safari")==false)
 		{
 			//deletes files in reports folder before starting to download
-			File file = new File("C://Users//IEUser//Downloads//reports//");
+			File file = new File("C://Users//mama//Pictures//");
 			obj.deleteFiles(file);
 		}
 		//Download report to check pdf
@@ -416,7 +416,9 @@ public class HiRCALevel2 {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
-		Thread.sleep(8000);
+		Thread.sleep(10000);
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
+		Thread.sleep(20000);
 		pdfCheckChangeCorrectiveAction(correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -523,7 +525,7 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(3000);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){	
 			System.out.println("Unexpected alert");
@@ -543,7 +545,7 @@ public class HiRCALevel2 {
 	public void pdfCheckChangeCorrectiveAction(List<String> correctiveActionLOP1, List<String> correctiveActionLOP2, List<String> correctiveActionLOP3) throws Exception{
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Pictures//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -658,7 +660,7 @@ public class HiRCALevel2 {
 			softly.assertThat(s2).as("test data").isEqualTo(level21stLOP.get(k));
 			k=k+1;
 			String t = s2.trim();
-			if(t.equals("No")||t.equals("Inadequate or Incorrect rules")||t.equals("否")||t.equals("规则存在不足或规则不正确")||t.equals("皆非"))
+			if(t.equals("No")||t.equals("Inadequate or Incorrect rules")||t.equals("å�¦")||t.equals("规则存在不足或规则不正确")||t.equals("皆非"))
 			{
 				continue;
 			}
@@ -949,7 +951,7 @@ public class HiRCALevel2 {
 		if(browserName.toLowerCase().contains("safari")==false)
 		{
 			//deletes files in reports folder before starting to download
-			File file = new File("C://Users//IEUser//Downloads//reports//");
+			File file = new File("C://Users//mama//Pictures//");
 			obj.deleteFiles(file);
 		}
 		//Download report to check pdf
@@ -989,10 +991,11 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
+//		pdfCheck(lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
 		driver.close();
 		driver.switchTo().window(window);
 		Thread.sleep(1000);
@@ -1063,7 +1066,7 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(3000);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){	
 			System.out.println("Unexpected alert");
@@ -1074,7 +1077,7 @@ public class HiRCALevel2 {
 		}
 		Thread.sleep(7000);
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Pictures//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {
@@ -1084,7 +1087,7 @@ public class HiRCALevel2 {
 		System.out.println(results.get(0));
 		if(results.get(0).endsWith(".pdf")==false)
 		{
-			obj2.deleteFiles(new File("C://Users//IEUser//Downloads//reports//"));
+			obj2.deleteFiles(new File("C://Users//mama//Pictures//"));
 			//Clicks on download button
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 			//Wait for loading message to disappear
@@ -1094,7 +1097,7 @@ public class HiRCALevel2 {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			Thread.sleep(4000);
 			try {
-				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/SavePdf.exe");
+				Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
 				q.waitFor();
 			}catch (UnhandledAlertException f){	
 				System.out.println("Unexpected alert");
@@ -1131,7 +1134,7 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(3000);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/IEUser/AutoItScripts/SavePdf.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){	
 			System.out.println("Unexpected alert");
@@ -1152,7 +1155,7 @@ public class HiRCALevel2 {
 
 		OPiRCAChinese4 obj = new OPiRCAChinese4();
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Pictures//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -1258,7 +1261,7 @@ public class HiRCALevel2 {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Fill reason entry
 		//tbr.sizeCheck(driver, By.id("pii-irca-reason-entry"), softly);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason);
 		//CLick on answer
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+n+"']"))));
@@ -1309,6 +1312,7 @@ public class HiRCALevel2 {
 		level2.add(selectLevel2Answer(driver,n));
 		//get note
 		String note1 = hfl123.getNoteShowingPreviousAnswer(driver);
+		/*am_duplicate(n==0)
 		if(n==0)
 		{
 			//Click next
@@ -1324,7 +1328,7 @@ public class HiRCALevel2 {
 				return combined;
 			}
 			else
-			{*/
+			{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//2.3 to 2.8
@@ -1333,7 +1337,8 @@ public class HiRCALevel2 {
 			level3.addAll(level3List(pairOfReturnVariables.getValue()));
 			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
 			//}
-		}
+		}*/
+	
 		if(n==1)
 		{
 			//Click next

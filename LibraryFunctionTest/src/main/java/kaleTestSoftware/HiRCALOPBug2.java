@@ -27,10 +27,19 @@ public class HiRCALOPBug2 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		fillPage(driver,text);
+		//info page: click Next button
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-controlgroup-controls ']/button[text()='next' and @type='submit']"))));
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-controlgroup-controls ']/button[text()='next' and @type='submit']"))));
+		Thread.sleep(2000);
+		//info page:Sequence of Event: click Skip button
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
+		//
+		/*am_below not exist 
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
-		Thread.sleep(2000);
+		Thread.sleep(2000); */
 	}
 
 	public void verifyTextFilledCorrectly(WebDriver driver, By locator, String text) throws Exception {
@@ -73,8 +82,8 @@ public class HiRCALOPBug2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text);
 		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-pbstatement"),text);
 		//Timeline of event
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
-		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-events"),text);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
+//		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-events"),text);
 		//Background info
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
 		verifyTextFilledCorrectly(driver,By.id("pii-irca-event-bginfos"),text);

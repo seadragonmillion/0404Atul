@@ -70,6 +70,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c2b).as("test data").contains("Vendor qualification?");
 		//Click on 2nd collapsible for 3.17.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer1)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.1
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer1)).getText();
 		softly.assertThat(c10).as("test data").contains("Possible Corrective Action(s)");
@@ -84,6 +86,7 @@ public class HiRCALevel2Text {
 		softly.assertThat(c26a).as("test data").contains("Standardizing of repeat specs");
 		//Click on 3rd collapsible for 3.17.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer1)).click();
+		*/
 		//3.17.2 question
 		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
 		softly.assertThat(q342).as("test data").contains("[3.17.2] Inadequate source audit / inspection QA/QC for compliance (if applicable)");
@@ -101,6 +104,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c22a).as("test data").contains("Continuous audit / inspection or spot audit / inspection?");
 		//Click on 2nd collapsible for 3.17.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer2)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.2
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer2)).getText();
 		softly.assertThat(c11).as("test data").contains("Possible Corrective Action(s)");
@@ -111,6 +116,7 @@ public class HiRCALevel2Text {
 		softly.assertThat(c6).as("test data").contains("Improvement of source QA/QC program");
 		//Click on 3rd collapsible for 3.17.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer2)).click();
+		*/
 		//3.17.3 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
@@ -130,6 +136,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c8b).as("test data").contains("Uncertainty analysis of non-code calculations?");
 		//Click on 2nd collapsible for 3.17.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer3)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.3
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer3)).getText();
 		softly.assertThat(c12).as("test data").contains("Possible Corrective Action(s)");
@@ -140,6 +148,7 @@ public class HiRCALevel2Text {
 		softly.assertThat(c9).as("test data").contains("Improvement in design qualification and qualification testing program");
 		//Click on 3rd collapsible for 3.17.3
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer3)).click();
+		*/
 		//3.17.4 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
@@ -154,6 +163,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c14).as("test data").contains("Review operation procedure preparation guidelines?");
 		//Click on 2nd collapsible for 3.17.4
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer4)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.4
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer4)).getText();
 		softly.assertThat(c16).as("test data").contains("Possible Corrective Action(s)");
@@ -168,6 +179,7 @@ public class HiRCALevel2Text {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer4)).click();
 		//Scroll to the end
 		//share2.scrollToAPoint(driver, 1500);
+		*/
 		//3.17.5 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
@@ -182,6 +194,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c19).as("test data").contains("Surveillance tests not performed?");
 		//Click on 2nd collapsible for 3.17.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer5)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.5
 		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer5)).getText();
 		softly.assertThat(c20).as("test data").contains("Possible Corrective Action(s)");
@@ -192,6 +206,7 @@ public class HiRCALevel2Text {
 		softly.assertThat(c21).as("test data").contains("Surveillance testing program improvement");
 		//Click on 3rd collapsible for 3.17.5
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer5)).click();
+		*/
 		//3.17.6 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)));
 		String q396 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer6)).getText();
@@ -208,6 +223,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c28a).as("test data").contains("Corrective maintenance not effective?");
 		//Click on 2nd collapsible for 3.17.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer6)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.6
 		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer6)).getText();
 		softly.assertThat(c30).as("test data").contains("Possible Corrective Action(s)");
@@ -220,6 +237,7 @@ public class HiRCALevel2Text {
 		softly.assertThat(c31a).as("test data").contains("Improvement in corrective maintenance program");
 		//Click on 3rd collapsible for 3.17.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer6)).click();
+		*/
 		//3.17.7 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
@@ -234,6 +252,8 @@ public class HiRCALevel2Text {
 		softly.assertThat(c42).as("test data").contains("Check that all necessary and referred to equipment is not only labeled, but also labeled correctly");
 		//Click on 2nd collapsible for 3.17.7
 		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer7)).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.17.7
 		String c44 = wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer7)).getText();
 		softly.assertThat(c44).as("test data").contains("Possible Corrective Action(s)");
@@ -244,6 +264,7 @@ public class HiRCALevel2Text {
 		softly.assertThat(c45).as("test data").contains("Improve equipment labeling and identification");
 		//Click on 3rd collapsible for 3.17.7
 		wait.until(ExpectedConditions.visibilityOfElementLocated(PossibleCorrectiveActionAnswer7)).click();
+		*/
 		//Scroll to the top
 		share2.scrollToTop(driver);
 	}
@@ -264,12 +285,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question explores if the inadequate positive peer pressure is a cause of the intentional violation.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -294,12 +319,14 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question explores if low perceived risk was the cause for the LOP violation. Our research found when a worker feels the risk of violation is low, there is a greater tendency to violate the rules. Risk is the sum of two terms. One term is the product of the probability of being caught and the consequences of penalty. The other term is the product of the probability of injury and the consequences of the injury.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -324,12 +351,15 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question explores if the intentional violation (such as short-cutting LOP requirements like not performing a PJB as required, etc.) is caused by undue motivation such as going home early, getting out of an uncomfortable working environment, etc.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -354,12 +384,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question explores if the intentional violation was caused by perceived burden to execute an LOP. Perceived burden is a feeling that the time or effort spent on implementing an LOP is not worthwhile. Causes for the perception of burden could be: Inadequate accountability, Inadequate understanding for the need, or Excessive prescription of an LOP (e.g. PPE required for greater voltage or arc-flash rating).");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -384,12 +418,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question explores whether the LOP failed because there is little to no accountability if this needed LOP is not performed.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -414,12 +452,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("Qualification is a demonstration of ability after training (like a driving test before getting a license). In critical LOPs, such as review and independent check, qualification is often required.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -444,12 +486,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question explores if the LOP failure was due to a lack of training. For example, if staff has not been trained to conduct a PJB (either classroom training or on-the-job training), a lack of PJB training could be a contributing factor for a PJB not being performed.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -474,12 +520,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question is to explore if the LOP failure was caused by ambiguous requirements. For example, a PJB might not be performed because the staff does not understand what work needs a PJB and what doesn’t.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -504,12 +554,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("To have an LOP (e.g. PJB) executed correctly, bypass control measures are usually employed. These measures include: Behavior standards, Not-to-do warnings, Checklists, Job-site reminders, Place holders, etc.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
@@ -534,12 +588,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("An LOP can be incomplete in that it does not cover some conditions. For example, when \"review\", as an LOP, does not require the reviewer to crosscheck the validity of assumptions, it is incomplete. LOP is incorrect in that it contains incorrect instructions. For example, an incorrect specification of PPE (personal protective equipment) is an incorrect LOP.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Incompleteness");
@@ -564,12 +622,16 @@ public class HiRCALevel2Text {
 		softly.assertThat(lop3).as("test data").contains("This question is to determine whether the LOP failure was intentional or unintentional.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Inattention-to-detail");
@@ -589,26 +651,33 @@ public class HiRCALevel2Text {
 		softly.assertThat(heading).as("test data").contains("Step 2: Layers of Protection Failure Inquiry - LOP");
 		//2.1 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
-		softly.assertThat(q11).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
+		softly.assertThat(q11).as("test data").contains("Contributing factor for inattention-to-detail");
+//		softly.assertThat(q11).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
 		//Verify Description text
 		String lop3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionText)).getText();
-		softly.assertThat(lop3).as("test data").contains("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
+		softly.assertThat(lop3).as("test data").contains("Inattention-to-detail is an error-prone behavior. It is characterized by errors resulting from not paying full attention to the task at hand");
+//		softly.assertThat(lop3).as("test data").contains("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans1).as("test data").contains("Yes");
 		//Answer 2
 		String ans2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();		
 		softly.assertThat(ans2).as("test data").contains("No");
+		
 	}
 
 	public void step2Q20(WebDriver driver, SoftAssertions softly) throws Exception {
@@ -637,12 +706,16 @@ public class HiRCALevel2Text {
 		//2.0 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[2.0] What were the failed LOPs (3 max) that caused this event to happen?");
+		
+		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		*/
+		
 		//Answer 1
 		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
 		softly.assertThat(ans3).as("test data").contains("Briefings (PJB, MJB, PSM, TO, etc.)");
