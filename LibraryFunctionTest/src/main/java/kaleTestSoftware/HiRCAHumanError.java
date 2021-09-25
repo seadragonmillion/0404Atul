@@ -1866,8 +1866,6 @@ public class HiRCAHumanError {
 		softly.assertThat(c49).as("test data").contains("Possible Corrective Action(s)");
 		//Click on 3rd collapsible for 3.7.8
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))));
-		*/
-		
 		//text inside
 		String c50 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 		softly.assertThat(c50).as("test data").contains("Training and coaching in holding peer accountable to comply to rules");
@@ -1875,6 +1873,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c23).as("test data").contains("Improving defective guidelines or rules in procedures");
 		//Click on 3rd collapsible for 3.7.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.7.9 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-8']"))).getText();
@@ -1932,13 +1931,12 @@ public class HiRCAHumanError {
 		softly.assertThat(c35).as("test data").contains("Possible Corrective Action(s)");
 		//Click on 3rd collapsible for 3.7.10
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]/fieldset/div/div[2]/div[3]/h4/a"))));
-		*/
-		
-		//text inside
+				//text inside
 		String c37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 		softly.assertThat(c37).as("test data").contains("Correcting deficiencies in maintenance programs");
 		//Click on 3rd collapsible for 3.7.10
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[11]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//Scroll to the top
 		share2.scrollToTop(driver);
 	}

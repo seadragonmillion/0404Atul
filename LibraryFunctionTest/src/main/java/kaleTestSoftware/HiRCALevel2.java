@@ -97,11 +97,22 @@ public class HiRCALevel2 {
 		verifyRemainingSteps(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,0,hircaNoteLopSURE,softly);
 	}
 
+	private void pressSkip(WebDriver driver ) {
+		//am_add///
+		try {
+			WebDriverWait wait = new WebDriverWait(driver,10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		}catch(Exception e) {
+		}
+		////
+	}
+	
 	public void verifyRemainingSteps(WebDriver driver, List<String> lopSelected, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP, List<String> level21stLOP, List<String> level22ndLOP, List<String> level23rdLOP, List<String> list220, int chineseOrEnglish, MultiValuedMap<String,String> hircaNoteLopSURE, SoftAssertions softly) throws Exception{
-
+		System.out.println("recompile 2");
 		HiRCALevel1 obj1 = new HiRCALevel1();
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Step 4 verify select HML
+		
 		HashMap<String,String> hml1 = verifyStep4LOP1(driver,lopSelected,level31stLOP,2,hircaNoteLopSURE,chineseOrEnglish,softly);
 		//Get corrective action from step 4
 		List<String> correctiveActionLOP1 = getCorrectiveAction(driver,level31stLOP,2);
@@ -135,6 +146,7 @@ public class HiRCALevel2 {
 		//Save report
 		saveHiRCAReport(driver);
 		//Verify report
+		
 		//verifyHTMLReport(driver,chineseOrEnglish,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,step5,hml1,hml2,hml3,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,hircaNoteLopSURE,softly);
 		//download
 		downloadSelectFunction(driver,lopSelected,level31stLOP,level32ndLOP,level33rdLOP,level21stLOP,level22ndLOP,level23rdLOP,list220,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3,softly,chineseOrEnglish);
@@ -417,7 +429,7 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(10000);
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_HPremote.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
 		Thread.sleep(20000);
 		pdfCheckChangeCorrectiveAction(correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 		for(String winHandle : driver.getWindowHandles()){
@@ -525,7 +537,7 @@ public class HiRCALevel2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(3000);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_HPremote.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF2_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){	
 			System.out.println("Unexpected alert");
@@ -828,15 +840,18 @@ public class HiRCALevel2 {
 
 		HashMap<String,String> hml = new HashMap<String,String>();
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		List <String> temp = new ArrayList<String>();
+		List <String> temp = new ArrayList<String>(); 
+		
 		if(level31stLOP.isEmpty()==false)
 		{
 			//LOP 1
+	/*am_removed
 			//Verify title
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr[1]/th[1]"))).getText().trim();
 			int a = s.indexOf(":");
 			String r = s.substring(a+2, s.length()-1);
 			softly.assertThat(r).as("test data").isIn(lopSelected);
+		*/
 			//Modify level 3 list,  remove [ and replace ] with :
 			temp.addAll(op3.modifyList(level31stLOP));
 			//Verify level 3 selected
@@ -995,7 +1010,7 @@ public class HiRCALevel2 {
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_HPremote.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
 		driver.close();
 		driver.switchTo().window(window);
 		Thread.sleep(1000);
@@ -1283,9 +1298,11 @@ public class HiRCALevel2 {
 		//2.1
 		//Choose option to select
 		int n = obj.chooseRandomOption(2, 0);
+		level2.add(selectLevel2Answer(driver,n));
 		//Add answer to list
 		obj1.step2q21(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
+		Thread.sleep(1000);
 		//Get note
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);
 		if(n==0)
@@ -1306,13 +1323,14 @@ public class HiRCALevel2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.2
 		//Choose option to select
-		n = obj.chooseRandomOption(3, 0);
+		n = obj.chooseRandomOption(2, 0);
+		level2.add(selectLevel2Answer(driver,n));
 		//Add answer to list
 		obj1.step2q22(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		//get note
 		String note1 = hfl123.getNoteShowingPreviousAnswer(driver);
-		/*am_duplicate(n==0)
+		
 		if(n==0)
 		{
 			//Click next
@@ -1321,11 +1339,11 @@ public class HiRCALevel2 {
 			obj2.verify316(driver, softly);
 			level3.addAll(selectOptions(driver,7));
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note1, level3));
-			/*if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
+			if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
 			{
 				combined.addAll(level2);
 				combined.addAll(level3);
-				return combined;
+				return new MutablePair<MultiValuedMap<String,String>, List<String>>(hircaNoteLopSURE, combined);
 			}
 			else
 			{
@@ -1336,8 +1354,8 @@ public class HiRCALevel2 {
 			level2.addAll(level2List(pairOfReturnVariables.getValue()));
 			level3.addAll(level3List(pairOfReturnVariables.getValue()));
 			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
-			//}
-		}*/
+			}
+		}
 	
 		if(n==1)
 		{
@@ -1654,6 +1672,7 @@ public class HiRCALevel2 {
 	public List<String> selectOptions(WebDriver driver, int count) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		
 		List<String> ac = new ArrayList<String>();
 		int x;
 		//Select number of options to select between 1 to count
@@ -1671,12 +1690,13 @@ public class HiRCALevel2 {
 				//Select any answer between 1 and count
 				//Choose a number between 1 and count
 				int y;
-				while(true)
+			while(true)
 				{
 					Random random = new Random();
 					y=random.nextInt(count+1);
 					if(y==0)
 						continue;
+					System.out.println("print div number"+count+" : "+ y);
 					WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(y+1)+"]/fieldset/div/div/input")));
 					if(e.isSelected())
 					{
@@ -1685,8 +1705,10 @@ public class HiRCALevel2 {
 					}
 					break;
 				}
+			System.out.println("print div numbe 2nd"+count+" : "+ y);
 				//Click on answer
-				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(y+1)+"]/fieldset/div/div/label")));
+				
+			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(y+1)+"]/fieldset/div/div/label")));
 				//Scroll to element
 				share2.scrollToElement(driver, l);
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -1695,8 +1717,9 @@ public class HiRCALevel2 {
 				String s1 = l.getText().trim();
 				if(s1.substring(s1.length()-1, s1.length()).equals(" "))
 					ac.add(s1.substring(0, s1.length()-1));
-				else ac.add(s1);	
-			}
+				else ac.add(s1);
+				}	
+			
 		//Scroll to top
 		share2.scrollToTop(driver);
 		return ac;		

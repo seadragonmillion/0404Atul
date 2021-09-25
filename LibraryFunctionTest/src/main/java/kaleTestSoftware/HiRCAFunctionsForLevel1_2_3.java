@@ -2,11 +2,15 @@ package kaleTestSoftware;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,6 +22,42 @@ public class HiRCAFunctionsForLevel1_2_3 {
 	OPiRCA3 op3 = new OPiRCA3();
 	LanguageCheckOfReports lcr = new LanguageCheckOfReports();
 	HiRCAObj hirca = new HiRCAObj();
+	
+	
+//	public static void main(String [] arg) {
+//		int count = 0;
+//		while(true)
+//		{
+//			try{
+//				count = count+1;
+//				String tmp =".//*[@id='efi-irca-answers']/div["+count+"]";
+//				System.out.println("tmp"+tmp);
+//			}catch(org.openqa.selenium.TimeoutException y)
+//			{
+//				count = count-1;
+//				break;
+//			}
+//		}
+//		int start = 2;
+//		//Look for selected answer
+//		int divNumber=5;
+//		for(int i=start;i<=count;i++)
+//		{
+//			String getClass = ".//*[@id='efi-irca-answers']/div["+i+"]/fieldset/div/div/label";
+//			System.out.println("getclass"+getClass);
+//			if(getClass.contains("ui-radio-on"))
+//			{
+//				divNumber = i;
+//				break;
+//			}
+//		}
+//		//Get answer
+//		String answer = ".//*[@id='efi-irca-answers']/div["+divNumber+"]/fieldset/div/div/label";
+//	System.out.println("answer"+answer);
+//		
+//	}
+	
+		
 	
 	public String getNoteShowingPreviousAnswer(WebDriver driver) throws Exception {
 		
@@ -35,7 +75,6 @@ public class HiRCAFunctionsForLevel1_2_3 {
 			indexOfQuestionMark = question.lastIndexOf("?");
 		String r = question.substring(0, indexOfQuestionMark+1).replace("]", "").replace("[", "");
 		
-		
 
 		//Get answer text
 		//Count number of answers under question= number of div - the reason entry div
@@ -51,11 +90,12 @@ public class HiRCAFunctionsForLevel1_2_3 {
 				break;
 			}
 		}
+		System.out.println("count is"+count);
 		int start = 2;
 		//Look for selected answer
-		int divNumber=0;
+		int divNumber=2;
 //		for(int i=start;i<=count;i++)
-		for(int i=2;i<=8;i++)
+		for(int i=start;i<=8;i++)
 		{
 			String getClass = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+i+"]/fieldset/div/div/label"))).getAttribute("class");
 			if(getClass.contains("ui-radio-on"))
@@ -65,7 +105,10 @@ public class HiRCAFunctionsForLevel1_2_3 {
 			}
 		}
 		//Get answer
-		String answer = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+divNumber+"]/fieldset/div/div/label"))).getText();
+		System.out.println("divNumber"+divNumber);
+		String answer = "";
+		if(divNumber!=0) 
+		answer = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+divNumber+"]/fieldset/div/div/label"))).getText();
 		if (lcr.containsHanScript(answer)==true)
 		{
 			String note = "备注：根据以下答案所选出 "+r+": "+answer;
