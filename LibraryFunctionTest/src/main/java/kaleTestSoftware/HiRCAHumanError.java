@@ -1181,6 +1181,8 @@ public class HiRCAHumanError {
 		softly.assertThat(c13).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.6.4
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))));
+		
+		/*am_not applicable
 		//text inside
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c14).as("test data").contains("Use of a generic rule, missing details of various specific applications");
@@ -1192,7 +1194,6 @@ public class HiRCAHumanError {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		
 		
-		/*am_not applicable
 		//3rd collapsible 3.6.4
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 		softly.assertThat(c16).as("test data").contains("Possible Corrective Action(s)");
