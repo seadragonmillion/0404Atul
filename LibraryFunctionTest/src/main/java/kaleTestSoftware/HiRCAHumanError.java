@@ -1279,6 +1279,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c41).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.6.7
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))));
+		/*am_not applicable
 		//text inside
 		String c42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();		
 		softly.assertThat(c42).as("test data").contains("Interview reviewer");
@@ -1287,7 +1288,6 @@ public class HiRCAHumanError {
 		//Click on 2nd collapsible for 3.6.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))).click();
 		
-		/*am_not applicable
 		//3rd collapsible 3.6.7
 		String c44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 		softly.assertThat(c44).as("test data").contains("Possible Corrective Action(s)");
@@ -1308,6 +1308,8 @@ public class HiRCAHumanError {
 		softly.assertThat(c46).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.6.8
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[2]/h4/a"))));
+		
+		/*am_not applicable
 		//text inside
 		String c47 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c47).as("test data").contains("Interview root cause analyst");
@@ -1315,8 +1317,7 @@ public class HiRCAHumanError {
 		softly.assertThat(c48).as("test data").contains("Investigate training program in root cause analysis");
 		//Click on 2nd collapsible for 3.6.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[2]/h4/a"))).click();
-		
-		/*am_not applicable
+	
 		//3rd collapsible 3.6.8
 		String c49 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 		softly.assertThat(c49).as("test data").contains("Possible Corrective Action(s)");
