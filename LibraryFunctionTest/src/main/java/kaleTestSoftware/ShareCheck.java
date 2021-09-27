@@ -627,7 +627,7 @@ public class ShareCheck {
 
 		//deletes files in reports folder before starting to download
 		//File file = new File("C://Users//IEUser//Downloads//reports//");
-		File file = new File("C://Users//rramakrishnan//report//");
+		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -640,6 +640,8 @@ public class ShareCheck {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
+		Thread.sleep(4000);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}

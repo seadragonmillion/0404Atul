@@ -426,7 +426,7 @@ public class HiRCAEvent {
 	public void downloadRecordChrome (WebDriver driver, String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -445,6 +445,8 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
+		/*am_not applicable
 		List<String> results = new ArrayList<String>();
 		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
@@ -469,7 +471,8 @@ public class HiRCAEvent {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 			Thread.sleep(8000);
 		}
-		pdfCheck(get_date,get_time,get_dept,creationDate,url);
+		*/
+//		pdfCheck(get_date,get_time,get_dept,creationDate,url);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -917,15 +920,18 @@ public class HiRCAEvent {
 		//Checks for Date of event data
 		String eve_date =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[2]"))).getText();
 		softly.assertThat(eve_date).as("test data").isEqualTo(get_date);
+		/*am_not applicable
 		//Checks for Time of event data
 		String eve_time =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[4]"))).getText();
 		softly.assertThat(eve_time).as("test data").isEqualTo(get_time);
 		//Checks for Location of event data
-		String eve_loc =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[4]/td[2]"))).getText();
+		String eve_loc =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()[contains(.,'As it currently stands, this')]]"))).getText();
 		softly.assertThat(eve_loc).as("test data").isEqualTo(text);
 		//Checks for Department data
 		String eve_dept =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[5]/td[2]"))).getText();
 		softly.assertThat(eve_dept).as("test data").isEqualTo(get_dept);
+		*/
+		
 		//Checks for Investigators data
 		String eve_inv =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[7]/td[2]"))).getText();
 		/*String r = eve_inv.replaceAll("<??br>", "");
@@ -933,18 +939,22 @@ public class HiRCAEvent {
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators.replace("\n", ""));
 		else
-			softly.assertThat(eve_inv).as("test data").isEqualTo(paragraph_investigators);
+			softly.assertThat(eve_inv).as("test data").contains(paragraph_investigators);
+		
+		/*am_not applicable
 		//Checks for Report creation date data
 		String creation_date =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[9]/td[2]"))).getText();
 		softly.assertThat(creation_date).as("test data").isEqualTo(creationDate);
+		*/
 		//Checks for Problem statement data
-		String eve_prob =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]"))).getText();
+		String eve_prob =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='pii-level45-table']//td[contains(text(),'But I must explain')]"))).getText();
 		/*String r2 = eve_prob.replaceAll("<??br>", "");
 		String r3 = r2.replaceAll("[]", "");*/
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem.replace("\n", ""));
 		else
 			softly.assertThat(eve_prob).as("test data").isEqualTo(paragraph_problem);
+		
 		//Checks for Timeline of event data
 		String eve_timeline =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]"))).getText();
 		/*String r4 = eve_timeline.replaceAll("<??br>", "");
@@ -953,10 +963,12 @@ public class HiRCAEvent {
 			softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline.replace("\n", ""));
 		else
 			softly.assertThat(eve_timeline).as("test data").isEqualTo(paragraph_timeline);
+		
+		/*am_not applicable
 		//Checks for Background information data
 		String eve_back =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]"))).getText();
-		/*String r6 = eve_back.replaceAll("<??br>", "");
-		String r7 = r6.replaceAll("[]", "");*/
+		//String r6 = eve_back.replaceAll("<??br>", "");
+		//String r7 = r6.replaceAll("[]", "");
 		if(browserName.contains("safari"))
 			softly.assertThat(eve_back).as("test data").isEqualTo(paragraph_background.replace("\n", ""));
 		else
@@ -972,6 +984,8 @@ public class HiRCAEvent {
 		//Check for Executive summary
 		String eve_exec =  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr/td[2]"))).getText();
 		softly.assertThat(eve_exec).as("test data").isEqualTo(executive);
+		*/
+		/*am_not applicable
 		//Verify the n/a in LOPs
 		String lop1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[4]/table/tbody/tr/td[1]"))).getText();
 		softly.assertThat(lop1).as("test data").isEqualTo("n/a");
@@ -987,6 +1001,7 @@ public class HiRCAEvent {
 		softly.assertThat(lop6).as("test data").isEqualTo("n/a");
 		String lop7 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table/tbody/tr/td"))).getText();
 		softly.assertThat(lop7).as("test data").isEqualTo("No missing LOPs specified");
+		
 		//Verify root causes
 		String rc1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[1]/td[2]"))).getText();
 		softly.assertThat(rc1).as("test data").isEqualTo("Act of nature");
@@ -1161,6 +1176,7 @@ public class HiRCAEvent {
 		softly.assertThat(rc77).as("test data").isEqualTo("Recommended corrective actions cost effective?");
 		String rc78 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[11]/table/tbody/tr[11]/td[3]"))).getText();
 		softly.assertThat(rc78).as("test data").isEqualTo("");
+		*/
 		share2.scrollToAPoint(driver, 3300);
 		Thread.sleep(2000);
 		//int n =3500;
@@ -1209,6 +1225,8 @@ public class HiRCAEvent {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
+		
+		/*am_below xpath not applicable
 		//Clicks on next
 		if(browserName.contains("safari"))
 		{
@@ -1219,6 +1237,11 @@ public class HiRCAEvent {
 		{			
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();
 		}
+		*/
+		//Clicks on next on Info page
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ui-controlgroup-controls ']/button[@type='submit']"))));
+		//Clicks on skip button on Info Page:Sequence of Event
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.SkipButton)));
 		//Click on Act of Nature
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
 		//Verify the texts on the options
@@ -1622,11 +1645,16 @@ public class HiRCAEvent {
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
+		//Click on attach another file
+		Thread.sleep(2000);
+		WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
+		share2.scrollToElement(driver, add);
+		add.click();
 		//Click on last collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-3"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-4"))).click();
 		//Fill title and description
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-3"))).sendKeys("Title05");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-3"))).sendKeys("Description05");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-4"))).sendKeys("Title05");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))).sendKeys("Description05");
 		//Upload image
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-description-4"))));
 		driver.findElement(By.id("pii-irca-event-file-4")).sendKeys(filepath);
@@ -2685,7 +2713,9 @@ public class HiRCAEvent {
 		//Gets value of department
 		String get_dept = driver.findElement(By.id("pii-irca-event-department")).getAttribute("value");
 		System.out.println(get_dept);
-		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
+		
+		/*am_below xpath not applicable 
+		//		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))));
 		//Clicks on next
 		if(browserName.contains("safari"))
 		{
@@ -2696,6 +2726,10 @@ public class HiRCAEvent {
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-form']/div[15]/div/button"))).click();			
 		}
+		*/
+		
+		//Clicks on next
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ui-controlgroup-controls ']/button[@type='submit']"))));
 		//Clicks on back
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		//Fills optional data

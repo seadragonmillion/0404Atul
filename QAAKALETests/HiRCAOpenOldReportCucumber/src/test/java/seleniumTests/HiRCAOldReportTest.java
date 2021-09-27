@@ -86,7 +86,7 @@ public class HiRCAOldReportTest {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		HiRCAOldReport hirca = new HiRCAOldReport();
 		hirca.softAssert();
 	}
