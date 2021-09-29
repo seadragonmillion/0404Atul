@@ -81,7 +81,7 @@ public class SRIAdmin {
 		//Add 2nd baseline
 		addSRIBaselineInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement2,sriA2.mechanicalUnit2,sriA2.mechanicalFSIBaseline4,sriA2.mechanicalFSIBaseline5,sriA2.mechanicalFSIBaseline6);
 		//Verify size of plus sign on basline tab when screen is made small
-		sriA3.verifySizeOfPlusSignBaselineTab(driver, softly, sriA2.mechanicalComponent1);
+//		sriA3.verifySizeOfPlusSignBaselineTab(driver, softly, sriA2.mechanicalComponent1);
 		//Add a conclusion
 		addSRIConclusionInAdmin(driver,0,sriA2.mechanicalComponent1,sriA2.mechanicalMeasurement1,sriA2.mechanicalFSIConclusion1,sriA2.mechanicalFSIConclusion2,sriA2.mechanicalFSIConclusion3);
 		//Add 2nd conclusion
