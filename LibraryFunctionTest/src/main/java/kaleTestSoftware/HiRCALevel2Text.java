@@ -652,24 +652,21 @@ public class HiRCALevel2Text {
 		//2.1 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("Contributing factor for inattention-to-detail");
-//		softly.assertThat(q11).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
+		softly.assertThat(q11).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
 		//Click on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
 		//Verify Description text
 		String lop3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionText)).getText();
-		softly.assertThat(lop3).as("test data").contains("Inattention-to-detail is an error-prone behavior. It is characterized by errors resulting from not paying full attention to the task at hand");
-//		softly.assertThat(lop3).as("test data").contains("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
+//		softly.assertThat(lop3).as("test data").contains("Inattention-to-detail is an error-prone behavior. It is characterized by errors resulting from not paying full attention to the task at hand");
+		softly.assertThat(lop3).as("test data").contains("Some LOPs are related to the use of equipment (e.g. safety belt, fall protection harness, JIT alarm, etc.). There are four categories of contributing factors in equipment failures: Inadequate qualification, Inadequate surveillance testing, Inadequate maintenance, Inadequate operation.");
 		//Clicks on Description
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.DescriptionPlusSign)).click();
-		
-		/*am_not applicable
 		//Reason entry
 		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
 		softly.assertThat(reason).as("test data").contains("Reason Entry:");
 		//Reason entry place holder
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
-		*/
 		
 		//Answer 1
 		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		

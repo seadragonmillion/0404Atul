@@ -1298,10 +1298,9 @@ public class HiRCALevel2 {
 		//2.1
 		//Choose option to select
 		int n = obj.chooseRandomOption(2, 0);
-		level2.add(selectLevel2Answer(driver,n));
 		//Add answer to list
-		obj1.step2q21(driver, softly);
-		level2.add(selectLevel2Answer(driver,n));
+		obj1.step2q21(driver, softly); //[2.1] Yes or No page Text Assert
+		level2.add(selectLevel2Answer(driver,n)); //choose Yes or No
 		Thread.sleep(1000);
 		//Get note
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);

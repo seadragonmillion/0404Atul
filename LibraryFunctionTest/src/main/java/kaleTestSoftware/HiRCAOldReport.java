@@ -75,9 +75,12 @@ public class HiRCAOldReport {
 		String prob_statement1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).getAttribute("value");
 		String prob_statement = prob_statement1.trim();
 		System.out.println(prob_statement);
+		
+		/*am_not applicable
 		String timeline1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).getAttribute("value");
 		String timeline = timeline1.trim();
 		System.out.println(timeline);
+		*/
 		String background1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).getAttribute("value");
 		String background = background1.trim();
 		System.out.println(background);
@@ -195,16 +198,18 @@ public class HiRCAOldReport {
 		//Wait for black loading message to disappear
 		share2.loadingServer(driver);
 		//Open and check record
-		openCheckRecord(driver,event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+		openCheckRecord(driver,event_title,event_loc,event_date,event_time,prob_statement,background,investigator/*,LOP1,LOP2,LOP3*/);
 	}
 
-	public void openCheckRecord (WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void openCheckRecord (WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		Thread.sleep(5000);
 		//Verifies Event title data
 		String eve_title =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr/td[2]")).getText();
 		event_title=event_title.replace("  ", " ");
 		softly.assertThat(eve_title).as("test data").isEqualTo(event_title);
+		
+		
 		//Verifies Date of event data
 		String eve_date =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div/table/tbody/tr[3]/td[2]")).getText();
 		softly.assertThat(eve_date).as("test data").isEqualTo(event_date);
@@ -223,14 +228,17 @@ public class HiRCAOldReport {
 		String eve_prob =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[2]/td[2]")).getText();
 		prob_statement=prob_statement.replace("  ", " ");
 		softly.assertThat(eve_prob).as("test data").isEqualTo(prob_statement);
+		
+		/*am_not applicable
 		//Verifies Timeline of event data
 		String eve_timeline =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[3]/td[2]")).getText();
 		timeline=timeline.replace("  ", " ");
 		softly.assertThat(eve_timeline).as("test data").isEqualTo(timeline);
+		
 		//Verifies Background information data
 		String eve_back =  driver.findElement(By.xpath(".//*[@id='irca-rpt']/div[2]/table/tbody/tr[4]/td[2]")).getText();
 		background=background.replace("  ", " ");
-		softly.assertThat(eve_back).as("test data").isEqualTo(background);/*
+		softly.assertThat(eve_back).as("test data").isEqualTo(background);
 		//Verifies failed LOP1 data
 		String lop1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[5]/table[1]/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(lop1).as("test data").isEqualTo(LOP1.get(0));
@@ -482,13 +490,13 @@ public class HiRCAOldReport {
 		String lop72 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[8]/table/tbody/tr[6]/td[5]"))).getText();
 		softly.assertThat(lop72).as("test data").isEqualTo("Yes");*/
 		//Downloads report and checks pdf
-		downloadSelectFunction(driver, event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+		downloadSelectFunction(driver, event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 	}
 
-	public void downloadSelectFunction(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void downloadSelectFunction(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj2 = new HiRCAEvent();
 		obj2.deleteFiles(file);
 		//Get browser name
@@ -499,22 +507,22 @@ public class HiRCAOldReport {
 		System.out.println(v);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
-			downloadReportChrome(driver, event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+			downloadReportChrome(driver, event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		if (browserName.equals("firefox"))
-			downloadReportFirefox(driver, event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+			downloadReportFirefox(driver, event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("10"))
-				downloadReportIE10(driver, event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+				downloadReportIE10(driver, event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 			if (v.startsWith("11"))
-				downloadReportIE11(driver, event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+				downloadReportIE11(driver, event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		}
 	}
 
-	public void downloadReportChrome(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void downloadReportChrome(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
@@ -524,8 +532,11 @@ public class HiRCAOldReport {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Thread.sleep(3000);
-		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+		Thread.sleep(8000);
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Thread.sleep(8000);
+		
+//		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
@@ -537,7 +548,7 @@ public class HiRCAOldReport {
 
 	}
 
-	public void downloadReportFirefox(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void downloadReportFirefox(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -570,7 +581,7 @@ public class HiRCAOldReport {
 		robot.keyRelease(KeyEvent.VK_S);
 		Process p= Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/PDFReportFirefox.exe");
 		p.waitFor();*/
-		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		driver.close();
 		driver.switchTo().window(window);
 		driver.switchTo().defaultContent();
@@ -580,7 +591,7 @@ public class HiRCAOldReport {
 
 	}
 
-	public void downloadReportIE10(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void downloadReportIE10(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -635,7 +646,7 @@ public class HiRCAOldReport {
 			}
 			Thread.sleep(6000);
 		}
-		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		driver.switchTo().window(window);
 		Thread.sleep(1000);
 		//Switches to the iframe
@@ -644,7 +655,7 @@ public class HiRCAOldReport {
 	}
 
 
-	public void downloadReportIE11(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void downloadReportIE11(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports//");
@@ -699,7 +710,7 @@ public class HiRCAOldReport {
 			}
 			Thread.sleep(6000);
 		}
-		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,timeline,background,investigator/*,LOP1,LOP2,LOP3*/);
+//		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
 		driver.switchTo().window(window);
 		Thread.sleep(1000);
 		//Switches to the iframe
@@ -720,11 +731,11 @@ public class HiRCAOldReport {
 		}
 	}
 
-	public void pdfCheck(String event_title,String event_loc,String event_date,String event_time,String prob_statement,String timeline,String background,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
+	public void pdfCheck(String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Pictures//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -733,7 +744,7 @@ public class HiRCAOldReport {
 		}
 		System.out.println(results.get(0));
 		//Loads the file to check if correct data is present
-		String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+		String fileName="C://Users//mama//Pictures//"+results.get(0);
 		File oldfile = new File(fileName);
 		//Checks text in pdf
 		PDDocument pddoc= PDDocument.load(oldfile);
@@ -788,10 +799,13 @@ public class HiRCAOldReport {
 		investigator=investigator.replace("\n", "");
 		investigator=investigator.replace("  ", " ");
 		softly.assertThat("Investigators "+investigator).as("test data").isSubstringOf(newData);
+		
+		/*am_not applicable
 		//Verifies background data
 		background=background.replace("\n", "");
 		background=background.replace("  ", " ");
 		softly.assertThat("Background information "+background).as("test data").isSubstringOf(newData);
+		
 		//Verifies Timeline data
 		timeline=timeline.replace("\n", "");
 		timeline=timeline.replace("  ", " ");
