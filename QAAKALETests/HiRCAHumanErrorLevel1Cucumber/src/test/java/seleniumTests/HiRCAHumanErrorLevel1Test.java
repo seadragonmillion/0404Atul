@@ -85,7 +85,7 @@ public class HiRCAHumanErrorLevel1Test {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		HiRCAHumanError hirca = new HiRCAHumanError();
 		hirca.softAssert();
 	}

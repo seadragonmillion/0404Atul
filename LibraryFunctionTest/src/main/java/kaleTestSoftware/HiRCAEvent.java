@@ -445,7 +445,7 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		/*am_not applicable
 		List<String> results = new ArrayList<String>();
 		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
@@ -1541,7 +1541,7 @@ public class HiRCAEvent {
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCA2 obj1 = new HiRCA2();
-		String filepath = "C:/Users/mama/Pictures/CCYC2355.JPG";
+		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		//int n=500;
 		for (int j=0; j<5; j++)
 		{

@@ -88,32 +88,32 @@ public class LanguageCheckOfReports {
 		String s = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-status']")))
 				.getText();
-		softly.assertThat(s).as("test data").isEqualTo("çŠ¶æ€�:");
+		softly.assertThat(s).as("test data").isEqualTo("状态:");
 		// Select group
 		String s1 = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-div']/fieldset/div[1]/legend")))
 				.getText();
-		softly.assertThat(s1).as("test data").isEqualTo("é€‰æ‹©å°�ç»„:");
+		softly.assertThat(s1).as("test data").isEqualTo("选择小组:");
 		// Cases slide security
 		String s2 = wait
 				.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-slidesecurity']/div[1]/legend")))
 				.getText();
-		softly.assertThat(s2).as("test data").isEqualTo("çŸ¥è¯†åº“å®‰å…¨è®¾å®š:");
+		softly.assertThat(s2).as("test data").isEqualTo("知识库安全设定:");
 		// Company ID
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath(".//*[@id='pii-admin-user-customerId-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s3).as("test data").isEqualTo("å…¬å�¸ä»£ç �:");
+		softly.assertThat(s3).as("test data").isEqualTo("公司代码:");
 		// Company moderator
 		String s4 = wait
 				.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-customerAdmin']/div[1]/legend")))
 				.getText();
-		softly.assertThat(s4).as("test data").isEqualTo("å…¬å�¸ä»£ç�†äºº:");
+		softly.assertThat(s4).as("test data").isEqualTo("公司代理人:");
 		// Group moderator
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath(".//*[@id='pii-admin-user-modgroups-div']/fieldset/div[1]/legend"))).getText();
-		softly.assertThat(s5).as("test data").isEqualTo("å°�ç»„ä»£ç�†äºº:");
+		softly.assertThat(s5).as("test data").isEqualTo("小组代理人:");
 		// softly.assertAll();
 	}
 
@@ -276,7 +276,7 @@ public class LanguageCheckOfReports {
 
 	public void languageChangeTest(WebDriver driver, String username, String password) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		// Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -419,8 +419,11 @@ public class LanguageCheckOfReports {
 		System.out.println(email1);
 		softly.assertThat(email1).as("test data").isEqualTo("rramakrishnan@errorfree.com");
 		// Clicks on Activity
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
 		// Waits for loading message to disappear
 		share2.loadingServer(driver);
 		// Checks language in error meter
@@ -859,7 +862,7 @@ public class LanguageCheckOfReports {
 		}
 		catch (Exception e1)
 		{
-			driver.findElement(By.xpath("//*[contains(@id,'pii-uhome-buttons-rpt')]/div//a[2]")).click();
+			driver.findElement(By.xpath("//*[contains(@id,'pii-uhome-buttons-rpt')]/div//a[text()='下载']")).click();
 		}
 		
 //		element.click();
@@ -868,7 +871,7 @@ public class LanguageCheckOfReports {
 		// Clicks on open pdf report
 		// wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(10000);
 		for (String winHandle : driver.getWindowHandles()) {
 					driver.switchTo().window(winHandle);
@@ -888,8 +891,8 @@ public class LanguageCheckOfReports {
 		}
 		am_edit*/
 		
-//		pdfCheck(y);
-//		driver.close();
+		pdfCheck(y);
+		driver.close();
 		driver.switchTo().window(window);
 		Thread.sleep(4000);
 		// Switches to the iframe
@@ -911,6 +914,7 @@ public class LanguageCheckOfReports {
 
 	public void pdfCheck(int y) throws Exception {
 //		final Path dir = Paths.get("C://Users//rramakrishnan//report//").toAbsolutePath();
+		
 		final Path dir = Paths.get("C://Users//mama//Pictures//").toAbsolutePath();
 		final String filter = "*." + "pdf";
 
@@ -1504,7 +1508,7 @@ public class LanguageCheckOfReports {
 				.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a"))).click();
 		// Wait for loading message to disappear
 		share2.loadingServer(driver);
-		/*
+		
 		// Stores text of Remote Verification title
 		s.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-title"))).getText());
 		// Stores text of Mark critical
@@ -1574,7 +1578,7 @@ public class LanguageCheckOfReports {
 				.getText());
 		System.out.println(s);
 
-		*/
+		
 		// Checks the language is correct or not
 		for (int i = 0; i < s.size(); i++) {
 			if (y == 0)
@@ -1583,12 +1587,10 @@ public class LanguageCheckOfReports {
 				englishCheck(s.get(i));
 		}
 	
-	return (wait.until(ExpectedConditions
-			.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
-	}
+	
 		// Clear the list s
-//		s.clear();
-		/*am_edit_below code will delete Activity's first record
+		s.clear();
+		
 		WebElement element = null;
 		// Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -1614,7 +1616,8 @@ public class LanguageCheckOfReports {
 				element = wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")));
 			return (element);
-		} else {
+		} 
+		else {
 			String s1 = wait
 					.until(ExpectedConditions
 							.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]")))
@@ -1625,10 +1628,10 @@ public class LanguageCheckOfReports {
 							.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")))
 					.getText();
 			System.out.println(s2);
-			if (s1.contains("download") || (s1.contains("æ‰“å�°")) || (s1.contains("ä¸‹è½½")))
+			if (s1.contains("download") || (s1.contains("打印")) || (s1.contains("下载")))
 				element = wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]")));
-			else if (s2.contains("download") || (s1.contains("æ‰“å�°")) || (s1.contains("ä¸‹è½½")))
+			else if (s2.contains("download") || (s1.contains("打印")) || (s1.contains("下载")))
 				element = wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")));
 						     
@@ -1636,9 +1639,8 @@ public class LanguageCheckOfReports {
 }
 
 	
-	 am_edit*/
 
-
+	}
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();

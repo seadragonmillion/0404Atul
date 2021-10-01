@@ -78,7 +78,7 @@ public class HiRCAStress {
 	public  void downloadSelectFunction (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		//Get browser name
@@ -133,7 +133,7 @@ public class HiRCAStress {
 
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//");
 		obj2.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String window = driver.getWindowHandle();
@@ -147,6 +147,7 @@ public class HiRCAStress {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(8000);
 		pdfCheck();
 		for(String winHandle : driver.getWindowHandles()){
@@ -322,7 +323,7 @@ public class HiRCAStress {
 	public  void uploadTenImagesChrome(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
+		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details

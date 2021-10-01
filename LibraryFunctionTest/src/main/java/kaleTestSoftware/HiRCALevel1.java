@@ -563,7 +563,7 @@ public class HiRCALevel1 {
 	public void downloadReportChrome (WebDriver driver, List<String>lopOptions, HashMap<String,String>hml,HashMap<String,Integer>options,List<String>checklist) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Pictures//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
@@ -576,6 +576,7 @@ public class HiRCALevel1 {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(8000);
 		pdfCheck(driver,lopOptions,hml,options,checklist);
 		for(String winHandle : driver.getWindowHandles()){
