@@ -28,7 +28,7 @@ public class HiRCABug2 {
 	public void uploadImageChrome(WebDriver driver, int j) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		String filepath = "C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg";
+		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		String id = "pii-irca-event-filecollapsible-"+j;
 		share2.scrollToElement(driver, driver.findElement(By.id(id)));
 		driver.findElement(By.id(id)).click();

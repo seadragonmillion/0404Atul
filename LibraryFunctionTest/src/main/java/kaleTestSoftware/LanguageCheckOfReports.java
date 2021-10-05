@@ -417,7 +417,7 @@ public class LanguageCheckOfReports {
 		String email1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email")))
 				.getAttribute("value");
 		System.out.println(email1);
-		softly.assertThat(email1).as("test data").isEqualTo("rramakrishnan@errorfree.com");
+		softly.assertThat(email1).as("test data").isEqualTo("amlee@errorfree.com");
 		// Clicks on Activity
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))));

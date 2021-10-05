@@ -136,12 +136,20 @@ public class HiRCALOPBug2 {
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		
+		//Skip 3.4 and [1.21-1.26]
+				for(int i=1;i<=7;i++)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
+					Thread.sleep(1000);
+				}
+		/*am_not applicable
 		//Skip till 1.20 - 17 times as per current path version 4.6.3
 		for(int i=1;i<=17;i++)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
 			Thread.sleep(1000);
-		}
+		}*/
 		//Click on Root Cause
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
 		//Skip from step 3 to Step 5 - 2 times as per current path version 4.6.3
@@ -236,7 +244,7 @@ public class HiRCALOPBug2 {
 		//Problem Statement
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-pbstatement"))).sendKeys(text);
 		//Timeline of event
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-events"))).sendKeys(text);
 		//Background info
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-bginfos"))).sendKeys(text);
 		//Investigators

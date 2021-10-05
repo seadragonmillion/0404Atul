@@ -110,17 +110,29 @@ public class HiRCALOPBug {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
+		
+		//Skip from 1.21 til 1.26 (1.26 will hit LOP/RootCause popup)
+				for(int i=1;i<=6;i++)
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
+					Thread.sleep(2000);
+				}
+		
+		/*am_modified above
 		//Skip from 3.18, 1.6-1.20
 		for(int i=1;i<=16;i++)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
 			Thread.sleep(1000);
 		}
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
+				
 		//Select RC from pop up
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
 		share2.scrollToTop(driver);
+		
+		/*am_Step2 upper bar is not clickable
 		//Go to Step 2
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2")));
 		try{
@@ -130,6 +142,26 @@ public class HiRCALOPBug {
 			share2.scrollToTop(driver);
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))));
 		}
+		*/
+		
+		//am_modified: to Verify Step2Q2_0 > Click Step1 > Select "Act of Nature" > Next
+		//Go to Step 1: click on top bar
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click();
+		}catch(org.openqa.selenium.WebDriverException t)
+		{
+			share2.scrollToTop(driver);
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))));
+		}
+		//Click on Act of nature
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()[contains(.,'Act of nature')]]"))));
+		//Click on Next button on Step 1
+		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		Thread.sleep(2000);
+		//CLick on LOP button on popup
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		Thread.sleep(2000);
+		
 		//Verify Step 2 page of question 2.0
 		verifyStep2Q2_0(driver);
 	}
@@ -164,7 +196,7 @@ public class HiRCALOPBug {
 		String s11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[12]"))).getText().trim();
 		softly.assertThat(s11).as("test data").isEqualTo("Supervisory intervention");
 		String s12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[13]"))).getText().trim();
-		softly.assertThat(s12).as("test data").contains("Other:");
+		softly.assertThat(s12).as("test data").contains("Other");
 	}
 
 
@@ -574,13 +606,22 @@ public class HiRCALOPBug {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
+		
+		//Skip from 1.21 til 1.26 (1.26 will hit LOP/RootCause popup)
+		for(int i=1;i<=6;i++)
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
+			Thread.sleep(2000);
+		}
+		
+		/*am_modify below skip
 		//Skip from 3.18, 1.6-1.20
 		for(int i=1;i<=16;i++)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		}
-		Thread.sleep(2000);
+		*/
 		//Select LOP from pop up
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
