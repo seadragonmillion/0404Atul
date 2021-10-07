@@ -101,7 +101,7 @@ public class HiRCALevel2ChineseTest {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		HiRCALevel2Chinese hirca = new HiRCALevel2Chinese();
 		hirca.softAssert();
 	}
