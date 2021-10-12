@@ -627,9 +627,9 @@ public class ShareCheck {
 
 		//deletes files in reports folder before starting to download
 		//File file = new File("C://Users//IEUser//Downloads//reports//");
-		File file = new File("C://Users//mama//Pictures//");
+//		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+//		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
