@@ -31,8 +31,10 @@ public class HiRCAChinese24 {
 		softly.assertThat(heading36).as("test data").contains("支持证据");
 		String heading37 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[26]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading37).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading38 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[26]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading38).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading38).as("test data").contains("可能的纠正行动");*/
 		//3.3 table rows
 		String r490 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[26]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r490).as("test data").contains("3.3.1 经理团队资源分配不到位");
@@ -176,8 +178,10 @@ public class HiRCAChinese24 {
 		softly.assertThat(heading40).as("test data").contains("支持证据");
 		String heading41 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[28]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading41).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[28]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading42).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading42).as("test data").contains("可能的纠正行动");*/
 		//3.22 table rows
 		String r558 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[28]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r558).as("test data").contains("3.22.1 对规则的现场试验不充分");
@@ -237,8 +241,10 @@ public class HiRCAChinese24 {
 		softly.assertThat(heading361).as("test data").contains("支持证据");
 		String heading371 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[30]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading371).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading381 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[30]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading381).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading381).as("test data").contains("可能的纠正行动");*/
 		//3.3 table rows
 		String r4901 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[30]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r4901).as("test data").contains("3.3.1 经理团队资源分配不到位");
@@ -418,8 +424,10 @@ public class HiRCAChinese24 {
 		softly.assertThat(heading44).as("test data").contains("支持证据");
 		String heading45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[32]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading45).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading46 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[32]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading46).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading46).as("test data").contains("可能的纠正行动");*/
 		//3.5 rows
 		String r603 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[32]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r603).as("test data").contains("3.5.1 作业前情况警觉（如易出错的精神状态和高风险情况）不充分");

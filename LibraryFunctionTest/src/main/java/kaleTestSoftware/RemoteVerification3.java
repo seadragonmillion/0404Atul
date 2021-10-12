@@ -33,7 +33,8 @@ public class RemoteVerification3 {
 	UserManagement um = new UserManagement();
 	
 	//Emails used in User Profile
-	public String emailDevAdminNonAdmin = "rvqaaverifyemail01@gmail.com";
+//	public String emailDevAdminNonAdmin = "rvqaaverifyemail01@gmail.com";
+	public String emailDevAdminNonAdmin = "piikaleremote02@gmail.com";
 	public String emailDevAdminNonAdminIE11 = "rvqaaverifyemail02@gmail.com";
 	public String emailProdAdminNonAdmin = "rvqaaverifyemail01asia@gmail.com";
 	public String emailProdAdminNonAdminIE11 = "rvqaaverifyemail02asia@gmail.com";
@@ -64,7 +65,7 @@ public class RemoteVerification3 {
 		//Uploads picture 2
 		upload2ndPicture(driver);
 		//Uploads picture 1
-		upload1stPicture(driver);
+//		upload1stPicture(driver);
 		//*
 		share2.scrollToTop(driver);
 		if(chiOrEng == 1)
@@ -179,9 +180,9 @@ public class RemoteVerification3 {
 	}
 	
 	public void upload2ndpictureChrome(WebDriver driver) throws Exception {
-
+		//Upload picture for (3) Take or choose a photo of the person requesting verification.
 		//Uploads picture 2
-		String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
+		String file2 = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		driver.findElement(rv.RV2ndImageField).sendKeys(file2);
 	}
 
@@ -397,12 +398,18 @@ public class RemoteVerification3 {
 
 		//Get current Time
 		long currentTime = System.currentTimeMillis();
+		/*am_changed to 1 mintue
 		//Add 15 minutes to it
-		long time15 = currentTime + (15*60*1000);
+		long time15 = currentTime + (15*60*1000);*/
+		
+		//Add 1 minutes to it
+		long time15 = currentTime + (1*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = selectEmailForUser(k);
+//		String EMAIL_ADDRESS = selectEmailForUser(k);
+		String EMAIL_ADDRESS = "piikaleremote02@gmail.com";
 		System.out.println(EMAIL_ADDRESS);
-		String PASSWORD = "5sepkale";
+//		String PASSWORD = "5sepkale";
+		String PASSWORD = "pii@2021";
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
 		//Get browser name
@@ -416,12 +423,12 @@ public class RemoteVerification3 {
 			if (v.startsWith("11"))
 				props.load(new FileInputStream(new File( "C:\\Users\\IEUser\\DriversForSelenium\\smtp.properties" )));
 			else
-				props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+				props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		}
 		else if (browserName.contains("safari"))
 			props.load(new FileInputStream(new File( "/Users/pamelachiu/Downloads/smtp.properties" )));
 		else
-			props.load(new FileInputStream(new File( "C:\\Users\\rramakrishnan\\DriversForSelenium\\smtp.properties" )));
+			props.load(new FileInputStream(new File( "C:\\property\\smtp.properties" )));
 		Session session = Session.getDefaultInstance(props, null);
 		Store store = session.getStore("imaps");
 		store.connect(SMTP_HOST, EMAIL_ADDRESS, PASSWORD);

@@ -245,9 +245,11 @@ public class HiRCAChinese3 {
 		String heading5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[4]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading5).as("test data").contains("进一步调查");
 		verifyChinese.add(heading5);
+		
+		/*am_not applicable
 		String heading6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[4]/td[1]/div/table/thead/tr/th[4]"))).getText();
 		softly.assertThat(heading6).as("test data").contains("可能的纠正行动");
-		verifyChinese.add(heading6);
+		verifyChinese.add(heading6);*/
 		//3.12 table rows
 		String r145 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[4]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r145).as("test data").contains("3.12.1 觉得获取工具和设备有负担");
@@ -512,9 +514,11 @@ public class HiRCAChinese3 {
 		String heading9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[7]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading9).as("test data").contains("进一步调查");
 		verifyChinese.add(heading9);
+		
+		/*am_not applicable
 		String heading10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[7]/td[1]/div/table/thead/tr/th[4]"))).getText();
 		softly.assertThat(heading10).as("test data").contains("可能的纠正行动");
-		verifyChinese.add(heading10);
+		verifyChinese.add(heading10);*/
 		//3.1 table rows
 		String r203 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[7]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r203).as("test data").contains("3.1.1 能力不足");
@@ -649,8 +653,10 @@ public class HiRCAChinese3 {
 		softly.assertThat(heading12).as("test data").contains("支持证据");
 		String heading13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading13).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading14).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading14).as("test data").contains("可能的纠正行动");*/
 		//3.21 table rows
 		String r228 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r228).as("test data").contains("3.21.1 未能识别和缓解时间相关的高风险情况，例如日常失误陷阱、工作时间、节假日影响等");

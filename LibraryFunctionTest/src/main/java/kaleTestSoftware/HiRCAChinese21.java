@@ -77,6 +77,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c29).as("test data").contains("与其他项目之间的接口要求？");
 		//Click on 2nd collapsible for 3.6.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.1
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -92,6 +94,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c27).as("test data").contains("开展程序设计方面的培训");
 		//Click on 3rd collapsible for 3.6.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.2 question
 		String q342 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
 		System.out.println(q342);
@@ -134,6 +137,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c35).as("test data").contains("退出规则的条件？");
 		//Click on 2nd collapsible for 3.6.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.2
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -149,6 +154,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c22).as("test data").contains("开展程序设计方面的培训");
 		//Click on 3rd collapsible for 3.6.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.3 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
 		String q343 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
@@ -202,6 +208,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c37).as("test data").contains("对未经验证的假设没有制定缓解措施？");
 		//Click on 2nd collapsible for 3.6.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.3
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -218,6 +226,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c23).as("test data").contains("开展程序设计方面的培训");
 		//Click on 3rd collapsible for 3.6.3
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.4 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
 		String q344 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)).getText();
@@ -271,6 +280,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c39).as("test data").contains("遗漏了碰到异常情况时需采取的行动？");
 		//Click on 2nd collapsible for 3.6.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.4
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -287,6 +298,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c25).as("test data").contains("开展程序设计方面的培训");
 		//Click on 3rd collapsible for 3.6.4
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.5 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)));
 		String q345 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer5)).getText();
@@ -334,6 +346,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c19).as("test data").contains("遗漏了用于验收是否正确执行的相关试验或测量？");
 		//Click on 2nd collapsible for 3.6.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.5
 		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -350,6 +364,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c24).as("test data").contains("开展程序设计方面的培训");
 		//Click on 3rd collapsible for 3.6.5
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//Scroll to the end
 		share2.scrollToAPoint(driver, 1200);
 		//3.6.6 question
@@ -404,6 +419,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c40).as("test data").contains("调查程序设计编写培训");
 		//Click on 2nd collapsible for 3.6.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.6
 		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -420,6 +437,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c32).as("test data").contains("改善程序编写导则");
 		//Click on 3rd collapsible for 3.6.6
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.7 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)));
 		String q367 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer7)).getText();
@@ -467,19 +485,21 @@ public class HiRCAChinese21 {
 		softly.assertThat(c43).as("test data").contains("调查程序审查培训");
 		//Click on 2nd collapsible for 3.6.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.7
 		String c44 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
 		softly.assertThat(c44).as("test data").contains("可能的纠正行动");
 		//Click on 3rd collapsible for 3.6.7
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))));
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))));
 		//text inside
 		String c45 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/div/ul/li[1]"))).getText();
 
 		softly.assertThat(c45).as("test data").contains("开展程序审查培训");
 		//Click on 3rd collapsible for 3.6.7
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.8 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)));
 		String q368 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer8)).getText();		
@@ -528,6 +548,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c48).as("test data").contains("调查事件根本原因培训");
 		//Click on 2nd collapsible for 3.6.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.8
 		String c49 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -541,6 +563,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c50).as("test data").contains("开展根本原因培训");
 		//Click on 3rd collapsible for 3.6.8
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[9]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//3.6.9 question
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)));
 		String q369 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer9)).getText();
@@ -590,6 +613,8 @@ public class HiRCAChinese21 {
 		softly.assertThat(c53).as("test data").contains("调查纠正措施制度缺陷");
 		//Click on 2nd collapsible for 3.6.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[2]/h4/a"))).click();
+		
+		/*am_not applicable
 		//3rd collapsible 3.6.9
 		String c54 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).getText();
 
@@ -603,6 +628,7 @@ public class HiRCAChinese21 {
 		softly.assertThat(c55).as("test data").contains("改善纠正措施制度的监督与执行");
 		//Click on 3rd collapsible for 3.6.9
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[10]/fieldset/div/div[2]/div[3]/h4/a"))).click();
+		*/
 		//Add new contributing factor button
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-button"))).getText();
 

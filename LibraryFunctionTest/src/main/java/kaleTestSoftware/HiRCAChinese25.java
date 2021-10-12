@@ -99,8 +99,10 @@ public class HiRCAChinese25 {
 		softly.assertThat(heading8).as("test data").contains("支持证据");
 		String heading9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[8]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading9).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[8]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading10).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading10).as("test data").contains("可能的纠正行动");*/
 		//3.15 table rows
 		String r203 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[8]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r203).as("test data").contains("3.15.1 员工未经过相互指导的培训，或纠正他人违规情况的培训");
@@ -162,8 +164,10 @@ public class HiRCAChinese25 {
 		softly.assertThat(heading12).as("test data").contains("支持证据");
 		String heading13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading13).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading14).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading14).as("test data").contains("可能的纠正行动");*/
 		//3.9 table rows
 		String r228 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[11]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r228).as("test data").contains("3.9.1 培训材料在适用性、及时性或实用性方面有所欠缺");
@@ -349,8 +353,10 @@ public class HiRCAChinese25 {
 		softly.assertThat(heading16).as("test data").contains("支持证据");
 		String heading17 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/thead/tr/th[3]"))).getText();
 		softly.assertThat(heading17).as("test data").contains("进一步调查");
+		
+		/*am_not applicable
 		String heading18 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/thead/tr/th[4]"))).getText();
-		softly.assertThat(heading18).as("test data").contains("可能的纠正行动");
+		softly.assertThat(heading18).as("test data").contains("可能的纠正行动");*/
 		//3.2 table rows
 		String r315 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='module-irca-rpt']/div[6]/table/tbody/tr[13]/td[1]/div/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r315).as("test data").contains("3.2.1 组长强化标准方面的管理能力不足");

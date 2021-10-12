@@ -82,6 +82,7 @@ public class RemoteVerification2 {
 		String reportName = creation_date +"_"+ username + "_" + rv.eventTitle(driver,driver.getCurrentUrl());
 		//Verify email
 		rv1.verifyEmailForVerifier (driver,username,reportName,k);
+		System.out.println("finished verifyEmailforVerifier");
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -126,6 +127,7 @@ public class RemoteVerification2 {
 		share.markNotificationsRead(driver, browserName,0,softly);
 		//login to report creator
 		loginToUser(driver,username,password1);
+		System.out.println("before fromVerifier");
 		//verify email of user 
 		rv3.verifyEmailForUserAfterReceivingReplyFromVerifier(driver, verifier, reportName, k, softly);
 		//Click on 1st record/notification
@@ -333,7 +335,9 @@ public class RemoteVerification2 {
 		}
 		//Clicks on Remote Verification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).click();
-		rv3.verifyErrorOnPage(driver, softly);
+		
+		//am_not applicable anymore
+		//rv3.verifyErrorOnPage(driver, softly);
 		//Fill page
 		String verifier = rv3.fillRVPage(driver,k,0,softly);
 		//Verify if verifier got notification

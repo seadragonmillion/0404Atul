@@ -116,7 +116,7 @@ public class RV_Chinese {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		RemoteVerificationChinese rvc = new RemoteVerificationChinese();
 		rvc.softAssert();
 	}

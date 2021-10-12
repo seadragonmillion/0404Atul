@@ -28,9 +28,9 @@ public class HiRCALOPBug2 {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		fillPage(driver,text);
 		//info page: click Next button
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-controlgroup-controls ']/button[text()='next' and @type='submit']"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-controlgroup-controls ']/button[@type='submit']"))));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-controlgroup-controls ']/button[text()='next' and @type='submit']"))));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-controlgroup-controls ']/button[@type='submit']"))));
 		Thread.sleep(2000);
 		//info page:Sequence of Event: click Skip button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();

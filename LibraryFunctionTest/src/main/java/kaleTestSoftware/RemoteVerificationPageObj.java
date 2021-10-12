@@ -51,9 +51,9 @@ public class RemoteVerificationPageObj {
 	public By RVReportImage1Label = By.id("pii-rv-imgwork-photo-label");
 	public By RVReportImage2Label = By.id("pii-rv-imgperson-photo-label");
 	public By RVReportDetailsLabel = By.id("pii-rv-tab-1-4-title");
-	public By RVReportVerifierLabel = By.id("pii-rv-tab-1-5-title");
+	public By RVReportVerifierLabel = By.id("pii-rv-tab-1-5-inperson-title");
 	public By RVReportVerifierSelectedLabel = By.id("pii-rv-verifier-name-label");
-	public By RVReportVerifierSendLabel = By.id("pii-rv-tab-1-6-title");
+	public By RVReportVerifierSendLabel = By.id("pii-rv-tab-1-7r-title");
 
 
 	public By RVNewlyCreatedFirstRecord = By.xpath(".//*[@id='pii-user-home-activities-rv']/ul/li[2]/a");

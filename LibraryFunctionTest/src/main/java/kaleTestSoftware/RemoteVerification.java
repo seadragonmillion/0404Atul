@@ -80,7 +80,8 @@ public class RemoteVerification {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		//Mark read verifier email		
-		String email = selectEmail(k);
+//		String email = selectEmail(k);
+		String email = selectEmail(1);
 		um.emailMarkRead(email, driver);
 		//Clicks on Save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
@@ -202,11 +203,18 @@ public class RemoteVerification {
 
 		//Get current Time
 		long currentTime = System.currentTimeMillis();
+		
+		/*am_reduce to 1 minute
 		//Add 15 minutes to it
-		long time15 = currentTime + (15*60*1000);
+		long time15 = currentTime + (15*60*1000);*/
+		
+		//Add 1 minutes to it
+		long time15 = currentTime + (1*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
-		String EMAIL_ADDRESS = selectEmail(k);
-		String PASSWORD = "5sepkale";
+//		String EMAIL_ADDRESS = selectEmail(k);
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
+//		String PASSWORD = "5sepkale";
+		String PASSWORD = "pii@2021";
 		String INBOX_FOLDER = "INBOX";	    
 		Properties props = new Properties();
 		//Get browser name
@@ -867,8 +875,8 @@ public class RemoteVerification {
 	public void downloadRecordChrome(WebDriver driver, String verifier, String username) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
-		deleteFiles(file);	    	
+//		File file = new File("C://Users//IEUser//Downloads//reports//");
+//		deleteFiles(file);	    	
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
 		//Clicks on first newly created record
@@ -881,6 +889,7 @@ public class RemoteVerification {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(7000);
 		pdfCheck(driver,verifier,username,url);
 		for(String winHandle : driver.getWindowHandles()){
@@ -1026,7 +1035,7 @@ public class RemoteVerification {
 	public void pdfCheck(WebDriver driver, String verifier, String username, String url) throws Exception {
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Pictures//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -1035,7 +1044,7 @@ public class RemoteVerification {
 		}
 		System.out.println(results.get(0));
 		//Loads the file to check if correct data is present
-		String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+		String fileName="C://Users//mama//Pictures//"+results.get(0);
 		File oldfile = new File(fileName);
 		//Checks number of images in pdf
 		PDDocument pddoc= PDDocument.load(oldfile);

@@ -632,7 +632,9 @@ public class HiRCAChinese {
 		s4.selectByVisibleText("Chinese");
 		share2.loadingServer(driver);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Waits for loading message to disappear
@@ -730,6 +732,7 @@ public class HiRCAChinese {
 		Select s4 = new Select (dropdown1);
 		s4.selectByVisibleText("English");
 		//Clicks on save
+		share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();

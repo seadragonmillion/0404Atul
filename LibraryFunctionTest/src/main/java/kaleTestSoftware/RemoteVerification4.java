@@ -99,7 +99,7 @@ public class RemoteVerification4 {
 		softly.assertThat(detailsLabel).as("test data").isEqualTo("(4) Fill in relevant details and description of work needing verification.");
 		//verifier
 		String verifierLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerifierLabel)).getText();
-		softly.assertThat(verifierLabel).as("test data").isEqualTo("(5) Select verifier.");
+		softly.assertThat(verifierLabel).as("test data").isEqualTo("(5) Select whether this verification is:");
 		String verifierSelectedLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerifierSelectedLabel)).getText();
 		softly.assertThat(verifierSelectedLabel).as("test data").isEqualTo("Selected verifier: ");
 		//report verify title

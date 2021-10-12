@@ -50,7 +50,7 @@ public class HiRCALevel2Chinese {
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//create a new report
 		hlb2.fillUpHiRCAEventInfo(driver, text);
-		//Select 3 lops with Act of Nature
+		//Select 3 lops with Act of Nature and Yes + random options
 		List<String> lopSelected = select3LOPs(driver);
 		//Select answers for 1st lop
 		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables1 = answerLOPRelatedQuestions(driver);
@@ -63,6 +63,8 @@ public class HiRCALevel2Chinese {
 		List<String> level22ndLOP = obj3.level2List(pairOfReturnVariables2.getValue());
 		List<String> level32ndLOP = obj3.level3List(pairOfReturnVariables2.getValue()).stream().distinct().collect(Collectors.toList());
 		//Click next
+		//am_add#66
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'ui-radio')]//label[@for='efi-irca-answer-1']"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Select answers for 3rd lop
 		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables3 = answerLOPRelatedQuestions(driver);
@@ -152,10 +154,10 @@ public class HiRCALevel2Chinese {
 				//Click next
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				//2.3 to 2.8
-				Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
-				level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
-				level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
-				hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+//am_tempt		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
+//am_tempt		level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
+//am_tempt		level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
+//am_tempt		hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
 		//	}
 		}
 		if(n==1)

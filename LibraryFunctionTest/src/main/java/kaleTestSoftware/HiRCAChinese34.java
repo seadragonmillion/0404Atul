@@ -32,15 +32,15 @@ public class HiRCAChinese34 {
 		softly.assertThat(label1).as("test data").contains("促成因素:");
 		String label2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-fi']"))).getText();
 		softly.assertThat(label2).as("test data").contains("进一步调查:");
-		String label3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-ca']"))).getText();
-		softly.assertThat(label3).as("test data").contains("可能的纠正行动:");
+//		String label3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-irca-addnewcf-ca']"))).getText();
+//		softly.assertThat(label3).as("test data").contains("可能的纠正行动:");
 		//Verify placeholders
 		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cf"))).getAttribute("placeholder");
 		softly.assertThat(ph1).as("test data").contains("输入 促成因素");
 		String ph2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-fi"))).getAttribute("placeholder");
 		softly.assertThat(ph2).as("test data").contains("输入 进一步调查 (非必填)");
-		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-ca"))).getAttribute("placeholder");
-		softly.assertThat(ph3).as("test data").contains("输入 可能的纠正行动 (非必填)");
+//		String ph3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-ca"))).getAttribute("placeholder");
+//		softly.assertThat(ph3).as("test data").contains("输入 可能的纠正行动 (非必填)");
 		//Cancel button
 		String cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-addnewcf-cancel"))).getText();
 		softly.assertThat(cancel).as("test data").contains("取消");
