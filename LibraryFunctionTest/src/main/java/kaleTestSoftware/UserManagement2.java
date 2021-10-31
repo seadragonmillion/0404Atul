@@ -139,13 +139,32 @@ public class UserManagement2 {
 		WebDriverWait wait = new WebDriverWait(driver,40);
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-		//Activity		
+		//Account	
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-acct"))).click();
 		share2.loadingServer(driver);
 		//Select nothing for company id
 		Select dd = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd.selectByIndex(0);
+		// Change Group
+		share2.scrollToAPoint(driver, 600);
+			try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
+					wait.until(ExpectedConditions
+							.visibilityOfElementLocated(By.xpath("//div[@id='pii-admin-user-groups-listbox']//ul//a[text()='admin' and contains(@class,'ui-checkbox-off')]")))
+							.click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By
+							.xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']")))
+							.click();
+				} catch (Exception e) {
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By
+								.xpath("//*[contains(@id,'pii-admin-user-groups-listbox')]//a[text()='Close' and @role='button']")))
+								.click();	
+					} catch (Exception e1) {
+					}
+				}
 		//Click on save
+			share2.scrollToTop(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify error

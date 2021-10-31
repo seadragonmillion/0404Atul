@@ -50,7 +50,7 @@ public class HiRCALevel2Chinese {
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//create a new report
 		hlb2.fillUpHiRCAEventInfo(driver, text);
-		//Select 3 lops with Act of Nature and Yes + random options
+		//Select3LOPs means 1. select "Act of Nature" and "Yes + random options"
 		List<String> lopSelected = select3LOPs(driver);
 		//Select answers for 1st lop
 		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables1 = answerLOPRelatedQuestions(driver);
@@ -63,8 +63,6 @@ public class HiRCALevel2Chinese {
 		List<String> level22ndLOP = obj3.level2List(pairOfReturnVariables2.getValue());
 		List<String> level32ndLOP = obj3.level3List(pairOfReturnVariables2.getValue()).stream().distinct().collect(Collectors.toList());
 		//Click next
-		//am_add#66
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'ui-radio')]//label[@for='efi-irca-answer-1']"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Select answers for 3rd lop
 		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables3 = answerLOPRelatedQuestions(driver);
@@ -104,29 +102,33 @@ public class HiRCALevel2Chinese {
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//2.1
 		//Choose option to select
-		int n = obj.chooseRandomOption(2, 0);
+		int n = obj.chooseRandomOption(2, 0); //n=0 > Yes, n=1 > No
+		Thread.sleep(1000);
 		//Add answer to list
-		chineseStep2q21(driver);
-		level2.add(obj1.selectLevel2Answer(driver,n));
+		chineseStep2q21(driver); //chineseStep2Q21: assert pagetext, yes and no
+		Thread.sleep(5000);
+		level2.add(obj1.selectLevel2Answer(driver,n)); //chineseStep2Q21: add Yes or No answer to list
 		//Get note
-		String note = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		String note = hfl123.getNoteShowingPreviousAnswer(driver); //print chineseStep2Q21 Yes or No answer 
+		if(n==0) //n=0 > select Yes
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.17
 			hc33.chineseStepOneL317(driver, softly);
-		//	chineseStep2verify317(driver, softly);
+//			chineseStep2verify317(driver, softly);
 			level3.addAll(selectAllLevel3(driver,7));
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));
 			combined.addAll(level2);
 			combined.addAll(level3);
 			//To return the Pair of List<String> and MultiValuedMap<String,String>
-			return new MutablePair<MultiValuedMap<String,String>, List<String>>(hircaNoteLopSURE, combined);
+		return new MutablePair<MultiValuedMap<String,String>, List<String>>(hircaNoteLopSURE, combined);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		
+		/*am_tempt
 		//2.2
 		//Choose option to select
 		n = obj.chooseRandomOption(3, 0);
@@ -135,6 +137,9 @@ public class HiRCALevel2Chinese {
 		level2.add(obj1.selectLevel2Answer(driver,n));
 		//get note
 		String note1 = hfl123.getNoteShowingPreviousAnswer(driver);
+		*/
+
+		/*am_n==0 > will connect to L317
 		if(n==0)
 		{
 			//Click next
@@ -142,7 +147,7 @@ public class HiRCALevel2Chinese {
 			//Select random level 3 answers for 3.16
 			hc31.chineseStepOneL316(driver, softly);
 			level3.addAll(selectAllLevel3(driver,7));
-			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note1, level3));
+			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));
 			/*if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
 			{
 				combined.addAll(level2);
@@ -152,24 +157,67 @@ public class HiRCALevel2Chinese {
 			else
 			{*/
 				//Click next
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+//am_tempt		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				//2.3 to 2.8
 //am_tempt		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
 //am_tempt		level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
 //am_tempt		level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
 //am_tempt		hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
 		//	}
-		}
-		if(n==1)
+//		}
+		
+		if(n==1)//n==1 > select No
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			
+			//////am_added
+			//2.2
+			//Choose option to select
+			int ss = obj.chooseRandomOption(3, 0);
+			//Add answer to list
+			chineseStep2q22(driver);
+			level2.add(obj1.selectLevel2Answer(driver,ss)); //.//*[@for='efi-irca-answer-"+n+"']
+			//get note
+			String note2 = hfl123.getNoteShowingPreviousAnswer(driver);
+			if(ss==0 || ss==3) {
+				//Click next
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				
+				//Select random level 3 answers for 3.16
+				hc31.chineseStepOneL316(driver, softly);
+				level3.addAll(selectAllLevel3(driver,7));
+				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));
+			}	
+			if(ss==1) {
+				//Click next
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				//2.3 (remove 2.4-2.8)
+				Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
+				level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
+				level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
+				hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+			}
+			if(ss==2) {
+				//Click next
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				
+			//2.9 to 2.12
+			Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions29To212(driver);
+			level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
+			level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
+			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+			//////am_added
+			
+			/*am_not applicable
 			//2.3 to 2.8
 			Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
 			level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
 			level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
-			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());*/
+			}
 		}
+		/*am_no n==2
 		if(n==2)
 		{
 			//Click next
@@ -179,7 +227,8 @@ public class HiRCALevel2Chinese {
 			level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
 			level3.addAll(obj1.level3List(pairOfReturnVariables.getValue()));
 			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
-		}
+		}*/
+		
 		combined.addAll(level2);
 		combined.addAll(level3);
 		//To return the Pair of List<String> and MultiValuedMap<String,String>
@@ -204,7 +253,7 @@ public class HiRCALevel2Chinese {
 		level2.add(obj1.selectLevel2Answer(driver,n));
 		//Get note
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		if(n==0) //n==0, select Yes
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -295,7 +344,7 @@ public class HiRCALevel2Chinese {
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//2.3
 		//Choose option to select
-		int n = obj.chooseRandomOption(2, 0);
+		int n = obj.chooseRandomOption(3, 0);
 		//Add answer to list
 		chineseStep2q23(driver);
 		level2.add(obj1.selectLevel2Answer(driver,n));
@@ -311,8 +360,24 @@ public class HiRCALevel2Chinese {
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
 		}
-		else
+		if(n==1)
 		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.22
+			hc18.chineseStepOneL322(driver, softly);
+			level3.addAll(selectAllLevel3(driver,5));
+			//Join the list with the note for SURE
+			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
+		}
+		if(n==2) {
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.6
+			hc21.chineseStepOneL36(driver, softly);
+			level3.addAll(selectAllLevel3(driver,9));			
+			//Join the list with the note for SURE
+			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.22
@@ -329,8 +394,8 @@ public class HiRCALevel2Chinese {
 		}
 		else
 		{*/
-			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		//Click next
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//}
 		//2.4
 		//Choose option to select
@@ -435,6 +500,7 @@ public class HiRCALevel2Chinese {
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note5, lopOptions));			
 		}
+		
 		combined.addAll(level2);
 		combined.addAll(level3);
 		//To return the Pair of List<String> and MultiValuedMap<String,String>

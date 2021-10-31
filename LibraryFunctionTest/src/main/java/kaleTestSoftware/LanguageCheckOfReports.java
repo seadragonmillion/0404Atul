@@ -849,8 +849,8 @@ public class LanguageCheckOfReports {
 	public void downloadReportChrome(WebDriver driver, int y, WebElement element) throws Exception {
 		// deletes files in reports folder before starting to download
 //		File file = new File("C://Users//rramakrishnan//report//");
-		File file = new File("C://Users//mama//Pictures//");
-		deleteFiles(file);
+//		File file = new File("C://Users//mama//Pictures//");
+	//	deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
 		String window = driver.getWindowHandle();
 		// Clicks on download button

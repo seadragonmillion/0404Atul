@@ -2195,6 +2195,7 @@ public class UserManagement {
 		//Click on edit company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on departments collapsible
+		share2.scrollToAPoint(driver, 500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Scroll down
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-subdept-input")));

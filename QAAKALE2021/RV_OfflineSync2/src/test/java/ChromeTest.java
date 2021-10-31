@@ -1,6 +1,5 @@
 import kaleTestSoftware.*;
 import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
@@ -10,8 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
  
@@ -31,7 +28,7 @@ public class ChromeTest {
 	private String username ="jenkins";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = "https://kaleqa.error-free.com/";
+	private String url = System.getProperty("qaurl");
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Rule
@@ -49,7 +46,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-        //    driver.quit();
+            driver.quit();
         }
 	};
 			
@@ -96,55 +93,23 @@ public class ChromeTest {
 			 }catch (org.openqa.selenium.TimeoutException e)
 			  {
 				  
-			  }		
-		
-		//Deletes any previous cases if any
-		obj1.deletePreviousCase(driver, obj1.keyword1eq);
-		//Goes to KALE home page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		//Deletes any previous cases if any
-		obj1.deletePreviousCase(driver, obj1.keyword2eq);
-		//Goes to KALE home page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-		//Deletes any previous cases if any
-		obj1.deletePreviousCase(driver, obj1.keyword3eq);
-		//Goes to KALE home page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
-
-		
-		//Create case r=1 for no images, r=2 for 100 images, r=3 for 50 images
-		//No Images
-		String case1=obj1.createCaseChrome (driver, obj1.title2, obj1.keyword2eq, 1);
-		//100 Images
-		String case2=obj1.createCaseChrome (driver, obj1.title1, obj1.keyword1eq, 2);
-		//50 Images
-		String case3=obj1.createCaseChrome (driver, obj1.title3, obj1.keyword3eq, 3);
-		
-		
-		//Goes to KALE home page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+			  }
 		//Goes to Human Performance Search
 		obj1.getEquipPerformanceLink(driver);
-		//Case Q4568
+		//Case F9963
 		System.out.println("Case with only images");
-		long total1 = obj1.searchCase100(driver, obj1.keyword1eq, case2);
-		//Case Q9928		
+		long total1 = obj1.searchCase100(driver, obj1.keyword1eq, "9963");
+		//Case F7896		
 		System.out.println("Case with no images");
-		long total2 = obj1.searchCase100(driver, obj1.keyword2eq, case1);
-		//Case Q9638
+		long total2 = obj1.searchCase100(driver, obj1.keyword2eq, "7896");
+		//Case F7456
 		System.out.println("Case with 50 images and text");
-		long total3 = obj1.searchCase100(driver, obj1.keyword3eq, case3);
+		long total3 = obj1.searchCase100(driver, obj1.keyword3eq, "7456");
 		System.out.println("Total time in seconds for case with only images:"+(total1/1000));
 		System.out.println("Total time in seconds for case with no images:"+(total2/1000));
 		System.out.println("Total time in seconds for case with 50 images:"+(total3/1000));
-		
-		
-		//Store data in excel in Equipment Kale Asia
-		obj1.storeData(driver,total1,total2,total3,obj1.sheetEquipAsia);
-		//Deletes all cases
-		obj1.deleteCase(driver, case1);
-		obj1.deleteCase(driver, case2);
-		obj1.deleteCase(driver, case3);
+		//Store data in excel 
+		obj1.storeData(driver,total1,total2,total3,obj1.sheetEquipDev);
 		//Logout
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();
@@ -152,7 +117,7 @@ public class ChromeTest {
 	}
 	
 	public void afterTest() {
-		//  driver.quit();
+		  driver.quit();
 		  softly.assertAll();
 		  
 	  }

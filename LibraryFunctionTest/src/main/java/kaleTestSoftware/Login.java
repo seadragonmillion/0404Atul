@@ -122,9 +122,10 @@ public class Login {
 		} catch (org.openqa.selenium.TimeoutException t) {
 			waitForIframe(driver);
 		}
-		// Check for login warning message
+
+/*		// Check for login warning message
 		if (username.contains("chinese") == false)
-			checkForWarningMessage(driver, login);
+			checkForWarningMessage(driver, login);*/
 		return login;
 	}
 

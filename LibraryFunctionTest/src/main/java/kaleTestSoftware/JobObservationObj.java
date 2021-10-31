@@ -19,7 +19,7 @@ public class JobObservationObj {
 	public By JOPopupCancelButton = By.id("pii-joa-dialog-cancel");
 	public By JOPopupConfirmButton = By.id("pii-joa-dialog-confirmed");
 	public By JOSavedActivitiesButton = By.id("pii-joa-btn-savedactivities");
-	public By JOStep1NextButton = By.xpath(".//*[@id='pii-joa-tab-1-form']/div[5]/div/button");
+	public By JOStep1NextButton = By.xpath(".//*[@id='pii-joa-button-next");
 	//Step 1
 	public By Step1Observer = By.id("pii-joa-tab-1-observer");
 	public By Step1Location = By.id("pii-joa-tab-1-location");

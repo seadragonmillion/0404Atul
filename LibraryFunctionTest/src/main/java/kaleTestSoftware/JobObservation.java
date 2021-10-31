@@ -1090,17 +1090,17 @@ public class JobObservation {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Uploads a picture on next page in step 2
-		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/mama/Pictures/Upload/CCYC2355.JPG");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload photo same photo
-		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/mama/Pictures/Upload/CCYC2355.JPG");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2Image));
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageClearButton)).click();
 		//Re-upload different photo
-		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Desert.jpg");		
+		driver.findElement(jo.JOStep2ImageUploadButton).sendKeys("C:/Users/mama/Pictures/Upload/FPWO1503.JPG");		
 		//Clicks on rotate
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOStep2ImageRotateButton)).click();
 

@@ -137,7 +137,7 @@ public class JobObs_Sanity {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		JobObservation jo = new JobObservation();
 		jo.softAssert();
 	}

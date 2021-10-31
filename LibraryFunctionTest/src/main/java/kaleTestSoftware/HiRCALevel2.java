@@ -1304,7 +1304,7 @@ public class HiRCALevel2 {
 		Thread.sleep(1000);
 		//Get note
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		if(n==0) //n=0 > select Yes
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1318,6 +1318,8 @@ public class HiRCALevel2 {
 			//To return the Pair of List<String> and MultiValuedMap<String,String>
 			return new MutablePair<MultiValuedMap<String,String>, List<String>>(hircaNoteLopSURE, combined);
 		}
+		
+		/*
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.2
@@ -1354,18 +1356,56 @@ public class HiRCALevel2 {
 			level3.addAll(level3List(pairOfReturnVariables.getValue()));
 			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
 			}
-		}
+		}*/
 	
-		if(n==1)
+		
+		if(n==1) //n==1 > select No
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
-			//2.3 to 2.8
-			Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
-			level2.addAll(level2List(pairOfReturnVariables.getValue()));
-			level3.addAll(level3List(pairOfReturnVariables.getValue()));
-			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+			
+		//////am_added
+					//2.2
+					//Choose option to select
+					int ss = obj.chooseRandomOption(3, 0);
+					level2.add(selectLevel2Answer(driver,ss));
+					//Add answer to list
+					obj1.step2q22(driver,softly);
+					level2.add(selectLevel2Answer(driver,ss)); //.//*[@for='efi-irca-answer-"+n+"']
+					//get note
+					String note1 = hfl123.getNoteShowingPreviousAnswer(driver);
+					if(ss==0 || ss==3) { //[2.2] 0=Inattention-to detail, 3=All
+						//Click next
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+						
+						//Select random level 3 answers for 3.16
+						obj2.verify316(driver, softly);
+						level3.addAll(selectOptions(driver,7));
+						hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note1, level3));
+					}	
+					if(ss==1) { //[2.2] 1=Inadequate or incorrect rules
+						//Click next
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+						
+						//2.3 random 3 options: Incompleteness, Incorrect rules, Both
+						Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
+						level2.addAll(level2List(pairOfReturnVariables.getValue()));
+						level3.addAll(level3List(pairOfReturnVariables.getValue()));
+						hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+					}
+					if(ss==2) { //[2.2] 2=None
+						//Click next
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+						
+					//2.9 to 2.12
+					Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions29To212(driver);
+					level2.addAll(level2List(pairOfReturnVariables.getValue()));
+					level3.addAll(level3List(pairOfReturnVariables.getValue()));
+					hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
+					//////am_added
+					}
 		}
+		/* am_not applicable			
 		if(n==2)
 		{
 			//Click next
@@ -1375,13 +1415,13 @@ public class HiRCALevel2 {
 			level2.addAll(level2List(pairOfReturnVariables.getValue()));
 			level3.addAll(level3List(pairOfReturnVariables.getValue()));
 			hircaNoteLopSURE.putAll(pairOfReturnVariables.getKey());
-		}
+		}*/
 		combined.addAll(level2);
 		combined.addAll(level3);
 		//To return the Pair of List<String> and MultiValuedMap<String,String>
 		return new MutablePair<MultiValuedMap<String,String>, List<String>>(hircaNoteLopSURE, combined);
 	}
-
+	
 	public List<String> level2List(List<String>combined) throws Exception{
 
 		List<String> a = new ArrayList<String>();
@@ -1429,7 +1469,7 @@ public class HiRCALevel2 {
 		level2.add(selectLevel2Answer(driver,n));
 		//Get note
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		if(n==0) //[2.9] Yes
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1522,13 +1562,13 @@ public class HiRCALevel2 {
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//2.3
 		//Choose option to select
-		int n = obj.chooseRandomOption(2, 0);
+		int n = obj.chooseRandomOption(3, 0); 
 		//Add answer to list
 		obj1.step2q23(driver, softly);
 		level2.add(selectLevel2Answer(driver,n));
 		//Get note
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		if(n==0) //[2.3] incompleteness  
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1538,7 +1578,7 @@ public class HiRCALevel2 {
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
 		}
-		else
+		if(n==1) //[2.3] incorrect rules 
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1547,7 +1587,27 @@ public class HiRCALevel2 {
 			level3.addAll(selectOptions(driver,5));
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));				
-		}/*
+		}
+		if(n==2) //[2.3] both
+		{
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.6
+			obj2.verify36(driver, softly);
+			level3.addAll(selectOptions(driver,9));			
+			//Join the list with the note for SURE
+			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
+			//Click next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			//Select random level 3 answers for 3.22
+			obj3.verify322(driver, softly);
+			level3.addAll(selectOptions(driver,5));
+			//Join the list with the note for SURE
+			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
+		}
+		
+		
+		/*
 		if((wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-instant-rca-message"))).getText().contains("LOP 1/3"))&&(driver.getCurrentUrl().contains("kaleqa")==false))
 		{
 			combined.addAll(level2);
@@ -1567,7 +1627,7 @@ public class HiRCALevel2 {
 		level2.add(selectLevel2Answer(driver,n));
 		//Get note
 		String note1 = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		if(n==0) //[2.4] yes
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
@@ -1588,7 +1648,7 @@ public class HiRCALevel2 {
 		level2.add(selectLevel2Answer(driver,n));
 		//Get note
 		String note2 = hfl123.getNoteShowingPreviousAnswer(driver);
-		if(n==0)
+		if(n==0) //[2.5] yes
 		{
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
