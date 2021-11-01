@@ -168,7 +168,7 @@ public class EiRCAV2_7 {
 			driver.switchTo().window(winHandle);
 		}
 		Thread.sleep(1000);
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF2_HPremote.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(1000);
 		driver.close();
 		driver.switchTo().window(window);
