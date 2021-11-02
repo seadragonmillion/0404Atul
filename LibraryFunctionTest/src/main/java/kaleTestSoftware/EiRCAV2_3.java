@@ -141,7 +141,7 @@ public class EiRCAV2_3 {
 
 	public void interviews(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 40);
 		share2.scrollToElement(driver,
 				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewsTab)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewsTab)).click();
@@ -185,7 +185,7 @@ public class EiRCAV2_3 {
 				.sendKeys(text);
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column2))
-				.click();
+		.click();
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column2))
 				.sendKeys(text);

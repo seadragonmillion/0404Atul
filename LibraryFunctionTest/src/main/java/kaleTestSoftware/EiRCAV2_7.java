@@ -146,9 +146,9 @@ public class EiRCAV2_7 {
 			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//rramakrishnan//report//");
+		//File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+		//obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
@@ -160,20 +160,18 @@ public class EiRCAV2_7 {
 		//Verify download pop up
 		verifyDownloadReportPopup(driver, softly);
 		//Clicks on open pdf report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
+	//	wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
-		pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
+		//pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Thread.sleep(10000);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
-		Thread.sleep(1000);
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
-		Thread.sleep(1000);
 		driver.close();
 		driver.switchTo().window(window);
-		Thread.sleep(1000);	 
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		//Switches to the iframe
 		wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
 	}

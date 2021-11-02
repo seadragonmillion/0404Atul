@@ -510,7 +510,7 @@ public class EiRCAV2 {
 		
 		//Step2
 		List<String> symptoms = eircav3.EiRCAStep2(driver,softly);
-		//HashMap<String,String> hmStep2symptomsData = eircav6.getStep2SymptomsData(driver);
+		HashMap<String,String> hmStep2symptomsData = eircav6.getStep2SymptomsData(driver);
 		//Step 3
 		List<String> step3 = eircav4.EiRCAStep3(driver,softly,text,symptoms);
 		HashMap<String,String> hmStep3Data = eircav6.getStep3Data(driver, step3);
@@ -577,7 +577,7 @@ public class EiRCAV2 {
 		//eircav9.verifyHTMLReportSectionHeadings(driver, softly);
 		//eircav9.verifyHTMLReport(driver, softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, n, analysisAdded, step7, dcAcCfNames);
 		//Download report
-//		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
+		eircav7.downloadReport(driver, hm, softly, text, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
 		//Share report
 		eircav7.shareReport(driver, username, password, y, softly);
 		//Mark Critical
