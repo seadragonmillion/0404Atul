@@ -163,7 +163,7 @@ public class CaseSearch_Sanity {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		CaseBrowse obj = new CaseBrowse();
 		obj.softAssert();
 	}

@@ -2272,7 +2272,7 @@ public class HiRCAEvent {
 			}
 
 		}
-		//Checks if header appears
+		//Checks if footer appears
 		WebElement footer = driver.findElement(By.tagName("footer")); 
 		if(footer.isDisplayed())
 		{

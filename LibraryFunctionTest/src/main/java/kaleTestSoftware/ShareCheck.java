@@ -933,6 +933,8 @@ public class ShareCheck {
 		//Go to Activity
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.ActivityOnTopRight)).click();
+		
+		/*temp_am
 		//Error meter
 		//Click on side panel 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
@@ -943,7 +945,7 @@ public class ShareCheck {
 		//click on share button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.ShareButton)).click();
 		//share to 10 users
-		shareReportToManyUsers(driver,username,password1);
+		shareReportToManyUsers(driver,username,password1);*/
 		//HPI
 		//Click on side panel 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-hpi"))).click();

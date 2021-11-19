@@ -635,9 +635,10 @@ public class OPiRCA2 {
 
 	public void verifyErrorMessagesInfoPage(WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Click on save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
+		Thread.sleep(1000);
 		share2.verifyWarningPopupForError(driver, softly);
 		//verifyInfoPageErrorPopup(driver,softly);
 		//Verify errors

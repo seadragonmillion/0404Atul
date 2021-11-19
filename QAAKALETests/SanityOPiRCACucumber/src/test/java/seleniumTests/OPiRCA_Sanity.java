@@ -137,7 +137,7 @@ public class OPiRCA_Sanity {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+	//	driver.quit();
 		OPiRCA opirca = new OPiRCA();
 		opirca.softAssert();
 	}

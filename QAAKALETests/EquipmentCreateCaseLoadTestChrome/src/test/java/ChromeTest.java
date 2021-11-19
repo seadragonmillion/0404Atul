@@ -140,11 +140,11 @@ public class ChromeTest {
 		
 		
 		//Store data in excel in Equipment Kale Asia
-		obj1.storeData(driver,total1,total2,total3,obj1.sheetEquipAsia);
+//		obj1.storeData(driver,total1,total2,total3,obj1.sheetEquipAsia);
 		//Deletes all cases
-		obj1.deleteCase(driver, case1);
-		obj1.deleteCase(driver, case2);
-		obj1.deleteCase(driver, case3);
+//		obj1.deleteCase(driver, case1);
+//		obj1.deleteCase(driver, case2);
+//		obj1.deleteCase(driver, case3);
 		//Logout
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-signout-button"))).click();

@@ -2069,7 +2069,7 @@ public class HiRCAHumanError2 {
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
-		//1.9 question
+		//1.17 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.17] Did inadequate management by the manager contribute to this error?");
 		//Reason entry
@@ -2102,7 +2102,7 @@ public class HiRCAHumanError2 {
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
-		//1.9 question
+		//1.18 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.18] Was the error caused by incorrect rules?");
 		//Reason entry
@@ -2132,7 +2132,7 @@ public class HiRCAHumanError2 {
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
-		//1.9 question
+		//1.19 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.19] Was there a rising trend of similar errors?");
 		//Reason entry
@@ -2165,7 +2165,7 @@ public class HiRCAHumanError2 {
 		//Heading
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
 		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
-		//1.9 question
+		//1.20 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
 		softly.assertThat(q11).as("test data").contains("[1.20] Was the error contributed to by changes during jobs?");
 		//Reason entry
@@ -2184,6 +2184,7 @@ public class HiRCAHumanError2 {
 		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)).getText();
 		softly.assertThat(ans3).as("test data").contains("No");
 	}
+	
 	
 	public void verifySelections(WebDriver driver, List<String> lopOptions, SoftAssertions softly, String username, String text, MultiValuedMap<String,String>hircaNoteLopSURE,HashMap<String,String>hircaNoteLopStep4) throws Exception{
 		

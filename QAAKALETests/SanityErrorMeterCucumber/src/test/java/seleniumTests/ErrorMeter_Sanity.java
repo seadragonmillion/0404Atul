@@ -174,7 +174,7 @@ public class ErrorMeter_Sanity {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		ErrorMeter em = new ErrorMeter();
 		em.softAssert();
 	}

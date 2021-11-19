@@ -286,7 +286,7 @@ public class EiRCAV2_3 {
 				.sendKeys(text);
 		Thread.sleep(500);
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 	}
 
 	public void designDataTab(WebDriver driver, String text) throws Exception {

@@ -20,7 +20,7 @@ public class HiRCAChinese17 {
 
 	public void chineseStepOneL313 (WebDriver driver, SoftAssertions softly) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
@@ -42,8 +42,11 @@ public class HiRCAChinese17 {
 		//Click on 3.13.1 to reveal evidence entry
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1));
 		String s = ele.getAttribute("class");
-		if(s.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).click();
+			if(s.contains("ui-checkbox-on")==false)
+			{
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)));
+			}
 		Thread.sleep(1000);
 		//Evidence entry
 		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();
@@ -266,9 +269,12 @@ public class HiRCAChinese17 {
 		//Click on 3.14.1 to reveal evidence entry
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1));
 		String s = ele.getAttribute("class");
-		if(s.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).click();
-		Thread.sleep(1000);
+			if(s.contains("ui-checkbox-on")==false)
+			{
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)));
+			}
+			Thread.sleep(1000);
 		//Evidence entry
 		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();
 		softly.assertThat(ev1).as("test data").contains("支持证据");

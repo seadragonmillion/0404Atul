@@ -2483,13 +2483,14 @@ public class HiRCALevel1 {
 			}
 			//Click on Evidence Entry
 			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))));
+			Thread.sleep(1000);
 			//Verify the text
 			String lop3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/div/div"))).getText().trim();
 			System.out.println(lop3);
 			String r = lop3.replaceAll("\u00AD", "");
 			softly.assertThat(r).as("test data").isEqualTo(textEvidence(driver));
 			//Click on Evidence Entry
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))).click();
+			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/div/h4/a"))));
 			//Verify Evidence Entry text not visible
 			if(browserName.contains("safari")==false)
 			{

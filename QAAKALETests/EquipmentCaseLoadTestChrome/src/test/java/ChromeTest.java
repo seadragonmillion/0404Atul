@@ -28,7 +28,7 @@ public class ChromeTest {
 	private String username ="jenkins";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Rule
@@ -46,7 +46,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+//            driver.quit();
         }
 	};
 			
@@ -96,15 +96,15 @@ public class ChromeTest {
 			  }
 		//Goes to Human Performance Search
 		obj1.getEquipPerformanceLink(driver);
-		//Case F9963
+		//Case F9963 > am_changed to 3692
 		System.out.println("Case with only images");
-		long total1 = obj1.searchCase100(driver, obj1.keyword1eq, "9963");
-		//Case F7896		
+		long total1 = obj1.searchCase100(driver, obj1.keyword1eq, "3692");
+		//Case F7896 > am_changed to 3875		
 		System.out.println("Case with no images");
-		long total2 = obj1.searchCase100(driver, obj1.keyword2eq, "7896");
-		//Case F7456
+		long total2 = obj1.searchCase100(driver, obj1.keyword2eq, "3875");
+		//Case F7456 >am_changed to 8507
 		System.out.println("Case with 50 images and text");
-		long total3 = obj1.searchCase100(driver, obj1.keyword3eq, "7456");
+		long total3 = obj1.searchCase100(driver, obj1.keyword3eq, "8507");
 		System.out.println("Total time in seconds for case with only images:"+(total1/1000));
 		System.out.println("Total time in seconds for case with no images:"+(total2/1000));
 		System.out.println("Total time in seconds for case with 50 images:"+(total3/1000));
@@ -117,7 +117,7 @@ public class ChromeTest {
 	}
 	
 	public void afterTest() {
-		  driver.quit();
+	//	  driver.quit();
 		  softly.assertAll();
 		  
 	  }

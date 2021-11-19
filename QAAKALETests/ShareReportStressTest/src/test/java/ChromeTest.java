@@ -27,7 +27,7 @@ public class ChromeTest {
 	private String username ="jenkinsvmnonadmin";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = System.getProperty("qaurl");
+	private String url = "https://kaleqa.error-free.com/";
 	
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
@@ -44,7 +44,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+ //           driver.quit();
         }
 	};
 			
@@ -94,7 +94,7 @@ public class ChromeTest {
 	public void afterTest() throws Exception{
 
 		//Browser closes
-		driver.quit();
+//		driver.quit();
 	}
 
 }

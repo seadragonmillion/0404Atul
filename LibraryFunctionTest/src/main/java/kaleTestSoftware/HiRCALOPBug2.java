@@ -302,104 +302,104 @@ public class HiRCALOPBug2 {
 	public void makeSelections (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(reason);
 		//Click no for 2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(reason);
 		//Click no for 2.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(reason);
 		//Click no for 2.9
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(reason);
 		//Click no for 2.10
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(reason);
 		//Click no for 2.11
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(reason);
 		//Click no for 2.12
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click on trash can for 2.12
 		hc2.clickOnTrashCan(driver);
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Click on trash can for 2.11
 		hc2.clickOnTrashCan(driver);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Click on trash can for 2.10
 		hc2.clickOnTrashCan(driver);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Click on trash can for 2.9
 		hc2.clickOnTrashCan(driver);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Click on trash can for 2.2
 		hc2.clickOnTrashCan(driver);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Click on trash can for 2.1
 		hc2.clickOnTrashCan(driver);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Click next at 2.0
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 	}
 
@@ -407,6 +407,7 @@ public class HiRCALOPBug2 {
 	public void previousSelectionVerify (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Verify if 2.1 selection exists for answer No
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).getAttribute("class");
 		softly.assertThat(s).as("test data").contains("ui-radio-off");
@@ -417,7 +418,7 @@ public class HiRCALOPBug2 {
 		{
 			softly.fail("Next button enabled 2.1");
 			//Click next 2.1
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 			Thread.sleep(2000);
 			//Verify if 2.2 selection exists for answer No
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).getAttribute("class");
@@ -429,7 +430,7 @@ public class HiRCALOPBug2 {
 			{
 				softly.fail("Next button enabled 2.2");
 				//Click next 2.2
-				wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+				jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 				Thread.sleep(2000);
 				//Verify if 2.9 selection exists for answer No
 				String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).getAttribute("class");
@@ -441,7 +442,7 @@ public class HiRCALOPBug2 {
 				{
 					softly.fail("Next button enabled 2.9");
 					//Click next at 2.9
-					wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 					Thread.sleep(2000);
 					//Verify if 2.10 selection exists for answer No
 					String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).getAttribute("class");
@@ -453,7 +454,7 @@ public class HiRCALOPBug2 {
 					{
 						softly.fail("Next button enabled 2.10");
 						//Click next at 2.10
-						wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+						jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 						Thread.sleep(2000);
 						//Verify if 2.11 selection exists for answer No
 						String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).getAttribute("class");
@@ -465,7 +466,7 @@ public class HiRCALOPBug2 {
 						{
 							softly.fail("Next button enabled 2.11");
 							//Click next at 2.11
-							wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+							jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 							Thread.sleep(2000);
 							//Verify if 2.12 selection exists for answer No
 							String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).getAttribute("class");

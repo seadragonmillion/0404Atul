@@ -1960,6 +1960,7 @@ public class UserManagement {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(2000);
+		share2.scrollToTop(driver);
 		//Clicks on create group
 		driver.findElement(By.id("pii-admin-group-create")).click();
 		Thread.sleep(2000);
@@ -2518,7 +2519,8 @@ public class UserManagement {
 
 		List<String> dept1 = new ArrayList<String>();
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		//Click on deparments collapsible
+		//Click on departments collapsible
+		share2.scrollToAPoint(driver, 600);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		for (int i=2;i<=36;i++)
 		{

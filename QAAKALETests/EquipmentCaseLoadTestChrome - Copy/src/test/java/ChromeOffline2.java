@@ -43,7 +43,7 @@ public class ChromeOffline2 {
 	ShareCheckPageObj share = new ShareCheckPageObj();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
 
-	/*
+	
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
         @Override
@@ -61,7 +61,7 @@ public class ChromeOffline2 {
         protected void finished(Description description) {
   //          driver.quit();
         }
-	};*/
+	};
 		
 	@Before
 	  public void beforeTest() throws MalformedURLException, InterruptedException{
@@ -71,7 +71,8 @@ public class ChromeOffline2 {
 		System.setProperty("webdriver.chrome.driver",chrome_path);
 		
 		  ChromeOptions options = new ChromeOptions();
-			options.addArguments("user-data-dir=C:/Users/mama/AppData/Local/Google/Chrome/User Data/");
+			//options.addArguments("user-data-dir=C:/Users/mama/AppData/Local/Google/Chrome/User Data/");
+			options.addArguments("user-data-dir=C:/Users/mama/AppData/Local//Google/Chrome/User Data/");
 			options.addArguments("profile-directory=Profile 4");
 		  driver = new ChromeDriver(options);
 		  
@@ -219,86 +220,76 @@ public class ChromeOffline2 {
 //				assertEquals(driver.findElement(By.xpath("//a[contains(text(),'" + title + "')]")).isDisplayed(), true);
 				
 				//Close browser before putting wifi back
-				driver.close();
+				//driver.close();
 				
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-				//Connect wifi, insert network name
-				Runtime.getRuntime().exec("netsh wlan connect name=\"AMBO-5G\"");
-				System.setProperty("webdriver.chrome.driver",chrome_path);
-				/* 
-				ChromeOptions options = new ChromeOptions();
-					options.addArguments("user-data-dir=C:/Users/mama/AppData/Local/Google/Chrome/User Data/");
-					options.addArguments("profile-directory=Profile 4");*/
-				  driver = new ChromeDriver();
-		        Thread.sleep(5000);
-		        
-				  //Browser is maximized
-				  driver.manage().window().maximize();
-				  //Browser navigates to the KALE url
-				  driver.get(url);
-				  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-				
-				  //Login User
-					obj = new Login ();
-					login = obj.LoginUser(driver, username, password);
-					//Wait for loading message to disappear
-					share2.loadingServer(driver);
-					
-					//Switches to the iframe
-					driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
-					try{
-						if (login==1)
-						{
-							WebDriverWait wait2 = new WebDriverWait(driver,30);
-							wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-						}
-					}catch (org.openqa.selenium.TimeoutException e){
-						throw e;
-					}
-					/*
-					try{
-						//Closes server warning
-						String s1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
-						System.out.println("Wifi back syncronizing sticky: " +s1);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
-					}catch (org.openqa.selenium.TimeoutException e)
-					{
-
-					}*/
-					Thread.sleep(7000);
-					//Click on Analysis on main menu
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
-					//Click User
-					try{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-					}catch(org.openqa.selenium.UnhandledAlertException t)
-					{
-						driver.switchTo().alert().dismiss();
-					}
-			//		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
-					//Click Activity
-					wait.until(ExpectedConditions.visibilityOfElementLocated(share.ActivityOnTopRight)).click();
-					//Click on RV side panel 
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
-					share2.loadingServer(driver);
-/////////////////////////////////////////////////////////////////////////////////////////////				
-				
-				//Assert: Offline report display in Online Listing
-				softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");	
-				System.out.println("Offline report has successfully synced to online: "+s);
-//				assertEquals(driver.findElement(By.xpath("//a[contains(text(),'" + title + "')]")).isDisplayed(), true);
-				
-				//Logout User
-				Login login2 = new Login();
-				login2.logout(driver);
-				driver.manage().window().maximize();
-			}
-		
-	
-	public void afterTest() {
-		  driver.quit();
-		  softly.assertAll();
-		  
+//				
+//				//Connect wifi, insert network name
+//				Runtime.getRuntime().exec("netsh wlan connect name=\"AMBO-5G\"");
+//				System.setProperty("webdriver.chrome.driver",chrome_path);
+//				 
+//				ChromeOptions options = new ChromeOptions();
+//					options.addArguments("user-data-dir=C:/Users/mama/AppData/Local/Google/Chrome/User Data/");
+//					options.addArguments("profile-directory=Profile 4");*/
+//				  driver = new ChromeDriver();
+//		        Thread.sleep(5000);
+//		        
+//				  //Browser is maximized
+//				  driver.manage().window().maximize();
+//				  //Browser navigates to the KALE url
+//				  driver.get(url);
+//				  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//				
+//				  //Login User
+//					obj = new Login ();
+//					login = obj.LoginUser(driver, username, password);
+//					//Wait for loading message to disappear
+//					share2.loadingServer(driver);
+//					
+//					//Switches to the iframe
+//					driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
+//					try{
+//						if (login==1)
+//						{
+//							WebDriverWait wait2 = new WebDriverWait(driver,30);
+//							wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-close"))).click();
+//						}
+//					}catch (org.openqa.selenium.TimeoutException e){
+//						throw e;
+//					}
+//					Thread.sleep(7000);
+//					//Click on Analysis on main menu
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-main-menu-button-a"))).click();
+//					//Click User
+//					try{
+//						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
+//					}catch(org.openqa.selenium.UnhandledAlertException t)
+//					{
+//						driver.switchTo().alert().dismiss();
+//					}
+//					//Click Activity
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(share.ActivityOnTopRight)).click();
+//					//Click on RV side panel 
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
+//					share2.loadingServer(driver);
+///////////////////////////////////////////////////////////////////////////////////////////////				
+//				
+//				//Assert: Offline report display in Online Listing
+//				softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");	
+//				System.out.println("Offline report has successfully synced to online: "+s);
+////				assertEquals(driver.findElement(By.xpath("//a[contains(text(),'" + title + "')]")).isDisplayed(), true);
+//				
+//				//Logout User
+//				Login login2 = new Login();
+//				login2.logout(driver);
+//				driver.manage().window().maximize();
+//			}
+//		
+//	
+//	public void afterTest() {
+//		  driver.quit();
+//		  softly.assertAll();
+//		  }
 	  }
-
+	
 }

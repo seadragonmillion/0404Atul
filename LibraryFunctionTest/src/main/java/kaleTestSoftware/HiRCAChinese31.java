@@ -40,8 +40,11 @@ public class HiRCAChinese31 {
 		//Click on 3.16.1 to reveal evidence entry
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1));
 		String s1 = ele.getAttribute("class");
-		if(s1.contains("ui-checkbox-on")==false)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).click();
+			if(s1.contains("ui-checkbox-on")==false)
+			{
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)));
+			}
 		Thread.sleep(1000);
 		//Evidence entry
 		String ev1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-evidence-text-div-0']/h4/a"))).getText();

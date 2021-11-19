@@ -539,7 +539,7 @@ public class HiRCALevel2Chinese {
 	
 	public List<String> select3LOPs(WebDriver driver) throws Exception {
 
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		List<String> a = new ArrayList<String>();
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Click on Act of nature
@@ -548,6 +548,7 @@ public class HiRCALevel2Chinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		Thread.sleep(2000);
 		//Click on LOP
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
 		Thread.sleep(2000);
 		//Click on Yes
