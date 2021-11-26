@@ -1243,7 +1243,8 @@ public class HiRCALevel2 {
 		executor.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		Thread.sleep(2000);
 		share2.loadingServer(driver);		
 		if (browserName.equals("internet explorer"))
 		{
@@ -1254,7 +1255,7 @@ public class HiRCALevel2 {
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+				executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 				share2.loadingServer(driver);
 			}
 		}

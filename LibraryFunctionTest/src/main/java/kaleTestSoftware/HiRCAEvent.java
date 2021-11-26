@@ -71,20 +71,21 @@ public class HiRCAEvent {
 	public void deleteNewRecord(WebDriver driver, String recordName) throws Exception{	  
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Wait for loading message to disappear
 		HiRCA2 obj1 = new HiRCA2();
 		share2.loadingServer(driver);
 		//Clicks on new record
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on delete button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))));
 		//Verify delete popup
 		obj1.verifyDeleteReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		//Clicks on delete report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		obj1.verifyStickyDeleteReport(driver, softly, recordName);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
@@ -129,6 +130,7 @@ public class HiRCAEvent {
 	public void saveFourthReportCheckImages(WebDriver driver, String username, String password, Login obj, int f, String recordName, String reportTitle) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCA2 obj2 = new HiRCA2();
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
@@ -161,19 +163,19 @@ public class HiRCAEvent {
 		//Wait for loading message to disappear		  
 		share2.loadingServer(driver);
 		//Click on Open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
 		//Verify open pop up
 		obj2.verifyOpenReportPopup(driver, softly, recordName);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		//Clicks on open report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		//Clicks on Info tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		//Changes the event title
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-title"))).sendKeys("changed title thrice");
 		//Clicks on Save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
 		//verify the popup overflow text
 		obj2.verifySavePopupAfterRename(driver, softly);
 		//Save pop verify
@@ -1243,7 +1245,7 @@ public class HiRCAEvent {
 		//Clicks on skip button on Info Page:Sequence of Event
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.SkipButton)));
 		//Click on Act of Nature
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))));
 		//Verify the texts on the options
 		String hum_err = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div/label"))).getText();
 		System.out.println(hum_err);
@@ -1262,20 +1264,20 @@ public class HiRCAEvent {
 		Thread.sleep(1000);
 		//Click on garbage can
 		hc2.clickOnTrashCan(driver);
-
 		//Clicks on clear answers
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
 		wait1.until(ExpectedConditions.invisibilityOfElementLocated(hirca.HiRCAPopupMessage));
 		//Click on Act of Nature
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div/label"))));
 		//Enter data in reason entry
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-reason-entry"))).sendKeys(reason1);
 		//Click on next
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
 		//Clicks on Root Cause
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
+		Thread.sleep(2000);
 		//Verify the n/a in LOPs
 		String lop1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
 		System.out.println(lop1);
@@ -1293,7 +1295,7 @@ public class HiRCAEvent {
 		System.out.println(lop5);
 		softly.assertThat(lop5).as("test data").isEqualTo("n/a");
 		//Click on skip
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
 		Thread.sleep(1000);
 		//Verify the n/a in LOPs
 		String lop6 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[1]"))).getText();
@@ -1306,7 +1308,7 @@ public class HiRCAEvent {
 		System.out.println(lop8);
 		softly.assertThat(lop8).as("test data").isEqualTo("n/a");
 		//Click on skip
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
 		Thread.sleep(1000);
 		//Clicks on check boxes from top to bottom and unchecks them from bottom to top
 		//Checks the check boxes
@@ -1334,7 +1336,7 @@ public class HiRCAEvent {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[3]/td[3]/div/input"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr[2]/td[3]/div/input"))).click();
 		//Click on skip
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
 		Thread.sleep(1000);		  
 	}
 
@@ -2743,16 +2745,17 @@ public class HiRCAEvent {
 		rootCause(driver);
 		share2.scrollToTop(driver);
 		//Clicks on Save
-		driver.findElement(By.id("efi-irca-button-save")).click();
+		jse.executeScript("arguments[0].click();",driver.findElement(By.id("efi-irca-button-save")));
 		//Clicks on Save report
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))));
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-success")));
 		Thread.sleep(500);
 		//Wait for loading message
 		share2.loadingServer(driver);
 		//Clicks on Save
-		driver.findElement(By.id("efi-irca-button-save")).click();
+		jse.executeScript("arguments[0].click();",driver.findElement(By.id("efi-irca-button-save")));
+		Thread.sleep(1000);
 		//Wait for loading message
 		share2.loadingServer(driver);
 		//Clicks on Save report
@@ -2762,7 +2765,8 @@ public class HiRCAEvent {
 		Thread.sleep(1000);
 		//All changed supporting files saved successfully
 		//Clicks on Info tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))));
+		Thread.sleep(1000);
 		//Create an expected name
 		String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		String name = creationDate + "_"+username+"_"+ text184 ;

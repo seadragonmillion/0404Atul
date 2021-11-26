@@ -149,7 +149,7 @@ public class HiRCAStress {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(8000);
-		pdfCheck();
+//		pdfCheck();
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
