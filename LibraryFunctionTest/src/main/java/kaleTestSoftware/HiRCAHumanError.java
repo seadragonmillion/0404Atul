@@ -151,28 +151,7 @@ public class HiRCAHumanError {
 		softly.assertThat(ans2).as("test data").contains("Yes");
 	}
 	
-	public void stepOneq121 (WebDriver driver) throws Exception {
-
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		//Heading
-		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
-		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
-		//1.21 question
-		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
-		softly.assertThat(q11).as("test data").contains("[1.21] Was the knowledge-based error a decision error or indecision error?");
-		//Reason entry
-		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
-		softly.assertThat(reason).as("test data").contains("Reason Entry:");
-		//Reason entry place holder
-		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
-		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
-		//Answer 1
-		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
-		softly.assertThat(ans1).as("test data").contains("Decision error");
-		//Answer 2
-		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
-		softly.assertThat(ans3).as("test data").contains("Indecision error");
-	}
+	
 
 	public String selectAnswer(WebDriver driver, int x) throws Exception {
 
@@ -2318,13 +2297,15 @@ public class HiRCAHumanError {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)).click();
 		//Verify text on 1.2
-		stepOneq12(driver);
+		stepOneq12(driver);   
 		//Select an answer in Q1.2
 		String s = selectAnswer(driver,3);
 		String note = hfl123.getNoteShowingPreviousAnswer(driver);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)).click();
 		ans.add(s);
+///////////////////////////////////////////////////////////////////////////////////////////////
+		//Rule-based/Skill-based/Knowledge-based
 		if(s.contains("Rule-based"))
 		{
 			//Verify text in Q1.3
@@ -2421,9 +2402,9 @@ public class HiRCAHumanError {
 				List<String>lopOptions = selectAnswersLevel3(driver,6);	
 				level3.addAll(lopOptions);	
 				//Join the list with the note for SURE
-				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note3, lopOptions));
+				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note2, lopOptions));
 				//Join the list with the note for Step4
-				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note3, lopOptions));
+				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note2, lopOptions));
 			}
 			if(s2.equals("Yes"))
 			{
@@ -2432,87 +2413,69 @@ public class HiRCAHumanError {
 				List<String>lopOptions = selectAnswersLevel3(driver,5);	
 				level3.addAll(lopOptions);	
 				//Join the list with the note for SURE
-				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note3, lopOptions));
+				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note2, lopOptions));
 				//Join the list with the note for Step4
-				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note3, lopOptions));
+				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note2, lopOptions));
 			}
 		}
 		if(ans.get(0).equals("Knowledge-based"))
 		{
-			//3.4
+			// 3.4
 			verify34(driver);
-			//Select answers
-			Thread.sleep(1000);
-			List<String>lopOptions = selectAnswersLevel3(driver,5);
-	//Verify text in Q1.21
-	stepOneq121(driver);
-	//Select an answer in Q1.21
-	String s22 = selectAnswer(driver,2);
-	String note22 = hfl123.getNoteShowingPreviousAnswer(driver);
-	//Click next
-	wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)).click();
-	ans.add(s22);
-	if(s22.equals("Decision error"))
-	{
-		//3.18
-		verify318(driver);
-		//Select answers
-		lopOptions.addAll(selectAnswersLevel3(driver,5));
-		level3.addAll(lopOptions);	
-		//Join the list with the note for SURE
-		hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note22, lopOptions));
-		//Join the list with the note for Step4
-		hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note22, lopOptions));
-		
-	}
-		//3.16
-		verify316(driver,softly);
-		//Select answers
-		List<String>lopOptions = selectAnswersLevel3(driver,7);
-		level3.addAll(lopOptions);	
-		//Join the list with the note for SURE
-		hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note2, lopOptions));
-		//Join the list with the note for Step4
-		hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note2, lopOptions));
-	}
-	if(s2.equals("Inadequate rules"))
-	{
-		//3.6
-		verify36(driver,softly);
-		//Select answers
-		List<String>lopOptions = selectAnswersLevel3(driver,9);
-		//3.7
-		verify37(driver,softly);
-		//Select answers
-		lopOptions.addAll(selectAnswersLevel3(driver,10));
-		//3.8
-		verify38(driver,softly);
-		//Select answers
-		lopOptions.addAll(selectAnswersLevel3(driver,8));
-		//3.18
-		verify318(driver);
-		//Select answers
-		lopOptions.addAll(selectAnswersLevel3(driver,5));
-		level3.addAll(lopOptions);	
-		//Join the list with the note for SURE
-		hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note2, lopOptions));
-		//Join the list with the note for Step4
-		hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note2, lopOptions));
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-			
+			// Select answers
+			List<String> lopOptions = selectAnswersLevel3(driver, 5);
+			level3.addAll(lopOptions);
+			// Join the list with the note for SURE
+			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, lopOptions));
+			// Join the list with the note for Step4
+			hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note, lopOptions));
+			// Verify text in Q1.21
+			obj2.stepOneq121(driver, softly);
+			// Select an answer in Q1.21
+			String s22 = selectAnswer(driver, 2);
+			String note22 = hfl123.getNoteShowingPreviousAnswer(driver);
+			// Click Next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)).click();
+			ans.add(s22);
+			if (s22.equals("Decision error")) {
+				// 3.18
+				verify318(driver);
+				// Select answers
+				lopOptions.addAll(selectAnswersLevel3(driver, 5));
+				level3.addAll(lopOptions);
+				// Join the list with the note for SURE
+				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note22, lopOptions));
+				// Join the list with the note for Step4
+				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note22, lopOptions));
+			}
+			if (s22.equals("Indecision error")) {
+				obj2.verify323(driver, softly);
+				// Select answers
+				lopOptions.addAll(selectAnswersLevel3(driver, 4));
+				level3.addAll(lopOptions);
+				// Join the list with the note for SURE
+				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note22, lopOptions));
+				// Join the list with the note for Step4
+				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note22, lopOptions));
+			}
+			// Verify text in Q1.22
+			obj2.stepOneq122(driver, softly);
+			// Select an answer in Q1.22
+			String s3 = selectAnswer(driver, 2);
+			String note3 = hfl123.getNoteShowingPreviousAnswer(driver);
+			// Click Next
+			wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.NextButton)).click();
+			ans.add(s3);
+			if (s3.equals("Yes")) {
+				// Verify3.6
+				verify36(driver, softly);
+				lopOptions = selectAnswersLevel3(driver, 6);
+				level3.addAll(lopOptions);
+				// Join the list with the note for SURE
+				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note3, lopOptions));
+				// Join the list with the note for Step4
+				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note3, lopOptions));
+			}
 		}
 		if(ans.get(0).equals("Skill-based"))
 		{
@@ -2525,7 +2488,6 @@ public class HiRCAHumanError {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, lopOptions));
 			//Join the list with the note for Step4
 			hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note, lopOptions));
-		}
 		//Verify text in Q1.6
 		obj2.stepOneq16(driver,softly);
 		//Select an answer in Q1.6
@@ -2539,7 +2501,7 @@ public class HiRCAHumanError {
 			//3.15
 			verify315(driver,softly);		
 			//Select answers
-			List<String>lopOptions = selectAnswersLevel3(driver,4);
+			lopOptions = selectAnswersLevel3(driver,4);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note4, lopOptions));
@@ -2565,7 +2527,7 @@ public class HiRCAHumanError {
 		{
 			//3.9
 			obj2.verify39(driver,softly);
-			List<String>lopOptions = selectAnswersLevel3(driver,6);	
+			lopOptions = selectAnswersLevel3(driver,6);	
 			//3.10
 			obj2.verify310(driver,softly);
 			lopOptions.addAll(selectAnswersLevel3(driver,5));	
@@ -2582,7 +2544,7 @@ public class HiRCAHumanError {
 		{
 			//3.9
 			obj2.verify39(driver,softly);
-			List<String>lopOptions = selectAnswersLevel3(driver,6);
+			lopOptions = selectAnswersLevel3(driver,6);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note5, lopOptions));
@@ -2601,7 +2563,7 @@ public class HiRCAHumanError {
 		{
 			//3.2
 			obj2.verify32(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,6);	
+			lopOptions = selectAnswersLevel3(driver,6);	
 			//3.11
 			obj2.verify311(driver,softly);
 			lopOptions.addAll(selectAnswersLevel3(driver,5));	
@@ -2623,7 +2585,7 @@ public class HiRCAHumanError {
 		{
 			//3.21
 			obj2.verify321(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,4);	
+			lopOptions = selectAnswersLevel3(driver,4);	
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note7, lopOptions));
@@ -2642,7 +2604,7 @@ public class HiRCAHumanError {
 		{
 			//3.9
 			obj2.verify39(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,6);
+			lopOptions = selectAnswersLevel3(driver,6);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note8, lopOptions));
@@ -2653,7 +2615,7 @@ public class HiRCAHumanError {
 		{
 			//3.5
 			obj2.verify35(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,4);
+			lopOptions = selectAnswersLevel3(driver,4);
 			//3.9
 			obj2.verify39(driver,softly);
 			lopOptions.addAll(selectAnswersLevel3(driver,6));
@@ -2682,7 +2644,7 @@ public class HiRCAHumanError {
 		{
 			//3.3
 			obj2.verify33(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,10);
+			lopOptions = selectAnswersLevel3(driver,10);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note9, lopOptions));
@@ -2701,7 +2663,7 @@ public class HiRCAHumanError {
 		{
 			//3.2
 			obj2.verify32(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,6);	
+			lopOptions = selectAnswersLevel3(driver,6);	
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note10, lopOptions));
@@ -2710,9 +2672,9 @@ public class HiRCAHumanError {
 		}
 		if(s10.equals("No, but it is common among his peers not to conduct routine meetings"))
 		{
-			//3.2
+			//3.3
 			obj2.verify33(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,10);
+			lopOptions = selectAnswersLevel3(driver,10);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note10, lopOptions));
@@ -2732,7 +2694,7 @@ public class HiRCAHumanError {
 			//3.6
 			verify36(driver,softly);
 			//Select answers
-			List<String> lopOptions = selectAnswersLevel3(driver,9);
+			lopOptions = selectAnswersLevel3(driver,9);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note11, lopOptions));
@@ -2744,7 +2706,7 @@ public class HiRCAHumanError {
 			//3.16
 			verify316(driver,softly);		
 			//Select answers
-			List<String> lopOptions = selectAnswersLevel3(driver,7);
+			lopOptions = selectAnswersLevel3(driver,7);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note11, lopOptions));
@@ -2763,7 +2725,7 @@ public class HiRCAHumanError {
 		{
 			//3.2
 			obj2.verify32(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,6);
+			lopOptions = selectAnswersLevel3(driver,6);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note12, lopOptions));
@@ -2782,7 +2744,7 @@ public class HiRCAHumanError {
 		{
 			//3.3
 			obj2.verify33(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,10);
+			lopOptions = selectAnswersLevel3(driver,10);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note13, lopOptions));
@@ -2801,7 +2763,7 @@ public class HiRCAHumanError {
 		{
 			//3.22
 			obj2.verify322(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,5);
+			lopOptions = selectAnswersLevel3(driver,5);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note14, lopOptions));
@@ -2820,7 +2782,7 @@ public class HiRCAHumanError {
 		{
 			//3.3
 			obj2.verify33(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,10);
+			lopOptions = selectAnswersLevel3(driver,10);
 			//3.5
 			obj2.verify35(driver,softly);
 			lopOptions.addAll(selectAnswersLevel3(driver,4));
@@ -2842,16 +2804,19 @@ public class HiRCAHumanError {
 		{
 			//3.5
 			obj2.verify35(driver,softly);
-			List<String> lopOptions = selectAnswersLevel3(driver,4);
+			lopOptions = selectAnswersLevel3(driver,4);
 			level3.addAll(lopOptions);	
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note16, lopOptions));
 			//Join the list with the note for Step4
 			hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note16, lopOptions));
 		}
+		}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//Verify LOP/RC popup
 		obj3.verifyLOPRCPopup(driver,softly);
 		//Click on Root cause
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton2)).click();
 		//Verify selections made in Step 3/4/5 and report
 		obj2.verifySelections(driver, level3, softly, username, obj4.text(driver),hircaNoteLopSURE,hircaNoteLopStep4);	

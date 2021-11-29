@@ -46,6 +46,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCA2 obj1 = new HiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
 		//Verify new report pop up
@@ -56,14 +57,15 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Act of nature
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
+		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on Yes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		Thread.sleep(2000);
 		//Scroll down
 		share2.scrollToAPoint(driver, 1200);
@@ -81,7 +83,7 @@ public class HiRCALOPBug {
 		for(int i=1;i<=y;i++)
 		{
 			//Click Yes for 2.1
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 			Thread.sleep(2000);
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -95,12 +97,12 @@ public class HiRCALOPBug {
 		//Go Back to Step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))).click();
 		//Select Human error
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on Knowledge-based 1.2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -128,8 +130,7 @@ public class HiRCALOPBug {
 		Thread.sleep(2000);*/
 				
 		//Select RC from pop up
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
 		share2.scrollToTop(driver);
 		
 		/*am_Step2 upper bar is not clickable
@@ -151,15 +152,15 @@ public class HiRCALOPBug {
 		}catch(org.openqa.selenium.WebDriverException t)
 		{
 			share2.scrollToTop(driver);
-			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))));
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-1"))));
 		}
 		//Click on Act of nature
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()[contains(.,'Act of nature')]]"))));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()[contains(.,'Act of nature')]]"))));
 		//Click on Next button on Step 1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//CLick on LOP button on popup
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		
 		//Verify Step 2 page of question 2.0
@@ -204,6 +205,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCA2 obj1 = new HiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
 		//Verify new report pop up
@@ -214,12 +216,13 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Act of nature
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on Root Cause
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
+		Thread.sleep(2000);
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
@@ -227,10 +230,10 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on Yes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		Thread.sleep(2000);
 		//Scroll down
 		share2.scrollToAPoint(driver, 1200);
@@ -257,45 +260,43 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			//Click on LOP
-			JavascriptExecutor executor = (JavascriptExecutor)driver;
-			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason1);
 		//Click Yes for 2.1
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(2000);
 		//Click next
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Select L 3.17 random options
 		select317Random(driver);
 		//Click next
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason);
 		//Click no for 2.1
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason);
 		//Click no for 2.2
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		Thread.sleep(2000);
 		//Click next
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Skip 2.9
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
@@ -320,6 +321,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCA2 obj1 = new HiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
 		//Verify new report pop up
@@ -330,12 +332,12 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Act of nature
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on Root Cause
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
@@ -343,10 +345,10 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on Yes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		Thread.sleep(2000);
 		//Scroll down
 		share2.scrollToAPoint(driver, 1200);
@@ -371,22 +373,21 @@ public class HiRCALOPBug {
 		System.out.println("Option no: "+y);
 		Thread.sleep(500);
 		//Click on LOP
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Scroll to the top
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason1);
 		//Click Yes for 2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Select L 3.17 random options
 		select317Random(driver);
@@ -463,23 +464,23 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCA2 obj1 = new HiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
 		//Verify new report pop up
 		obj1.verifyNewReportPopup(driver, softly);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Go to KALE homepage
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Act of nature
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on Root Cause
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
 		//Click back
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
@@ -487,10 +488,10 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on LOP
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on Yes
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		Thread.sleep(2000);
 		//Scroll down
 		share2.scrollToAPoint(driver, 1200);
@@ -517,7 +518,7 @@ public class HiRCALOPBug {
 			System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			//Click on LOP
-			executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		}
 		//Scroll to the top
 		Thread.sleep(2000);
@@ -529,7 +530,7 @@ public class HiRCALOPBug {
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason1);
 		//Click no for 2.1
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -542,7 +543,7 @@ public class HiRCALOPBug {
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason);
 		//Click no for 2.1
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -582,6 +583,7 @@ public class HiRCALOPBug {
 	public void bugPath1KALE1947(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCA2 obj = new HiRCA2();
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
@@ -593,12 +595,12 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Human error
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on Knowledge-based 1.2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -625,39 +627,39 @@ public class HiRCALOPBug {
 		}
 		*/
 		//Select LOP from pop up
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on Yes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		Thread.sleep(2000);
 		//Select LOPs Briefings and Concurrent Check
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click yes for equipment failure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason1);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17.1 for briefings
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click yes for equipment failure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason2);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17.2 for concurrent check
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -668,10 +670,9 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
 		Thread.sleep(2000);
 		//Select error-proof design as 3rd LOP
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click modify
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -721,14 +722,14 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click yes for equipment failure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason3);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17.3 for error-proof design
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
@@ -795,6 +796,7 @@ public class HiRCALOPBug {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCA2 obj = new HiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
 		//Verify new report pop up
@@ -805,63 +807,63 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Equipment error 1.1.2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17 random
 		select317Random(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Select LOP from pop up
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on Yes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		Thread.sleep(2000);
 		//Select LOPs Briefings, Concurrent Check and Error Proof Design
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click yes for equipment failure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason1);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17.1 for briefings
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click yes for equipment failure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason2);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17.2 for concurrent check
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click yes for equipment failure
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Enter reason entry
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.ReasonEntryField)).sendKeys(hlb2.reason3);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select 3.17.3 for error proof design
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		Thread.sleep(1000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -919,6 +921,7 @@ public class HiRCALOPBug {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		HiRCALevel1 obj = new HiRCALevel1();
 		HiRCA2 obj1 = new HiRCA2();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new for new report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCANewReportButton)).click();
 		//Verify new report pop up
@@ -929,15 +932,15 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
 		hlb2.fillUpHiRCAEventInfo(driver,hlb2.text);
 		//Click on Act of Nature 1.1.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Select LOP from pop up
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		//Click on No
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-no']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-no']"))));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -949,7 +952,7 @@ public class HiRCALOPBug {
 		//Go to Step 2 Tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
 		//Click on Yes
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-yes']"))));
 		//Select number of LOPs and LOPs randomly
 		int y = selectNumberOfLOPs(driver);
 		System.out.println(y);
@@ -964,37 +967,37 @@ public class HiRCALOPBug {
 			String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.PageQuestion)).getText();
 			softly.assertThat(s1).as("test data").contains("[2.1] Did equipment failure cause LOP to fail?");
 			//Select No 2.1.2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 			Thread.sleep(2000);		
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 			Thread.sleep(2000);
 			//Select No 2.2.3
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 			Thread.sleep(2000);		
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 			Thread.sleep(2000);
 			//Select No 2.9.2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 			Thread.sleep(2000);		
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 			Thread.sleep(2000);
 			//Select No 2.10.2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 			Thread.sleep(2000);		
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 			Thread.sleep(2000);
 			//Select No 2.11.2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 			Thread.sleep(2000);		
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 			Thread.sleep(2000);
 			//Select No 2.12.2
-			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 			Thread.sleep(2000);		
 			//Click next
 			wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -1006,11 +1009,10 @@ public class HiRCALOPBug {
 		//Go to Step 2 Tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
 		//Click on No
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-no']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-lopinplace-no']"))));
 		Thread.sleep(2000);
 		//Modify
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);		
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -1052,15 +1054,15 @@ public class HiRCALOPBug {
 	public void bugKALE1846(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Create a new report with 3 LOPs, reason entry and 3.17 selections
 		createReportForbugKALE1846(driver);
 		//Go to Step 2 Tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))).click();
 		//Uncheck EPD
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click on modify
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		//Click next till 2.20
 		for (int i=1;i<=5;i++)
 		{

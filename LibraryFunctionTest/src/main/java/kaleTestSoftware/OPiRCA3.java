@@ -189,7 +189,8 @@ public class OPiRCA3 {
 		{
 			System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
 		}
-
+		
+		/*am_not applicable
 		//Verify Possible Corrective Action text not visible
 		try{
 			WebElement l = driver.findElement(By.xpath(".//*[@id='efi-opa-answers']/div["+y+"]/fieldset/div/div[2]/div[2]/div"));
@@ -213,7 +214,7 @@ public class OPiRCA3 {
 		}catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("No Possible Corrective Action text visible as the + sign for Possible Corrective Action has not been clicked");
-		}
+		}*/
 	}
 	public String verifyIfDAnswer(WebDriver driver, int y, String s1)throws Exception {
 

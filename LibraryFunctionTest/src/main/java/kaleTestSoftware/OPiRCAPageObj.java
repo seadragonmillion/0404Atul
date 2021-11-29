@@ -49,7 +49,7 @@ public class OPiRCAPageObj {
 	public By OPiRCAStep4Tab = By.id("efi-opa-tab-4");
 	public By OPiRCAStep5Tab = By.id("efi-opa-tab-5");
 	public By OPiRCAReportTab = By.id("efi-opa-tab-6");
-	public By OPiRCANextButtonAtBottomOfInfoTab = By.xpath(".//*[@id='pii-opa-event-form']/div[11]/div/button");
+	public By OPiRCANextButtonAtBottomOfInfoTab = By.xpath("//*[@id='efi-opa-answers']//button[contains(text(),'next')]");
 	public By OPiRCAAddContributingFactorButton = By.id("pii-opa-addnewcf-button");
 	public By OPiRCANewContributingFactorField = By.id("pii-opa-addnewcf-cf");
 	public By OPiRCAAddContributingFactorSaveButton = By.id("pii-opa-addnewcf-save");

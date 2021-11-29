@@ -1699,6 +1699,72 @@ public class HiRCAHumanError2 {
 		share2.scrollToTop(driver);
 	}
 	
+	public void verify323 (WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		//question
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-question"))).getText();
+		softly.assertThat(heading).as("test data").contains("Knowledge-Based Indecision Errors");
+		//text under description 
+		String textD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[1]"))).getText();
+		softly.assertThat(textD).as("test data").contains("If not applicable, click \"skip\". User can also add new contributing factor at the end of the page.");
+		//3.23.1 question
+		String q3231 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-0']"))).getText();
+		softly.assertThat(q3231).as("test data").contains("[3.23.1] Complacency: (1) Happy with the status quo");
+		//2nd collapsible for 3.23.1
+		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+		softly.assertThat(c1).as("test data").contains("Further Investigation");
+		//Click on 2nd collapsible for 3.23.1
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/h4/a"))));
+		//text inside
+		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[2]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
+		softly.assertThat(c2).as("test data").contains("Is the decision-maker happy with the status quo");
+		
+		
+		//3.23.2 question
+		String q3232 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-1']"))).getText();
+		softly.assertThat(q3232).as("test data").contains("[3.23.2] Laziness: (1) Making many excuses");
+		//2nd collapsible for 3.23.2
+		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+		softly.assertThat(c4).as("test data").contains("Further Investigation");
+		//Click on 2nd collapsible for 3.22.2
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/h4/a"))));
+		//text inside
+		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[3]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+		softly.assertThat(c5).as("test data").contains("Is the decision-maker one who tends to");
+		
+		
+		//3.23.3 question
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer3)));
+		String q3233 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).getText();
+		softly.assertThat(q3233).as("test data").contains("[3.23.3] Ignorance: (1) Isolated from information");
+		//2nd collapsible for 3.23.3
+		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+		softly.assertThat(c7).as("test data").contains("Further Investigation");
+		//Click on 2nd collapsible for 3.23.3
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/h4/a"))));
+		//text inside
+		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
+		softly.assertThat(c8).as("test data").contains("threat (SWOT) to initiate decisions?");
+
+		
+		//3.23.4 question
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer4)));
+		String q3234 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-3']"))).getText();
+		softly.assertThat(q3234).as("test data").contains("[3.23.4] Fear: (1) Fear of failure, (2) Fear of being different");
+		//2nd collapsible for 3.23.4
+		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+		softly.assertThat(c13).as("test data").contains("Further Investigation");
+		//Click on 2nd collapsible for 3.23.4
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/h4/a"))));
+		//text inside
+		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
+		softly.assertThat(c14).as("test data").contains("Is the decision-maker one who tends to think he is about to be humiliated");
+		share2.scrollToTop(driver);
+	}
+	
+	
 	public void stepOneq16 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -2185,6 +2251,51 @@ public class HiRCAHumanError2 {
 		softly.assertThat(ans3).as("test data").contains("No");
 	}
 	
+	public void stepOneq121 (WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Heading
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
+		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
+		//1.21 question
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
+		softly.assertThat(q11).as("test data").contains("[1.21] Was the knowledge-based error a decision error or indecision error?");
+		//Reason entry
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
+		softly.assertThat(reason).as("test data").contains("Reason Entry:");
+		//Reason entry place holder
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
+		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		//Answer 1
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
+		softly.assertThat(ans1).as("test data").contains("Decision error");
+		//Answer 2
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
+		softly.assertThat(ans3).as("test data").contains("Indecision error");
+	}
+	
+	public void stepOneq122 (WebDriver driver, SoftAssertions softly) throws Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		//Heading
+		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageTitle)).getText();		
+		softly.assertThat(heading).as("test data").contains("Step 1: Root Cause Investigation Component");
+		//1.22 question
+		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();		
+		softly.assertThat(q11).as("test data").contains("[1.22] Could this error be prevented by providing a decision guideline?");
+		//Reason entry
+		String reason = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryLabel)).getText();		
+		softly.assertThat(reason).as("test data").contains("Reason Entry:");
+		//Reason entry place holder
+		String ph1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.ReasonEntryField)).getAttribute("placeholder");
+		softly.assertThat(ph1).as("test data").contains("Optionally enter the reason of your selection");
+		//Answer 1
+		String ans1 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer1)).getText();		
+		softly.assertThat(ans1).as("test data").contains("Yes");
+		//Answer 2
+		String ans3 = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.Answer2)).getText();
+		softly.assertThat(ans3).as("test data").contains("No");
+	}
 	
 	public void verifySelections(WebDriver driver, List<String> lopOptions, SoftAssertions softly, String username, String text, MultiValuedMap<String,String>hircaNoteLopSURE,HashMap<String,String>hircaNoteLopStep4) throws Exception{
 		
