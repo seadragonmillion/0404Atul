@@ -58,7 +58,7 @@ public class OPiRCAChineseTest {
 			throw e;
 		}
 	}
-
+//
 	@When("she changes language to chinese")
 	public void she_changes_language_to_chinese() throws Exception {
 		HiRCAChinese hc = new HiRCAChinese();
