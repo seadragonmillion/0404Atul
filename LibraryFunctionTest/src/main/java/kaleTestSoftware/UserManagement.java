@@ -2255,6 +2255,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
 		driver.findElement(By.id("pii-admin-user-password")).sendKeys(obj.decodePassword(password));
 		driver.findElement(By.id("pii-admin-user-password-again")).sendKeys(obj.decodePassword(password));
+		share2.scrollToAPoint(driver, 500);
 		driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
 		driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
 		String ev1 = driver.findElement(By.id("pii-admin-user-name")).getAttribute("value");

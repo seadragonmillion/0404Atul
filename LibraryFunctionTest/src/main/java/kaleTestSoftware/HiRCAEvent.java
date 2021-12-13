@@ -1645,8 +1645,9 @@ public class HiRCAEvent {
 		}
 		//Delete 3rd image
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-remove-2"))));
+		Thread.sleep(1000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 		//Click on attach another file
 		Thread.sleep(2000);
 		WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
