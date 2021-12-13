@@ -160,9 +160,6 @@ public class ChromeOffline1 {
 							add.click();
 						}*/
 					}
-			
-				
-				
 				//Upload photo (3) Take or choose a photo of the person requesting verification.
 				JavascriptExecutor jse = (JavascriptExecutor)driver;
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
@@ -204,8 +201,6 @@ public class ChromeOffline1 {
 				softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");	
 				System.out.println(s);
 //				assertEquals(driver.findElement(By.xpath("//a[contains(text(),'" + title + "')]")).isDisplayed(), true);
-				
-				
 				//Connect wifi, insert network name
 				Runtime.getRuntime().exec("netsh wlan connect name=\"AMBO-5G\"");
 				//Assert: Confirm online syncing sticky and print and close

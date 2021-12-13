@@ -47,6 +47,7 @@ public class OPiRCA {
 	TextBoxResizing tbr = new TextBoxResizing ();
 	ShareCheck2 share2 = new ShareCheck2();
 	ErrorMeter3 em3 = new ErrorMeter3 ();
+	public String text = "Enter some text <title>here";
 
 	public void deleteNewRecord(WebDriver driver,String recordName, int y) throws Exception{
 
@@ -106,7 +107,6 @@ public class OPiRCA {
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoPageTitle)).getText().trim();
 			softly.assertThat(s).as("test data").contains("Step 1");
 		}
-		////
 		if(n==1)
 		{
 			//Click on Step 2
@@ -195,6 +195,8 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
+		System.out.println("Print before pdfCheck before downloadReportChrome");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		pdfCheck(hircaNewList,apparentCausesNew,apparentCausesAnswersNew,hml,options,step2);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -824,26 +826,6 @@ public class OPiRCA {
 		//3.22
 		List<String> l322= new ArrayList<>(Arrays.asList("OP2: Inadequate performance monitoring and trending","OP3: Inadequate self evaluation or assessment","P4: Inadequate clarity or incorrectness"));
 		map.put("3.22 Incorrect Rules", l322);
-		//3.23
-		List<String> l323= new ArrayList<>(Arrays.asList("O5: Inadequate individual skills, rule use, or knowledge"));
-		map.put("3.23 Knowledge-Based Indecision Errors", l323);
-		//3.24
-		map.put("3.24 Contributing factor for ineffective risk analysis", l323);
-		//3.25
-		map.put("3.25 Contributing factor for inadequate risk analysis", l323);
-		//3.26
-		List<String> l326= new ArrayList<>(Arrays.asList("P1: Omission of program"));
-		map.put("3.26 Contributing factor for needed information not collected", l326);
-		//3.27
-		map.put("3.27 Contributing factor for misuse of information in decision-making", l323);
-		//3.28
-		map.put("3.28 Contributing factor for lack of prediction analysis", l326);
-		//3.29
-		map.put("3.29 Contributing factor for invalid prediction analysis", l323);
-		//3.30
-		map.put("3.30 Contributing factor for right choice omitted", l326);
-		//3.31
-		map.put("3.31 Contributing factor for right choice not selected", l323);
 		return map;
 	}
 
@@ -868,7 +850,7 @@ public class OPiRCA {
 		List<String> hircaNewList = new ArrayList<String>(hircaL3);
 		//Click on Step 1 tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep1Tab)).click();
-		System.out.println(hircaL3.size());
+		System.out.println("PrintOut Step1 dropdown size" + hircaL3.size());
 		if(hircaL3.size()<=0)
 		{
 			return hircaNewList;
@@ -1390,214 +1372,300 @@ public class OPiRCA {
 	public HashMap<String,String> markHML(WebDriver driver,HashMap<String,Integer>options,List<String>apparentCausesAnswersNew,List<String>apparentCausesForStep3_modified,List<String> rootCauses,List<String> contributingFactors) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		//Hashmap for storing HML for root cause and contributing factors
+		HashMap<String,String> hml= new HashMap<String,String>();
 		//Verify title
 		String title = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.PageTitle)).getText().trim();
 		softly.assertThat(title).as("test data").contains("Step 4 - Level of Importance Attribution For Root Causes & Contributing Factors");
-		//Hashmap for storing HML for root cause and contributing factors
-		HashMap<String,String> hml= new HashMap<String,String>();
-		//No Level 3 selected then return
-		if(apparentCausesAnswersNew.size()==0)
-		{
-			System.out.println("No root causes or contributing factors");
-			return hml;
-		}
-/////////////////////////////////////////////////////////////////////////
-		//Step4: Count number of {Root Cause} and {Contributing Factors} radio clicks
 		//Get number of Root causes in Level 3 answers
-		int count = options.get("Root causes");
-		System.out.println("No of root causes (count):"+count);
-		//Gets number of contributing factors
-		int count1 = apparentCausesAnswersNew.size()-count;
-		System.out.println("No of contributing factors (count1):"+count1);		
-/////////////////////////////////////////////////////////////////////////
-		//tr starts at 2 and each root cause has 4 four rows
-		int i=2;
-		//check order of root cause
-		op2.verifyOrderOfRootCausesContributingFactorsInStep4(driver, rootCauses, softly, count, i, 1, 1,3);
-		//Verify if any root causes are appearing
-		//while(i<=((count*3)+1))    // 2<=19
-		while(i!=2)    // 2<=19
-		{
-			//Get name of level 3 answer
-			/*
-			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();*/
-			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("	//*[contains(text(),'STEP 1') or contains(text(),'STEP 2')]"))).getText().trim();
-			System.out.println("print level3 all String #1404:  " +"\n" +level3);
-			//Remove the 1st : from level 3
-			//Remove first appearing : and store in list
-			int m = level3.indexOf(":");
-			String s2 = level3.substring(0, m)+level3.substring(m+1, level3.length());
-		   System.out.println("print level3 all String after trim #1409:  " +"\n"+s2);
-			/*
-		   //Verify if this level 3 answer was selected
-			if(apparentCausesAnswersNew.contains(s2)==false)
-			{
-				softly.fail("Apparent Cause Answer is not suppose to be here: "+level3);
-			}
-			//Check if it has 4 boxes ticked
-			if(!options.isEmpty() && options.get(level3)!=4)
-			{
-				softly.fail("Not all four boxes are ticked, only some are: "+ options.get(level3));
-			}*/
-///////////////////////////////////////////////////////////////////////////
-			//Step4: Check if {Root Cause} radio click display as count
-			//Check if Apparent Cause answer is root cause
-			/*
-			String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div/input"))).getAttribute("checked");*/
-			
-			String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("*//div[@class='ui-radio']/label[text()='R']/following-sibling::input"))).getAttribute("checked");
-			softly.assertThat(lop1).as("test data").isEqualTo("true");
-			/*
-			//Check if Apparent Cause answer is not a contributing factor
-			String lop4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("disabled");
-			softly.assertThat(lop4).as("test data").isEqualTo("true");
-			
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
-			//Scroll to element
-			share2.scrollToElement(driver, ele);*/
-////////////////////////////////////////////////////////////////////////////////////			
-			//Select a number between 0 to 3 for H,M,L
-			Random random =new Random();
-			int y=random.nextInt(4);
-			System.out.println("print y value #1441:  " +y);
-			if(y==1)
-			{
-				//Click on H
-				// //*[@id="efi-opa-answers"]/table[1]/tbody/tr[2]/td[3]/fieldset/div/div[2]/label
-				// /html/body/section[16]/article/div[8]/table[1]/tbody/tr[2]/td[3]/fieldset/div/div[2]/label
-				
-				///html/body/section[16]/article/div[8]/table[2]/tbody/tr[2]/td[3]/fieldset/div/div[2]/label
-				///html/body/section[16]/article/div[8]/table[3]/tbody/tr[2]/td[3]/fieldset/div/div[2]/label
-				///html/body/section[16]/article/div[8]/table[3]/tbody/tr[6]/td[3]/fieldset/div/div[2]/label
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
-				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
-				softly.assertThat(lop2).as("test data").isEqualTo("H");
-				//Insert in hashmap answer and hml
-				hml.put(s2, "High");
-			}
-			if(y==2)
-			{
-				//Click on M
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
-				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
-				softly.assertThat(lop2).as("test data").isEqualTo("M");
-				//Insert in hashmap answer and hml
-				hml.put(s2, "Medium");
-			}
-			if(y==3)
-			{
-				//Click on L
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
-				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
-				softly.assertThat(lop2).as("test data").isEqualTo("L");
-				//Insert in hashmap answer and hml
-				hml.put(s2, "Low");
-			}
-			if(y==0)
-			{
-				//Insert in hashmap answer and hml
-				hml.put(s2, "");
-			}
-			//Increase i for extra root cause text boxes
-			i=i+1;
-			//Increase i for changing corrective actions
-			i=i+1;
-			//tbr.sizeCheck(driver, By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td/textarea"),softly);
-			//Increase i for next root cause
-			i=i+1;
-		}
-		//Verifies if any contributing factors
-		//tr starts at 2 and each root cause has 4 four rows
-		int start = i-1;
-		//check order of contributing factors
-		op2.verifyOrderOfRootCausesContributingFactorsInStep4(driver, contributingFactors, softly, count1, i, 0, start,2);
-		//Verify if any contributing factors are appearing
-		System.out.println("print count1 before whileloop #1480: " + count1);
-		System.out.println("print start before whileloop #1480: " + start);
-		//while(i<=((count1*2)+start))
-		while(i<0)
-		{
-			//Get name of level 3 answer
-			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
-			//Remove the 1st : from level 3
-			//Remove first appearing : and store in list
-			int m = level3.indexOf(":");
-			String s2 = level3.substring(0, m)+level3.substring(m+1, level3.length());
-			//Verify if this level 3 answer was selected
-			if(apparentCausesAnswersNew.contains(s2)==false)
-			{
-				softly.fail("Level 3 is not suppose to be here: "+s2);
-			}
-			//Check if it has 4 boxes ticked
-			if(!options.isEmpty() && options.get(level3)>3)
-			{
-				softly.fail("All four boxes are ticked"+ options.get(level3));
-			}
-			//Check if Level 3 is contributing factors
-			String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
-			softly.assertThat(lop1).as("test data").isEqualTo("true");
-			//Check if Level 3 is not a root cause
-			String lop4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div/input"))).getAttribute("disabled");
-			softly.assertThat(lop4).as("test data").isEqualTo("true");
-			//HML random select
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
-			//Scroll to element
-			share2.scrollToElement(driver, ele);
-			//Select a number between 0 to 3 for H,M,L
-			Random random =new Random();
-			int y=random.nextInt(4);
-			System.out.println("pring y #1513: " +y);
-			if(y==1)
-			{
-				//Click on H
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
-				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
-				softly.assertThat(lop2).as("test data").isEqualTo("H");
-				//Insert in hashmap answer and hml
-				hml.put(s2, "High");
-			}
-			if(y==2)
-			{
-				//Click on M
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
-				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
-				softly.assertThat(lop2).as("test data").isEqualTo("M");
-				//Insert in hashmap answer and hml
-				hml.put(s2, "Medium");
-			}
-			if(y==3)
-			{
-				//Click on L
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
-				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
-				softly.assertThat(lop2).as("test data").isEqualTo("L");
-				//Insert in hashmap answer and hml
-				hml.put(s2, "Low");
-			}
-			if(y==0)
-			{
-				//Insert in hashmap answer and hml
-				hml.put(s2, "");
-			}
-			//Increase i for changing corrective actions
-			i=i+1;
-			tbr.sizeCheck(driver, By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td/textarea"),softly);
-			//Increase i for next contributing factor
-			i=i+1;
-		}
-		//Scroll up
-		share2.scrollToTop(driver);
-		Thread.sleep(2000);
-		share2.scrollToTop(driver);
-		Thread.sleep(2000);
-		return hml;
+				int count = options.get("Root causes");
+				System.out.println("No of root causes:"+count);
+				//Gets number of contributing factors
+				int count1 = apparentCausesAnswersNew.size()-count;
+				System.out.println("No of contributing factors:"+count1);		
+				//tr starts at 2 and each root cause has 4 four rows
+				int i=2;
+				//Verify if any root causes are appearing
+				while(i<=((count*3)+1))
+				{
+					//HML random select
+					WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
+					//Scroll to element
+					share2.scrollToElement(driver, ele);
+					//Select a number between 0 to 3 for H,M,L
+					Random random =new Random();
+					int y=random.nextInt(4);
+					if(y!=0)
+					{
+						//Click on H/M/L
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						if(y==1)
+							hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "H");
+						if(y==2)
+							hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "M");
+						if(y==3)
+							hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "L");
+					}
+					else
+						hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "");
+					//Increase i for extra root cause text boxes
+					i=i+1;
+					//Enter text in 1st box Extent of condition
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).sendKeys(text);
+					//Enter text in 2nd box Operating Experience
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[2]"))).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[2]"))).sendKeys(text);
+					//Enter text in 3rd box Safety Culture
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[3]"))).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[3]"))).sendKeys(text);
+					//Increase i for corrective actions
+					i=i+1;
+					//Enter text in corrective actions
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).sendKeys(text);
+					//Increase i for next root cause
+					i=i+1;
+				}
+				//Verifies if any contributing factors
+				//tr starts at 2 and each root cause has 4 four rows
+				int start = i-1;
+				//Verify if any contributing factors are appearing
+				while(i<=((count1*2)+start))
+				{
+					//HML random select
+					WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
+					//Scroll to element
+					share2.scrollToElement(driver, ele);
+					//Select a number between 0 to 3 for H,M,L
+					Random random =new Random();
+					int y=random.nextInt(4);
+					if(y!=0)
+					{
+						//Click on H/M/L
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						if(y==1)
+							hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "H");
+						if(y==2)
+							hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "M");
+						if(y==3)
+							hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "L");
+					}
+					else
+						hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "");
+					//Increase i for changing corrective actions
+					i=i+1;
+					//Enter text in corrective actions
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).clear();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).sendKeys(text);
+					//Increase i for next contributing factor
+					i=i+1;
+				}
+				//Scroll up
+				share2.scrollToTop(driver);
+				share2.scrollToTop(driver);
+				System.out.println(hml);
+				return hml;
 	}
+//		//Hashmap for storing HML for root cause and contributing factors
+//		HashMap<String,String> hml= new HashMap<String,String>();
+//		//No Level 3 selected then return
+//		if(apparentCausesAnswersNew.size()==0)
+//		{
+//			System.out.println("No root causes or contributing factors");
+//			return hml;
+//		}
+///////////////////////////////////////////////////////////////////////////
+//		//Step4: Count number of {Root Cause} and {Contributing Factors} radio clicks
+//		//Get number of Root causes in Level 3 answers
+//		int count = options.get("Root causes");
+//		System.out.println("No of root causes (count):"+count);
+//		//Gets number of contributing factors
+//		int count1 = apparentCausesAnswersNew.size()-count;
+//		System.out.println("No of contributing factors (count1):"+count1);		
+///////////////////////////////////////////////////////////////////////////
+//		//tr starts at 2 and each root cause has 4 four rows
+//		int i=2;
+//		//check order of root cause
+//		op2.verifyOrderOfRootCausesContributingFactorsInStep4(driver, rootCauses, softly, count, i, 1, 1,3);
+//		//Verify if any root causes are appearing
+//		while(i<=((count*3)+1))    // 2<=19
+////		while(i!=2)    // 2<=19
+//		{
+//			//Get name of level 3 answer
+//			
+//			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
+////			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("	//*[contains(text(),'STEP 1') or contains(text(),'STEP 2')]"))).getText().trim();
+//			System.out.println("print level3 all String #1404:  " +"\n" +level3);
+//			//Remove the 1st : from level 3
+//			//Remove first appearing : and store in list
+//			int m = level3.indexOf(":");
+//			String s2 = level3.substring(0, m)+level3.substring(m+1, level3.length());
+//		   System.out.println("print level3 all String after trim #1409:  " +"\n"+s2);
+//			
+//		   //Verify if this level 3 answer was selected
+//			if(apparentCausesAnswersNew.contains(s2)==false)
+//			{
+//				softly.fail("Apparent Cause Answer is not suppose to be here: "+level3);
+//			}
+//			//Check if it has 4 boxes ticked
+//			if(!options.isEmpty() && options.get(level3)!=4)
+//			{
+//				softly.fail("Not all four boxes are ticked, only some are: "+ options.get(level3));
+//			}
+/////////////////////////////////////////////////////////////////////////////
+//			//Step4: Check if {Root Cause} radio click display as count
+//			//Check if Apparent Cause answer is root cause
+//			
+//			String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div/input"))).getAttribute("checked");
+//			
+////			String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("*//div[@class='ui-radio']/label[text()='R']/following-sibling::input"))).getAttribute("checked");
+//			softly.assertThat(lop1).as("test data").isEqualTo("true");
+//			
+//			//Check if Apparent Cause answer is not a contributing factor
+//			String lop4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("disabled");
+//			softly.assertThat(lop4).as("test data").isEqualTo("true");
+//			
+//			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
+//			//Scroll to element
+//			share2.scrollToElement(driver, ele);
+//////////////////////////////////////////////////////////////////////////////////////			
+//			//Select a number between 0 to 3 for H,M,L
+//			Random random =new Random();
+//			int y=random.nextInt(4);
+//			System.out.println("print y value #1441:  " +y);
+//			if(y==1)
+//			{
+//				//Click on H
+//				JavascriptExecutor executor = (JavascriptExecutor)driver;
+//				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+//				softly.assertThat(lop2).as("test data").isEqualTo("H");
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "High");
+//			}
+//			if(y==2)
+//			{
+//				//Click on M
+//				JavascriptExecutor executor = (JavascriptExecutor)driver;
+//				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+//				softly.assertThat(lop2).as("test data").isEqualTo("M");
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "Medium");
+//			}
+//			if(y==3)
+//			{
+//				//Click on L
+//				JavascriptExecutor executor = (JavascriptExecutor)driver;
+//				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+//				softly.assertThat(lop2).as("test data").isEqualTo("L");
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "Low");
+//			}
+//			if(y==0)
+//			{
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "");
+//			}
+//			//Increase i for extra root cause text boxes
+//			i=i+1;
+//			//Increase i for changing corrective actions
+//			i=i+1;
+//			//tbr.sizeCheck(driver, By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td/textarea"),softly);
+//			//Increase i for next root cause
+//			i=i+1;
+//		}
+//		//Verifies if any contributing factors
+//		//tr starts at 2 and each root cause has 4 four rows
+//		int start = i-1;
+//		//check order of contributing factors
+//		op2.verifyOrderOfRootCausesContributingFactorsInStep4(driver, contributingFactors, softly, count1, i, 0, start,2);
+//		//Verify if any contributing factors are appearing
+//		System.out.println("print count1 before whileloop #1480: " + count1);
+//		System.out.println("print start before whileloop #1480: " + start);
+//		//while(i<=((count1*2)+start))
+//		while(i<0)
+//		{
+//			//Get name of level 3 answer
+//			String level3=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText().trim();
+//			//Remove the 1st : from level 3
+//			//Remove first appearing : and store in list
+//			int m = level3.indexOf(":");
+//			String s2 = level3.substring(0, m)+level3.substring(m+1, level3.length());
+//			//Verify if this level 3 answer was selected
+//			if(apparentCausesAnswersNew.contains(s2)==false)
+//			{
+//				softly.fail("Level 3 is not suppose to be here: "+s2);
+//			}
+//			//Check if it has 4 boxes ticked
+//			if(!options.isEmpty() && options.get(level3)>3)
+//			{
+//				softly.fail("All four boxes are ticked"+ options.get(level3));
+//			}
+//			//Check if Level 3 is contributing factors
+//			String lop1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div[2]/input"))).getAttribute("checked");
+//			softly.assertThat(lop1).as("test data").isEqualTo("true");
+//			//Check if Level 3 is not a root cause
+//			String lop4=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[2]/fieldset/div/div/input"))).getAttribute("disabled");
+//			softly.assertThat(lop4).as("test data").isEqualTo("true");
+//			//HML random select
+//			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]")));
+//			//Scroll to element
+//			share2.scrollToElement(driver, ele);
+//			//Select a number between 0 to 3 for H,M,L
+//			Random random =new Random();
+//			int y=random.nextInt(4);
+//			System.out.println("pring y #1513: " +y);
+//			if(y==1)
+//			{
+//				//Click on H
+//				JavascriptExecutor executor = (JavascriptExecutor)driver;
+//				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+//				softly.assertThat(lop2).as("test data").isEqualTo("H");
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "High");
+//			}
+//			if(y==2)
+//			{
+//				//Click on M
+//				JavascriptExecutor executor = (JavascriptExecutor)driver;
+//				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+//				softly.assertThat(lop2).as("test data").isEqualTo("M");
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "Medium");
+//			}
+//			if(y==3)
+//			{
+//				//Click on L
+//				JavascriptExecutor executor = (JavascriptExecutor)driver;
+//				executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//				String lop2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/input"))).getAttribute("piivalue");
+//				softly.assertThat(lop2).as("test data").isEqualTo("L");
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "Low");
+//			}
+//			if(y==0)
+//			{
+//				//Insert in hashmap answer and hml
+//				hml.put(s2, "");
+//			}
+//			//Increase i for changing corrective actions
+//			i=i+1;
+//			tbr.sizeCheck(driver, By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td/textarea"),softly);
+//			//Increase i for next contributing factor
+//			i=i+1;
+//		}
+//		//Scroll up
+//		share2.scrollToTop(driver);
+//		Thread.sleep(2000);
+//		share2.scrollToTop(driver);
+//		Thread.sleep(2000);
+//		return hml;
+//		
 
 	public List<String> changeApparentCausesListWithoutSerialNumber (List<String> apparentCausesNew) throws Exception{
 
@@ -1748,7 +1816,7 @@ public class OPiRCA {
 		List<String> step2QuestionAnswers = op2.step2QuestionsAnswersOnly(step2);
 		//List of apparent causes selected under Step 2
 		List<String> step2ApparentCausesAnswers = op2.step2ApparentCausesAnswersOnly(step2);
-		System.out.println(step2ApparentCausesAnswers);
+		System.out.println("PrintOutStep2ApparentCausesAnswers"+  step2ApparentCausesAnswers);
 		//Combine Apparent causes selected under step1 and step 2 for veryfing in step 3/4 and reports
 		List<String> apparentCausesForStep3 = op2.combineApparentCausesFromStep1AndStep2(apparentCausesAnswers, step2ApparentCausesAnswers);
 		//Verify apparent causes selections in Step 3

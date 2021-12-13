@@ -15,6 +15,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -977,6 +978,7 @@ public class ErrorMeter {
 		em3.errorMeterFillFirstPage(driver,softly);
 		String text = em2.error0Data(driver,driver.getCurrentUrl());
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Closes any warning from server
 		Login obj1 = new Login();
 		obj1.closePopUpSticky(driver);
@@ -986,30 +988,31 @@ public class ErrorMeter {
 		String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
 		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");*/
 		//Clicks on checkboxes in Time Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
 		Thread.sleep(500);
+		/*
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
-
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);*/
 		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(500);
+		/*
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);*/
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 		Thread.sleep(500);
+		/*
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);*/
 		
 		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);

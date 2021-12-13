@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,7 @@ public class OPiRCAChinese {
 	public void OPiRCApath (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCAChinese2 obj2 = new OPiRCAChinese2(); 
 		HiRCALevel1 obj4 = new HiRCALevel1();
 		OPiRCA2 obj6 = new OPiRCA2();
@@ -38,7 +40,7 @@ public class OPiRCAChinese {
 		//Scroll down
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Scroll top
 		share2.scrollToTop(driver);	 
 		ccf.verifyChineseButtonsInfoTabOPiRCA(driver, softly);
@@ -50,6 +52,8 @@ public class OPiRCAChinese {
 		//Create a new OPiRCA report 
 		chineseEventInfoFill(driver, eirca2.textCreate1());
 		Thread.sleep(2000);
+		//Click Skip button for Sequence of Event
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)));
 		//Verify step 1
 		chineseOPiRCAStep1(driver);
 		ccf.verifyChineseButtonsInBetweenTabsOPiRCA(driver, softly);
@@ -984,6 +988,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -993,13 +998,14 @@ public class OPiRCAChinese {
 		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text2)).getText();
 		softly.assertThat(c23).as("test data").contains("开展Error-Free");
 		softly.assertThat(c23).as("test data").contains("工作流程优化的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//P5.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[P5.2] 没有对程序步骤进行优化，以确保效率和方便执行");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1009,13 +1015,14 @@ public class OPiRCAChinese {
 		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text2)).getText();
 		softly.assertThat(c24).as("test data").contains("开展Error-Free");
 		softly.assertThat(c24).as("test data").contains("工作流程优化的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//P5.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[P5.3] 加重相关人员或小组不必要的差事（相关小组的多重任务）");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -1025,13 +1032,14 @@ public class OPiRCAChinese {
 		String c25 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text2)).getText();
 		softly.assertThat(c25).as("test data").contains("开展Error-Free");
 		softly.assertThat(c25).as("test data").contains("工作流程优化的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//P5.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[P5.4] 制定不必要的工作，而未提高质量，例如进行散弹枪式的根本原因分析，对未发生故障的设备制定不必要工作或制定预防性维修工作");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
@@ -1043,20 +1051,21 @@ public class OPiRCAChinese {
 		String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text3)).getText();
 		softly.assertThat(c31).as("test data").contains("开展Error-Free");
 		softly.assertThat(c31).as("test data").contains("工作流程优化的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//P5.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[P5.5] 一个组织负责的职责若该由其他组织执行会更有效率");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("组织改组以提高效率和绩效");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//P5.6 question
@@ -1065,6 +1074,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
@@ -1074,13 +1084,14 @@ public class OPiRCAChinese {
 		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text2)).getText();
 		softly.assertThat(c28).as("test data").contains("开展Error-Free");
 		softly.assertThat(c28).as("test data").contains("工作流程优化的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//P5.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[P5.7] 审查人员人数过多，并且未规定角色和责任，导致各个审查员跳过审查，依赖其他人查找失误");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
@@ -1094,33 +1105,35 @@ public class OPiRCAChinese {
 		softly.assertThat(c27).as("test data").contains("规定审查人员的角色和责任");
 		String c32 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text4)).getText();
 		softly.assertThat(c32).as("test data").contains("对审查人员实行问责制");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//P5.8 question
 		String q8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer8)).getText();
 		softly.assertThat(q8).as("test data").contains("[P5.8] 在使用软件和连通技术方面存在不足，例如进行RCA的智能电话制度、检查清单、工前会、数据搜索等");
 		//Evidence entry collapsible text
 		String e8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry8)).getText();
 		softly.assertThat(e8).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).getText();
 		softly.assertThat(c15).as("test data").contains("可能的纠正行动");
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8Text1)).getText();
 		softly.assertThat(c16).as("test data").contains("使用软件或智能电话技术跟踪沟通情况");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();*/
 		//P5.9 question
 		String q9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer9)).getText();
 		softly.assertThat(q9).as("test data").contains("[P5.9] 使用过时且繁重的技术或工具来执行工作");
 		//Evidence entry collapsible text
 		String e9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry9)).getText();
 		softly.assertThat(e9).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
 		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).getText();
 		softly.assertThat(c17).as("test data").contains("可能的纠正行动");
 		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9Text)).getText();
 		softly.assertThat(c18).as("test data").contains("改进工作技术或工具");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1145,6 +1158,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -1155,13 +1169,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c23).as("test data").contains("改进存在缺陷的导则或程序");
 		String c31 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text3)).getText();
 		softly.assertThat(c31).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//P4.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[P4.2] 由于程序编写导则存在不足，使用对一般程序用户而言缺少定义或解释的专业技术词汇");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1172,13 +1187,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c24).as("test data").contains("改进存在缺陷的导则或程序");
 		String c32 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text3)).getText();
 		softly.assertThat(c32).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//P4.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[P4.3] 由于程序编写导则存在不足，使用一般程序用户难以读懂的复杂和复合句");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -1189,13 +1205,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c25).as("test data").contains("改进存在缺陷的导则或程序");
 		String c33 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text3)).getText();
 		softly.assertThat(c33).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//P4.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[P4.4] 由于程序编写导则存在不足，在缺少图纸、图片或图形的情况下描述复杂事物");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
@@ -1206,13 +1223,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c26).as("test data").contains("改进存在缺陷的导则或程序");
 		String c34 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text3)).getText();
 		softly.assertThat(c34).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//P4.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[P4.5] 由于程序编写导则存在不足，使用需要解释的非描述性要求，例如:根据要求、根据需要等");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
@@ -1223,7 +1241,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c27).as("test data").contains("改进存在缺陷的导则或程序");
 		String c35 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text3)).getText();
 		softly.assertThat(c35).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//P4.6 question
@@ -1232,6 +1250,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
@@ -1242,13 +1261,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c28).as("test data").contains("改进存在缺陷的导则或程序");
 		String c36 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text3)).getText();
 		softly.assertThat(c36).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//P4.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[P4.7] 由于程序审查不充分，造成存在模糊或错误的说明");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
@@ -1257,20 +1277,21 @@ public class OPiRCAChinese {
 		softly.assertThat(c14).as("test data").contains("开展程序审查的培训");
 		String c29 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text2)).getText();
 		softly.assertThat(c29).as("test data").contains("改进程序审查流程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//P4.8 question
 		String q8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer8)).getText();
 		softly.assertThat(q8).as("test data").contains("[P4.8] 设备的标识和识别不到位");
 		//Evidence entry collapsible text
 		String e8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry8)).getText();
 		softly.assertThat(e8).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).getText();
 		softly.assertThat(c15).as("test data").contains("可能的纠正行动");
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8Text1)).getText();
 		softly.assertThat(c16).as("test data").contains("改进设备标识和识别");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1295,6 +1316,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -1303,13 +1325,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c2).as("test data").contains("开展程序设计的培训");
 		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text2)).getText();
 		softly.assertThat(c23).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//P3.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[P3.2] 由于程序编写导则存在不足，造成通过自检或独立检查单项弱点（SPV）步骤方面存在不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1318,13 +1341,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c4).as("test data").contains("开展程序设计的培训");
 		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text2)).getText();
 		softly.assertThat(c24).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//P3.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[P3.3] 由于程序编写导则存在不足，造成审查先前不可逆点（PNR）行动方面存在不足");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -1333,13 +1357,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c6).as("test data").contains("开展程序设计的培训");
 		String c25 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text2)).getText();
 		softly.assertThat(c25).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//P3.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[P3.4] 由于程序编写导则存在不足，造成步骤、章节或页次的操作标记使用方面存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
@@ -1348,13 +1373,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c8).as("test data").contains("开展程序设计的培训");
 		String c26 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text2)).getText();
 		softly.assertThat(c26).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//P3.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[P3.5] 由于程序编写导则存在不足，造成使用不准做清单防止违章行为方面存在不足");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
@@ -1363,7 +1389,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("开展程序设计的培训");
 		String c27 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text2)).getText();
 		softly.assertThat(c27).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//P3.6 question
@@ -1372,6 +1398,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
@@ -1380,13 +1407,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c12).as("test data").contains("开展程序设计的培训");
 		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text2)).getText();
 		softly.assertThat(c28).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//P3.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[P3.7] 由于程序编写导则存在不足，造成使用检查清单防止遗忘相关失误的方面存在不足");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
@@ -1395,13 +1423,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c14).as("test data").contains("开展程序设计的培训");
 		String c29 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text2)).getText();
 		softly.assertThat(c29).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//P3.8 question
 		String q8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer8)).getText();
 		softly.assertThat(q8).as("test data").contains("[P3.8] 由于程序编写导则存在不足，造成使用行为标准提供正面的同事压力以促使遵循规定方面存在不足");
 		//Evidence entry collapsible text
 		String e8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry8)).getText();
 		softly.assertThat(e8).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).getText();
@@ -1410,46 +1439,49 @@ public class OPiRCAChinese {
 		softly.assertThat(c16).as("test data").contains("开展程序设计的培训");
 		String c30 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8Text2)).getText();
 		softly.assertThat(c30).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();*/
 		//P3.9 question
 		String q9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer9)).getText();
 		softly.assertThat(q9).as("test data").contains("[P3.9] 由于审查不充分，造成存在偏差控制方面的不足");
 		//Evidence entry collapsible text
 		String e9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry9)).getText();
 		softly.assertThat(e9).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
 		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).getText();
 		softly.assertThat(c17).as("test data").contains("可能的纠正行动");
 		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9Text)).getText();
 		softly.assertThat(c18).as("test data").contains("开展审查方面的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();*/
 		//P3.10 question
 		String q10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer10)).getText();
 		softly.assertThat(q10).as("test data").contains("[P3.10] 由于根本原因分析不到位，造成存在偏差控制方面的不足");
 		//Evidence entry collapsible text
 		String e10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry10)).getText();
 		softly.assertThat(e10).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).click();
 		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).getText();
 		softly.assertThat(c19).as("test data").contains("可能的纠正行动");
 		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10Text)).getText();
 		softly.assertThat(c20).as("test data").contains("开展根本原因分析方面的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).click();*/
 		//P3.11 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer11)).getText();
 		softly.assertThat(q11).as("test data").contains("[P3.11] 由于纠正措施执行不到位，造成存在偏差控制方面的不足");
 		//Evidence entry collapsible text
 		String e11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry11)).getText();
 		softly.assertThat(e11).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).click();
 		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).getText();
 		softly.assertThat(c21).as("test data").contains("可能的纠正行动");
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11Text)).getText();
 		softly.assertThat(c22).as("test data").contains("改善纠正措施的监督跟踪");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1474,6 +1506,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -1482,13 +1515,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c2).as("test data").contains("开展程序设计的培训");
 		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text2)).getText();
 		softly.assertThat(c19).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//P2.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[P2.2] 验证程序的操作条件存在不足，例如: (1) 进入条件; (2) 退出条件; (3) 中止程序的条件");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1497,13 +1531,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c4).as("test data").contains("开展程序设计的培训");
 		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text2)).getText();
 		softly.assertThat(c20).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//P2.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[P2.3] 由于程序编写导则存在不足，而造成程序执行期间要求进行验证的假设存在不足或被遗漏");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -1512,13 +1547,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c6).as("test data").contains("开展程序设计的培训");
 		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text2)).getText();
 		softly.assertThat(c21).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//P2.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[P2.4] 由于程序编写导则存在不足，而造成工作范围不充分，例如: (1) 逐步说明; (2) 逐项说明");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
@@ -1527,13 +1563,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c8).as("test data").contains("开展程序设计的培训");
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text2)).getText();
 		softly.assertThat(c22).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//P2.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[P2.5] 由于程序编写导则存在不足，而造成工后试验、测量或正确性验证方面存在不足");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
@@ -1542,7 +1579,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c10).as("test data").contains("开展程序设计的培训");
 		String c23 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text2)).getText();
 		softly.assertThat(c23).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//P2.6 question
@@ -1551,6 +1588,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
@@ -1559,46 +1597,49 @@ public class OPiRCAChinese {
 		softly.assertThat(c12).as("test data").contains("开展程序设计的培训");
 		String c24 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text2)).getText();
 		softly.assertThat(c24).as("test data").contains("改进存在缺陷的导则或程序");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//P2.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[P2.7] 由于审查存在不足而造成要素的遗漏");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
 		softly.assertThat(c13).as("test data").contains("可能的纠正行动");
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text1)).getText();
 		softly.assertThat(c14).as("test data").contains("开展审查方面的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//P2.8 question
 		String q8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer8)).getText();
 		softly.assertThat(q8).as("test data").contains("[P2.8] 由于根本原因分析不到位导致要素的遗漏");
 		//Evidence entry collapsible text
 		String e8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry8)).getText();
 		softly.assertThat(e8).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).getText();
 		softly.assertThat(c15).as("test data").contains("可能的纠正行动");
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8Text1)).getText();
 		softly.assertThat(c16).as("test data").contains("开展根本原因分析方面的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();*/
 		//P2.9 question
 		String q9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer9)).getText();
 		softly.assertThat(q9).as("test data").contains("[P2.9] 由于纠正措施执行不到位导致要素的遗漏");
 		//Evidence entry collapsible text
 		String e9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry9)).getText();
 		softly.assertThat(e9).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
 		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).getText();
 		softly.assertThat(c17).as("test data").contains("可能的纠正行动");
 		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9Text)).getText();
 		softly.assertThat(c18).as("test data").contains("开展纠正措施执行进度的监督跟进");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1623,6 +1664,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -1635,13 +1677,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c12).as("test data").contains("开展规则和制度设置的管理培训");
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text4)).getText();
 		softly.assertThat(c13).as("test data").contains("改进QA审计流程，识别被遗漏的制度");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//P1.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[P1.2] 由于未意识到风险，而造成行为标准的遗漏，例如: (1) 预防粗心大意的失误的行为标准; (2) 关键思考、关键追问和情况警觉的行为标准; (3) 程序使用的行为标准");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1654,46 +1697,49 @@ public class OPiRCAChinese {
 		softly.assertThat(c15).as("test data").contains("开展标准设置方面的管理培训");
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text4)).getText();
 		softly.assertThat(c16).as("test data").contains("改进QA审计流程，识别被遗漏的行为标准");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//P1.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[P1.3] 由于优先级不当而造成程序编写组织发布程序的时间推迟");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("改进优先级体系");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//P1.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[P1.4] 由于培训组织优先级划分不当而造成实施的推迟");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("改进优先级体系");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//P1.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[P1.5] 由于管理审查体系存在不足而造成制度、程序或屏障的遗漏");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("独立管理审查体系存在不足");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1719,52 +1765,56 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("改进制度管理人员的负责人规定");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OP4.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OP4.2] 制度或流程相关人员的角色和责任规定方面存在不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("改进制度管理人员角色和责任的规定");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//OP4.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[OP4.3] 用于跟踪制度或流程责任经理绩效（时间、质量和成本）的问责机制存在不足");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("改进问责机制，使其涵盖三个同样重要的方面（时间、质量和成本）。体系应当有助于实现良好绩效而非侧重于惩罚");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//OP4.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[OP4.4] 总经理层问责机制不存在不足: (1) 未能客观评量总经理层绩效; (2) 未考量所有投资方反馈");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("改进问责机制，使其涵盖总经理层");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1789,6 +1839,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -1796,13 +1847,14 @@ public class OPiRCAChinese {
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("开展Error-Free");
 		softly.assertThat(c2).as("test data").contains("自我评价培训，使人员认识到他或她容易发生失误的方面");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OP3.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OP3.2] 监督小组的自我分析存在不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1810,13 +1862,14 @@ public class OPiRCAChinese {
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("开展Error-Free");
 		softly.assertThat(c4).as("test data").contains("自我评价培训，使主管认识到他或她的小组容易发生失误的方面");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//OP3.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[OP3.3] 管理组织的自我分析存在不足");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -1824,33 +1877,35 @@ public class OPiRCAChinese {
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("开展Error-Free");
 		softly.assertThat(c6).as("test data").contains("自我评价培训，使经理认识到他或她的组织容易发生失误的方面");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//OP3.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[OP3.4] 高风险制度或程序的自我评估存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("改进自我评估制度的频率和彻底性");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//OP3.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[OP3.5] 对组织事件的根本原因分析分析质量差、事件数据收集和启动调查条件存在不足");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("改进执行组织事件根本原因分析的质量、数据收集和启动调查条件");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//OP3.6 question
@@ -1859,13 +1914,14 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("改进执行组织事件共因分析的频率和质量。评估可以识别弱点加以改进。");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -1890,6 +1946,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -1898,13 +1955,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c2).as("test data").contains("改进先行指标");
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text2)).getText();
 		softly.assertThat(c13).as("test data").contains("使用过去的绩效对先行指标进行核实");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OP2.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OP2.2] 实时指标存在不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -1913,13 +1971,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c4).as("test data").contains("改进实时指标");
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text2)).getText();
 		softly.assertThat(c14).as("test data").contains("使用过去的绩效对实时指标进行核实");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//OP2.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[OP2.3] 滞后指标存在不足");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -1928,26 +1987,28 @@ public class OPiRCAChinese {
 		softly.assertThat(c6).as("test data").contains("改进滞后标志");
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text2)).getText();
 		softly.assertThat(c15).as("test data").contains("使其简单但能够反映所有主要O&P问题");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//OP2.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[OP2.4] 管理层在绩效监督跟踪和趋势分析的结果使用方面存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("改进绩效提升的管理决策流程，纳入绩效监督跟踪和趋势分析中的数据");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//OP2.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[OP2.5] 在将RCA共因分析作为监督工具方面存在不足");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
@@ -1957,7 +2018,7 @@ public class OPiRCAChinese {
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text2)).getText();
 		softly.assertThat(c16).as("test data").contains("开展Error-Free");
 		softly.assertThat(c16).as("test data").contains(" 共因培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//OP2.6 question
@@ -1966,13 +2027,14 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("改进绩效提升的管理决策流程，纳入现场观察中的数据");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2003,6 +2065,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -2011,13 +2074,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c2).as("test data").contains("增加人员编制");
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text2)).getText();
 		softly.assertThat(c9).as("test data").contains("评估制度管理人员或者负责该制度的组织管理人员的能力");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OP1.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OP1.2] 相关人员的培训和授权不足以实施制度");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -2026,13 +2090,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c4).as("test data").contains("增加培训预算");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text2)).getText();
 		softly.assertThat(c10).as("test data").contains("针对高风险或者要求知识型绩效的工作开展培训课程");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//OP1.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[OP1.3] 管理层对制度落实行动的跟进存在不足");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -2041,13 +2106,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c6).as("test data").contains("改进管理层工作投入和跟踪系统");
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text2)).getText();
 		softly.assertThat(c11).as("test data").contains("评估制度管理人员或者负责该制度的组织管理人员的能力");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//OP1.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[OP1.4] 对落实制度的管理支持存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
@@ -2056,7 +2122,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c8).as("test data").contains("改进管理支持");
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text2)).getText();
 		softly.assertThat(c12).as("test data").contains("评估制度管理人员或者负责该制度的组织管理人员的能力");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2073,26 +2139,28 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("简化重叠的工作职能");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OO3.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OO3.2] 没有要求两个接口部门执行所需的工作职能");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("重新定义角色和责任，纳入两个接口组织之间被遗漏的工作职能");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2117,39 +2185,42 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("改进接口要求");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OO2.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OO2.2] 接口流程和方法存在不足，例如会议形式、接口频率和沟通通道存在不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("改进接口流程和方法");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//OO2.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[OO2.3] 由于位置过于分散而造成沟通不佳");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("通过采用先进的沟通技术，提高沟通的频率和简易度");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2174,65 +2245,70 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("制定QA和组织之间的共同目标/利益/问责机制");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//OO1.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[OO1.2] 组织间的共同目标/利益/问责机制的定义存在不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("制定组织间的共同目标/利益/问责机制，例如利用奖惩体系鼓励组织之间为了实现整体利益而相互支持");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//OO1.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[OO1.3] 高管和组织管理人员之间的共同目标/利益/问责机制存在不足: (1) 奖励制度不同且不一致; (2) 高管侧重于一个领域而让管理人员负责另一个领域");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("制定高管和组织管理人员之间的共同目标/利益/问责机制");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//OO1.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[OO1.4] 组织管理人员和主管之间的共同目标/利益/问责机制存在不足: (1) 问责体系不同; (2) 管理人员侧重于一个领域而让主管负责另一个领域");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("制定组织管理人员和主管之间的共同目标/利益/问责机制");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//OO1.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[OO1.5] 奖励和问责体系不足以建立共同目标/利益");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("改进奖励体系");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2257,6 +2333,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
@@ -2265,13 +2342,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c2).as("test data").contains("建立行为标准，避免发生粗心大意的失误");
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text2)).getText();
 		softly.assertThat(c13).as("test data").contains("开展预防粗心大意的失误的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//O5.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[O5.2] 技能不足以遵守规则（例如程序、检查清单、工作现场提示信息、行为标准和不准做清单）");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
@@ -2280,13 +2358,14 @@ public class OPiRCAChinese {
 		softly.assertThat(c4).as("test data").contains("建立程序使用的行为标准");
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text2)).getText();
 		softly.assertThat(c14).as("test data").contains("开展防止发生程序失误的培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//O5.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[O5.3] 主管和经理知识不足以防止自身的知识型错误");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
@@ -2294,13 +2373,14 @@ public class OPiRCAChinese {
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("为管理人员开展Error-Free");
 		softly.assertThat(c6).as("test data").contains("预防培训，改进其最薄弱的领域，包括以下主题: (1) 决策制定; (2) 问题解决; (3) 学习; (4) 设计、分析和建模; (5) 审查; (6) 规划; (7) 沟通; (8) 协商; (9) 风险控制; (10) 绩效控制");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//O5.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[O5.4] 流程设计和改进方面的管理知识不足: (1) 程序的逐步设计和改进方面存在不足; (2) 屏障的设计和改进方面存在不足; (3) 行为标准的设计和改进方面存在不足; (4) 不准做清单的设计和改进方面存在不足; (5) 检查清单的设计和改进方面存在不足; (6) 工作现场提示信息的设计和改进方面存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
@@ -2308,13 +2388,14 @@ public class OPiRCAChinese {
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("开展程序设计和改进方面的Error-Free");
 		softly.assertThat(c8).as("test data").contains("培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//O5.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[O5.5] 人因绩效管理方面的管理知识不足");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
@@ -2322,7 +2403,7 @@ public class OPiRCAChinese {
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("开展人因绩效管理方面的Error-Free");
 		softly.assertThat(c10).as("test data").contains("培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//O5.6 question
@@ -2331,6 +2412,7 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
@@ -2338,7 +2420,7 @@ public class OPiRCAChinese {
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("开展设备性能管理方面的Error-Free");
 		softly.assertThat(c12).as("test data").contains("培训");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2362,65 +2444,70 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("改进接口会议的质量和效率");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//O4.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[O4.2] 中层管理的接口会议不足以处理共性问题");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("改进接口会议的质量和效率");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//O4.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[O4.3] 工作层的接口会议不足以处理共性问题");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("改进接口会议的质量和效率");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//O4.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[O4.4] 在使用公用跟踪系统记录各个组织之间情况管理或工作流程沟通方面存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("使用公用跟踪系统，记录各方之间的沟通");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//O4.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[O4.5] 组织中的垂直沟通存在不足，未能报告需要高层管理注意的问题");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
-		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
+		softly.assertThat(c9).as("test data").contains("");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("改进垂直沟通方式");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//O4.6 question
@@ -2429,19 +2516,21 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("改进期望和经验反馈传达的质量和效率");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//O4.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[O4.7] 由于激励和问责制度存在不足而造成移交（TO）、工前会（PJB）、工作期间会议（MJB）或班前会（PSM）的沟通存在不足");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
@@ -2450,7 +2539,7 @@ public class OPiRCAChinese {
 		softly.assertThat(c14).as("test data").contains("改进监督技能，激励开放式的沟通");
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text2)).getText();
 		softly.assertThat(c15).as("test data").contains("改进问责制，以便在移交（TO）、工前会（PJB）、工作期间会议（MJB）或班前会（PSM）进行有效沟通");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2475,65 +2564,70 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("确定协调员或职能经理，监督关键流程的设计和改进");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//O3.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[O3.2] 缺少负责日常流程绩效的流程负责人");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("确定各个关键流程的负责人及其角色和责任");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//O3.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[O3.3] 流程程序设计导则存在不足");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("为有效且可靠的流程制定流程设计导则");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//O3.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[O3.4] 流程改进存在不足: (1) 定期自评存在不足; (2)绩效跟踪和趋势分析存在不足; (3)流程失效的根本原因分析存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("制定流程改进导则");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//O3.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[O3.5] 程序编写导则存在不足，未能有效且可靠地执行流程");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("制定程序编写导则");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//O3.6 question
@@ -2542,26 +2636,28 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("通过培训或指导来发展流程设计和改进能力");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//O3.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[O3.7] 通过培训或指导来发展流程设计和改进能力");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
 		softly.assertThat(c13).as("test data").contains("可能的纠正行动");
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text1)).getText();
 		softly.assertThat(c14).as("test data").contains("当需要时，建立专门的工作组进行流程设计和改进");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2593,65 +2689,70 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry1)).getText();
 		softly.assertThat(e1).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
 		String c1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).getText();
 		softly.assertThat(c1).as("test data").contains("可能的纠正行动");
 		String c2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1Text1)).getText();
 		softly.assertThat(c2).as("test data").contains("改进管理职能");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction1)).click();*/
 		//O1.2 question
 		String q2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer2)).getText();
 		softly.assertThat(q2).as("test data").contains("[O1.2] 跨领域职能管理不足: (1) 职能协调人或经理不足; (2) 人因绩效提升职能不足; (3) 设备性能提升职能不足");
 		//Evidence entry collapsible text
 		String e2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry2)).getText();
 		softly.assertThat(e2).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
 		String c3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).getText();
 		softly.assertThat(c3).as("test data").contains("可能的纠正行动");
 		String c4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2Text1)).getText();
 		softly.assertThat(c4).as("test data").contains("改进跨领域职能");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction2)).click();*/
 		//O1.3 question
 		String q3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer3)).getText();
 		softly.assertThat(q3).as("test data").contains("[O1.3] 三大组织—生产、监督和管理支持中的独立性不足，例如: (1) 允许纠正行动计划经理向生产相关经理汇报; (2) 允许QA经理出席根本原因审查委员会或者项目管理委员会; (3) 允许IT经理向监督组织经理汇报");
 		//Evidence entry collapsible text
 		String e3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry3)).getText();
 		softly.assertThat(e3).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
 		String c5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).getText();
 		softly.assertThat(c5).as("test data").contains("可能的纠正行动");
 		String c6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3Text1)).getText();
 		softly.assertThat(c6).as("test data").contains("改组");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction3)).click();*/
 		//O1.4 question
 		String q4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer4)).getText();
 		softly.assertThat(q4).as("test data").contains("[O1.4] 生产组织结构不足，例如: (1) 执行核心工作流程的结构存在不足; (2) 不同生产线的结构分隔存在不足; (3) 班值存在不足");
 		//Evidence entry collapsible text
 		String e4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry4)).getText();
 		softly.assertThat(e4).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).getText();
 		softly.assertThat(c7).as("test data").contains("可能的纠正行动");
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4Text1)).getText();
 		softly.assertThat(c8).as("test data").contains("改进生产组织结构");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction4)).click();*/
 		//O1.5 question
 		String q5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer5)).getText();
 		softly.assertThat(q5).as("test data").contains("[O1.5] 监督组织结构不足，例如: (1) 生产或管理支持相关管理团队的监督; (2) 生产经理以下管理层级的管理人员监督; (3) 监督结构未基于专业（例如无损试验、QA、QC等）");
 		//Evidence entry collapsible text
 		String e5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry5)).getText();
 		softly.assertThat(e5).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
 		String c9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).getText();
 		softly.assertThat(c9).as("test data").contains("可能的纠正行动");
 		String c10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5Text1)).getText();
 		softly.assertThat(c10).as("test data").contains("改进监督组织结构");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction5)).click();*/
 		//Scroll down
 		share2.scrollToAPoint(driver, 1500);
 		//O1.6 question
@@ -2660,78 +2761,84 @@ public class OPiRCAChinese {
 		//Evidence entry collapsible text
 		String e6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry6)).getText();
 		softly.assertThat(e6).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
 		String c11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).getText();
 		softly.assertThat(c11).as("test data").contains("可能的纠正行动");
 		String c12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6Text1)).getText();
 		softly.assertThat(c12).as("test data").contains("改进监督组织结构");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction6)).click();*/
 		//O1.7 question
 		String q7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer7)).getText();
 		softly.assertThat(q7).as("test data").contains("[O1.7] 区分短期和长期工作的组织结构存在不足，例如: (1) 一组工程人员处理短期和长期设计改造; (2) 一组维修人员处理紧急和非紧急工作");
 		//Evidence entry collapsible text
 		String e7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry7)).getText();
 		softly.assertThat(e7).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).getText();
 		softly.assertThat(c13).as("test data").contains("可能的纠正行动");
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7Text1)).getText();
 		softly.assertThat(c14).as("test data").contains("区分处理短期和长期工作的人员");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction7)).click();*/
 		//O1.8 question
 		String q8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer8)).getText();
 		softly.assertThat(q8).as("test data").contains("[O1.8] 管理层级不足: (1) 规则型和技能型的小组层级过多; (2) 知识型小组层级不足");
 		//Evidence entry collapsible text
 		String e8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry8)).getText();
 		softly.assertThat(e8).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).getText();
 		softly.assertThat(c15).as("test data").contains("可能的纠正行动");
 		String c16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8Text1)).getText();
 		softly.assertThat(c16).as("test data").contains("根据工作的复杂性优化管理层级");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction8)).click();*/
 		//O1.9 question
 		String q9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer9)).getText();
 		softly.assertThat(q9).as("test data").contains("[O1.9] 管理跨度不足 : (1) 向一位主管或经理汇报的人员过多; (2) 向一位主管或经理汇报的人员过少");
 		//Evidence entry collapsible text
 		String e9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry9)).getText();
 		softly.assertThat(e9).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
 		String c17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).getText();
 		softly.assertThat(c17).as("test data").contains("可能的纠正行动");
 		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9Text)).getText();
 		softly.assertThat(c18).as("test data").contains("根据人员经验优化管理跨度");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction9)).click();*/
 		//O1.10 question
 		String q10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer10)).getText();
 		softly.assertThat(q10).as("test data").contains("[O1.10] 组织设计和改进方面的领导参与存在不足: (1) 领导层未参与组织问题解决过程中; (2) 领导层未参与组织结构和职能设计中");
 		//Evidence entry collapsible text
 		String e10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry10)).getText();
 		softly.assertThat(e10).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).click();
 		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).getText();
 		softly.assertThat(c19).as("test data").contains("可能的纠正行动");
 		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10Text)).getText();
 		softly.assertThat(c20).as("test data").contains("提高领导层在组织设计和改进方面的参与");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction10)).click();*/
 		//O1.11 question
 		String q11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswer11)).getText();
 		softly.assertThat(q11).as("test data").contains("[O1.11] 管理职能方面的领导参与不足");
 		//Evidence entry collapsible text
 		String e11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerEvidenceEntry11)).getText();
 		softly.assertThat(e11).as("test data").contains("支持证据");
+		/*am_not applicable
 		//Corrective action
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).click();
 		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).getText();
 		softly.assertThat(c21).as("test data").contains("可能的纠正行动");
 		String c22 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11Text)).getText();
 		softly.assertThat(c22).as("test data").contains("提高领导层在管理职能方面的参与");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAApparentCauseAnswerCorrectiveAction11)).click();*/
 		//Contributing factor
 		chineseOPiRCAContributingFactor(driver);
 	}
@@ -2752,10 +2859,11 @@ public class OPiRCAChinese {
 		softly.assertThat(s1).as("test data").contains("促成因素:");
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField)).getAttribute("placeholder");
 		softly.assertThat(s2).as("test data").contains("输入 促成因素");
+		/*am_not applicable
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField2Label)).getText();
 		softly.assertThat(s3).as("test data").contains("可能的纠正行动:");
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField2)).getAttribute("placeholder");
-		softly.assertThat(s4).as("test data").contains("输入 可能的纠正行动 (非必填)");
+		softly.assertThat(s4).as("test data").contains("输入 可能的纠正行动 (非必填)");*/
 	}
 
 	public void selectAllApparentCausesAnswers(WebDriver driver) throws Exception{
@@ -2966,9 +3074,10 @@ public class OPiRCAChinese {
 		//Problem Statement error
 		String opircaEventProblemStatementError = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventProblemStatementError)).getText();
 		softly.assertThat(opircaEventProblemStatementError).as("test data").contains("事件描述 必填");
+		/*am_not applicable
 		//Timeline error
 		String opircaEventTimelineError = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTimelineError)).getText();
-		softly.assertThat(opircaEventTimelineError).as("test data").contains("事件详细过程（时序构建） 必填");
+		softly.assertThat(opircaEventTimelineError).as("test data").contains("事件详细过程（时序构建） 必填");*/
 		//Background Info error
 		String opircaEventBackgroundError = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventBackgroundError)).getText();
 		softly.assertThat(opircaEventBackgroundError).as("test data").contains("相关信息 必填");
@@ -2984,7 +3093,7 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTitleField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventLocationField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAProblemStatementField)).sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCATimelineOfEventField)).sendKeys(text);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCATimelineOfEventField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCABackgroundInfoField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInvestigatorsField)).sendKeys(text);
 		share2.scrollToAPoint(driver, 1500);
@@ -3038,12 +3147,12 @@ public class OPiRCAChinese {
 		//Event Executive Summary field
 		String opircaEventExecField = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventExecutiveSummaryField)).getAttribute("placeholder");
 		softly.assertThat(opircaEventExecField).as("test data").contains("输入 报告摘要 (非必填)");
+		/*am_not applicable
 		//Event Timeline of Events label
 		String opircaEventTimelineLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTimelineOfEventLabel)).getText();
-		softly.assertThat(opircaEventTimelineLabel).as("test data").contains("事件详细过程（时序构建）:");
 		//Event Timeline of Events field
 		String opircaEventTimelineField = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCATimelineOfEventField)).getAttribute("placeholder");
-		softly.assertThat(opircaEventTimelineField).as("test data").contains("输入 事件详细过程（时序构建）");
+		softly.assertThat(opircaEventTimelineField).as("test data").contains("输入 事件详细过程（时序构建）");*/
 		//Event Background info label
 		String opircaEventBackgroundLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventBackgroundInfoLabel)).getText();
 		softly.assertThat(opircaEventBackgroundLabel).as("test data").contains("相关信息:");

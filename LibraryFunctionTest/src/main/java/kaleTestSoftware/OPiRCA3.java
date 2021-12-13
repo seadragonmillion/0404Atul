@@ -179,17 +179,17 @@ public class OPiRCA3 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-evidence-text-"+(y-1))));
 		//tbr.sizeCheck(driver, By.id("efi-opa-evidence-text-"+(y-1)),softly);
 		//Click on Evidence Entry again
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-evidence-text-div-"+(y-1)+"']/h4/a"))).click();
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-evidence-text-div-"+(y-1)+"']/h4/a"))));
 		//Verify Evidence Entry text not visible
 		try{
 			WebElement l = driver.findElement(By.id("efi-opa-evidence-text-"+(y-1)));
+			share2.scrollToElement(driver, l);
 			if(l.isDisplayed()==true)
 				softly.fail("Evidence Entry text visible");
 		}catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException r)
 		{
 			System.out.println("No Evidence Entry text visible as the + sign for Evidence Entry has not been clicked");
 		}
-		
 		/*am_not applicable
 		//Verify Possible Corrective Action text not visible
 		try{

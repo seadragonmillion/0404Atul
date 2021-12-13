@@ -70,6 +70,7 @@ public class RemoteVerification3 {
 		share2.scrollToTop(driver);
 		if(chiOrEng == 1)
 		{
+			share2.scrollToTop(driver);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
 			rc2.verifySavePopup(driver, softly);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).click();
