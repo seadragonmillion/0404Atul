@@ -2196,8 +2196,9 @@ public class UserManagement {
 		//Click on edit company
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on departments collapsible
-		share2.scrollToAPoint(driver, 500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		WebElement debsub = driver.findElement(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", debsub);
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
 		//Scroll down
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-subdept-input")));
 		Point p = ele.getLocation();
@@ -2236,7 +2237,7 @@ public class UserManagement {
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Clicks on save
-		driver.findElement(By.id("pii-admin-cust-button-save")).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -2520,9 +2521,10 @@ public class UserManagement {
 
 		List<String> dept1 = new ArrayList<String>();
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on departments collapsible
 		share2.scrollToAPoint(driver, 600);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
 		for (int i=2;i<=36;i++)
 		{
 			//Get department name and store

@@ -42,6 +42,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -79,14 +80,16 @@ public class RemoteVerification {
 	public void checkStatusReport (WebDriver driver, String username, int k) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Mark read verifier email		
 //		String email = selectEmail(k);
 		String email = selectEmail(1);
 		um.emailMarkRead(email, driver);
 		//Clicks on Save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
+		share2.scrollToTop(driver);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)));
 		rv4.verifySaveReportPopup(driver, softly);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupConfirmButton)));
 		//Wait for loading message to disappear		
 		share2.loadingServer(driver);
 		//Click on Saved activities
@@ -220,9 +223,9 @@ public class RemoteVerification {
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
-		System.out.println(browserName);
+		System.out.println("browserName is    :" +browserName);
 		String v = cap.getVersion().toString();
-		System.out.println(v);
+		System.out.println("browserVersion is    :" +v);
 		if (browserName.equals("internet explorer"))
 		{
 			if (v.startsWith("11"))
@@ -245,6 +248,11 @@ public class RemoteVerification {
 		FlagTerm unseenFlagTerm = new FlagTerm(seen, false);
 		Message[] messages1 = inbox.search(unseenFlagTerm);
 		int messageCount1 = messages1.length;
+		System.out.println("currentTime is    :"+ currentTime);
+		System.out.println("time15 is    :"+ time15);
+		System.out.println("messageCount1 is     :"+messageCount1);
+		System.out.println("messages1 is     :" +messages1);
+		
 		while(true)
 		{
 			Thread.sleep(2000);
@@ -489,19 +497,22 @@ public class RemoteVerification {
 	public void upload2ndpictureChrome(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Uploads picture 2
-		String file2 = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
+		String file2 = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		driver.findElement(rv.RV2ndImageField).sendKeys(file2);
+		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)));
 		//Re-uploads same picture 2
 		driver.findElement(rv.RV2ndImageField).sendKeys(file2);
+		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
 		//Clears image
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)));
 		//Re-uploads different picture 2
-		driver.findElement(rv.RV2ndImageField).sendKeys("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+		driver.findElement(rv.RV2ndImageField).sendKeys("C:/Users/mama/Pictures/Upload/BBGA2184.jpg");
 		//Rotates image 2 once
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageRotateButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageRotateButton)));
 	}
 
 	public void upload2ndpictureFirefox(WebDriver driver) throws Exception {
@@ -667,8 +678,6 @@ public class RemoteVerification {
 
 	}
 
-
-
 	public void verifyLongitudeLatitude(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
@@ -685,7 +694,8 @@ public class RemoteVerification {
 			//Store in excel
 			//excelStore(location,browserName,version);
 		}	    
-		String address = "462 Stevens Avenue, Suite #306 Solana Beach, CA 92705";
+//		String address = "462 Stevens Avenue, Suite #306 Solana Beach, CA 92705";
+		String address = "Taipei";
 		Thread.sleep(4000);
 		String latLongs[] = getLatLongPositions(address);
 		if((latLongs[0]!="") && (latLongs[1]!=""))
@@ -765,6 +775,7 @@ public class RemoteVerification {
 	public void shareReport(WebDriver driver, String verifier, String username,String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);    	
 		//Get browser name
@@ -816,14 +827,15 @@ public class RemoteVerification {
 		Thread.sleep(500);
 		//Selects from dropdown
 		WebElement dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
+		dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
+		/*
 		if(browserName.contains("safari"))
 		{
 			while (true)
 			{
 				Thread.sleep(3000);
-				//JavascriptExecutor executor = (JavascriptExecutor)driver;
 				dropdown = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareDropdown));
-				dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
+				jse.executeScript("arguments[0].click();",dropdown.findElement(eirca.FirstSelectionUnderDropdown));
 				Thread.sleep(2000);
 				//	executor.executeScript("arguments[0].click();", dropdown.findElement(obj2.FirstSelectionUnderDropdown));
 				try{
@@ -835,29 +847,29 @@ public class RemoteVerification {
 				}
 			}
 		}
-		else dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();
+		else dropdown.findElement(eirca.FirstSelectionUnderDropdown).click();*/
 		//Clicks on add user
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)));
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)));
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.SharerAdded)).getText();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);		
 		share3.shareTwice (driver,softly,0);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Checks the username of creator and verifier
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportCreatorUsername));
 		String creatorUsername= creator.getText();
-		System.out.println(creatorUsername);
+		System.out.println("creatorUsername is:    "+creatorUsername);
 		softly.assertThat(username).as("test data").isSubstringOf(creatorUsername);
 		WebElement verifier1=wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVReportVerifierUsername));
 		String verifierUsername = verifier1.getText();
-		System.out.println(verifierUsername);
+		System.out.println("verifierUsername is:    "+verifierUsername);
 		softly.assertThat(verifier).as("test data").isSubstringOf(verifierUsername);
 		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
 		share2.loadingServer(driver);
 		//Verify Share icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RVShareIconOrCriticalIcon));
@@ -1309,7 +1321,7 @@ public class RemoteVerification {
 	}
 
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
-
+		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Analysis 
@@ -1323,16 +1335,18 @@ public class RemoteVerification {
 		driver.findElement(rv.RVLink).click();
 		rv4.verifyNewReportPopup(driver, softly);
 		//Check title count reset when characters are entered and deleted
-		checkTitleCountReset(driver);
+//		checkTitleCountReset(driver);
 		//Fills the mandatory fields
 		driver.findElement(rv.RVEventTitle).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
 		//Get count
 		int count = getCharCountFromTitle(driver);
-		int total = getTotalCountFromTitle(driver);
+	int total = getTotalCountFromTitle(driver);
 		for(int i=count+1;i<=total;i++)
 		{
 			driver.findElement(rv.RVEventTitle).sendKeys("z");
-		}
+	}
+		
+//		driver.findElement(rv.RVEventTitle).sendKeys("z");
 		driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		String ev1 = driver.findElement(rv.RVEventTitle).getAttribute("value");
 		String ev2 = driver.findElement(rv.RVEventDetails).getAttribute("value");
@@ -1346,18 +1360,26 @@ public class RemoteVerification {
 			driver.findElement(rv.RVEventDetails).clear();
 			driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		}
+		//Click checkbox I certify...
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-photo-icertify-checkbox"))).click();
+		//Upload photo (3) Take or choose a photo of the person requesting verification.
+		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
+		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
+		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
 		//Select verifier
 		rv3.verifierSelect(driver,k);
 		Thread.sleep(1000);
 		String verifier= driver.findElement(rv.RVVerifierValue).getAttribute("piivalue");
 		//Uploads picture 2
 		upload2ndPicture(driver);
-		//*
+		/*
 		share2.scrollToAPoint(driver, 250);
 		Thread.sleep(3000);
 		//Uploads picture 1
 		upload1stPicture(driver);
-		//*
+		*/
 		share2.scrollToTop(driver);
 		//Verifies Date and time
 		verifyDateTime(driver);

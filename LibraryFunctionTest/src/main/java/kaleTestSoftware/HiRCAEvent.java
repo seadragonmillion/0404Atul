@@ -1550,9 +1550,13 @@ public class HiRCAEvent {
 
 			//Click on Supporting file details
 			Thread.sleep(500);
+		//scroll to the bottom 
+//			jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			String id = "pii-irca-event-filecollapsible-"+j;
-			share2.scrollToElement(driver, driver.findElement(By.id(id)));
-			driver.findElement(By.id(id)).click();
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-irca-event-filecollapsible-0"))).click().build().perform();
+//			share2.scrollToElement(driver, driver.findElement(By.id(id)));
+//			jse.executeScript("arguments[0].click();", driver.findElement(By.id(id)));
 			//Uploads file
 			String file = "pii-irca-event-file-"+j;
 			WebElement l=driver.findElement(By.id(file));
@@ -1560,13 +1564,20 @@ public class HiRCAEvent {
 			//act.moveToElement(l).build().perform();
 			l.sendKeys(filepath);
 			String img = "pii-irca-event-file-img-"+j;
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+			//Scroll to bottom
+			try {
+				jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");}
+			catch(Exception x){
+				WebElement element = driver.findElement(By.xpath("//div[@class='ui-controlgroup-controls ']/button[@type='submit']"));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			}
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img))));
 			if(driver.findElement(By.id(img)).isDisplayed())
 			{
 				//delete file
 				String del = "pii-irca-event-file-remove-"+j;
 				Thread.sleep(1000);
-				driver.findElement(By.id(del)).click(); 			
+				jse.executeScript("arguments[0].click();", driver.findElement(By.id(del))); 			
 				//Delete file pop up
 				obj1.verifyDeleteFilePopup(driver, softly, j+1);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
@@ -1574,7 +1585,7 @@ public class HiRCAEvent {
 				if(j!=0)
 				{
 					share2.scrollToElement(driver, driver.findElement(By.id("pii-irca-addnewfile-button")));
-					driver.findElement(By.id("pii-irca-addnewfile-button")).click();
+					jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-irca-addnewfile-button")));
 					Thread.sleep(1000);
 					/*n=n+80;
 					String scroll = "scroll(0,"+n+")";
@@ -1582,7 +1593,7 @@ public class HiRCAEvent {
 				}
 				//Click on Supporting file details
 				share2.scrollToElement(driver, driver.findElement(By.id(id)));
-				driver.findElement(By.id(id)).click();
+				jse.executeScript("arguments[0].click();", driver.findElement(By.id(id)));
 				//Fill title and description
 				String title_id="pii-irca-event-file-title-"+j;
 				driver.findElement(By.id(title_id)).sendKeys("Title0"+j);
@@ -1618,7 +1629,7 @@ public class HiRCAEvent {
 				driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 				Thread.sleep(2000);
 				//Clicks on Save
-				driver.findElement(By.id("efi-irca-button-save")).click();
+				jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-irca-button-save")));
 				//Save pop verify
 				obj1.verifySavePopup(driver, softly);
 				//Clicks on Save report
@@ -2651,10 +2662,17 @@ public class HiRCAEvent {
 		}
 		Thread.sleep(4000);
 		//Debug
-		//Scroll up
+		//Scroll to Top
+		try {
 		share2.scrollToTop(driver);
+		}catch(org.openqa.selenium.ElementNotInteractableException u){
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");}
+		catch(Exception e) {
+			WebElement element = driver.findElement(By.id("efi-irca-button-save"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		}
 		//Clicks on Save
-		driver.findElement(By.id("efi-irca-button-save")).click();
+		jse.executeScript("arguments[0].click();",driver.findElement(By.id("efi-irca-button-save")));
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))).click();
@@ -2848,6 +2866,7 @@ public class HiRCAEvent {
 		System.out.println(v);
 		//Download report to check pdf
 		if (browserName.equals("chrome"))
+			Thread.sleep(10000);
 			uploadFiveImagesChrome(driver,username,text);
 		if (browserName.equals("firefox"))
 			uploadFiveImagesFirefox(driver,username,text);

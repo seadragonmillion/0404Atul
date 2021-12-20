@@ -20,7 +20,6 @@ public class EiRCAPageObj {
 	public By FirstSelectionUnderDropdown = By.cssSelector(".ui-first-child");
 	public By SharerAdded = By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a");
 	public By ShareSaveButton = By.id("pii-uhshare-save");
-
 	public By EiRCASidePanel = By.id("pii-user-home-panel-btn-mirca");
 	public By MarkCritical = By.xpath(".//*[@id='pii-uhome-critical-rpt']/div/label");
 	public By EiRCAMarkCriticalIndicatorText = By.xpath(".//*[@id='mirca-rpt']/div/table/thead/tr/th/strong");

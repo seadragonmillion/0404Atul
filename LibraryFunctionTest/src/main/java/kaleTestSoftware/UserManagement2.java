@@ -2,6 +2,7 @@ package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -137,6 +138,7 @@ public class UserManagement2 {
 	public void verifyNoCompanyIdError (WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Account	
@@ -165,7 +167,7 @@ public class UserManagement2 {
 				}
 		//Click on save
 			share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))));
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		//Verify error
 		String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
@@ -175,6 +177,7 @@ public class UserManagement2 {
 	public void createExistingUserAndVerifyErrorPopup(WebDriver driver, SoftAssertions softly, String company_id, String password,String email) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(2000);
 		//Clicks on create user
 		driver.findElement(By.id("pii-admin-user-create")).click();
@@ -218,7 +221,7 @@ public class UserManagement2 {
 		driver.findElement(By.xpath(".//*[@for='pii-admin-user-customerAdmin-yes']")).click();
 		//Clicks on save button
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))));
 		//driver.findElement(By.id("pii-admin-user-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title")));
 		//Clicks on Save button

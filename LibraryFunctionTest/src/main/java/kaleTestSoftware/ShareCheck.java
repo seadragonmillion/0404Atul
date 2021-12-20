@@ -639,7 +639,6 @@ public class ShareCheck {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
-		Thread.sleep(8000);
 		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		Thread.sleep(4000);
 		for(String winHandle : driver.getWindowHandles()){
