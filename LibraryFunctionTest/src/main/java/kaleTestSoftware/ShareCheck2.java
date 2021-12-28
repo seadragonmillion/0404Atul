@@ -389,4 +389,10 @@ public class ShareCheck2 {
 		}
 		Thread.sleep(1000);
 	}
-}
+		public void scrollSmooth(WebDriver driver) throws Exception {
+		    for(int i=0;i<6000;i++) {
+		        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,0)", "");
+		    }
+		}
+	      
+	}

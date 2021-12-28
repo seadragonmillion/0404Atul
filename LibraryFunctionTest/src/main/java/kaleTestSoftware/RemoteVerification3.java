@@ -13,6 +13,7 @@ import javax.mail.search.FlagTerm;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
@@ -42,6 +43,7 @@ public class RemoteVerification3 {
 	public String fillRVPage(WebDriver driver, int k, int chiOrEng, SoftAssertions softly) throws Exception {
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		rv4.verifyTextOnRVCurrentVerificationPage(driver, softly);
 		//Fills the mandatory fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys(rv.eventTitle(driver,driver.getCurrentUrl()));
@@ -66,18 +68,17 @@ public class RemoteVerification3 {
 		upload2ndPicture(driver);
 		//Uploads picture 1
 //		upload1stPicture(driver);
-		//*
 		share2.scrollToTop(driver);
 		if(chiOrEng == 1)
 		{
 			share2.scrollToTop(driver);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveButton)));
 			rc2.verifySavePopup(driver, softly);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupCancelButton)).click();
 		}
 		//Save and send to verifier
 		//Clicks on Save and Send
-		driver.findElement(rv.RVSaveAndSendButton).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSaveAndSendButton)));
 		//Clicks on save and send report
 		if(chiOrEng == 1)
 		{

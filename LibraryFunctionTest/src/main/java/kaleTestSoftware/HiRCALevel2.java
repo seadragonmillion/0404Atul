@@ -1233,17 +1233,19 @@ public class HiRCALevel2 {
 	public void saveHiRCAReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		String v = cap.getVersion().toString();
 		//Clicks on Save
 		share2.scrollToTop(driver);
-		executor.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
+		WebElement topSavebtn=driver.findElement(By.id("efi-irca-button-save"));
+		jse.executeScript("arguments[0].scrollIntoView();", topSavebtn);
+		jse.executeScript("arguments[0].click();", topSavebtn);
 		//Clicks on Save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
-		executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 		Thread.sleep(2000);
 		share2.loadingServer(driver);		
 		if (browserName.equals("internet explorer"))
@@ -1255,12 +1257,14 @@ public class HiRCALevel2 {
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
 				//Clicks on Save report
 				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-title")));
-				executor.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
+				jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
 				share2.loadingServer(driver);
 			}
 		}
 		//Clicks on Saved activities
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		WebElement savAc=driver.findElement(By.id("efi-irca-btn-savedactivities"));
+		jse.executeScript("arguments[0].scrollIntoView();", savAc);
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))));
 		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();

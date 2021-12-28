@@ -6,6 +6,7 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -83,6 +84,21 @@ public class GroupModerator {
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
 		share2.loadingServer(driver);
+		//click on 1st checkbox on Time tab
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1-l"))).click();
+		//select 1st checkbox dropdown on Time tab
+		WebElement dropdown1 = driver.findElement(By.id("pii-epm-tab-t-q1-spv"));
+		Select s0 = new Select(dropdown1);
+		s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
+		//enter text in 1st checkbox textbox on Time tab
+		driver.findElement(By.id("pii-em-sr-t1")).sendKeys(text);
+		for(int i=2;i<5;i++) {
+			WebElement e = driver.findElement(By.id("pii-epm-tab-t-q[\"+i+\"]-l"));
+			JavascriptExecutor jse = (JavascriptExecutor)driver;
+			jse.executeScript("arguments[0].scrollIntoView(true);", e);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q["+i+"]-l"))).click();
+		}
+		
 		//Save report
 		return(em.saveReport(driver,username));
 	}

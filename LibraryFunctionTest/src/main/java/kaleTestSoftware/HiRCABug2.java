@@ -4,10 +4,12 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,10 +30,15 @@ public class HiRCABug2 {
 	public void uploadImageChrome(WebDriver driver, int j) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Actions builder = new Actions(driver);
 		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		String id = "pii-irca-event-filecollapsible-"+j;
-		share2.scrollToElement(driver, driver.findElement(By.id(id)));
-		driver.findElement(By.id(id)).click();
+		//Focus on Bottom Next Button
+		WebElement nextb=driver.findElement(By.xpath(".//div[@class='ui-controlgroup-controls ']/button[@type='submit']"));
+		jse.executeScript("arguments[0].scrollIntoView();", nextb);
+		Thread.sleep(400);
+		builder.moveToElement(driver.findElement(By.id("pii-irca-event-filecollapsible-0"))).click().build().perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-button-"+j)));
 		//Uploads file
 		String file = "pii-irca-event-file-"+j;
@@ -153,6 +160,7 @@ public class HiRCABug2 {
 	public void bugKALE2332QAA758(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		hlb2.fillPage(driver, text);
 		//Scroll to image and upload one image with title
 		uploadImage(driver,0);
@@ -160,14 +168,19 @@ public class HiRCABug2 {
 		//Click on add supporting file
 		WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
 		share2.scrollToElement(driver, add);
+		WebElement nextb=driver.findElement(By.xpath(".//div[@class='ui-controlgroup-controls ']/button[@type='submit']"));
+		jse.executeScript("arguments[0].scrollIntoView();", nextb);
 		add.click();
 		//save hirca report and open report
 		share2.scrollToTop(driver);
 		hircaL2.saveHiRCAReport(driver);
 		//Scroll down
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))));
+		
 		//Click on collapsible of image
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))).click();
+		WebElement col=driver.findElement(By.id("pii-irca-h-event-report-filecollapsible-0"));
+		jse.executeScript("arguments[0].scrollIntoView();", col);
+		jse.executeScript("arguments[0].click();", col);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify no warning message
@@ -197,6 +210,7 @@ public class HiRCABug2 {
 			uploadImage(driver,j);
 			//Click on add supporting file
 			WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
+			jse.executeScript("arguments[0].scrollIntoView();", add);
 			share2.scrollToElement(driver, add);
 			add.click();
 		}
@@ -204,6 +218,8 @@ public class HiRCABug2 {
 		share2.scrollToTop(driver);
 		hircaL2.saveHiRCAReport(driver);
 		//Scroll down
+		WebElement col=driver.findElement(By.id("pii-irca-h-event-report-filecollapsible-0"));
+		jse.executeScript("arguments[0].scrollIntoView();", col);
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-h-event-report-filecollapsible-0"))));
 		//Checks the 5 images if appearing
 		for (int j=0; j<3; j++)
@@ -212,7 +228,7 @@ public class HiRCABug2 {
 			Thread.sleep(500);
 			String id = "pii-irca-h-event-report-filecollapsible-"+j;
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
-			if(browserName.contains("safari"))
+			if(browserName.contains("chrome"))
 			{
 				while(true)
 				{
@@ -225,15 +241,16 @@ public class HiRCABug2 {
 				}
 			}
 			else
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
+			    jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			String img = "pii-irca-h-event-report-file-img-"+j;
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img))));
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img))));
 			if(driver.findElement(By.id(img)).isDisplayed())
 			{
 				System.out.println("Image "+ (j+1) + " is displayed");	
-
 			}
 		}
 		share2.scrollToTop(driver);

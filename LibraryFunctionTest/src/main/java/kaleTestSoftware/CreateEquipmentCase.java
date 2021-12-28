@@ -4336,16 +4336,19 @@ public class CreateEquipmentCase {
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)));
 			//Clicks on delete button
 			try{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)).click();
+				jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-delete"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-delete"))));
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)).click();
 			}catch(org.openqa.selenium.WebDriverException r)
 			{
 				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)));
 				//Waits for black loading message to disappear
 				share2.loadingServer(driver);
 				share2.scrollToTop(driver);
 				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)).click();
+				jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseDeleteButton)));
 			}
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
@@ -4358,6 +4361,7 @@ public class CreateEquipmentCase {
 			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Checks if case deleted
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).clear();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDAdmin)).sendKeys(caseId);
 			Thread.sleep(2000);
@@ -4368,7 +4372,8 @@ public class CreateEquipmentCase {
 			else softly.fail("Case did not get deleted: "+caseId1.get(i) );
 		}		 
 		//Clicks on Errorfree bank option to close the collapsible menu
-		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankAdminLink)));
 	}
 
 	public void softAssert() throws Exception {

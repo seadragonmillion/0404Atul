@@ -2007,8 +2007,11 @@ public class HiRCALevel1 {
 	public void deleteReport (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on delete
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).click();
+		WebElement delBtn=driver.findElement(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"));
+		jse.executeScript("arguments[0].scrollIntoView();", delBtn);
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);

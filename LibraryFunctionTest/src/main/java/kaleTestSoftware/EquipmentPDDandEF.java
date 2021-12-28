@@ -1200,6 +1200,7 @@ public class EquipmentPDDandEF {
 	public List<String> createCaseChrome(WebDriver driver, String keyword_same, String key1, String key2, String key3, String title) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -1220,7 +1221,10 @@ public class EquipmentPDDandEF {
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)).click();
+			share2.scrollToTop(driver);
+			WebElement newCasebtn= wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton));
+			jse.executeScript("arguments[0].scrollIntoView();", newCasebtn);
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)));
 			//Clicks on new case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
@@ -1267,6 +1271,8 @@ public class EquipmentPDDandEF {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseAnswer)).sendKeys(title);
 			share2.scrollToAPoint(driver, 1700);
 			//Enters Keyword
+			WebElement enterKey=wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField));
+			jse.executeScript("arguments[0].scrollIntoView();", enterKey);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 			Thread.sleep(2000);
 			//Make sure keyword typed in right
@@ -1298,13 +1304,13 @@ public class EquipmentPDDandEF {
 				share2.scrollToAPoint(driver, 1700);
 	//			WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
 				//element.findElement(chc.FirstAndLastChildInList).click();
-			JavascriptExecutor jse = (JavascriptExecutor)driver;	
 			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-keyword-search-list']//li[@class='ui-first-child ui-last-child']/a"))));
 
 			}
 			Thread.sleep(2000);
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
+			jse.executeScript("arguments[0].scrollIntoView();", l);
 			share2.scrollToElement(driver, l);
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageUploadField)).click();
 			//Process p =Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/UploadHumanCaseSlides.exe");
@@ -1321,6 +1327,7 @@ public class EquipmentPDDandEF {
 			{
 				l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
 				share2.scrollToElement(driver, l);
+				jse.executeScript("arguments[0].focus();", l);
 				l.click();
 			}
 			int i;
@@ -1338,9 +1345,10 @@ public class EquipmentPDDandEF {
 			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+			jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))));
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-save"))));
 			//Clicks on create case
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
@@ -1374,7 +1382,8 @@ public class EquipmentPDDandEF {
 		for(int count=1;count<=5;count++)
 		{	
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)).click();
+			jse.executeScript("arguments[0].scrollIntoView();", equipObj.EquipCaseNewButton);
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)));
 			//Clicks on new case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
