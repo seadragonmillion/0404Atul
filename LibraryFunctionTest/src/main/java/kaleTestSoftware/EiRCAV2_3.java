@@ -392,6 +392,7 @@ public class EiRCAV2_3 {
 	public List<String> symptomsTab(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> symptoms = new ArrayList<String>();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
 		// symptoms
@@ -409,74 +410,97 @@ public class EiRCAV2_3 {
 		//Click SBI dropdown
 		WebElement sbiElement = driver.findElement(By.id("pii-ircam2-t3-inspections-type-button"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-type-button"))));
-		sbiElement.click();
+		jse.executeScript("arguments[0].focus();", sbiElement);
+		jse.executeScript("arguments[0].click();", sbiElement);
+//		sbiElement.click();
 		//Checkbox SBI: Abnormal smell 
 		WebElement sbiCheckbox = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a[text()='Abnormal smell']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a[text()='Abnormal smell']"))));
-		sbiCheckbox.click();
+		jse.executeScript("arguments[0].focus();", sbiCheckbox);
+		jse.executeScript("arguments[0].click();", sbiCheckbox);
+//		sbiCheckbox.click();
 		//Click SBI:Abnormal small subOption dropdown
 		share2.scrollToAPoint(driver, 400);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))).click();
 		//Checkbox 2 inside SBI: Abnormal small dropdown
 		WebElement sbiAbsmall = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of insulation polymers']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of insulation polymers']"))));
-		sbiAbsmall.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))).click();
+		jse.executeScript("arguments[0].focus();", sbiAbsmall);
+		jse.executeScript("arguments[0].click();", sbiAbsmall);
+//		sbiAbsmall.click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))).click();
 		//Close Checkbox 2 inside SBI: Abnormal small dropdown
 		WebElement closeAbsmall = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-listbox']//a[text()='Close']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-listbox']//a[text()='Close']"))));
-		closeAbsmall.click();
+		jse.executeScript("arguments[0].focus();", closeAbsmall);
+		jse.executeScript("arguments[0].click();", closeAbsmall);
+//		closeAbsmall.click();
 		//Sendtext in SBI: Abnormal small textbox: 1st row: Inspection Notes
 		WebElement sbiAbsmalltext1 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='0']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='0']"))));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='0']"))));
 		sbiAbsmalltext1.sendKeys("XXX");
-		//										   1st row: Symptoms Findings
+		//	1st row: Symptoms Findings
 		WebElement sbiAbsmalltext2 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='0']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='0']"))));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='0']"))));
 		sbiAbsmalltext2.sendKeys("XXX");
 		//Sendtext in SBI: Abnormal small textbox: 2nd row: Inspection Notes
 		WebElement sbiAbsmalltext2nd1 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='1']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='1']"))));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='1']"))));
 		sbiAbsmalltext2nd1.sendKeys("XXX");
-		//		   								   2nd row: Symptoms Findings
+		//2nd row: Symptoms Findings
 		WebElement sbiAbsmalltext2nd2 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='1']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='1']"))));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='1']"))));
 		sbiAbsmalltext2nd2.sendKeys("XXX");
 		
 		// Click SRI dropdown
 		WebElement sriElement = driver.findElement(By.xpath("//*[@id='pii-ircam2-t3-inspections-type-button' and @piitype='1']"));
 		share2.scrollToElement(driver, wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-type-button' and @piitype='1']"))));
-		sriElement.click();
+		jse.executeScript("arguments[0].focus();", sriElement);
+		jse.executeScript("arguments[0].click();", sriElement);
+//		sriElement.click();
 		// Click SRI: Leak option
 		WebElement sriLeakOption = driver
 				.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a[text()='Leak/Drain related']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a[text()='Leak/Drain related']"))));
-		sriLeakOption.click();
+		jse.executeScript("arguments[0].focus();", sriLeakOption);
+		jse.executeScript("arguments[0].click();", sriLeakOption);
+//		sriLeakOption.click();
 		
 		// Click SRI:Leak subOption dropdown
 		share2.scrollToAPoint(driver, 800);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))).click();
 		
 		//Checkbox SRI:Leak:
-		JavascriptExecutor js = (JavascriptExecutor)driver;
-		js.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-2-menu']//a[text()='Heat from steam pipe leak (Thermal image)']"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-2-menu']//a[text()='Heat from steam pipe leak (Thermal image)']"))));
 		
 		// Close SRI:Leak subOption dropdown
-		js.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-2-listbox']//a[text()='Close']"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-2-listbox']//a[text()='Close']"))));
 		
 		// Sendtext in SRI: Leak: Inspection Notes
 		WebElement sriLeaktext1 = driver
 				.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-SRI-td']/textarea"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-SRI-td']/textarea"))));
+		jse.executeScript("arguments[0].focus();", sriLeaktext1);
 		sriLeaktext1.sendKeys("XXX");
 		//Sendtext in SRI: Leak: Symptoms Findings
 		WebElement sriLeaktext2 = driver
 				.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-SRI-td']/textarea"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-SRI-td']/textarea"))));
+		jse.executeScript("arguments[0].focus();", sriLeaktext2);
 		sriLeaktext2.sendKeys("XXX");
 		
 		

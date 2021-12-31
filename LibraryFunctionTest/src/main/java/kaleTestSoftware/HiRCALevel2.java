@@ -111,6 +111,7 @@ public class HiRCALevel2 {
 		System.out.println("recompile 2");
 		HiRCALevel1 obj1 = new HiRCALevel1();
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Step 4 verify select HML
 		
 		HashMap<String,String> hml1 = verifyStep4LOP1(driver,lopSelected,level31stLOP,2,hircaNoteLopSURE,chineseOrEnglish,softly);
@@ -133,7 +134,9 @@ public class HiRCALevel2 {
 		List<String> correctiveActionLOP3 = getCorrectiveAction(driver,level33rdLOP,n3);
 		share2.scrollToTop(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Step 5 select random
 		List<Integer> step5 = selectStep5(driver);
 		if(chineseOrEnglish==1)
@@ -142,7 +145,9 @@ public class HiRCALevel2 {
 			hlb2.bugKALE2494(driver,softly);
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Save report
 		saveHiRCAReport(driver);
 		//Verify report
@@ -173,6 +178,7 @@ public class HiRCALevel2 {
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		share2.scrollToTop(driver);
 		//Go to step 2
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))));
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-2"))));
 		//Get for value of all lops selected
 		for(int i =0;i<lopSelected.size();i++)
@@ -185,7 +191,8 @@ public class HiRCALevel2 {
 		Collections.sort(digits);
 		System.out.println(digits+"\n"+for1);
 		//Click on lop that comes first and uncheck it
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+digits.get(0)+"']"))));
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+digits.get(0)+"']"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+digits.get(0)+"']"))));
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-"+digits.get(0)+"']"))));
 		//Click on modify
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
@@ -205,11 +212,12 @@ public class HiRCALevel2 {
 		Thread.sleep(500);
 		//Scroll to element
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		//Click on LOP
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 		String lopName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText().trim();
 		System.out.println(lopName);
-		share2.scrollToTop(driver);
 		share2.scrollToTop(driver);
 		//Decide order of new LOP selected
 		digits.remove(0);
@@ -222,7 +230,9 @@ public class HiRCALevel2 {
 		int index = digits.indexOf(Integer.parseInt(digit));
 		System.out.println(index);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		if(index==0)
 		{
 			//Check for 1/3 in page title
@@ -245,11 +255,15 @@ public class HiRCALevel2 {
 				share2.scrollToTop(driver);
 				//Click next
 				try{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+					executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				}catch(org.openqa.selenium.WebDriverException r)
 				{
 					share2.scrollToTop(driver);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+					executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				}
 			}				
 		}
@@ -268,11 +282,15 @@ public class HiRCALevel2 {
 				share2.scrollToTop(driver);
 				//Click next
 				try{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+					executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				}catch(org.openqa.selenium.WebDriverException r)
 				{
 					share2.scrollToTop(driver);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+					executor.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+					executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				}
 			}	
 		}
@@ -342,12 +360,17 @@ public class HiRCALevel2 {
 	public void modifyStep4(WebDriver driver, List<String> level31stLOP, List<String> level32ndLOP, List<String> level33rdLOP) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on open button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[1]"))).click();
 		//Open confirm button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();		
 		//Go to step 4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-4"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-4"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-4"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-4"))).click();
 		//Change the text
 		changeCorrectiveAction (driver,level31stLOP, 2);
 		List<String> correctiveActionLOP1 = getCorrectiveAction(driver,level31stLOP,2);
@@ -609,6 +632,7 @@ public class HiRCALevel2 {
 	public void changeCorrectiveAction (WebDriver driver, List<String> level31stLOP, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> text = em2.error50Data(driver,driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(text).iterator();
 		if(level31stLOP.isEmpty()==false)
@@ -620,11 +644,13 @@ public class HiRCALevel2 {
 				try{
 					//Move to element
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))));
+					jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))));
 				}catch(org.openqa.selenium.TimeoutException r)
 				{
 					break;
 				}
 				//Clear text box
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))).clear();
 				//Fill text box
 				if(iter.hasNext()) 

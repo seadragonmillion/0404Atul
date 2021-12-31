@@ -269,6 +269,7 @@ public class ShareCheck2 {
 	public void checkIfUserProfileNoFieldsMissing(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on LoginName
 		wait.until(ExpectedConditions.visibilityOfElementLocated(share.LoginNameOnTopRight)).click();
 		//Close any sticky if there
@@ -325,15 +326,14 @@ public class ShareCheck2 {
 						.click();
 			} catch (Exception e1) {
 			}
-
 		}
-		
 		scrollToTop(driver);
 		while(true)				
 		{
 			Thread.sleep(500);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(share.UserAccountSaveButton)).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.UserAccountSaveButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(share.UserAccountSaveButton)));
 			Thread.sleep(500);
 			if(browserName.contains("safari"))
 				Thread.sleep(2000);

@@ -46,6 +46,7 @@ public class HiRCALevel2Chinese {
 
 		HiRCALevel2 obj3 = new HiRCALevel2();
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Hashmaps for storing notes and answers
 		MultiValuedMap<String,String> hircaNoteLopSURE = new ArrayListValuedHashMap<>();
 		//create a new report
@@ -57,29 +58,41 @@ public class HiRCALevel2Chinese {
 		List<String> level21stLOP = obj3.level2List(pairOfReturnVariables1.getValue());
 		List<String> level31stLOP = obj3.level3List(pairOfReturnVariables1.getValue()).stream().distinct().collect(Collectors.toList());
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Select answers for 2nd lop
 		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables2 = answerLOPRelatedQuestions(driver);
 		List<String> level22ndLOP = obj3.level2List(pairOfReturnVariables2.getValue());
 		List<String> level32ndLOP = obj3.level3List(pairOfReturnVariables2.getValue()).stream().distinct().collect(Collectors.toList());
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Select answers for 3rd lop
 		Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables3 = answerLOPRelatedQuestions(driver);
 		List<String> level23rdLOP = obj3.level2List(pairOfReturnVariables3.getValue());
 		List<String> level33rdLOP = obj3.level3List(pairOfReturnVariables3.getValue()).stream().distinct().collect(Collectors.toList());
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//Verify 2.20
 		chineseQ220(driver);
 		//2.20 - make some selections and click next
 		List<String> list220 = selectAllLevel3(driver,12).stream().distinct().collect(Collectors.toList());
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.22 - skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		//Step 3 skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		/*Step 4 / Step 5 / Report/ pdf
 		0=english
 		1=chinese
@@ -93,6 +106,7 @@ public class HiRCALevel2Chinese {
 	public Pair<MultiValuedMap<String,String>, List<String>> answerLOPRelatedQuestions(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
 		List<String> combined = new ArrayList<String>();
@@ -113,7 +127,8 @@ public class HiRCALevel2Chinese {
 		if(n==0) //n=0 > select Yes
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
 			//Select random level 3 answers for 3.17
 			hc33.chineseStepOneL317(driver, softly);
 //			chineseStep2verify317(driver, softly);
@@ -182,7 +197,9 @@ public class HiRCALevel2Chinese {
 			String note2 = hfl123.getNoteShowingPreviousAnswer(driver);
 			if(ss==0 || ss==3) {
 				//Click next
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				
 				//Select random level 3 answers for 3.16
 				hc31.chineseStepOneL316(driver, softly);
@@ -191,7 +208,9 @@ public class HiRCALevel2Chinese {
 			}	
 			if(ss==1) {
 				//Click next
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				//2.3 (remove 2.4-2.8)
 				Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions23To28(driver);
 				level2.addAll(obj1.level2List(pairOfReturnVariables.getValue()));
@@ -200,7 +219,9 @@ public class HiRCALevel2Chinese {
 			}
 			if(ss==2) {
 				//Click next
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 				
 			//2.9 to 2.12
 			Pair<MultiValuedMap<String,String>, List<String>> pairOfReturnVariables = followQuestions29To212(driver);
@@ -238,6 +259,7 @@ public class HiRCALevel2Chinese {
 	public Pair<MultiValuedMap<String,String>, List<String>> followQuestions29To212(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
 		List<String> combined = new ArrayList<String>();
@@ -256,7 +278,9 @@ public class HiRCALevel2Chinese {
 		if(n==0) //n==0, select Yes
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.12
 			hc35.chineseStepOneL312(driver, softly);
 			level3.addAll(selectAllLevel3(driver,5));			
@@ -264,7 +288,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.10
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -276,7 +302,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.13
 			hc17.chineseStepOneL313(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,4);			
@@ -285,7 +313,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note1, lopOptions));
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.11
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -297,7 +327,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.14
 			hc17.chineseStepOneL314(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,5);		
@@ -306,7 +338,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note2, lopOptions));	
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.12
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -318,7 +352,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.15
 			hc39.chineseStepOneL315(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,4);			
@@ -335,6 +371,7 @@ public class HiRCALevel2Chinese {
 	public Pair<MultiValuedMap<String,String>, List<String>> followQuestions23To28(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCA2 obj = new OPiRCA2();
 		HiRCALevel2 obj1 = new HiRCALevel2();
 		List<String> combined = new ArrayList<String>();
@@ -353,7 +390,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.6
 			hc21.chineseStepOneL36(driver, softly);
 			level3.addAll(selectAllLevel3(driver,9));			
@@ -363,7 +402,9 @@ public class HiRCALevel2Chinese {
 		if(n==1)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.22
 			hc18.chineseStepOneL322(driver, softly);
 			level3.addAll(selectAllLevel3(driver,5));
@@ -372,14 +413,18 @@ public class HiRCALevel2Chinese {
 		}
 		if(n==2) {
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.6
 			hc21.chineseStepOneL36(driver, softly);
 			level3.addAll(selectAllLevel3(driver,9));			
 			//Join the list with the note for SURE
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note, level3));	
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.22
 			hc18.chineseStepOneL322(driver, softly);
 			level3.addAll(selectAllLevel3(driver,5));
@@ -395,7 +440,9 @@ public class HiRCALevel2Chinese {
 		else
 		{*/
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//}
 		//2.4
 		//Choose option to select
@@ -408,7 +455,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.7
 			hc19.chineseStepOneL37(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,10);			
@@ -417,7 +466,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note1, lopOptions));	
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.5
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -429,7 +480,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.8
 			hc20.chineseStepOneL38(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,8);			
@@ -438,7 +491,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note2, lopOptions));		
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.6
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -450,7 +505,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.9
 			hc39.chineseStepOneL39(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,6);			
@@ -459,7 +516,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note3, lopOptions));		
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.7
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -471,7 +530,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.10
 			hc6.chineseStepOneL310(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,5);			
@@ -480,7 +541,9 @@ public class HiRCALevel2Chinese {
 			hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note4, lopOptions));		
 		}
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		//2.8
 		//Choose option to select
 		n = obj.chooseRandomOption(2, 0);
@@ -492,7 +555,9 @@ public class HiRCALevel2Chinese {
 		if(n==0)
 		{
 			//Click next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 			//Select random level 3 answers for 3.11
 			hc6.chineseStepOneL311(driver, softly);
 			List<String> lopOptions = selectAllLevel3(driver,5);			
@@ -527,6 +592,7 @@ public class HiRCALevel2Chinese {
 				WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+(j+1)+"]/fieldset/div/div/label")));
 				//Scroll to element
 				share2.scrollToElement(driver, l);
+				executor.executeScript("arguments[0].focus();", l);
 				executor.executeScript("arguments[0].click();", l);
 				//Get answer name and store in list
 				String s1 = l.getText();
@@ -540,8 +606,8 @@ public class HiRCALevel2Chinese {
 	public List<String> select3LOPs(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> a = new ArrayList<String>();
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		//Click on Act of nature
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-2']"))).click();
 		//Click next
@@ -577,15 +643,19 @@ public class HiRCALevel2Chinese {
 			//System.out.println("Option no: "+y);
 			Thread.sleep(500);
 			//Scroll to element
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 			//Click on LOP
-			executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))));
 			a.add(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div["+y+"]/fieldset/div/div/label"))).getText());
 		}
 		//Scroll to the top
 		share2.scrollToTop(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		return a;
 	}
 	

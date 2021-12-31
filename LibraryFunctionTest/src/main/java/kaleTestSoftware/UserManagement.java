@@ -106,7 +106,9 @@ public class UserManagement {
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on collapsible departments sub-departments
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Pick any one department randomly to un-tick
 		//Choose 10 random numbers between 0 to 34
 		Random random = new Random();
@@ -122,18 +124,24 @@ public class UserManagement {
 		jse.executeScript("scroll(0,"+yaxis+")");
 		Thread.sleep(2000);
 		//Uncheck the department
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
+//		l.click();
 		//Scroll up
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible departments sub-departments
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Verify if department is checked
 		l=dept.findElement(By.xpath(".//*[@piiindex='"+x+"']"));
 		System.out.println(l.isSelected());
@@ -142,29 +150,41 @@ public class UserManagement {
 			softly.fail("department is still showing as checked");
 		}
 		//Click on edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on collapsible departments sub-departments
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));		
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Scroll to element
 		Thread.sleep(2000);
 		jse.executeScript("scroll(0,"+yaxis+")");
 		Thread.sleep(2000);
 		//Check the department
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
+//		l.click();
 		//Scroll up
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Sub-Department
 		//Click on edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on collapsible departments sub-departments
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));		
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Pick any one department randomly to un-tick
 		//Choose a random numbers between 0 to 2
 		x = random.nextInt(3);
@@ -179,18 +199,24 @@ public class UserManagement {
 		jse.executeScript("scroll(0,"+yaxis+")");
 		Thread.sleep(2000);
 		//Uncheck the sub department
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
+//		l.click();
 		//Scroll up
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible departments sub-departments
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));		
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Verify if department is checked
 		l=sub.findElement(By.xpath(".//*[@piiindex='"+x+"']"));
 		System.out.println(l.isSelected());
@@ -217,11 +243,14 @@ public class UserManagement {
 	public void verifyGroupListGroupModeratorChange (WebDriver driver, String company_id1, String company_id2, String group2) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on create user
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-create"))).click();
 		Thread.sleep(2000);
 		//Click on Select group dropdown
-		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+//		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		//Verify Group List is empty
 		try{
 			driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-menu']/li[1]"));
@@ -234,7 +263,8 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		share2.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
-		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-modgroups-button"))));
+//		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify Group moderator list is empty
 		try{
 			driver.findElement(By.xpath(".//*[@id='pii-admin-user-modgroups-menu']/li[1]"));
@@ -252,7 +282,9 @@ public class UserManagement {
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on Select group dropdown
-		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+//		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		//Verify group1 of company1 is only present in list
 		int c=2;
 		while(true)
@@ -270,7 +302,9 @@ public class UserManagement {
 		}	
 		//Select group1
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
-		ele1.findElement(By.linkText(company_id1)).click();
+		jse.executeScript("arguments[0].scrollIntoView();", ele1);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(company_id1))));
+//		ele1.findElement(By.linkText(company_id1)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		share2.scrollToAPoint(driver, 1500);
@@ -917,6 +951,7 @@ public class UserManagement {
 	public void changeGroupCompany (WebDriver driver, String company_id, String groupChange, String companyChange) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
 		//Clicks on admin option
@@ -943,24 +978,27 @@ public class UserManagement {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Change company id
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-customerId"))));
 		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-customerId")));
 		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd1.selectByVisibleText(companyChange);
 		//Select pii group
-		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-groups-button")));
-		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+//		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-groups-button")));
+//		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(3000);
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
-		ele1.findElement(By.linkText(groupChange)).click();
-		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		jse.executeScript("arguments[0].scrollIntoView();", ele1);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(groupChange))));
+//		ele1.findElement(By.linkText(groupChange)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a"))));
+//		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		//Click on save
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
-		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click()", savebtn);
-		//jse.executeScript("arguments[0].click()", popupbtn);
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
 		Thread.sleep(500);
@@ -1959,6 +1997,7 @@ public class UserManagement {
 	public void createGroup (WebDriver driver, String company_id) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		//Clicks on create group
@@ -2006,9 +2045,10 @@ public class UserManagement {
 		 builder.click(closebtn).build().perform();
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]")));
 		
-		
+		//Authorize Module's try&catch close button
+		 /*
 		try{
-			driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete"))));
 		}catch (NoSuchElementException e)
 		{
 			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']//a[@role='button' and contains(@class,'ui-btn')]")).click();
@@ -2016,13 +2056,11 @@ public class UserManagement {
 		catch (ElementNotInteractableException e1)
 		{
 			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
-		}
-	
-		
+		}*/
 		//Clicks on save
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-button-save"))));
 //		driver.findElement(By.id("pii-admin-group-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title")));
@@ -2043,6 +2081,7 @@ public class UserManagement {
 	public void createUserGM(WebDriver driver, String company_id, String password,String email) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Login obj = new Login ();
 		Thread.sleep(2000);
 		//Clicks on create user
@@ -2054,7 +2093,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id+"testgroupm");
 		driver.findElement(By.id("pii-admin-user-password")).sendKeys(obj.decodePassword(password));
 		driver.findElement(By.id("pii-admin-user-password-again")).sendKeys(obj.decodePassword(password));
-		driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
+//		driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
 		driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
 		String ev1 = driver.findElement(By.id("pii-admin-user-name")).getAttribute("value");
 		String ev2 = driver.findElement(By.id("pii-admin-user-company")).getAttribute("value");
@@ -2064,11 +2103,12 @@ public class UserManagement {
 			driver.findElement(By.id("pii-admin-user-name")).clear();
 			driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
 		}
+		/*
 		if ((ev2.equals("Sanity Test")==false))
 		{
 			driver.findElement(By.id("pii-admin-user-company")).clear();
 			driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
-		}
+		}*/
 		if ((ev3.equals(email)==false))
 		{
 			driver.findElement(By.id("pii-admin-user-email")).clear();
@@ -2078,7 +2118,9 @@ public class UserManagement {
 		Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd4.selectByVisibleText(company_id);
 		//Select group
-		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+		//driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
 		ele1.findElement(By.linkText(company_id)).click();
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
@@ -2095,7 +2137,6 @@ public class UserManagement {
 		//Clicks on save button
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
 		WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click()", savebtn);
 		jse.executeScript("arguments[0].click()", popupbtn);
 		//driver.findElement(By.id("pii-admin-user-button-save")).click();
@@ -2116,7 +2157,7 @@ public class UserManagement {
 	public void createUserCM(WebDriver driver, String company_id, String password,String email) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Login obj = new Login ();
 		Thread.sleep(2000);
 		//Clicks on create user
@@ -2128,7 +2169,7 @@ public class UserManagement {
 		driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id+"testcm");
 		driver.findElement(By.id("pii-admin-user-password")).sendKeys(obj.decodePassword(password));
 		driver.findElement(By.id("pii-admin-user-password-again")).sendKeys(obj.decodePassword(password));
-		driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
+//		driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
 		driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
 		String ev1 = driver.findElement(By.id("pii-admin-user-name")).getAttribute("value");
 		String ev2 = driver.findElement(By.id("pii-admin-user-company")).getAttribute("value");
@@ -2138,11 +2179,12 @@ public class UserManagement {
 			driver.findElement(By.id("pii-admin-user-name")).clear();
 			driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
 		}
+		/*
 		if ((ev2.equals("Sanity Test")==false))
 		{
 			driver.findElement(By.id("pii-admin-user-company")).clear();
 			driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
-		}
+		}*/
 		if ((ev3.equals(email)==false))
 		{
 			driver.findElement(By.id("pii-admin-user-email")).clear();
@@ -2150,10 +2192,13 @@ public class UserManagement {
 		}
 		Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd4.selectByVisibleText(company_id);
-		driver.findElement(By.id("pii-admin-user-groups-button")).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
-		ele1.findElement(By.linkText(company_id)).click();
-		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
+		jse.executeScript("arguments[0].scrollIntoView();", ele1);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(company_id))));
+		
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a"))));
 		Select dd2 = new Select (driver.findElement(By.id("pii-admin-user-dept")));
 		dd2.selectByVisibleText("Accounting");
 		Select dd3 = new Select (driver.findElement(By.id("pii-admin-user-jobtitle")));
@@ -2163,8 +2208,7 @@ public class UserManagement {
 		//Clicks on save button
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
 		WebElement dialogtitle = driver.findElement(By.id("pii-admin-user-dialog-title"));
-		//WebElement popupbtn = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].focus();", savebtn);
 		jse.executeScript("arguments[0].click()", savebtn);
 		jse.executeScript("arguments[0].scrollIntoView(true);", dialogtitle);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
@@ -2267,11 +2311,12 @@ public class UserManagement {
 			driver.findElement(By.id("pii-admin-user-name")).clear();
 			driver.findElement(By.id("pii-admin-user-name")).sendKeys(company_id);
 		}
+		/*company name
 		if ((ev2.equals("Sanity Test")==false))
 		{
-			driver.findElement(By.id("pii-admin-user-company")).clear();
-			driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
-		}
+			driver.findElement(By.xpath(".//input[@id='pii-admin-user-company']")).clear();
+			driver.findElement(By.xpath(".//input[@id='pii-admin-user-company']")).sendKeys("Sanity Test");
+		}*/
 		if ((ev3.equals(email)==false))
 		{
 			driver.findElement(By.id("pii-admin-user-email")).clear();
@@ -2280,6 +2325,7 @@ public class UserManagement {
 		Select dd4 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd4.selectByVisibleText(company_id);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 //		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
@@ -2294,7 +2340,7 @@ public class UserManagement {
 		//Clicks on save button
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
 		WebElement dialogtitle = driver.findElement(By.id("pii-admin-user-dialog-title"));
-		WebElement popupbtn2 = driver.findElement(By.id("pii-admin-user-dialog-confirmed"));
+		jse.executeScript("arguments[0].focus();", savebtn);
 		jse.executeScript("arguments[0].click()", savebtn);
 		jse.executeScript("arguments[0].scrollIntoView(true);", dialogtitle);
 		//jse.executeScript("arguments[0].click()", popupbtn2);
@@ -2454,7 +2500,9 @@ public class UserManagement {
 		//Click on edit
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
 		//Click on departments collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
 		//Choose 10 random numbers between 0 to 34
 		List<Integer> numbers = new ArrayList<Integer>();
 		int x=-1;
@@ -2463,14 +2511,15 @@ public class UserManagement {
 		for (int i=0; i<10;i++)
 		{
 			Random random = new Random();
-			System.out.println(i);
+			System.out.println("Print out i    "+  i);
+			
 			while (true)
 			{
 				x = random.nextInt(35);
-				System.out.println(numbers.contains(x));
+				System.out.println("numbers contains x    "+numbers.contains(x));
 				if(numbers.contains(x)==true)
 				{
-					System.out.println(x);
+					System.out.println("Print out x    "+x);
 					continue;
 				}
 				else break;
@@ -2479,7 +2528,7 @@ public class UserManagement {
 		}
 		//Sorts number list
 		Collections.sort(numbers);
-		System.out.println(numbers);
+		System.out.println("Sort numbers #2531     "+ numbers);
 		//Unselect any 10 departments and store the unselected ones in a list
 		List<String> dept = new ArrayList<String>();
 		for (int i=0;i<10;i++)
@@ -2493,12 +2542,15 @@ public class UserManagement {
 			//Scroll to element
 			jse.executeScript("scroll(0,"+yaxis+")");
 			//Look for pii index number and click on checkbox
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@piiindex='"+numbers.get(i)+"']"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@piiindex='"+numbers.get(i)+"']"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@piiindex='"+numbers.get(i)+"']"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@piiindex='"+numbers.get(i)+"']"))).click();
 			//Get department name and store
 			String s =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-table']/tbody/tr["+(numbers.get(i)+2) +"]/td[1]"))).getText();
 			dept.add(s);
 		}
 		//Adds a department
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dept-input"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dept-input"))).sendKeys("QAA sample department");
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dept-input"))).sendKeys(Keys.ENTER);
@@ -2509,7 +2561,8 @@ public class UserManagement {
 		dept1.add("QAA sample department");
 		share2.scrollToTop(driver);
 		//Save company
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -2524,6 +2577,7 @@ public class UserManagement {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on departments collapsible
 		share2.scrollToAPoint(driver, 600);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
 		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
 		for (int i=2;i<=36;i++)
 		{

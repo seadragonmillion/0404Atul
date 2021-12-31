@@ -95,8 +95,10 @@ public class HiRCALOPBug2 {
 	public void bugKALE2494(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on About
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)));
 		//Verify text for chinese
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLastParagraphUnderBurp)).getText();
 		System.out.println("2494: "+s);
@@ -106,7 +108,9 @@ public class HiRCALOPBug2 {
 		System.out.println("2494: "+s1);
 		softly.assertThat(s1).as("test data").isEqualTo("失败率与未受培训的员工百分比成正比。");
 		//Click on About
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)));
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(hc.HiRCAStep5AboutLink)).click();
 	}
 
 	public void bugKALE2493(WebDriver driver, SoftAssertions softly) throws Exception {
