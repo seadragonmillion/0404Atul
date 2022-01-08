@@ -129,14 +129,16 @@ public class HiRCALOPBug2 {
 	public void bugKALE2412(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		fillUpHiRCAEventInfo(driver,text);
 		//Click on Human error
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
 		Thread.sleep(2000);
 		//Click on Knowledge-based 1.2.1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
 		Thread.sleep(2000);
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
@@ -155,7 +157,8 @@ public class HiRCALOPBug2 {
 			Thread.sleep(1000);
 		}*/
 		//Click on Root Cause
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))).click();
+		Thread.sleep(2000);		
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
 		//Skip from step 3 to Step 5 - 2 times as per current path version 4.6.3
 		for(int i=1;i<=2;i++)
 		{

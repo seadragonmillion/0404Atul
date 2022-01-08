@@ -34,12 +34,15 @@ public class HiRCAStress {
 
 		HiRCALevel1 obj2 = new HiRCALevel1();
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Go to Analysis page and fill Info page
 		hlb2.fillPage(driver, text);
 		//Upload 10 images
 		uploadFiveImages(driver);
 		//Clicks on Saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-btn-savedactivities"))).click();
 		share2.loadingServer(driver);
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-irca"))).click();
@@ -53,13 +56,15 @@ public class HiRCAStress {
 			//Click on Supporting file details
 			Thread.sleep(500);
 			String id = "pii-irca-h-event-report-filecollapsible-"+j;
-			share2.scrollToElement(driver, driver.findElement(By.id(id)));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
+//			share2.scrollToElement(driver, driver.findElement(By.id(id)));
+			jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))));
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
 			String img = "pii-irca-h-event-report-file-img-"+j;
 			try{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
+				jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img))));
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(img)));
 			}catch(org.openqa.selenium.TimeoutException y)
 			{
 				softly.fail("Image not visible");
@@ -80,7 +85,7 @@ public class HiRCAStress {
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj1 = new HiRCAEvent();
-		obj1.deleteFiles(file);
+//		obj1.deleteFiles(file);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -134,11 +139,14 @@ public class HiRCAStress {
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//mama//Pictures//");
-		obj2.deleteFiles(file);
+//		obj2.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]")))); 
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
@@ -147,8 +155,18 @@ public class HiRCAStress {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
-		Thread.sleep(8000);
+//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Thread.sleep(4000);
+		try {
+		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+
+		q.waitFor();
+		}catch (UnhandledAlertException f){	
+		System.out.println("Unexpected alert");
+		driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+		System.out.println ("No unexpected alert");}
 //		pdfCheck();
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -323,51 +341,70 @@ public class HiRCAStress {
 	public  void uploadTenImagesChrome(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		for (int j=0; j<10; j++)
 		{
 			//Click on Supporting file details
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))).click();
-			//Uploads file
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+j))));
+			//Click on bottom next button
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ui-controlgroup-controls ']/button[@type='submit']"))));
+			//Click on Supporting File Collapsible
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-irca-event-filecollapsible-"+j+"']/h4/a"))));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
 			//Fill title and description
 			String title_id="pii-irca-event-file-title-"+j;
+			jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-title-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+j);
-			driver.findElement(By.id("pii-irca-event-file-"+j)).sendKeys(filepath);
+			//Upload Photo
+			String file = "pii-irca-event-file-"+j;
+			WebElement l=driver.findElement(By.id(file));
+			//Actions act= new Actions(driver);
+			//act.moveToElement(l).build().perform();
+			Thread.sleep(1000);
+			l.sendKeys(filepath);
+//			driver.findElement(By.id("pii-irca-event-file-"+j)).sendKeys(filepath);
 			//Wait for image
+//			jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+j)));
 			if(j<9)
 			{
 				//Click on attach another file
 				WebElement add= driver.findElement(By.id("pii-irca-addnewfile-button"));
-				share2.scrollToElement(driver, add);
-				add.click();
+				jse.executeScript("arguments[0].focus();", add);
+				jse.executeScript("arguments[0].click();", add);
+//				share2.scrollToElement(driver, add);
+//				add.click();
 			}
 		}
 		share2.scrollToTop(driver);
+		jse.executeScript("document.getElementById('efi-irca-button-save').focus();");
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.id("efi-irca-button-save")).sendKeys(Keys.ARROW_UP);
 		Thread.sleep(2000);
 		//Clicks on Save
-		driver.findElement(By.id("efi-irca-button-save")).click();
+		jse.executeScript("arguments[0].focus();", driver.findElement(By.id("efi-irca-button-save")));
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-irca-button-save")));
+//		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 		share2.loadingServer(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Verify if all 10 images are present
-		verifyImagesUploaded(driver);
+		verifyImagesUploaded(driver);		
 		//Clicks on Save
-		driver.findElement(By.id("efi-irca-button-save")).click();
+		jse.executeScript("arguments[0].focus();", driver.findElement(By.id("efi-irca-button-save")));
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-irca-button-save")));
+//		driver.findElement(By.id("efi-irca-button-save")).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on Save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupMessage)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -568,18 +605,33 @@ public class HiRCAStress {
 	public  void verifyImagesUploaded(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		for (int i=0;i<=9;i++)
 		{
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))));
+			jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i))));
+			if(driver.findElement(By.id("pii-irca-event-file-img-"+i)).isDisplayed())
+			{
+				System.out.println("Image"+i+ "   is Displayed");
+			}
+		}
+		/*
+		for (int i=0;i<=9;i++)
+		{
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))));
+			jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))));
 			//Clicks on collapsible
 			if(driver.findElement(By.id("pii-irca-event-file-img-"+i)).isDisplayed()==false)
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-filecollapsible-"+i))).click();
-			//Checks for image
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
+				jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))));
+				//Checks for image
+				jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-event-file-img-"+i)));
 			Thread.sleep(2000);
 			//Clicks on collapsible again
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))).click();
-		}
+			jse.executeScript("arguments[0].focus();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-irca-event-filecollapsible-"+i+"']/h4/a"))).click();
+		}*/
 		share2.scrollToTop(driver);
 		share2.scrollToTop(driver);
 	}

@@ -263,7 +263,7 @@ public class ChromeOffline4 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedActivitiesButton)).click();
 		// Wait for loading message to disappear
 		share2.loadingServer(driver);
-		// Assert: Offline report display in Offline Listing
+		// Assert: Offline report display in Online Listing
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).getText();
 		softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");
 		System.out.println(s);

@@ -1514,6 +1514,7 @@ public class HiRCALOPBug {
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Click no in 1.18.2
+		Thread.sleep(1000);
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer2)));
 		Thread.sleep(2000);
 		//Click next

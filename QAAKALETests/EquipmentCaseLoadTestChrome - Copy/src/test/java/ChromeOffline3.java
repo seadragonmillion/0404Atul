@@ -277,7 +277,7 @@ public class ChromeOffline3 {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))).click();
 				//Click on RV tab on side panel
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
-				//Assert: Offline report display in Offline Listing
+				//Assert: Offline report display in Online Listing
 				wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).getText();
 				softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");	
 				System.out.println(s);

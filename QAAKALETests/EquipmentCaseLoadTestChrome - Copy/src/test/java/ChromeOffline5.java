@@ -214,7 +214,7 @@ public class ChromeOffline5 {
 		Thread.sleep(7000);
 		// Click on RV tab on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-rv"))).click();
-		// Assert: Offline report display in Offline Listing
+		// Assert: Offline report display in Online Listing
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).getText();
 		softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");
 		System.out.println("Offline report is synced to online kale server: " + s);
