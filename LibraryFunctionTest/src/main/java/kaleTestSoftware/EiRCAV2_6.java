@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,9 +41,12 @@ public class EiRCAV2_6 {
 	public void verifyPopupStep9NoDCAC(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//next
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		//Wait for popup
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
@@ -60,17 +64,20 @@ public class EiRCAV2_6 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("add direct or apparent cause");
 		//Click on see report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)));
 		//Verify skipped on step 10
 		String skip5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ReportTabStep10SectionTitle)).getText();
 		softly.assertThat(skip5).as("test data").isEqualTo("10. Corrective Actions (skipped)");
 		//Click on Step 9 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step9Tab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step9Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step9Tab)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step9Tab)).click();
 	}
 
 	public List<String> EiRCAStep9 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> dcNames = new ArrayList<String>();
 		List<String> acNames = new ArrayList<String>();
 		List<String> cfNames = new ArrayList<String>();
@@ -123,8 +130,10 @@ public class EiRCAV2_6 {
 		for(int fm=0;fm<loopEnd;fm++)
 		{
 			//Click on collapsible
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();
 			String sfHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/thead/tr[1]/th[1]"))).getText();
 			softly.assertThat(sfHeading).as("test data").isEqualTo("Sequence of Failures");
 			//Check if the possible direct cause and apparent cause are n/a
@@ -135,13 +144,16 @@ public class EiRCAV2_6 {
 			//Get name of failure mode 
 			String fmName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a/span[1]"))).getText();
 			//Fill direct cause twice and select
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))).sendKeys(fmName+" DC 1");
 			dcNames.add(fmName+" DC 1");
 			Thread.sleep(1000);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input")));
 			try{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input"))).click();
 			}catch(org.openqa.selenium.TimeoutException t){
 				driver.findElement(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input")).click();
 			}
@@ -154,7 +166,7 @@ public class EiRCAV2_6 {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[2]/div/input"))).click();
 			}
 			Thread.sleep(1000);*/
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[1]/textarea")));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[1]/textarea"))));
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[1]/textarea"))).sendKeys(fmName+" DC 2");
 			}catch(org.openqa.selenium.TimeoutException t){
@@ -168,7 +180,9 @@ public class EiRCAV2_6 {
 			Thread.sleep(1000);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[2]/div/input")));
 			try{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[2]/div/input"))).click();
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[2]/div/input"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[2]/div/input"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[2]/td[2]/div/input"))).click();
 			}catch(org.openqa.selenium.TimeoutException t){
 
 			}
@@ -184,7 +198,8 @@ public class EiRCAV2_6 {
 			}
 			Thread.sleep(1000);*/
 			//Fill apparent cause twice and select
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))));
 			String seHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/thead/tr[1]/th[1]"))).getText();
 			softly.assertThat(seHeading).as("test data").isEqualTo("Sequence of Events");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[1]/td[1]/textarea"))).sendKeys(fmName+" AC 1");
@@ -234,11 +249,13 @@ public class EiRCAV2_6 {
 			{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acsoe-table']/table/tbody/tr[2]/td[2]/div/input"))).click();
 			}*/
+			/*
 			//Direct Cause
 			for(int i=0;i<2;i++)
 			{
 				//Select SUEP for 1st one
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[1]/td[1]"))));
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[1]/td[1]"))));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[1]/td[1]"))));
 				try{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-1']"))).click();
 				}catch(org.openqa.selenium.TimeoutException t){
@@ -251,11 +268,14 @@ public class EiRCAV2_6 {
 				}
 				if(i==0)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-3']"))).click();
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-4']"))).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-3']"))));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-3']"))));
+					jse.executeScript("arguments[0].scrollIntoView(true);",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-4']"))));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qdc"+(fm+startFM)+"-"+i+"-4']"))));
 				}
 				//Fill text
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]"))));
+	//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]"))));
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]/div/textarea[1]"))).sendKeys(text);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]/div/textarea[2]"))).sendKeys(text);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]/div/textarea[3]"))).sendKeys(text);
@@ -267,8 +287,9 @@ public class EiRCAV2_6 {
 					int n = random.nextInt(4);
 					if(n==0) 
 						continue;
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tdc-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tdc-c"+i+"-q"+j+"-radio"+(n-1)+"']"))).click();
+//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tdc-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
+					jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tdc-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tdc-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
 					if(n != 2) countQScore += 1;
 					WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcqc-table']/table["+(i+1)+"]")));
 					String s = l.findElement(By.className("pii-ircam2-t9-fm-qc-score")).getText();
@@ -282,21 +303,24 @@ public class EiRCAV2_6 {
 					}
 				}
 				qualityScores.add(String.valueOf(countQScore*10));
-			}
+			}*/
 			//Apparent Cause
 			for(int i=0;i<2;i++)
 			{
 				//Select SUEP for 1st one
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]"))));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-1']"))).click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-2']"))).click();
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]"))));
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[1]/td[2]"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-1']"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-2']"))));
 				if(i==0)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-3']"))).click();
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-4']"))).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-3']"))));
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-3']"))));
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-qac"+(fm+startFM)+"-"+i+"-4']"))));
 				}
 				//Fill text
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]"))));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]"))));
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]/div/textarea[1]"))).sendKeys(text);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]/div/textarea[2]"))).sendKeys(text);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]/tbody/tr[2]/td[2]/div/textarea[3]"))).sendKeys(text);
@@ -308,8 +332,9 @@ public class EiRCAV2_6 {
 					int n = random.nextInt(4);
 					if(n==0) 
 						continue;
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tac-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tac-c"+i+"-q"+j+"-radio"+(n-1)+"']"))).click();
+//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tac-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
+					jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tac-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-ircam2-t9-fm"+(fm+startFM)+"-tac-c"+i+"-q"+j+"-radio"+(n-1)+"']"))));
 					if(n != 2) countQScore += 1;
 					WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-acqc-table']/table["+(i+1)+"]")));
 					String s = l.findElement(By.className("pii-ircam2-t9-fm-qc-score")).getText();
@@ -322,24 +347,29 @@ public class EiRCAV2_6 {
 				qualityScores.add(String.valueOf(countQScore*10));
 			}
 			//Click on collapsible to close
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();
 			try{
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t9-fm-"+(fm+startFM)+"-dcsof-table']/table/tbody/tr[1]/td[1]/textarea")));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))).click();				
+				jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-9']/div["+(fm+2)+"]/h4/a"))));				
 			}catch(org.openqa.selenium.TimeoutException t){
 
 			}
 		}
-		//next
+		//Click on Next button
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		dcNames.addAll(acNames);
 		dcNames.addAll(cfNames);
 		dcNames.addAll(qualityScores);
 		return (dcNames);
 	}
-
+	
 	public HashMap<String,String> getStep1Data(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
@@ -378,8 +408,10 @@ public class EiRCAV2_6 {
 	public HashMap<String,String> getStep2SymptomsData(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HashMap<String,String> hm = new HashMap<String,String>();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)));
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		//SBI
 		WebElement sbiTbody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t2t3-inspections-table-tbody")));
@@ -478,7 +510,8 @@ public class EiRCAV2_6 {
 		System.out.println(hm);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
 		return hm;
 	}
 
@@ -501,6 +534,7 @@ public class EiRCAV2_6 {
 	public HashMap<String,List<String>> getStep3FACTSCharaceristicsData(WebDriver driver, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		for(int i=1;i<=step3.size();i++)
@@ -526,7 +560,9 @@ public class EiRCAV2_6 {
 		}
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 		return hm;
 	}
 

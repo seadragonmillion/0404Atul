@@ -288,7 +288,7 @@ public class EiRCAV2PageObj {
 	//Step 5
 	public By Step5Tab = By.id("pii-ircam2-tab-5-a");
 	public By Step5TabPageTitle = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[1]");
-	public By Step5FailureCollapsible = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]");	
+	public By Step5FailureCollapsible = By.xpath("//*[@id=\"pii-ircam2-tab-5\"]/div[3]/h4/a");	
 	public By Step5TableOption51CheckBox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[1]/td[2]/div/input");
 	public By Step5TableOption52CheckBox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[2]/td[2]/div/input");
 	public By Step5TableOption53CheckBox = By.xpath(".//*[@id='pii-ircam2-tab-5']/div[3]/div/table/tbody/tr[3]/td[2]/div/input");

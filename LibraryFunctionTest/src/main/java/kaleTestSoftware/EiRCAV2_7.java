@@ -42,8 +42,10 @@ public class EiRCAV2_7 {
 	public void shareReportAfterChoosingSharer(WebDriver driver,String username, String password1, String sharer, String sharerAdded, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareButton)));
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareTextBox)).sendKeys(sharer);
 		Thread.sleep(2000);
@@ -58,11 +60,13 @@ public class EiRCAV2_7 {
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		share3.shareTwice (driver,softly,0);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();		
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)));		
 		//Verify share save sticky
 		verifyStickyShareSave(driver, softly);
 		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
 		share2.loadingServer(driver);
 		//Verify Share icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAShareIconOrCriticalIcon));
@@ -79,19 +83,21 @@ public class EiRCAV2_7 {
 	public void deleteNewRecord(WebDriver driver,String recordName, int y, SoftAssertions softly) throws Exception{
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		WebDriverWait wait = new WebDriverWait(driver,10);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		System.out.println(browserName);
 		//Clicks on delete button
 		share2.loadingServer(driver);
-		driver.findElement(eirca.DeleteButton).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.DeleteButton))); 
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.DeleteButton))); 
+//	driver.findElement(eirca.DeleteButton).click();
 		//Verify delete popup
 		if (browserName.contains("safari")==false)
 		{					
 			verifyDeleteReportPopup(driver, softly, recordName);
 		}
-		WebDriverWait wait = new WebDriverWait(driver,10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle));
 		//Clicks on delete report
 		jse.executeScript("return document.getElementById('pii-user-home-dialog-confirmed').click();");
@@ -105,7 +111,7 @@ public class EiRCAV2_7 {
 		//Verify record deleted
 		//Click on 1st record
 		String name = driver.findElement(eirca.EiRCAFirstRecord).getText();
-		System.out.println(name);
+		System.out.println("SavedActivities1stReportname is   "+name);
 		if (name!=recordName)
 			System.out.println("Record deleted");
 		else
@@ -150,9 +156,12 @@ public class EiRCAV2_7 {
 		HiRCAEvent obj1 = new HiRCAEvent();
 		//obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)));
+//	wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.DownloadButton)).click();
 		//Verify pdf pop up
 		verifyStickyCreatePDF(driver, softly);
 		//Wait for loading message to disappear
@@ -419,6 +428,7 @@ public class EiRCAV2_7 {
 	public void markCritical(WebDriver driver,String username, String password1,int y, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on mark critical
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
 		//Mark critical pop up
@@ -431,7 +441,9 @@ public class EiRCAV2_7 {
 		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
 		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
 		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
+//	wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
 		share2.loadingServer(driver);
 		//Verify Marked critical icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAShareIconOrCriticalIcon));

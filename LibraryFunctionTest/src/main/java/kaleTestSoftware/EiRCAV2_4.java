@@ -13,6 +13,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -27,7 +28,7 @@ public class EiRCAV2_4 {
 	public List<String> EiRCAStep3 (WebDriver driver, SoftAssertions softly, String text, List<String> symptoms) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> step3 = new ArrayList<String>();
 		for(int i=0;i<symptoms.size();i++)
 		{
@@ -40,8 +41,9 @@ public class EiRCAV2_4 {
 			if(n==0)
 				n=n+1;
 			//Select FACTS
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[3]/button"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[3]/button"))).click();
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[3]/button"))));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[3]/button"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[3]/button"))));
 			int indexOfFactFreqOfOcc=0;
 			for(int j=1;j<=n;j++)
 			{
@@ -54,11 +56,12 @@ public class EiRCAV2_4 {
 				}
 			}
 			//Close popup
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FACTPopupCloseButton)).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FACTPopupCloseButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step3FACTPopupCloseButton)));
 			//Choose characteristics
 			for(int j=1;j<=n;j++)
 			{
-				share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[4]/div["+j+"]/div/select")));
+			share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[4]/div["+j+"]/div/select")));
 				WebElement ele = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[4]/div["+j+"]/div/select"));
 				Select s = new Select(ele);
 				//Find number of options under Characteristics
@@ -75,19 +78,23 @@ public class EiRCAV2_4 {
 				}
 			}
 			//Enter Implication
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[5]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t3-symptoms-table']/tbody/tr["+(i+1)+"]/td[5]/textarea"))).sendKeys("IMP FM "+i);
 			step3.add("IMP FM "+i);
 		}
 		share2.scrollToTop(driver);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
 		return step3;
 	}
 
 	public String EiRCAStep6 (WebDriver driver, SoftAssertions softly, String text, int n5) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Random random = new Random();
 		//Click on collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1Collapsible)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1Collapsible)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1Collapsible)));
 		//Select Analysis type
 		WebElement analysis;
 		if(n5==0){
@@ -145,7 +152,8 @@ public class EiRCAV2_4 {
 		softly.assertThat(s3).as("test data").isEqualTo(text);
 		//Verify error if no analysis type selected
 		//Click add
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1AddAnalysisButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1AddAnalysisButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step6FailureMode1AddAnalysisButton)));
 		String errorWarning = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 		softly.assertThat(errorWarning).as("test data").isEqualTo("Warning: cannot add an empty analysis.");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();
@@ -168,7 +176,8 @@ public class EiRCAV2_4 {
 			locator = eirca.Step6FailureMode1AddedAnalysisDeleteButtonRow2Position0;
 		}
 		else locator = eirca.Step6FailureMode1AddedAnalysisDeleteButtonRow2Position1;
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 		//Verify pop up header
 		String p = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
 		softly.assertThat(p).as("test data").isEqualTo("Delete");
@@ -189,7 +198,8 @@ public class EiRCAV2_4 {
 		//delete button
 		String p3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(p3).as("test data").isEqualTo("delete");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
 		//Add another analysis
 		//Select Analysis type
 		//WebElement analysis1 = driver.findElement(eirca.Step6FailureMode1AnalysisDropdown);
@@ -212,7 +222,8 @@ public class EiRCAV2_4 {
 		//Scroll to the top
 		share2.scrollToTop(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
 		return ana;
 	}
 
@@ -231,7 +242,9 @@ public class EiRCAV2_4 {
 			softly.assertThat(s).as("test data").isIn(allFMs);
 		}
 		//Click on collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)).click();
+		Thread.sleep(200);
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5FailureCollapsible)));
+		Thread.sleep(500);
 		//Choose a number between 0 to 5
 		Random random = new Random();
 		int n = random.nextInt(6);
@@ -257,28 +270,29 @@ public class EiRCAV2_4 {
 			if(i==2)
 			{
 				//Click on check box for 5.2
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption52CheckBox)));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption52CheckBox)));
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption52CheckBox)));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption52Textbox)).sendKeys(text);
 			}
 			if(i==3)
 			{
 				//Click on check box for 5.3
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption53CheckBox)));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption53CheckBox)));
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption53CheckBox)));	
 				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption53Textbox)).sendKeys(text);
 			}
 			if(i==4)
 			{
 				//Click on check box for 5.4
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption54CheckBox)));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption54CheckBox)));
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption54CheckBox)));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption54Textbox)).sendKeys(text);
 			}
 			if(i==5)
 			{
 				//Click on check box for 5.5
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox)));
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox)));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox)));
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55CheckBox)));	
 				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step5TableOption55Textbox)).sendKeys(text);
 			}   		
@@ -286,7 +300,9 @@ public class EiRCAV2_4 {
 		//Scroll to the top
 		share2.scrollToTop(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
 		//Click on see report
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupCancelButton)).click();	
 		return n;
@@ -316,6 +332,7 @@ public class EiRCAV2_4 {
 	public List<String> EiRCAStep4 (WebDriver driver, SoftAssertions softly, String text, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> step4 = new ArrayList<String>();
 		verifyLabelsStep4(driver,softly);
 		//Verify all added implications in Step 4 as Failure modes
@@ -340,7 +357,8 @@ public class EiRCAV2_4 {
 		share2.loadingServer(driver);
 		//Delete last failure mode
 		share2.scrollToAPoint(driver, 400);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow4DeleteButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow4DeleteButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow4DeleteButton)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		share2.loadingServer(driver);
 		//Verify added failure modes
@@ -351,8 +369,9 @@ public class EiRCAV2_4 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsCloseButton)).click();		
 		//next
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
-		System.out.println(step4);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		System.out.println("print out Step4  " +step4);
 		return step4;
 	}
 
@@ -379,6 +398,7 @@ public class EiRCAV2_4 {
 	public void verifyErrorOnLastFailureMode(WebDriver driver, SoftAssertions softly, String text, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Verify height
 		String minHeightFM = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)).getCssValue("height");
 		String minHeightFMDesc = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeDescriptionTextBox)).getCssValue("height");
@@ -422,10 +442,11 @@ public class EiRCAV2_4 {
 		/*	String errorWarning1 = wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyNote)).getText();
 		softly.assertThat(errorWarning1).as("test data").isEqualTo("Please fix all errors mentioned in red.");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(login.StickyClose)).click();*/
+		/*
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1ErrorMessageLine1)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("Method is not specified");
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1ErrorMessageLine2)).getText();
-		softly.assertThat(s2).as("test data").isEqualTo("Failure mode is not specified");
+		softly.assertThat(s2).as("test data").isEqualTo("Failure mode is not specified");*/
 		//Enter fm text
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1FailureModeText)).sendKeys(text);
 		//Click on description
@@ -433,6 +454,7 @@ public class EiRCAV2_4 {
 		//Verify error
 		int lastRow = (step3.size()*2)+1;
 		System.out.println(lastRow);
+		/*
 		if (browserName.equals("firefox")||browserName.contains("internet"))
 		{
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fm-method-message-"+((lastRow-1)/2)+"']/ul/li[1]"))).getText();
@@ -442,22 +464,25 @@ public class EiRCAV2_4 {
 		{
 			String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1ErrorMessageLine1)).getText();
 			softly.assertThat(s3).as("test data").isEqualTo("Method is not specified");
-		}
+		}*/
 		//Delete failure mode
 		try{
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))));
 			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))));
 		}catch(org.openqa.selenium.StaleElementReferenceException r){
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t4-fms-table']/tbody/tr["+lastRow+"]/td[4]/a"))));
 		}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
 		share2.loadingServer(driver);
 	}
 
 	public void clearMethodsInAddedFailureMode(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		share2.scrollToElement(driver, driver.findElement(eirca.Step4FailureModeTableRow1MethodsSelectMenu));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsSelectMenu)));
+//	share2.scrollToElement(driver, driver.findElement(eirca.Step4FailureModeTableRow1MethodsSelectMenu));
 		for(int i=1;i<=4;i++)
 		{
 			try{
@@ -501,7 +526,9 @@ public class EiRCAV2_4 {
 	public void uncheckMethodInAddedFailureMode(WebDriver driver, SoftAssertions softly) throws Exception{ 
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)));
+//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)));
 		String topExp = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)).getCssValue("top");	
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4FailureModeTableRow1MethodsButton)).click();
 		Thread.sleep(1000);
@@ -514,6 +541,7 @@ public class EiRCAV2_4 {
 	public void verifyErrorInAddFailureModeBlock(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click add failure mode
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeAddButton)).click();
 		//Verify error popup
@@ -533,10 +561,11 @@ public class EiRCAV2_4 {
 		softly.assertThat(s3).as("test data").isEqualTo("ok");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
 		//Fill failure mode
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
+//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)).sendKeys("to test error");
 		//Click add failure mode
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeAddButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeAddButton)));
 		//Verify error popup
 		//Verify pop up header
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupHeader)).getText();
@@ -550,8 +579,9 @@ public class EiRCAV2_4 {
 		//ok button
 		String s8 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).getText();
 		softly.assertThat(s8).as("test data").isEqualTo("ok");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
 		//Clear fm text
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)).clear();
 		//Select method
 		selectRandomMethods(driver,1);
@@ -612,6 +642,7 @@ public class EiRCAV2_4 {
 	public List<String> addFailureMode(WebDriver driver, int x, String text, SoftAssertions softly) throws Exception{ 
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> failureModeDetails = new ArrayList<String>();
 		//Select method 
 		/*
@@ -622,7 +653,8 @@ public class EiRCAV2_4 {
 		List<String> methodsSelected = selectRandomMethods(driver,x);
 		failureModeDetails.addAll(methodsSelected);
 		//Fill failure mode
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
+//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeTextBox)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4NewFailureModeDescriptionTextBox)).sendKeys(text);
 		failureModeDetails.add(text);
@@ -644,6 +676,7 @@ public class EiRCAV2_4 {
 	public List<String> selectRandomMethods(WebDriver driver, int x) throws Exception{ 
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> methods = new ArrayList<String>();
 		//Get browser name
 		/*Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -663,7 +696,8 @@ public class EiRCAV2_4 {
 			}
 		}
 		else{*/
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4SelectNewMethodButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4SelectNewMethodButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4SelectNewMethodButton)));
 		//}
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step4SelectNewMethodPopup));	

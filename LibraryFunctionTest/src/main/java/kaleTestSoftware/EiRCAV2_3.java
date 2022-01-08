@@ -55,14 +55,11 @@ public class EiRCAV2_3 {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTab)).getText();
 		softly.assertThat(s1).as("test data").isEqualTo("D-\"Design Data\"");
-		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTab))
-				.getText();
+		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTab)).getText();
 		softly.assertThat(s2).as("test data").isEqualTo("O-\"Operating Practice and Condition Data\"");
-		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTab))
-				.getText();
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTab)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("O-\"Operating Experience\"");
-		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTab))
-				.getText();
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTab)).getText();
 		softly.assertThat(s4).as("test data").isEqualTo("M-\"Maintenance Data\"");
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).getText();
 		softly.assertThat(s5).as("test data").isEqualTo("S-\"Symptoms\"");
@@ -142,148 +139,128 @@ public class EiRCAV2_3 {
 	public void interviews(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		share2.scrollToElement(driver,
-				wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewsTab)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewsTab)).click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		//Focus on Save button
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'pii-ircam2-tab2-tab6-a') and contains(text(),'Interviews')]"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'pii-ircam2-tab2-tab6-a') and contains(text(),'Interviews')]"))));
 		// Table 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column1))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2))
-				.click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2)));
 		Thread.sleep(500);
 		// Verify no undefined in Interview textbox
-		String s = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2))
-				.getAttribute("textcontent");
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2)).getAttribute("textcontent");
 		softly.assertThat(s).as("test data").isNull();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row1Column2)).sendKeys(text);
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column2))
-				.click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column2)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column2))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column2)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column2)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1))
-				.click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1)));
 		Thread.sleep(500);
 		// Verify no undefined in Name textbox
-		String s1 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1))
-				.getAttribute("textcontent");
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1)).getAttribute("textcontent");
 		softly.assertThat(s1).as("test data").isNull();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable1Row2Column1)).sendKeys(text);
 		Thread.sleep(500);
 		// Table 2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column1))
-				.click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column1)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column1))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column2))
-		.click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column2)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column2))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row1Column2)).sendKeys(text);
 		Thread.sleep(1000);
-		share2.scrollToAPoint(driver, 600);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1))
-				.click();
+//		share2.scrollToAPoint(driver, 600);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column2))
-				.click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column2)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column2)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column2))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column2)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row2Column2)).sendKeys(text);
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column1))
-				.click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column1)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column1))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column2))
-				.click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column2)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column2))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column2)).sendKeys(text);
 		Thread.sleep(1000);
 		// Delete 3rd interview in table 2
-		wait.until(ExpectedConditions
-				.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column3DeleteButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column3DeleteButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row3Column3DeleteButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
 		Thread.sleep(1000);
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row4Column1))
-					.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable2Row4Column1)).click();
 			softly.fail("interview did not get deleted");
 		} catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException t) {
 
 		}
 		// Table 3
-		share2.scrollToElement(driver, wait
-				.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1))
-				.click();
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1)));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column2))
-				.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column2)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column2))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row1Column2)).sendKeys(text);
 		Thread.sleep(1000);
-		share2.scrollToElement(driver, wait
-				.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1))
-				.click();
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1)));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2))
-				.click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable3Row2Column2)).sendKeys(text);
 		Thread.sleep(500);
 		// Table 4
-		share2.scrollToElement(driver, wait
-				.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1))
-				.click();
+//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)));
+		Thread.sleep(500); 
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column1))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2))
-				.click();
-		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row1Column2)).sendKeys(text);
 		Thread.sleep(1000);
-		share2.scrollToElement(driver, wait
-				.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1))
-				.click();
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)));
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)));
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column1)).sendKeys(text);
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2))
-				.click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)).click();
 		Thread.sleep(500);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2))
-				.sendKeys(text);
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InterviewTabTable4Row2Column2)).sendKeys(text);
 		Thread.sleep(500);
 		share2.scrollToTop(driver);
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
@@ -294,36 +271,21 @@ public class EiRCAV2_3 {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTab)).click();
 		// Fill text in Design data
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C3))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox1R1C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox2R2C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox3R3C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox4R4C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2DesignDataTextbox5R5C3)).sendKeys(text);
 	}
 
 	public void operatingPracticeTab(WebDriver driver, String text) throws Exception {
@@ -331,24 +293,15 @@ public class EiRCAV2_3 {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTab)).click();
 		// Operating practice and condition data
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C3))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox1R1C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox2R2C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingPracticeTextbox3R3C3)).sendKeys(text);
 	}
 
 	public void operatingExperienceTab(WebDriver driver, String text) throws Exception {
@@ -356,12 +309,9 @@ public class EiRCAV2_3 {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTab)).click();
 		// Operating experience
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox2R2C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox2R2C2))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2OperatingExperienceTextbox2R2C2)).sendKeys(text);
 	}
 
 	public void maintenanceDataTab(WebDriver driver, String text) throws Exception {
@@ -369,62 +319,50 @@ public class EiRCAV2_3 {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTab)).click();
 		// maintenance data
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C3))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C1))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C2))
-				.sendKeys(text);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C3))
-				.sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox1R1C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox2R2C3)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C1)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C2)).sendKeys(text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2MaintenanceDataTextbox3R3C3)).sendKeys(text);
 	}
 
 	public List<String> symptomsTab(WebDriver driver, String text, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		List<String> symptoms = new ArrayList<String>();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTab)).click();
 		// symptoms
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox1))
-				.sendKeys("Symptom 1");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox2))
-				.sendKeys("Symptom 2");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox3))
-				.sendKeys("Symptom 3");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox1)).sendKeys("Symptom 1");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox2)).sendKeys("Symptom 2");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SymptomsTextbox3)).sendKeys("Symptom 3");
 		symptoms.add("Symptom 1");
 		symptoms.add("Symptom 2");
 		symptoms.add("Symptom 3");
 		share2.scrollToAPoint(driver, 700);
-		
-		//Click SBI dropdown
+
+		// Click SBI dropdown
 		WebElement sbiElement = driver.findElement(By.id("pii-ircam2-t3-inspections-type-button"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-type-button"))));
 		jse.executeScript("arguments[0].focus();", sbiElement);
 		jse.executeScript("arguments[0].click();", sbiElement);
 //		sbiElement.click();
-		//Checkbox SBI: Abnormal smell 
+		// Checkbox SBI: Abnormal smell
 		WebElement sbiCheckbox = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a[text()='Abnormal smell']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a[text()='Abnormal smell']"))));
 		jse.executeScript("arguments[0].focus();", sbiCheckbox);
 		jse.executeScript("arguments[0].click();", sbiCheckbox);
 //		sbiCheckbox.click();
-		//Click SBI:Abnormal small subOption dropdown
+		// Click SBI:Abnormal small subOption dropdown
 		share2.scrollToAPoint(driver, 400);
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-0"))).click();
-		//Checkbox 2 inside SBI: Abnormal small dropdown
+		// Checkbox 2 inside SBI: Abnormal small dropdown
 		WebElement sbiAbsmall = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of insulation polymers']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of insulation polymers']"))));
 		jse.executeScript("arguments[0].focus();", sbiAbsmall);
@@ -433,81 +371,71 @@ public class EiRCAV2_3 {
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-menu']//a[text()='Burning of lubrication oil']"))).click();
-		//Close Checkbox 2 inside SBI: Abnormal small dropdown
+		// Close Checkbox 2 inside SBI: Abnormal small dropdown
 		WebElement closeAbsmall = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-listbox']//a[text()='Close']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-0-listbox']//a[text()='Close']"))));
 		jse.executeScript("arguments[0].focus();", closeAbsmall);
 		jse.executeScript("arguments[0].click();", closeAbsmall);
 //		closeAbsmall.click();
-		//Sendtext in SBI: Abnormal small textbox: 1st row: Inspection Notes
+		// Sendtext in SBI: Abnormal small textbox: 1st row: Inspection Notes
 		WebElement sbiAbsmalltext1 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='0']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='0']"))));
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='0']"))));
 		sbiAbsmalltext1.sendKeys("XXX");
-		//	1st row: Symptoms Findings
+		// 1st row: Symptoms Findings
 		WebElement sbiAbsmalltext2 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='0']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='0']"))));
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='0']"))));
 		sbiAbsmalltext2.sendKeys("XXX");
-		//Sendtext in SBI: Abnormal small textbox: 2nd row: Inspection Notes
+		// Sendtext in SBI: Abnormal small textbox: 2nd row: Inspection Notes
 		WebElement sbiAbsmalltext2nd1 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='1']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='1']"))));
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-td']/textarea[@piifocus='1']"))));
 		sbiAbsmalltext2nd1.sendKeys("XXX");
-		//2nd row: Symptoms Findings
+		// 2nd row: Symptoms Findings
 		WebElement sbiAbsmalltext2nd2 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='1']"));
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='1']"))));
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-td']/textarea[@piifocus='1']"))));
 		sbiAbsmalltext2nd2.sendKeys("XXX");
-		
+
 		// Click SRI dropdown
 		WebElement sriElement = driver.findElement(By.xpath("//*[@id='pii-ircam2-t3-inspections-type-button' and @piitype='1']"));
-		share2.scrollToElement(driver, wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-type-button' and @piitype='1']"))));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-type-button' and @piitype='1']"))));
 		jse.executeScript("arguments[0].focus();", sriElement);
 		jse.executeScript("arguments[0].click();", sriElement);
 //		sriElement.click();
 		// Click SRI: Leak option
-		WebElement sriLeakOption = driver
-				.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a[text()='Leak/Drain related']"));
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a[text()='Leak/Drain related']"))));
+		WebElement sriLeakOption = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a[text()='Leak/Drain related']"));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a[text()='Leak/Drain related']"))));
 		jse.executeScript("arguments[0].focus();", sriLeakOption);
 		jse.executeScript("arguments[0].click();", sriLeakOption);
 //		sriLeakOption.click();
-		
+
 		// Click SRI:Leak subOption dropdown
 		share2.scrollToAPoint(driver, 800);
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t3-inspections-focus-button-SRI-2' and @piiindex='4']"))).click();
-		
-		//Checkbox SRI:Leak:
+
+		// Checkbox SRI:Leak:
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-2-menu']//a[text()='Heat from steam pipe leak (Thermal image)']"))));
-		
+
 		// Close SRI:Leak subOption dropdown
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-2-listbox']//a[text()='Close']"))));
-		
+
 		// Sendtext in SRI: Leak: Inspection Notes
-		WebElement sriLeaktext1 = driver
-				.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-SRI-td']/textarea"));
-		share2.scrollToElement(driver, wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-SRI-td']/textarea"))));
+		WebElement sriLeaktext1 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-SRI-td']/textarea"));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-inotes-SRI-td']/textarea"))));
 		jse.executeScript("arguments[0].focus();", sriLeaktext1);
 		sriLeaktext1.sendKeys("XXX");
-		//Sendtext in SRI: Leak: Symptoms Findings
-		WebElement sriLeaktext2 = driver
-				.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-SRI-td']/textarea"));
-		share2.scrollToElement(driver, wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-SRI-td']/textarea"))));
+		// Sendtext in SRI: Leak: Symptoms Findings
+		WebElement sriLeaktext2 = driver.findElement(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-SRI-td']/textarea"));
+		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-ircam2-t2t3-ifindings-SRI-td']/textarea"))));
 		jse.executeScript("arguments[0].focus();", sriLeaktext2);
 		sriLeaktext2.sendKeys("XXX");
-		
-		
-		
-		
-		
-		
+		//Focus on Save button
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
+
 //		JavascriptExecutor js = (JavascriptExecutor)driver;
 //		List<WebElement> els = driver.findElements( By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']/li"));
 //		js.executeScript("arguments[0].click();", eirca.EiRCAStep2SenseBasedInspectionButton);
@@ -541,91 +469,86 @@ public class EiRCAV2_3 {
 //		Thread.sleep(1500);
 //		symptoms.addAll(addSymptomsInComprehensiveFieldInspectionSRI(driver, text, softly, symp));
 //		System.out.println("Symptoms"+ symptoms);
-		
-	/*am_edit:SBI rewrite 
-		List<WebElement> sbiOptionsLst = driver
-				.findElements(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a"));
-		int sbiOptionsSize = sbiOptionsLst.size();
-		for (int i = 0; i < sbiOptionsSize; i++) {
-			WebElement sbiElement = driver.findElement(By.id("pii-ircam2-t3-inspections-type-button"));
-			share2.scrollToElement(driver, wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-type-button"))));
-			sbiElement.click();
-			driver.findElement(
-					By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//*[@data-option-index='" + i + "']/a"))
-					.click();
 
-			WebElement openSubMenu = driver.findElement(By.xpath("//tr[@piiindex='" + i + "']//button"));
-			share2.scrollToElement(driver, wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[@piiindex='" + i + "']//button"))));
-			openSubMenu.click();
-
-			List<WebElement> sbiSubOptionsLst = driver.findElements(
-					By.xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"));
-			int sbiSubOptionsSize = sbiSubOptionsLst.size();
-
-			for (int j = 0; j < sbiSubOptionsSize; j++) {
-				driver.findElements(
-						By.xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a")).get(j)
-						.click();
-
-			}
-			driver.findElement(By.xpath("//*[@class='ui-popup-container ui-popup-active']//*[text()='Close']"))
-					.click();
-
-			for (int k = 0; k < sbiSubOptionsSize; k++) {
-				driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
-						+ "']//td[@id='pii-ircam2-t2t3-inotes-td']//textarea"))
-						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
-				driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
-						+ "']//td[@id='pii-ircam2-t2t3-ifindings-td']//textarea"))
-						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
-			}
-		}
-
-		
-		/////////////am_edit:SRI rewrite 
-		//List SRI 7 option common xpath
-		List<WebElement> sriOptionsLst = driver.findElements(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a"));
-		int sriOptionsSize = sriOptionsLst.size();
-		for (int i = 0; i < sriOptionsSize; i++) {
-			WebElement sriElement = driver.findElement(By.xpath("//*[contains(text(), 'reliability')]"));
-			share2.scrollToElement(driver, wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'reliability')]"))));
-			sriElement.click();
-			driver.findElement(
-					By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//*[@data-option-index='" + i + "']/a")).click();
-
-			WebElement openSubMenu = driver.findElement(By.xpath("//*[contains(@id,'pii-ircam2-t2t3-inspections-table-SRI-tbody')]/tr[@piiindex='" + i + "']//button"));
-			share2.scrollToElement(driver, wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'pii-ircam2-t2t3-inspections-table-SRI-tbody')]/tr[@piiindex='" + i + "']//button"))));
-			openSubMenu.click();
-
-			List<WebElement> sriSubOptionsLst = driver.findElements(
-					By.xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"));
-			int sriSubOptionsSize = sriSubOptionsLst.size();
-			//checkbox clicks on all sriSubOptions
-			for (int j = 0; j < sriSubOptionsSize; j++) {
-				driver.findElements(
-						By.xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a")).get(j)
-						.click();
-
-			}
-			//close sriSubOption menu popup
-			driver.findElement(By.xpath("//*[@class='ui-popup-container ui-popup-active']//*[text()='Close']"))
-					.click();
-			//enter textarea for each sriSubOption
-			for (int k = 0; k < sriSubOptionsSize; k++) {
-				driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
-						+ "']//td[@id='pii-ircam2-t2t3-inotes-SRI-td']//textarea"))
-						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
-				driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
-						+ "']//td[@id='pii-ircam2-t2t3-ifindings-SRI-td']//textarea"))
-						.sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
-			}
-		}
-
-	*/
+		/*
+		 * am_edit:SBI rewrite List<WebElement> sbiOptionsLst = driver
+		 * .findElements(By.xpath("//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//a"
+		 * )); int sbiOptionsSize = sbiOptionsLst.size(); for (int i = 0; i <
+		 * sbiOptionsSize; i++) { WebElement sbiElement =
+		 * driver.findElement(By.id("pii-ircam2-t3-inspections-type-button"));
+		 * share2.scrollToElement(driver, wait.until(
+		 * ExpectedConditions.visibilityOfElementLocated(By.id(
+		 * "pii-ircam2-t3-inspections-type-button")))); sbiElement.click();
+		 * driver.findElement( By.xpath(
+		 * "//*[@id='pii-ircam2-t2t3-newentry-isymptom-menu']//*[@data-option-index='" +
+		 * i + "']/a")) .click();
+		 * 
+		 * WebElement openSubMenu = driver.findElement(By.xpath("//tr[@piiindex='" + i +
+		 * "']//button")); share2.scrollToElement(driver, wait.until(
+		 * ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[@piiindex='" + i
+		 * + "']//button")))); openSubMenu.click();
+		 * 
+		 * List<WebElement> sbiSubOptionsLst = driver.findElements( By.
+		 * xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"
+		 * )); int sbiSubOptionsSize = sbiSubOptionsLst.size();
+		 * 
+		 * for (int j = 0; j < sbiSubOptionsSize; j++) { driver.findElements( By.
+		 * xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"
+		 * )).get(j) .click();
+		 * 
+		 * } driver.findElement(By.
+		 * xpath("//*[@class='ui-popup-container ui-popup-active']//*[text()='Close']"))
+		 * .click();
+		 * 
+		 * for (int k = 0; k < sbiSubOptionsSize; k++) {
+		 * driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
+		 * + "']//td[@id='pii-ircam2-t2t3-inotes-td']//textarea"))
+		 * .sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
+		 * driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
+		 * + "']//td[@id='pii-ircam2-t2t3-ifindings-td']//textarea"))
+		 * .sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg"); } }
+		 * 
+		 * 
+		 * /////////////am_edit:SRI rewrite //List SRI 7 option common xpath
+		 * List<WebElement> sriOptionsLst = driver.findElements(By.xpath(
+		 * "//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//a")); int
+		 * sriOptionsSize = sriOptionsLst.size(); for (int i = 0; i < sriOptionsSize;
+		 * i++) { WebElement sriElement =
+		 * driver.findElement(By.xpath("//*[contains(text(), 'reliability')]"));
+		 * share2.scrollToElement(driver, wait.until(
+		 * ExpectedConditions.visibilityOfElementLocated(By.
+		 * xpath("//*[contains(text(), 'reliability')]")))); sriElement.click();
+		 * driver.findElement( By.xpath(
+		 * "//*[@id='pii-ircam2-t2t3-newentry-isymptom-SRI-menu']//*[@data-option-index='"
+		 * + i + "']/a")).click();
+		 * 
+		 * WebElement openSubMenu = driver.findElement(By.xpath(
+		 * "//*[contains(@id,'pii-ircam2-t2t3-inspections-table-SRI-tbody')]/tr[@piiindex='"
+		 * + i + "']//button")); share2.scrollToElement(driver, wait.until(
+		 * ExpectedConditions.visibilityOfElementLocated(By.xpath(
+		 * "//*[contains(@id,'pii-ircam2-t2t3-inspections-table-SRI-tbody')]/tr[@piiindex='"
+		 * + i + "']//button")))); openSubMenu.click();
+		 * 
+		 * List<WebElement> sriSubOptionsLst = driver.findElements( By.
+		 * xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"
+		 * )); int sriSubOptionsSize = sriSubOptionsLst.size(); //checkbox clicks on all
+		 * sriSubOptions for (int j = 0; j < sriSubOptionsSize; j++) {
+		 * driver.findElements( By.
+		 * xpath("//*[@class='ui-popup-container ui-popup-active']//li[@data-icon='false']//a"
+		 * )).get(j) .click();
+		 * 
+		 * } //close sriSubOption menu popup driver.findElement(By.
+		 * xpath("//*[@class='ui-popup-container ui-popup-active']//*[text()='Close']"))
+		 * .click(); //enter textarea for each sriSubOption for (int k = 0; k <
+		 * sriSubOptionsSize; k++) { driver.findElement(By.xpath("//tr[@piiindex='" + i
+		 * + "' and @piifocus='" + k +
+		 * "']//td[@id='pii-ircam2-t2t3-inotes-SRI-td']//textarea"))
+		 * .sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg");
+		 * driver.findElement(By.xpath("//tr[@piiindex='" + i + "' and @piifocus='" + k
+		 * + "']//td[@id='pii-ircam2-t2t3-ifindings-SRI-td']//textarea"))
+		 * .sendKeys("adgssdfgfsgfsgsdgfsgsfvsfvfsgvsvgsfgfsg"); } }
+		 * 
+		 */
 		share2.scrollToTop(driver);
 		return symptoms;
 	}
@@ -634,14 +557,12 @@ public class EiRCAV2_3 {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		Point p = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton))
-				.getLocation();
+		Point p = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SenseBasedInspectionButton)).getLocation();
 		int yaxis = p.getY() - 250;
 		Thread.sleep(1000);
 		try {
 			jse.executeScript("scroll(0," + yaxis + ")");
-		} catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException
-				| org.openqa.selenium.StaleElementReferenceException r) {
+		} catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException | org.openqa.selenium.StaleElementReferenceException r) {
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0," + yaxis + ")");
 		}
@@ -652,16 +573,12 @@ public class EiRCAV2_3 {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		Point p = wait
-				.until(ExpectedConditions
-						.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton))
-				.getLocation();
+		Point p = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).getLocation();
 		int yaxis = p.getY() - 250;
 		Thread.sleep(1000);
 		try {
 			jse.executeScript("scroll(0," + yaxis + ")");
-		} catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException
-				| org.openqa.selenium.StaleElementReferenceException r) {
+		} catch (org.openqa.selenium.ScriptTimeoutException | JavascriptException | org.openqa.selenium.StaleElementReferenceException r) {
 			Thread.sleep(3000);
 			jse.executeScript("scroll(0," + yaxis + ")");
 		}
@@ -678,40 +595,33 @@ public class EiRCAV2_3 {
 		System.out.println(num);
 	}
 
-	
-	
-/*///////////////////////Comment out SBI dropdown: new loop is located in symptomsTab 
-	public List<String> addSymptomsInComprehensiveFieldInspectionSenseBasedInspection(WebDriver driver, String text,
-			SoftAssertions softly) throws Exception {
+	/*
+	 * ///////////////////////Comment out SBI dropdown: new loop is located in
+	 * symptomsTab public List<String>
+	 * addSymptomsInComprehensiveFieldInspectionSenseBasedInspection(WebDriver
+	 * driver, String text, SoftAssertions softly) throws Exception {
+	 * 
+	 * WebDriverWait wait = new WebDriverWait(driver, 30); List<String> symptoms =
+	 * new ArrayList<String>(); // Sense Based inspection // Select randomly
+	 * symptoms Random random = new Random(); // int num = random.nextInt(7); int
+	 * num = random.nextInt(6); if (num == 0) { num = num + 1; } // Click on SBI
+	 * dropdown list button
+	 * 
+	 * /* Below coding only click SBI dropdown list > Abnormal Noises only
+	 * share2.scrollToElement(driver,
+	 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
+	 * EiRCAStep2SenseBasedInspectionButton))); //Click SBI list dropdown
+	 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
+	 * EiRCAStep2SenseBasedInspectionButton)).click(); //SBI list popup
+	 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
+	 * EiRCAStep2InspectionSymptomListPopup)); WebElement menu1 =
+	 * driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu); String cL1 =
+	 * menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
+	 * if(cL1.contains("ui-checkbox-off")) //Click on Abnormal Noises:
+	 * EiRCAStep2SymptomsOption1
+	 */
+	// menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		List<String> symptoms = new ArrayList<String>();
-		// Sense Based inspection
-		// Select randomly symptoms
-		Random random = new Random();
-		// int num = random.nextInt(7);
-		int num = random.nextInt(6);
-		if (num == 0) {
-			num = num + 1;
-		}
-		// Click on SBI dropdown list button
-
-		/*
-		 * Below coding only click SBI dropdown list > Abnormal Noises only
-		 * share2.scrollToElement(driver,
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2SenseBasedInspectionButton))); //Click SBI list dropdown
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2SenseBasedInspectionButton)).click(); //SBI list popup
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.
-		 * EiRCAStep2InspectionSymptomListPopup)); WebElement menu1 =
-		 * driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenu); String cL1 =
-		 * menu1.findElement(eirca.EiRCAStep2SymptomsOption1).getAttribute("class");
-		 * if(cL1.contains("ui-checkbox-off")) //Click on Abnormal Noises:
-		 * EiRCAStep2SymptomsOption1
-		 */
-		// menu1.findElement(eirca.EiRCAStep2SymptomsOption1).click();
-	
 //		System.out.println("random" + num);
 //		for (int i = 0; i <= num; i++) {
 //					//Click on button
@@ -854,10 +764,10 @@ public class EiRCAV2_3 {
 
 ////////////////////////Comment out SBI dropdown: new loop is located in symptomsTab */
 
-	public List<String> addSymptomsInComprehensiveFieldInspectionSRI(WebDriver driver, String text,
-			SoftAssertions softly, List<String> symp) throws Exception {
+	public List<String> addSymptomsInComprehensiveFieldInspectionSRI(WebDriver driver, String text, SoftAssertions softly, List<String> symp) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		List<String> symptoms = new ArrayList<String>();
 		// SRI
 		// Select randomly symptoms
@@ -894,8 +804,8 @@ public class EiRCAV2_3 {
 ////				}
 			Thread.sleep(500);
 			scrollToSRIButtonElement(driver);
-			wait.until(ExpectedConditions
-					.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2SystematicReliabilityInspectionButton)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListPopupSRI));
 			WebElement menu = driver.findElement(eirca.EiRCAStep2InspectionSymptomListMenuSRI);
 			String cL = menu.findElement(By.xpath(".//*[@data-option-index='" + i + "']/a")).getAttribute("class");
@@ -914,13 +824,10 @@ public class EiRCAV2_3 {
 		for (int i = 1; i <= num; i++) {
 			// Click on button for selecting inspection parameter
 			Thread.sleep(500);
-
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))).click();
-			WebElement menu = driver
-					.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-menu"));
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
+			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
+			WebElement menu = driver.findElement(By.id("pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-menu"));
 
 ////			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(
 ////					By.id("pii-ircam2-t3-inspections-focus-button-SRI-" + (lastIndexOfSBI + i - 1)))));
@@ -940,9 +847,7 @@ public class EiRCAV2_3 {
 			}
 			// close popup
 			// wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep2InspectionSymptomListSRIPopupCloseButton)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-					".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-listbox']/div/a")))
-					.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-newentry-ifocus-SRI-" + (lastIndexOfSBI + i - 1) + "-listbox']/div/a"))).click();
 		}
 		// Fill text in notes and findings
 		int countRow = 0;
@@ -950,35 +855,19 @@ public class EiRCAV2_3 {
 			for (int i = 0; i <= rows.get(j); i++) {
 				if (i == 0) {
 					// Notes
-					share2.scrollToElement(driver,
-							wait.until(ExpectedConditions.visibilityOfElementLocated(
-									By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["
-											+ (i + countRow + 1) + "]/td[3]/textarea"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[3]/textarea")))
-							.sendKeys(text);
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[3]/textarea"))));
+					jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[3]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[3]/textarea"))).sendKeys(text);
 					// Findings
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[4]/textarea")))
-							.sendKeys("Symptoms findings SRI " + j + i);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[4]/textarea"))).sendKeys("Symptoms findings SRI " + j + i);
 					symptoms.add("Symptoms findings SRI " + j + i);
 				} else {
 					// Notes
-					share2.scrollToElement(driver,
-							wait.until(ExpectedConditions.visibilityOfElementLocated(
-									By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr["
-											+ (i + countRow + 1) + "]/td[2]/textarea"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[2]/textarea")))
-							.sendKeys(text);
+					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[2]/textarea"))));
+					jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[2]/textarea"))));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[2]/textarea"))).sendKeys(text);
 					// Findings
-					wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1)
-									+ "]/td[3]/textarea")))
-							.sendKeys("Symptoms findings SRI " + j + i);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t2t3-inspections-table-SRI-tbody']/tr[" + (i + countRow + 1) + "]/td[3]/textarea"))).sendKeys("Symptoms findings SRI " + j + i);
 					symptoms.add("Symptoms findings SRI " + j + i);
 				}
 			}

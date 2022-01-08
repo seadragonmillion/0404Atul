@@ -7,6 +7,7 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -165,16 +166,23 @@ public class EiRCAV2_2 {
 	public void verifyChangesSavedSequenceOfEvents(WebDriver driver, HashMap<String,String> hm1, String username, int n, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
 		Thread.sleep(1000);
 		//Click on info page
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAStep1Tab)).click();	
 		Thread.sleep(1000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
 		//Verify the events are organised as per date and time
 		HashMap<String,String> hm = verifyOrderOfEvents(driver, softly,3);
 		System.out.println(hm);
@@ -185,7 +193,9 @@ public class EiRCAV2_2 {
 		if(b==false)
 			softly.fail("Changes did not get saved: \n"+hm1+"\n"+hm);
 		//Save report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();	
 		//Save pop verify
 		verifySavePopup(driver, softly);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
@@ -195,7 +205,9 @@ public class EiRCAV2_2 {
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
 		//Saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();	
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		share2.scrollToTop(driver);
@@ -217,10 +229,12 @@ public class EiRCAV2_2 {
 		softly.assertThat(s3).as("test data").isEqualTo(hm1.get("Date 3rd row")+", "+hm1.get("Time 3rd row"));    
 		*/
 		//Click on open button
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));	
 	}
 	
 	public List<String> createNewEvent(WebDriver driver, String text, SoftAssertions softly) throws Exception {
@@ -483,6 +497,7 @@ public class EiRCAV2_2 {
 	public void delete2ndEvent(WebDriver driver, HashMap<String,String> hm, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on cross symbol of 2nd event row
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.DeleteSign2ndEvent)).click();
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopUpMessageNote)).getText();
@@ -490,7 +505,8 @@ public class EiRCAV2_2 {
 		softly.assertThat(s).as("test data").contains("Time: "+hm.get("time2"));
 		softly.assertThat(s).as("test data").contains("What happened?: "+hm.get("what happened2"));
 		//Click delete button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
 	}
 
 }

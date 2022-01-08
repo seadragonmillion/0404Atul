@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,9 +49,10 @@ public class EiRCAV2_5 {
 	public void EiRCAStep8 (WebDriver driver, SoftAssertions softly, HashMap<String,String> step7, String text, int n5, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Verify popup
 		verifyPopupStep8NoneConfirmed(driver,softly);
-		softly.assertAll();
+//		softly.assertAll();
 		//Verify the table is correct from Step 7
 		String fm1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step8TableFailureModeRow1Column1)).getText();
 		String rv1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.Step8TableProbabilityRankingRow1Column2)).getText();
@@ -70,8 +72,9 @@ public class EiRCAV2_5 {
 		int totalFms = 3+step3.size();
 		for(int i=1;i<=totalFms;i++)
 		{
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[5]/div/input"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[5]/div/input"))).click();
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[5]/div/input"))));
+			jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[5]/div/input"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[5]/div/input"))));
 			//Fill text
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[4]/textarea"))).sendKeys(text);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-8']/table/tbody/tr["+i+"]/td[1]"))).getText();
@@ -85,12 +88,15 @@ public class EiRCAV2_5 {
 		}
 		//next
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
 	}
 
 	public HashMap<String,String> EiRCAStep7 (WebDriver driver, SoftAssertions softly, String text, int n5, List<String> step3) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//total number of fms
 		int addedFM;
 		int startFM;
@@ -117,8 +123,9 @@ public class EiRCAV2_5 {
 		for(int fm=0;fm<totalFms;fm++)
 		{
 			//Click on collapsible
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))).click();
+			jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
 			//Get name of failure mode 
 			String fmName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a/span[1]"))).getText();
 			//text verify for 4th point components
@@ -138,8 +145,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox1;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[1]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=5;
 					else sumOfPoints-=5;
@@ -150,8 +158,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox2;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[2]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=4;
 					else sumOfPoints-=4;
@@ -162,8 +171,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox3;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[3]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=3;
 					else sumOfPoints-=3;
@@ -174,8 +184,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox4;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[4]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=3;
 					else sumOfPoints-=3;
@@ -186,8 +197,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox5;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[5]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=2;
 					else sumOfPoints-=2;
@@ -198,8 +210,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox6;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[6]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=2;
 					else sumOfPoints-=2;
@@ -210,8 +223,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox7;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[7]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints+=1;
 					else sumOfPoints-=1;
@@ -222,8 +236,9 @@ public class EiRCAV2_5 {
 					else
 						locator = eirca.Step7FailureMode2Checkbox8;*/
 					locator = By.xpath(".//*[@id='pii-ircam2-t7-fm-"+(fm+startFM)+"-condtable']/table/tbody/tr[8]/td[2]/div/input");
-					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					//				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isSelected())
 						sumOfPoints-=1;
 					else sumOfPoints+=1;
@@ -261,13 +276,15 @@ public class EiRCAV2_5 {
 				verifyProbabilityRankinfForFailureMode(rankingValue1,sumOfPoints,softly);
 			}*/
 			//Click on collapsible
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
+//			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-tab-7']/div["+(fm+2)+"]/h4/a"))));
 		}
 		//Fill text in text boxes
 		for(int i=1;i<=totalFms;i++)
 		{
-			share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[3]/textarea"))));
+			jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[3]/textarea"))));
+//		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[3]/textarea"))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[3]/textarea"))).sendKeys(text);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[4]/div/textarea[1]"))).sendKeys(text);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[4]/div/textarea[2]"))).sendKeys(text);
@@ -280,7 +297,8 @@ public class EiRCAV2_5 {
 		HashMap<String,String> step7 = storeDataFromTableStep7(driver,n5,totalFms);
 		//next
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCANextButton)));
 		return step7;
 	}
 	
@@ -334,7 +352,7 @@ public class EiRCAV2_5 {
 			String rv1 = driver.findElement(By.xpath(".//*[@id='pii-ircam2-t7-devsupana-div']/table/tbody/tr["+i+"]/td[2]/span")).getText();
 			step7.put(fm1, rv1);
 		}
-		System.out.println(step7);
+		System.out.println("StoreDataFromTableStep7" +step7);
 		return step7;
 	}
 
