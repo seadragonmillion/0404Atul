@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -88,6 +89,9 @@ public class ChromeTest {
 		  }
         }	
 		Thread.sleep(4000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		  WebElement element = driver.findElement(By.className("pii-padding-bottom"));
+		  js.executeScript("arguments[0].setAttribute('style', 'padding-bottom:0px')", element);
 		//Create report
 		String recordName = obj1.createReport(driver);
 		//Open report

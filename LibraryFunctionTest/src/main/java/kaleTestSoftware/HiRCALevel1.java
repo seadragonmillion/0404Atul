@@ -564,7 +564,7 @@ public class HiRCALevel1 {
 
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//mama//Pictures//");
-		deleteFiles(file);
+//		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		//Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-irca']/ul/li[2]/a"))).click();
@@ -2410,9 +2410,12 @@ public class HiRCALevel1 {
 				//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
+					JavascriptExecutor jse = (JavascriptExecutor)driver;
 					if(browserName.contains("safari")==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 					}
 					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
@@ -2430,9 +2433,12 @@ public class HiRCALevel1 {
 				//	share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
+					JavascriptExecutor jse = (JavascriptExecutor)driver;
 					if(browserName.contains("safari")==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+//						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 					}
 					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
@@ -2450,9 +2456,12 @@ public class HiRCALevel1 {
 				//share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				while(true)
 				{
+					JavascriptExecutor jse = (JavascriptExecutor)driver;
 					if(browserName.contains("safari")==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+	//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 					}
 					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
@@ -2510,12 +2519,18 @@ public class HiRCALevel1 {
 			i=i+1;
 			//Fill the text boxes
 			if(iter.hasNext()) {
+				JavascriptExecutor jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))).sendKeys(iter.next());
 			}
 			if(iter.hasNext()) {
+				JavascriptExecutor jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[1]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[2]"))).sendKeys(iter.next());
 			}
 			if(iter.hasNext()) {
+				JavascriptExecutor jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea[3]"))).sendKeys(iter.next());
 			}
 			//Increase i for changing corrective actions
@@ -2523,6 +2538,8 @@ public class HiRCALevel1 {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).clear();
 			Thread.sleep(2000);
 			if(iter.hasNext()) {
+				JavascriptExecutor jse = (JavascriptExecutor)driver;
+				jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td/textarea"))).sendKeys(iter.next());
 			}
 			//Increase i for next root cause
@@ -2588,7 +2605,9 @@ public class HiRCALevel1 {
 				{
 					if(browserName.contains("safari")==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						executor.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+	//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 					}
 					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
@@ -2607,7 +2626,9 @@ public class HiRCALevel1 {
 				{
 					if(browserName.contains("safari")==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						executor.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 					}
 					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))
@@ -2626,7 +2647,9 @@ public class HiRCALevel1 {
 				{
 					if(browserName.contains("safari")==false)
 					{
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
+						executor.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+						executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
+	//					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 					}
 					else executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 					if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).getAttribute("class").contains("ui-radio-on"))

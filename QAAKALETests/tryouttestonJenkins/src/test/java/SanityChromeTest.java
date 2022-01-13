@@ -47,6 +47,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.UnhandledAlertException;
 
 public class SanityChromeTest {
 	
@@ -55,7 +56,9 @@ public class SanityChromeTest {
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private  String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	private  String url = "https://kaleqa.error-free.com/";
-	
+	public RemoteVerification2 rv2 = new RemoteVerification2();
+	public RemoteVerificationPageObj rv = new RemoteVerificationPageObj();	
+	public ShareCheck2 share2 = new ShareCheck2();
 	
 /*		
 		 System.out.println("Check pre-test config on Chrome");
@@ -96,49 +99,21 @@ public class SanityChromeTest {
 */		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
-		  
-		  System.out.println("Check pre-test config on Chrome");
+		 System.out.println("check padding-bottom");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
 		  driver = new ChromeDriver();
-
 		  //Browser is maximized
-//		  driver.manage().window().maximize();
+		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.navigate().to(url);
-		  
-		  Dimension dm = new Dimension(2048,1536);
-//	      //Setting the current window to that dimension
-	      driver.manage().window().setSize(dm);
-		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		  System.out.println(driver.manage().window().getSize());
-		  driver.manage().window().fullscreen();
-		  
-//		// maximize the browser
- //    driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
-//	      // fetching the current window size with getSize()
-//	      System.out.println(driver.manage().window().getSize());
-//	      //Create object of Dimensions class
-//	      Dimension dm = new Dimension(1920,1080);
-//	      //Setting the current window to that dimension
-//	      driver.manage().window().setSize(dm);
-//		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	  
-	}
+		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	  }
 
 	@Test
 	public void test() throws Exception{
-		System.out.println("test begins");
-		  System.out.println(driver.manage().window().getSize());
-
-	}
-}
-		/*
+		
 		Login obj = new Login();
-		UserManagement obj1 = new UserManagement();		  
-		//Mark all messages in inbox as read
-		obj1.emailMarkRead(obj1.emailDev, driver); 
 		int login = obj.LoginUser(driver, username, password);
-		System.out.println("Title after login: "+driver.getTitle());
 		//Switches to the iframe
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("pii-iframe-main"));
@@ -151,30 +126,53 @@ public class SanityChromeTest {
 		}catch (NoSuchElementException |org.openqa.selenium.TimeoutException e){
 
 		}
-		//Deletes previous created company,user,group
-		obj1.deletesPrevious(driver, obj1.company_idDevAsiaUS);
-		//Create company
-		obj1.createCompany(driver, obj1.company_idDevAsiaUS);		
-		//Verify if company id can be retrieved as per bug KALE 1733
-		obj1.companyRetrieveAgain(driver, obj1.company_idDevAsiaUS);
-		Thread.sleep(2000);
-		//Clicks on create group
-		String []op = obj1.createGroupWithRandomModules(driver, obj1.company_idDevAsiaUS);
-		Thread.sleep(2000);
-		//Clicks on create user
-		obj1.createUser(driver, obj1.company_idDevAsiaUS, password, obj1.emailDev);
-		//Verify if new user can be searched
-		obj1.userRetrieveAfterProfileView(driver, obj1.company_idDevAsiaUS, username, password, obj);
-		obj1.editGroupCheckAccess(driver, obj1.emailDev, obj1.company_idDevAsiaUS, username, password, op);
-		obj1.editPassword(driver, obj1.emailDev, obj1.company_idDevAsiaUS, username, password);
-		obj1.deleteUser(driver, obj1.company_idDevAsiaUS);
-		obj1.deleteGroup(driver, obj1.company_idDevAsiaUS);
-		obj1.deleteCompany(driver, obj1.company_idDevAsiaUS);		  	  
+		//Clicks on Analysis 
+				try
+				{
+					driver.findElement(rv.AnalysisLink).click();
+				}catch (UnhandledAlertException f){			  
+					driver.switchTo().alert().dismiss();
+				}
+				
+					JavascriptExecutor js = (JavascriptExecutor) driver;
+					String paddingFix = "if(document.querySelector){var elem = document."
+							+ "querySelector('.pii-padding-bottom'); "
+							+ "elem.style.setProperty('padding-bottom', 0);}";
+
+					js.executeScript(paddingFix, driver);
+					
+					
+			/*		//original from Developer script
+					var elem = document.querySelector('.pii-padding-bottom');
+					elem.style.setProperty('padding-bottom', 0);*/
+					
+				//Clicks on Remote Verification
+				driver.findElement(rv.RVLink).click();
+				//FillPage
+				wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventTitle)).sendKeys("0101test");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVEventDetails)).sendKeys("spv");
+				//FillPage(click in-person)
+				share2.scrollToAPoint(driver, 800);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-5-inperson-radio-ip-label"))).click();
+				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))).sendKeys("MarryAnne");
+				//Fill in (6) Verifier sign-off's Title
+				share2.scrollToAPoint(driver,400);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-title"))).sendKeys("Site Manager");
+				//Click on Save Button
+				share2.scrollToTop(driver);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save"))).click();
+				//Click Save in Save report popup
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+				
+						
+				
+		/*
 		//Logs out
-		obj.logout(driver);
-		afterTest(obj1);		  
+		obj.logout(driver);*/
 	}
 
+	
 	public void afterTest(UserManagement obj) throws Exception{
 
 		//Browser closes
@@ -182,4 +180,3 @@ public class SanityChromeTest {
 //		obj.softAssert();
 	}
 }
-*/

@@ -2321,12 +2321,12 @@ public class HiRCAHumanError2 {
 		String q3316 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-irca-answer-4']"))).getText();
 		softly.assertThat(q3316).as("test data").contains("[3.31.6] No business protocol providing guidelines of choice selection (business only)");
 		//2nd collapsible for 3.31.6
-		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
+		String c20 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))).getText();
 		softly.assertThat(c20).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.31.6
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/h4/a"))));
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/h4/a"))));
 		//text inside
-		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
+		String c21 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li"))).getText();
 		softly.assertThat(c21).as("test data").contains("Interview decision makers");
 			share2.scrollToTop(driver);
 	}
@@ -2969,6 +2969,7 @@ public class HiRCAHumanError2 {
 	public void verifySelections(WebDriver driver, List<String> lopOptions, SoftAssertions softly, String username, String text, MultiValuedMap<String,String>hircaNoteLopSURE,HashMap<String,String>hircaNoteLopStep4) throws Exception{
 		
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HiRCALevel1 obj = new HiRCALevel1();
 		List<String>lopOptions1 = new ArrayList<String>();
 		for(int i=0;i<lopOptions.size();i++)
@@ -2978,54 +2979,65 @@ public class HiRCAHumanError2 {
 		}
 		//Verify Step 3 SUEP
 		HashMap<String,Integer> options = obj.verifySUEP(driver,lopOptions1, softly,hircaNoteLopSURE);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
 		String skip=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		Thread.sleep(2000);
 		if(skip.contains("ui-state-disabled"))
 		{
 			//Click on next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		}
 		else
 		{
 			//Click on skip
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+	//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
 		//Verify Step 4
 		HashMap<String,String> hml = obj.verifyStep4(driver,options,lopOptions1,hircaNoteLopStep4);
 		Thread.sleep(6000);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
 		String skip2=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		if(skip2.contains("ui-state-disabled"))
 		{
 			//Click on next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		}
 		else
 		{
 			//Click on skip
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
 		Thread.sleep(2000);
 		//Verify Step 5
 		List<String> checklist=obj.verifyHiRCAChecklist(driver);
 		Thread.sleep(4000);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
 		String skip1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).getAttribute("class");
 		if(skip1.contains("ui-state-disabled"))
 		{
 			//Click on next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-next"))).click();
 		}
 		else
 		{
 			//Click on skip
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-skip"))).click();
 		}
 		Thread.sleep(2000);
 		//Verify if on Report Tab by looking for finalize button
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-finalize")));
 		//obj.verifyReport(driver, lopOptions1, options, hml, checklist,0,hircaNoteLopSURE);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-save"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.HiRCAPopupConfirmButton)));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Get browser name
@@ -3046,7 +3058,9 @@ public class HiRCAHumanError2 {
 			}
 		}
 		//Clicks on Info tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-tab-0"))).click();
 		//Create an expected name
 		String creationDate = driver.findElement(By.id("pii-irca-event-repdatetime")).getAttribute("value");
 		String name = creationDate + "_"+username+"_"+ text;
