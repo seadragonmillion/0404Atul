@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,6 +31,7 @@ public class PassReview2 {
 	public void verifySavePopupAfterRename(WebDriver driver, SoftAssertions softly)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on record
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.FirstRecord)).click();
 		//Wait for loading message
@@ -38,12 +40,14 @@ public class PassReview2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		//Click on Info tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.InfoTab)).click();
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.InfoTab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.InfoTab)));
 		//Enter a very long name in Event title
 		driver.findElement(pr.DocumentTitle).clear();
 		driver.findElement(pr.DocumentTitle).sendKeys("Really long text which will make the report name o overflow out of the popup");
 		//click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)));
 		//Verify the popup
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupNote)).getText();
 		softly.assertThat(s).as("test data").contains("‑");
@@ -52,17 +56,22 @@ public class PassReview2 {
 		softly.assertThat(overflow).as("test data").isEqualTo("break-word");
 		System.out.println(overflow);
 		//Click on cancel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)));
 		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
 	}
 	
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NewButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NewButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NewButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NewButton)).click();
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Start New Report");
@@ -79,7 +88,7 @@ public class PassReview2 {
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).getText();
 		softly.assertThat(s3).as("test data").isEqualTo("new report");
 		//Click on cancel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupCancelButton)));
 	}
 	
 	public void verifySaveReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {

@@ -1047,7 +1047,7 @@ public class RemoteVerification {
 	public void pdfCheck(WebDriver driver, String verifier, String username, String url) throws Exception {
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
-		File[] files = new File("C://Users//mama//Pictures//").listFiles();
+		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -1056,7 +1056,7 @@ public class RemoteVerification {
 		}
 		System.out.println(results.get(0));
 		//Loads the file to check if correct data is present
-		String fileName="C://Users//mama//Pictures//"+results.get(0);
+		String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
 		File oldfile = new File(fileName);
 		//Checks number of images in pdf
 		PDDocument pddoc= PDDocument.load(oldfile);
@@ -1322,6 +1322,7 @@ public class RemoteVerification {
 
 	public List<String> createReport(WebDriver driver, String username, int k) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Analysis 
@@ -1360,14 +1361,24 @@ public class RemoteVerification {
 			driver.findElement(rv.RVEventDetails).clear();
 			driver.findElement(rv.RVEventDetails).sendKeys(rv.details(driver,driver.getCurrentUrl()));
 		}
-		//Click checkbox I certify...
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-photo-icertify-checkbox"))).click();
+		//(2)Click checkbox I certify...
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-photo-icertify-checkbox"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-photo-icertify-checkbox"))));
 		//Upload photo (3) Take or choose a photo of the person requesting verification.
 		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
-		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/clickcancel3onHpSpectre.exe");
+			q.waitFor();
+			}catch (UnhandledAlertException f){	
+			System.out.println("Unexpected alert");
+			driver.switchTo().alert().accept();
+
+			}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert");}
+		
 		//Select verifier
 		rv3.verifierSelect(driver,k);
 		Thread.sleep(1000);

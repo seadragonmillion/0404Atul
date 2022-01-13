@@ -38,7 +38,7 @@ public class PassReview {
 	public void pass1Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> textList = em2.error100Data(driver, driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		// Fill text in Requirement
@@ -415,13 +415,15 @@ public class PassReview {
 		// Scroll up
 		share2.scrollToTop(driver);
 		// Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 	}
 
 	public void pass2Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> textList = em2.error100Data(driver, driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		
@@ -666,13 +668,15 @@ public class PassReview {
 		// Scroll up
 		share2.scrollToTop(driver);
 		// Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 	}
 
 	public void pass3Tab(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> textList = em2.error100Data(driver, driver.getCurrentUrl());
 		Iterator<String> iter = Iterables.cycle(textList).iterator();
 		String titlePass3Tab = wait.until(ExpectedConditions.visibilityOfElementLocated(pr.Pass3Tab1stTableTitle))
@@ -754,13 +758,16 @@ public class PassReview {
 		// Scroll up
 		share2.scrollToTop(driver);
 		// Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButton)).click();
 	}
 
 	public void verifyHTMLReport(WebDriver driver, List<String> textList) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 	}
+
 		/*
 		//Pass1 
 		//1.1 Requirement table
@@ -1289,7 +1296,9 @@ public class PassReview {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		share2.loadingServer(driver);
 		// Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
 		// Clicks on side panel option for 3 pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();
@@ -1345,6 +1354,7 @@ public class PassReview {
 	public String createReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		FontCheck obj3 = new FontCheck();
 		String text = eirca2.textCreate(driver);
 		// Wait for loading message to disappear
@@ -1404,7 +1414,9 @@ public class PassReview {
 		s.selectByVisibleText("Drawing");
 		Thread.sleep(2000);
 		// Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.NextButttonAtBottom)).click();
 
 ///////////////////////////////
 		//am_temp: Quickly skip Pass1, 2, 3 fill-in textbox
@@ -1425,18 +1437,22 @@ public class PassReview {
 //////////////////////////////am_temp: recover		
 		
 		// Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)));
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SaveButton)).click();
 		Thread.sleep(2000);
 		pr2.verifySaveReportPopup(driver, softly);
 		// Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavePopupConfirmButton)));
 		// Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		// Wait for loading message
 		share2.loadingServer(driver);
 		// Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(pr.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
 		// Clicks on side panel option for 3 pass
 		wait.until(ExpectedConditions.visibilityOfElementLocated(pr.PassReviewSidePanel)).click();

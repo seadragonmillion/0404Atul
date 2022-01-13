@@ -58,7 +58,7 @@ public class UserManagement {
 	public String emailDev = "piikaleemailtest01@gmail.com";
 	//public String emailDev = "fakeemailtestqaa@gmail.com";
 	public String emailUSie11 = "fakeemailtestqaaie11usa@gmail.com";
-	public String emailUS = "fakeemailtestqaausa@gmail.com";
+	public String emailUS = "piikaleemailtest01@gmail.com";
 	public String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
 	public String emailAsia = "fakeemailtestqaaasia@gmail.com";
 	public String companyPII="pii";
