@@ -94,6 +94,7 @@ public class ChromeOffline3 {
 	public void test() throws Exception{
 		//Login User
 		Login obj = new Login ();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(2000);
@@ -163,8 +164,10 @@ public class ChromeOffline3 {
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-file-img-"+j)));
 						//Click on attach another file
 						WebElement add= driver.findElement(By.id("pii-rv-addnewfile-button"));
-						share2.scrollToElement(driver, add);
-						add.click();
+						jse.executeScript("arguments[0].focus();", add);
+						jse.executeScript("arguments[0].click();", add);
+//						share2.scrollToElement(driver, add);
+//						add.click();
 						/*
 						if(j<3)
 						{
@@ -179,7 +182,6 @@ public class ChromeOffline3 {
 				
 				//Upload photo (3) Take or choose a photo of the person requesting verification.
 		//		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
-				JavascriptExecutor jse = (JavascriptExecutor)driver;
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 				driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
 				Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
@@ -192,15 +194,17 @@ public class ChromeOffline3 {
 				//Click (6) Verifier sign-off checkbox: I certify that...
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6ip-icertify-checkbox"))));
 				//Fill in (6) Verifier sign-off's Name
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))).sendKeys("MarryAnne");
 				//Fill in (6) Verifier sign-off's Title
 				share2.scrollToAPoint(driver,400);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-title"))).sendKeys("Site Manager");
 				//Click on Save Button
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
 				//Click Save in Save report popup
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+				jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))));
 				//Assert: Confirm Green Offline syncing message and print and close
 				try{
 					//Closes server warning

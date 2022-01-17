@@ -3931,8 +3931,6 @@ public class HiRCAHumanError {
 				// Join the list with the note for Step4
 				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note3, lopOptions));
 			}
-
-		    /*am_no longer applicable from [1.23] to [1.26]
 			// Verify text in Q1.23
 			obj2.stepOneq123(driver, softly);
 			// Select an answer in Q1.23
@@ -4034,7 +4032,7 @@ public class HiRCAHumanError {
 				hircaNoteLopSURE.putAll(hfl123.joinNoteWithAnswerForSURE(driver, note126, lopOptions));
 				// Join the list with the note for Step4
 				hircaNoteLopStep4.putAll(hfl123.joinNoteWithAnswerWithSemicolon(driver, note126, lopOptions));
-			}*/
+			}
 		}
 
 		if (ans.get(0).equals("Skill-based")) {

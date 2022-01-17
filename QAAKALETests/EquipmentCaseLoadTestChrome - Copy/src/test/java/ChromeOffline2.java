@@ -34,10 +34,10 @@ import kaleTestSoftware.ShareCheckPageObj;
 public class ChromeOffline2 {
 
 	WebDriver driver;
-	private String username ="jenkins";
+	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = "https://kaleqa.error-free.com/";
+	private String url = "https://kale.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj share = new ShareCheckPageObj();
@@ -92,6 +92,7 @@ public class ChromeOffline2 {
 	public void test() throws Exception{
 		//Login User
 		Login obj = new Login ();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: "+driver.getTitle());
 		Thread.sleep(2000);
@@ -178,12 +179,11 @@ public class ChromeOffline2 {
 				
 				//Upload photo (3) Take or choose a photo of the person requesting verification.
 				String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
-				JavascriptExecutor jse = (JavascriptExecutor)driver;
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 				driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
 				Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
 				//Fill in (4) Fill in relevant details and description of work needing verification.
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))));
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))).sendKeys("work evaluation");
 				share2.scrollToAPoint(driver, 400);
 				//Click on (5) Select whether this verification is: In Person 
@@ -191,15 +191,17 @@ public class ChromeOffline2 {
 				//Click (6) Verifier sign-off checkbox: I certify that...
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6ip-icertify-checkbox"))));
 				//Fill in (6) Verifier sign-off's Name
-				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))).sendKeys("MarryAnne");
 				//Fill in (6) Verifier sign-off's Title
 				share2.scrollToAPoint(driver,400);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-title"))).sendKeys("Site Manager");
 				//Click on Save Button
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
+				jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
 				//Click Save in Save report popup
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+				jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))));
 				//Assert: Confirm Green Offline syncing message and print and close
 				try{
 					//Closes server warning
@@ -217,6 +219,12 @@ public class ChromeOffline2 {
 				String s = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewlyCreatedFirstRecord)).getText();
 				softly.assertThat(s).as("test data").contains("//a[contains(text(),'" + title + "')]");	
 				System.out.println(s);
+				//Manual Testing below
+				//1. Close Browser
+				//2. WiFi back 
+				//3. Re-login, check sycronizing blue message on Kale
+				//4. Result: Offline report is synced to Online Listing
+				
 //				assertEquals(driver.findElement(By.xpath("//a[contains(text(),'" + title + "')]")).isDisplayed(), true);
 				
 				//Close browser before putting wifi back

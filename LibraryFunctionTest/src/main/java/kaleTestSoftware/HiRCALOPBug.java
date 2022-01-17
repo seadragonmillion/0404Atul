@@ -573,7 +573,7 @@ public class HiRCALOPBug {
 		//Verify SUEP Tab appeared
 		Thread.sleep(2000);
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(hc.PageQuestion)).getText();
-		softly.assertThat(s).as("test data").contains("Step 3 - Root Causes Determination Checklist (SUEP");
+		softly.assertThat(s).as("test data").contains("Step 3 - Root Causes Determination Checklist");
 		//with 3 LOPs
 		bugPathWith3LopsKALE1926(driver);
 		//with 1 LOP

@@ -84,6 +84,7 @@ public class ChromeOffline4 {
 	public void test() throws Exception {
 		// Login User
 		Login obj = new Login();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int login = obj.LoginUser(driver, username, password);
 		System.out.println("Title after login: " + driver.getTitle());
 		Thread.sleep(2000);
@@ -143,13 +144,14 @@ public class ChromeOffline4 {
 			System.out.println("Supporting 1 uploaded online " + " is displayed");
 
 		}
+		/*
 		// Upload photo (3) Take or choose a photo of the person requesting
 		// verification.
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();",
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
-		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");*/
 		// Fill in (4) Fill in relevant details and description of work needing
 		// verification.
 		share2.scrollToElement(driver,
@@ -164,8 +166,7 @@ public class ChromeOffline4 {
 		jse.executeScript("arguments[0].click();",
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6ip-icertify-checkbox"))));
 		// Fill in (6) Verifier sign-off's Name
-		share2.scrollToElement(driver,
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
+				jse.executeScript("arguments[0].scrollIntoView(true);",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-name")))
 				.sendKeys("MarryAnne");
 		// Fill in (6) Verifier sign-off's Title
@@ -173,9 +174,11 @@ public class ChromeOffline4 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-6-inperson-title")))
 				.sendKeys("Site Manager");
 		// Click on Save Button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
 		// Click Save in Save report popup
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))));
 		Thread.sleep(8000);
 ///////////////////////////////////////////////////////////////////////////////////////		
 		// Disconnect with WiFi
@@ -201,8 +204,10 @@ public class ChromeOffline4 {
 
 		// Click on attach another file
 		WebElement add = driver.findElement(By.id("pii-rv-addnewfile-button"));
-		share2.scrollToElement(driver, add);
-		add.click();
+		jse.executeScript("arguments[0].focus();", add);
+		jse.executeScript("arguments[0].click();", add);
+//		share2.scrollToElement(driver, add);
+//		add.click();
 		// Fill 2nd supporting file title
 		String title_id1 = "pii-rv-event-file-title-1";
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id1))).sendKeys("Title01");
@@ -221,9 +226,11 @@ public class ChromeOffline4 {
 		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		Thread.sleep(1000);
 		// Click on Save Button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-save2"))).click();
 		// Click Save in Save report popup
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))));
 		Thread.sleep(5000);
 		// Click on Open RV report in order to check 2 supporting file photos exist
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.OpenButton)).click();
@@ -260,7 +267,9 @@ public class ChromeOffline4 {
 		}
 		Thread.sleep(7000);
 		// Click on Saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedActivitiesButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedActivitiesButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedActivitiesButton)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavedActivitiesButton)).click();
 		// Wait for loading message to disappear
 		share2.loadingServer(driver);
 		// Assert: Offline report display in Online Listing
@@ -277,14 +286,15 @@ public class ChromeOffline4 {
 		Thread.sleep(1000);
 		// Verify 2 Supporting files photos present Offline
 		for (int j = 0; j < 2; j++) {
+			/*
 			// Click on Supporting file details
 			share2.scrollToElement(driver, wait
 					.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-filecollapsible-" + j))));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-filecollapsible-" + j)))
-					.click();
+					.click();*/
 			// Wait for image
 			share2.scrollToAPoint(driver, 700);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-file-img-" + j)));
+			jse.executeScript("arguments[0].scrollIntoView(true);",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-file-img-" + j))));
 			if (driver.findElement(By.id("pii-rv-event-file-img-" + j)).isDisplayed()) {
 				System.out.println("Supporting file image " + j + "is displayed");
 
