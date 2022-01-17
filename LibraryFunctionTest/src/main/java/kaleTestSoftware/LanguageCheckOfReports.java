@@ -277,6 +277,7 @@ public class LanguageCheckOfReports {
 	public void languageChangeTest(WebDriver driver, String username, String password) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		// Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -326,10 +327,11 @@ public class LanguageCheckOfReports {
 				.getAttribute("value");
 		System.out.println(name);
 		softly.assertThat(name).as("test data").isEqualTo("QAA changed");
+		/*
 		String company = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company")))
 				.getAttribute("value");
 		System.out.println(company);
-		softly.assertThat(company).as("test data").isEqualTo("QAA-PII changed");
+		softly.assertThat(company).as("test data").isEqualTo("QAA-PII changed");*/
 		String dept = driver.findElement(By.xpath(".//*[@id='pii-admin-user-dept-button']/span")).getText();
 		System.out.println(dept);
 		softly.assertThat(dept).as("test data").isEqualTo("Design Engineering");
@@ -344,9 +346,11 @@ public class LanguageCheckOfReports {
 		// Change Name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).sendKeys("QAA");
+		/*no longer applicable
 		// Change Company name
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-license"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).sendKeys("QAA-PII");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).sendKeys("QAA-PII");*/
 		Thread.sleep(3000);
 		// Change Group
 		try {
@@ -375,6 +379,7 @@ public class LanguageCheckOfReports {
 		Select s3 = new Select(dropdown3);
 		s3.selectByVisibleText("Engineer");
 		// Change email id
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).sendKeys("amlee@errorfree.com");
 		//Changes language to English
@@ -387,10 +392,12 @@ public class LanguageCheckOfReports {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-user-groups-dialog']/div/div/a"))).click();
 		//Clicks on save
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
 		// wait.until(ExpectedCondit
 		// ions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))));
 		// verify sticky
 		hirca2.verifyStickyUserAccountAfterChange(driver, softly, 0);
 //		hirca2.verifyStickyUserAccount(driver, softly, username);
@@ -403,10 +410,11 @@ public class LanguageCheckOfReports {
 				.getAttribute("value");
 		System.out.println(name1);
 		softly.assertThat(name1).as("test data").isEqualTo("QAA");
+		/*
 		String company1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company")))
 				.getAttribute("value");
 		System.out.println(company1);
-		softly.assertThat(company1).as("test data").isEqualTo("QAA-PII");
+		softly.assertThat(company1).as("test data").isEqualTo("QAA-PII");*/
 
 		String dept1 = driver.findElement(By.xpath(".//*[@id='pii-admin-user-dept-button']/span")).getText();
 		System.out.println(dept1);
@@ -419,7 +427,6 @@ public class LanguageCheckOfReports {
 		System.out.println(email1);
 		softly.assertThat(email1).as("test data").isEqualTo("amlee@errorfree.com");
 		// Clicks on Activity
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-activity"))));
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
@@ -457,7 +464,8 @@ public class LanguageCheckOfReports {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		// Scroll down to contact link
-		share2.scrollToElement(driver, driver.findElement(shareObj.KALEContactPage));
+//		share2.scrollToElement(driver, driver.findElement(shareObj.KALEContactPage));
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.elementToBeClickable(shareObj.KALEContactPage)));
 		// Click on contact page
 		wait.until(ExpectedConditions.elementToBeClickable(shareObj.KALEContactPage)).click();
 		// Get browser name
@@ -485,6 +493,7 @@ public class LanguageCheckOfReports {
 	public void verifyLabelAdminUserAccountEnglish(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		// Verify all label which are same as non admin user
 		verifyLabelUserAccountEnglish(driver, softly);
 		// Labels which are visible only to admin user
@@ -532,6 +541,7 @@ public class LanguageCheckOfReports {
 		// Name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name")));
 		// Company name
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-license"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company")));
 		// Dept
 		driver.findElement(By.id("pii-admin-user-dept"));
@@ -540,8 +550,10 @@ public class LanguageCheckOfReports {
 		// job title
 		driver.findElement(By.id("pii-admin-user-jobtitle"));
 		// email
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email")));
 		// certificate level
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-license"))));
 		driver.findElement(By.id("pii-admin-user-certif"));
 		// case slide on button
 		String s7 = wait
@@ -638,6 +650,7 @@ public class LanguageCheckOfReports {
 	public void changeAccountPage(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		// Waits for loading message to disappear
 		share2.loadingServer(driver);
 		// Clicks on Account
@@ -649,10 +662,12 @@ public class LanguageCheckOfReports {
 		// Change Name
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-name"))).sendKeys("QAA changed");
+		/*no longer applicable
 		// Change Company name
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-license"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-company")))
-				.sendKeys("QAA-PII changed");
+				.sendKeys("QAA-PII changed");*/
 		// Change Group
 				try {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))).click();
@@ -683,6 +698,7 @@ public class LanguageCheckOfReports {
 		Select s1 = new Select(driver.findElement(By.id("pii-admin-user-jobtitle")));
 		s1.selectByVisibleText("Support");
 		// Change email id
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-loginname"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email"))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-email")))
 				.sendKeys("Email changed");
@@ -693,7 +709,6 @@ public class LanguageCheckOfReports {
 		// Clicks on save
 		share2.loadingServer(driver);
 		WebElement savebtn1 = driver.findElement(By.id("pii-admin-user-button-save"));
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", savebtn1);
 		js.executeScript("arguments[0].click();", savebtn1);
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
@@ -1533,6 +1548,7 @@ public class LanguageCheckOfReports {
 				.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]")))
 				.getText());
+		/*
 		// Stores text of title of 1st table
 		s.add(wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[1]/table/tbody/tr/th/span[1]")))
@@ -1575,7 +1591,7 @@ public class LanguageCheckOfReports {
 		// Stores text of 5th table
 		s.add(wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath(".//*[@id='rv-rpt']/div/div[6]/table/tbody/tr[1]/th/div/strong")))
-				.getText());
+				.getText());*/
 		System.out.println(s);
 
 		

@@ -58,6 +58,7 @@ public class GroupModerator {
 	public String createEMReport(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.loadingServer(driver);
 		//Clicks on SPV Error meter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-em"))).click();
@@ -84,20 +85,51 @@ public class GroupModerator {
 		//Click on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))).click();
 		share2.loadingServer(driver);
-		//click on 1st checkbox on Time tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q1-l"))).click();
-		//select 1st checkbox dropdown on Time tab
-		WebElement dropdown1 = driver.findElement(By.id("pii-epm-tab-t-q1-spv"));
-		Select s0 = new Select(dropdown1);
+		//Time tab: click 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+		WebElement timeCheckBox = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-l"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	timeCheckBox);
+		jse.executeScript("arguments[0].click();", timeCheckBox);
+		}
+		//Time tab: select dropdown for 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+		WebElement timeDropDown = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	timeDropDown);
+		Select s0 = new Select(timeDropDown);
 		s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
-		//enter text in 1st checkbox textbox on Time tab
-		driver.findElement(By.id("pii-em-sr-t1")).sendKeys(text);
+		}
+		//Time tab: fill in required textbox for 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+			jse.executeScript("arguments[0].scrollIntoView(true);",	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-t"+i))));
+			driver.findElement(By.id("pii-em-sr-t"+i)).sendKeys(text);
+		}	
+		//Time tab: fill in non-required 4 rows textarea for 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+			for(int j=1;j<5;j++)
+			{
+				WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-t-q"+i+"-lop"+j+"']"));
+				jse.executeScript("arguments[0].scrollIntoView(true);", e);
+				e.sendKeys(text);
+			}
+		}
+		share2.scrollToTop(driver);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))));
+		for(int i=1;i<5;i++)
+		{
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-next"))));
+			Thread.sleep(400);
+		}
+		/*
 		for(int i=2;i<5;i++) {
-			WebElement e = driver.findElement(By.id("pii-epm-tab-t-q[\"+i+\"]-l"));
+			WebElement e = driver.findElement(By.id("pii-epm-tab-t-q["+i+"]-l"));
 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 			jse.executeScript("arguments[0].scrollIntoView(true);", e);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-tab-t-q["+i+"]-l"))).click();
-		}
+		}*/
 		
 		//Save report
 		return(em.saveReport(driver,username));
@@ -148,6 +180,7 @@ public class GroupModerator {
 	public String createEiRCAReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on EiRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-eirca"))).click();
 		Thread.sleep(1000);
@@ -157,6 +190,7 @@ public class GroupModerator {
 		driver.findElement(eirca.EiRCAEventReporterField).sendKeys(text); 
 		driver.findElement(eirca.EiRCAEventInvestigatorField).sendKeys(text);
 		driver.findElement(eirca.EiRCAEventReviewerField).sendKeys(text);
+		jse.executeScript("arguments[0].scrollIntoView();", eirca.EiRCAEventSponsorField);
 		driver.findElement(eirca.EiRCAEventSponsorField).sendKeys(text);
 		driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
@@ -209,13 +243,15 @@ public class GroupModerator {
 			driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
 		}
 		//Clicks on Save button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
+		jse.executeScript("arguments[0].click();", 	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)).click();
 		share2.loadingServer(driver);
 		//Clicks on Save Report button			  
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAPopupConfirmButton)));
 		share2.loadingServer(driver);
 		//Clicks on Saved activities button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASavedActivitiesButton)));
 		share2.loadingServer(driver);
 		//side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASidePanel)).click();

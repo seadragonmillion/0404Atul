@@ -369,30 +369,30 @@ public class EiRCAPageObj {
 	public By KALEHomePage = By.className("pii-logo-div-element-kale");
 
 	//Info page
-	public By EiRCAInfoPageTitle = By.id("pii-ircam-tab-1-pagetitle");
-	public By EiRCAInfoPageDesc = By.id("pii-ircam-tab-1-help");
-	public By EiRCAEventTitleLabel = By.id("pii-ircam-tab-1-title-label");
-	public By EiRCAEventTitleField = By.id("pii-ircam-tab-1-title");
-	public By EiRCAEventIdLabel = By.id("pii-ircam-tab-1-id-label");
-	public By EiRCAEventIdField = By.id("pii-ircam-tab-1-id");
-	public By EiRCAEventLocationLabel = By.id("pii-ircam-tab-1-location-label");
-	public By EiRCAEventLocationField = By.id("pii-ircam-tab-1-location");
-	public By EiRCAEventFailureDateLabel = By.id("pii-ircam-tab-1-failure-date-label");
-	public By EiRCAEventProblemStatementLabel = By.id("pii-ircam-tab-1-problem-statement-label");
-	public By EiRCAEventProblemStatementField = By.id("pii-ircam-tab-1-problem-statement");
-	public By EiRCAEventComponentLabel = By.id("pii-ircam-tab-1-failed-component-label");
-	public By EiRCAEventComponentField = By.id("pii-ircam-tab-1-failed-component");
-	public By EiRCAEventDiscoveryDateLabel = By.id("pii-ircam-tab-1-discovery-date-label");
-	public By EiRCAEventReporterLabel = By.id("pii-ircam-tab-1-who-label");
-	public By EiRCAEventReporterField = By.id("pii-ircam-tab-1-who");
-	public By EiRCAEventInitiatedDateLabel = By.id("pii-ircam-tab-1-initiation-date-label");
-	public By EiRCAEventInvestigatorLabel = By.id("pii-ircam-tab-1-investigators-label");
-	public By EiRCAEventInvestigatorField = By.id("pii-ircam-tab-1-investigators");
-	public By EiRCAEventReviewerLabel = By.id("pii-ircam-tab-1-reviewer-label");
-	public By EiRCAEventReviewerField = By.id("pii-ircam-tab-1-reviewer");
-	public By EiRCAEventSponsorLabel = By.id("pii-ircam-tab-1-management-sponsor-label");
-	public By EiRCAEventSponsorField = By.id("pii-ircam-tab-1-management-sponsor");
-	public By EiRCAEventReportDateLabel = By.id("pii-ircam-tab-1-repdatetime-label");
+	public By EiRCAInfoPageTitle = By.id("pii-ircam2-tab-1-pagetitle");
+	public By EiRCAInfoPageDesc = By.id("pii-ircam2-tab-1-help");
+	public By EiRCAEventTitleLabel = By.id("pii-ircam2-tab-1-title-label");
+	public By EiRCAEventTitleField = By.id("pii-ircam2-tab-1-title");
+	public By EiRCAEventIdLabel = By.id("pii-ircam2-tab-1-id-label");
+	public By EiRCAEventIdField = By.id("pii-ircam2-tab-1-id");
+	public By EiRCAEventLocationLabel = By.id("pii-ircam2-tab-1-location-label");
+	public By EiRCAEventLocationField = By.id("pii-ircam2-tab-1-location");
+	public By EiRCAEventFailureDateLabel = By.id("pii-ircam2-tab-1-failure-date-label");
+	public By EiRCAEventProblemStatementLabel = By.id("pii-ircam2-tab-1-problem-statement-label");
+	public By EiRCAEventProblemStatementField = By.id("pii-ircam2-tab-1-problem-statement");
+	public By EiRCAEventComponentLabel = By.id("pii-ircam2-tab-1-failed-component-label");
+	public By EiRCAEventComponentField = By.id("pii-ircam2-tab-1-failed-component");
+	public By EiRCAEventDiscoveryDateLabel = By.id("pii-ircam2-tab-1-discovery-date-label");
+	public By EiRCAEventReporterLabel = By.id("pii-ircam2-tab-1-who-label");
+	public By EiRCAEventReporterField = By.id("pii-ircam2-tab-1-who");
+	public By EiRCAEventInitiatedDateLabel = By.id("pii-ircam2-tab-1-initiation-date-label");
+	public By EiRCAEventInvestigatorLabel = By.id("pii-ircam2-tab-1-investigators-label");
+	public By EiRCAEventInvestigatorField = By.id("pii-ircam2-tab-1-investigators");
+	public By EiRCAEventReviewerLabel = By.id("pii-ircam2-tab-1-reviewer-label");
+	public By EiRCAEventReviewerField = By.id("pii-ircam2-tab-1-reviewer");
+	public By EiRCAEventSponsorLabel = By.id("pii-ircam2-tab-1-management-sponsor-label");
+	public By EiRCAEventSponsorField = By.id("pii-ircam2-tab-1-management-sponsor");
+	public By EiRCAEventReportDateLabel = By.id("pii-ircam2-tab-1-repdatetime-label");
 
 	//Step 1
 	public By Step1Title = By.xpath(".//*[@id='pii-ircam-tab-2']/div[1]");

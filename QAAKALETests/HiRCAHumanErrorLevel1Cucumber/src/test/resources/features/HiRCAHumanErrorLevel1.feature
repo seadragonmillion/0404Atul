@@ -2,7 +2,7 @@ Feature: Automated HiRCA Human Error Level 1 Test
 
 @ChromeTest
 Scenario: Verify HiRCA Human Error Level 1 path
-	Given user is on KALE Home Page "https://kaleqa.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
+	Given user is on KALE Home Page "https://kale.error-free.com/" with username as "jenkinsvmnonadmin" and password as "S2FsZWplbmtpbnNAMTIz" on browser "chrome"
 	When she creates HiRCA report with Human Error and answering Level one questions with username as "jenkinsvmnonadmin"
 	And logout from KALE
 	

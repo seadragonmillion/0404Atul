@@ -2421,18 +2421,22 @@ public class ErrorMeter {
 	public String saveReport(WebDriver driver, String username) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
 		Thread.sleep(2000);
 		//Click on finalize
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
 		em3.verifyFinalizeReportPopup(driver, softly);
 		Thread.sleep(2000);
 		//Click on finalize and save
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))));
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		share2.loadingServer(driver);
+		/*
 		//Creates expected record name
 		String date= driver.findElement(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td[2]")).getText().trim();
 		date = date.substring(14);
@@ -2442,7 +2446,7 @@ public class ErrorMeter {
 		String time1=time.substring(9);
 		String purpose = driver.findElement(By.xpath(".//*[@id='epm-rpt']/div/div/span/abbr")).getText().trim();
 		String name = date + "_" + time2+"_"+time1 + "_" + username +"_" + purpose + "_" + text;
-		System.out.println ("Expected name of record: " +name);
+		System.out.println ("Expected name of record: " +name);*/
 		//Clicks on side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterSidePanel)).click();
 		share2.loadingServer(driver);
