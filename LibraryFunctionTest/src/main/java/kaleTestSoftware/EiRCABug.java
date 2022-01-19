@@ -34,7 +34,7 @@ public class EiRCABug {
 		//Problem Statement
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventProblemStatementField)).sendKeys(text);
 		//Component
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventComponentField)).sendKeys(text);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventComponentField)).sendKeys(text);
 		//Reporter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCAEventReporterField)).sendKeys(text);
 		//Investigators

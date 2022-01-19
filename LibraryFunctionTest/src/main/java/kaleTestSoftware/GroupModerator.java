@@ -23,6 +23,7 @@ public class GroupModerator {
 	ErrorMeter em = new ErrorMeter();
 	HiRCALOPBug2 hirca = new HiRCALOPBug2();
 	EiRCAPageObj eirca = new EiRCAPageObj();
+	EiRCAV2 eircav2 =new EiRCAV2();
 	OPiRCAPageObj opirca = new OPiRCAPageObj();
 	PassReviewPageObj prObj = new PassReviewPageObj();
 	JobObservation jo = new JobObservation();
@@ -35,6 +36,7 @@ public class GroupModerator {
 	SoftAssertions softly = new SoftAssertions();
 
 	public String text = "Group moderator test";
+	public String textEiRCAv2 = "Sanity Test \"title\" Sanity";
 
 	//Dev/asia/us
 	public String username1 ="qaapaagroupauser1";
@@ -190,10 +192,9 @@ public class GroupModerator {
 		driver.findElement(eirca.EiRCAEventReporterField).sendKeys(text); 
 		driver.findElement(eirca.EiRCAEventInvestigatorField).sendKeys(text);
 		driver.findElement(eirca.EiRCAEventReviewerField).sendKeys(text);
-		jse.executeScript("arguments[0].scrollIntoView();", eirca.EiRCAEventSponsorField);
 		driver.findElement(eirca.EiRCAEventSponsorField).sendKeys(text);
 		driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
-		driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
+		driver.findElement(eirca.EiRCAEventSummary).sendKeys(text);
 		String ev1 = driver.findElement(eirca.EiRCAEventTitleField).getAttribute("value");
 		String ev2 = driver.findElement(eirca.EiRCAEventLocationField).getAttribute("value");
 		String ev3 = driver.findElement(eirca.EiRCAEventReporterField).getAttribute("value");
@@ -201,7 +202,7 @@ public class GroupModerator {
 		String ev5 = driver.findElement(eirca.EiRCAEventReviewerField).getAttribute("value");
 		String ev6 = driver.findElement(eirca.EiRCAEventSponsorField).getAttribute("value");
 		String ev7= driver.findElement(eirca.EiRCAEventProblemStatementField).getAttribute("value");
-		String ev8= driver.findElement(eirca.EiRCAEventComponentField).getAttribute("value");
+		String ev8= driver.findElement(eirca.EiRCAEventSummaryLabel).getAttribute("value");
 		if ((ev1.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventTitleField).clear();
@@ -237,11 +238,14 @@ public class GroupModerator {
 			driver.findElement(eirca.EiRCAEventProblemStatementField).clear();
 			driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		}
+		/*
 		if ((ev8.equals(text)==false))
 		{
-			driver.findElement(eirca.EiRCAEventComponentField).clear();
-			driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
-		}
+			driver.findElement(eirca.EiRCAEventSummary).clear();
+			driver.findElement(eirca.EiRCAEventSummary).sendKeys(text);
+		}*/
+		eircav2.EIRCAStep1Dropboxes(driver,textEiRCAv2,softly);
+		
 		//Clicks on Save button
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
 		jse.executeScript("arguments[0].click();", 	wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.EiRCASaveButton)));
@@ -262,19 +266,20 @@ public class GroupModerator {
 	public String createOPiRCAReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on O&P IRCA
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-opirca"))).click();
 		//Fills the mandatory fields
 		driver.findElement(opirca.OPiRCAEventTitleField).sendKeys(text);
 		driver.findElement(opirca.OPiRCAEventLocationField).sendKeys(text);
 		driver.findElement(opirca.OPiRCAProblemStatementField).sendKeys(text);
-		driver.findElement(opirca.OPiRCATimelineOfEventField).sendKeys(text);
+//		driver.findElement(opirca.OPiRCATimelineOfEventField).sendKeys(text);
 		driver.findElement(opirca.OPiRCABackgroundInfoField).sendKeys(text);
 		driver.findElement(opirca.OPiRCAInvestigatorsField).sendKeys(text);
 		String ev1 = driver.findElement(opirca.OPiRCAEventTitleField).getAttribute("value");
 		String ev2 = driver.findElement(opirca.OPiRCAEventLocationField).getAttribute("value");
 		String ev3 = driver.findElement(opirca.OPiRCAProblemStatementField).getAttribute("value");
-		String ev4 = driver.findElement(opirca.OPiRCATimelineOfEventField).getAttribute("value");
+//		String ev4 = driver.findElement(opirca.OPiRCATimelineOfEventField).getAttribute("value");
 		String ev5 = driver.findElement(opirca.OPiRCABackgroundInfoField).getAttribute("value");
 		String ev6 = driver.findElement(opirca.OPiRCAInvestigatorsField).getAttribute("value");
 		if ((ev1.equals(text)==false))
@@ -292,11 +297,11 @@ public class GroupModerator {
 			driver.findElement(opirca.OPiRCAProblemStatementField).clear();
 			driver.findElement(opirca.OPiRCAProblemStatementField).sendKeys(text);
 		}
-		if ((ev4.equals(text)==false))
+/*		if ((ev4.equals(text)==false))
 		{
 			driver.findElement(opirca.OPiRCATimelineOfEventField).clear();
 			driver.findElement(opirca.OPiRCATimelineOfEventField).sendKeys(text);
-		}
+		}*/
 		if ((ev5.equals(text)==false))
 		{
 			driver.findElement(opirca.OPiRCABackgroundInfoField).clear();
@@ -308,10 +313,12 @@ public class GroupModerator {
 			driver.findElement(opirca.OPiRCAInvestigatorsField).sendKeys(text);
 		}
 		//Clicks on save button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
 		//Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavePopupTitle));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveConfirmButton)));
 		share2.loadingServer(driver);
 		//Click on saved activities
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavedActivitiesButton)).click();
@@ -326,6 +333,7 @@ public class GroupModerator {
 	public String createpassReviewReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on 3 Pass review
 		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.PassReviewLink)).click();
 		Thread.sleep(2000);
@@ -351,25 +359,35 @@ public class GroupModerator {
 			driver.findElement(prObj.Organisation).clear();
 			driver.findElement(prObj.Organisation).sendKeys(text);
 		}
-		//Select Purpose from dropdown
+		//Select ReviewType dropdown
+		WebElement elementReviewerType = driver.findElement(prObj.ReviwerType);
+		Select s1 = new Select(elementReviewerType);
+		s1.selectByVisibleText("Technical review");
+		
+		//Select DocumentType dropdown
 		WebElement element = driver.findElement(prObj.DocumentType);
 		Select s = new Select (element);
 		s.selectByVisibleText("Drawing");
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.NextButttonAtBottom)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.NextButttonAtBottom)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.NextButttonAtBottom)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.NextButttonAtBottom)).click();
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SaveButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SaveButton))); 
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SaveButton)));
 		Thread.sleep(2000);
 		//Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavePopupConfirmButton)));
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
 		//Wait for loading message
 		share2.loadingServer(driver);
 		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavedAcivitiesButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavedAcivitiesButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavedAcivitiesButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(prObj.SavedAcivitiesButton)).click();
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Click on side panel
@@ -381,15 +399,14 @@ public class GroupModerator {
 	public String createJobObsReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on Job Observation Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-a-menu-jo"))).click();
-		//Clicks on new
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-new"))).click();
-		//Click on new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
 		//Fills mandatory details in step1
+		Thread.sleep(1000);
 		driver.findElement(By.id("pii-joa-tab-1-observer")).sendKeys(text);
+		driver.findElement(By.id("pii-joa-tab-1-org")).sendKeys(text);
+		driver.findElement(By.id("pii-joa-tab-1-dpt")).sendKeys(text);
 		driver.findElement(By.id("pii-joa-tab-1-location")).sendKeys(text);
 		driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
 		String ev1 = driver.findElement(By.id("pii-joa-tab-1-observer")).getAttribute("value");
@@ -410,6 +427,7 @@ public class GroupModerator {
 			driver.findElement(By.id("pii-joa-tab-1-job")).clear();
 			driver.findElement(By.id("pii-joa-tab-1-job")).sendKeys(text);
 		}
+		/*
 		//Clicks on next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-joa-tab-1-form']/div[5]/div/button"))).click();
 		//Clicks on next
@@ -428,9 +446,27 @@ public class GroupModerator {
 		//Clicks on save report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-title"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-dialog-confirmed"))).click();
-		share2.loadingServer(driver);
+		share2.loadingServer(driver);*/
+		
+		//Click on submit job observation
+		jse.executeScript("arguments[0].focus();", driver.findElement(By.id("pii-joa-submitjo-footer")));
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-joa-submitjo-footer")));
+//		driver.findElement(By.id("pii-joa-submitjo-footer")).click();
+		//Click on generate report button on top
+		jse.executeScript("arguments[0].focus();", driver.findElement(By.id("pii-joa-genrep")));
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-joa-genrep")));
+		//Click on From: 2nd row 1st date (apply to all months)
+		jse.executeScript("arguments[0].focus();", driver.findElement(By.xpath(".//*[@id='pii-generate-report-from']/div/table/tbody/tr[2]/td[1]")));
+		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath(".//*[@id='pii-generate-report-from']/div/table/tbody/tr[2]/td[1]")));
+		//Click on To: 2nd row 1st date (apply to all months)
+		jse.executeScript("arguments[0].focus();", driver.findElement(By.xpath(".//*[@id='pii-generate-report-to']/div/table/tbody/tr[2]/td[1]")));
+		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath(".//*[@id='pii-generate-report-to']/div/table/tbody/tr[2]/td[1]")));
+		//Click on generate button 
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-joa-genrep-do")));
 		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSavedActivitiesButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSavedActivitiesButton))); 
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSavedActivitiesButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(joObj.JOSavedActivitiesButton)).click();
 		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on side panel
@@ -442,6 +478,7 @@ public class GroupModerator {
 	public String createRVReport(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on Remote Verification
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVLink)).click();
 		//Fills the mandatory fields
@@ -470,21 +507,18 @@ public class GroupModerator {
 		//Uploads picture 2
 		rv3.upload2ndPicture(driver);
 		//Uploads picture 1
-		rv3.upload1stPicture(driver);
+//		rv3.upload1stPicture(driver);
 		//*
 		share2.scrollToTop(driver);
 		//Save and send to verifier
 		//Clicks on Save and Send
-		driver.findElement(rv.RVSaveAndSendButton).click();
+		jse.executeScript("arguments[0].focus();", driver.findElement(rv.RVSaveAndSendButton));
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RVSaveAndSendButton));
+//		driver.findElement(rv.RVSaveAndSendButton).click();
 		//Clicks on save and send report
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupTitle)).click();
-		driver.findElement(rv.RVSavePopupConfirmButton).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(rv.RVSavePopupConfirmButton));
 		//Wait for loading message to disappear
-		share2.loadingServer(driver);
-		//Clicks on Remote Verification side panel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
-		//Wait for loading message to disappear
-		share2.loadingServer(driver);
 		share2.loadingServer(driver);
 		//Clicks on Remote Verification side panel
 		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSidePanel)).click();
@@ -556,7 +590,7 @@ public class GroupModerator {
 		//create HiRCA report
 		allReportNames.add(createHiRCAReport(driver));
 		//Clicks on Analysis 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Analysis"))).click();
 		//Create EiRCA report
 		allReportNames.add(createEiRCAReport(driver));
 		//Clicks on Analysis 

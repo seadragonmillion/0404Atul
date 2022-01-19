@@ -26,28 +26,28 @@ public class EiRCAPageObj {
 
 	//Info page
 	public By InfoTab = By.id("pii-ircam-tab-1-a");
-	public By NextButtonBottomOfInfoPage = By.id("pii-ircam-tab-1-form-submit");
-	public By ReportCreationDateField = By.id("pii-ircam-tab-1-repdatetime");
-	public By EiRCASaveButton = By.id("pii-ircam-save");
-	public By TitleCharacterCount = By.id("pii-ircam-tab-1-title-count");
-	public By NewButton = By.id("pii-ircam-new");
-	public By EventTitleError = By.id("pii-ircam-tab-1-title-error");
-	public By EventLocationError = By.id("pii-ircam-tab-1-location-error");
-	public By ProblemStatementError = By.id("pii-ircam-tab-1-problem-statement-error");
-	public By FailedComponentError = By.id("pii-ircam-tab-1-failed-component-error");
-	public By WhoDiscoveredError = By.id("pii-ircam-tab-1-who-error");
-	public By InvestigatorError = By.id("pii-ircam-tab-1-investigators-error");
-	public By ReviewerError = By.id("pii-ircam-tab-1-reviewer-error");
-	public By SponsorError = By.id("pii-ircam-tab-1-management-sponsor-error");
+	public By NextButtonBottomOfInfoPage = By.id("pii-ircam2-tab-1-form-submit");
+	public By ReportCreationDateField = By.id("pii-ircam2-tab-1-repdatetime");
+	public By EiRCASaveButton = By.id("pii-ircam2-save");
+	public By TitleCharacterCount = By.id("pii-ircam2-tab-1-title-count");
+	public By NewButton = By.id("pii-ircam2-new");
+	public By EventTitleError = By.id("pii-ircam2-tab-1-title-error");
+	public By EventLocationError = By.id("pii-ircam2-tab-1-location-error");
+	public By ProblemStatementError = By.id("pii-ircam2-tab-1-problem-statement-error");
+	public By FailedComponentError = By.id("pii-ircam2-tab-1-failed-component-error");
+	public By WhoDiscoveredError = By.id("pii-ircam2-tab-1-who-error");
+	public By InvestigatorError = By.id("pii-ircam2-tab-1-investigators-error");
+	public By ReviewerError = By.id("pii-ircam2-tab-1-reviewer-error");
+	public By SponsorError = By.id("pii-ircam2-tab-1-management-sponsor-error");
 
 	//Save pop up
-	public By EiRCAPopupHeader = By.id("pii-ircam-dialog-header");
-	public By EiRCAPopupTitle = By.id("pii-ircam-dialog-title");
-	public By EiRCAPopupConfirmButton = By.id("pii-ircam-dialog-confirmed");
-	public By EiRCAPopUpMessageNote = By.id("pii-ircam-dialog-note");
-	public By EiRCAPopupCancelButton = By.id("pii-ircam-dialog-cancel");
-	public By EiRCANextButton = By.id("pii-ircam-next");
-	public By EiRCASavedActivitiesButton = By.id("pii-ircam-savedactivities");
+	public By EiRCAPopupHeader = By.id("pii-ircam2-dialog-header");
+	public By EiRCAPopupTitle = By.id("pii-ircam2-dialog-title");
+	public By EiRCAPopupConfirmButton = By.id("pii-ircam2-dialog-confirmed");
+	public By EiRCAPopUpMessageNote = By.id("pii-ircam2-dialog-note");
+	public By EiRCAPopupCancelButton = By.id("pii-ircam2-dialog-cancel");
+	public By EiRCANextButton = By.id("pii-ircam2-next");
+	public By EiRCASavedActivitiesButton = By.id("pii-ircam2-savedactivities");
 
 	//Report pop up on HTML page
 	public By ConfirmPopupHeader = By.id("pii-user-home-dialog-header");
@@ -380,8 +380,8 @@ public class EiRCAPageObj {
 	public By EiRCAEventFailureDateLabel = By.id("pii-ircam2-tab-1-failure-date-label");
 	public By EiRCAEventProblemStatementLabel = By.id("pii-ircam2-tab-1-problem-statement-label");
 	public By EiRCAEventProblemStatementField = By.id("pii-ircam2-tab-1-problem-statement");
-	public By EiRCAEventComponentLabel = By.id("pii-ircam2-tab-1-failed-component-label");
-	public By EiRCAEventComponentField = By.id("pii-ircam2-tab-1-failed-component");
+	public By EiRCAEventSummaryLabel = By.id("pii-ircam2-tab-1-event-summary-statement-label");
+	public By EiRCAEventSummary = By.id("pii-ircam2-tab-1-event-summary");
 	public By EiRCAEventDiscoveryDateLabel = By.id("pii-ircam2-tab-1-discovery-date-label");
 	public By EiRCAEventReporterLabel = By.id("pii-ircam2-tab-1-who-label");
 	public By EiRCAEventReporterField = By.id("pii-ircam2-tab-1-who");

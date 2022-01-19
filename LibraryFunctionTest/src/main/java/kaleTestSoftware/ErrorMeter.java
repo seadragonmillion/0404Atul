@@ -23,6 +23,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ErrorMeter {
@@ -42,6 +43,7 @@ public class ErrorMeter {
 	public void papeError100(WebDriver driver) throws Exception{
 
 		em3.errorMeterFillFirstPage(driver,softly);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> text=em2.error100Data(driver,driver.getCurrentUrl());
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String browserName = getBrowser(driver);
@@ -173,6 +175,7 @@ public class ErrorMeter {
 
 		share2.scrollToTop(driver);
 		//Checks error meter as 0%
+		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
@@ -630,6 +633,7 @@ public class ErrorMeter {
 	public void papeError50(WebDriver driver) throws Exception{
 
 		em3.errorMeterFillFirstPage(driver,softly);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String> text = em2.error50Data(driver,driver.getCurrentUrl());
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String browserName = getBrowser(driver);
@@ -714,6 +718,7 @@ public class ErrorMeter {
 
 		share2.scrollToTop(driver);
 		//Checks error meter as 0%
+		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
@@ -983,36 +988,36 @@ public class ErrorMeter {
 		Login obj1 = new Login();
 		obj1.closePopUpSticky(driver);
 		em3.verifyChangeOfTabTitleWhenScreenIsSmall(driver, softly);
-		/*am_below not applicable
+		
+		/*am_no long applicable
 		//Verify mark all instruction
 		String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
-		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");*/
+		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
 		//Clicks on checkboxes in Time Tab
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
 		Thread.sleep(500);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
 		Thread.sleep(500);
-		/*
+		
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);*/
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
 		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		Thread.sleep(500);
-		/*
+		
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);*/
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)));
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 		Thread.sleep(500);
-		/*
+		
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);*/
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
 		
 		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
@@ -1083,8 +1088,43 @@ public class ErrorMeter {
 		{
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).clear();*/
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).clear();
+		*/
+		
+		//Time tab: click 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement timeCheckBox = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-l"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	timeCheckBox);
+				jse.executeScript("arguments[0].click();", timeCheckBox);
+				}
+				//Time tab: select dropdown for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement timeDropDown = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-spv"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	timeDropDown);
+				Select s0 = new Select(timeDropDown);
+				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
+				}
+				//Time tab: fill in required textbox for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-t"+i))));
+					driver.findElement(By.id("pii-em-sr-t"+i)).sendKeys(text);
+				}	
+				//Time tab: fill in non-required 4 rows textarea for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					for(int j=1;j<5;j++)
+					{
+						WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-t-q"+i+"-lop"+j+"']"));
+						jse.executeScript("arguments[0].scrollIntoView(true);", e);
+						e.sendKeys(text);
+					}
+				}
+		
 		//Checks error meter as 0%
+		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
@@ -1092,7 +1132,11 @@ public class ErrorMeter {
 
 		//Click on Activity of PAPE
 		share2.scrollToTop(driver);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
+		
+		/*am_no longer applicable
 		//Clicks on checkboxes in Activity Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
@@ -1119,7 +1163,6 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
 
-		/*am_not applicable
 		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason1, softly);
@@ -1188,8 +1231,43 @@ public class ErrorMeter {
 		{
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).clear();*/
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).clear();
+		*/
+		
+		//Activity tab: click 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement actCheckBox = driver.findElement(By.id("pii-epm-tab-a-q"+i+"-l"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	actCheckBox);
+				jse.executeScript("arguments[0].click();", actCheckBox);
+				}
+				//Activity tab: select dropdown for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement actDropDown = driver.findElement(By.id("pii-epm-tab-a-q"+i+"-spv"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	actDropDown);
+				Select s0 = new Select(actDropDown);
+				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
+				}
+				//Activity tab: fill in required textbox for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-a"+i))));
+					driver.findElement(By.id("pii-em-sr-a"+i)).sendKeys(text);
+				}	
+				//Activity tab: fill in non-required 4 rows textarea for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					for(int j=1;j<5;j++)
+					{
+						WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-a-q"+i+"-lop"+j+"']"));
+						jse.executeScript("arguments[0].scrollIntoView(true);", e);
+						e.sendKeys(text);
+					}
+				}
+		
 		//Checks error meter as 0%
+		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
@@ -1197,7 +1275,11 @@ public class ErrorMeter {
 
 		//Click on People of PAPE
 		share2.scrollToTop(driver);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
+		
+		/*am_no longer applicable
 		//Clicks on checkboxes in People Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
@@ -1224,7 +1306,6 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
 		
-		/*am_not applicable
 		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason1, softly);
@@ -1294,7 +1375,41 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).clear();*/
+		
+		//People tab: click 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement pplCheckBox = driver.findElement(By.id("pii-epm-tab-p-q"+i+"-l"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	pplCheckBox);
+				jse.executeScript("arguments[0].click();", pplCheckBox);
+				}
+				//People tab: select dropdown for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement pplDropDown = driver.findElement(By.id("pii-epm-tab-p-q"+i+"-spv"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	pplDropDown);
+				Select s0 = new Select(pplDropDown);
+				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
+				}
+				//People tab: fill in required textbox for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-p"+i))));
+					driver.findElement(By.id("pii-em-sr-p"+i)).sendKeys(text);
+				}	
+				//People tab: fill in non-required 4 rows textarea for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					for(int j=1;j<5;j++)
+					{
+						WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-p-q"+i+"-lop"+j+"']"));
+						jse.executeScript("arguments[0].scrollIntoView(true);", e);
+						e.sendKeys(text);
+					}
+				}
+		
 		//Checks error meter as 0%
+		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));		
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
@@ -1302,7 +1417,11 @@ public class ErrorMeter {
 
 		//Click on Environment of PAPE
 		share2.scrollToTop(driver);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
+		
+		/*am_no longer applicable
 		//Clicks on checkboxes in Environment Tab
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
@@ -1329,7 +1448,6 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 		
-		/*am_not applicable
 		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason1, softly);
@@ -1339,7 +1457,6 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
-
 
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason2, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text);
@@ -1358,7 +1475,6 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).clear();
 
-
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason4, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text);
 		for (i=0;i<10;i++)
@@ -1366,7 +1482,6 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
-
 
 		//Fill in texts in Corrective Actions
 		share2.scrollToTop(driver);
@@ -1377,7 +1492,6 @@ public class ErrorMeter {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
-
 
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text);
@@ -1396,15 +1510,49 @@ public class ErrorMeter {
 		}
 		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).clear();
 
-
 		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4, softly);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text);
 		for (i=0;i<10;i++)
 		{
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
 		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();*/
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
+		*/
+		
+		//Environment tab: click 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement envCheckBox = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-l"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	envCheckBox);
+				jse.executeScript("arguments[0].click();", envCheckBox);
+				}
+				//Environment tab: select dropdown for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+				WebElement envDropDown = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-spv"));
+				jse.executeScript("arguments[0].scrollIntoView(true);",	envDropDown);
+				Select s0 = new Select(envDropDown);
+				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
+				}
+				//Environment tab: fill in required textbox for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-e"+i))));
+					driver.findElement(By.id("pii-em-sr-e"+i)).sendKeys(text);
+				}	
+				//Environment tab: fill in non-required 4 rows textarea for 4 checkbox
+				for(int i=1;i<5;i++)
+				{
+					for(int j=1;j<5;j++)
+					{
+						WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-e-q"+i+"-lop"+j+"']"));
+						jse.executeScript("arguments[0].scrollIntoView(true);", e);
+						e.sendKeys(text);
+					}
+				}
+		
 		share2.scrollToTop(driver);
+		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		//Checks error meter as 0%
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
@@ -2424,13 +2572,18 @@ public class ErrorMeter {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
 		Thread.sleep(2000);
+		/*
 		//Click on finalize
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
 		em3.verifyFinalizeReportPopup(driver, softly);
-		Thread.sleep(2000);
-		//Click on finalize and save
+		Thread.sleep(2000);*/
+		
+		//Click on Save button
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-save"))));
+		//Click on save report dialog 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-title"))).click();
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-dialog-confirmed"))));
 		//Waits for the green popup on the right top corner
@@ -2447,11 +2600,9 @@ public class ErrorMeter {
 		String purpose = driver.findElement(By.xpath(".//*[@id='epm-rpt']/div/div/span/abbr")).getText().trim();
 		String name = date + "_" + time2+"_"+time1 + "_" + username +"_" + purpose + "_" + text;
 		System.out.println ("Expected name of record: " +name);*/
-		//Clicks on side panel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterSidePanel)).click();
-		share2.loadingServer(driver);
-		//Clicks on side panel
-		wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterSidePanel)).click();
+		
+		//Click on saved activities button
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		share2.loadingServer(driver);
 		//Gets the name of the record created
 		WebElement record = driver.findElement(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"));

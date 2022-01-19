@@ -2915,7 +2915,7 @@ public class EiRCA {
 		tbr.sizeCheck(driver, eirca.EiRCAEventProblemStatementField, softly);
 		driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		//tbr.sizeCheck(driver, eirca.EiRCAEventComponentField, softly);
-		driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
+//		driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
 		String ev1 = driver.findElement(eirca.EiRCAEventTitleField).getAttribute("value");
 		String ev2 = driver.findElement(eirca.EiRCAEventLocationField).getAttribute("value");
 		String ev3 = driver.findElement(eirca.EiRCAEventReporterField).getAttribute("value");
@@ -2923,7 +2923,7 @@ public class EiRCA {
 		String ev5 = driver.findElement(eirca.EiRCAEventReviewerField).getAttribute("value");
 		String ev6 = driver.findElement(eirca.EiRCAEventSponsorField).getAttribute("value");
 		String ev7= driver.findElement(eirca.EiRCAEventProblemStatementField).getAttribute("value");
-		String ev8= driver.findElement(eirca.EiRCAEventComponentField).getAttribute("value");
+//		String ev8= driver.findElement(eirca.EiRCAEventComponentField).getAttribute("value");
 		/*if ((ev1.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventTitleField).clear();
@@ -2959,11 +2959,11 @@ public class EiRCA {
 			driver.findElement(eirca.EiRCAEventProblemStatementField).clear();
 			driver.findElement(eirca.EiRCAEventProblemStatementField).sendKeys(text);
 		}
-		if ((ev8.equals(text)==false))
+		/*if ((ev8.equals(text)==false))
 		{
 			driver.findElement(eirca.EiRCAEventComponentField).clear();
 			driver.findElement(eirca.EiRCAEventComponentField).sendKeys(text);
-		}
+		}*/
 		//Verify errors have disappeared
 		eirca2.verifyNoErrorsOnInfoPage(driver);
 		//Sequence of Events

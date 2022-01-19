@@ -3298,11 +3298,11 @@ public class EiRCAChinese {
 		String eircaEventpbField = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventProblemStatementField)).getAttribute("placeholder");
 		softly.assertThat(eircaEventpbField).as("test data").contains("输入问题陈述");
 		//Event Component label
-		String eircaEventcmpLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventComponentLabel)).getText();
-		softly.assertThat(eircaEventcmpLabel).as("test data").contains("接受调查的可疑故障部件:");
+/*		String eircaEventcmpLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventComponentLabel)).getText();
+		softly.assertThat(eircaEventcmpLabel).as("test data").contains("接受调查的可疑故障部件:");*/
 		//Event Component field
-		String eircaEventcmpField = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventComponentField)).getAttribute("placeholder");
-		softly.assertThat(eircaEventcmpField).as("test data").contains("输入接受调查的可疑故障部件");
+/*		String eircaEventcmpField = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventComponentField)).getAttribute("placeholder");
+		softly.assertThat(eircaEventcmpField).as("test data").contains("输入接受调查的可疑故障部件");*/
 		//Event Discovery date label
 		String eircaEventDiscDateLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventDiscoveryDateLabel)).getText();
 		softly.assertThat(eircaEventDiscDateLabel).as("test data").contains("发现时间:");
@@ -3360,7 +3360,7 @@ public class EiRCAChinese {
 		//Problem Statement
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventProblemStatementField)).sendKeys(text);
 		//Component
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventComponentField)).sendKeys(text);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventComponentField)).sendKeys(text);
 		//Reporter
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.EiRCAEventReporterField)).sendKeys(text);
 		//Investigators
