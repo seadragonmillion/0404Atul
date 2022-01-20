@@ -650,6 +650,7 @@ public class ErrorMeter {
 
 		}
 		em3.verifyGuideOnPAPEPage(driver, softly);
+		
 		//Click on Environment of PAPE
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
@@ -664,10 +665,11 @@ public class ErrorMeter {
 		if(browserName.contains("safari"))
 			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
+			jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
+			jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
 		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
 
-		/*am_not applicable
 		//Fill in texts in Supporting reasons
 		share2.scrollToTop(driver);
 
@@ -715,7 +717,38 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));*/
 
-
+	//Environment tab: click 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+		WebElement envCheckBox = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-l"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	envCheckBox);
+		jse.executeScript("arguments[0].click();", envCheckBox);
+		}
+		//Environment tab: select dropdown for 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+		WebElement envDropDown = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	envDropDown);
+		Select s0 = new Select(envDropDown);
+		s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
+		}
+		//Environment tab: fill in required textbox for 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+			jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-e"+i))));
+			driver.findElement(By.id("pii-em-sr-e"+i)).sendKeys(text);
+		}	
+		//Environment tab: fill in non-required 4 rows textarea for 4 checkbox
+		for(int i=1;i<5;i++)
+		{
+			for(int j=1;j<5;j++)
+			{
+				WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-e-q"+i+"-lop"+j+"']"));
+				jse.executeScript("arguments[0].scrollIntoView(true);", e);
+				e.sendKeys(text);
+			}
+		}
+		
 		share2.scrollToTop(driver);
 		//Checks error meter as 0%
 		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
@@ -1704,16 +1737,19 @@ public class ErrorMeter {
 		//deletes files in reports folder before starting to download
 		File file = new File("C://Users//IEUser//Downloads//reports");
 		String url = driver.getCurrentUrl();
-		deleteFiles(file);
+//	deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a"))).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='download']"))));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='download']"))));
+//	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='download']"))).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		Thread.sleep(3000);
 		if (y==0)
 			pdfCheckError0(driver,url);
@@ -2448,10 +2484,13 @@ public class ErrorMeter {
 	public void shareReport(WebDriver driver,String username, String password1,int y ) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String sharer = em3.decideSharer (y);
 		String sharerAdded = em3.decideSharerAdded (y);
 		//Clicks on share button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[3]"))).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='share']")))); 
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='share']"))));
+//	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='share']"))).click();
 		//Enters username
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-uhshare-search-input"))).sendKeys(sharer);
 		Thread.sleep(500);
@@ -2460,31 +2499,32 @@ public class ErrorMeter {
 		dropdown.findElement(By.cssSelector(".ui-first-child")).click();
 		//Clicks on add user
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		//Verifies user added
 		String user=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhshare-blocks']/div/form/div/ul/li/a"))).getText().trim();
 		softly.assertThat(user).as("test data").isEqualTo(sharerAdded);
 		Thread.sleep(3000);
 		share3.shareTwice (driver,softly,0);
 		//Clicks on save
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)));
+//	wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Checks the username of creator and shared with
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td")));
 		String creatorUsername= creator.getText().trim();
-		System.out.println(creatorUsername);
+		System.out.println("printOutReportCreator Username" +creatorUsername);
 		softly.assertThat(username).as("test data").isSubstringOf(creatorUsername);
 		WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
 		String sharedToUsername = sharedTo.getText().trim();
-		System.out.println(sharedToUsername);
+		System.out.println("printOutReportShareTo Username" +sharedToUsername);
 		softly.assertThat(sharer).as("test data").isEqualTo(sharedToUsername);
 		WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
 		String sharedText = shared.getText().trim();
 		System.out.println(sharedText);
 		softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText.trim());
 		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
 		share2.loadingServer(driver);
 		//Verify Share icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
@@ -2501,17 +2541,18 @@ public class ErrorMeter {
 	public void markCritical(WebDriver driver,String username, String password1,int y) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)));
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		//Checks if marked critical
 		share2.loadingServer(driver);
 		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
 		softly.assertThat(s).as("test data").contains("ui-checkbox-on");
 		//Click back
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
 		share2.loadingServer(driver);
 		//Verify Marked critical icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
@@ -2521,10 +2562,10 @@ public class ErrorMeter {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		share2.loadingServer(driver);
 		//Clicks on mark critical again
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)));
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))));
 		Thread.sleep(2000);
 		share2.loadingServer(driver);
 		String s1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.MarkCritical)).getAttribute("class");
@@ -2542,16 +2583,18 @@ public class ErrorMeter {
 	public void deleteNewRecord(WebDriver driver, String recordName,  int y) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//CLicks on first newly created record
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a"))).click();
 		//Clicks on delete button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-uhome-buttons-rpt']/div[1]/div/a[text()='delete']"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		//Clicks on delete report
-		driver.findElement(By.id("pii-user-home-dialog-confirmed")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-user-home-dialog-confirmed")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note")));
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
+		//Click on SPV Error Meter side panel
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))));
 		//Verify record deleted
 		//Click on 1st record
 		Thread.sleep(2000);
@@ -2572,14 +2615,6 @@ public class ErrorMeter {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
 		Thread.sleep(2000);
-		/*
-		//Click on finalize
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))));
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-done"))).click();
-		em3.verifyFinalizeReportPopup(driver, softly);
-		Thread.sleep(2000);*/
-		
 		//Click on Save button
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-save"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-save"))));
