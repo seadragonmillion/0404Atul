@@ -229,7 +229,7 @@ public class OPiRCA2 {
 		//Click next
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		//D3: integer is total no of answers in d3
-		d1.addAll(selectStep2D(driver,7,0,softly));
+		d1.addAll(selectStep2D(driver,6,0,softly));
 		//Select apparent cause for d3
 		if(Integer.parseInt(d1.get(5))>0)
 		{

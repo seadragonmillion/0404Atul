@@ -260,6 +260,7 @@ public class OPiRCA3 {
 	public List<String> selectApparentCausesAnswers(WebDriver driver,List<String> apparentCauses, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Create a list to store any apparent cause answer selected
 		List<String> ac = new ArrayList<String>();
 		for(int i=0;i<apparentCauses.size();i++)
@@ -290,7 +291,9 @@ public class OPiRCA3 {
 			share2.scrollToTop(driver);
 			Thread.sleep(2000);
 			//Click on next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		}	    	
 		return ac;
 	}

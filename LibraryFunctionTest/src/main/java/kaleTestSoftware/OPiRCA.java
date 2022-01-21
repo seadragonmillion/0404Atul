@@ -177,13 +177,16 @@ public class OPiRCA {
 			List<String> step2) throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		// Clicks on first newly created record
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAFirstRecord)).click();
 		// Wait for loading message
 		share2.loadingServer(driver);
 		String window = driver.getWindowHandle();
 		// Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.DownloadButton)).click();
 		// Verify pdf pop up
 		eirca2.verifyStickyCreatePDF(driver, softly);
 		// Wait for loading message to disappear
@@ -1390,10 +1393,13 @@ public class OPiRCA {
 		
 		// Custom code to randomly select all the available HML-
 		List<WebElement> eleList = driver.findElements(By.xpath("//td[@class='pii-opa-td-hml']"));
-		for (int t = 0; t < eleList.size(); t++) {
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		for (int t = 1; t < eleList.size(); t++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
-			driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//input)[" + randomNum + "]"))
+			driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]"))
 					.click();
+			jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]")));
+
 		}
 		
 /////////////////////am_below from OPiRCABug test		
@@ -1505,8 +1511,8 @@ public class OPiRCA {
 ////////////////////am_above from OPiRCABug test
 		// Scroll up
 		share2.scrollToTop(driver);
-		share2.scrollToTop(driver);
-		System.out.println(hml);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-next"))));
+		System.out.println("printOut hml   "+hml);
 		return hml;
 	}
 
@@ -1810,19 +1816,19 @@ public class OPiRCA {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebDriverWait wait1 = new WebDriverWait(driver, 20);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		// Scroll down
 		share2.scrollToElement(driver,
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		// Click next
-		executor.executeScript("arguments[0].click();",
+		jse.executeScript("arguments[0].click();",
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		// Scroll top
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		// Click Skip button for Sequence of Event
-		executor.executeScript("arguments[0].click();",
+		jse.executeScript("arguments[0].click();",
 				wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)));
 		// Click on dropdown field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.HiRCADropdownMenuButton)).click();
@@ -1877,7 +1883,9 @@ public class OPiRCA {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		// Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
 		// Verify that apparent cause answers correspond to new HiRCA level 3 list
 		List<String> apparentCausesSelected = verifyApparentCausesAnswers(driver, apparentCausesNew); /* only step 1 */
 		// Click on Step 3
@@ -1913,25 +1921,27 @@ public class OPiRCA {
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		// Clicks on save button
-		executor.executeScript("return document.getElementById('efi-opa-button-save').click();");
+		jse.executeScript("return document.getElementById('efi-opa-button-save').click();");
 		// Verify save pop up
 		op2.verifySavePopup(driver, softly);
 		// Clicks on save report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASavePopupTitle));
-		executor.executeScript("return document.getElementById('pii-opa-dialog-confirmed').click();");
-		// Verfy save sticky
+		jse.executeScript("return document.getElementById('pii-opa-dialog-confirmed').click();");
+		// Verify save sticky
 		op2.verifyStickySaveReport(driver, softly, username, eirca2.textCreate(driver), 0);
 		// Clicks on Info tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)).click();
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)));
+//		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInfoTab)).click();
 		// Creates the expected name of record
 		String creationDate = driver.findElement(opirca.OPiRCAReportCreationDateTimeField).getAttribute("value").trim();
 		String name = creationDate + "_" + username + "_" + ev1;
 		System.out.println("Expected name of record: " + name);
 		// Click on saved activities
-		executor.executeScript("return document.getElementById('efi-opa-btn-savedactivities').click();");
+		jse.executeScript("return document.getElementById('efi-opa-btn-savedactivities').click();");
 		Thread.sleep(3000);
 		// Clicks on O&P IRCA side panel
-		executor.executeScript("return document.getElementById('pii-user-home-panel-btn-opa').click();");
+		jse.executeScript("return document.getElementById('pii-user-home-panel-btn-opa').click();");
 		WebElement record = driver.findElement(opirca.OPiRCAFirstRecord);
 		String recordName = record.getText().trim();
 		if (record.isDisplayed()) {

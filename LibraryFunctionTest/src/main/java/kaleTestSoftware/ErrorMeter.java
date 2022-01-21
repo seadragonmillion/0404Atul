@@ -638,6 +638,7 @@ public class ErrorMeter {
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String browserName = getBrowser(driver);
 		int i;
+		int k;
 		int j=text.size()-1;
 		//Closes any warning from server
 		try{
@@ -651,366 +652,194 @@ public class ErrorMeter {
 		}
 		em3.verifyGuideOnPAPEPage(driver, softly);
 		
-		//Click on Environment of PAPE
+		//papeError50-Click on Environment of PAPE (target 0%)
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
-		//Clicks on checkboxes in Environment Tab
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
-
-		share2.scrollToAPoint(driver, 800);
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
-		else
-			jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
-			jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
-//		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
-
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
-
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j));
-		//Leave in text in empty boxes
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j));
-
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j));
-
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j));
-		//Leave text in corrective actions
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));*/
-
-	//Environment tab: click 4 checkbox
-		for(int i=1;i<5;i++)
-		{
-		WebElement envCheckBox = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-l"));
-		jse.executeScript("arguments[0].scrollIntoView(true);",	envCheckBox);
-		jse.executeScript("arguments[0].click();", envCheckBox);
-		}
-		//Environment tab: select dropdown for 4 checkbox
-		for(int i=1;i<5;i++)
-		{
-		WebElement envDropDown = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-spv"));
-		jse.executeScript("arguments[0].scrollIntoView(true);",	envDropDown);
-		Select s0 = new Select(envDropDown);
+		//papeError50-Environment tab: click on 1st checkbox
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)));
+		//papeError50-Environment tab: select 1st checkbox dropdown
+		WebElement envDropDown1 = driver.findElement(By.id("pii-epm-tab-e-q1-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	envDropDown1);
+		Select s0 = new Select(envDropDown1);
 		s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
-		}
-		//Environment tab: fill in required textbox for 4 checkbox
-		for(int i=1;i<5;i++)
-		{
-			jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-e"+i))));
-			driver.findElement(By.id("pii-em-sr-e"+i)).sendKeys(text);
-		}	
-		//Environment tab: fill in non-required 4 rows textarea for 4 checkbox
-		for(int i=1;i<5;i++)
-		{
-			for(int j=1;j<5;j++)
-			{
-				WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-e-q"+i+"-lop"+j+"']"));
-				jse.executeScript("arguments[0].scrollIntoView(true);", e);
-				e.sendKeys(text);
-			}
-		}
-		
+		//papeError50-Environment tab: fill in required textbox for 1st checkbox
+		jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-e1"))));
+		driver.findElement(By.id("pii-em-sr-e1")).sendKeys("SanityErrorMeterTest");
+		//papeError50-Environment tab: click on 4th checkbox
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
+		//papeError50-Environment tab: select 4th checkbox dropdown
+		WebElement envDropDown4 = driver.findElement(By.id("pii-epm-tab-e-q4-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	envDropDown4);
+		Select s4 = new Select(envDropDown4);
+		s4.selectByVisibleText("SPV with an Existing, Adequate LOP");
+		//papeError50-Environment tab: fill in required textbox for 4th checkbox
+		jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-e4"))));
+		driver.findElement(By.id("pii-em-sr-e4")).sendKeys("SanityErrorMeterTest");		
+
 		share2.scrollToTop(driver);
-		//Checks error meter as 0%
+		//papeError50-Checks error meter as 0%
 		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
+		if(driver.getCurrentUrl().contains("kaleqa") || driver.getCurrentUrl().contains("kale."))
 			softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("12.5%").as("test data").isEqualTo(meterText.trim());
 
-
-
-		//Click on People of PAPE
+		//papeError50-Click on People of PAPE (target 18.8%)
 		share2.scrollToTop(driver);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
-		//Clicks on checkboxes in People Tab
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
-		Thread.sleep(1000);
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)));
+		//papeError50-People tab: click 2nd checkbox
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)));
+		//papeError50-People tab: select dropdown for 2nd checkbox
+		WebElement pplDropDown2 = driver.findElement(By.id("pii-epm-tab-p-q2-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	pplDropDown2);
+		Select s2 = new Select(pplDropDown2);
+		s2.selectByVisibleText("SPV with Weak or No LOP");
+		//papeError50-People tab: fill in required textbox for 2nd checkbox
+		jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-p2"))));
+		driver.findElement(By.id("pii-em-sr-p2")).sendKeys("SanityErrorMeterTest");
+		//papeError50-Pepole tab: check meter % after 2nd checkbox
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
-		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("15.0%").as("test data").isEqualTo(meterText.trim());
-		else
+		System.out.println("printOutMeterTextFor papeError50: People tab_2nd checkbox" + meterText);
+		if(driver.getCurrentUrl().contains("kaleqa")  || driver.getCurrentUrl().contains("kale."))
+			softly.assertThat("9.4%").as("test data").isEqualTo(meterText.trim());
+		//papeError50-People tab: click 3rd checkbox
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)));
+		//papeError50-People tab: select dropdown for 3rd checkbox
+		WebElement pplDropDown3 = driver.findElement(By.id("pii-epm-tab-p-q3-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	pplDropDown3);
+		Select s3 = new Select(pplDropDown3);
+		s3.selectByVisibleText("SPV with Weak or No LOP");
+		//papeError50-People tab: fill in required textbox for 3rd checkbox
+		jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-p3"))));
+		driver.findElement(By.id("pii-em-sr-p3")).sendKeys("SanityErrorMeterTest");
+		//papeError50-Pepole tab: check meter % after 2nd and 3rd checkbox		
+		System.out.println("printOutMeterTextFor papeError50_People tab_2nd3rd checkbox" + meterText);
+		if(driver.getCurrentUrl().contains("kaleqa")  || driver.getCurrentUrl().contains("kale."))
 			softly.assertThat("18.8%").as("test data").isEqualTo(meterText.trim());
+		
+		//papeError50-People tab: click Q1-3 checkbox
+		for(i=1;i<4;i++)
+		{
+		WebElement pplCheckBox = driver.findElement(By.id("pii-epm-tab-p-q"+i+"-l"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	pplCheckBox);
+		jse.executeScript("arguments[0].click();", pplCheckBox);
+		}
+		//papeError50-People tab: select dropdown for 4 checkbox
+		for(i=1;i<4;i++)
+		{
+		WebElement pplDropDown = driver.findElement(By.id("pii-epm-tab-p-q"+i+"-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	pplDropDown);
+		Select s1 = new Select(pplDropDown);
+		s1.selectByVisibleText("SPV with an Existing, Adequate LOP");
+		}
+		//papeError50-People tab: fill in required textbox for 3 checkbox
+		for(i=1;i<4;i++)
+		{
+			jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-p"+i))));
+			driver.findElement(By.id("pii-em-sr-p"+i)).sendKeys("SanityErrorMeterTest");
+		}	
+		//papeError50-People tab: fill in non-required 4 rows textarea for 3 checkbox
+		for(i=1;i<4;i++)
+		{
+			for(k=1;k<4;k++)
+			{
+				WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-p-q"+i+"-lop"+j+"']"));
+				jse.executeScript("arguments[0].scrollIntoView(true);", e);
+				e.sendKeys("SanityErrorMeterTest");
+			}
+		}
+		//papeError50-Pepole tab: check meter % after 2nd and 3rd checkbox		
+		System.out.println("printOutMeterTextFor papeError50_People tab_Q123 checkbox" + meterText);
+		if(driver.getCurrentUrl().contains("kaleqa")  || driver.getCurrentUrl().contains("kale."))
+			softly.assertThat("28.1%").as("test data").isEqualTo(meterText.trim());
 
-		share2.scrollToAPoint(driver, 800);
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
-		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
-		meterText = meter.getText().trim();
-		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("30.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("25.0%").as("test data").isEqualTo(meterText.trim());
-		/*am_not applicable
-		//Fill in texts in Supporting reasons
+		//papeError50-Click on Activity of PAPE
 		share2.scrollToTop(driver);
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)));
 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+		//papeError50-Activity tab: click 4 checkbox
+		for(i=1;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
+		WebElement actCheckBox = driver.findElement(By.id("pii-epm-tab-a-q"+i+"-l"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	actCheckBox);
+		jse.executeScript("arguments[0].click();", actCheckBox);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j));
-
-
-		share2.scrollToAPoint(driver, 800);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+		//papeError50-Activity tab: select dropdown for 4 checkbox
+		for(i=1;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		WebElement actDropDown = driver.findElement(By.id("pii-epm-tab-a-q"+i+"-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	actDropDown);
+		Select s5 = new Select(actDropDown);
+		s5.selectByVisibleText("SPV with an Existing, Adequate LOP");
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text.get(j));
-
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+		//papeError50-Activity tab: fill in required textbox for 4 checkbox
+		for(i=1;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j));
-
-
-		share2.scrollToAPoint(driver, 800);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+			jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-a"+i))));
+			driver.findElement(By.id("pii-em-sr-a"+i)).sendKeys("SanityErrorMeterTest");
+		}	
+		//papeError50-Activity tab: fill in non-required 4 rows textarea for 4 checkbox
+		for(i=1;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+			for(k=1;k<5;k++)
+			{
+				WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-a-q"+i+"-lop"+j+"']"));
+				jse.executeScript("arguments[0].scrollIntoView(true);", e);
+				e.sendKeys("SanityErrorMeterTest");
+			}
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(text.get(j));*/
-
-
-		//Click on Activity of PAPE
-		share2.scrollToTop(driver);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
-		//Clicks on checkboxes in Activity Tab
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
-		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
-		meterText = meter.getText().trim();
-		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("35.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("31.3%").as("test data").isEqualTo(meterText.trim());
-
-		share2.scrollToAPoint(driver, 800);
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
-		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
-		meterText = meter.getText().trim();
-		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("40.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("37.5%").as("test data").isEqualTo(meterText.trim());
-		/*am_not applicable
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j));
-
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text.get(j));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(text.get(j));
-
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text.get(j));
-
-
-		share2.scrollToAPoint(driver, 800);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(text.get(j));*/
-
-
-		//Clicks on Time Tab
+		//papeError50-Activity tab: check meter % Q1-4 checkbox		
+				System.out.println("printOutMeterTextFor papeError50_People tab Q1-3 plus Activity tab_Q1-4 checkbox" + meterText);
+				if(driver.getCurrentUrl().contains("kaleqa")  || driver.getCurrentUrl().contains("kale."))
+					softly.assertThat("40.6%").as("test data").isEqualTo(meterText.trim());
+		
+		//papeError50-Clicks on Time Tab
 		share2.scrollToTop(driver);
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureTab)).click();
-		//Clicks on checkboxes in Time Tab
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
-		meterText = meter.getText().trim();
-		System.out.println(meterText);
-		if(driver.getCurrentUrl().contains("kaleqa"))
-			softly.assertThat("45.0%").as("test data").isEqualTo(meterText.trim());
-		else
-			softly.assertThat("43.8%").as("test data").isEqualTo(meterText.trim());
-
-		share2.scrollToAPoint(driver, 800);
-		if(browserName.contains("safari"))
-			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-		else
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-		Thread.sleep(1000);
-		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
-		meterText = meter.getText().trim();
-		System.out.println(meterText);
-		softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
 		
-		/*am_not applicable
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+		//papeError50-Time tab: click Q2-4 checkbox
+		for(i =2;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(Keys.BACK_SPACE);
+		WebElement timeCheckBox = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-l"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	timeCheckBox);
+		jse.executeScript("arguments[0].click();", timeCheckBox);
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(text.get(j));
-
-
-		share2.scrollToAPoint(driver, 800);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+		//papeError50-Time tab: select dropdown for Q2-4 checkbox
+		for(i=2;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		WebElement timeDropDown = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-spv"));
+		jse.executeScript("arguments[0].scrollIntoView(true);",	timeDropDown);
+		Select s6 = new Select(timeDropDown);
+		s6.selectByVisibleText("SPV with an Existing, Adequate LOP");
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(text.get(j));
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+		//papeError50-Time tab: fill in required textbox for Q2-4 checkbox
+		for(i=1;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text.get(j));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text.get(j--));
-		for (i=0;i<10;i++)
+			jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-t"+i))));
+			driver.findElement(By.id("pii-em-sr-t"+i)).sendKeys("SanityErrorMeterTest");
+		}	
+		//papeError50-Time tab: fill in non-required 4 rows textarea for Q2-4 checkbox
+		for(i=2;i<5;i++)
 		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+			for(k=2;k<5;k++)
+			{
+				WebElement e = driver.findElement(By.xpath("//textarea[@id='pii-epm-tab-t-q"+i+"-lop"+j+"']"));
+				jse.executeScript("arguments[0].scrollIntoView(true);", e);
+				e.sendKeys("SanityErrorMeterTest");
+			}
 		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).clear();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text.get(j));
-		//leave in text
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(text.get(j));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(text.get(j));*/
-	}
+		//papeError50-Time tab: check meter % Q2-4 checkbox		
+		System.out.println("printOutMeterTextFor papeError50_People tab Q1-3 plus Activity tab_Q1-4 plus Time tab_Q2-4" + meterText);
+		if(driver.getCurrentUrl().contains("kaleqa")  || driver.getCurrentUrl().contains("kale."))
+			softly.assertThat("50%").as("test data").isEqualTo(meterText.trim());
 
-
+	}	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	public void papeError0(WebDriver driver) throws Exception{
 
 		em3.errorMeterFillFirstPage(driver,softly);
@@ -1021,117 +850,14 @@ public class ErrorMeter {
 		Login obj1 = new Login();
 		obj1.closePopUpSticky(driver);
 		em3.verifyChangeOfTabTitleWhenScreenIsSmall(driver, softly);
-		
-		/*am_no long applicable
-		//Verify mark all instruction
-		String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
-		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
-		//Clicks on checkboxes in Time Tab
-		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)));
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
-		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)));
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
-		Thread.sleep(500);
-		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
-		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
-		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-		Thread.sleep(500);
-		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
-		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)));
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
-		Thread.sleep(500);
-		
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
-		
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-		int i;
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).clear();
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).clear();
-		*/
-		
-		//Time tab: click 4 checkbox
+		//papeError0-Time tab: click 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement timeCheckBox = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-l"));
 				jse.executeScript("arguments[0].scrollIntoView(true);",	timeCheckBox);
 				jse.executeScript("arguments[0].click();", timeCheckBox);
 				}
-				//Time tab: select dropdown for 4 checkbox
+				//papeError0-Time tab: select dropdown for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement timeDropDown = driver.findElement(By.id("pii-epm-tab-t-q"+i+"-spv"));
@@ -1139,13 +865,13 @@ public class ErrorMeter {
 				Select s0 = new Select(timeDropDown);
 				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
 				}
-				//Time tab: fill in required textbox for 4 checkbox
+				//papeError0-Time tab: fill in required textbox for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-t"+i))));
 					driver.findElement(By.id("pii-em-sr-t"+i)).sendKeys(text);
 				}	
-				//Time tab: fill in non-required 4 rows textarea for 4 checkbox
+				//papeError0-Time tab: fill in non-required 4 rows textarea for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					for(int j=1;j<5;j++)
@@ -1156,125 +882,26 @@ public class ErrorMeter {
 					}
 				}
 		
-		//Checks error meter as 0%
+		//papeError0-Checks error meter as 0%
 		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		WebElement meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		String meterText = meter.getText().trim();
 		System.out.println(meterText);
 		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Click on Activity of PAPE
+		//papeError0-Click on Activity of PAPE
 		share2.scrollToTop(driver);
 		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)));
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)));
 //		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityTab)).click();
-		
-		/*am_no longer applicable
-		//Clicks on checkboxes in Activity Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
-
-		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
-
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).clear();
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).clear();
-		*/
-		
-		//Activity tab: click 4 checkbox
+		//papeError0-Activity tab: click 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement actCheckBox = driver.findElement(By.id("pii-epm-tab-a-q"+i+"-l"));
 				jse.executeScript("arguments[0].scrollIntoView(true);",	actCheckBox);
 				jse.executeScript("arguments[0].click();", actCheckBox);
 				}
-				//Activity tab: select dropdown for 4 checkbox
+				//papeError0-Activity tab: select dropdown for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement actDropDown = driver.findElement(By.id("pii-epm-tab-a-q"+i+"-spv"));
@@ -1282,13 +909,13 @@ public class ErrorMeter {
 				Select s0 = new Select(actDropDown);
 				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
 				}
-				//Activity tab: fill in required textbox for 4 checkbox
+				//papeError0-Activity tab: fill in required textbox for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-a"+i))));
 					driver.findElement(By.id("pii-em-sr-a"+i)).sendKeys(text);
 				}	
-				//Activity tab: fill in non-required 4 rows textarea for 4 checkbox
+				//papeError0-Activity tab: fill in non-required 4 rows textarea for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					for(int j=1;j<5;j++)
@@ -1299,124 +926,27 @@ public class ErrorMeter {
 					}
 				}
 		
-		//Checks error meter as 0%
+		//papeError0-Checks error meter as 0%
 		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
 		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Click on People of PAPE
+		//papeError0-Click on People of PAPE
 		share2.scrollToTop(driver);
 		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)));
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)));
 //		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleTab)).click();
-		
-		/*am_no longer applicable
-		//Clicks on checkboxes in People Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
 
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
-
-		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
-		
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(Keys.BACK_SPACE);
-		}
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).clear();
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).clear();*/
-		
-		//People tab: click 4 checkbox
+		//papeError0-People tab: click 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement pplCheckBox = driver.findElement(By.id("pii-epm-tab-p-q"+i+"-l"));
 				jse.executeScript("arguments[0].scrollIntoView(true);",	pplCheckBox);
 				jse.executeScript("arguments[0].click();", pplCheckBox);
 				}
-				//People tab: select dropdown for 4 checkbox
+				//papeError0-People tab: select dropdown for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement pplDropDown = driver.findElement(By.id("pii-epm-tab-p-q"+i+"-spv"));
@@ -1424,13 +954,13 @@ public class ErrorMeter {
 				Select s0 = new Select(pplDropDown);
 				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
 				}
-				//People tab: fill in required textbox for 4 checkbox
+				//papeError0-People tab: fill in required textbox for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-p"+i))));
 					driver.findElement(By.id("pii-em-sr-p"+i)).sendKeys(text);
 				}	
-				//People tab: fill in non-required 4 rows textarea for 4 checkbox
+				//papeError0-People tab: fill in non-required 4 rows textarea for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					for(int j=1;j<5;j++)
@@ -1441,125 +971,26 @@ public class ErrorMeter {
 					}
 				}
 		
-		//Checks error meter as 0%
+		//papeError0-Checks error meter as 0%
 		jse.executeScript("arguments[0].scrollIntoView();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-epm-btn-savedactivities"))));		
 		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
 		meterText = meter.getText().trim();
 		System.out.println(meterText);
 		softly.assertThat("0.0%").as("test data").isEqualTo(meterText.trim());
 
-		//Click on Environment of PAPE
+		//papeError0-Click on Environment of PAPE
 		share2.scrollToTop(driver);
 		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)));
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)));
 //		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).click();
-		
-		/*am_no longer applicable
-		//Clicks on checkboxes in Environment Tab
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
-
-		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)));
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
-
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
-		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
-		Thread.sleep(500);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
-		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
-		
-		//Fill in texts in Supporting reasons
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
-
-		//Fill in texts in Corrective Actions
-		share2.scrollToTop(driver);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).clear();
-
-		share2.scrollToAPoint(driver, 800);
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).clear();
-
-		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4, softly);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text);
-		for (i=0;i<10;i++)
-		{
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
-		}
-		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
-		*/
-		
-		//Environment tab: click 4 checkbox
+		//papeError0-Environment tab: click 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement envCheckBox = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-l"));
 				jse.executeScript("arguments[0].scrollIntoView(true);",	envCheckBox);
 				jse.executeScript("arguments[0].click();", envCheckBox);
 				}
-				//Environment tab: select dropdown for 4 checkbox
+				//papeError0-Environment tab: select dropdown for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 				WebElement envDropDown = driver.findElement(By.id("pii-epm-tab-e-q"+i+"-spv"));
@@ -1567,13 +998,13 @@ public class ErrorMeter {
 				Select s0 = new Select(envDropDown);
 				s0.selectByVisibleText("SPV with an Existing, Adequate LOP");
 				}
-				//Environment tab: fill in required textbox for 4 checkbox
+				//papeError0-Environment tab: fill in required textbox for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					jse.executeScript("arguments[0].scrollIntoView(true);",	wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-em-sr-e"+i))));
 					driver.findElement(By.id("pii-em-sr-e"+i)).sendKeys(text);
 				}	
-				//Environment tab: fill in non-required 4 rows textarea for 4 checkbox
+				//papeError0-Environment tab: fill in non-required 4 rows textarea for 4 checkbox
 				for(int i=1;i<5;i++)
 				{
 					for(int j=1;j<5;j++)
@@ -1757,6 +1188,17 @@ public class ErrorMeter {
 			pdfCheckError50(driver,url);
 		if(y==100)
 			pdfCheckError100(driver,url);
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){	
+			System.out.println("AutoItScript -SaveReport result: Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("AutoItScript -SaveReport result: No unexpected alert");
+		}
+		
 		for(String winHandle : driver.getWindowHandles())
 		{
 			driver.switchTo().window(winHandle);
@@ -2510,9 +1952,9 @@ public class ErrorMeter {
 //	wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ShareSaveButton)).click();
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
-		//Checks the username of creator and shared with
+	/*	//Checks the username of creator and shared with
 		WebElement creator = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr/td")));
-		String creatorUsername= creator.getText().trim();
+		String creatorUsername= creator.getText().trim();																	
 		System.out.println("printOutReportCreator Username" +creatorUsername);
 		softly.assertThat(username).as("test data").isSubstringOf(creatorUsername);
 		WebElement sharedTo=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/span")));
@@ -2522,14 +1964,14 @@ public class ErrorMeter {
 		WebElement shared=wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='epm-rpt']/table/tbody/tr[2]/td/strong")));
 		String sharedText = shared.getText().trim();
 		System.out.println(sharedText);
-		softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText.trim());
+		softly.assertThat("Shared with:").as("test data").isEqualTo(sharedText.trim());*/
 		//Click back
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.BackButton)));
 		share2.loadingServer(driver);
 		//Verify Share icon
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-user-home-activities-epm']/ul/li[2]/a/span[1]")));
 		//Calls the Share check function
-		share.receiptReport(driver, sharer, username, password1);
+//		share.receiptReport(driver, sharer, username, password1);
 		//Clicks on Error Meter side panel
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-panel-btn-epm"))).click();
 		//Wait for loading message to disappear
@@ -2654,8 +2096,693 @@ public class ErrorMeter {
 		return r;
 	}
 
+	
 	public void softAssert() throws Exception {
 		softly.assertAll();
 		System.gc();
 	}
 }
+
+/*papeError0 original
+//Verify mark all instruction
+		String ins = wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterInstructionText)).getText().trim();
+		softly.assertThat(ins).as("test data").isEqualTo("Mark \"Yes\" for all that apply. Do not mark if answer is \"No\" or \"N/A\".");
+		//Clicks on checkboxes in Time Tab
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)));
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)));
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
+		Thread.sleep(500);
+		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox2)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox2);
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)));
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
+		Thread.sleep(500);
+		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)));
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
+		Thread.sleep(500);
+		
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox4)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox4);
+		
+		//Fill in texts in Supporting reasons
+		share2.scrollToTop(driver);
+		int i;
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureSupportingReason4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).clear();
+
+		//Fill in texts in Corrective Actions
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEProcedureCorrectiveAction4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).clear();
+		
+		//Clicks on checkboxes in Activity Tab
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox1)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox1);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
+
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox3)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox3);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
+
+		//Fill in texts in Supporting reasons
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivitySupportingReason4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).clear();
+
+		//Fill in texts in Corrective Actions
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEActivityCorrectiveAction4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).clear();
+			/*am_no longer applicable
+		//Clicks on checkboxes in People Tab
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox1)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox1);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
+
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox4)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox4);
+		
+		//Fill in texts in Supporting reasons
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleSupportingReason4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).clear();
+
+		//Fill in texts in Corrective Actions
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEPeopleCorrectiveAction4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).clear();
+		/*am_no longer applicable
+		//Clicks on checkboxes in Environment Tab
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox2)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox2);
+
+		share2.scrollToElement(driver, wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox3)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox3);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
+		Thread.sleep(500);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
+		em3.verifyCheckBoxNotChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
+		
+		//Fill in texts in Supporting reasons
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentSupportingReason4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
+
+		//Fill in texts in Corrective Actions
+		share2.scrollToTop(driver);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).clear();
+
+		share2.scrollToAPoint(driver, 800);
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).clear();
+
+		tbr.sizeCheck(driver, emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4, softly);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text);
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
+		}
+		//wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
+		*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*papeError50 original
+	//Clicks on checkboxes in Environment Tab
+	if(browserName.contains("safari"))
+		em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
+	else
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox1)).click();
+	em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox1);
+
+	share2.scrollToAPoint(driver, 800);
+	if(browserName.contains("safari"))
+		em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
+	else
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)));
+//	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCheckBox4)).click();
+	em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEEnvironmentCheckBox4);
+
+	//Fill in texts in Supporting reasons
+	share2.scrollToTop(driver);
+
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
+	for (i=0;i<10;i++)
+	{
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(Keys.BACK_SPACE);
+	}
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).clear();
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason1)).sendKeys(text.get(j));
+
+
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j--));
+	for (i=0;i<10;i++)
+	{
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(Keys.BACK_SPACE);
+	}
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).clear();
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason4)).sendKeys(text.get(j));
+	//Leave in text in empty boxes
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason3)).sendKeys(text.get(j));
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentSupportingReason2)).sendKeys(text.get(j));
+
+
+	//Fill in texts in Corrective Actions
+	share2.scrollToTop(driver);
+
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j--));
+	for (i=0;i<10;i++)
+	{
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
+	}
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).clear();
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction1)).sendKeys(text.get(j));
+
+
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j--));
+	for (i=0;i<10;i++)
+	{
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
+	}
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).clear();
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction4)).sendKeys(text.get(j));
+	//Leave text in corrective actions
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction3)).sendKeys(text.get(j));
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentCorrectiveAction2)).sendKeys(text.get(j));
+
+//Clicks on checkboxes in People Tab
+if(browserName.contains("safari"))
+	em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
+else
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox2)).click();
+em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox2);
+Thread.sleep(1000);
+meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
+meterText = meter.getText().trim();
+System.out.println(meterText);
+if(driver.getCurrentUrl().contains("kaleqa"))
+	softly.assertThat("15.0%").as("test data").isEqualTo(meterText.trim());
+else
+	softly.assertThat("18.8%").as("test data").isEqualTo(meterText.trim());
+
+share2.scrollToAPoint(driver, 800);
+if(browserName.contains("safari"))
+	em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
+else
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCheckBox3)).click();
+em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEPeopleCheckBox3);
+Thread.sleep(1000);
+meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
+meterText = meter.getText().trim();
+System.out.println(meterText);
+if(driver.getCurrentUrl().contains("kaleqa"))
+	softly.assertThat("30.0%").as("test data").isEqualTo(meterText.trim());
+else
+	softly.assertThat("25.0%").as("test data").isEqualTo(meterText.trim());
+/*am_not applicable
+//Fill in texts in Supporting reasons
+share2.scrollToTop(driver);
+
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j--));
+for (i=0;i<10;i++)
+{
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(Keys.BACK_SPACE);
+}
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).clear();
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason2)).sendKeys(text.get(j));
+//leave in text
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason1)).sendKeys(text.get(j));
+
+
+share2.scrollToAPoint(driver, 800);
+
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j--));
+for (i=0;i<10;i++)
+{
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+}
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).clear();
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason3)).sendKeys(text.get(j));
+//leave in text
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleSupportingReason4)).sendKeys(text.get(j));
+
+//Fill in texts in Corrective Actions
+share2.scrollToTop(driver);
+
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text.get(j--));
+for (i=0;i<10;i++)
+{
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
+}
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).clear();
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction2)).sendKeys(text.get(j));
+//leave in text
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction1)).sendKeys(text.get(j));
+
+share2.scrollToAPoint(driver, 800);
+
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text.get(j--));
+for (i=0;i<10;i++)
+{
+	wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+}
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).clear();
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction3)).sendKeys(text.get(j));
+//leave in text
+wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEPeopleCorrectiveAction4)).sendKeys(text.get(j));
+//Clicks on checkboxes in Activity Tab
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox2)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox2);
+		Thread.sleep(1000);
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
+		meterText = meter.getText().trim();
+		System.out.println(meterText);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat("35.0%").as("test data").isEqualTo(meterText.trim());
+		else
+			softly.assertThat("31.3%").as("test data").isEqualTo(meterText.trim());
+
+		share2.scrollToAPoint(driver, 800);
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCheckBox4)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEActivityCheckBox4);
+		Thread.sleep(1000);
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
+		meterText = meter.getText().trim();
+		System.out.println(meterText);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat("40.0%").as("test data").isEqualTo(meterText.trim());
+		else
+			softly.assertThat("37.5%").as("test data").isEqualTo(meterText.trim());
+
+		//Fill in texts in Supporting reasons
+		share2.scrollToTop(driver);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason2)).sendKeys(text.get(j));
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason4)).sendKeys(text.get(j));
+		//leave in text
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason1)).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivitySupportingReason3)).sendKeys(text.get(j));
+
+		//Fill in texts in Corrective Actions
+		share2.scrollToTop(driver);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction2)).sendKeys(text.get(j));
+		//leave in text
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction1)).sendKeys(text.get(j));
+
+		share2.scrollToAPoint(driver, 800);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction4)).sendKeys(text.get(j));
+		//leave in text
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEActivityCorrectiveAction3)).sendKeys(text.get(j));
+
+//Clicks on checkboxes in Time Tab
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox1)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox1);
+		Thread.sleep(1000);
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
+		meterText = meter.getText().trim();
+		System.out.println(meterText);
+		if(driver.getCurrentUrl().contains("kaleqa"))
+			softly.assertThat("45.0%").as("test data").isEqualTo(meterText.trim());
+		else
+			softly.assertThat("43.8%").as("test data").isEqualTo(meterText.trim());
+
+		share2.scrollToAPoint(driver, 800);
+		if(browserName.contains("safari"))
+			em3.clickElementForSafariBrowser(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
+		else
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCheckBox3)).click();
+		em3.verifyCheckBoxChecked(driver, emObj.ErrorMeterPAPEProcedureCheckBox3);
+		Thread.sleep(1000);
+		meter=wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPercentageBar));
+		meterText = meter.getText().trim();
+		System.out.println(meterText);
+		softly.assertThat("50.0%").as("test data").isEqualTo(meterText.trim());
+		
+		//Fill in texts in Supporting reasons
+		share2.scrollToTop(driver);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason1)).sendKeys(text.get(j));
+		//leave in text
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason2)).sendKeys(text.get(j));
+
+
+		share2.scrollToAPoint(driver, 800);
+
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason3)).sendKeys(text.get(j));
+		//leave in text
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureSupportingReason4)).sendKeys(text.get(j));
+		//Fill in texts in Corrective Actions
+		share2.scrollToTop(driver);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction1)).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text.get(j--));
+		for (i=0;i<10;i++)
+		{
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(Keys.BACK_SPACE);
+		}
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).clear();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction3)).sendKeys(text.get(j));
+		//leave in text
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction2)).sendKeys(text.get(j));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEProcedureCorrectiveAction4)).sendKeys(text.get(j));*/
+	
