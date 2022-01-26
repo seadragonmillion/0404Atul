@@ -198,7 +198,17 @@ public class OPiRCA {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		System.out.println("Print before pdfCheck before downloadReportChrome");
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			q.waitFor();
+		}catch (UnhandledAlertException f){
+			System.out.println("Unexpected alert for download");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("No unexpected alert for download");
+		}
+//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
 		pdfCheck(hircaNewList, apparentCausesNew, apparentCausesAnswersNew, hml, options, step2);
 		for (String winHandle : driver.getWindowHandles()) {
 			driver.switchTo().window(winHandle);
@@ -1361,22 +1371,26 @@ public class OPiRCA {
 	public void clickNextSkip(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		String skip = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton))
-				.getAttribute("class");
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
+		String skip = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).getAttribute("class");
 		Thread.sleep(2000);
 		if (skip.contains("ui-state-disabled")) {
 			// Click on next
-			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
 		} else {
 			// Click on skip
-			wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)).click();
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)));
 		}
 	}
 
 	public HashMap<String, String> markHML(WebDriver driver, HashMap<String, Integer> options,
 			List<String> apparentCausesAnswersNew, List<String> apparentCausesForStep3_modified,
 			List<String> rootCauses, List<String> contributingFactors) throws Exception {
-
+		   JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		// Hashmap for storing HML for root cause and contributing factors
 		HashMap<String, String> hml = new HashMap<String, String>();
@@ -1391,16 +1405,16 @@ public class OPiRCA {
 		int count1 = apparentCausesAnswersNew.size() - count;
 		System.out.println("No of contributing factors:" + count1);
 		
-		// Custom code to randomly select all the available HML-
+/*		// Custom code to randomly select all the available HML-
 		List<WebElement> eleList = driver.findElements(By.xpath("//td[@class='pii-opa-td-hml']"));
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
 		for (int t = 1; t < eleList.size(); t++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]"))
 					.click();
 			jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]")));
 
-		}
+		}*/
 		
 /////////////////////am_below from OPiRCABug test		
 		// tr starts at 2 and each root cause has 4 four rows

@@ -584,6 +584,10 @@ public class OPiRCA2 {
 		//Choose the option based on selection
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).click();
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).getText().trim();
+/*		String temp = op3.verifyIfDAnswer(driver, n+1, s);
+		System.out.println(temp);
+		ac.add(temp);
+		System.out.println(n);*/
 		ac.add(op3.verifyIfDAnswer(driver, n+1, s));
 		ac.add(Integer.toString(n));
 		return ac;
