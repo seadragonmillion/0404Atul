@@ -104,7 +104,7 @@ public class OPiRCA_Bugs {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		OPiRCABug opirca = new OPiRCABug();
 		opirca.softAssert();
 	}

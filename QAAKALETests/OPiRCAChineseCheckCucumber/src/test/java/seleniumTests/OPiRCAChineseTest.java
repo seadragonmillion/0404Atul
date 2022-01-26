@@ -108,7 +108,7 @@ public class OPiRCAChineseTest {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		OPiRCAChinese opc = new OPiRCAChinese();
 		opc.softAssert();
 	}
