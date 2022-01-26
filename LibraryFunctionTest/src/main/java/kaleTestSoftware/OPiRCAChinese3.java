@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,58 +23,61 @@ public class OPiRCAChinese3 {
 		List <String> ac = new ArrayList<String>();
 		//Table 1
 		//Heading
-		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Heading)).getText();
-		softly.assertThat(h1).as("test data").contains("事件信息");
+/*		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Heading)).getText();
+		softly.assertThat(h1).as("test data").contains("事件信息");*/
 		//Row 1
-		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row1)).getText();
+			String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[1]/td[1]"))).getText();
+			softly.assertThat(r5).as("test data").contains("事件发生地点");
+			ac.add(r5);
+		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[2]/td[1]"))).getText();
 		softly.assertThat(r1).as("test data").contains("事件名称");
 		ac.add(r1);
+		String r111 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[1]/td[2]"))).getText();
+		softly.assertThat(r111).as("test data").contains("日期与时间");
+		ac.add(r111);
 		//Row 2
-		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row2)).getText();
+		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[2]/td[2]"))).getText();
 		softly.assertThat(r2).as("test data").contains("事件编号");
 		ac.add(r2);
 		//Row 3
-		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row3Column1)).getText();
+/*		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row3Column1)).getText();
 		softly.assertThat(r3).as("test data").contains("事件发生日期");
 		ac.add(r3);
 		String r4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row3Column3)).getText();
 		softly.assertThat(r4).as("test data").contains("事件发生时间");
-		ac.add(r4);
-		//Row 4
-		String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row4)).getText();
-		softly.assertThat(r5).as("test data").contains("事件发生地点");
-		ac.add(r5);
+		ac.add(r4);*/
+		
 		//Row 5
-		String r6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row5)).getText();
+		String r6 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[3]/td[1]"))).getText();
 		softly.assertThat(r6).as("test data").contains("事件调查员");
 		ac.add(r6);
 		//Row 6
-		String r7 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row6)).getText();
+		String r7 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[3]/td[2]"))).getText();
 		softly.assertThat(r7).as("test data").contains("报告编写者");
 		ac.add(r7);
 		//Row 7
-		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable1Row7)).getText();
+		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[1]/table/tbody/tr[4]/td"))).getText();
 		softly.assertThat(r8).as("test data").contains("报告编写时间");
 		ac.add(r8);
 		//Table 2
 		//Heading
-		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable2Heading)).getText();
+		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[2]/table/thead/tr/th"))).getText();
 		softly.assertThat(h2).as("test data").contains("事件名称");
 		ac.add(h2);
 		//Row 1
-		String r9 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable2Row1)).getText();
+		String r9 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[2]/table/tbody/tr[1]/td[1]"))).getText();
 		softly.assertThat(r9).as("test data").contains("报告摘要");
 		ac.add(r9);
 		//Row 2
-		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable2Row2)).getText();
+		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[2]/table/tbody/tr[2]/td[1]"))).getText();
 		softly.assertThat(r10).as("test data").contains("事件描述");
 		ac.add(r10);
 		//Row 3
-		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable2Row3)).getText();
+/*		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable2Row3)).getText();
 		softly.assertThat(r11).as("test data").contains("事件详细过程（时序构建）");
-		ac.add(r11);
-		//Row 4
-		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable2Row4)).getText();
+		ac.add(r11);*/
+		//Row 3
+		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='opa-rpt']/div[2]/table/tbody/tr[3]/td[1]"))).getText();
 		softly.assertThat(r12).as("test data").contains("相关信息");
 		ac.add(r12);
 		//Table 3
@@ -112,7 +116,7 @@ public class OPiRCAChinese3 {
 		ac.add(r16);
 		//Row 3
 		String r17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable3Row3)).getText();
-		softly.assertThat(r17).as("test data").contains("运行经验:");
+		softly.assertThat(r17).as("test data").contains("经验反馈");
 		ac.add(r17);
 		//Row 4
 		String r18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAHTMLTable3Row4)).getText();

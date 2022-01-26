@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -40,6 +41,7 @@ public class OPiRCAChinese {
 		//Scroll down
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Click next
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
 		//Scroll top
 		share2.scrollToTop(driver);	 
@@ -53,6 +55,7 @@ public class OPiRCAChinese {
 		chineseEventInfoFill(driver, eirca2.textCreate1());
 		Thread.sleep(2000);
 		//Click Skip button for Sequence of Event
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton))); 
 		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASkipButton)));
 		//Verify step 1
 		chineseOPiRCAStep1(driver);
@@ -67,7 +70,8 @@ public class OPiRCAChinese {
 		chineseApparentCauses(driver);
 		Thread.sleep(1000);
 		//Clicks on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
 		Thread.sleep(1000);
 		//Verify chinese O1
 		chineseApparentCauseO1(driver);
@@ -174,7 +178,8 @@ public class OPiRCAChinese {
 		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();    
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));    
 		Thread.sleep(1000);
 		//Verify Step 4
 		obj2.chineseStep4(driver,softly);
@@ -185,7 +190,8 @@ public class OPiRCAChinese {
 		share2.scrollToTop(driver);	 
 		Thread.sleep(1000);
 		//Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();  
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton))); 
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));  
 		Thread.sleep(1000);
 		//Verify Step 5
 		obj2.chineseStep5(driver,softly);
@@ -193,7 +199,8 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep5TableRow1Column3)).click();
 		obj7.bugKALE2494(driver, softly);
 		//Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
 		Thread.sleep(1000);
 		//Chinese verify report tab
 		obj2.chineseReportTab(driver,softly);
@@ -201,7 +208,7 @@ public class OPiRCAChinese {
 		//Mark critical
 		List <String> verifyChinese=markCritical(driver);
 		//Download report
-		obj2.downloadReport(driver,verifyChinese, softly);
+   	obj2.downloadReport(driver,verifyChinese, softly);
 		//Delete report
 		obj4.deleteReport(driver);
 		obj7.OPiRCAStep2VariationPaths(driver,softly);
@@ -210,6 +217,7 @@ public class OPiRCAChinese {
 	public List <String> markCritical(WebDriver driver) throws Exception{
 
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		OPiRCAChinese3 opc3 = new OPiRCAChinese3();
 		//Clicks on Save
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCASaveButton)).click();
@@ -237,10 +245,10 @@ public class OPiRCAChinese {
 		String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).getText();
 		softly.assertThat(s).as("test data").contains("重要");
 		//Clicks on mark critical
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.MarkCritical)));
 		//Clicks on confirm change
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupTitle)).click();
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)).click();
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(opirca.ConfirmPopupButton)));
 		//Checks if marked critical
 		/*if(driver.getCurrentUrl().contains("kaleqa")==false)
 		{
@@ -2846,6 +2854,7 @@ public class OPiRCAChinese {
 	public void chineseOPiRCAContributingFactor(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll down
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAAddContributingFactorButton));
 		share2.scrollToElement(driver, l);
@@ -2853,7 +2862,9 @@ public class OPiRCAChinese {
 		String s = l.getText();
 		softly.assertThat(s).as("test data").isEqualTo("新增促成因素");
 		//Click on button
-		l.click();
+		jse.executeScript("arguments[0].focus();", l);
+		jse.executeScript("arguments[0].click();", l);
+//	l.click();
 		//Verify chinese for the fields
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANewContributingFactorField1Label)).getText();
 		softly.assertThat(s1).as("test data").contains("促成因素:");
@@ -2869,6 +2880,7 @@ public class OPiRCAChinese {
 	public void selectAllApparentCausesAnswers(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		int count =0;
 		int k=1;
 		//Identify number of answers for an apparent cause
@@ -2889,15 +2901,18 @@ public class OPiRCAChinese {
 			//Click on answer
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/div["+j+"]/fieldset/div/div/label")));
 			//Scroll to element
-			share2.scrollToElement(driver, l);
-			l.click();
+			jse.executeScript("arguments[0].scrollIntoView(true);",l);
+			jse.executeScript("arguments[0].click();", l);
+//			share2.scrollToElement(driver, l);
+//		l.click();
 		}
 		//Scroll to top
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)).click();    	  	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButton)));    	  	
 	}
 
 	public void chineseApparentCauses (WebDriver driver) throws Exception {
@@ -3089,6 +3104,7 @@ public class OPiRCAChinese {
 	public void chineseEventInfoFill (WebDriver driver, String text) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Fills the mandatory fields
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventTitleField)).sendKeys(text);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAEventLocationField)).sendKeys(text);
@@ -3098,7 +3114,9 @@ public class OPiRCAChinese {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAInvestigatorsField)).sendKeys(text);
 		share2.scrollToAPoint(driver, 1500);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)));
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCANextButtonAtBottomOfInfoTab)).click();
 		//Scroll top
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);

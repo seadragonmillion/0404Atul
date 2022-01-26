@@ -49,7 +49,7 @@ public class OPiRCAPageObj {
 	public By OPiRCAStep4Tab = By.id("efi-opa-tab-4");
 	public By OPiRCAStep5Tab = By.id("efi-opa-tab-5");
 	public By OPiRCAReportTab = By.id("efi-opa-tab-6");
-	public By OPiRCANextButtonAtBottomOfInfoTab = By.xpath("//*[@id='efi-opa-answers']//button[contains(text(),'next')]");
+	public By OPiRCANextButtonAtBottomOfInfoTab = By.xpath("//*[@id='efi-opa-answers']//button[@type='submit']");
 	public By OPiRCAAddContributingFactorButton = By.id("pii-opa-addnewcf-button");
 	public By OPiRCANewContributingFactorField = By.id("pii-opa-addnewcf-cf");
 	public By OPiRCAAddContributingFactorSaveButton = By.id("pii-opa-addnewcf-save");
@@ -709,20 +709,21 @@ public class OPiRCAPageObj {
 	//Report Tab
 	//Table 1
 	public By OPiRCAReportTabTable1Heading = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/thead/tr/th");
-	public By OPiRCAReportTabTable1Row1 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[1]/td[1]");
-	public By OPiRCAReportTabTable1Row2 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[2]/td[1]");
+	public By OPiRCAReportTabTable1Row1 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[2]/td[1]");
+	public By OPiRCAReportTabTable1Row1Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[1]/td[2]");
+	public By OPiRCAReportTabTable1Row2 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[2]/td[2]");
 	public By OPiRCAReportTabTable1Row3Column1 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[3]/td[1]");
 	public By OPiRCAReportTabTable1Row3Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[3]/td[3]");
-	public By OPiRCAReportTabTable1Row4 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[4]/td[1]");
-	public By OPiRCAReportTabTable1Row5 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[5]/td[1]");
-	public By OPiRCAReportTabTable1Row6 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[6]/td[1]");
-	public By OPiRCAReportTabTable1Row7 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[7]/td[1]");
+	public By OPiRCAReportTabTable1Row4 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[1]/td[1]");
+	public By OPiRCAReportTabTable1Row5 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[3]/td[1]");
+	public By OPiRCAReportTabTable1Row6 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[3]/td[2]");
+	public By OPiRCAReportTabTable1Row7 = By.xpath(".//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[4]/td[1]");
 	//Table 2
 	public By OPiRCAReportTabTable2Heading = By.xpath(".//*[@id='module-opa-rpt']/div[2]/table/thead/tr/th");
 	public By OPiRCAReportTabTable2Row1 = By.xpath(".//*[@id='module-opa-rpt']/div[2]/table/tbody/tr[1]/td[1]");
 	public By OPiRCAReportTabTable2Row2 = By.xpath(".//*[@id='module-opa-rpt']/div[2]/table/tbody/tr[2]/td[1]");
 	public By OPiRCAReportTabTable2Row3 = By.xpath(".//*[@id='module-opa-rpt']/div[2]/table/tbody/tr[3]/td[1]");
-	public By OPiRCAReportTabTable2Row4 = By.xpath(".//*[@id='module-opa-rpt']/div[2]/table/tbody/tr[4]/td[1]");
+	public By OPiRCAReportTabTable2Row4 = By.xpath(".//*[@id='module-opa-rpt']/div[2]/table/tbody/tr[3]/td[1]");
 	//Table 3
 	public By OPiRCAReportTabTable3Title = By.xpath(".//*[@id='module-opa-rpt']/div[3]");
 	public By OPiRCAReportTabTable3Heading1 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[1]/thead/tr/th[1]");
@@ -732,9 +733,9 @@ public class OPiRCAPageObj {
 	public By OPiRCAReportTabTable3Row1Column2 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[1]/tbody/tr[1]/td[2]");
 	public By OPiRCAReportTabTable3Row1Column3 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[1]/tbody/tr[1]/td[3]");
 	public By OPiRCAReportTabTable3Heading4 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[2]/tbody/tr[1]/th");
-	public By OPiRCAReportTabTable3Row2 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[2]/tbody/tr[2]/td");
-	public By OPiRCAReportTabTable3Row3 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[2]/tbody/tr[3]/td");
-	public By OPiRCAReportTabTable3Row4 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[2]/tbody/tr[4]/td");
+	public By OPiRCAReportTabTable3Row2 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[3]/tbody/tr[1]/td[1]");
+	public By OPiRCAReportTabTable3Row3 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[3]/tbody/tr[2]/td[1]");
+	public By OPiRCAReportTabTable3Row4 = By.xpath(".//*[@id='module-opa-rpt']/div[4]/table[3]/tbody/tr[3]/td[1]");
 	//Table 4
 	public By OPiRCAReportTabTable4Heading1 = By.xpath(".//*[@id='module-opa-rpt']/div[5]/table/thead/tr/th[1]");
 	public By OPiRCAReportTabTable4Heading2 = By.xpath(".//*[@id='module-opa-rpt']/div[5]/table/thead/tr/th[2]");
@@ -1568,7 +1569,7 @@ public class OPiRCAPageObj {
 	public By OPiRCAHTMLTable3Row1Column3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table[1]/tbody/tr[1]/td[3]");
 	public By OPiRCAHTMLTable3Heading4 = By.xpath(".//*[@id='opa-rpt']/div[4]/table[2]/tbody/tr[1]/th");
 	public By OPiRCAHTMLTable3Row2 = By.xpath(".//*[@id='opa-rpt']/div[4]/table[2]/tbody/tr[2]/td");
-	public By OPiRCAHTMLTable3Row3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table[2]/tbody/tr[3]/td");
+	public By OPiRCAHTMLTable3Row3 = By.xpath(".//*[@id='opa-rpt']/div[4]/table[3]/tbody/tr[2]/td[1]");
 	public By OPiRCAHTMLTable3Row4 = By.xpath(".//*[@id='opa-rpt']/div[4]/table[2]/tbody/tr[4]/td");
 	//Table 4
 	public By OPiRCAHTMLTable4Heading1 = By.xpath(".//*[@id='opa-rpt']/div[5]/table/thead/tr/th[1]");

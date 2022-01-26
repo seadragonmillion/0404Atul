@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -48,20 +49,22 @@ public class OPiRCAChinese2 {
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		ccf.verifyChineseButtonsReportTabOPiRCA(driver, softly);
 		//Table 1
-		//Heading
-		String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Heading)).getText();
-		softly.assertThat(h1).as("test data").contains("事件信息");
+		//Heading:am_事件信息 not applicable on report
+/*	String h1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Heading)).getText();
+		softly.assertThat(h1).as("test data").contains("事件信息");*/
 		//Row 1
 		String r1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row1)).getText();
 		softly.assertThat(r1).as("test data").contains("事件名称");
+		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row1Column2)).getText();
+		softly.assertThat(r11).as("test data").contains("日期与时间");
 		//Row 2
 		String r2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row2)).getText();
 		softly.assertThat(r2).as("test data").contains("事件编号");
 		//Row 3
-		String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row3Column1)).getText();
+/*	String r3 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row3Column1)).getText();
 		softly.assertThat(r3).as("test data").contains("事件发生日期");
 		String r4 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row3Column3)).getText();
-		softly.assertThat(r4).as("test data").contains("事件发生时间");
+		softly.assertThat(r4).as("test data").contains("事件发生时间");*/
 		//Row 4
 		String r5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row4)).getText();
 		softly.assertThat(r5).as("test data").contains("事件发生地点");
@@ -74,7 +77,7 @@ public class OPiRCAChinese2 {
 		//Row 7
 		String r8 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable1Row7)).getText();
 		softly.assertThat(r8).as("test data").contains("报告编写时间");
-		//Table 2
+		
 		//Heading
 		String h2 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable2Heading)).getText();
 		softly.assertThat(h2).as("test data").contains("事件名称");
@@ -84,13 +87,13 @@ public class OPiRCAChinese2 {
 		//Row 2
 		String r10 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable2Row2)).getText();
 		softly.assertThat(r10).as("test data").contains("事件描述");
+		//Row 3: am_事件详细过程 not applicable on report
+/*	String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable2Row3)).getText();
+		softly.assertThat(r11).as("test data").contains("事件详细过程（时序构建）");*/
 		//Row 3
-		String r11 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable2Row3)).getText();
-		softly.assertThat(r11).as("test data").contains("事件详细过程（时序构建）");
-		//Row 4
 		String r12 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable2Row4)).getText();
 		softly.assertThat(r12).as("test data").contains("相关信息");
-		//Table 3
+		//Table 2
 		//Title
 		String title1 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Title)).getText();
 		softly.assertThat(title1).as("test data").contains("事件原因");
@@ -102,6 +105,8 @@ public class OPiRCAChinese2 {
 		softly.assertThat(h4).as("test data").contains("重要性分级");
 		String h5 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Heading3)).getText();
 		softly.assertThat(h5).as("test data").contains("纠正行动");
+		
+		//Table 3
 		//Row 1
 		String r13 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Row1Column1)).getText();
 		softly.assertThat(r13).as("test data").contains("O1.1 管理职能不足: (1) 职能协调人或经理不足; (2) 管理决策职能不足; (3) 问题解决职能不足; (4) 工作计划职能不足; (5) 资源分配职能不足; (6) 管理和人员培训职能不足; (7) 人力资源职能（或结构）不足");
@@ -112,15 +117,16 @@ public class OPiRCAChinese2 {
 		//Heading
 		String h6 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Heading4)).getText();
 		softly.assertThat(h6).as("test data").contains("根本原因 (1) - 扩展分析");
-		//Row 2
+		//Row 1
 		String r16 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Row2)).getText();
 		softly.assertThat(r16).as("test data").contains("扩展分析:");
-		//Row 3
+		//Row 2
 		String r17 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Row3)).getText();
-		softly.assertThat(r17).as("test data").contains("运行经验:");
-		//Row 4
+		softly.assertThat(r17).as("test data").contains("经验反馈");
+		//Row 3
 		String r18 = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAReportTabTable3Row4)).getText();
 		softly.assertThat(r18).as("test data").contains("对核安全或安全文化的影响:");
+		
 		//Table 4
 		chineseReportTabTable4(driver, softly);
 		//Table 5
@@ -2224,6 +2230,7 @@ public class OPiRCAChinese2 {
 	public void checkStep4HMLBoxes(WebDriver driver) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll down
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow1HighBox));
 		share2.scrollToElement(driver,l);
@@ -2232,11 +2239,14 @@ public class OPiRCAChinese2 {
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow4MediumBox));
 		share2.scrollToElement(driver,l);
 		//M on 1st contributing factor
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow4MediumBox)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow4MediumBox)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow4MediumBox)));
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow6LowBox));
-		share2.scrollToElement(driver,l);
+		jse.executeScript("arguments[0].scrollIntoView(true);",l);
+//	share2.scrollToElement(driver,l);
 		//L on 2nd contributing factor
-		wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow6LowBox)).click();
+		jse.executeScript("arguments[0].click();", l);
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(opirca.OPiRCAStep4TableRow6LowBox)).click();
 		//Scroll to top
 		share2.scrollToTop(driver);
 	}

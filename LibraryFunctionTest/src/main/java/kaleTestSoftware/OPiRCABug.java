@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -556,6 +557,7 @@ public class OPiRCABug {
 	public List<String> selectApparentCausesAnswers(WebDriver driver,List<String> apparentCauses) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Create a list to store any apparent cause answer selected
 		List<String> ac = new ArrayList<String>();
 		int c=1;
@@ -597,19 +599,32 @@ public class OPiRCABug {
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();    	
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));    	
 		return ac;
 	}
 
 	public void opircaBugKALE2268Path (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
+//		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
+//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
+//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
+		//amtempadded, will clear
+	    //Wait for loading message
+			share2.loadingServer(driver);
+			//Click on Analysis
+			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
+			//Clicks on OPiRCA
+			wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
 		//Fill mandatory details on Info page and click next
 		opc.chineseEventInfoFill(driver,text);
+	  //Clicks on skip button on Info Page:Sequence of Event
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
 		//Select only one
 		//Select HiRCA options for level 3
 		List<String> apparentCauseSelected = selectOneHiRCALevel3(driver);
@@ -617,7 +632,8 @@ public class OPiRCABug {
 		String hircaLevelOption = apparentCauseSelected.get(apparentCauseSelected.size()-1);
 		apparentCauseSelected.remove(hircaLevelOption);
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Pick one of the apparent causes selected if multiple
 		int index = pickOneApparentCause(driver,apparentCauseSelected);
 		//Select apparent cause answers
@@ -643,16 +659,19 @@ public class OPiRCABug {
 		//Go to step1 and unselect the hirca level option
 		unselectHiRCALevel(driver,hircaLevelOption);
 		//Skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
 		//Go to D# question and clear all answers and skip till Step 3
 		clearDAnswer(driver,dQuestionNumber);
 		//Verify Step 3 has no answers
-		verifyStep3Empty(driver);		
+		verifyStep3Empty(driver);	
+		System.out.println("2nd bug verify finished");
 	}
 
 	public void opircaBugKALE2138Path (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Wait for loading message
 		share2.loadingServer(driver);
 		//Click on Analysis
@@ -661,11 +680,14 @@ public class OPiRCABug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
 		//Fill mandatory details on Info page and click next
 		opc.chineseEventInfoFill(driver,text);
+	//Clicks on skip button on Info Page:Sequence of Event
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
 		//Select only one
 		//Select HiRCA options for level 3
 		List<String> apparentCauseSelected = selectOneHiRCALevel3(driver);
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Select options under the 1st apparentCause
 		List<String> oneApparentCause = new ArrayList<String>();
 		oneApparentCause.add(apparentCauseSelected.get(0));
@@ -686,60 +708,77 @@ public class OPiRCABug {
 		//Mark SURE
 		HashMap<String,Integer> options = op1.markSUREStep3(driver, apparentCausesAnswersNew);
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Select HML
 		HashMap<String,String> hml = markHMLFillText(driver,options,apparentCausesAnswersNew);
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Step 5
 		selectAllStep5(driver);
 		//Click next to go to Report Tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Click on Step 2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)));
 		//Select D1 as no
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer1)).click();
 		//Verify Step 3,4,5 and Report Tab are enabled
 		verifyStep3(driver,options);
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		verifyStep4(driver,hml,options);
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		verifyStep5(driver);
 	}
 	
 	public void opircaBugKALE2011Path (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
+//		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
+//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
+//		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
+//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
+		
+	//Wait for loading message
+		share2.loadingServer(driver);
+		//Click on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
+		//Clicks on OPiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
+	//
+		
 		//Fill mandatory details on Info page and click next
 		opc.chineseEventInfoFill(driver,text);
+	  //Clicks on skip button on Info Page:Sequence of Event
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
 		//Click on skip Step 1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)));
 		//Select No for D1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer1)).click();
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//D2.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer2)).click();
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//OP1.1
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer1)).click();
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//D3.6
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer6)).click();
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//OP1.2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAApparentCauseAnswer2)).click();
 		//Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Skip d4 to d12 and Step 3/4/5= 9+3 skips 
 		for(int i=1;i<=12;i++)
 		{
@@ -747,9 +786,10 @@ public class OPiRCABug {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASkipButton)).click();
 		}
 		//Click on Step 2 tab
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep2Tab)));
 		//Next on D1
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		//Clear D2
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.DQuestionAnswersClearButton)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
@@ -757,18 +797,21 @@ public class OPiRCABug {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton));
 		share2.scrollToTop(driver);
 		//Click on Step 3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep3Tab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep3Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep3Tab)));
 		//Verify Step 3 title
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
 		softly.assertThat(s).as("test data").contains("Step 3");
 		share2.scrollToTop(driver);
 		//Click on Step 4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep4Tab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep4Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep4Tab)));
 		//Verify Step 4 title
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
 		softly.assertThat(s1).as("test data").contains("Step 4");
 		//Click on Step 5
 		share2.scrollToTop(driver);
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();
 		//Verify Step 5 title
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
@@ -780,10 +823,11 @@ public class OPiRCABug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAFinalizeButton));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabDownloadButton));
 		//Event information table title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAReportTabTable1Heading));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='module-opa-rpt']/div[1]/table/tbody/tr[2]/td[1]")));
 		share2.scrollToTop(driver);
 		//Click on Step 5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCAStep5Tab)));
 		//Verify Step 5 title
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(op.PageTitle)).getText();
 		softly.assertThat(s3).as("test data").contains("Step 5");
@@ -792,11 +836,11 @@ public class OPiRCABug {
 	public void pathForAllBugs(WebDriver driver) throws Exception{
 		
 		//KALE 2138 / QAA 614
-		opircaBugKALE2138Path(driver);
+  	opircaBugKALE2138Path(driver);
 		//KALE 2268 / QAA 613
-		opircaBugKALE2268Path(driver);
+  	opircaBugKALE2268Path(driver);
 		//KALE 2011
-		opircaBugKALE2011Path(driver);
+  	opircaBugKALE2011Path(driver);
 	}
 	
 	public void softAssert() throws Exception {

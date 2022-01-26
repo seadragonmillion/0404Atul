@@ -300,13 +300,27 @@ public class HiRCAChinese8 {
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))).click();
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].focus();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
+		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-uhome-buttons-rpt']/div/div/a[2]"))));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
+		//Save report with AutoIt script
+		try {
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			q.waitFor();
+			Thread.sleep(3000);
+		}catch (UnhandledAlertException f){	
+			System.out.println("AutoItScript -SaveReport result: Unexpected alert");
+			driver.switchTo().alert().accept();
+
+		}catch (NoAlertPresentException f){
+			System.out.println ("AutoItScript -SaveReport result: No unexpected alert");
+		}
 		//pdf check
 		pdfCheck(driver,softly,verifyChinese);
 		for(String winHandle : driver.getWindowHandles()){
@@ -314,7 +328,6 @@ public class HiRCAChinese8 {
 		}
 		driver.close();
 		driver.switchTo().window(window);
-		Thread.sleep(1000);
 		Thread.sleep(2000);
 		//Switch to iframe
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='pii-iframe-main']")));
