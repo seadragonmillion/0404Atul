@@ -20,12 +20,17 @@ public class JobObservationObj {
 	public By JOPopupConfirmButton = By.id("pii-joa-dialog-confirmed");
 	public By JOSavedActivitiesButton = By.id("pii-joa-btn-savedactivities");
 	public By JOStep1NextButton = By.xpath(".//*[@id='pii-joa-button-next");
+	public By JOStep1SubmitJOButton = By.xpath(".//*[@id='pii-joa-submitjo-footer");
 	//Step 1
 	public By Step1Observer = By.id("pii-joa-tab-1-observer");
+	public By Step1Organization = By.id("pii-joa-tab-1-org");
+	public By Step1Department = By.id("pii-joa-tab-1-dpt");
 	public By Step1Location = By.id("pii-joa-tab-1-location");
 	public By Step1JobObserved = By.id("pii-joa-tab-1-job");
 	//Error on Step 1
 	public By Step1ObserverError = By.id("pii-joa-tab-1-observer-error");
+	public By Step1OrgError = By.id("pii-joa-tab-1-org-error");
+	public By Step1DeptError = By.id("pii-joa-tab-1-dpt-error");
 	public By Step1LocationError = By.id("pii-joa-tab-1-location-error");
 	public By Step1JobObservedError = By.id("pii-joa-tab-1-job-error");
 	//Step 2

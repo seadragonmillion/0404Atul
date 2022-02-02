@@ -1446,6 +1446,7 @@ public class JobObservation {
 	public String reportCreate(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1458,16 +1459,15 @@ public class JobObservation {
 		}
 		//Clicks on Job Observation Analysis
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JobObservationLink)).click();
-		//Clicks on new
-		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JONewButton)).click();
-		jo2.verifyNewReportPopup(driver, softly);
-		//Click on new report
-		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
-		Thread.sleep(500);
+		//Verify ErrorRedDotted 
 		jo2.verifyErrorOnPage(driver,softly);
+		
 		//Fills mandatory details in step1
-		driver.findElement(jo.Step1Observer).sendKeys(text);
+		jse.executeScript("arguments[0].scrollIntoView();", jo.Step1Observer);
+		driver.findElement(jo.Step1Observer).sendKeys(text); 
+		driver.findElement(jo.Step1Organization).sendKeys(text);
+		driver.findElement(jo.Step1Department).sendKeys(text);
+		jse.executeScript("arguments[0].scrollIntoView();", jo.Step1Location);
 		driver.findElement(jo.Step1Location).sendKeys(text);
 		driver.findElement(jo.Step1JobObserved).sendKeys(text);
 		String ev1 = driver.findElement(jo.Step1Observer).getAttribute("value");

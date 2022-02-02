@@ -204,6 +204,9 @@ public class ChineseCommonFunctions {
 		//human performance
 		String hp = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.HumanPerformanceNameLink)).getText();
 		softly.assertThat(hp).as("test data").isEqualTo("人因绩效知识");
+		//Equipment Data Bank
+		String db = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.EquipmentDataBankLink)).getText();
+		softly.assertThat(db).as("test data").isEqualTo("设备知识");
 		//engineering fundamentals
 		String ef = wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.EngineeringFundamentalsNameLink)).getText();
 		softly.assertThat(ef).as("test data").isEqualTo("工程基础知识");

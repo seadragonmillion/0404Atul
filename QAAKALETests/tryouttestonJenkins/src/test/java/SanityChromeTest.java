@@ -99,7 +99,6 @@ public class SanityChromeTest {
 */		  
 	@Before
 	  public void beforeTest() throws MalformedURLException{
-		 System.out.println("check padding-bottom");
 		  System.setProperty("webdriver.chrome.driver",chrome_path);
 		  driver = new ChromeDriver();
 		  //Browser is maximized
@@ -133,19 +132,6 @@ public class SanityChromeTest {
 				}catch (UnhandledAlertException f){			  
 					driver.switchTo().alert().dismiss();
 				}
-				
-					JavascriptExecutor js = (JavascriptExecutor) driver;
-					String paddingFix = "if(document.querySelector){var elem = document."
-							+ "querySelector('.pii-padding-bottom'); "
-							+ "elem.style.setProperty('padding-bottom', 0);}";
-
-					js.executeScript(paddingFix, driver);
-					
-					
-			/*		//original from Developer script
-					var elem = document.querySelector('.pii-padding-bottom');
-					elem.style.setProperty('padding-bottom', 0);*/
-					
 				//Clicks on Remote Verification
 				driver.findElement(rv.RVLink).click();
 				//FillPage
@@ -165,7 +151,6 @@ public class SanityChromeTest {
 				//Click Save in Save report popup
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-dialog-confirmed"))).click();
 				
-						
 				
 		/*
 		//Logs out

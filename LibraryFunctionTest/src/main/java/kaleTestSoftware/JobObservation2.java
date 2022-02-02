@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,11 +12,19 @@ public class JobObservation2 {
 
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
 
-		//Clicks next
-		driver.findElement(jo.JOStep1NextButton).click();
+/*		//Clicks next
+		driver.findElement(jo.JOStep1NextButton).click();*/
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Click Submit Observation
+		jse.executeScript("arguments[0].focus();", (jo.JOStep1SubmitJOButton));
+		jse.executeScript("arguments[0].click();", (jo.JOStep1SubmitJOButton));
 		//Verify all errors
 		String observerError = driver.findElement(jo.Step1ObserverError).getText();
 		softly.assertThat(observerError).as("test data").isEqualTo("Observer is required");
+		String orgError = driver.findElement(jo.Step1OrgError).getText();
+		softly.assertThat(orgError).as("test data").isEqualTo("Organization is required");
+		String deptError = driver.findElement(jo.Step1DeptError).getText();
+		softly.assertThat(deptError).as("test data").isEqualTo("Department is required");
 		String locationError = driver.findElement(jo.Step1LocationError).getText();
 		softly.assertThat(locationError).as("test data").isEqualTo("Location is required");
 		String jobObsError = driver.findElement(jo.Step1JobObservedError).getText();

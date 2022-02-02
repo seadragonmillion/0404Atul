@@ -1405,16 +1405,15 @@ public class OPiRCA {
 		int count1 = apparentCausesAnswersNew.size() - count;
 		System.out.println("No of contributing factors:" + count1);
 		
-/*		// Custom code to randomly select all the available HML-
+	// Custom code to randomly select all the available HML-
 		List<WebElement> eleList = driver.findElements(By.xpath("//td[@class='pii-opa-td-hml']"));
 		
 		for (int t = 1; t < eleList.size(); t++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]"))
 					.click();
-			jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]")));
-
-		}*/
+			jse.executeScript("window.scrollBy(0,350)");
+		}
 		
 /////////////////////am_below from OPiRCABug test		
 		// tr starts at 2 and each root cause has 4 four rows

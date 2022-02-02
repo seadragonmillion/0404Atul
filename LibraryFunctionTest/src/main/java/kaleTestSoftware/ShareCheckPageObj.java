@@ -55,6 +55,7 @@ public class ShareCheckPageObj {
 	public By PerformanceAccountabilityAnalyticsLink  = By.xpath(".//*[@href='#pii-k-analytics-paa']");
 	//ErrorFree bank name links
 	public By HumanPerformanceNameLink = By.xpath(".//*[@href='#pii-learning']");
+	public By EquipmentDataBankLink = By.xpath(".//*[@href='#pii-learning-equip?ALL']");
 	public By EngineeringFundamentalsNameLink = By.xpath(".//*[@href='#pii-learning-equip?engFun']");
 	public By EquipmentPerformanceNameLink = By.xpath(".//*[@href='#pii-learning-equip?noFMs']");
 	public By FailureModesNameLink = By.xpath(".//*[@href='#pii-learning-equip?FMs']");
