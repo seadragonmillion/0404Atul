@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,13 +12,10 @@ public class JobObservation2 {
 	JobObservationObj jo = new JobObservationObj();
 
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
-
-/*		//Clicks next
-		driver.findElement(jo.JOStep1NextButton).click();*/
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click Submit Observation
-		jse.executeScript("arguments[0].focus();", (jo.JOStep1SubmitJOButton));
-		jse.executeScript("arguments[0].click();", (jo.JOStep1SubmitJOButton));
+		jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(jo.Step1Observer));
+		driver.findElement(jo.JOmiddleSubmitButton).click();
 		//Verify all errors
 		String observerError = driver.findElement(jo.Step1ObserverError).getText();
 		softly.assertThat(observerError).as("test data").isEqualTo("Observer is required");

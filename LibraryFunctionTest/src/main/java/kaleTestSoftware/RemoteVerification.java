@@ -1364,6 +1364,8 @@ public class RemoteVerification {
 		//(2)Click checkbox I certify...
 		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-photo-icertify-checkbox"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgwork-photo-icertify-checkbox"))));
+		//(2)Verify supporting file should be expanded as default setting 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-rv-event-filecollapsible-0']//span[contains(text(),'click to collapse contents')]")));
 		//Upload photo (3) Take or choose a photo of the person requesting verification.
 		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		

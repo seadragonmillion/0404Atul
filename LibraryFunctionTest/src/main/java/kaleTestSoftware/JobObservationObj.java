@@ -13,6 +13,7 @@ public class JobObservationObj {
 	//Buttons
 	public By JONewButton = By.id("pii-joa-new");
 	public By JOSaveButton = By.id("pii-joa-save");
+	public By JODelButton = By.id("pii-joa-delete");
 	public By JOPopupHeader = By.id("pii-joa-dialog-header");
 	public By JOPopupTitle = By.id("pii-joa-dialog-title");
 	public By JOPopupNote = By.id("pii-joa-dialog-note");
@@ -20,7 +21,10 @@ public class JobObservationObj {
 	public By JOPopupConfirmButton = By.id("pii-joa-dialog-confirmed");
 	public By JOSavedActivitiesButton = By.id("pii-joa-btn-savedactivities");
 	public By JOStep1NextButton = By.xpath(".//*[@id='pii-joa-button-next");
-	public By JOStep1SubmitJOButton = By.xpath(".//*[@id='pii-joa-submitjo-footer");
+	public By JOmiddleSubmitButton = By.id("pii-joa-submitjo");
+	public By JOStep1SubmitJOButton = By.id("pii-joa-submitjo-footer");
+	public By JOStep1GenerateReportButton = By.id("pii-joa-genrep");
+	
 	//Step 1
 	public By Step1Observer = By.id("pii-joa-tab-1-observer");
 	public By Step1Organization = By.id("pii-joa-tab-1-org");

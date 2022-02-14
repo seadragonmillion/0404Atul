@@ -163,10 +163,14 @@ public class ChromeOffline1 {
 							add.click();
 						}*/
 					}
+					
+				/*	am_remove(3)to test Kale-3733 as this becomes optional
 				//Upload photo (3) Take or choose a photo of the person requesting verification.
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 				driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
-				Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+				Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");*/
+					
+					
 				//Fill in (4) Fill in relevant details and description of work needing verification.
 				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))).sendKeys("work evaluation");

@@ -161,8 +161,13 @@ public class DeleteRedudantProductionCases {
 
 		}
 	
-			deletePreviousCase(driver, k1);
-			deletePreviousCase(driver, k2);
+		deletePreviousCase(driver, 	k11	);
+		deletePreviousCase(driver, 	k12	);
+		deletePreviousCase(driver, 	k31	);
+		deletePreviousCase(driver, 	k32	);
+		deletePreviousCase(driver, 	k33	);
+
+			
 			
 		
 	}
@@ -171,7 +176,7 @@ public class DeleteRedudantProductionCases {
 		
 		
 		
-		public int deletePreviousCase(WebDriver driver, String keyword) throws Exception{
+		public void deletePreviousCase(WebDriver driver, String keyword) throws Exception{
 			WebDriverWait wait = new WebDriverWait(driver,40);
 			//Wait for loading message to disappear
 			share2.loadingServer(driver);
@@ -193,7 +198,7 @@ public class DeleteRedudantProductionCases {
 			}catch (NoSuchElementException e)
 			{
 				System.out.println("No existing cases for "+keyword);
-				return 0;
+		//		return 0;
 			}		
 			int i=1;
 			String [] caseIdArray=new String[50];
@@ -219,7 +224,8 @@ public class DeleteRedudantProductionCases {
 				System.out.println(caseIdArray[count]);
 				deleteCase(driver, caseIdArray[count]);
 			}
-			return 1;				
+			
+		//	return 1;				
 		}
 
 		public void deleteCase(WebDriver driver, String caseId) throws Exception{
@@ -249,7 +255,6 @@ public class DeleteRedudantProductionCases {
 			//Clicks on delete button
 			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-delete"))));
 			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-delete"))));
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-button-delete"))).click();
 			//Clicks on delete case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-title"))).click();
 			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-dialog-confirmed"))));
@@ -264,6 +269,9 @@ public class DeleteRedudantProductionCases {
 			Thread.sleep(1000);
 			if(driver.findElement(By.id("pii-admin-efse-list-ul")).isDisplayed()==false)
 				System.out.println("Case deleted "+caseId);		  
+			//Goes to KALE home page
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pii-logo-div-element-kale"))).click();
+			Thread.sleep(200);
 		}
 		
 		/*

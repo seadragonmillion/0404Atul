@@ -1,5 +1,7 @@
 package kaleTestSoftware;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +20,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -1444,7 +1447,6 @@ public class JobObservation {
 	}
 
 	public String reportCreate(WebDriver driver) throws Exception {
-
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String text = eirca2.textCreate(driver);
@@ -1457,17 +1459,107 @@ public class JobObservation {
 		}catch (UnhandledAlertException f){			  
 			driver.switchTo().alert().dismiss();
 		}
-		//Clicks on Job Observation Analysis
+		//Clicks on Job Observation
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JobObservationLink)).click();
+		Thread.sleep(3000);
 		//Verify ErrorRedDotted 
-		jo2.verifyErrorOnPage(driver,softly);
-		
+		 jo2.verifyErrorOnPage(driver,softly);
+		   //Select a date (1st date on 2nd row)
+		  jse.executeScript("arguments[0].scrollIntoView();",  driver.findElement(By.id("pii-joa-subtitle-select")));
+		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-joa-datepicker']/div/div[2]/table/tbody/tr[3]/td[1]/a"))).click();
+		   //Check the date turn purple (1st date on 1st row_QAA Saved)
+		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-joa-datepicker']/div/div[2]/table/tbody/tr[2]/td[contains(@class,'pii-joa-date-flagged')]")));
+		  Thread.sleep(2000);
+		  //Delete previous report if any
+		  try{
+			  WebElement reportLinkName= driver.findElement(By.partialLinkText("Sanity"));
+		  if(reportLinkName.isDisplayed())
+		  {
+			  System.out.println("Yes, previously JO record is there");
+			    reportLinkName.click();
+			    driver.findElement(jo.JODelButton).click();
+			    wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOPopupConfirmButton)).click();
+		  }
+		  }
+		  catch(Exception e)
+		  {
+		  }
+		    //Click on Duration To: time picker icon
+		   jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//*[@id='pii-joa-tab-1-duration-to-div']/div/div/a")));
+		   Thread.sleep(1000);
+/////////////////////////////////////////////////////////////	////////////////////////////////////////////////////////////////////	  
+		   //Duration To: Set Time Hour: 19:00
+		   //Enter hour
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input")).sendKeys(Keys.CONTROL,"a");
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input")).sendKeys(Keys.DELETE);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input")).sendKeys("19");
+			Thread.sleep(2000);
+			//Check the error on second
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("666");
+			//Check if the error is correct
+			String time_title_error_sec=driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/div/h1/div")).getText();
+			System.out.println(time_title_error_sec);
+			softly.assertThat(time_title_error_sec).as("test data").isEqualTo("(warning: 0>=minutes<=59)");
+			//Enter minutes
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.CONTROL,"a");
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.DELETE);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
+			Thread.sleep(2000);
+			//Click on set time
+			while(true)
+			{
+				Thread.sleep(500);
+				try{
+					driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"));
+					driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
+					driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
+				}catch(org.openqa.selenium.NoSuchElementException t)
+				{
+					break;
+				}
+			}
+			Thread.sleep(4000);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
+		  //Click on Time of Observation Clock
+		   jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-joa-tab-1-observer"))));
+		   jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='pii-joa-tab-1-timeofobs-div']//a[contains(.,'Open Date Picker')]"))));
+		  //Time of Observation: Set Time Hour: 14:00 
+		 //Enter hour
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input")).sendKeys(Keys.CONTROL,"a");
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input")).sendKeys(Keys.DELETE);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div/div[2]/input")).sendKeys("13");
+			Thread.sleep(2000);
+			//Enter minutes
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.CONTROL,"a");
+			Thread.sleep(2000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys(Keys.DELETE);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div/div[2]/div[2]/input")).sendKeys("13");
+			Thread.sleep(2000);
+			//Click on set time
+			while(true)
+			{
+				Thread.sleep(500);
+				try{
+					driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a"));
+					driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/span/div[2]/div/a")).click();
+				}catch(org.openqa.selenium.NoSuchElementException t)
+				{
+					break;
+				}
+			}
+			Thread.sleep(500);
 		//Fills mandatory details in step1
-		jse.executeScript("arguments[0].scrollIntoView();", jo.Step1Observer);
+		jse.executeScript("window.scrollBy(0,-600)");
 		driver.findElement(jo.Step1Observer).sendKeys(text); 
 		driver.findElement(jo.Step1Organization).sendKeys(text);
 		driver.findElement(jo.Step1Department).sendKeys(text);
-		jse.executeScript("arguments[0].scrollIntoView();", jo.Step1Location);
 		driver.findElement(jo.Step1Location).sendKeys(text);
 		driver.findElement(jo.Step1JobObserved).sendKeys(text);
 		String ev1 = driver.findElement(jo.Step1Observer).getAttribute("value");
@@ -1488,39 +1580,142 @@ public class JobObservation {
 			driver.findElement(jo.Step1JobObserved).clear();
 			driver.findElement(jo.Step1JobObserved).sendKeys(text);
 		}
-		//Clicks on next
-		driver.findElement(jo.JOStep1NextButton).click();
-		//Uploads image, clears it, rotates it
-		imageUpload(driver);
-		//Modify date time
-		dateTimeModify(driver);
-		//Continues on 
-		path(driver);
+		
+		//Select Observation Type
+		Random random = new Random ();
+		int y;
+		y = random.nextInt(3);
+		if(y<4)
+			y=y+1;
+		WebElement dropdown1 = driver.findElement(By.id("pii-joa-obstype-select"));
+		Select s1 = new Select(dropdown1);
+		s1.selectByIndex(y);
+		//Select Category
+		WebElement dropdown2 = driver.findElement(By.id("pii-joa-obscat-select"));
+		Select s2 = new Select(dropdown2);
+		s2.selectByIndex(y);
+		
+		//Click on Factors checkboxes
+		for(int i=0; i<3; i++) {
+		driver.findElement(By.xpath(".//*[@for='pii-joa-obsfactors-"+i+"']")).click();
+		}
+		//Click on 1st Characteristics checkbox
+		driver.findElement(By.xpath(".//*[@id='pii-joa-charac']/table[1]/tbody/tr[1]/td[1]/div/div/label")).click();
+		//Send some text for 1stCharacteristics checkbox
+		driver.findElement(By.xpath("//*[@id='pii-joa-charac']/table[1]/tbody/tr[1]/td[2]/textarea")).sendKeys("JOText");
+		
+		/*
+		//Click on Characteristics checkboxes
+		for(int i=1; i<6; i++) {
+		driver.findElement(By.xpath(".//*[@id='pii-joa-charac']/table[1]/tbody/tr["+i+"]/td[1]/div/div/label")).click();
+		i=i+1;
+		}
+		//Send some text for  Characteristics checkboxes
+		for(int i=1; i<6; i++) {
+		driver.findElement(By.xpath("//*[@id='pii-joa-charac']/table[1]/tbody/tr["+i+"]/td[2]/textarea")).sendKeys("JOText");
+		i=i+1;
+		}*/
+		Thread.sleep(3000);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		//Upload Supporting files (2 times) 
+		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
+		for (int j=0; j<2; j++)
+		{
+			//Click on Supporting file {Choose file} button
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-event-file-button-"+j))));
+			//Fill each supporting file title
+			String title_id="pii-jo-event-file-title-"+j;
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(title_id))).sendKeys("Title0"+(j+1));
+			//Fill each supporting file description
+			String des_id="pii-jo-event-file-description-"+j;
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(des_id))).sendKeys("Des0"+(j+1));
+			//Choose File upload photo
+			driver.findElement(By.id("pii-jo-event-file-"+j)).sendKeys(filepath);
+			Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+			//Check if Supporting file's image display
+			WebElement imgDisplay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-event-file-img-"+j)));
+			if (imgDisplay.isDisplayed())
+			{
+				System.out.println("Supporting File Image "+ (j+1)+ "display successfully");
+			}
+			else
+				System.out.println ("Supproting File Image NOT display");
+			//Click on attach another file to add 2nd supporting file photo
+			WebElement clickAddAttachBtn= driver.findElement(By.id("pii-jo-addnewfile-button"));
+			if(j==0)
+			{
+			jse.executeScript("arguments[0].click();", clickAddAttachBtn);
+			}else break;
+		}
+		//Click on Submit JO Button (bottom)
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-addnewfile-button"))));
+		jse.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		driver.findElement(jo.JOStep1SubmitJOButton).click();
+		Thread.sleep(4000);
+		
+		//Check if report is saved in Recorded Job Observations
+		 if (driver.findElement(By.xpath("//*[@id='pii-joa-recordedjos-div']/a")).isDisplayed())
+				System.out.println("report display successfully");
+		//Click on generate button
+		 driver.findElement(jo.JOStep1GenerateReportButton).click();
+		 //Select Jan From: Month picker
+		 WebElement dropdownMonth = driver.findElement(By.className("ui-datepicker-month"));
+			Select sJan = new Select(dropdownMonth);
+			sJan.selectByIndex(0);
+			Thread.sleep(1000);
+		 //Click on From: Date picker
+		 jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//*[@id='pii-generate-report-from']/div/table/tbody/tr[3]/td[1]/a")));
+		//Click on To: Date picker
+		 jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//*[@id='pii-generate-report-to']/div/table/tbody/tr[1]/td[3]/a")));
+		 Thread.sleep(1000);
+		//Click on {generate} button   
+		 jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-joa-genrep-do")));
 		//Waits for the green popup on the right top corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.StickyNote));
-		share2.loadingServer(driver);
-		//Clicks on saved activities
-		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSavedActivitiesButton)).click();
+		 //Click on {saved activities} button
+		 driver.findElement(jo.JOSavedActivitiesButton).click();
 		share2.loadingServer(driver);
 		//Clicks on side panel option for job observation
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		share2.loadingServer(driver);
 		//Gets the name of the record created
 		WebElement record = driver.findElement(jo.JOFirstRecord);
+		if (record.isDisplayed())
+		{
+			System.out.println("JO report found");
+		}
+		else 
+			System.out.println ("JO report NOT found");
+		Thread.sleep(10000);
+		//Click on 1st report record
+		 jse.executeScript("arguments[0].click();", jo.JOFirstRecord);
+		 //Verify report title
+		 String dateRange_title=driver.findElement(By.xpath(".//*[@id='joa-rpt']/div[1]/table/tbody/tr[2]/td")).getText();
+		softly.assertThat(dateRange_title).as("test data").contains("Date Range");
+		
+		//Gets the name of the record created
 		String recordName = record.getText();
 		String r = recordName.replaceAll("\u00AD", "");
 		softly.assertThat(r).as("test data").contains(text);
-		if (record.isDisplayed())
-		{
-			System.out.println("Record found: "+ r);
-		}
-		else
-			System.out.println ("Record not found.");
-
 		return(r);
-	}
-
-	public void softAssert() throws Exception {
+		   }	
+	
+	/* //Close the popup
+	   jse.executeScript("arguments[0].click();", driver.findElement(By.xpath(".//*[@class='ui-popup-container fade in ui-popup-active']/div/a")));
+	   Thread.sleep(2000);*/
+	//Uploads image, clears it, rotates it > am_not applicable
+//	imageUpload(driver);
+	//Modify date time
+//	dateTimeModify(driver);
+	//Continues on > am_not applicable
+//	path(driver);
+/*	//Gets the name of the record created
+	WebElement record = driver.findElement(jo.JOFirstRecord);
+	String recordName = record.getText();
+	String r = recordName.replaceAll("\u00AD", "");
+	softly.assertThat(r).as("test data").contains(text);*/
+			
+		public void softAssert() throws Exception {
 		softly.assertAll();
 	}
 }
