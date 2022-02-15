@@ -54,9 +54,7 @@ public class CreateMultipleJO {
 		   //Select a date (1st date on 2nd row)
 		  jse.executeScript("arguments[0].scrollIntoView();",  driver.findElement(By.id("pii-joa-subtitle-select")));
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-joa-datepicker']/div/div[2]/table/tbody/tr[3]/td[1]/a"))).click();
-		   //Check the date turn purple (1st date on 1st row_QAA Saved)
-		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-joa-datepicker']/div/div[2]/table/tbody/tr[2]/td[contains(@class,'pii-joa-date-flagged')]")));
-		  Thread.sleep(2000);
+		   Thread.sleep(2000);
 		  //Delete previous report if any
 		  for(int i=0;i<5; i++) {
 		  try{
@@ -194,14 +192,6 @@ public class CreateMultipleJO {
 			//Choose File upload photo
 			driver.findElement(By.id("pii-jo-event-file-"+j)).sendKeys(filepath);
 			Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
-			//Check if Supporting file's image display
-			WebElement imgDisplay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-event-file-img-"+j)));
-			if (imgDisplay.isDisplayed())
-			{
-				System.out.println("Supporting File Image "+ (j+1)+ "display successfully");
-			}
-			else
-				System.out.println ("Supproting File Image NOT display");
 			//Click on attach another file to add 2nd supporting file photo
 			WebElement clickAddAttachBtn= driver.findElement(By.id("pii-jo-addnewfile-button"));
 			if(j==0)
@@ -216,9 +206,24 @@ public class CreateMultipleJO {
 		Thread.sleep(10000);
 		   }	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		//Check if report is saved in Recorded Job Observations
-		 if (driver.findElement(By.xpath("//*[@id='pii-joa-recordedjos-div']/a")).isDisplayed())
-				System.out.println("report display successfully");
+		 //Click on 1st JO link 
+		   WebElement firstJO= driver.findElement(By.xpath("//a[contains(@pii-obs-i,'0')]"));
+		   jse.executeScript("arguments[0].click();", firstJO);
+		   Thread.sleep(2000);
+		   //Click/expand 1st JO's 2 supporting file collapsible
+		   for(int j=0;j<2;j++) {
+			   jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-event-filecollapsible-"+j))));
+			   jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-event-filecollapsible-"+j))));
+			   Thread.sleep(500);
+		   //Verify 1st JO's 2 supporting file photo display
+			WebElement JOImgDisplay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-jo-event-file-img-"+j)));
+			if (JOImgDisplay.isDisplayed())
+			{
+				System.out.println("Supporting File Image- "+ (j+1)+ "display successfully");
+			}
+			else
+				System.out.println ("Supproting File Image- "+ (j+1)+" NOT display");
+		   }
 		//Click on generate button
 		 driver.findElement(jo.JOStep1GenerateReportButton).click();
 		 //Select Jan From: Month picker
@@ -241,6 +246,8 @@ public class CreateMultipleJO {
 		//Clicks on side panel option for job observation
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		share2.loadingServer(driver);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		
 		//Gets the name of the record created
 		WebElement record = driver.findElement(jo.JOFirstRecord);
 		if (record.isDisplayed())
