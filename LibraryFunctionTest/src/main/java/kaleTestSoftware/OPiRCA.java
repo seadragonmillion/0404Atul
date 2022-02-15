@@ -1410,9 +1410,12 @@ public class OPiRCA {
 		
 		for (int t = 1; t < eleList.size(); t++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
-			driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "]"))
-					.click();
-			jse.executeScript("window.scrollBy(0,350)");
+			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "])")));
+			Thread.sleep(1000); 
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "])")));
+			Thread.sleep(1000); 
+			//jse.executeScript("window.scrollBy(0,350)");
 		}
 		
 /////////////////////am_below from OPiRCABug test		

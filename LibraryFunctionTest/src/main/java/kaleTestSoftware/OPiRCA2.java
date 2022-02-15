@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -575,6 +576,7 @@ public class OPiRCA2 {
 	public List<String> selectStep2D(WebDriver driver, int x, int y, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		List<String>ac = new ArrayList<String>();
 		//Enter reason entry
 		//tbr.sizeCheck(driver, opirca.OPiRCAReasonEntryField, softly);
@@ -582,7 +584,7 @@ public class OPiRCA2 {
 		//Choose a number between 0 to x
 		int n = chooseRandomOption(x,y);
 		//Choose the option based on selection
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))));
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='efi-opa-answer-"+n+"']"))).getText().trim();
 /*		String temp = op3.verifyIfDAnswer(driver, n+1, s);
 		System.out.println(temp);
