@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import org.assertj.core.api.SoftAssertions;
@@ -74,13 +75,32 @@ public class OPiRCABug {
 	public HashMap<String,String> markHMLFillText(WebDriver driver,HashMap<String,Integer>options,List<String>apparentCausesAnswersNew) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		HashMap<String,String> hml= new HashMap<String,String>();
 		//Get number of Root causes in Level 3 answers
 		int count = options.get("Root causes");
 		System.out.println("No of root causes:"+count);
 		//Gets number of contributing factors
 		int count1 = apparentCausesAnswersNew.size()-count;
-		System.out.println("No of contributing factors:"+count1);		
+		System.out.println("No of contributing factors:"+count1);	
+		
+/*	// Custom code to randomly select all the available HML
+			List<WebElement> eleList = driver.findElements(By.xpath("//td[@class='pii-opa-td-hml']"));
+			for (int t = 1; t < eleList.size(); t++) {
+				int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+				Thread.sleep(1000);
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "])"))));
+				Thread.sleep(1000); 
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("((//td[@class='pii-opa-td-hml'])[" + t + "]//div/div[" + randomNum + "])"))));
+				Thread.sleep(1000); 
+			}*/
+		
+		//Click on H for RootCause
+		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='efi-opa-answers']/table/tbody/tr[2]/td[3]/fieldset/div/div[1]/label")));
+		ele.click();
+		hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='efi-opa-answers']/table/tbody/tr[2]/td[3]/fieldset/div/div[1]/label"))).getText(), "H");
+		
+		/*
 		//tr starts at 2 and each root cause has 4 four rows
 		int i=2;
 		//Verify if any root causes are appearing
@@ -96,6 +116,7 @@ public class OPiRCABug {
 			if(y!=0)
 			{
 				//Click on H/M/L
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 				if(y==1)
 					hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "H");
@@ -141,6 +162,7 @@ public class OPiRCABug {
 			if(y!=0)
 			{
 				//Click on H/M/L
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[3]/fieldset/div/div["+y+"]/label"))).click();
 				if(y==1)
 					hml.put(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]"))).getText(), "H");
@@ -158,11 +180,10 @@ public class OPiRCABug {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-opa-answers']/table/tbody/tr["+i+"]/td[1]/textarea[1]"))).sendKeys(text);
 			//Increase i for next contributing factor
 			i=i+1;
-		}
+		}*/
 		//Scroll up
 		share2.scrollToTop(driver);
-		share2.scrollToTop(driver);
-		System.out.println(hml);
+		System.out.println("print out hml" +hml);
 		return hml;
 	}
 	
@@ -608,12 +629,13 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		//Click on new button
-//		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
-//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCASaveConfirmButton)).click();
-//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
-		//amtempadded, will clear
+		//Click on info tab
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-0"))));
+		Thread.sleep(3000);
+		//Click on +new button
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-opa-button-new")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-title"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-confirmed")));
 	    //Wait for loading message
 			share2.loadingServer(driver);
 			//Click on Analysis
@@ -726,8 +748,8 @@ public class OPiRCABug {
 		//Verify Step 3,4,5 and Report Tab are enabled
 		verifyStep3(driver,options);
 		//Next
-		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
-		verifyStep4(driver,hml,options);
+  	jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
+//	verifyStep4(driver,hml,options);
 		//Next
 		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCANextButton)));
 		verifyStep5(driver);
@@ -738,18 +760,15 @@ public class OPiRCABug {
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new button
-//		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
-//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
-//		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
-//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
 		
 	//Wait for loading message
 		share2.loadingServer(driver);
 		//Click on Analysis
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='links']/a[text()='Analysis']"))).click();
 		//Clicks on OPiRCA
-		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
-	//
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
 		
 		//Fill mandatory details on Info page and click next
 		opc.chineseEventInfoFill(driver,text);
@@ -836,7 +855,7 @@ public class OPiRCABug {
 	public void pathForAllBugs(WebDriver driver) throws Exception{
 		
 		//KALE 2138 / QAA 614
-  	opircaBugKALE2138Path(driver);
+//  	opircaBugKALE2138Path(driver);
 		//KALE 2268 / QAA 613
   	opircaBugKALE2268Path(driver);
 		//KALE 2011
