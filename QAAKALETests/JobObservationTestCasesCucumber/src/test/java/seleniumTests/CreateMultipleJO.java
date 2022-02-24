@@ -1,5 +1,7 @@
 package seleniumTests;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
@@ -247,7 +249,26 @@ public class CreateMultipleJO {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		share2.loadingServer(driver);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		//Verify HTML report
+		List<String> JOhtml = JOhtmlReport(driver);
+		//Download pdf and verify pdf
+		downloadSelectFunction(driver,chineseData);
 		
+		
+	
+		
+		
+		public List<String> JOhtmlReport (WebDriver driver) throws Exception {
+
+			WebDriverWait wait = new WebDriverWait(driver,10);
+			List<String> c = new ArrayList<String>();
+			
+			
+			
+			
+			return c;	
+		}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		//Gets the name of the record created
 		WebElement record = driver.findElement(jo.JOFirstRecord);
 		if (record.isDisplayed())
