@@ -131,7 +131,7 @@ public class Login {
 
 	public static void main(String[] args) {
 		System.out.println(new Login().decodePassword("SHBAMTIzNDU"));
-		byte[] encryptedPasswordBytes = Base64.getEncoder().encode("Hp@12345".getBytes());
+		byte[] encryptedPasswordBytes = Base64.getEncoder().encode("Password2021!".getBytes());
 		String encryptedPassword = new String(encryptedPasswordBytes);
 		System.out.println("Encrypted Password - " + encryptedPassword);
 	}

@@ -364,7 +364,7 @@ public class CreateEquipmentCase3 {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		Thread.sleep(2000);
 		//Scroll down
 		try{
@@ -376,17 +376,18 @@ public class CreateEquipmentCase3 {
 		}
 		Thread.sleep(3000);
 		//Add new keyword
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 		share2.loadingServer(driver);
-		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
+		/*
 		if(browserName.contains("safari")||browserName.contains("firefox"))
 		{
 			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
-		}
-		else
+		}else
 		{
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
@@ -414,15 +415,15 @@ public class CreateEquipmentCase3 {
 					}
 				}
 			}
-		}
+		}*/
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -436,14 +437,15 @@ public class CreateEquipmentCase3 {
 			driver.switchTo().alert().dismiss();
 		}
 	}
-	
+		
 	public void verifyErrorOnPage (WebDriver driver, SoftAssertions softly) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll top
 		share2.scrollToTop(driver);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//share2.verifyWarningPopupForError(driver, softly);
 		//Verify all errors
 		String idError = driver.findElement(equipObj.CaseIDError).getText();

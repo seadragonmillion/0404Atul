@@ -17,6 +17,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -188,7 +189,7 @@ public class CreateEquipmentCase {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword);
 				}					
 				if(i==0 && j==0)
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				else
 				{
 					Thread.sleep(1000);
@@ -284,7 +285,7 @@ public class CreateEquipmentCase {
 					jse.executeScript("return document.getElementById('pii-admin-efse-button-save').click();");
 					Thread.sleep(1000);}
 				else{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 				}
 				//Clicks on create case
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle));
@@ -662,6 +663,7 @@ public class CreateEquipmentCase {
 	public void deleteLinks (WebDriver driver, List<String> ee_case) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -694,7 +696,7 @@ public class CreateEquipmentCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		Thread.sleep(2000);
 		//Scroll to 2nd Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1TitleCrossSymbol));
@@ -713,10 +715,10 @@ public class CreateEquipmentCase {
 			share2.scrollToTop(driver);
 		}
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		share2.scrollToTop(driver);
@@ -752,7 +754,7 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		//Scroll to 1st Link title
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title));
 		share2.scrollToElement(driver, l);
@@ -808,7 +810,7 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
@@ -888,6 +890,7 @@ public class CreateEquipmentCase {
 	public void editLinks (WebDriver driver, List<String> ee_case) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -921,7 +924,7 @@ public class CreateEquipmentCase {
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		//Scroll to 1st Link title
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title));
 		share2.scrollToElement(driver, l);
@@ -933,10 +936,10 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1005,6 +1008,7 @@ public class CreateEquipmentCase {
 	public void viewCaseInAdmin(WebDriver driver, List<String> eq_case, List<String> ee_case, String keyword_sameeq) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -1058,15 +1062,15 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -1081,6 +1085,7 @@ public class CreateEquipmentCase {
 	public void verifyNewCaseForm(WebDriver driver, String caseID) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(shareObj.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -1122,10 +1127,10 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on new case button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)));
 		//Clicks on new case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Verify Link title is empty
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).getAttribute("textContent");
 		softly.assertThat(s).as("test data").isEmpty();
@@ -1177,7 +1182,7 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on Equip cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 	}
@@ -1201,10 +1206,11 @@ public class CreateEquipmentCase {
 	public void addKeywordKALE2168(WebDriver driver, List<String> caseID, String keyword_same) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Add keyword
 		equip3.addKeywordEquip(driver,caseID.get(2),keyword_same+"added");
 		//Clicks on Equipment Performance Search
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentPerformanceLink)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Checks for search method with magnifying glass
@@ -1255,7 +1261,7 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		Thread.sleep(2000);
 		//Scroll down
 		try{
@@ -1267,11 +1273,11 @@ public class CreateEquipmentCase {
 		}
 		Thread.sleep(1000);
 		//Click on added existing keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseExistingKeywordOnlyOne)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseExistingKeywordOnlyOne)));
 		Thread.sleep(2000);
 		//Clicks on remove keyword
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(2000);
@@ -1285,6 +1291,7 @@ public class CreateEquipmentCase {
 		}
 		Thread.sleep(1000);
 		//Add new keyword
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same+"changed");
@@ -1298,15 +1305,15 @@ public class CreateEquipmentCase {
 			jse.executeScript("scroll(0,2000)");
 		}
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -2076,18 +2083,20 @@ public class CreateEquipmentCase {
 	public void clickToShowNextRowForLink(WebDriver driver, By locator) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
 		}catch(org.openqa.selenium.StaleElementReferenceException r)
 		{
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(locator)));
 		}
 	}
 
 	public void addLinks(WebDriver driver, String title, String caseID) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Adding non video links first
 		//Scroll to Link element
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title));
@@ -2096,10 +2105,13 @@ public class CreateEquipmentCase {
 		l.sendKeys(equip3.noVideoLinkTitle3);
 		Thread.sleep(1000);
 		//Enter url 3
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);	
 		//To make url form appear click on title for link 1
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Click again to uncheck videobox
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Scroll to link 2
@@ -2108,13 +2120,17 @@ public class CreateEquipmentCase {
 		//Enter title for link 2 banana
 		l.sendKeys(equip3.noVideoLinkTitle2);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)));
 		//Link 2 becomes Link 1
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink2VideoCheckbox);
 		//Enter url 2
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)));
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);
+	//Click again to uncheck videobox
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
 		share2.scrollToTop(driver);
 		//Scroll to link 3
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3Title));
@@ -2122,13 +2138,17 @@ public class CreateEquipmentCase {
 		//Enter title for link 1 apple
 		l.sendKeys(equip3.noVideoLinkTitle1);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)).click();
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)).click();
 		//Link 3 becomes Link 1
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink3VideoCheckbox);
 		//Enter url 3
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)));
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);
+	//Click again to uncheck videobox
+			clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
 		share2.scrollToTop(driver);
 		/*
 		//For firefox 
@@ -2147,40 +2167,38 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4Title)).sendKeys(equip3.videoLinkTitle1);
 		Thread.sleep(1000);
 		//Enter url 4
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink4URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink4URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4URL)).sendKeys(equip3.videoLink);
 		//Move to video checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox));
 		share2.scrollToElement(driver, l);
 		//Click on video checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox)));
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox)).click();
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).getAttribute("value");
 		softly.assertThat(s).as("test data").contains(equip3.videoLinkTitle1);
 		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).getAttribute("value");
 		softly.assertThat(s1).as("test data").contains(equip3.videoLink);
-		//Enter title for link 5 : video link 2
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title));
 		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title)).sendKeys(equip3.videoLinkTitle2);	
 		Thread.sleep(1000);
 		//Enter url 5
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink5URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink5URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5URL)).sendKeys(equip3.videoLink);
 		//Move to viedo checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox));
 		share2.scrollToElement(driver, l);
 		//Click on video checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox)));
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox)).click();
+//  wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox)).click();
 		Thread.sleep(1000);
-		//verify video link became the first link
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title)).getAttribute("value");
 		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle2);
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)).getAttribute("value");
@@ -2190,17 +2208,17 @@ public class CreateEquipmentCase {
 		share2.scrollToElement(driver, l);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6Title)).sendKeys(equip3.videoLinkTitle3);	
 		Thread.sleep(1000);
-		//Enter url 5
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink6URL)).click();
+		//Enter url 6
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink6URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6URL)).sendKeys(equip3.videoLink);
 		//Move to video checkbox
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox));
 		share2.scrollToElement(driver, l);
 		//Click on video checkbox
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox)));
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox));
 		share2.scrollToElement(driver, l);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox)).click();
+//	wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox)).click();
 		Thread.sleep(1000);
 		//verify video link became the first link
 		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3Title)).getAttribute("value");
@@ -2213,12 +2231,13 @@ public class CreateEquipmentCase {
 		//Enter title for link 7
 		l.sendKeys(equip3.noVideoLinkTitle4);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)));
 		//Enter url 7
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink7URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink7URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink7Title);
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink7Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink7VideoCheckbox);
 		share2.scrollToTop(driver);
 		//Scroll to link 8
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8Title));
@@ -2226,12 +2245,13 @@ public class CreateEquipmentCase {
 		//Enter title for link 8
 		l.sendKeys(equip3.noVideoLinkTitle5);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).click();
 		//Enter url 8
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink8URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink8URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink8Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink8Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink8VideoCheckbox);
 		share2.scrollToTop(driver);
 		//Scroll to link 9
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9Title));
@@ -2239,12 +2259,13 @@ public class CreateEquipmentCase {
 		//Enter title for link 9
 		l.sendKeys(equip3.noVideoLinkTitle6);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).click();
 		//Enter url 9
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink9URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink9URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink9Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink9Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink9VideoCheckbox);
 		share2.scrollToTop(driver);
 		//Scroll to link 10
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10Title));
@@ -2252,12 +2273,13 @@ public class CreateEquipmentCase {
 		//Enter title for link 10
 		l.sendKeys(equip3.noVideoLinkTitle7);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).click();
 		//Enter url 10
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink10URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink10URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink10Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink10Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink10VideoCheckbox);
 		share2.scrollToTop(driver);
 		//Scroll to link 11
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11Title));
@@ -2265,12 +2287,14 @@ public class CreateEquipmentCase {
 		//Enter title for link 11
 		l.sendKeys(equip3.noVideoLinkTitle8);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).click();
 		//Enter url 11
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink11URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink11URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink11Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink11Title);
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8Title)));
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink11VideoCheckbox);
 		share2.scrollToTop(driver);
 		//Scroll to link 12
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12Title));
@@ -2278,12 +2302,13 @@ public class CreateEquipmentCase {
 		//Enter title for link 12
 		l.sendKeys(equip3.noVideoLinkTitle9);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).click();
 		//Enter url 12
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink12URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink12URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink12Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink12Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink12VideoCheckbox);
 		share2.scrollToTop(driver);
 		//Scroll to link 13
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13Title));
@@ -2291,23 +2316,279 @@ public class CreateEquipmentCase {
 		//Enter title for link 13
 		l.sendKeys(equip3.noVideoLinkTitle10);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).click();
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).click();
 		//Enter url 13
-		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink13URL)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink13URL)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).sendKeys(equip3.noVideoLink);
 		//To make url form appear click on title for link
-		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink13Title);
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink13Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink13VideoCheckbox);
 		share2.scrollToTop(driver);
 	}
+		
+		/*am_fixtempt0227
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Verify Related Link 1 - 4 only (with nonvideo/video links)
+		//Adding non video links first
+		//Scroll to Link element
+		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 1: coconut
+		l.sendKeys(equip3.noVideoLinkTitle3);//Coconut
+		Thread.sleep(1000);
+		//Enter url 1 for coconut
+		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink1URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).sendKeys(equip3.noVideoLink);	
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+	//Click to show Link2
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		share2.scrollToTop(driver);
+		Thread.sleep(1000);
+		//Scroll to link 2
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 2 banana
+		l.sendKeys(equip3.noVideoLinkTitle2);
+		Thread.sleep(2000);
+		//Enter url 2 for banana
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink2URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)).sendKeys(equip3.noVideoLink);
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+		//Click to show Link3
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink2VideoCheckbox);
+		share2.scrollToTop(driver);
+		//Scroll to link 3 
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 3 apple pie
+		l.sendKeys(equip3.noVideoLinkTitle1);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)).sendKeys(equip3.noVideoLink);
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1Title);
+	//Click to show Link4
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink3VideoCheckbox);
+
+		share2.scrollToTop(driver);
+		/*
+		//For firefox 
+		//Get browser name
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+		if(browserName.equals("firefox"))
+		{
+			//Save case edit case and then 
+			addLink2FirefoxBrowser(driver,caseID);
+		}*/
+		
+		/*am_fixtempt0227
+		//Adding video links
+		//Enter title for link 4 : video link 1
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4Title));
+		share2.scrollToElement(driver, l);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4Title)).sendKeys(equip3.videoLinkTitle1);
+		Thread.sleep(1000);
+		//Enter url 4
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink4URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4URL)).sendKeys(equip3.videoLink);
+		//Uncheck Video checkbox (Link1, Link2, Link3)
+		for(int i=1;i<4;i++) {
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		Thread.sleep(1000);
+		}
+		//After Uncheck, ralated link 1, 2, 3, 4 in order without Videocheckbox checked
+		//Move to Related Link4: video checkbox
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox));
+		share2.scrollToElement(driver, l);
+		//Click on Related Link4: video checkbox
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox)));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink4VideoCheckbox));
+		share2.scrollToElement(driver, l);
+		Thread.sleep(1000);
+		//verify Related Link4: video link became Related Link1
+		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1Title)).getAttribute("value");
+		softly.assertThat(s).as("test data").contains(equip3.videoLinkTitle1);
+		String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URL)).getAttribute("value");
+		softly.assertThat(s1).as("test data").contains(equip3.videoLink); 
+		
+		*/
+		
+		/*
+		//Uncheck Video Checkbox (Link4)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Enter title for link 5 : video link 2
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title));
+		share2.scrollToElement(driver, l);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5Title)).sendKeys(equip3.videoLinkTitle2);	
+		Thread.sleep(1000);
+		//Enter url 5
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink5URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5URL)).sendKeys(equip3.videoLink);
+		//Move to viedo checkbox
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox));
+		share2.scrollToElement(driver, l);
+		//Click on video checkbox
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox)));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox));
+		share2.scrollToElement(driver, l);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink5VideoCheckbox)));
+		Thread.sleep(1000);
+		//verify video link became the first link
+		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title)).getAttribute("value");
+		softly.assertThat(s3).as("test data").contains(equip3.videoLinkTitle2);
+		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URL)).getAttribute("value");
+		softly.assertThat(s4).as("test data").contains(equip3.videoLink);
+		//Uncheck Video Checkbox (Link5)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Enter title for link 6 : video link 3
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6Title));
+		share2.scrollToElement(driver, l);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6Title)).sendKeys(equip3.videoLinkTitle3);	
+		Thread.sleep(1000);
+		//Scroll to Related Link 5
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-linklabel-4"))));
+		//Enter url 6
+		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink6URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6URL)).sendKeys(equip3.videoLink);
+		//Move to video checkbox
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox));
+		share2.scrollToElement(driver, l);
+		//Click on video checkbox
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox)));
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox));
+		share2.scrollToElement(driver, l);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink6VideoCheckbox)));
+		Thread.sleep(1000);
+		//verify video link became the first link
+		String s5 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3Title)).getAttribute("value");
+		softly.assertThat(s5).as("test data").contains(equip3.videoLinkTitle3);
+		String s6 = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink3URL)).getAttribute("value");
+		softly.assertThat(s6).as("test data").contains(equip3.videoLink);
+		//Uncheck Video Checkbox (Link6)
+			clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 7
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 7
+		l.sendKeys(equip3.noVideoLinkTitle4);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)));
+		//Enter url 7
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink7URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink7URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink7Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink7VideoCheckbox);
+		share2.scrollToTop(driver);
+	//Uncheck Video Checkbox (Link7)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 8
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 8
+		l.sendKeys(equip3.noVideoLinkTitle5);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)));
+		//Enter url 8
+		wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink8URL)).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink8URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink8Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink8VideoCheckbox);
+		share2.scrollToTop(driver);
+		//Uncheck Video Checkbox (Link8)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 9
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 9
+		l.sendKeys(equip3.noVideoLinkTitle6);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)));
+		//Enter url 9
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink9URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink9URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink9Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink9VideoCheckbox);
+		share2.scrollToTop(driver);
+	//Uncheck Video Checkbox (Link9)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 10
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 10
+		l.sendKeys(equip3.noVideoLinkTitle7);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)));
+		//Enter url 10
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink10URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink10URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink10Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink10VideoCheckbox);
+		share2.scrollToTop(driver);
+		//Uncheck Video Checkbox (Link10)
+			clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 11
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 11
+		l.sendKeys(equip3.noVideoLinkTitle8);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)));
+		//Enter url 11
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink11URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink11URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink11Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink11VideoCheckbox);
+		share2.scrollToTop(driver);
+		//Uncheck Video Checkbox (Link11)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 12
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 12
+		l.sendKeys(equip3.noVideoLinkTitle9);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)));
+		//Enter url 12
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink12URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink12URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//	clickToShowNextRowForLink(driver,equipObj.EquipCasesLink12Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink12VideoCheckbox);
+		share2.scrollToTop(driver);
+		//Uncheck Video Checkbox (Link12)
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink1VideoCheckbox);
+		//Scroll to link 13
+		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13Title));
+		share2.scrollToElement(driver, l);
+		//Enter title for link 13
+		l.sendKeys(equip3.noVideoLinkTitle10);
+		Thread.sleep(2000);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)));
+		//Enter url 13
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.elementToBeClickable(equipObj.EquipCasesLink13URL)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink13URL)).sendKeys(equip3.noVideoLink);
+		//To make url form appear click on title for link
+//		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink13Title);
+		clickToShowNextRowForLink(driver,equipObj.EquipCasesLink13VideoCheckbox);
+		*/
+		
+	
 
 	public void addLink2FirefoxBrowser(WebDriver driver, String caseId)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Save case
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
@@ -2325,7 +2606,7 @@ public class CreateEquipmentCase {
 			if(li.getText().equals(caseId))
 				li.click();
 		}*/
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Click on edi button
@@ -2372,7 +2653,7 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on Edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 		Thread.sleep(2000);
 		//Scroll down
 		try{
@@ -2384,6 +2665,7 @@ public class CreateEquipmentCase {
 		}
 		Thread.sleep(1000);
 		//Add existing keyword
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(existingKeyword);
 		Thread.sleep(1500);
@@ -2402,10 +2684,10 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Clicks on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -2506,13 +2788,23 @@ public class CreateEquipmentCase {
 	public void verifyCasesWithoutLinks (WebDriver driver, String caseId) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to case collapsible
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
 		share2.scrollToElement(driver, l);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+caseId))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();;
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to show slides button
@@ -2554,23 +2846,42 @@ public class CreateEquipmentCase {
 			System.out.println("No related links slide");
 		}
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+caseId+"']/a"))));
 		//Scroll to element
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
 		//Click on collapsible to close 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+caseId))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();;
+			}
 	}
 
 	public void verifyCaseWithLinks (WebDriver driver, List<String>cases) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to case collapsible
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2))));
 		share2.scrollToElement(driver, l);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+cases.get(2)))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();;
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to show slides button
@@ -2676,7 +2987,7 @@ public class CreateEquipmentCase {
 		softly.assertThat(s9).as("test data").contains("9. ");
 		softly.assertThat(s9).as("test data").contains(equip3.noVideoLinkTitle6);
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))));
 	}
 
 	public void slideSecurityOnTest(WebDriver driver, String keyword, List<String>cases, String title, String username)throws Exception{
@@ -2692,6 +3003,7 @@ public class CreateEquipmentCase {
 	public void changeSlideSecurity(WebDriver driver, String username, int x)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on admin user name on top right corner
 		wait.until(ExpectedConditions.visibilityOfElementLocated(lpo.LoginNameOnTopRight)).click();
 		//Clicks on admin option
@@ -2703,7 +3015,7 @@ public class CreateEquipmentCase {
 			driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
 		}
 		//Clicks on Edit user
-		driver.findElement(By.id("pii-admin-user-edit")).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))));
 		//Wait for loading message
 		share2.loadingServer(driver);
 		for(int i=1;i<=2;i++)
@@ -2740,8 +3052,8 @@ public class CreateEquipmentCase {
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
 		//Click on save
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -2752,6 +3064,7 @@ public class CreateEquipmentCase {
 	public void searchCaseWithLinks(WebDriver driver, String keyword, List<String>cases, String title)throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -2781,29 +3094,39 @@ public class CreateEquipmentCase {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+cases.get(2)))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();;
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Get window id
 		String window = driver.getWindowHandle();
 		//Clicks on Show Slides
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+cases.get(2))));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+cases.get(2)));
 		String slide = element.getText();
-		System.out.println(slide);
+		System.out.println("printOut#3074Slide:   "+slide);
 		while (slide.contains("Show Slides(")==false)
 		{
 			Thread.sleep(1000);
 			System.out.println(slide);
 			slide = element.getText();
 		}		
-		System.out.println(slide);
+		System.out.println("printOut#3081Slide:   "+slide);
 		System.out.println(slide.indexOf("(") + "  "+ slide.indexOf(")"));
 		String number= slide.substring(slide.indexOf("(")+1, slide.indexOf(")"));
 		element.sendKeys(Keys.TAB);
 		element.sendKeys(Keys.ENTER);
 		driver.findElement(By.id("pii-slideshow-equip-F"+cases.get(2)+"-popup"));
-		System.out.println(number);
+		System.out.println("printOut#3087number:   "+number);
 		//View 2nd page of related links
 		//Click on previous
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
@@ -2834,7 +3157,7 @@ public class CreateEquipmentCase {
 		//Verify slide attributes
 		verifyAttributesOfSlide (driver,cases,title,Integer.parseInt(number),number);
 		//Click on 1st link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[2]/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+Integer.parseInt(number)+"]/div[2]/div[2]/a"))));
 		Thread.sleep(2000);
 		//Switch window
 		switchWindow(driver,window);
@@ -2900,14 +3223,14 @@ public class CreateEquipmentCase {
 		//Switch window
 		switchWindow(driver,window);
 		//Click on 4th link
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[5]/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[5]/a"))));
 		Thread.sleep(2000);
 		//Switch window
 		switchWindow(driver,window);
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/a"))));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void verifyAttributesOfSlide(WebDriver driver, List<String> cases, String title, int number1, String numberAll) throws Exception {
@@ -3021,6 +3344,7 @@ public class CreateEquipmentCase {
 		}			
 		//Clicks on Equipment cases
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink)).click();			
+		Thread.sleep(1000);
 		//Creates 5 cases
 		int num =5;
 		if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
@@ -3051,10 +3375,10 @@ public class CreateEquipmentCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on new case button
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)));
 			//Clicks on new case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			if(count==1)
@@ -3120,6 +3444,7 @@ public class CreateEquipmentCase {
 			Thread.sleep(1000);
 			if(count<6){
 				//Enters Keyword
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-blocks"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(keyword_same);
 				Thread.sleep(4000);
 				if(count==1)
@@ -3172,7 +3497,7 @@ public class CreateEquipmentCase {
 						jse.executeScript("scroll(0,1700)");
 					}
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				}
 			}
 			if(count == 6)
@@ -3188,7 +3513,8 @@ public class CreateEquipmentCase {
 					jse.executeScript("scroll(0,1700)");
 				}
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()[contains(.,'Search existing keywords')]]"))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 			}
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
@@ -3230,10 +3556,10 @@ public class CreateEquipmentCase {
 			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 			//Clicks on create case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			if(count==5){
@@ -3425,7 +3751,7 @@ public class CreateEquipmentCase {
 						jse.executeScript("scroll(0,1700)");
 					}
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				}
 			}
 			if(count == 6)
@@ -3441,7 +3767,7 @@ public class CreateEquipmentCase {
 					jse.executeScript("scroll(0,1700)");
 				}
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 			}
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
@@ -3487,10 +3813,10 @@ public class CreateEquipmentCase {
 			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 			//Clicks on create case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
@@ -3718,7 +4044,7 @@ public class CreateEquipmentCase {
 						jse.executeScript("scroll(0,1700)");
 					}
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				}
 			}
 			if(count == 6)
@@ -3734,7 +4060,7 @@ public class CreateEquipmentCase {
 					jse.executeScript("scroll(0,1700)");
 				}
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 			}
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
@@ -3779,7 +4105,7 @@ public class CreateEquipmentCase {
 			share2.scrollToTop(driver);
 			Thread.sleep(1000);
 			//Clicks on save
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 			//Clicks on create case
 			System.out.println(wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).getText());
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
@@ -3973,7 +4299,7 @@ public class CreateEquipmentCase {
 						jse.executeScript("scroll(0,1700)");
 					}
 					Thread.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				}
 			}
 			if(count == 6)
@@ -3989,7 +4315,7 @@ public class CreateEquipmentCase {
 					jse.executeScript("scroll(0,1700)");
 				}
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 			}
 			//Uploads 5 slides
 			WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipImageCollapsible));
@@ -4044,7 +4370,7 @@ public class CreateEquipmentCase {
 			//Clicks on create case
 			System.out.println(wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).getText());
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			share2.loadingServer(driver);
@@ -4100,6 +4426,7 @@ public class CreateEquipmentCase {
 	public void checkkeyword (WebDriver driver, List<String>caseId, String keyword_same, String key1, String key2, String key3, int y,String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on Error free bank
 		try
 		{
@@ -4205,7 +4532,7 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId.get(4))));
 		Thread.sleep(1000);
 		//Clicks on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void checkCase(WebDriver driver, String eq_caseId, String ee_caseId, String keyword_same_eq, String keyword_same_ee) throws Exception{

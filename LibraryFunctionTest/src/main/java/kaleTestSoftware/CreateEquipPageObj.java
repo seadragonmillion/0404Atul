@@ -32,7 +32,7 @@ public class CreateEquipPageObj {
 	public By EquipCaseAnswer = By.id("pii-admin-efse-answer");
 	public By EquipCaseNewKeywordField = By.id("pii-admin-efse-keyword-search-input");
 	public By EquipCaseNewKeywordAddButton = By.id("pii-admin-efse-keyword-new");
-	public By EquipCaseKeywordExistingList = By.xpath(".//*[@id='pii-admin-efse-keyword-blocks']/div[2]/ul");
+	public By EquipCaseKeywordExistingList = By.xpath(".//*[@id='pii-admin-efse-keyword-blocks']/div[2]/form/ul");
 	public By EquipImageUploadField = By.id("pii-admin-efse-upload-file-input");
 	public By EquipImageCollapsible = By.xpath(".//*[@id='pii-admin-efse-upload-form-selectedfiles-div']/h5/a");
 	public By EquipCaseSaveButton = By.id("pii-admin-efse-button-save");
@@ -87,6 +87,13 @@ public class CreateEquipPageObj {
 	public By EquipCasesLink4VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-3']/div[2]/table/tbody/tr[1]/td[1]/div/label");
 	public By EquipCasesLink5VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-4']/div[2]/table/tbody/tr[1]/td[1]/div/label");
 	public By EquipCasesLink6VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-5']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink7VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-6']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink8VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-7']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink9VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-8']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink10VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-9']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink11VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-10']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink12VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-11']/div[2]/table/tbody/tr[1]/td[1]/div/label");
+	public By EquipCasesLink13VideoCheckbox = By.xpath(".//*[@id='pii-admin-efse-linkdiv-12']/div[2]/table/tbody/tr[1]/td[1]/div/label");
 	public By EquipCasesLinkTitleOnSide = By.id("pii-admin-efse-linklabel-0");
 	public By EquipCasesLink1TitleCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-linkdiv-0']/div[1]/div/a");
 	public By EquipCasesLink1URLCrossSymbol = By.xpath(".//*[@id='pii-admin-efse-linkdiv-0']/div[2]/table/tbody/tr[1]/td[2]/div/a");
