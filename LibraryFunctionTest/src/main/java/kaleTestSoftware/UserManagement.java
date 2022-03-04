@@ -1967,6 +1967,14 @@ public class UserManagement {
 	public void verifyModuleList(WebDriver driver, WebElement ele) throws Exception {
 
 		Thread.sleep(2000);
+		ele.findElement(By.linkText("The Error-Free Zone"));
+		ele.findElement(By.linkText("Error-Free Document Preparation and Review"));
+		ele.findElement(By.linkText("Error-Free Instant Root Cause Analysis"));
+		ele.findElement(By.linkText("Error-Free Proactive Event Management for Event-Free"));
+		ele.findElement(By.linkText("Error-Free Proactive Safety Management for Injury-Free"));
+		ele.findElement(By.linkText("Error-Free Procedure Design and Use"));
+		ele.findElement(By.linkText("Error-Free Technical Error Prevention for Failure-Free Equipment"));
+		ele.findElement(By.linkText("Error-Free Troubleshooting"));
 		ele.findElement(By.linkText("Event Reports"));
 		ele.findElement(By.linkText("JIT Wisdom"));
 		ele.findElement(By.linkText("JIT Memory Joggers"));
@@ -1977,21 +1985,26 @@ public class UserManagement {
 		ele.findElement(By.linkText("Human Performance Inspector"));
 		ele.findElement(By.linkText("Systematic Reliability Inspection"));
 		ele.findElement(By.linkText("Human Error Instant RCA"));
+		ele.findElement(By.linkText("Decision Instant RCA"));
+		ele.findElement(By.linkText("Error Free Instant Decision Making"));
+		ele.findElement(By.linkText("Executive Management Instant RCA"));
 		ele.findElement(By.linkText("Equipment Failure Instant RCA"));
 		ele.findElement(By.linkText("Organization & Programmatic Instant RCA"));
 		ele.findElement(By.linkText("Instant Common Cause Analysis"));
 		ele.findElement(By.linkText("Job Observation Analysis"));
 		ele.findElement(By.linkText("Error-Free Review"));
-		ele.findElement(By.linkText("Remote Verification"));
-		//ele.findElement(By.linkText("eLearning"));
-		//ele.findElement(By.linkText("Error-Free Trainings"));
+		ele.findElement(By.linkText("iVerifier"));
+		ele.findElement(By.linkText("eLearning"));
+		ele.findElement(By.linkText("Error-Free Trainings"));
 		ele.findElement(By.linkText("Human Performance"));
+		ele.findElement(By.linkText("DREAM Library"));
+		ele.findElement(By.linkText("Equipment Data Bank"));
 		ele.findElement(By.linkText("Engineering Fundamentals"));
 		ele.findElement(By.linkText("Equipment Performance"));
 		ele.findElement(By.linkText("Electrical Failure Modes"));
 		ele.findElement(By.linkText("Mechanical Failure Modes"));
 		ele.findElement(By.linkText("Prevention of Design Deficiencies"));
-		ele.findElement(By.linkText("Systematic Reliability Inspection"));
+		ele.findElement(By.linkText("Systematic Reliability Inspection Search"));
 	}
 
 	public void createGroup (WebDriver driver, String company_id) throws Exception {

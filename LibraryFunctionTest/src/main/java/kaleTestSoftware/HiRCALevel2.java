@@ -396,9 +396,9 @@ public class HiRCALevel2 {
 		//LOP1
 		verifyChangeCorrectiveActionInLOPTable(driver,2,correctiveActionLOP1,level31stLOP);
 		//LOP2
-		verifyChangeCorrectiveActionInLOPTable(driver,3,correctiveActionLOP2,level32ndLOP);
+		verifyChangeCorrectiveActionInLOPTable2(driver,3,correctiveActionLOP2,level32ndLOP);
 		//LOP3
-		verifyChangeCorrectiveActionInLOPTable(driver,4,correctiveActionLOP3,level33rdLOP);
+		verifyChangeCorrectiveActionInLOPTable3(driver,4,correctiveActionLOP3,level33rdLOP);
 		//Download report and verify in pdf new corrective action
 		downloadSelectFunctionChangeCorrectiveAction(driver,correctiveActionLOP1,correctiveActionLOP2,correctiveActionLOP3);
 	}
@@ -620,6 +620,7 @@ public class HiRCALevel2 {
 	public void verifyChangeCorrectiveActionInLOPTable(WebDriver driver, int tableNumber, List<String> correctiveActionLOP1, List<String> level31stLOP)throws Exception {
 
 		WebDriverWait wait1 = new WebDriverWait(driver,10);		
+		try {
 		for(int i=1;i<=level31stLOP.size();i++)
 		{
 			//Verify the corrective action
@@ -627,8 +628,41 @@ public class HiRCALevel2 {
 			String r1 = s.replaceAll("\u00AD", "");
 			softly.assertThat(r1).as("test data").isIn(correctiveActionLOP1);
 		}
-	}
+		}catch (Exception e) {
+		}
+		}
+	
 
+	public void verifyChangeCorrectiveActionInLOPTable2(WebDriver driver, int tableNumber, List<String> correctiveActionLOP2, List<String> level32ndLOP)throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,10);		
+		try {
+		for(int i=1;i<=level32ndLOP.size();i++)
+		{
+			//Verify the corrective action
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[3]"))).getText().trim();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(correctiveActionLOP2);
+		}
+		} catch (Exception e) {
+		
+	}
+		}
+	public void verifyChangeCorrectiveActionInLOPTable3(WebDriver driver, int tableNumber, List<String> correctiveActionLOP3, List<String> level33rdLOP)throws Exception {
+
+		WebDriverWait wait1 = new WebDriverWait(driver,10);	
+			try {
+		for(int i=1;i<=level33rdLOP.size();i++)
+		{
+			//Verify the corrective action
+			String s = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='irca-rpt']/table["+tableNumber+"]/tbody/tr["+i+"]/td[3]"))).getText().trim();
+			String r1 = s.replaceAll("\u00AD", "");
+			softly.assertThat(r1).as("test data").isIn(correctiveActionLOP3);
+		}
+		} catch (Exception e) {
+		}
+	}
+	
 	public void changeCorrectiveAction (WebDriver driver, List<String> level31stLOP, int n) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
@@ -662,13 +696,15 @@ public class HiRCALevel2 {
 	public List<String> getCorrectiveAction(WebDriver driver, List<String> level31stLOP, int n)throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,3);
+		// Custom code to randomly select all the available HML-
 		List<String> k = new ArrayList<String>();
 		if(level31stLOP.isEmpty()==false)
 		{
 			//Get corrective action
-			for(int i=1;i<=(level31stLOP.size()*3);i=i+3)
+			for(int i=4;i<=(level31stLOP.size()*3);i=i+3)
 			{
-				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))).getAttribute("value");
+				//String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+(i+3)+"]/td/textarea"))).getAttribute("value");
+				String s1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/table["+n+"]/tbody/tr["+i+"]/td/textarea"))).getAttribute("value");
 				k.add(s1);
 			}
 		}
