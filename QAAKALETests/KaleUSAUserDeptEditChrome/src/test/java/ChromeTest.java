@@ -48,7 +48,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+ //           driver.quit();
         }
 	};
 	
