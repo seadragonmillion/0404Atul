@@ -444,7 +444,7 @@ public class EiRCAChinese {
 	public void downloadSelectFunction (WebDriver driver, List<String> chineseData) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj2 = new HiRCAEvent();
 		obj2.deleteFiles(file);
 		//Get browser name
@@ -481,8 +481,8 @@ public class EiRCAChinese {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eircaObj.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {
@@ -551,7 +551,7 @@ public class EiRCAChinese {
 		Thread.sleep(3000);
 		//If no pdf repeat
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -561,7 +561,7 @@ public class EiRCAChinese {
 		}catch(java.util.NoSuchElementException r)
 		{
 			//deletes files in reports folder before starting to download
-			File file = new File("C://Users//IEUser//Downloads//reports//");
+			File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 			HiRCAEvent obj2 = new HiRCAEvent();
 			obj2.deleteFiles(file);
 			// press Ctrl+S the Robot's way
@@ -657,7 +657,7 @@ public class EiRCAChinese {
 	public void pdfCheck(WebDriver driver, List<String> verifyChinese) throws Exception {
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field

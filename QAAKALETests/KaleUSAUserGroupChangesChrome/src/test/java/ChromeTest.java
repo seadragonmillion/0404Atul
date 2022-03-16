@@ -45,7 +45,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+//            driver.quit();
         }
 	};
 	
@@ -179,8 +179,8 @@ public class ChromeTest {
 	
 	public void afterTest(UserManagement obj1) throws Exception{
 		
-		driver.quit();
-		obj1.softAssert();
+//		driver.quit();
+//		obj1.softAssert();
 	}
 
 }

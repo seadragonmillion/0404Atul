@@ -191,7 +191,7 @@ public class ErrorMeter3 {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		//Set new size to make it small
-		driver.manage().window().setSize(new Dimension(650,900));
+//		driver.manage().window().setSize(new Dimension(650,900));
 		//Verify tab titles
 		//E
 		String e = wait.until(ExpectedConditions.visibilityOfElementLocated(emObj.ErrorMeterPAPEEnvironmentTab)).getText();

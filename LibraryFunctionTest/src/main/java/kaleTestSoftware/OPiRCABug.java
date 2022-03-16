@@ -629,19 +629,26 @@ public class OPiRCABug {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//Click on Analysis
+		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
+		//Clicks on OPiRCA
+		wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
 		//Click on info tab
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-0"))));
+//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-0"))));
 		Thread.sleep(3000);
 		//Click on +new button
 		jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-opa-button-new")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-title"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-opa-dialog-confirmed")));
+		try{
+			WebElement newButton = new WebDriverWait(driver, 30).until(
+			        ExpectedConditions.elementToBeClickable(By.id("pii-opa-dialog-confirmed")));
+			newButton.click();
+					}catch(org.openqa.selenium.WebDriverException t)
+					{
+						jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'new report')]"))));
+					}
 	    //Wait for loading message
 			share2.loadingServer(driver);
-			//Click on Analysis
-			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.AnalysisLink)).click();
-			//Clicks on OPiRCA
-			wait.until(ExpectedConditions.visibilityOfElementLocated(op.OPiRCALink)).click();
+			
 		//Fill mandatory details on Info page and click next
 		opc.chineseEventInfoFill(driver,text);
 	  //Clicks on skip button on Info Page:Sequence of Event
@@ -761,8 +768,16 @@ public class OPiRCABug {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new button
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(op.NewButton)));
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.invisibilityOfElementLocated(op.OPiRCASaveConfirmButton)));
-		
+		//Click on +new button
+				jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-opa-button-new")));
+				try{
+					WebElement newButton = new WebDriverWait(driver, 30).until(
+					        ExpectedConditions.elementToBeClickable(By.id("pii-opa-dialog-confirmed")));
+					newButton.click();
+							}catch(org.openqa.selenium.WebDriverException t)
+							{
+								jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'new report')]"))));
+							}
 	//Wait for loading message
 		share2.loadingServer(driver);
 		//Click on Analysis

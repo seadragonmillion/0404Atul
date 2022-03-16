@@ -485,7 +485,7 @@ public class HiRCAEvent {
 //		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(3000);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF5_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){	
 			System.out.println("AutoItScript -SaveReport result: Unexpected alert");
@@ -494,10 +494,10 @@ public class HiRCAEvent {
 		}catch (NoAlertPresentException f){
 			System.out.println ("AutoItScript -SaveReport result: No unexpected alert");
 		}
-//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		/*am_not applicable
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {
@@ -534,7 +534,7 @@ public class HiRCAEvent {
 	public void downloadRecordFirefox(WebDriver driver,  String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -585,7 +585,7 @@ public class HiRCAEvent {
 	public void downloadRecordIE10(WebDriver driver,  String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -618,7 +618,7 @@ public class HiRCAEvent {
 		}
 		Thread.sleep(7000);
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {
@@ -660,7 +660,7 @@ public class HiRCAEvent {
 	public void downloadRecordIE11(WebDriver driver,  String get_date, String get_time, String get_dept, String creationDate) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -728,7 +728,7 @@ public class HiRCAEvent {
 
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -737,7 +737,7 @@ public class HiRCAEvent {
 		}
 		System.out.println(results.get(0));
 		//Loads the file to check if correct data is present
-		String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+		String fileName="C://Users//mama//Downloads//EFTestDownloadReports//"+results.get(0);
 		File oldfile = new File(fileName);
 		//Checks number of images in pdf
 		PDDocument pddoc= PDDocument.load(oldfile);

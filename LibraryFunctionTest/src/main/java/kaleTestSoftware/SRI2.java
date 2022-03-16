@@ -663,7 +663,7 @@ public class SRI2 {
 	public void downloadReportChrome(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
@@ -678,7 +678,7 @@ public class SRI2 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		System.out.println("before pdfCheck before runtime");
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 
 //		pdfCheck(softly);
 		
@@ -695,7 +695,7 @@ public class SRI2 {
 	public void downloadReportFirefox(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
@@ -732,7 +732,7 @@ public class SRI2 {
 	public void downloadReportIE10(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File = new File("C://Users//IEUser//Downloads//reports//");
+		//File = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
@@ -770,7 +770,7 @@ public class SRI2 {
 	public void downloadReportIE11(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -805,7 +805,7 @@ public class SRI2 {
 	public void pdfCheck(SoftAssertions softly) throws Exception{
 
 		// specify your directory
-		//Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		//Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 	Path dir = Paths.get("C://Users//mama//Pictures//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing

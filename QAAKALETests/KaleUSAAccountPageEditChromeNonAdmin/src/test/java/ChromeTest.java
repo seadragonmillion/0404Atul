@@ -47,7 +47,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+//            driver.quit();
         }
 	};
 	
@@ -63,7 +63,7 @@ public class ChromeTest {
       		});
         chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
         options.setExperimentalOption("prefs", chromeOptionsMap);
-        String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+        String downloadFilepath = "C:\\Users\\mama\\Downloads\\EFTestDownloadReports";
         chromeOptionsMap.put("download.default_directory", downloadFilepath);
         options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
         options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
@@ -118,7 +118,7 @@ public class ChromeTest {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
-		driver.quit();
+//		driver.quit();
 		obj.softAssert();
 	}
 }

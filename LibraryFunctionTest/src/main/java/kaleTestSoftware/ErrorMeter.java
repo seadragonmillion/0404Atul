@@ -1027,7 +1027,7 @@ public class ErrorMeter {
 	public void downloadReportIE(WebDriver driver, int y) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		String url = driver.getCurrentUrl();
@@ -1071,7 +1071,7 @@ public class ErrorMeter {
 	public void downloadReportIE11(WebDriver driver, int y) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		Thread.sleep(2000);
@@ -1115,7 +1115,7 @@ public class ErrorMeter {
 	public void downloadReportFirefox (WebDriver driver, int y) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -1166,7 +1166,7 @@ public class ErrorMeter {
 
 	public void downloadReportChrome (WebDriver driver, int y) throws Exception {
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports");
 		String url = driver.getCurrentUrl();
 //	deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -1189,7 +1189,7 @@ public class ErrorMeter {
 		if(y==100)
 			pdfCheckError100(driver,url);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF5_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){	
 			System.out.println("AutoItScript -SaveReport result: Unexpected alert");
@@ -1241,7 +1241,7 @@ public class ErrorMeter {
 
 		String text = em2.error0Data(driver,url);
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -1291,7 +1291,7 @@ public class ErrorMeter {
 
 		List<String> text = em2.error50Data(driver,url);
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -1349,7 +1349,7 @@ public class ErrorMeter {
 
 		List<String> text = em2.error100Data(driver,url);
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field

@@ -111,7 +111,7 @@ public class HiRCAEventInfoTest {
 				exception.printStackTrace();
 			}
 		}
-//		driver.quit();
+		driver.quit();
 		HiRCAEvent hirca = new HiRCAEvent();
 		hirca.softAssert();
 	}

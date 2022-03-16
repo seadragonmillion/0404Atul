@@ -199,7 +199,7 @@ public class OPiRCA {
 		Thread.sleep(8000);
 		System.out.println("Print before pdfCheck before downloadReportChrome");
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF5_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){
 			System.out.println("Unexpected alert for download");
@@ -208,7 +208,7 @@ public class OPiRCA {
 		}catch (NoAlertPresentException f){
 			System.out.println ("No unexpected alert for download");
 		}
-//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		pdfCheck(hircaNewList, apparentCausesNew, apparentCausesAnswersNew, hml, options, step2);
 		for (String winHandle : driver.getWindowHandles()) {
 			driver.switchTo().window(winHandle);
@@ -349,7 +349,7 @@ public class OPiRCA {
 			List<String> step2) throws Exception {
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -920,21 +920,29 @@ public class OPiRCA {
 						.getText().trim();
 				// Remove first appearing : and store in list
 				int m = s.indexOf(":");
+				System.out.println("printOut#923 m String value: "+m);
+				String s3 = s.substring(0, m);
+				System.out.println("printOut#925 s3 String value: "+s3);
+				String s4 =  s.substring(m + 1, s.length());
+				System.out.println("printOut#927 s4 String value: "+s4);
 				if (Character.isDigit(s.charAt(m - 1)) == true) {
 					String s2 = s.substring(0, m) + s.substring(m + 1, s.length());
+					System.out.println("printOut#930 s2 String value:" +s2);
 					ac1.add(s2);
 				}
 				i = i + 1;
 				int n = s.indexOf(".");
+				System.out.println("printOut#935 n value: "+n);
 				// Gets only apparent cause name from answer
 				String s1 = s.substring(0, n);
+				System.out.println("printOut#938 s1 String value: "+s1);
 				if ((ac.contains(s1) == false)) {
 					if (step2.contains(s1) == false) {
-						System.out.println(s1);
-						System.out.println(ac.contains(s1));
-						System.out.println(ac);
-						System.out.println(step2.contains(s1));
-						System.out.println(step2);
+						System.out.println("printOut#941 s1 String value in contain loop"+s1);
+						System.out.println("printOut#942 s1 value in ac.contains1 loop" +ac.contains(s1));
+						System.out.println("printOut#943 ac value in contain loop" +ac);
+						System.out.println("printOut#944 step2 contain s1 value in contain loop" +step2.contains(s1));
+						System.out.println("printOut#945 step2 value in contain loop"+step2);
 						softly.fail("Apparent cause unselected is still present: " + s);
 					}
 				}
@@ -2012,7 +2020,7 @@ public class OPiRCA {
 		System.out.println(v);
 		if (browserName.toLowerCase().contains("safari") == false) {
 			// deletes files in reports folder before starting to download
-			File file = new File("C://Users//IEUser//Downloads//reports//");
+			File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 			deleteFiles(file);
 		}
 		// Download report to check pdf

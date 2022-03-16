@@ -40,6 +40,7 @@ public class HiRCALevel2Text {
 	public void step2verify317 (WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//question
 		String heading = wait.until(ExpectedConditions.visibilityOfElementLocated(hirca.PageQuestion)).getText();
 		softly.assertThat(heading).as("test data").contains("QTM - equipment qualification, testing and maintenance");
@@ -125,8 +126,7 @@ public class HiRCALevel2Text {
 		String c7 = wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer3)).getText();
 		softly.assertThat(c7).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.17.3
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer3)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer3)));
 		//text inside
 		String c8 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c8).as("test data").contains("Extrapolate too far without qualification tests?");
@@ -135,7 +135,7 @@ public class HiRCALevel2Text {
 		String c8b = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[4]/fieldset/div/div[2]/div[2]/div/ul/li[3]"))).getText();
 		softly.assertThat(c8b).as("test data").contains("Uncertainty analysis of non-code calculations?");
 		//Click on 2nd collapsible for 3.17.3
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer3)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer3)));
 		
 		/*am_not applicable
 		//3rd collapsible 3.17.3
@@ -157,12 +157,12 @@ public class HiRCALevel2Text {
 		String c13 = wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer4)).getText();
 		softly.assertThat(c13).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.17.4
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer4)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer4)));
 		//text inside
 		String c14 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[5]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c14).as("test data").contains("Review operation procedure preparation guidelines?");
 		//Click on 2nd collapsible for 3.17.4
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer4)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer4)));
 		
 		/*am_not applicable
 		//3rd collapsible 3.17.4
@@ -188,12 +188,12 @@ public class HiRCALevel2Text {
 		String c18 = wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer5)).getText();
 		softly.assertThat(c18).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.17.5
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer5)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer5)));
 		//text inside
 		String c19 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[6]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c19).as("test data").contains("Surveillance tests not performed?");
 		//Click on 2nd collapsible for 3.17.5
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer5)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer5)));
 		
 		/*am_not applicable
 		//3rd collapsible 3.17.5
@@ -215,14 +215,14 @@ public class HiRCALevel2Text {
 		String c15 = wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer6)).getText();
 		softly.assertThat(c15).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.17.6
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer6)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer6)));
 		//text inside
 		String c28 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c28).as("test data").contains("Preventive maintenance not performed?");
 		String c28a = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[7]/fieldset/div/div[2]/div[2]/div/ul/li[2]"))).getText();
 		softly.assertThat(c28a).as("test data").contains("Corrective maintenance not effective?");
 		//Click on 2nd collapsible for 3.17.6
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer6)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer6)));
 		
 		/*am_not applicable
 		//3rd collapsible 3.17.6
@@ -246,12 +246,12 @@ public class HiRCALevel2Text {
 		String c41 = wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer7)).getText();
 		softly.assertThat(c41).as("test data").contains("Further Investigation");
 		//Click on 2nd collapsible for 3.17.7
-		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer7)));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer7)));
 		//text inside
 		String c42 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='efi-irca-answers']/div[8]/fieldset/div/div[2]/div[2]/div/ul/li[1]"))).getText();
 		softly.assertThat(c42).as("test data").contains("Check that all necessary and referred to equipment is not only labeled, but also labeled correctly");
 		//Click on 2nd collapsible for 3.17.7
-		wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer7)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(FurtherInvestigationCollapsibleAnswer7)));
 		
 		/*am_not applicable
 		//3rd collapsible 3.17.7

@@ -501,12 +501,12 @@ public class RemoteVerification {
 		//Uploads picture 2
 		String file2 = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 		driver.findElement(rv.RV2ndImageField).sendKeys(file2);
-		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 		//Clears image
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)));
 		//Re-uploads same picture 2
 		driver.findElement(rv.RV2ndImageField).sendKeys(file2);
-		Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 		//Clears image
 		jse.executeScript("arguments[0].click();", wait1.until(ExpectedConditions.visibilityOfElementLocated(rv.RV2ndImageClearButton)));
 		//Re-uploads different picture 2
@@ -887,7 +887,7 @@ public class RemoteVerification {
 	public void downloadRecordChrome(WebDriver driver, String verifier, String username) throws Exception {
 
 		//deletes files in reports folder before starting to download
-//		File file = new File("C://Users//IEUser//Downloads//reports//");
+//		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 //		deleteFiles(file);	    	
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -901,7 +901,7 @@ public class RemoteVerification {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		Thread.sleep(7000);
 		pdfCheck(driver,verifier,username,url);
 		for(String winHandle : driver.getWindowHandles()){
@@ -916,7 +916,7 @@ public class RemoteVerification {
 	public void downloadRecordFirefox(WebDriver driver, String verifier, String username) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);		  
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String url = driver.getCurrentUrl();
@@ -961,7 +961,7 @@ public class RemoteVerification {
 	public void downloadRecordIE(WebDriver driver, String verifier, String username) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		String url = driver.getCurrentUrl();
 		deleteFiles(file);		  
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -998,7 +998,7 @@ public class RemoteVerification {
 	public void downloadRecordIE11(WebDriver driver, String verifier, String username) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		String url = driver.getCurrentUrl();
 		deleteFiles(file);		  
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -1047,7 +1047,7 @@ public class RemoteVerification {
 	public void pdfCheck(WebDriver driver, String verifier, String username, String url) throws Exception {
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -1056,7 +1056,7 @@ public class RemoteVerification {
 		}
 		System.out.println(results.get(0));
 		//Loads the file to check if correct data is present
-		String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+		String fileName="C://Users//mama//Downloads//EFTestDownloadReports//"+results.get(0);
 		File oldfile = new File(fileName);
 		//Checks number of images in pdf
 		PDDocument pddoc= PDDocument.load(oldfile);
@@ -1372,7 +1372,7 @@ public class RemoteVerification {
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 		driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/clickcancel3onHpSpectre.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/clickcancel2.exe");
 			q.waitFor();
 			}catch (UnhandledAlertException f){	
 			System.out.println("Unexpected alert");

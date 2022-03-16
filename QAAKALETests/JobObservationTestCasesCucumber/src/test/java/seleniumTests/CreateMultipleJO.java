@@ -191,7 +191,7 @@ public class CreateMultipleJO {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(des_id))).sendKeys("Des0"+(j+1));
 			//Choose File upload photo
 			driver.findElement(By.id("pii-jo-event-file-"+j)).sendKeys(filepath);
-			Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+			Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 			//Click on attach another file to add 2nd supporting file photo
 			WebElement clickAddAttachBtn= driver.findElement(By.id("pii-jo-addnewfile-button"));
 			if(j==0)

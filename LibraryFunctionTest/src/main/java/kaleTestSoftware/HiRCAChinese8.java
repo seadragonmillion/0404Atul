@@ -294,7 +294,7 @@ public class HiRCAChinese8 {
 	public void downloadReportChrome (WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -311,7 +311,7 @@ public class HiRCAChinese8 {
 		Thread.sleep(8000);
 		//Save report with AutoIt script
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF5_amlocal.exe");
 			q.waitFor();
 			Thread.sleep(3000);
 		}catch (UnhandledAlertException f){	
@@ -336,7 +336,7 @@ public class HiRCAChinese8 {
 	public void downloadReportFirefox(WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -370,7 +370,7 @@ public class HiRCAChinese8 {
 		Thread.sleep(2000);
 		//If no pdf repeat
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -407,7 +407,7 @@ public class HiRCAChinese8 {
 	public void downloadReportIE(WebDriver driver, SoftAssertions softly, List<String> verifyChinese)throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -434,7 +434,7 @@ public class HiRCAChinese8 {
 		Thread.sleep(7000);
 		//If no pdf repeat
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -481,7 +481,7 @@ public class HiRCAChinese8 {
 	public void downloadReportIE11(WebDriver driver, SoftAssertions softly, List<String> verifyChinese)throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -508,7 +508,7 @@ public class HiRCAChinese8 {
 		Thread.sleep(7000);
 		//If no pdf repeat
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -543,7 +543,7 @@ public class HiRCAChinese8 {
 	public void pdfCheck(WebDriver driver, SoftAssertions softly, List<String> verifyChinese) throws Exception {
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field

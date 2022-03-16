@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
  features = "src/test/resources/features" ,
- glue= {"seleniumTests"} ,
- tags= {"@ChromeTest"}
+ glue= {"seleniumTests"}// ,
+// tags= {"@ChromeTest"}
  )
 
 public class runnerTest {

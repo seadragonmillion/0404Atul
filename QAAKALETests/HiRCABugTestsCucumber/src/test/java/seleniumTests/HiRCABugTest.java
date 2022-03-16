@@ -68,7 +68,7 @@ public class HiRCABugTest {
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);
-		driver.manage().window().maximize();
+//		driver.manage().window().maximize();
 	}
 
 	@After
