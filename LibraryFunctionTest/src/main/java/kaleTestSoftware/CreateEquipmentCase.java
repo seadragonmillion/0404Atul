@@ -612,6 +612,7 @@ public class CreateEquipmentCase {
 	public void deletePreviousCase(WebDriver driver, String title) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,40);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Error free bank
@@ -619,7 +620,7 @@ public class CreateEquipmentCase {
 		//Clicks on Equipment Performance Search (PII)
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentDatabankOnlyLink1)).click();
 		//Enters the title in term search field
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(title);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
@@ -762,9 +763,10 @@ public class CreateEquipmentCase {
 		for(int i=1;i<=11;i++)
 		{
 			//Click on delete link 2 cross symbol of URL
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)));
+			Thread.sleep(500); 
 			//Click on delete link 2 cross symbol of Title
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2TitleCrossSymbol)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2TitleCrossSymbol)));
 			Thread.sleep(500);
 		}		
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -777,9 +779,11 @@ public class CreateEquipmentCase {
 				try{
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)));
 					//Click on delete link 1 cross symbol of URL
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)).click();
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)));
+					Thread.sleep(500);
 					//Click on delete link 1 cross symbol of Title
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2TitleCrossSymbol)).click();
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2TitleCrossSymbol)));
+					Thread.sleep(500);
 				}catch(org.openqa.selenium.TimeoutException t)
 				{
 					break;
@@ -787,9 +791,11 @@ public class CreateEquipmentCase {
 			}
 		}
 		//Click on delete link 1 cross symbol of URL
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URLCrossSymbol)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URLCrossSymbol)));
+		Thread.sleep(500);
 		//Click on delete link 1 cross symbol of Title
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1TitleCrossSymbol)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1TitleCrossSymbol)));
+		Thread.sleep(500);
 		if (browserName.contains("internet")==true)
 		{
 			while(true)
@@ -797,9 +803,11 @@ public class CreateEquipmentCase {
 				try{
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URLCrossSymbol)));
 					//Click on delete link 1 cross symbol of URL
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URLCrossSymbol)).click();
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1URLCrossSymbol)));
+					Thread.sleep(500);
 					//Click on delete link 1 cross symbol of Title
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1TitleCrossSymbol)).click();
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1TitleCrossSymbol)));
+					Thread.sleep(500);
 				}catch(org.openqa.selenium.TimeoutException t)
 				{
 					break;
@@ -813,7 +821,7 @@ public class CreateEquipmentCase {
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSaveButton)));
 		//Clicks on create case
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupConfirmButton)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		Thread.sleep(1000);
@@ -850,7 +858,16 @@ public class CreateEquipmentCase {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+ee_case.get(2)))).click();
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+ee_case.get(2)))).click();
+		} catch (Exception e) {
+			try {
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+ee_case.get(2)))));
+			} catch (Exception e1) {
+				System.out.println("#860 collapsible not click");
+			}
+			
+		}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
@@ -884,7 +901,7 @@ public class CreateEquipmentCase {
 		//Closes the slideshow
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+ee_case.get(2)+"']/a"))).click();
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void editLinks (WebDriver driver, List<String> ee_case) throws Exception {
@@ -2679,7 +2696,10 @@ public class CreateEquipmentCase {
 		}
 		Thread.sleep(1000);
 		WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-		element.findElement(chc.FirstChildInList).click();
+		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))));
+		Thread.sleep(300);
+		//element.findElement(chc.FirstChildInList).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-keyword-search-list']//li[@class='ui-first-child']"))));
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -2753,7 +2773,7 @@ public class CreateEquipmentCase {
 				verifyCaseWithLinks(driver, ee_cases);
 			else{
 				//Verify all cases without links
-				verifyCasesWithoutLinks(driver, ee_cases.get(i));
+				//verifyCasesWithoutLinks(driver, ee_cases.get(i));
 			}			  
 		}
 		//Scroll up
@@ -2774,7 +2794,7 @@ public class CreateEquipmentCase {
 				verifyCaseWithLinks(driver, ee_cases);
 			else{
 				//Verify all cases without links
-				verifyCasesWithoutLinks(driver, ee_cases.get(i));
+				//verifyCasesWithoutLinks(driver, ee_cases.get(i));
 			}			  
 		}
 		//Scroll up
@@ -2789,28 +2809,34 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Actions builder = new Actions(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to case collapsible
 		WebElement l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId)));
+		System.out.println("printOutcaseIDforcollapsible #2797  "+caseId);
 		share2.scrollToElement(driver, l);
 		//Click on collapsible 
 		try {
-			Actions builder = new Actions(driver);
 			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+caseId))).click().build().perform();
-			}catch(org.openqa.selenium.ElementNotInteractableException u){
+			System.out.println("printOutcaseIDforcollapsible #28021stTryblcok "+caseId);
+		} catch (Exception e) {
+			try {
 				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
+				Thread.sleep(500);
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
-			}catch(Exception e) {
-				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))).click();;
+				System.out.println("printOutcaseIDforcollapsible #2808in2ndTryblock "+caseId);
+			} catch (Exception e1) {
 			}
+			
+		}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to show slides button
-		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+caseId)));
+		 l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+caseId)));
 		share2.scrollToElement(driver, l);
 		//Clicks on Show Slides
+		System.out.println("printOutcaseID of Slideshow #2815"+caseId);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+caseId)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+caseId));
 		String slide = element.getText();
@@ -2826,6 +2852,7 @@ public class CreateEquipmentCase {
 		String number= slide.substring(slide.indexOf("(")+1, slide.indexOf(")"));
 		element.sendKeys(Keys.TAB);
 		element.sendKeys(Keys.ENTER);
+		System.out.println("printOutcaseIDforcollapsibleafterTab#2831  "+caseId);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-equip-F"+caseId+"-popup")));
 		System.out.println(number);
 		Thread.sleep(1000);
@@ -2851,7 +2878,6 @@ public class CreateEquipmentCase {
 		share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
 		//Click on collapsible to close 
 		try {
-			Actions builder = new Actions(driver);
 			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+caseId))).click().build().perform();
 			}catch(org.openqa.selenium.ElementNotInteractableException u){
 				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+caseId))));
@@ -2866,6 +2892,7 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Actions builder = new Actions(driver);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to case collapsible
@@ -2873,19 +2900,25 @@ public class CreateEquipmentCase {
 		share2.scrollToElement(driver, l);
 		//Click on collapsible 
 		try {
-			Actions builder = new Actions(driver);
 			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+cases.get(2)))).click().build().perform();
-			}catch(org.openqa.selenium.ElementNotInteractableException u){
-				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
-				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
-			}catch(Exception e) {
-				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();;
+			Thread.sleep(500);
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
+				}catch(Exception e) {
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2))));
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
+					} catch (Exception e1) {
+					}
 			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Move to show slides button
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+cases.get(2))));
+		try {
+			builder.moveToElement(l).build().perform();
+		}catch(Exception e) {
+			jse.executeScript("arguments[0].scrollIntoView(true);", l);
+		}
 		share2.scrollToElement(driver, l);
 		//Clicks on Show Slides
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+cases.get(2))));
@@ -3039,12 +3072,12 @@ public class CreateEquipmentCase {
 		if(x==1)
 		{
 			//Turn slide security on
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-on']"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-on']"))));
 		}
 		if(x==0)
 		{
 			//Turn slide security off
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-off']"))).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@for='pii-admin-user-slidesecurity-off']"))));
 		}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -3065,6 +3098,7 @@ public class CreateEquipmentCase {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Actions builder = new Actions(driver);
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -3091,18 +3125,22 @@ public class CreateEquipmentCase {
 		//Enters case id
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).sendKeys(Keys.ENTER);
+		System.out.println("printOut#3128" +keyword);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-question-list-equip']/div/div/div[5]"))));
 		//Click on collapsible 
 		try {
-			Actions builder = new Actions(driver);
 			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+cases.get(2)))).click().build().perform();
-			}catch(org.openqa.selenium.ElementNotInteractableException u){
-				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
-				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
-			}catch(Exception e) {
-				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(1)))));
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))).click();;
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
+			Thread.sleep(500);
+		}catch(Exception e) {
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2))));
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+cases.get(2)))));
+						Thread.sleep(500);
+					} catch (Exception e1) {
+					}
 			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -3113,20 +3151,20 @@ public class CreateEquipmentCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-equip-F"+cases.get(2))));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-equip-F"+cases.get(2)));
 		String slide = element.getText();
-		System.out.println("printOut#3074Slide:   "+slide);
+		System.out.println("printOut#3116Slide:   "+slide);
 		while (slide.contains("Show Slides(")==false)
 		{
 			Thread.sleep(1000);
-			System.out.println(slide);
+			System.out.println("printOut#3120Slide: "+slide);
 			slide = element.getText();
 		}		
-		System.out.println("printOut#3081Slide:   "+slide);
+		System.out.println("printOut#3123Slide:   "+slide);
 		System.out.println(slide.indexOf("(") + "  "+ slide.indexOf(")"));
 		String number= slide.substring(slide.indexOf("(")+1, slide.indexOf(")"));
 		element.sendKeys(Keys.TAB);
 		element.sendKeys(Keys.ENTER);
 		driver.findElement(By.id("pii-slideshow-equip-F"+cases.get(2)+"-popup"));
-		System.out.println("printOut#3087number:   "+number);
+		System.out.println("printOut#3129number:   "+number);
 		//View 2nd page of related links
 		//Click on previous
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
@@ -3164,6 +3202,7 @@ public class CreateEquipmentCase {
 		//View 1st page of related links
 		//Click on previous
 		int number1 = (Integer.parseInt(number))-1;
+		System.out.println("printOut#3167number1:   "+number1);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlidePreviousButton)).click();
 		//Verify padding on related links slide
 		equip3.verifyPaddingOnRelatedLinksSlide(driver, softly, By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]/div[2]"));
@@ -3241,6 +3280,9 @@ public class CreateEquipmentCase {
 		String title_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[1]";
 		String actual_title = driver.findElement(By.xpath(title_xpath)).getAttribute("textContent");
 		softly.assertThat(actual_title).as("test data").isEqualTo(expected_title);
+		System.out.println("printOut expected_title:  "+expected_title);
+		System.out.println("printOut actual_title:  "+actual_title);
+		System.out.println("printOut title xpath: "+title_xpath);
 		//Checking if copyright is correct
 		String copyright_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/span/span[1]";
 		String actual_copyright = driver.findElement(By.xpath(copyright_xpath)).getAttribute("textContent");
@@ -3248,17 +3290,25 @@ public class CreateEquipmentCase {
 			softly.assertThat(actual_copyright).as("test data").isEqualTo(obj1.expected_copyright);
 		else
 			softly.assertThat(actual_copyright).as("test data").isEqualTo(obj1.expected_copyright1);
+		System.out.println("printOut copyright_xpath: "+copyright_xpath);
+		System.out.println("printOut actual_copyright: "+actual_copyright);
 		//Checking if footer image appears
 		String image_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/span/img";
 		if(driver.findElement(By.xpath(image_xpath)).isDisplayed())
 			System.out.println("Logo is displayed");
+		System.out.println("printOut image_xpath: "+image_xpath);
 		//Checking if slide number appears and is correct
 		String slide_xpath = ".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/span/span[2]";
 		String actual_slide = driver.findElement(By.xpath(slide_xpath)).getAttribute("textContent");
 		String expected_slide = number1+"/"+Integer.parseInt(numberAll);
 		softly.assertThat(actual_slide).as("test data").isEqualTo(expected_slide);
+		System.out.println("printOut slide_xpath: "+slide_xpath);
+		System.out.println("printOut actual_slide:"+actual_slide);
+		System.out.println("printOut expected_slide:"+expected_slide);
+		System.out.println("printOut numberAll"+numberAll);
 		//Verify Height of slide
 		String slideHeight = driver.findElement(By.xpath(".//*[@id='pii-slideshow-equip-F"+cases.get(2)+"']/ul/li["+number1+"]/div[2]")).getAttribute("style");
+		System.out.println("printOut slideHeight: "+slideHeight);
 		softly.assertThat(slideHeight).as("test data").contains("height: 715px");
 	}
 
@@ -3375,6 +3425,7 @@ public class CreateEquipmentCase {
 			//Waits for black loading message to disappear
 			share2.loadingServer(driver);
 			//Clicks on new case button
+			jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))));
 			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewButton)));
 			//Clicks on new case
 			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasePopupTitle)).click();
