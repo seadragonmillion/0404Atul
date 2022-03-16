@@ -54,7 +54,7 @@ public class FirefoxTest {
 		ProfilesIni ffProfiles = new ProfilesIni();
 		FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 		profile.setPreference("browser.download.folderList", 2);
-		profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		profile.setPreference("browser.download.dir", "C:\\Users\\mama\\Downloads\\EFTestDownloadReports");
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability(FirefoxDriver.PROFILE, profile);
 		driver = new FirefoxDriver(options);

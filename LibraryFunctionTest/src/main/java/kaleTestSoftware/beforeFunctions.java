@@ -32,7 +32,7 @@ public class beforeFunctions {
 		});
 		chromeOptionsMap.put("plugins.always_open_pdf_externally", true);
 		options.setExperimentalOption("prefs", chromeOptionsMap);
-		String downloadFilepath = "C:\\Users\\IEUser\\Downloads\\reports";
+		String downloadFilepath = "C:\\Users\\mama\\Downloads\\EFTestDownloadReports";
 		chromeOptionsMap.put("download.default_directory", downloadFilepath);
 		options.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
 		options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
@@ -80,7 +80,7 @@ public class beforeFunctions {
 		ProfilesIni ffProfiles = new ProfilesIni();
 		FirefoxProfile profile = ffProfiles.getProfile("HiRCAEvent");
 		profile.setPreference("browser.download.folderList", 2);
-		profile.setPreference("browser.download.dir", "C:\\Users\\IEUser\\Downloads\\reports");
+		profile.setPreference("browser.download.dir", "C:\\Users\\mama\\Downloads\\EFTestDownloadReports");
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability(FirefoxDriver.PROFILE, profile);
 		driver = new FirefoxDriver(options);

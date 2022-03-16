@@ -408,7 +408,7 @@ public class RemoteVerification3 {
 		long time15 = currentTime + (1*60*1000);
 		String SMTP_HOST = "smtp.gmail.com";
 //		String EMAIL_ADDRESS = selectEmailForUser(k);
-		String EMAIL_ADDRESS = "piikaleremote02@gmail.com";
+		String EMAIL_ADDRESS = "piikaleemailtest01@gmail.com";
 		System.out.println(EMAIL_ADDRESS);
 //		String PASSWORD = "5sepkale";
 		String PASSWORD = "pii@2021";

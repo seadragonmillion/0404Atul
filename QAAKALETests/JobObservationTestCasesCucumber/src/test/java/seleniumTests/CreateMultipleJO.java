@@ -1,7 +1,5 @@
 package seleniumTests;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
@@ -193,7 +191,7 @@ public class CreateMultipleJO {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(des_id))).sendKeys("Des0"+(j+1));
 			//Choose File upload photo
 			driver.findElement(By.id("pii-jo-event-file-"+j)).sendKeys(filepath);
-			Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+			Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 			//Click on attach another file to add 2nd supporting file photo
 			WebElement clickAddAttachBtn= driver.findElement(By.id("pii-jo-addnewfile-button"));
 			if(j==0)
@@ -249,26 +247,7 @@ public class CreateMultipleJO {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(jo.JOSidePanel)).click();
 		share2.loadingServer(driver);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		//Verify HTML report
-		List<String> JOhtml = JOhtmlReport(driver);
-		//Download pdf and verify pdf
-		downloadSelectFunction(driver,chineseData);
 		
-		
-	
-		
-		
-		public List<String> JOhtmlReport (WebDriver driver) throws Exception {
-
-			WebDriverWait wait = new WebDriverWait(driver,10);
-			List<String> c = new ArrayList<String>();
-			
-			
-			
-			
-			return c;	
-		}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		//Gets the name of the record created
 		WebElement record = driver.findElement(jo.JOFirstRecord);
 		if (record.isDisplayed())

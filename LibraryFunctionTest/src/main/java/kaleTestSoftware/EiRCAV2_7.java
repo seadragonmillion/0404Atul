@@ -173,7 +173,7 @@ public class EiRCAV2_7 {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
 		Thread.sleep(8000);
 		//pdfCheck(driver,hm,textTitle,softly, hmStep1, hmStep2symptomsData, hmStep3Data, hmStep3FACTSData, step4, step3, analysisAdded, step7, symptoms, dcAcCfNames);
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		Thread.sleep(10000);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -191,7 +191,7 @@ public class EiRCAV2_7 {
 			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -236,7 +236,7 @@ public class EiRCAV2_7 {
 			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -280,7 +280,7 @@ public class EiRCAV2_7 {
 			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -324,7 +324,7 @@ public class EiRCAV2_7 {
 			String analysisAdded, HashMap<String,String> step7, List<String> symptoms, List<String> dcAcCfNames) throws Exception{
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field

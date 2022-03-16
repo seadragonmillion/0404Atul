@@ -496,7 +496,7 @@ public class HiRCAOldReport {
 	public void downloadSelectFunction(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//mama//Pictures//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj2 = new HiRCAEvent();
 		obj2.deleteFiles(file);
 		//Get browser name
@@ -522,7 +522,7 @@ public class HiRCAOldReport {
 	public void downloadReportChrome(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//mama//Pictures//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
@@ -533,7 +533,7 @@ public class HiRCAOldReport {
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
 		Thread.sleep(8000);
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		Thread.sleep(8000);
 		
 //		pdfCheck(event_title,event_loc,event_date,event_time,prob_statement,investigator/*,LOP1,LOP2,LOP3*/);
@@ -551,7 +551,7 @@ public class HiRCAOldReport {
 	public void downloadReportFirefox(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
@@ -594,7 +594,7 @@ public class HiRCAOldReport {
 	public void downloadReportIE10(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
@@ -617,7 +617,7 @@ public class HiRCAOldReport {
 		}
 		Thread.sleep(7000);
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {
@@ -658,7 +658,7 @@ public class HiRCAOldReport {
 	public void downloadReportIE11(WebDriver driver, String event_title,String event_loc,String event_date,String event_time,String prob_statement,String investigator/*,List<String> LOP1,List<String> LOP2,List<String> LOP3*/) throws Exception{
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
@@ -681,7 +681,7 @@ public class HiRCAOldReport {
 		}
 		Thread.sleep(7000);
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {

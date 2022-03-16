@@ -626,7 +626,7 @@ public class ShareCheck {
 	public void downloadReportChrome (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File file = new File("C://Users//IEUser//Downloads//reports//");
+		//File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 //		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 //		obj1.deleteFiles(file);
@@ -639,7 +639,7 @@ public class ShareCheck {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupTitle)).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(eirca.ConfirmPopupButton)).click();
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		Thread.sleep(4000);
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
@@ -689,7 +689,7 @@ public class ShareCheck {
 	public void downloadReportIE(WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -728,7 +728,7 @@ public class ShareCheck {
 	public void downloadReportIE11(WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);

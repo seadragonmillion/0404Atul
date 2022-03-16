@@ -1395,7 +1395,7 @@ public class EiRCA {
 	public void pdfCheck(WebDriver driver, HashMap<String,String>hm, String textTitle) throws Exception{
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -1477,7 +1477,7 @@ public class EiRCA {
 	public void downloadRecordChrome(WebDriver driver, HashMap <String,String> hm) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -1514,7 +1514,7 @@ public class EiRCA {
 	public void downloadRecordFirefox(WebDriver driver, HashMap <String,String> hm) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -1569,7 +1569,7 @@ public class EiRCA {
 	public void downloadRecordIE10(WebDriver driver, HashMap <String,String> hm) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
@@ -1615,7 +1615,7 @@ public class EiRCA {
 	public void downloadRecordIE11(WebDriver driver, HashMap <String,String> hm) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);

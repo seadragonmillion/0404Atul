@@ -35,10 +35,15 @@ import kaleTestSoftware.ShareCheckPageObj;
 public class ChromeOffline3 {
 
 	WebDriver driver;
-	private String username ="jenkins";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+//	private String username ="jenkins";
+//	private String url = "https://kaleqa.error-free.com/";
+//	private String password = "S2FsZWplbmtpbnNAMTIz";
+	
+	private String username ="tester03am";
+	private String url = "https://kale.error-free.com/";
+	private String password = "SHBAMTIzNDU=";
+	
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = "https://kaleqa.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	ShareCheck2 share2 = new ShareCheck2();
 	ShareCheckPageObj share = new ShareCheckPageObj();
@@ -69,26 +74,18 @@ public class ChromeOffline3 {
 	@Before
 	  public void beforeTest() throws MalformedURLException, InterruptedException{
 		  System.out.println("RV OfflineSync: close browser before putting wifi back on");
-		
+		 System.setProperty("webdriver.chrome.driver",chrome_path);
+		  driver = new ChromeDriver();
+       Thread.sleep(5000);
+       driver.manage().deleteAllCookies(); //delete all cookies
+       Thread.sleep(7000); //wait 7 seconds to clear cookies.
 		  
-		System.setProperty("webdriver.chrome.driver",chrome_path);
-		
-		  ChromeOptions options = new ChromeOptions();
-			options.addArguments("user-data-dir=C:/Users/mama/AppData/Local/Google/Chrome/User Data/");
-			options.addArguments("profile-directory=Profile 4");
-		  driver = new ChromeDriver(options);
-		  
-        Thread.sleep(5000);
-        driver.manage().deleteAllCookies(); //delete all cookies
-        Thread.sleep(7000); //wait 7 seconds to clear cookies.
-        
 		  //Browser is maximized
 		  driver.manage().window().maximize();
 		  //Browser navigates to the KALE url
 		  driver.get(url);
 		  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  }
-	  
 
 	@Test
 	public void test() throws Exception{
@@ -159,7 +156,7 @@ public class ChromeOffline3 {
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(des_id))).sendKeys("Des0"+(j+1));
 						//Choose File upload photo
 						driver.findElement(By.id("pii-rv-event-file-"+j)).sendKeys(filepath);
-						Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+						Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 						//Wait for image
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-file-img-"+j)));
 						//Click on attach another file
@@ -184,7 +181,7 @@ public class ChromeOffline3 {
 		//		String filepath = "C:/Users/mama/Pictures/Upload/CCYC2355.JPG";
 				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-imgperson-photo-input"))));
 				driver.findElement(By.id("pii-rv-imgperson-photo-input")).sendKeys(filepath);
-				Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+				Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 				//Fill in (4) Fill in relevant details and description of work needing verification.
 				share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-tab-1-details"))).sendKeys("work evaluation");
@@ -243,7 +240,6 @@ public class ChromeOffline3 {
 				}
 				//Click Logout
 				login2.logout(driver);
-				driver.manage().window().maximize();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//Connect wifi, insert network name
 				Runtime.getRuntime().exec("netsh wlan connect name=\"AMBO-5G\"");

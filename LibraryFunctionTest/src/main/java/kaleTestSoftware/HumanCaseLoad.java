@@ -866,19 +866,25 @@ public class HumanCaseLoad {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Actions builder = new Actions(driver);
 		//Types in the keyword to get slide 
 		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Filter or search')]"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
 		//Click on collapsible 
 		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+identifier))));
-		try{
-			Actions builder = new Actions(driver);
+		try {
 			builder.moveToElement(driver.findElement(By.id("pii-collapsible-"+identifier))).click().build().perform();
-					}catch(org.openqa.selenium.WebDriverException t)
-					{
-						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+identifier))));
-					}
+			Thread.sleep(500);
+		} catch (Exception e) {
+			try {
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+identifier))));
+			Thread.sleep(500);
+			} catch (Exception e1) {
+			}
+			
+		}
+		
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides

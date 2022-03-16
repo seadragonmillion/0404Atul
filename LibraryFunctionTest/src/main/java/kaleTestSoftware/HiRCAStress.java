@@ -83,9 +83,9 @@ public class HiRCAStress {
 	public  void downloadSelectFunction (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//mama//Pictures//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		HiRCAEvent obj1 = new HiRCAEvent();
-//		obj1.deleteFiles(file);
+		obj1.deleteFiles(file);
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -114,7 +114,7 @@ public class HiRCAStress {
 		HiRCAEvent obj = new HiRCAEvent();
 		List<String> results = new ArrayList<String>();
 		//Gets the file name which has been downloaded
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -123,7 +123,7 @@ public class HiRCAStress {
 		}
 		System.out.println(results.get(0));
 		//Loads the file to check if correct data is present
-		String fileName="C://Users//IEUser//Downloads//reports//"+results.get(0);
+		String fileName="C://Users//mama//Downloads//EFTestDownloadReports//"+results.get(0);
 		File oldfile = new File(fileName);
 		//Checks number of images in pdf
 		PDDocument pddoc= PDDocument.load(oldfile);
@@ -136,9 +136,9 @@ public class HiRCAStress {
 
 	public void downloadRecordChrome (WebDriver driver) throws Exception {
 
-		HiRCAEvent obj2 = new HiRCAEvent();
+//		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//mama//Pictures//");
+//		File file = new File("C://Users//mama//Pictures//");
 //		obj2.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -155,10 +155,10 @@ public class HiRCAStress {
 		//Clicks on open pdf report
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title"))).click();
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		Thread.sleep(4000);
 		try {
-		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+		Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF5_amlocal.exe");
 
 		q.waitFor();
 		}catch (UnhandledAlertException f){	
@@ -181,7 +181,7 @@ public class HiRCAStress {
 
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		obj2.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on download button
@@ -227,7 +227,7 @@ public class HiRCAStress {
 
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		obj2.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on download button
@@ -256,7 +256,7 @@ public class HiRCAStress {
 		}
 		Thread.sleep(7000);
 		List<String> results = new ArrayList<String>();
-		File[] files = new File("C://Users//IEUser//Downloads//reports//").listFiles();
+		File[] files = new File("C://Users//mama//Downloads//EFTestDownloadReports//").listFiles();
 		//If this pathname does not denote a directory, then listFiles() returns null. 
 		for (File file1 : files) {
 			if (file1.isFile()) {
@@ -303,7 +303,7 @@ public class HiRCAStress {
 
 		HiRCAEvent obj2 = new HiRCAEvent();
 		//deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		obj2.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,30);
 		//Clicks on download button

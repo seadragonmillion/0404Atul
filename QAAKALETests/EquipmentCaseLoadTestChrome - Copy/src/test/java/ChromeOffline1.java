@@ -30,10 +30,16 @@ import kaleTestSoftware.ShareCheck2;
 public class ChromeOffline1 {
 
 	private WebDriver driver;
-	private String username ="jenkins";
-	private String password = "S2FsZWplbmtpbnNAMTIz";
+//	private String username ="jenkins";
+//	private String url = "https://kaleqa.error-free.com/";
+//	private String password = "S2FsZWplbmtpbnNAMTIz";
+	
+	private String username ="tester03am";
+	private String url = "https://kale.error-free.com/";
+	private String password = "SHBAMTIzNDU=";
+
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = "https://kaleqa.error-free.com/";
+	
 	SoftAssertions softly = new SoftAssertions();
 	ShareCheck2 share2 = new ShareCheck2();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
@@ -145,7 +151,7 @@ public class ChromeOffline1 {
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(des_id))).sendKeys("Des0"+(j+1));
 						//Choose File upload photo
 						driver.findElement(By.id("pii-rv-event-file-"+j)).sendKeys(filepath);
-						Runtime.getRuntime().exec("C:\\Users\\mama\\Downloads\\clickcancel2.exe");
+						Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\clickcancel2.exe");
 						//Wait for image
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-rv-event-file-img-"+j)));
 						//Click on attach another file

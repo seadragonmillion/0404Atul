@@ -279,7 +279,7 @@ public class CreateEFPDDCaseTest {
 				obj1.checkkeyword(driver, caseEF, obj.keywordEFie11, obj.key1EF, obj.key2EF, obj.key3EF, piiNonpii,
 						obj.titleEFie11);
 			if (devAsiaUSIE11.contains("US"))
-				obj1.checkkeyword(driver, caseEF, obj.keywordEFUS, obj.key1EF, obj.key2EF, obj.key3EF, piiNonpii,
+				obj1.checkkeyword(driver, caseEF, obj.keywordEFUS, obj.key1EFUS, obj.key2EFUS, obj.key3EFUS, piiNonpii,
 						obj.titleEFUS);
 			if (devAsiaUSIE11.contains("USIE11"))
 				obj1.checkkeyword(driver, caseEF, obj.keywordEFUSie11, obj.key1EF, obj.key2EF, obj.key3EF, piiNonpii,

@@ -199,7 +199,7 @@ public class OPiRCA {
 		Thread.sleep(8000);
 		System.out.println("Print before pdfCheck before downloadReportChrome");
 		try {
-			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF4_amlocal.exe");
+			Process q = Runtime.getRuntime().exec("C:/Users/rramakrishnan/AutoItScripts/ChromSavePDF5_amlocal.exe");
 			q.waitFor();
 		}catch (UnhandledAlertException f){
 			System.out.println("Unexpected alert for download");
@@ -208,7 +208,7 @@ public class OPiRCA {
 		}catch (NoAlertPresentException f){
 			System.out.println ("No unexpected alert for download");
 		}
-//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+//		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		pdfCheck(hircaNewList, apparentCausesNew, apparentCausesAnswersNew, hml, options, step2);
 		for (String winHandle : driver.getWindowHandles()) {
 			driver.switchTo().window(winHandle);
@@ -349,7 +349,7 @@ public class OPiRCA {
 			List<String> step2) throws Exception {
 
 		// specify your directory
-		Path dir = Paths.get("C://Users//IEUser//Downloads//reports//");
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReports//");
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field
@@ -2020,7 +2020,7 @@ public class OPiRCA {
 		System.out.println(v);
 		if (browserName.toLowerCase().contains("safari") == false) {
 			// deletes files in reports folder before starting to download
-			File file = new File("C://Users//IEUser//Downloads//reports//");
+			File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 			deleteFiles(file);
 		}
 		// Download report to check pdf

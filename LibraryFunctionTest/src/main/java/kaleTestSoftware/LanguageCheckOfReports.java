@@ -736,7 +736,7 @@ public class LanguageCheckOfReports {
 	public void downloadReportIE(WebDriver driver, int y, WebElement element) throws Exception {
 
 		// deletes files in reports folder before starting to download
-		File file = new File("C://Users//IEUser//Downloads//reports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 		deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver, 60);
 		Thread.sleep(2000);
@@ -886,7 +886,7 @@ public class LanguageCheckOfReports {
 		// Clicks on open pdf report
 		// wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-title")));
 		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-home-dialog-confirmed"))).click();
-		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF4_amlocal.exe");
+		Runtime.getRuntime().exec("C:\\Users\\rramakrishnan\\AutoItScripts\\ChromSavePDF5_amlocal.exe");
 		Thread.sleep(10000);
 		for (String winHandle : driver.getWindowHandles()) {
 					driver.switchTo().window(winHandle);

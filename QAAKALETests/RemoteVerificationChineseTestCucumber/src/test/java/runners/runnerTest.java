@@ -8,7 +8,8 @@ import io.cucumber.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
  features = "src/test/resources/features" ,
- glue= {"seleniumTests"} 
+ glue= {"seleniumTests"} ,
+ tags= {"@USAChromeTest"}
  )
 
 public class runnerTest {

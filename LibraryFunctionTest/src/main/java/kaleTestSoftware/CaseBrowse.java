@@ -526,6 +526,7 @@ public class CaseBrowse {
 	public void searchColorCasesHuman(WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Search for keyword oil
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchKeywordField)).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchKeywordField)).sendKeys("oil color");
@@ -570,10 +571,10 @@ public class CaseBrowse {
 			browseCaseForColorKeywordHuman(driver,caseID);
 		}
 		//Close 1st collapsible and open 2nd collapsible for cases
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearch1stCollapsibleCases)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearch1stCollapsibleCases)));
 		//open 2nd collapsible
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearch2ndCollapsibleCases)).click();
+			jse.executeScript("arguments[0].click();", 	wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearch2ndCollapsibleCases)));
 		}catch(NoSuchElementException | org.openqa.selenium.TimeoutException e)
 		{
 
@@ -599,11 +600,22 @@ public class CaseBrowse {
 	public void browseCaseForColorKeywordHuman(WebDriver driver, String caseID) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll to case
 		WebElement l = driver.findElement(By.id("pii-collapsible-"+caseID));
 		share2.scrollToElement(driver, l);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //*[@id='pii-question-list']/div[2]/h4/a/div"))));
 		//Click on case collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+caseID))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-"+caseID))).click().build().perform();
+		} catch (Exception e) {
+			try {
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-"+caseID))));
+			} catch (Exception e1) {
+				System.out.println("collapsible not click");
+			}
+		}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Check in description of case inside collapsible if it has color:blue
@@ -629,7 +641,7 @@ public class CaseBrowse {
 		String titleCase = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-"+caseID+"']/ul/li[1]/div"))).getAttribute("textContent");
 		softly.assertThat(titleCase).as("test data").doesNotContain("color:white");
 		//Close case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-"+caseID+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-"+caseID+"']/a"))));
 	}
 
 	public void searchColorCasesEquip(WebDriver driver) throws Exception {
@@ -708,11 +720,21 @@ public class CaseBrowse {
 	public void browseCaseForColorKeywordEquip(WebDriver driver, String caseID) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Scroll to case
 		WebElement l = driver.findElement(By.id("pii-collapsible-equip-"+caseID));
 		share2.scrollToElement(driver, l);
 		//Click on case collapsible
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-"+caseID))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-"+caseID))).click();;
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Check in description of case inside collapsible if it has color:blue
@@ -825,7 +847,7 @@ public class CaseBrowse {
 		jse.executeScript("scroll(0,2000)");	
 		Thread.sleep(2000);
 		//Click on add keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentAddKeywordButton)).click();	
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentAddKeywordButton)));	
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentAddKeywordField));
 		for (int i=0; i<s.length;i++)
 		{
@@ -841,7 +863,7 @@ public class CaseBrowse {
 			jse.executeScript("scroll(0,2000)");	
 			Thread.sleep(2000);
 			//Click on add keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentAddKeywordButton)).click();	
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentAddKeywordButton)));	
 		}
 		Thread.sleep(2000);
 		try{
@@ -893,7 +915,7 @@ public class CaseBrowse {
 		Thread.sleep(2000);
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanAddKeywordField));
 		//Click on add keyword
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanAddKeywordButton)).click();	
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanAddKeywordButton)));	
 		for (int i=0; i<s.length;i++)
 		{
 			//clear keyword field
@@ -906,7 +928,7 @@ public class CaseBrowse {
 				ele.sendKeys("qaafoo"+s[i]+"qaafoo");
 			Thread.sleep(1500);
 			//Click on add keyword
-			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanAddKeywordButton)).click();	
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanAddKeywordButton)));	
 		}
 		jse.executeScript("scroll(0,2000)");	
 		Thread.sleep(2000);
@@ -1179,6 +1201,7 @@ public class CaseBrowse {
 	public void browseCaseIDEquip (WebDriver driver, String identifier, String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Checks if clear feature works on case id field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchCaseIdField)).sendKeys(identifier);
 		Thread.sleep(1000);
@@ -1200,7 +1223,16 @@ public class CaseBrowse {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+identifier))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
@@ -1229,7 +1261,7 @@ public class CaseBrowse {
 		//Click previous button to browse through case
 		previousBrowseEquip(driver,n,expected_title,identifier);
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))));
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
 	}
@@ -1274,6 +1306,7 @@ public class CaseBrowse {
 	public void browseCaseIDHuman (WebDriver driver, String identifier, String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Checks if clear feature works on case id field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchCaseIdField)).sendKeys(identifier);
 		Thread.sleep(1000);
@@ -1295,7 +1328,16 @@ public class CaseBrowse {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on case
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-Q"+identifier))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))).click();
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
@@ -1324,7 +1366,7 @@ public class CaseBrowse {
 		//Click previous button to browse through case
 		previousBrowseHuman(driver,n,expected_title,identifier);
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+identifier+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-Q"+identifier+"']/a"))));
 		//Click on clear
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchClearButton)).click();
 	}
@@ -1364,6 +1406,7 @@ public class CaseBrowse {
 	public int searchKeywordForBrowseCaseHuman(WebDriver driver, String keyword, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Types in the keyword to get slide
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.HumanSearchKeywordField)).clear();
 		Thread.sleep(4000);
@@ -1372,7 +1415,16 @@ public class CaseBrowse {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-Q"+identifier))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-Q"+identifier))).click();;
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
@@ -1385,6 +1437,7 @@ public class CaseBrowse {
 			Thread.sleep(1000);
 			System.out.println(slide);
 			slide = element.getText();
+			break;
 		}		
 		System.out.println(slide);
 		System.out.println(slide.indexOf("(") + "  "+ slide.indexOf(")"));
@@ -1400,6 +1453,7 @@ public class CaseBrowse {
 	public int searchKeywordForBrowseCaseEquip(WebDriver driver, String keyword, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Types in the keyword to get slide
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchKeywordField)).clear();
 		Thread.sleep(4000);
@@ -1445,7 +1499,16 @@ public class CaseBrowse {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on collapsible 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
+		try {
+			Actions builder = new Actions(driver);
+			builder.moveToElement(driver.findElement(By.id("pii-collapsible-equip-F"+identifier))).click().build().perform();
+			}catch(org.openqa.selenium.ElementNotInteractableException u){
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))));
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))));
+			}catch(Exception e) {
+				jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-collapsible-equip-F"+identifier))).click();
+			}
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
@@ -1725,8 +1788,9 @@ public class CaseBrowse {
 	public void nextBrowseEquipAdmin(WebDriver driver, int n, String expected_title, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click Next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)));
 		for(int i=2;i<=n;i++)
 		{
 			System.out.println("Slide "+(i-1));
@@ -1761,7 +1825,7 @@ public class CaseBrowse {
 				String filename = driver.findElement(By.xpath(image_xpath)).getAttribute("piifile");
 				softly.assertThat(filename).as("test data").isEqualTo("Slide"+(i-1)+".PNG");
 			}
-			wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.SlideNextButton)));
 		}
 	}
 
