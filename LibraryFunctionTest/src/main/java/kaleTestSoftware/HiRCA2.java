@@ -317,8 +317,12 @@ public class HiRCA2 {
 		try{
 		jse.executeAsyncScript("arguments[0].click();", el.findElement(By.id("pii-irca-clear")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed")));
-		}catch(org.openqa.selenium.ScriptTimeoutException r){
-
-		}
+		//}catch(org.openqa.selenium.ScriptTimeoutException r){
+		}catch(Exception e){
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-clear"))).click();
+				} catch (Exception e1) {
+				}
+			}
 	}
 }
