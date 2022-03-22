@@ -663,8 +663,8 @@ public class SRI2 {
 	public void downloadReportChrome(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
-		File file = new File("C://Users//rramakrishnan//report//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
+//		File file = new File("C://Users//rramakrishnan//report//");
 		HiRCAEvent obj1 = new HiRCAEvent();
 		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);

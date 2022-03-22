@@ -34,16 +34,32 @@ public class ChromeOffline1 {
 //	private String url = "https://kaleqa.error-free.com/";
 //	private String password = "S2FsZWplbmtpbnNAMTIz";
 	
-	private String username ="tester03am";
-	private String url = "https://kale.error-free.com/";
-	private String password = "SHBAMTIzNDU=";
+//	private String username ="tester03am";
+//	private String url = "https://kale.error-free.com/";
+//	private String password = "SHBAMTIzNDU=";
 
+	private String username ="jenkins_2_nonadmin";
+	private String url = "https://kaleasia.error-free.com/";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
+
+	/*
+	if(driver.getCurrentUrl().contains("kale.")) {
+		private	String username ="tester03am";
+		private	String password = "SHBAMTIzNDU=";
+	}else if(driver.getCurrentUrl().contains("kaleasia")){
+		username ="jenkins_2_nonadmin";
+		password = "S2FsZWplbmtpbnNAMTIz";
+	}else {
+		 username ="jenkins";
+		 password = "S2FsZWplbmtpbnNAMTIz";
+	}*/
+	
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	
 	SoftAssertions softly = new SoftAssertions();
 	ShareCheck2 share2 = new ShareCheck2();
 	RemoteVerificationPageObj rv = new RemoteVerificationPageObj();
-	
+
 	@Rule
     public TestWatcher watcher = new TestWatcher() {
         @Override

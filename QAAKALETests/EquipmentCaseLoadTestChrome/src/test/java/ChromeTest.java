@@ -96,15 +96,15 @@ public class ChromeTest {
 			  }
 		//Goes to Human Performance Search
 		obj1.getEquipPerformanceLink(driver);
-		//Case F9963 > am_changed to 3692
+		//Case F9963 > am_changed to 3692   > 2050
 		System.out.println("Case with only images");
-		long total1 = obj1.searchCase100(driver, obj1.keyword1eq, "3692");
-		//Case F7896 > am_changed to 3875		
+		long total1 = obj1.searchCase100(driver, obj1.keyword1eq, "2050");
+		//Case F7896 > am_changed to 3875	 >  7475	
 		System.out.println("Case with no images");
-		long total2 = obj1.searchCase100(driver, obj1.keyword2eq, "3875");
-		//Case F7456 >am_changed to 8507
+		long total2 = obj1.searchCase100(driver, obj1.keyword2eq, "7475");
+		//Case F7456 >am_changed to 8507 >7764
 		System.out.println("Case with 50 images and text");
-		long total3 = obj1.searchCase100(driver, obj1.keyword3eq, "8507");
+		long total3 = obj1.searchCase100(driver, obj1.keyword3eq, "7764");
 		System.out.println("Total time in seconds for case with only images:"+(total1/1000));
 		System.out.println("Total time in seconds for case with no images:"+(total2/1000));
 		System.out.println("Total time in seconds for case with 50 images:"+(total3/1000));

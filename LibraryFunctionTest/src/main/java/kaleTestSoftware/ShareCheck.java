@@ -626,10 +626,10 @@ public class ShareCheck {
 	public void downloadReportChrome (WebDriver driver) throws Exception {
 
 		//deletes files in reports folder before starting to download
-		//File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
+		File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 //		File file = new File("C://Users//mama//Pictures//");
 		HiRCAEvent obj1 = new HiRCAEvent();
-//		obj1.deleteFiles(file);
+		obj1.deleteFiles(file);
 		WebDriverWait wait1 = new WebDriverWait(driver,60);
 		String window = driver.getWindowHandle();
 		//Clicks on download button

@@ -334,7 +334,7 @@ public class HiRCALOPBug {
 		//Click on Act of nature
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer3)));
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Click on Root Cause
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed2"))));
@@ -342,7 +342,7 @@ public class HiRCALOPBug {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
 		Thread.sleep(2000);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Click on LOP
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-irca-dialog-confirmed"))));
@@ -392,7 +392,7 @@ public class HiRCALOPBug {
 		//Select L 3.17 random options
 		select317Random(driver);
 		//Click next
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.NextButton)));
 		Thread.sleep(2000);
 		//Skip 2.20 and 2.22
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
@@ -1463,7 +1463,7 @@ public class HiRCALOPBug {
 		//Click skip
 		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
 		//Click skip
-		wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)).click();
+		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.SkipButton)));
 		Thread.sleep(2000);
 		//Click no in 1.10.1
 		executor.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(hc.Answer1)));
@@ -1545,7 +1545,7 @@ public class HiRCALOPBug {
 		//Verify if previous selections there
 		hlb2.previousSelectionVerify(driver, softly);
 		//Click on back
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))).click();
+		executor.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-irca-button-back"))));
 		Thread.sleep(2000);
 		//Clear 2.0
 		obj1.clickOnTrashCan(driver);

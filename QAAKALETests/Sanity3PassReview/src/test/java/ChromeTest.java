@@ -44,7 +44,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
- //           driver.quit();
+            driver.quit();
         }
 	};
 		  
@@ -123,7 +123,7 @@ public class ChromeTest {
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-login-button")));
 		//Browser closes
-//		driver.quit();
+		driver.quit();
 //		obj.softAssert();
 	}
 

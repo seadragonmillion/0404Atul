@@ -9,7 +9,7 @@ import io.cucumber.junit.Cucumber;
 @CucumberOptions(
  features = "src/test/resources/features" ,
  glue= {"seleniumTests"} ,
- tags= {"@USAChromeTest"}
+ tags= {"@ChromeTest"}
  )
 
 public class runnerTest {

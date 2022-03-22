@@ -145,7 +145,7 @@ public class CaseSearch_Sanity {
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);
-		driver.manage().window().maximize();
+//		driver.manage().window().maximize();
 	}
 
 
@@ -163,7 +163,7 @@ public class CaseSearch_Sanity {
 				exception.printStackTrace();
 			}
 		}
-//		driver.quit();
+		driver.quit();
 		CaseBrowse obj = new CaseBrowse();
 		obj.softAssert();
 	}

@@ -36,9 +36,13 @@ public class ChromeOffline4 {
 //	private String url = "https://kaleqa.error-free.com/";
 //	private String password = "S2FsZWplbmtpbnNAMTIz";
 	
-	private String username ="tester03am";
-	private String url = "https://kale.error-free.com/";
-	private String password = "SHBAMTIzNDU=";
+//	private String username ="tester03am";
+//	private String url = "https://kale.error-free.com/";
+//	private String password = "SHBAMTIzNDU=";
+	
+	private String username ="jenkins_2_nonadmin";
+	private String url = "https://kaleasia.error-free.com/";
+	private String password = "S2FsZWplbmtpbnNAMTIz";
 	
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
 	SoftAssertions softly = new SoftAssertions();

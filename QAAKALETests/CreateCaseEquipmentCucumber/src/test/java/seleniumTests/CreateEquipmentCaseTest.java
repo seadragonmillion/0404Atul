@@ -439,7 +439,7 @@ public class CreateEquipmentCaseTest {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		CreateEquipmentCase obj = new CreateEquipmentCase();
 		obj.softAssert();
 	}

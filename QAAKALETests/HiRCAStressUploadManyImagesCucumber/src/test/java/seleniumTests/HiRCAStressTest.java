@@ -87,7 +87,7 @@ public class HiRCAStressTest {
 				exception.printStackTrace();
 			}
 		}
-//		driver.quit();
+		driver.quit();
 	}
 
 }

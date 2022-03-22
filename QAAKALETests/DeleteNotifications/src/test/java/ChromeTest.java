@@ -98,7 +98,7 @@ public class ChromeTest {
 	
 	 public void afterTest() throws Exception {
 		  
-		//  driver.quit();		  
+		  driver.quit();		  
 	  }
 
 }

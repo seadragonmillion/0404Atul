@@ -1084,6 +1084,7 @@ public class EquipmentPDDandEF {
 	public void selectTypeEFPDD(WebDriver driver, String keyword) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -1106,7 +1107,7 @@ public class EquipmentPDDandEF {
 		}
 		else{
 			//Type
-			wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)).click();
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseTypes)));
 		}
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipListBoxTypes));

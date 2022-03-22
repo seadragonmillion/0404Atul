@@ -413,7 +413,7 @@ public class HiRCALevel2 {
 		if(browserName.toLowerCase().contains("safari")==false)
 		{
 			//deletes files in reports folder before starting to download
-			File file = new File("C://Users//mama//Pictures//");
+			File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//"); 
 			obj.deleteFiles(file);
 		}
 		//Download report to check pdf
@@ -992,7 +992,7 @@ public class HiRCALevel2 {
 		if(browserName.toLowerCase().contains("safari")==false)
 		{
 			//deletes files in reports folder before starting to download
-			File file = new File("C://Users//mama//Pictures//");
+			File file = new File("C://Users//mama//Downloads//EFTestDownloadReports//");
 			obj.deleteFiles(file);
 		}
 		//Download report to check pdf
@@ -1196,7 +1196,7 @@ public class HiRCALevel2 {
 
 		OPiRCAChinese4 obj = new OPiRCAChinese4();
 		// specify your directory
-		Path dir = Paths.get("C://Users//mama//Pictures//");  
+		Path dir = Paths.get("C://Users//mama//Downloads//EFTestDownloadReportsPictures//");  
 		// here we get the stream with full directory listing
 		// exclude subdirectories from listing
 		// finally get the last file using simple comparator by lastModified field

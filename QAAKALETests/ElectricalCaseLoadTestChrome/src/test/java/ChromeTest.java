@@ -46,7 +46,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
-            driver.quit();
+ //           driver.quit();
         }
 	};
 			
@@ -117,7 +117,7 @@ public class ChromeTest {
 	}
 	
 	public void afterTest() {
-		  driver.quit();
+//		  driver.quit();
 		  softly.assertAll();
 		  
 	  }

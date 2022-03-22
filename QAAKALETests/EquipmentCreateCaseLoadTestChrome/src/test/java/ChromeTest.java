@@ -32,7 +32,7 @@ public class ChromeTest {
 	private String username ="jenkinsvm";
 	private String password = "S2FsZWplbmtpbnNAMTIz";
 	private String chrome_path = "C:\\Users\\rramakrishnan\\DriversForSelenium\\chromedriver.exe";
-	private String url = "https://kale.error-free.com/";
+	private String url = "https://kaleqa.error-free.com/";
 	SoftAssertions softly = new SoftAssertions();
 	
 	@Rule

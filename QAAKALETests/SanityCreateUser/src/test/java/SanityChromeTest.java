@@ -70,7 +70,7 @@ public class SanityChromeTest {
 
         @Override
         protected void finished(Description description) {
-//           driver.quit();
+           driver.quit();
         }
 	};
 		  
@@ -144,7 +144,7 @@ public class SanityChromeTest {
 	public void afterTest(UserManagement obj) throws Exception{
 
 		//Browser closes
-//		driver.quit();
+		driver.quit();
 //		obj.softAssert();
 	}
 }

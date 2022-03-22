@@ -86,7 +86,7 @@ public class HiRCABugTest {
 				exception.printStackTrace();
 			}
 		}
-	//	driver.quit();
+		driver.quit();
 		HiRCABug2 hirca = new HiRCABug2();
 		hirca.softAssert();
 	}

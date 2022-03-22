@@ -637,14 +637,13 @@ public class OPiRCABug {
 //		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-tab-0"))));
 		Thread.sleep(3000);
 		//Click on +new button
-		jse.executeScript("arguments[0].click();", driver.findElement(By.id("efi-opa-button-new")));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("efi-opa-button-new"))));
+		Thread.sleep(500);
 		try{
-			WebElement newButton = new WebDriverWait(driver, 30).until(
-			        ExpectedConditions.elementToBeClickable(By.id("pii-opa-dialog-confirmed")));
+			WebElement newButton = new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(By.id("pii-opa-dialog-confirmed")));
 			newButton.click();
 					}catch(org.openqa.selenium.WebDriverException t)
 					{
-						jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(.,'new report')]"))));
 					}
 	    //Wait for loading message
 			share2.loadingServer(driver);

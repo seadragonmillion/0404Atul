@@ -119,7 +119,7 @@ public class OPiRCA_Sanity {
 	public void logout_from_KALE() throws Exception {
 		Login login = new Login();
 		login.logout(driver);
-		driver.manage().window().maximize();
+//		driver.manage().window().maximize();
 	}
 
 

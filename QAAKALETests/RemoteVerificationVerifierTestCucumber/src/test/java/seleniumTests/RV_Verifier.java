@@ -102,7 +102,7 @@ public class RV_Verifier {
 				exception.printStackTrace();
 			}
 		}
-//		driver.quit();
+		driver.quit();
 		RemoteVerification2 rv2 = new RemoteVerification2();
 		rv2.softAssert();
 	}
