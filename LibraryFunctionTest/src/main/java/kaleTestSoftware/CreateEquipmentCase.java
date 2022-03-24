@@ -759,14 +759,16 @@ public class CreateEquipmentCase {
 		//Scroll to 1st Link title
 		l = wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2Title));
 		share2.scrollToElement(driver, l);
-		//delete 2 to 12
-		for(int i=1;i<=11;i++)
+		//delete 2 to 13
+		for(int i=1;i<=12;i++)
 		{
-			//Click on delete link 2 cross symbol of URL
-			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)));
+			//Click on delete link cross symbol of URL
+//			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2URLCrossSymbol)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-linkdiv-"+i+"']/div[1]/div/a"))));
 			Thread.sleep(500); 
-			//Click on delete link 2 cross symbol of Title
-			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2TitleCrossSymbol)));
+			//Click on delete link cross symbol of Title
+//		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink2TitleCrossSymbol)));
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-linkdiv-"+i+"']/div[2]/table/tbody/tr/td[2]/div/a"))));
 			Thread.sleep(500);
 		}		
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
@@ -814,6 +816,8 @@ public class CreateEquipmentCase {
 				}
 			}
 		}
+		//Click on RelatedLink1's video checkbox
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCasesLink1VideoCheckbox)));
 		//Save case
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -2626,8 +2630,8 @@ public class CreateEquipmentCase {
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseSearchCaseIDDropdownAdmin)));
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
-		//Click on edi button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)).click();
+		//Click on edit button
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseEditButton)));
 	}
 
 	public void addKeywordToLinkCaseAndSearchInEquipmentDatabank(WebDriver driver, List<String> caseID, String existingKeyword) throws Exception {
@@ -2695,11 +2699,11 @@ public class CreateEquipmentCase {
 			jse.executeScript("scroll(0,2000)");
 		}
 		Thread.sleep(1000);
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))));
 		WebElement element = driver.findElement(equipObj.EquipCaseKeywordExistingList);
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efse-keyword-new"))));
 		Thread.sleep(300);
-		//element.findElement(chc.FirstChildInList).click();
-		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-keyword-search-list']//li[@class='ui-first-child']"))));
+		element.findElement(chc.FirstChildInList).click();
+//	jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='pii-admin-efse-keyword-search-list']//li[@class='ui-first-child']"))));
 		Thread.sleep(1000);
 		share2.scrollToTop(driver);
 		Thread.sleep(1000);
@@ -3500,19 +3504,19 @@ public class CreateEquipmentCase {
 				Thread.sleep(4000);
 				if(count==1)
 				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key1);
 					Thread.sleep(4000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key2);
 					Thread.sleep(4000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
 					Thread.sleep(4000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 					if(title.equals(equip3.eq_title)||title.equals(equip3.eq_titleUS)||title.equals(equip3.eq_titleie11US)||title.equals(equip3.eq_titleie11))
 					{
 						//Add keyword with all special characters

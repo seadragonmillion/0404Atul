@@ -120,6 +120,7 @@ public class EquipmentPDDandEF {
 	public void searchCaseInPreventionOfDesignDeficienciesWithKeyword (WebDriver driver, String keyword, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.loadingServer(driver);
 		//Clicks on Error free bank
 		try
@@ -156,12 +157,13 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found keyword exists in Prevention of Design Deficiencies: "+keyword);
 		}
 		//Clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void searchCaseIdInPreventionOfDesignDeficiencies(WebDriver driver, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Waits for black loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Error free bank
@@ -205,12 +207,13 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found case exists in Prevention of Design Deficiencies: "+identifier);
 		}
 		//Clicks on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void searchCaseInEngineeringFundamentalsWithKeyword (WebDriver driver, String keyword, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Error free bank
@@ -252,12 +255,13 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found keyword exists in Engineering Fundamentals: "+keyword);
 		}
 		//Clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void searchCaseIdInEngineeringFundamentals(WebDriver driver, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on Error free bank
 		try
 		{
@@ -295,12 +299,13 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found case exists in Engineering Fundamentals: "+identifier);
 		}
 		//Clicks on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void searchCaseIdInFailureModes(WebDriver driver, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Verify that Failure mode cases do not appear in Engineering Fundamentals
 		//Clicks on Error free bank
 		try
@@ -312,7 +317,7 @@ public class EquipmentPDDandEF {
 		//Clicks on Failure Modes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.FailureModeLink)).click();
 		//Clicks on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 		//Enters Equipment Case id to see if it exists
 		driver.findElement(cb.EquipmentSearchCaseIdField).sendKeys(identifier);
 		driver.findElement(cb.EquipmentSearchCaseIdField).sendKeys(Keys.ENTER);
@@ -339,12 +344,13 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found case exists in Failure modes: "+identifier);
 		}
 		//Clicks on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void searchCaseInFMWithKeyword (WebDriver driver, String keyword, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on Error free bank
 		try
 		{
@@ -380,7 +386,7 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found keyword exists in Failure modes: "+keyword);
 		}
 		//Clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void searchWithPercent(WebDriver driver, String keypercent, String identifier) throws Exception {
@@ -404,6 +410,7 @@ public class EquipmentPDDandEF {
 	public void searchCaseInEquipSearchByCaseID(WebDriver driver, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Clicks on Equipment Performance
@@ -437,7 +444,7 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found case exists in Equipment Performance: "+identifier);
 		}
 		//Clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void verifyErrorModuleLinkWithCaseId(WebDriver driver, String identifier) throws Exception {
@@ -463,6 +470,7 @@ public class EquipmentPDDandEF {
 	public void searchCaseInEquipSearchByKeyword(WebDriver driver, String keyword, String identifier) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,10);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Clicks on ErrorFree Bank
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chc.ErrorFreeBankTopLink)).click();
 		//Clicks on Equipment Performance
@@ -496,7 +504,7 @@ public class EquipmentPDDandEF {
 			System.out.println("warning message not found keyword exists in Equipment Performance: "+keyword);
 		}
 		//Clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void verifyErrorModuleLinkWithKeyword(WebDriver driver, String keyword, String identifier) throws Exception {
@@ -622,6 +630,7 @@ public class EquipmentPDDandEF {
 	public void browseCaseID (WebDriver driver, String identifier, String title) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Checks if clear feature works on case id field
 		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchCaseIdField)).sendKeys(identifier);
 		Thread.sleep(1000);
@@ -700,9 +709,9 @@ public class EquipmentPDDandEF {
 		//Click previous button to browse through case
 		previousBrowse(driver,n,expected_title,identifier);
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void verifyNoCaseIDSearch (WebDriver driver) throws Exception {
@@ -724,6 +733,7 @@ public class EquipmentPDDandEF {
 	public void browseCaseNonAdmin(WebDriver driver, String keyword, String identifier, String title) throws Exception{
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Get browser name
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
@@ -871,9 +881,9 @@ public class EquipmentPDDandEF {
 			previousBrowse(driver,n,expected_title,identifier);
 		}
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 		//verify no case id box
 		verifyNoCaseIDSearch (driver);
 	}
@@ -990,9 +1000,9 @@ public class EquipmentPDDandEF {
 			previousBrowse(driver,n,expected_title,identifier);
 		}
 		//Closes the slideshow
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-slideshow-equip-F"+identifier+"']/a"))));
 		//Click on clear
-		wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(cb.EquipmentSearchClearButton)));
 	}
 
 	public void previousBrowse(WebDriver driver, int n, String expected_title, String identifier) throws Exception {
@@ -1286,15 +1296,15 @@ public class EquipmentPDDandEF {
 			if(count==1)
 			{
 				share2.loadingServer(driver);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key1);
 				share2.loadingServer(driver);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key2);
 				share2.loadingServer(driver);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordAddButton)));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).clear();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(equipObj.EquipCaseNewKeywordField)).sendKeys(key3);
 				share2.loadingServer(driver);
