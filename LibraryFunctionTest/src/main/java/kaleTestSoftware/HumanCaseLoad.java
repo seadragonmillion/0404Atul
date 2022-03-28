@@ -132,6 +132,7 @@ public class HumanCaseLoad {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-search-input"))).sendKeys(keyword);
 		Thread.sleep(1500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-keyword-new"))).click();
+		/*am_not applicable
 		//Enters task
 		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-efsh-task-search-input"))).sendKeys(keyword);
@@ -148,7 +149,7 @@ public class HumanCaseLoad {
 		Thread.sleep(1500);
 		WebElement element = driver.findElement(By.id("pii-admin-efsh-purpose-new"));
 		jse.executeScript("arguments[0].click();", element);
-		
+		*/
 		
 		/*
 		Robot robot = new Robot();
@@ -868,7 +869,6 @@ public class HumanCaseLoad {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Actions builder = new Actions(driver);
 		//Types in the keyword to get slide 
-		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Filter or search')]"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(keyword);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-efsh-searchbykw-input"))).sendKeys(Keys.ENTER);
 		//Click on collapsible 
@@ -888,7 +888,6 @@ public class HumanCaseLoad {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on Show Slides
-		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Filter by condition')]"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-slideshow-button-"+identifier)));
 		WebElement element =  driver.findElement(By.id("pii-slideshow-button-"+identifier));
 		String slide = element.getText();
