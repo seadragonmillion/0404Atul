@@ -1,15 +1,23 @@
 import kaleTestSoftware.*;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -45,7 +53,7 @@ public class ChromeTest {
 
         @Override
         protected void finished(Description description) {
- //           driver.quit();
+            driver.quit();
         }
 	};
 			
@@ -96,20 +104,6 @@ public class ChromeTest {
 		obj1.deletesPrevious(driver, obj1.company_id1DevAsia);
 		//Deletes previous created company2,user2,group2
 		obj1.deletesPrevious(driver, obj1.company_id2DevAsia);
-		
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-loginname"))).click();
-//		//Clicks on admin option
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-user-admin"))).click();
-//		if(driver.findElement(By.id("pii-admin-customers-button")).isDisplayed()==false)
-//		{
-//			//Clicks on Accounts
-//			driver.findElement(By.xpath(".//*[@id='pii-admin-accounts']/h3/a")).click();
-//		}		  
-//		
-		
-		
-		
-		
 		//Create company 1
 		obj1.createCompany(driver, obj1.company_id1DevAsia);
 		//Create group 1 under company 1
@@ -118,10 +112,10 @@ public class ChromeTest {
 		HashMap<String, String> gpc1g2=obj1.createGroupWithExpirationDate(driver, obj1.company_id1DevAsia, obj1.group2DevAsia);
 		//Create company 2
 		obj1.createCompany(driver, obj1.company_id2DevAsia);
-		//Create group 2
+		//Create group 2 under company 2
 		HashMap<String, String> gpc2g2=obj1.createGroupWithExpirationDate(driver, obj1.company_id2DevAsia, obj1.company_id2DevAsia);
 		//Check if group view is correct
-		obj1.groupView(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia, obj1.group2DevAsia, gpc1g1, gpc1g2, gpc2g2);
+	obj1.groupView(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia, obj1.group2DevAsia, gpc1g1, gpc1g2, gpc2g2);
 		//Verify change in group list and group moderator list when company is changed while creating new user
 		obj1.verifyGroupListGroupModeratorChange(driver, obj1.company_id1DevAsia, obj1.company_id2DevAsia, obj1.group2DevAsia);
 		//Create user in group 2
@@ -193,9 +187,10 @@ public class ChromeTest {
 		afterTest(obj1);
 	}
 	
+	
 	public void afterTest(UserManagement obj1) throws Exception{
 		
-//		driver.quit();
+		driver.quit();
 //		obj1.softAssert();
 	}
 

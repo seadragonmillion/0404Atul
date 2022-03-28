@@ -60,7 +60,7 @@ public class UserManagement {
 	public String emailUSie11 = "fakeemailtestqaaie11usa@gmail.com";
 	public String emailUS = "piikaleemailtest01@gmail.com";
 	public String emailAsiaie11 = "fakeemailtestqaaie11asia@gmail.com";
-	public String emailAsia = "fakeemailtestqaaasia@gmail.com";
+	public String emailAsia = "piikaleemailtest01@gmail.com";
 	public String companyPII="pii";
 	public String groupPII="pii";
 	public String groupAdmin="admin";
@@ -81,6 +81,7 @@ public class UserManagement {
 
 	public String dummyPassswordEncoded ="RHVtbXlwYXNzQDEyMw==";
 
+	
 	public void bugKALE1842 (WebDriver driver) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
@@ -248,7 +249,6 @@ public class UserManagement {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-create"))).click();
 		Thread.sleep(2000);
 		//Click on Select group dropdown
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 //		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		//Verify Group List is empty
@@ -263,7 +263,7 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		share2.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-modgroups-button"))));
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-modgroups-button"))));
 //		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
 		//Verify Group moderator list is empty
 		try{
@@ -282,7 +282,6 @@ public class UserManagement {
 		share2.scrollToTop(driver);
 		Thread.sleep(2000);
 		//Click on Select group dropdown
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 //		driver.findElement(By.id("pii-admin-user-groups-button")).click();
 		//Verify group1 of company1 is only present in list
@@ -302,14 +301,14 @@ public class UserManagement {
 		}	
 		//Select group1
 		WebElement ele1 = driver.findElement(By.id("pii-admin-user-groups-menu"));
-		jse.executeScript("arguments[0].scrollIntoView();", ele1);
+		jse.executeScript(  "arguments[0].scrollIntoView();", ele1);
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(company_id1))));
 //		ele1.findElement(By.linkText(company_id1)).click();
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		share2.scrollToAPoint(driver, 1500);
 		//Click on Select group moderator
-		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-admin-user-modgroups-button")));
 		//Verify group moderator list
 		c=2;
 		while(true)
@@ -358,8 +357,10 @@ public class UserManagement {
 		//Close group pop up
 		driver.findElement(By.xpath(".//*[@id='pii-admin-user-groups-listbox-popup']/div/div/a")).click();
 		share2.scrollToAPoint(driver, 1500);
+		//Scroll intoView Groups
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		//Click on Select group moderator
-		driver.findElement(By.id("pii-admin-user-modgroups-button")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(By.id("pii-admin-user-modgroups-button")));
 		//Verify group2 moderator list
 		c=2;
 		while(true)
@@ -577,101 +578,128 @@ public class UserManagement {
 		{
 			if(num.get(m)==1)
 			{
-				op[m]="Event Reports";
+				//op[m]="Event Reports";
+				op[m]="The Error-Free Zone";
 			}
 			if(num.get(m)==2)
 			{
-				op[m]="JIT Wisdom";
+				//op[m]="JIT Wisdom";
+				op[m]="Error-Free Document Preparation and Review";
 			}
 			if(num.get(m)==3)
 			{
-				op[m]="JIT Memory Joggers";
+				//op[m]="JIT Memory Joggers";
+				op[m]="Error-Free Instant Root Cause Analysis";
 			}
 			if(num.get(m)==4)
 			{
-				op[m]="Knowledge Bank";
+				//op[m]="Knowledge Bank";
+				op[m]="Error-Free Proactive Event Management for Event-Free";
 			}
 			if(num.get(m)==5)
 			{
-				op[m]="Knowledge Exchange";
+				//op[m]="Knowledge Exchange";
+				op[m]="Error-Free Proactive Safety Management for Injury-Free";
 			}
 			if(num.get(m)==6)
 			{
-				op[m]="Performance Accountability & Analytics";
+				//op[m]="Performance Accountability & Analytics";
+				op[m]="Error-Free Procedure Design and Use";
 			}
 			if(num.get(m)==7)
 			{
-				op[m]="SPV Error Meter";
+				//op[m]="SPV Error Meter";
+				op[m]="Error-Free Technical Error Prevention for Failure-Free Equipment";
 			}
 			if(num.get(m)==8)
 			{
-				op[m]="Human Performance Inspector";
+				//op[m]="Human Performance Inspector";
+				op[m]="Error-Free Troubleshooting";
 			}
 			if(num.get(m)==9)
 			{
-				op[m]="Systematic Reliability Inspection";
+				//op[m]="Systematic Reliability Inspection";
+				op[m]="Event Reports";
 			}
 			if(num.get(m)==10)
 			{
-				op[m]="Human Error Instant RCA";
+				//op[m]="Human Error Instant RCA";
+				op[m]="JIT Wisdom";
 			}
 			if(num.get(m)==11)
 			{
-				op[m]="Equipment Failure Instant RCA";
+				//op[m]="Equipment Failure Instant RCA";
+				op[m]="JIT Memory Joggers";
 			}
 			if(num.get(m)==12)
 			{
-				op[m]="Organization & Programmatic Instant RCA";
+				//op[m]="Organization & Programmatic Instant RCA";
+				op[m]="Knowledge Bank";
 			}
 			if(num.get(m)==13)
 			{
-				op[m]="Instant Common Cause Analysis";
+				//op[m]="Instant Common Cause Analysis";
+				op[m]="Knowledge Exchange";
 			}
 			if(num.get(m)==14)
 			{
-				op[m]="Job Observation Analysis";
+				//op[m]="Job Observation Analysis";
+				op[m]="Performance Accountability & Analytics";
 			}
 			if(num.get(m)==15)
 			{
-				op[m]="Error-Free Review";
+				//op[m]="Error-Free Review";
+				op[m]="Decision Instant RCA";
 			}
 			if(num.get(m)==16)
 			{
-				op[m]="Remote Verification";
+				//op[m]="Remote Verification";
+				op[m]="Error Free Instant Decision Making";
 			}
 			if(num.get(m)==17)
 			{
-				op[m]="eLearning";
+				//op[m]="eLearning";
+				op[m]="Equipment Failure Instant RCA";
 			}
 			if(num.get(m)==18)
 			{
-				op[m]="Error-Free Trainings";
+				//op[m]="Error-Free Trainings";
+				op[m]="Executive Management Instant RCA";
 			}
 			if(num.get(m)==19)
 			{
-				op[m]="Human Performance";
+				//op[m]="Human Performance";
+				op[m]="Error-Free Review";
 			}
 			if(num.get(m)==20)
 			{
-				op[m]="Equipment Performance";
+				//op[m]="Equipment Performance";
+				op[m]="Human Error Instant RCA";
 			}
 			if(num.get(m)==21)
 			{
-				op[m]="Engineering Fundamentals";
+				//op[m]="Engineering Fundamentals";
+				op[m]="Human Performance Inspector";
 			}
 			if(num.get(m)==22)
 			{
-				op[m]="Electrical Failure Modes";
+				//op[m]="Electrical Failure Modes";
+				op[m]="Instant Common Cause Analysis";
 			}	
 			if(num.get(m)==23)
 			{
-				op[m]="Mechanical Failure Modes";
-			}	if(num.get(m)==24)
+				//op[m]="Mechanical Failure Modes";
+				op[m]="iVerifier";
+			}	
+			if(num.get(m)==24)
 			{
-				op[m]="Prevention of Design Deficiencies";
-			}	if(num.get(m)==25)
+				//op[m]="Prevention of Design Deficiencies";
+				op[m]="Job Observation Analysis";
+			}	
+			if(num.get(m)==25)
 			{
-				op[m]="Systematic Reliability Inspection Search";
+				//op[m]="Systematic Reliability Inspection Search";
+				op[m]="Organization & Programmatic Instant RCA";
 			}	
 			//Checks it
 			share2.scrollToElement(driver, ele.findElement(By.linkText(op[m])));
@@ -684,7 +712,6 @@ public class UserManagement {
 		}
 		Thread.sleep(1000);
 		driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
-		//Clicks on Save
 		//Clicks on save
 		driver.findElement(By.id("pii-admin-group-button-save")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-dialog-title"))).click();
@@ -882,30 +909,43 @@ public class UserManagement {
 	public String[] allModuleList () throws Exception {
 
 		List<String> text = new ArrayList<String>();
+		text.add("The Error-Free Zone");
+		text.add("Error-Free Document Preparation and Review");
+		text.add("Error-Free Instant Root Cause Analysis");
+		text.add("Error-Free Proactive Management for Event-Free");
+		text.add("Error-Free Proactive Safety Management for Injury-Free");
+		text.add("Error-Free Procedure Design and Use");
+		text.add("Error-Free Technical Error Prevention for Failure-Free Equipment");
+		text.add("Error-Free Troubleshooting");
 		text.add("Event Reports");
 		text.add("JIT Wisdom");
-		text.add("JIT Risk Joggers");
+		text.add("JIT Memory Joggers");
 		text.add("Knowledge Bank");
 		text.add("Knowledge Exchange");
 		text.add("Performance Accountability & Analytics");
-		text.add("SPV Error Meter");
-		text.add("Human Performance Inspector");
-		text.add("Systematic Reliability Inspection");
-		text.add("Human Error Instant RCA");
-		text.add("Equipment Failure Instant RCA");
-		text.add("Organization & Programmatic Instant RCA");
-		text.add("Instant Common Cause Analysis");
-		text.add("Job Observation Analysis");
+		text.add("Decision Instant RCA");
+		text.add("Error Free Instant Decision Making");
+		text.add("Equipment Management Instant RCA");
 		text.add("Error-Free Review");
-		text.add("Remote Verification");
-		//text.add("eLearning");
-		//text.add("Error-Free Trainings");
-		text.add("Human Performance");
-		text.add("Equipment Performance");
-		text.add("Engineering Fundamentals");
-		text.add("Failure Modes");
-		text.add("Prevention of Design Deficiencies");
+		text.add("Human Error Instant RCA");
+		text.add("Human Performance Inspector");
+		text.add("Instant Common Cause Analysis");
+		text.add("iVerifier");
+		text.add("Job Observation Analysis");
+		text.add("Organization & Programmatic Instant RCA");
+		text.add("SPV Error Meter");
 		text.add("Systematic Reliability Inspection");
+		text.add("eLearning");
+		text.add("Error-Free Trainings");
+		text.add("Human Performance");
+		text.add("DREAM Library");
+		text.add("Equipment Data Bank");
+		text.add("Engineering Fundamentals");
+		text.add("Equipment Performance");
+		text.add("Electrical Failure Modes");
+		text.add("Mechanical Failure Modes");
+		text.add("Prevention of Design Deficiencies");
+		text.add("Systematic Reliability Inspection Search");
 		String[] list = text.stream().toArray(String[]::new);
 		return list;
 	}
@@ -959,7 +999,7 @@ public class UserManagement {
 		//Clicks on Accounts
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-accounts']/h3/a"))).click();
 		//Click on edit user
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-edit"))));
 		//Verify the message on top in edit user page
 		try{
 			String message = wait.until(ExpectedConditions.visibilityOfElementLocated(um.EditUserMessageOnTop)).getText().trim();
@@ -978,14 +1018,13 @@ public class UserManagement {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Change company id
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-customerId"))));
+		jse.executeScript("arguments[0].scrollIntoView(true);", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-customerAdmin-buttons"))));
 		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-customerId")));
 		Select dd1 = new Select (driver.findElement(By.id("pii-admin-user-customerId")));
 		dd1.selectByVisibleText(companyChange);
 		//Select pii group
 //		share2.scrollToElement(driver, driver.findElement(By.id("pii-admin-user-groups-button")));
 //		driver.findElement(By.id("pii-admin-user-groups-button")).click();
-		jse.executeScript("arguments[0].focus();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-groups-button"))));
 		Thread.sleep(2000);
 		share2.scrollToTop(driver);
@@ -1000,7 +1039,7 @@ public class UserManagement {
 		WebElement savebtn = driver.findElement(By.id("pii-admin-user-button-save"));
 		jse.executeScript("arguments[0].click()", savebtn);
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-button-save"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click()",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-user-dialog-confirmed"))));
 		Thread.sleep(500);
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
@@ -1017,7 +1056,6 @@ public class UserManagement {
 		String s1 = driver.findElement(By.id("pii-admin-group-cid")).getAttribute("value");
 		//Verify company id in hashmap 
 		softly.assertThat(s1).as("test data").isEqualTo(op.get("company id"));
-		/*
 		//Get expiration date 
 		String s2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-expDate"))).getAttribute("value");
 		String sub = s2.substring(s2.length()-2, s2.length());
@@ -1025,20 +1063,21 @@ public class UserManagement {
 		n=n+1;
 		String modifiedDate = s2.substring(0, s2.length()-2) + n;
 		//Verify expiration date in hashmap 
-		softly.assertThat(modifiedDate).as("test data").isEqualTo(op.get("expiration date"));*/
+		softly.assertThat(modifiedDate).as("test data").isEqualTo(op.get("expiration date"));
 		//Get authorized cases
 		String s3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-cases"))).getAttribute("value");
 		//Verify authorized cases in hashmap
 		softly.assertThat(s3).as("test data").isEqualTo(op.get("authorized cases"));
+		/*
 		//Get authorized modules
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-button']/span"))).getText();
 		//Verify authorized modules in hashmap
-		softly.assertThat(s4).as("test data").isEqualTo(op.get("authorized modules"));
+		softly.assertThat(s4).as("test data").isEqualTo(op.get("authorized modules"));*/
 	}
 
-	public void groupView (WebDriver driver, String company_id1, String company_id2, String group2, HashMap<String, String>opc1g1,HashMap<String, String>opc1g2,HashMap<String, String>opc2g2) throws Exception {
-
+	 public void groupView (WebDriver driver, String company_id1, String company_id2, String group2, HashMap<String, String>opc1g1,HashMap<String, String>opc1g2,HashMap<String, String>opc2g2) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver,20);	
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on Companies
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
 		//Enters company id in ID field 
@@ -1058,7 +1097,7 @@ public class UserManagement {
 		softly.assertThat(s).as("test data").isEqualTo(company_id1);
 		//Click on group under company
 		share2.scrollToAPoint(driver, 400);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[2]/td[1]"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[2]/td[1]"))));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify if group fields are as expected
@@ -1100,13 +1139,13 @@ public class UserManagement {
 		softly.assertThat(s3).as("test data").isEqualTo(group2);
 		//Click on group under company
 		share2.scrollToAPoint(driver, 400);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[1]/td[1]"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr[1]/td[1]"))));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify if group fields are as expected
 		verifyGroupFields(driver, opc1g2);
 		//Click on Companies
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))));
 		//Enters company id in ID field 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input"))).clear();
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(company_id2);
@@ -1114,17 +1153,17 @@ public class UserManagement {
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Clicks on newly created company id
-		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).click();
+		jse.executeScript("arguments[0].click();", driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Click on edit
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-edit"))));
 		//Get name of group to verify if group name is as expected
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).getText();
 		softly.assertThat(s4).as("test data").isEqualTo(company_id2);
 		//Click on group under company
 		share2.scrollToAPoint(driver, 400);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-groups-jsgrid']/div[2]/table/tbody/tr/td[1]"))));
 		//Wait for loading message to disappear
 		share2.loadingServer(driver);
 		//Verify if group fields are as expected
@@ -1143,103 +1182,131 @@ public class UserManagement {
 			}
 			if(num.get(m)==1)
 			{
-				op[m]="Event Reports";
+				//op[m]="Event Reports";
+				op[m]="The Error-Free Zone";
 			}
 			if(num.get(m)==2)
 			{
-				op[m]="JIT Wisdom";
+				//op[m]="JIT Wisdom";
+				op[m]="Error-Free Document Preparation and Review";
 			}
 			if(num.get(m)==3)
 			{
-				op[m]="JIT Memory Joggers";
+				//op[m]="JIT Memory Joggers";
+				op[m]="Error-Free Instant Root Cause Analysis";
 			}
 			if(num.get(m)==4)
 			{
-				op[m]="Knowledge Bank";
+				//op[m]="Knowledge Bank";
+				op[m]="Error-Free Proactive Event Management for Event-Free";
 			}
 			if(num.get(m)==5)
 			{
-				op[m]="Knowledge Exchange";
+				//op[m]="Knowledge Exchange";
+				op[m]="Error-Free Proactive Safety Management for Injury-Free";
 			}
 			if(num.get(m)==6)
 			{
-				op[m]="Performance Accountability & Analytics";
+				//op[m]="Performance Accountability & Analytics";
+				op[m]="Error-Free Procedure Design and Use";
 			}
 			if(num.get(m)==7)
 			{
-				op[m]="SPV Error Meter";
+				//op[m]="SPV Error Meter";
+				op[m]="Error-Free Technical Error Prevention for Failure-Free Equipment";
 			}
 			if(num.get(m)==8)
 			{
-				op[m]="Human Performance Inspector";
+				//op[m]="Human Performance Inspector";
+				op[m]="Error-Free Troubleshooting";
 			}
 			if(num.get(m)==9)
 			{
-				op[m]="Systematic Reliability Inspection";
+				//op[m]="Systematic Reliability Inspection";
+				op[m]="Event Reports";
 			}
 			if(num.get(m)==10)
 			{
-				op[m]="Human Error Instant RCA";
+				//op[m]="Human Error Instant RCA";
+				op[m]="JIT Wisdom";
 			}
 			if(num.get(m)==11)
 			{
-				op[m]="Equipment Failure Instant RCA";
+				//op[m]="Equipment Failure Instant RCA";
+				op[m]="JIT Memory Joggers";
 			}
 			if(num.get(m)==12)
 			{
-				op[m]="Organization & Programmatic Instant RCA";
+			//op[m]="Organization & Programmatic Instant RCA";
+				op[m]="Knowledge Bank";
 			}
 			if(num.get(m)==13)
 			{
-				op[m]="Instant Common Cause Analysis";
+				//op[m]="Instant Common Cause Analysis";
+				op[m]="Knowledge Exchange";
 			}
 			if(num.get(m)==14)
 			{
-				op[m]="Job Observation Analysis";
+				//op[m]="Job Observation Analysis";
+				op[m]="Performance Accountability & Analytics";
 			}
 			if(num.get(m)==15)
 			{
-				op[m]="Error-Free Review";
+				//op[m]="Error-Free Review";
+				op[m]="Decision Instant RCA";
 			}
 			if(num.get(m)==16)
 			{
-				op[m]="Remote Verification";
+				//op[m]="Remote Verification";
+				op[m]="Error Free Instant Decision Making";
 			}
 			if(num.get(m)==17)
 			{
 				share2.scrollToAPoint(driver, 1500);
-				op[m]="eLearning";
+				//op[m]="eLearning";
+				op[m]="Equipment Failure Instant RCA";
 			}
 			if(num.get(m)==18)
 			{
-				op[m]="Error-Free Trainings";
+				//op[m]="Error-Free Trainings";
+				op[m]="Executive Management Instant RCA";
 			}
 			if(num.get(m)==19)
 			{
-				op[m]="Human Performance";
+				//op[m]="Human Performance";
+				op[m]="Error-Free Review";
 			}
 			if(num.get(m)==20)
 			{
-				op[m]="Equipment Performance";
+				//op[m]="Equipment Performance";
+				op[m]="Human Error Instant RCA";
 			}
 			if(num.get(m)==21)
 			{
-				op[m]="Engineering Fundamentals";
-			}
+				//op[m]="Engineering Fundamentals";
+				op[m]="Human Performance Inspector";
+}
 			if(num.get(m)==22)
 			{
 				op[m]="Electrical Failure Modes";
+				op[m]="Instant Common Cause Analysis";
 			}	
 			if(num.get(m)==23)
 			{
-				op[m]="Mechanical Failure Modes";
-			}	if(num.get(m)==24)
+				//op[m]="Mechanical Failure Modes";
+				op[m]="iVerifier";
+			}
+			if(num.get(m)==24)
 			{
-				op[m]="Prevention of Design Deficiencies";
-			}	if(num.get(m)==25)
+				//op[m]="Prevention of Design Deficiencies";
+				op[m]="Job Observation Analysis";
+			}
+			if(num.get(m)==25)
 			{
-				op[m]="Systematic Reliability Inspection Search";
+				//op[m]="Systematic Reliability Inspection Search";
+				op[m]="Organization & Programmatic Instant RCA";
 			}	
+			
 			//Checks it
 			share2.scrollToElement(driver, ele.findElement(By.linkText(op[m])));
 			ele.findElement(By.linkText(op[m])).click();
@@ -1253,7 +1320,7 @@ public class UserManagement {
 		return op;
 	}
 
-	public String [] createGroupWithRandomModules (WebDriver driver, String company_id) throws Exception {
+	public String [] createGroupWithRandomModules (WebDriver driver, String company_id, String groupname) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		Thread.sleep(2000);
@@ -1262,15 +1329,15 @@ public class UserManagement {
 		Thread.sleep(2000);
 		//Fills all mandatory 
 		driver.findElement(By.id("pii-admin-group-name")).clear();
-		driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
+		driver.findElement(By.id("pii-admin-group-name")).sendKeys(groupname);
 		driver.findElement(By.id("pii-admin-group-cases")).clear();
 		driver.findElement(By.id("pii-admin-group-cases")).sendKeys("ALL");
 		String ev1 = driver.findElement(By.id("pii-admin-group-name")).getAttribute("value");
 		String ev2 = driver.findElement(By.id("pii-admin-group-cases")).getAttribute("value");
-		if ((ev1.equals(company_id)==false))
+		if ((ev1.equals(groupname)==false))
 		{
 			driver.findElement(By.id("pii-admin-group-name")).clear();
-			driver.findElement(By.id("pii-admin-group-name")).sendKeys(company_id);
+			driver.findElement(By.id("pii-admin-group-name")).sendKeys(groupname);
 		}
 		if ((ev2.equals("all")==false))
 		{
@@ -1341,9 +1408,11 @@ public class UserManagement {
 		return op;
 	}
 
+	
 	public HashMap<String,String> createGroupWithExpirationDate (WebDriver driver, String company_id, String group) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(2000);
 		//Clicks on create group
 		driver.findElement(By.id("pii-admin-group-create")).click();
@@ -1368,6 +1437,7 @@ public class UserManagement {
 		WebElement element = driver.findElement(By.id("pii-admin-group-cid"));
 		Select dropdown = new Select (element);
 		dropdown.selectByVisibleText(company_id);
+		/*
 		//Choose random number
 		Random random = new Random();
 		List<Integer> num = new ArrayList<Integer>();
@@ -1383,21 +1453,22 @@ public class UserManagement {
 		}
 		System.out.println("Number chosen "+num1);
 		num.add(num1);
-		driver.findElement(By.id("pii-admin-group-modules-button")).click();
+		//Click on Authorized module
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-button"))));
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-group-modules-menu")));
 		//Choose module, Number of modules =n =1
 		String [] op = chooseModule(driver,num,1, ele);
 		System.out.println(Arrays.toString(op));
-		try{
+		try {
 			driver.findElement(By.cssSelector(".ui-btn.ui-corner-all.ui-btn-left.ui-btn-icon-notext.ui-icon-delete")).click();
-		}catch (NoSuchElementException e)
-		{
-			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
+		} catch (Exception e) {
+			try {
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a"))));
+			} catch (Exception e1) {
+			}
+			
 		}
-		catch (ElementNotInteractableException e1)
-		{
-			driver.findElement(By.xpath(".//*[@id='pii-admin-group-modules-dialog']/div/div/a")).click();
-		}
+		*/
 		//Fill expiration date
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@title='Open Date Picker']"))).click();
@@ -1443,9 +1514,10 @@ public class UserManagement {
 		gp.put("authorized cases", s3);
 		//Get authorized modules
 		String s4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-group-modules-button']/span"))).getText();
+		/*
 		//Add authorized modules to hashmap gp
-		gp.put("authorized modules", s4);
-		System.out.println(gp);
+		gp.put("authorized modules", s4);*/
+		System.out.println("printOutHashmapResultfor_CompanyN_groupN:  "+gp);
 		return gp;
 	}
 
@@ -1790,7 +1862,7 @@ public class UserManagement {
 		driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div/table/tbody/tr[2]/td/input")).sendKeys(Keys.ENTER);
 		Thread.sleep(3000);
 		String comp = driver.findElement(By.xpath(".//*[@id='pii-admin-cust-jsgrid']/div[2]/table/tbody/tr/td")).getText();
-		System.out.println(comp);
+		System.out.println("printOutCompanyIDPoolName:  "+comp);
 		if(comp.contains(company_id))
 		{
 			//delete company, group, user
@@ -1843,6 +1915,7 @@ public class UserManagement {
 	public void createCompany (WebDriver driver, String company_id) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,60);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on companies
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-customers-button"))).click();
@@ -1900,9 +1973,9 @@ public class UserManagement {
 			driver.findElement(By.id("pii-admin-cust-tecCts")).clear();
 			driver.findElement(By.id("pii-admin-cust-tecCts")).sendKeys("Sanity Test");
 		}
-		/*
+		
 		  //Click on departments collapsible
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))).click();
+		  jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-admin-cust-dept-div']/h3/a"))));
 		  //Scroll down
 		  WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-subdept-input")));
 		  Point p = ele.getLocation();
@@ -1912,31 +1985,32 @@ public class UserManagement {
 		  jse.executeScript("scroll(0,"+yaxis+")");
 		  Thread.sleep(2000);
 		  //Enter a few sub departments
+		  jse.executeScript("arguments[0].scrollIntoView(true);", ele);
 		  ele.clear();
 		  ele.sendKeys("QAA 1");
 		  ele.sendKeys(Keys.ENTER);
 		  //Click on add 
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		  jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))));
 		  ele.clear();
 		  ele.sendKeys("QAA 2");
 		  ele.sendKeys(Keys.ENTER);
 		  //Click on add 
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		  jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))));
 		  ele.clear();
 		  ele.sendKeys("QAA 3");
 		  ele.sendKeys(Keys.ENTER);
 		  //Click on add 
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		  jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))));
 		  //Scroll top
 		  Thread.sleep(2000);
 		  share2.scrollToTop(driver);
 		  Thread.sleep(2000);
-		 */
+		 
 		//Clicks on save
-		driver.findElement(By.id("pii-admin-cust-button-save")).click();
+		  jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-button-save"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-title")));
 		//Clicks on create company
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-cust-dialog-confirmed"))));
 		try{
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sticky-note"))).getText();
 			softly.assertThat(s).as("test data").contains("Company created");
@@ -2109,7 +2183,7 @@ public class UserManagement {
 //		driver.findElement(By.id("pii-admin-user-company")).sendKeys("Sanity Test");
 		driver.findElement(By.id("pii-admin-user-email")).sendKeys(email);
 		String ev1 = driver.findElement(By.id("pii-admin-user-name")).getAttribute("value");
-		String ev2 = driver.findElement(By.id("pii-admin-user-company")).getAttribute("value");
+//	String ev2 = driver.findElement(By.id("pii-admin-user-company")).getAttribute("value");
 		String ev3 = driver.findElement(By.id("pii-admin-user-email")).getAttribute("value");
 		if ((ev1.equals(company_id+"testgroupm")==false))
 		{
