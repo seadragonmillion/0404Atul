@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,12 +45,12 @@ public class SRIAdmin {
 		sum = sum + sriA3.deleteMeasurementAdded(driver,sriA2.mechanicalMeasurement1,0);
 		sum = sum + sriA3.deleteMeasurementAdded(driver,sriA2.mechanicalMeasurement2,0);
 		sum = sum + deleteComponentAdded(driver,sriA2.mechanicalComponent1,0);
-		System.out.println(sum);
+		System.out.println("printOut sum #47: "+sum);
 		//Save
 		if(sum>0)
 			sriA2.saveChangedValues(driver,softly);
 		sum = 0;
-		//Delete all electical
+		//Delete all electrical
 		sum = sum + deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1);
 		sum = sum + deleteConclusionAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement2);
 		sum = sum + deleteBaselineAdded(driver,1,sriA2.electricalComponent1,sriA2.electricalMeasurement1,sriA2.electricalUnit1);
@@ -59,7 +60,7 @@ public class SRIAdmin {
 		sum = sum + sriA3.deleteMeasurementAdded(driver,sriA2.electricalMeasurement1,1);
 		sum = sum + sriA3.deleteMeasurementAdded(driver,sriA2.electricalMeasurement2,1);
 		sum = sum + deleteComponentAdded(driver,sriA2.electricalComponent1,1);
-		System.out.println(sum);
+		System.out.println("printOut#63sum: "+sum);
 		//Save
 		if(sum>0)
 			sriA2.saveChangedValues(driver,softly);
@@ -189,6 +190,7 @@ public class SRIAdmin {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,2);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.scrollToTop(driver);
 		//Click on SRI components tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
@@ -200,7 +202,7 @@ public class SRIAdmin {
 				break;
 			}catch(org.openqa.selenium.WebDriverException r)
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)).click();
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTab)));
 				Thread.sleep(1000);
 			}
 		}
@@ -210,12 +212,12 @@ public class SRIAdmin {
 		if(mechOrElec==0)
 		{
 			//Click on SRI components tab mechanical option
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTabMechanicalOption)).click();
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTabMechanicalOption)));
 		}
 		else
 		{
 			//Click on SRI components tab electrical option
-			wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTabElectricalOption)).click();
+			jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminComponentsTabElectricalOption)));
 		}
 		//Count number of components
 		int count=1;
@@ -229,9 +231,9 @@ public class SRIAdmin {
 				{
 					//delete measurement
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-components-table']/tbody/tr["+count+"]/td[4]/a"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-components-table']/tbody/tr["+count+"]/td[4]/a"))).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-components-table']/tbody/tr["+count+"]/td[4]/a"))));
 					//Delete confirm button
-					wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 					//share2.loadingServer(driver);
 					deleted = 1;
 				}
@@ -250,6 +252,7 @@ public class SRIAdmin {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,2);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on SRI baseline tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
 		/* 0 = Mechanical
@@ -296,9 +299,11 @@ public class SRIAdmin {
 					{
 						//delete baseline
 						share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a")));
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a"))).click();
+						jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a"))));
+						System.out.println("printOut count for delete baseline xpath: "+count);
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-baseline-table']/tbody/tr["+count+"]/td[7]/a"))));
 						//Delete confirm button
-						wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 						//share2.loadingServer(driver);
 					}
 				}
@@ -315,6 +320,7 @@ public class SRIAdmin {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,2);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on SRI conclusion tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
 		try{
@@ -377,9 +383,10 @@ public class SRIAdmin {
 				{
 					//delete conclusion
 					share2.scrollToElement(driver, driver.findElement(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[6]/a")));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[6]/a"))).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-conclusion-table']/tbody/tr["+count+"]/td[6]/a"))));
+					Thread.sleep(500);
 					//Delete confirm button
-					wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 					//share2.loadingServer(driver);
 				}
 			}catch(org.openqa.selenium.TimeoutException e)
@@ -585,6 +592,7 @@ public class SRIAdmin {
 	public void addSRIMeasurementInAdmin(WebDriver driver, int mechOrElec, String component, String measurement, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.scrollToTop(driver);
 		//Click on SRI measurement tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementTab)).click();
@@ -619,11 +627,13 @@ public class SRIAdmin {
 		{
 			try{
 				driver.findElement(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]"));
+				System.out.println("printOut count"+count);
 				String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[3]/div/input"))).getAttribute("value");
+				System.out.println("printOut measurementName:  "+measurementName);
 				if(measurementName.equals(measurement))
 				{
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input"))).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[2]/div/input"))));
 				}
 			}catch(org.openqa.selenium.NoSuchElementException e)
 			{
@@ -636,6 +646,7 @@ public class SRIAdmin {
 	public void addSRIUnitInAdmin(WebDriver driver, String measurement, String unit) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.scrollToTop(driver);
 		//Click on SRI units tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
@@ -657,7 +668,7 @@ public class SRIAdmin {
 				if(unitName.equals(unit))
 				{
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input"))).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[2]/div/input"))));
 				}
 			}catch(org.openqa.selenium.NoSuchElementException e)
 			{

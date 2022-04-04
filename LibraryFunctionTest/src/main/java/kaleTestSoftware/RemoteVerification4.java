@@ -1,6 +1,7 @@
 package kaleTestSoftware;
 
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,8 +13,9 @@ public class RemoteVerification4 {
 	public void verifyNewReportPopup(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on new button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVNewButton)));
 		//Verify pop up header
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(rv.RVSavePopupHeader)).getText();
 		softly.assertThat(s).as("test data").isEqualTo("Start New Remote Verification");

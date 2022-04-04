@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -166,6 +167,7 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Change date of 2nd event to match 1st event
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement2CalendarIcon)).click();
 		//Click on - sign five times
@@ -206,7 +208,7 @@ public class SRI {
 			}
 		}
 		//Click on set time
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockSetTime)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockSetTime)));
 		Thread.sleep(1000);
 		//Wait for disappearance of time box
 		try{
@@ -230,10 +232,11 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Get date of present 1st measurement
 		String s = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement2Date)).getAttribute("value");
 		//Change date of 1st measurement to 2 months ahead of present 2nd event
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement1CalendarIcon)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Measurement1CalendarIcon)));
 		//Click on + sign five times
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarPlusSign)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.CalendarPlusSign)).click();
@@ -288,6 +291,7 @@ public class SRI {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
 		WebDriverWait wait1 = new WebDriverWait(driver,5);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Fill Date
 		//Click on calendar icon
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2CalendarIconAddMeasurement)).click();
@@ -307,13 +311,15 @@ public class SRI {
 		//Click on clock icon
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2ClockIconAddMeasurement)).click();
 		//Set hour to 2
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).clear();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).clear();
 		Thread.sleep(500);
 		while(true)
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.CONTROL,"a");
+			Thread.sleep(300);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys(Keys.DELETE);
+			Thread.sleep(300);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).sendKeys("02");
 			Thread.sleep(500);
 			String s = wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockTimeHourField)).getAttribute("value");
@@ -322,7 +328,7 @@ public class SRI {
 				break;
 		}
 		//Click on set time
-		wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockSetTime)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(eirca.ClockSetTime)));
 		Thread.sleep(1000);
 		//Wait for disappearance of time box
 		try{
@@ -344,7 +350,7 @@ public class SRI {
 		//Fill notes
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2Notes)).sendKeys(text);
 		//Click on add button
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2AddButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.Step2AddButton)));
 	}
 
 	public void verifyStep1Label(WebDriver driver) throws Exception {

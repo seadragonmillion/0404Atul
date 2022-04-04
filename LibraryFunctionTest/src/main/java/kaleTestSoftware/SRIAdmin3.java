@@ -6,6 +6,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,6 +50,7 @@ public class SRIAdmin3 {
 	public void verifyAppearanceOfMissingValuesInBaseline(WebDriver driver, SoftAssertions softly, String component, String measurement, String unit) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		verifyIfNoUnitBaselineNotSaved(driver,softly,component);
 		//Delete unit
 		deleteUnitAdded(driver,measurement,unit);
@@ -88,15 +90,17 @@ public class SRIAdmin3 {
 		String measurementName = wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionMeasurementForFirstRow)).getText();
 		softly.assertThat(measurementName).as("test data").isEqualTo(" ");
 		//Click on undo
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUndoButton)).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUndoButton)));
+		Thread.sleep(300);
+		jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 		share2.loadingServer(driver);
 	}
 
 	public int deleteMeasurementAdded(WebDriver driver, String measurement, int mechOrElec) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
-		WebDriverWait wait1 = new WebDriverWait(driver,2);
+		WebDriverWait wait1 = new WebDriverWait(driver,2);	
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.scrollToTop(driver);
 		//Click on SRI measurement tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminMeasurementTab)).click();
@@ -113,9 +117,10 @@ public class SRIAdmin3 {
 				{
 					//delete measurement
 					share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))));
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))).click();
+					jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-meas-table']/tbody/tr["+count+"]/td[4]/a"))));
+					Thread.sleep(300);
 					//Delete confirm button
-					wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+					jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 					sum=1;
 				}
 			}catch(org.openqa.selenium.TimeoutException e)
@@ -130,6 +135,7 @@ public class SRIAdmin3 {
 	public int deleteUnitAdded(WebDriver driver, String measurement, String unit) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		share2.scrollToTop(driver);
 		//Click on SRI units tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminUnitsTab)).click();
@@ -156,9 +162,9 @@ public class SRIAdmin3 {
 					//{
 						//delete unit
 						share2.scrollToElement(driver, wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))));
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))).click();
+						jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='pii-asri-unit-table']/tbody/tr["+count+"]/td[4]/a"))));
 						//Delete confirm button
-						wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+						jse.executeScript("arguments[0].click();",wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 						//share2.loadingServer(driver);
 					//}
 						return 1;

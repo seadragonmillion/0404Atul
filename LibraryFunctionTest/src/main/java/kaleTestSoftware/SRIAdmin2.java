@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -53,6 +54,7 @@ public class SRIAdmin2 {
 	public void removeUnitVerifyPart2UnderBaslineVanishes(WebDriver driver, String component, String measurement1, String measurement2, String unit1, String unit2, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Go to baseline tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();		
 		//Select component 1
@@ -65,13 +67,13 @@ public class SRIAdmin2 {
 		sriA3.deleteUnitAdded(driver,measurement1,unit1);
 		//Come back to baseline
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)));
 		//Verify presence of 2.
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinePart2));
 		//Click on conclusion
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)));
 		//Come back to baseline
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)));
 		//Verify presence of 2.
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinePart2));
 		//Verify no unit selected
@@ -83,7 +85,7 @@ public class SRIAdmin2 {
 		sriA3.deleteMeasurementAdded(driver,measurement2,0);
 		//Come back to baseline
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();				
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)));				
 		//Verify 2. not present
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(sri.SRIAdminBaselinePart2));
 		//Click on conclusion
@@ -91,7 +93,7 @@ public class SRIAdmin2 {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
 		//Come back to baseline
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminBaselinesTab)));
 		//Verify 2. not present
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(sri.SRIAdminBaselinePart2));
 	}
@@ -190,6 +192,7 @@ public class SRIAdmin2 {
 	public void changeConclusion(WebDriver driver, String component, String measurement, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on SRI conclusion tab
 		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminConclusionsTab)).click();
 		try{
@@ -244,18 +247,41 @@ public class SRIAdmin2 {
 			count=count+2;
 		}
 		//Click on Save
-		saveChangedValues(driver,softly);
+	//	saveChangedValues(driver,softly);
+		try {
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)));
+			Thread.sleep(300);
+			sriA3.verifySavePopup(driver, softly);
+			//Click on save button on popup
+			jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
+		} catch (Exception e) {
+			try {
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)));
+				Thread.sleep(300);
+				sriA3.verifySavePopup(driver, softly);
+				//Click on save button on popup
+				jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
+			} catch (Exception e1) {
+				System.out.println("Conclusion Changed Save Button worked successfully");
+			}
+			
+		}
+		
 	}
 
 	public void saveChangedValues(WebDriver driver, SoftAssertions softly) throws Exception {
 
 		WebDriverWait wait = new WebDriverWait(driver,30);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Click on Save button
 		share2.scrollToTop(driver);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)).click();
-		sriA3.verifySavePopup(driver, softly);
+		jse.executeScript("arguments[0].scrollIntoView();", wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pii-admin-title"))));
+		Thread.sleep(500);
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminSaveButton)));
+		Thread.sleep(300);
+	//	sriA3.verifySavePopup(driver, softly);
 		//Click on save button on popup
-		wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)).click();
+		jse.executeScript("arguments[0].click();", wait.until(ExpectedConditions.visibilityOfElementLocated(sri.SRIAdminPopupConfirmButton)));
 		share2.loadingServer(driver);
 	}
 

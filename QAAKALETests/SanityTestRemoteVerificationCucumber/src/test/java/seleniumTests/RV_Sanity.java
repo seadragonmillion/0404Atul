@@ -141,7 +141,7 @@ public class RV_Sanity {
 				exception.printStackTrace();
 			}
 		}
-		driver.quit();
+//		driver.quit();
 		RemoteVerification rv = new RemoteVerification();
 		rv.softAssert();
 	}
